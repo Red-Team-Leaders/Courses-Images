@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.vbr{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.mft{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.attr{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.meta{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}</style></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">NTFS — layout de volume e Master File Table</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Tudo é arquivo no NTFS, inclusive metadados; MFT é "$MFT" (file 0)</text>
+
+<rect class="vbr" x="40" y="90" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="115">$Boot (VBR — Volume Boot Record)</text>
+<text class="c" x="60" y="138">  primeiro setor; OEM "NTFS    ", MFT cluster, mft mirror, sectors/cluster, bytes/sector, bootloader code</text>
+
+<rect class="mft" x="40" y="170" width="540" height="280" rx="8"/>
+<text class="h" x="310" y="195" text-anchor="middle">MFT — array de FILE records (1KB cada)</text>
+<text class="c" x="60" y="222">  Record 0  $MFT                — o próprio MFT</text>
+<text class="c" x="60" y="240">  Record 1  $MFTMirr            — backup primeiros 4 entries</text>
+<text class="c" x="60" y="258">  Record 2  $LogFile            — journaling (~64MB)</text>
+<text class="c" x="60" y="276">  Record 3  $Volume             — label, version, flags</text>
+<text class="c" x="60" y="294">  Record 4  $AttrDef            — definições de attribute types</text>
+<text class="c" x="60" y="312">  Record 5  .                   — root directory</text>
+<text class="c" x="60" y="330">  Record 6  $Bitmap             — clusters allocados</text>
+<text class="c" x="60" y="348">  Record 7  $Boot               — VBR mirror</text>
+<text class="c" x="60" y="366">  Record 8  $BadClus            — clusters defeituosos</text>
+<text class="c" x="60" y="384">  Record 9  $Secure             — security descriptors centralizados</text>
+<text class="c" x="60" y="402">  Record 10 $UpCase             — Unicode case mapping</text>
+<text class="c" x="60" y="420">  Record 11 $Extend             — diretório com $ObjId, $Quota, $Reparse, $UsnJrnl, $RmMetadata</text>
+<text class="c" x="60" y="438">  Record 12+  arquivos do usuário</text>
+
+<rect class="attr" x="620" y="170" width="540" height="280" rx="8"/>
+<text class="h" x="890" y="195" text-anchor="middle">FILE record — atributos</text>
+<text class="c" x="640" y="222">  Header: signature "FILE", LSN, sequence, link count</text>
+<text class="c" x="640" y="240">  $STANDARD_INFORMATION  (timestamps, flags, owner)</text>
+<text class="c" x="640" y="258">  $ATTRIBUTE_LIST        (se atributos extrapolam o record)</text>
+<text class="c" x="640" y="276">  $FILE_NAME             (nome curto + longo, parent ref)</text>
+<text class="c" x="640" y="294">  $OBJECT_ID             (GUID)</text>
+<text class="c" x="640" y="312">  $SECURITY_DESCRIPTOR   (legacy ou ref para $Secure)</text>
+<text class="c" x="640" y="330">  $VOLUME_NAME / $VOLUME_INFORMATION  (apenas $Volume)</text>
+<text class="c" x="640" y="348">  $DATA                  (default unnamed = conteúdo; named = ADS)</text>
+<text class="c" x="640" y="366">  $INDEX_ROOT / $INDEX_ALLOCATION  (B+ tree para diretórios)</text>
+<text class="c" x="640" y="384">  $BITMAP                (bitmap interno se necessário)</text>
+<text class="c" x="640" y="402">  $REPARSE_POINT         (junctions, symlinks, dedup)</text>
+<text class="c" x="640" y="420">  $LOGGED_UTILITY_STREAM (EFS, …)</text>
+<text class="cap" x="640" y="438">  Resident vs Non-resident: pequeno cabe inline; grande aponta data runs.</text>
+
+<rect class="meta" x="40" y="470" width="1120" height="200" rx="8"/>
+<text class="h" x="600" y="495" text-anchor="middle">Conceitos avançados</text>
+<text class="c" x="60" y="522">  Data runs: extents (LCN, length) — fragmentação tracked aqui</text>
+<text class="c" x="60" y="540">  ADS (Alternate Data Streams):  file.txt:secret  → outro $DATA com nome</text>
+<text class="c" x="60" y="558">  USN Journal ($UsnJrnl/$J): change log para AV, backup; NtFsControlFile FSCTL_QUERY_USN_JOURNAL</text>
+<text class="c" x="60" y="576">  Reparse points: tag determina handler (IO_REPARSE_TAG_SYMLINK, _MOUNT_POINT, _DEDUP, _APPEXECLINK)</text>
+<text class="c" x="60" y="594">  Hardlinks: múltiplos $FILE_NAME apontando ao mesmo MFT record</text>
+<text class="c" x="60" y="612">  TxF (deprecated 8+): transações via $RmMetadata</text>
+<text class="c" x="60" y="630">  Compression / Sparse files / EFS: flags em $STANDARD_INFORMATION + atributos especiais</text>
+<text class="c" x="60" y="648">  Resilient File System (ReFS): copy-on-write, integrity streams, sem ADS</text>
+
+<text class="cap" x="600" y="700" text-anchor="middle">Forensics: parse offline com TSK (sleuthkit), MFTECmd (Eric Zimmerman), analyzeMFT.</text>
+<text class="cap" x="600" y="725" text-anchor="middle">FSCTL_GET_NTFS_FILE_RECORD lê record diretamente; FSCTL_GET_VOLUME_BITMAP lê $Bitmap.</text>
+</svg>

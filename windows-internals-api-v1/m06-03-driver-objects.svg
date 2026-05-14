@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.drv{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.dev{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.fl{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">DRIVER_OBJECT, DEVICE_OBJECT, FILE_OBJECT</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Driver loader (IopLoadDriver) cria DRIVER_OBJECT e chama DriverEntry; driver popula MajorFunction[] e cria devices.</text>
+
+<rect class="drv" x="40" y="90" width="540" height="280" rx="8"/>
+<text class="h" x="310" y="115" text-anchor="middle">_DRIVER_OBJECT</text>
+<text class="c" x="60" y="142">  +0x00 Type / Size</text>
+<text class="c" x="60" y="160">  +0x08 DeviceObject : PDEVICE_OBJECT  (lista linkada)</text>
+<text class="c" x="60" y="178">  +0x10 Flags (DRVO_LEGACY_DRIVER, DRVO_INITIALIZED…)</text>
+<text class="c" x="60" y="196">  +0x18 DriverStart, DriverSize  (image base+size)</text>
+<text class="c" x="60" y="214">  +0x28 DriverSection : PVOID  (LDR_DATA_TABLE_ENTRY)</text>
+<text class="c" x="60" y="232">  +0x30 DriverExtension : PDRIVER_EXTENSION</text>
+<text class="c" x="60" y="250">  +0x38 DriverName : UNICODE_STRING  ("\\Driver\\Foo")</text>
+<text class="c" x="60" y="268">  +0x48 HardwareDatabase</text>
+<text class="c" x="60" y="286">  +0x50 FastIoDispatch</text>
+<text class="c" x="60" y="304">  +0x58 DriverInit (DriverEntry)</text>
+<text class="c" x="60" y="322">  +0x60 DriverStartIo</text>
+<text class="c" x="60" y="340">  +0x68 DriverUnload</text>
+<text class="c" x="60" y="358">  +0x70 MajorFunction[28] : PDRIVER_DISPATCH</text>
+
+<rect class="dev" x="620" y="90" width="540" height="280" rx="8"/>
+<text class="h" x="890" y="115" text-anchor="middle">_DEVICE_OBJECT</text>
+<text class="c" x="640" y="142">  +0x00 Type</text>
+<text class="c" x="640" y="160">  +0x08 ReferenceCount</text>
+<text class="c" x="640" y="178">  +0x10 DriverObject : PDRIVER_OBJECT</text>
+<text class="c" x="640" y="196">  +0x18 NextDevice : PDEVICE_OBJECT</text>
+<text class="c" x="640" y="214">  +0x20 AttachedDevice : PDEVICE_OBJECT  ← topo do stack</text>
+<text class="c" x="640" y="232">  +0x28 CurrentIrp</text>
+<text class="c" x="640" y="250">  +0x30 Timer</text>
+<text class="c" x="640" y="268">  +0x38 Flags (DO_BUFFERED_IO, DO_DIRECT_IO, …)</text>
+<text class="c" x="640" y="286">  +0x40 Characteristics (FILE_REMOVABLE_MEDIA, …)</text>
+<text class="c" x="640" y="304">  +0x48 Vpb : PVPB  (volume parameter block)</text>
+<text class="c" x="640" y="322">  +0x50 DeviceExtension : PVOID  ← driver-private state</text>
+<text class="c" x="640" y="340">  +0x58 DeviceType, StackSize</text>
+<text class="c" x="640" y="358">  +0x60 Queue (IRP queue)</text>
+
+<rect class="fl" x="40" y="390" width="540" height="200" rx="8"/>
+<text class="h" x="310" y="415" text-anchor="middle">_FILE_OBJECT (instância de "open file/handle")</text>
+<text class="c" x="60" y="442">  +0x00 Type / Size</text>
+<text class="c" x="60" y="08" /><text class="c" x="60" y="460">  +0x08 DeviceObject (alvo)</text>
+<text class="c" x="60" y="478">  +0x10 Vpb</text>
+<text class="c" x="60" y="496">  +0x18 FsContext (FCB)</text>
+<text class="c" x="60" y="514">  +0x20 FsContext2 (CCB)</text>
+<text class="c" x="60" y="532">  +0x30 FileName : UNICODE_STRING</text>
+<text class="c" x="60" y="550">  +0x40 CurrentByteOffset</text>
+<text class="c" x="60" y="568">  +0x68 PrivateCacheMap</text>
+<text class="c" x="60" y="586">  Flags: DELETE_ON_CLOSE, SYNCHRONOUS_IO, NO_INTERMEDIATE_BUFFERING…</text>
+
+<rect class="fl" x="620" y="390" width="540" height="200" rx="8"/>
+<text class="h" x="890" y="415" text-anchor="middle">DriverEntry esqueleto</text>
+<text class="c" x="640" y="442">  NTSTATUS DriverEntry(DRIVER_OBJECT *Drv, UNICODE_STRING *RegPath){</text>
+<text class="c" x="640" y="460">    Drv-&gt;DriverUnload = MyUnload;</text>
+<text class="c" x="640" y="478">    Drv-&gt;MajorFunction[IRP_MJ_CREATE]  = MyCreate;</text>
+<text class="c" x="640" y="496">    Drv-&gt;MajorFunction[IRP_MJ_CLOSE]   = MyClose;</text>
+<text class="c" x="640" y="514">    Drv-&gt;MajorFunction[IRP_MJ_DEVICE_CONTROL] = MyIoctl;</text>
+<text class="c" x="640" y="532">    PDEVICE_OBJECT dev;</text>
+<text class="c" x="640" y="550">    IoCreateDevice(Drv, sizeof(MY_EXT), &amp;name, FILE_DEVICE_UNKNOWN,</text>
+<text class="c" x="640" y="568">                   0, FALSE, &amp;dev);</text>
+<text class="c" x="640" y="586">    IoCreateSymbolicLink(&amp;dosName, &amp;name);   return STATUS_SUCCESS; }</text>
+
+<rect fill="#161b22" stroke="#30363d" x="40" y="610" width="1120" height="120" rx="8"/>
+<text class="h" x="600" y="635" text-anchor="middle">Stack de drivers — IoAttachDeviceToDeviceStack</text>
+<text class="c" x="60" y="662">  Filtros: upper (perto do FS) e lower (perto do hardware) attach com IoAttachDeviceToDeviceStack.</text>
+<text class="c" x="60" y="680">  IRP percorre TOP→BOTTOM (IoCallDriver no AttachedDevice). Completa BOTTOM→TOP via IoCompleteRequest.</text>
+<text class="c" x="60" y="698">  Para FS, filter manager substituiu legacy filters (Win Vista+). FltRegisterFilter + altitudes.</text>
+<text class="c" x="60" y="716">  WinDbg: !devstack &lt;DEVOBJ&gt;, !drvobj &lt;driver&gt; 7, !irpfind, !devnode 0 1.</text>
+</svg>

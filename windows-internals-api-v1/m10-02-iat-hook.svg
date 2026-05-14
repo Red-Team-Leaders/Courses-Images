@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.tgt{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.dll{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.hook{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="700" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">IAT Hooking — patch em [__imp_Foo] no IAT do alvo</text>
+
+<rect class="tgt" x="40" y="80" width="540" height="240" rx="8"/>
+<text class="h" x="310" y="105" text-anchor="middle">Antes do hook</text>
+<text class="c" x="60" y="135">  target.exe IAT[N] = 0x7FF8…1234   (kernel32!CreateFileW)</text>
+<text class="c" x="60" y="155">  target!main:</text>
+<text class="c" x="60" y="175">    call qword ptr [rip + IAT_offset]</text>
+<text class="c" x="60" y="200">  → kernel32.dll!CreateFileW    (executa normalmente)</text>
+<text class="c" x="60" y="220">  → eventualmente NtCreateFile → kernel</text>
+
+<rect class="tgt" x="620" y="80" width="540" height="240" rx="8"/>
+<text class="h" x="890" y="105" text-anchor="middle">Depois do hook</text>
+<text class="c" x="640" y="135">  target.exe IAT[N] = 0x000007FF…BEEF (My_CreateFileW)</text>
+<text class="c" x="640" y="155">  call qword ptr [rip + IAT_offset]</text>
+<text class="c" x="640" y="180">  → my_module.dll!My_CreateFileW   (interceptor)</text>
+<text class="c" x="640" y="200">    log args, normaliza, opcional sanitize</text>
+<text class="c" x="640" y="220">    chama kernel32!CreateFileW (saved ptr)</text>
+<text class="c" x="640" y="240">    devolve resultado ao caller</text>
+
+<rect class="hook" x="40" y="350" width="1120" height="320" rx="8"/>
+<text class="h" x="600" y="375" text-anchor="middle">Algoritmo</text>
+<text class="c" x="60" y="402">  1. Encontrar a IMAGE_IMPORT_DESCRIPTOR para "kernel32.dll" no PE do alvo</text>
+<text class="c" x="60" y="420">     (ImageDirectoryEntryToData(hMod, TRUE, IMAGE_DIRECTORY_ENTRY_IMPORT, &amp;sz))</text>
+<text class="c" x="60" y="438">  2. Walk IAT (FirstThunk) e ILT (OriginalFirstThunk) em paralelo</text>
+<text class="c" x="60" y="456">  3. Para cada par (name/ordinal, IAT slot):</text>
+<text class="c" x="60" y="474">       se nome/ordinal match com função alvo:</text>
+<text class="c" x="60" y="492">         VirtualProtect(slot, sizeof(PVOID), PAGE_READWRITE, &amp;old)</text>
+<text class="c" x="60" y="510">         original = *slot;  *slot = (PVOID)hook_fn</text>
+<text class="c" x="60" y="528">         VirtualProtect(slot, sizeof(PVOID), old, &amp;tmp)</text>
+<text class="c" x="60" y="556">  4. Hook deve ter assinatura idêntica (calling convention, args)</text>
+<text class="c" x="60" y="574">  5. Para chamar original, usar saved ptr (não chamar via IAT, senão recursão infinita)</text>
+<text class="cap" x="60" y="608">  Limitações:</text>
+<text class="cap" x="60" y="626">  - Funções resolvidas via GetProcAddress (não importadas estáticas) escapam — use inline hook</text>
+<text class="cap" x="60" y="644">  - Cada DLL tem seu próprio IAT — hook em DLL X não afeta DLL Y</text>
+<text class="cap" x="60" y="662">  - CFG/CET/EAF detectam se hook destination está fora de listas válidas</text>
+</svg>

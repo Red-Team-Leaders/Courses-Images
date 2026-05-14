@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+<defs><style>
+.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}
+.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}
+.s{fill:#1f3a5f;stroke:#58a6ff;stroke-width:2}.r{fill:#1f3a2a;stroke:#7ee787;stroke-width:2}.w{fill:#3a2f1f;stroke:#f0883e;stroke-width:2}
+.term{fill:#3a1f1f;stroke:#ff7b72;stroke-width:2}
+</style>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="700" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Thread State Machine (KTHREAD.State)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Estados internos do scheduler do Windows — transições e quem as causa</text>
+
+<g><rect class="s" x="60" y="120" width="180" height="80" rx="40"/><text class="h" x="150" y="150" text-anchor="middle">Initialized</text><text class="c" x="150" y="172" text-anchor="middle">criada (=0)</text><text class="c" x="150" y="190" text-anchor="middle">PspCreateThread</text></g>
+<g><rect class="r" x="320" y="120" width="180" height="80" rx="40"/><text class="h" x="410" y="150" text-anchor="middle">Ready (=1)</text><text class="c" x="410" y="172" text-anchor="middle">na fila</text><text class="c" x="410" y="190" text-anchor="middle">KPRCB.ReadyListHead</text></g>
+<g><rect class="r" x="580" y="120" width="180" height="80" rx="40"/><text class="h" x="670" y="150" text-anchor="middle">Standby (=3)</text><text class="c" x="670" y="172" text-anchor="middle">próxima a rodar</text><text class="c" x="670" y="190" text-anchor="middle">só uma por CPU</text></g>
+<g><rect class="r" x="840" y="120" width="180" height="80" rx="40"/><text class="h" x="930" y="150" text-anchor="middle">Running (=2)</text><text class="c" x="930" y="172" text-anchor="middle">CPU executa</text><text class="c" x="930" y="190" text-anchor="middle">KPRCB.CurrentThread</text></g>
+
+<g><rect class="w" x="60" y="320" width="180" height="80" rx="40"/><text class="h" x="150" y="350" text-anchor="middle">Waiting (=5)</text><text class="c" x="150" y="372" text-anchor="middle">Wait* / sleep</text><text class="c" x="150" y="390" text-anchor="middle">KWAIT_BLOCK chain</text></g>
+<g><rect class="w" x="320" y="320" width="180" height="80" rx="40"/><text class="h" x="410" y="350" text-anchor="middle">Transition (=6)</text><text class="c" x="410" y="372" text-anchor="middle">esperando</text><text class="c" x="410" y="390" text-anchor="middle">stack page-in</text></g>
+<g><rect class="r" x="580" y="320" width="180" height="80" rx="40"/><text class="h" x="670" y="350" text-anchor="middle">Deferred Ready (=7)</text><text class="c" x="670" y="372" text-anchor="middle">aguarda escalonador</text><text class="c" x="670" y="390" text-anchor="middle">decidir CPU</text></g>
+<g><rect class="term" x="840" y="320" width="180" height="80" rx="40"/><text class="h" x="930" y="350" text-anchor="middle">Terminated (=4)</text><text class="c" x="930" y="372" text-anchor="middle">PspExitThread</text><text class="c" x="930" y="390" text-anchor="middle">aguarda rundown</text></g>
+
+<line x1="240" y1="160" x2="320" y2="160" stroke="#e6edf3" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="500" y1="160" x2="580" y2="160" stroke="#e6edf3" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="760" y1="160" x2="840" y2="160" stroke="#e6edf3" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="930" y1="200" x2="930" y2="320" stroke="#ff7b72" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="930" y1="200" x2="150" y2="320" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="240" y1="360" x2="580" y2="360" stroke="#7ee787" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="760" y1="360" x2="500" y2="180" stroke="#7ee787" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="240" y1="380" x2="320" y2="380" stroke="#e6edf3" stroke-width="2" marker-end="url(#ar)"/>
+
+<text class="cap" x="280" y="148">→ KeReadyThread</text>
+<text class="cap" x="540" y="148">→ KiQuantumEnd / preempt</text>
+<text class="cap" x="800" y="148">→ context switch</text>
+<text class="cap" x="940" y="280" text-anchor="middle">ExitThread / kill</text>
+<text class="cap" x="500" y="240">block (KeWaitForXxx)</text>
+<text class="cap" x="380" y="345">satisfeito (signal)</text>
+
+<rect fill="#161b22" stroke="#30363d" x="40" y="440" width="1120" height="240" rx="8"/>
+<text class="h" x="60" y="465">Wait Reasons (KTHREAD.WaitReason) — por que está em Waiting</text>
+<text class="c" x="60" y="490">  Executive (0)        — wait genérico no executive (Wait* APIs)</text>
+<text class="c" x="60" y="510">  FreePage (1)         — esperando página livre</text>
+<text class="c" x="60" y="530">  PageIn (2)           — esperando page-in (page fault)</text>
+<text class="c" x="60" y="550">  PoolAllocation (3)   — esperando pool</text>
+<text class="c" x="60" y="570">  DelayExecution (4)   — Sleep / KeDelayExecutionThread</text>
+<text class="c" x="600" y="490">  Suspended (5)        — SuspendThread</text>
+<text class="c" x="600" y="510">  UserRequest (6)      — WaitForSingleObject etc.</text>
+<text class="c" x="600" y="530">  EventPair (7)        — par de eventos (rara)</text>
+<text class="c" x="600" y="550">  Queue (8)            — IO completion port</text>
+<text class="c" x="600" y="570">  Mutex / Semaphore / Event (≥9)</text>
+<text class="cap" x="60" y="615">Comandos: !thread &lt;ETHREAD&gt; mostra State e WaitReason; !ready lista CPUs e suas filas;</text>
+<text class="cap" x="60" y="635">!locks lista locks de recursos (ERESOURCE) — útil para diagnosticar deadlocks.</text>
+<text class="cap" x="60" y="660">Saturation: thread RT pode ter base+saturation = 32 (sempre ganha CPU). Boost dinâmico aplica-se a 1–15.</text>
+</svg>

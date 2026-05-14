@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.cb{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.op{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.box{fill:#161b22;stroke:#30363d}</style></defs>
+<rect width="1200" height="700" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">CmRegisterCallbackEx — interceptando registry no kernel</text>
+
+<rect class="cb" x="40" y="80" width="540" height="240" rx="8"/>
+<text class="h" x="310" y="105" text-anchor="middle">Registro</text>
+<text class="c" x="60" y="132">  NTSTATUS CmRegisterCallbackEx(</text>
+<text class="c" x="60" y="150">    PEX_CALLBACK_FUNCTION fn,</text>
+<text class="c" x="60" y="168">    PCUNICODE_STRING Altitude,   // ex.: L"385000"</text>
+<text class="c" x="60" y="186">    PVOID Driver,</text>
+<text class="c" x="60" y="204">    PVOID Context,</text>
+<text class="c" x="60" y="222">    PLARGE_INTEGER Cookie,</text>
+<text class="c" x="60" y="240">    PVOID Reserved);</text>
+<text class="c" x="60" y="270">  Unregister: CmUnRegisterCallback(cookie)</text>
+<text class="cap" x="60" y="300">  Driver deve ter GUID em INF + altitude alocada.</text>
+
+<rect class="op" x="620" y="80" width="540" height="240" rx="8"/>
+<text class="h" x="890" y="105" text-anchor="middle">Operações (REG_NOTIFY_CLASS)</text>
+<text class="c" x="640" y="130">  RegNtPreOpenKey / PostOpenKey</text>
+<text class="c" x="640" y="148">  RegNtPreCreateKey / PostCreateKey</text>
+<text class="c" x="640" y="166">  RegNtPreDeleteKey / PostDeleteKey</text>
+<text class="c" x="640" y="184">  RegNtPreSetValueKey / PostSetValueKey</text>
+<text class="c" x="640" y="202">  RegNtPreQueryValueKey / PostQueryValueKey</text>
+<text class="c" x="640" y="220">  RegNtPreEnumerateKey / PreEnumerateValueKey</text>
+<text class="c" x="640" y="238">  RegNtPreLoadKey / PostLoadKey</text>
+<text class="c" x="640" y="256">  RegNtPreFlushKey, PreUnloadKey, PreReplaceKey</text>
+<text class="c" x="640" y="274">  RegNtCallbackObjectContextCleanup</text>
+
+<rect class="box" x="40" y="340" width="1120" height="340" rx="8"/>
+<text class="h" x="600" y="365" text-anchor="middle">Esqueleto de callback</text>
+<text class="c" x="60" y="395">  NTSTATUS RegCallback(PVOID ctx, PVOID arg1, PVOID arg2) {</text>
+<text class="c" x="60" y="413">    REG_NOTIFY_CLASS op = (REG_NOTIFY_CLASS)(ULONG_PTR)arg1;</text>
+<text class="c" x="60" y="431">    switch (op) {</text>
+<text class="c" x="60" y="449">    case RegNtPreSetValueKey: {</text>
+<text class="c" x="60" y="467">      auto info = (REG_SET_VALUE_KEY_INFORMATION*)arg2;</text>
+<text class="c" x="60" y="485">      // info-&gt;Object  (KEY)  ;  info-&gt;ValueName  ;  info-&gt;Type  ;  info-&gt;Data ; info-&gt;DataSize</text>
+<text class="c" x="60" y="503">      // CmCallbackGetKeyObjectIDEx para path completo:</text>
+<text class="c" x="60" y="521">      PCUNICODE_STRING path; ULONG_PTR id;</text>
+<text class="c" x="60" y="539">      CmCallbackGetKeyObjectIDEx(&amp;g_Cookie, info-&gt;Object, &amp;id, &amp;path, 0);</text>
+<text class="c" x="60" y="557">      DbgPrint("SetValue %wZ : %wZ\\n", path, info-&gt;ValueName);</text>
+<text class="c" x="60" y="575">      // bloquear: return STATUS_ACCESS_DENIED;</text>
+<text class="c" x="60" y="593">      break; }</text>
+<text class="c" x="60" y="611">    }</text>
+<text class="c" x="60" y="629">    return STATUS_SUCCESS;</text>
+<text class="c" x="60" y="647">  }</text>
+<text class="cap" x="60" y="675">  Útil para EDR (telemetria de persistência), AV (block known-bad), proteção (HKLM\…\Run).</text>
+</svg>

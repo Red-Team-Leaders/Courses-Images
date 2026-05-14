@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+<defs><style>
+.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}
+.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}
+.b{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.k{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}
+.s{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.kpcr{fill:#2a1f3a;stroke:#d2a8ff;stroke-width:1.5}
+</style>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="700" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Context Switch — KiSwapContext (x64)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Salva estado da thread atual no KTHREAD/stack, troca CR3 se outra processo, restaura próxima</text>
+
+<rect class="b" x="40" y="90" width="540" height="260" rx="8"/>
+<text class="h" x="310" y="115" text-anchor="middle">Thread A (Running)</text>
+<text class="c" x="60" y="142">  CPU executa código de A</text>
+<text class="c" x="60" y="162">  KPRCB.CurrentThread = A</text>
+<text class="c" x="60" y="182">  GS = KPCR; FS depende</text>
+<text class="c" x="60" y="210">  evento dispara troca:</text>
+<text class="c" x="60" y="228">    timer DPC (KiClockInterrupt)</text>
+<text class="c" x="60" y="246">    KeWaitForSingleObject (block)</text>
+<text class="c" x="60" y="264">    KiSetPriorityThread</text>
+<text class="c" x="60" y="282">    KiSwapThread, KiQuantumEnd</text>
+<text class="c" x="60" y="310">  Decisão: pegar maior prioridade</text>
+<text class="c" x="60" y="328">  da KPRCB.ReadyListHead local.</text>
+
+<rect class="k" x="620" y="90" width="540" height="260" rx="8"/>
+<text class="h" x="890" y="115" text-anchor="middle">SwapContext (asm)</text>
+<text class="c" x="640" y="142">  cli                       ; IF=0</text>
+<text class="c" x="640" y="160">  push  rbx, rbp, r12-r15  ; nonvolatile</text>
+<text class="c" x="640" y="178">  fxsave / xsave [savearea] ; FPU/SSE/AVX</text>
+<text class="c" x="640" y="196">  mov   [A.KernelStack], rsp</text>
+<text class="c" x="640" y="214">  mov   rsp, [B.KernelStack]</text>
+<text class="c" x="640" y="232">  // se troca de processo:</text>
+<text class="c" x="640" y="250">  mov   rax, [B.Process.DirectoryTableBase]</text>
+<text class="c" x="640" y="268">  mov   cr3, rax            ; troca PML4</text>
+<text class="c" x="640" y="286">  fxrstor [B.savearea]</text>
+<text class="c" x="640" y="304">  pop   r15-r12, rbp, rbx</text>
+<text class="c" x="640" y="322">  sti                       ; IF=1</text>
+<text class="c" x="640" y="340">  ret                       ; volta ao caller de B</text>
+
+<rect class="kpcr" x="40" y="370" width="1120" height="180" rx="8"/>
+<text class="h" x="600" y="395" text-anchor="middle">KPCR / KPRCB — estruturas per-CPU (uma por LP, em GS base)</text>
+<text class="c" x="60" y="425">  GS:[0x000] = KPCR (Self, IDT, GDT, IRQL, ...)</text>
+<text class="c" x="60" y="445">  GS:[0x180] = Prcb (KPRCB)</text>
+<text class="c" x="60" y="465">    +CurrentThread, NextThread, IdleThread</text>
+<text class="c" x="60" y="485">    +ReadyListHead[32]   ← uma fila por prioridade</text>
+<text class="c" x="60" y="505">    +DpcQueue (DPCs pendentes)</text>
+<text class="c" x="60" y="525">    +TimerEntries</text>
+<text class="c" x="60" y="545">    +InterruptObject (vetor → ISR)</text>
+<text class="c" x="600" y="425">    +CycleTime / KernelTime / UserTime</text>
+<text class="c" x="600" y="445">    +ProcessorState (TSS, GDT, IDT base)</text>
+<text class="c" x="600" y="465">    +AffinityMask (LP id)</text>
+<text class="c" x="600" y="485">    +IpiFrozen, BugCheckCount</text>
+<text class="c" x="600" y="525">  WinDbg: !pcr, !prcb, dt nt!_KPCR @$pcr</text>
+<text class="c" x="600" y="545">  rdgsbase em user (Win10+) é proibido (CPL=0).</text>
+
+<rect class="s" x="40" y="570" width="1120" height="120" rx="8"/>
+<text class="h" x="600" y="595" text-anchor="middle">Custos de um context switch</text>
+<text class="c" x="60" y="620">  • salvar/restaurar registradores não-voláteis (~16 regs)</text>
+<text class="c" x="60" y="640">  • salvar/restaurar XSTATE (até ~2KB com AVX-512 + AMX)</text>
+<text class="c" x="60" y="660">  • troca CR3 invalida TLB (PCID atenua, INVPCID seletivo)</text>
+<text class="c" x="600" y="620">  • cache pollution (L1/L2/LLC)</text>
+<text class="c" x="600" y="640">  • predictors (BTB) podem ser flush'ed (mitigations)</text>
+<text class="c" x="600" y="660">  • típico: 1-5 µs em hardware moderno; medido por PerfCounter</text>
+</svg>

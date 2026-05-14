@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.imp{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.exp{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.box{fill:#161b22;stroke:#30363d}</style></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Import Table (IAT/ILT) e Export Table (EAT)</text>
+
+<rect class="imp" x="40" y="80" width="540" height="320" rx="8"/>
+<text class="h" x="310" y="105" text-anchor="middle">IMPORT — DataDirectory[1]</text>
+<text class="c" x="60" y="132">  Array de IMAGE_IMPORT_DESCRIPTOR (terminada por NULL):</text>
+<text class="c" x="60" y="150">    OriginalFirstThunk → ILT (Import Lookup Table)</text>
+<text class="c" x="60" y="168">    TimeDateStamp / ForwarderChain</text>
+<text class="c" x="60" y="186">    Name → RVA "kernel32.dll"</text>
+<text class="c" x="60" y="204">    FirstThunk → IAT (Import Address Table)</text>
+<text class="c" x="60" y="232">  Cada thunk = IMAGE_THUNK_DATA (8 bytes em x64):</text>
+<text class="c" x="60" y="250">    bit 63 set → ordinal direto (low 16 bits)</text>
+<text class="c" x="60" y="268">    senão → RVA para IMAGE_IMPORT_BY_NAME { Hint, Name[] }</text>
+<text class="c" x="60" y="296">  Loader resolve cada IAT entry para endereço final.</text>
+<text class="c" x="60" y="314">  Após resolução, código gerado por compilador faz</text>
+<text class="c" x="60" y="332">  call qword ptr [__imp_FunctionName]  → IAT[N]</text>
+<text class="c" x="60" y="350">  e o salto vai direto à função na DLL.</text>
+<text class="cap" x="60" y="382">  IAT é alvo clássico de hooking — patch in-place no slot.</text>
+
+<rect class="imp" x="620" y="80" width="540" height="320" rx="8"/>
+<text class="h" x="890" y="105" text-anchor="middle">DELAY-LOAD — DataDirectory[13]</text>
+<text class="c" x="640" y="132">  IMAGE_DELAYLOAD_DESCRIPTOR:</text>
+<text class="c" x="640" y="150">    DllNameRVA, ModuleHandleRVA, ImportAddressTableRVA,</text>
+<text class="c" x="640" y="168">    ImportNameTableRVA, BoundImportAddressTableRVA,</text>
+<text class="c" x="640" y="186">    UnloadInformationTableRVA, TimeDateStamp</text>
+<text class="c" x="640" y="214">  Compilador gera __delayLoadHelper2 stub: ao 1ª chamada,</text>
+<text class="c" x="640" y="232">  carrega DLL via LoadLibrary, resolve, escreve no IAT delay,</text>
+<text class="c" x="640" y="250">  segue execução. Eficaz para DLLs raramente usadas.</text>
+<text class="cap" x="640" y="285">  Permite intercept via __pfnDliNotifyHook2 (linker /delay:NOBIND).</text>
+
+<rect class="exp" x="40" y="420" width="1120" height="320" rx="8"/>
+<text class="h" x="600" y="445" text-anchor="middle">EXPORT — DataDirectory[0]</text>
+<text class="c" x="60" y="472">  IMAGE_EXPORT_DIRECTORY:</text>
+<text class="c" x="60" y="490">    Characteristics, TimeDateStamp, MajorVersion, MinorVersion</text>
+<text class="c" x="60" y="508">    Name (RVA do nome da DLL, ex.: "KERNEL32.dll")</text>
+<text class="c" x="60" y="526">    Base (ordinal base, geralmente 1)</text>
+<text class="c" x="60" y="544">    NumberOfFunctions  (tamanho de AddressOfFunctions)</text>
+<text class="c" x="60" y="562">    NumberOfNames      (tamanho de AddressOfNames / NameOrdinals)</text>
+<text class="c" x="60" y="580">    AddressOfFunctions  → array RVAs (ou string se forwarder)</text>
+<text class="c" x="60" y="598">    AddressOfNames      → array RVAs de nomes (sorted alpha)</text>
+<text class="c" x="60" y="616">    AddressOfNameOrdinals → array USHORT, índice em AddressOfFunctions</text>
+<text class="c" x="60" y="644">  Resolução por nome: GetProcAddress(h, "Foo")</text>
+<text class="c" x="60" y="662">    binary search em AddressOfNames, achou idx → ord = NameOrdinals[idx]</text>
+<text class="c" x="60" y="680">    addr = h + AddressOfFunctions[ord - Base + ord]</text>
+<text class="cap" x="60" y="710">  Forwarder: AddressOfFunctions[i] aponta dentro do EXPORT_TABLE → string "ntdll.NtFoo" → resolve recursivamente.</text>
+<text class="cap" x="60" y="730">  EAT pode ser hookado para mudar o resolver de qualquer caller futuro.</text>
+</svg>

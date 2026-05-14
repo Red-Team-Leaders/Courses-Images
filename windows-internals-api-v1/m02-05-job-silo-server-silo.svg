@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>
+.title{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}
+.h2{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}
+.code{font:12px Consolas,monospace;fill:#e6edf3}
+.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}
+.job{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}
+.silo{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}
+.app{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}
+.proc{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.2}
+</style></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="title" x="600" y="38" text-anchor="middle">Job Objects, Silos &amp; Containers — agrupando processos</text>
+<text class="cap" x="600" y="60" text-anchor="middle">_EJOB → conjunto de processos com limites e ACLs comuns; Server Silo = job especial = container OS</text>
+
+<rect class="job" x="40" y="90" width="560" height="320" rx="8"/>
+<text class="h2" x="320" y="115" text-anchor="middle">_EJOB (Job Object) — kernel32!CreateJobObject</text>
+<text class="code" x="60" y="142">  +0x000 Event : KEVENT</text>
+<text class="code" x="60" y="160">  +0x040 ProcessListHead : LIST_ENTRY  (linked via EPROCESS.JobLinks)</text>
+<text class="code" x="60" y="178">  +0x050 BasicLimits  (kill on close, active proc limit, mem)</text>
+<text class="code" x="60" y="196">  +0x070 LimitFlags   (BREAKAWAY_OK, KILL_ON_JOB_CLOSE,</text>
+<text class="code" x="60" y="214">                       PROCESS_TIME, JOB_MEMORY, …)</text>
+<text class="code" x="60" y="232">  +0x080 IoInfo : JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION</text>
+<text class="code" x="60" y="250">  +0x0A0 ProcessMemoryLimit, JobMemoryLimit</text>
+<text class="code" x="60" y="268">  +0x0C0 UIRestrictionsClass : ULONG  (no clipboard, no handles, etc.)</text>
+<text class="code" x="60" y="286">  +0x100 NetRateControl, CpuRateControl</text>
+<text class="code" x="60" y="304">  +0x120 IoRateControl  (Win10+)</text>
+<text class="code" x="60" y="322">  +0x150 SchedulingClass</text>
+<text class="code" x="60" y="350">  Win8+: nested jobs (jobs dentro de jobs).</text>
+<text class="code" x="60" y="368">  Cada processo pode estar em uma cadeia de jobs (até 32).</text>
+<text class="code" x="60" y="386">  Notificações via I/O Completion Port (SetInformationJobObject).</text>
+
+<rect class="job" x="40" y="430" width="560" height="290" rx="8"/>
+<text class="h2" x="320" y="455" text-anchor="middle">APIs principais</text>
+<text class="code" x="60" y="485">  HANDLE CreateJobObjectW(SecAttrs, Name);</text>
+<text class="code" x="60" y="505">  AssignProcessToJobObject(hJob, hProc);</text>
+<text class="code" x="60" y="525">  QueryInformationJobObject(hJob, JobObjectExtendedLimitInfo, …);</text>
+<text class="code" x="60" y="545">  SetInformationJobObject(hJob, JobObjectExtendedLimitInfo, …);</text>
+<text class="code" x="60" y="565">  IsProcessInJob(hProc, hJob, &amp;result);</text>
+<text class="code" x="60" y="585">  TerminateJobObject(hJob, exitCode);  // mata todos</text>
+<text class="code" x="60" y="615">  Native:</text>
+<text class="code" x="60" y="635">    NtCreateJobObject, NtAssignProcessToJobObject,</text>
+<text class="code" x="60" y="655">    NtQueryInformationJobObject, NtTerminateJobObject.</text>
+<text class="code" x="60" y="685">  Kernel: PsJobType — referenciado via ObReferenceObject.</text>
+
+<rect class="silo" x="620" y="90" width="540" height="280" rx="8"/>
+<text class="h2" x="890" y="115" text-anchor="middle">Server Silo (Win10 Server +) — base de Windows Containers</text>
+<text class="code" x="640" y="142">  Job especial que cria um *namespace* OS isolado:</text>
+<text class="code" x="640" y="160">    • Object Manager namespace próprio (\?? distinto)</text>
+<text class="code" x="640" y="178">    • Sessão própria + LSA própria</text>
+<text class="code" x="640" y="196">    • Tabela de serviços própria (services.exe replicado)</text>
+<text class="code" x="640" y="214">    • Registry (hive overlay)</text>
+<text class="code" x="640" y="232">    • Network compartments (NSI silo)</text>
+<text class="code" x="640" y="252">  Criado via NtSetInformationJobObject(JobObjectCreateSilo).</text>
+<text class="code" x="640" y="282">  Container types:</text>
+<text class="code" x="640" y="302">    • Process-isolated (Argon) — só silo, kernel compartilhado.</text>
+<text class="code" x="640" y="322">    • Hyper-V (Xenon) — silo + VM Hyper-V dedicada.</text>
+<text class="code" x="640" y="352">  Host: hcs.exe + vmcompute (Host Compute Service).</text>
+
+<rect class="app" x="620" y="390" width="540" height="180" rx="8"/>
+<text class="h2" x="890" y="415" text-anchor="middle">AppContainer — sandbox UWP/Edge</text>
+<text class="code" x="640" y="445">  Usado por UWP, Microsoft Edge, Office Protected View.</text>
+<text class="code" x="640" y="465">  Token "Lowbox" com SID derivado do AppId (S-1-15-2-…)</text>
+<text class="code" x="640" y="485">  Capacidades como SIDs (internetClient, picturesLibrary…).</text>
+<text class="code" x="640" y="505">  Integrity = Low. Acesso a recursos requer Capability SID em DACL.</text>
+<text class="code" x="640" y="525">  Restrições adicionais via mitigations: Win32k filter,</text>
+<text class="code" x="640" y="545">  Less Privileged AppContainer (LPAC), child process policy.</text>
+
+<rect class="proc" x="620" y="590" width="540" height="130" rx="8"/>
+<text class="h2" x="890" y="615" text-anchor="middle">Diferenças-chave</text>
+<text class="code" x="640" y="640">  Job: limita recursos e UI; processos veem mesmo namespace OS.</text>
+<text class="code" x="640" y="660">  Server Silo: namespaces totalmente separados (registry, services, …).</text>
+<text class="code" x="640" y="680">  AppContainer: limita ACLs (Capability SIDs) + integrity Low.</text>
+<text class="code" x="640" y="700">  Hyper-V container: silo + isolação total via VM (kernel próprio).</text>
+</svg>

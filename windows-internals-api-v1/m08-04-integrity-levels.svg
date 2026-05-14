@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.unt{fill:#21262d;stroke:#30363d;stroke-width:1.5}.lo{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.med{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.hi{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.sys{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}.prot{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}</style></defs>
+<rect width="1200" height="700" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Mandatory Integrity Control (MIC)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Integrity Level (IL) é um SID extra no token + label no SACL do objeto. Política default = NoWriteUp.</text>
+
+<rect class="prot" x="40" y="90" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="115">Protected (S-1-16-20480)  RID = 0x5000</text>
+<text class="c" x="60" y="138">  reservado a Protected Process / WinTcb. Apps comuns não acessam.</text>
+
+<rect class="sys" x="40" y="160" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="185">System (S-1-16-16384)  RID = 0x4000</text>
+<text class="c" x="60" y="208">  serviços do SO, processos do System, drivers user-mode (SYSTEM token).</text>
+
+<rect class="hi" x="40" y="230" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="255">High (S-1-16-12288)  RID = 0x3000</text>
+<text class="c" x="60" y="278">  admin processo "elevated" (consent UAC). Pode escrever em HKLM, Program Files.</text>
+
+<rect class="med" x="40" y="300" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="325">Medium (S-1-16-8192)  RID = 0x2000</text>
+<text class="c" x="60" y="348">  default para usuários standard / admin sem elevação. Maioria das apps interativas.</text>
+
+<rect class="med" x="40" y="370" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="395">Medium Plus (S-1-16-8448)  RID = 0x2100</text>
+<text class="c" x="60" y="418">  variante usada em UAC normal (entre Medium e High).</text>
+
+<rect class="lo" x="40" y="440" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="465">Low (S-1-16-4096)  RID = 0x1000</text>
+<text class="c" x="60" y="488">  Internet Explorer Protected Mode, Adobe Reader sandbox, AppContainer (sempre ≤ Low).</text>
+
+<rect class="unt" x="40" y="510" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="535">Untrusted (S-1-16-0)  RID = 0x0000</text>
+<text class="c" x="60" y="558">  sandboxes mais restritivas — sem write em quase nada.</text>
+
+<rect fill="#161b22" stroke="#30363d" x="40" y="585" width="1120" height="100" rx="8"/>
+<text class="h" x="600" y="610" text-anchor="middle">Mandatory Policy (TOKEN_MANDATORY_POLICY_*)</text>
+<text class="c" x="60" y="637">  NO_WRITE_UP    (default) — processo não pode escrever em objeto IL maior</text>
+<text class="c" x="60" y="655">  NEW_PROCESS_MIN — child process token recebe min(parent IL, exe IL)</text>
+<text class="c" x="60" y="675">  Mandatory Label ACE em SACL: AceFlags com SYSTEM_MANDATORY_LABEL_NO_WRITE_UP / NO_READ_UP / NO_EXECUTE_UP</text>
+</svg>

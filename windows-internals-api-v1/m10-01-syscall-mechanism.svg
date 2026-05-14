@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.user{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.kernel{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}.ssdt{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.wow{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}</style></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Mecanismo de syscall em detalhe</text>
+<text class="cap" x="600" y="60" text-anchor="middle">syscall (x64) usa MSRs LSTAR/STAR/FMASK; sysenter (x86) usa SYSENTER_CS/EIP/ESP MSRs; ARM64 usa SVC.</text>
+
+<rect class="user" x="40" y="80" width="540" height="280" rx="8"/>
+<text class="h" x="310" y="105" text-anchor="middle">Stub em ntdll (Win11 23H2 — exemplo NtClose)</text>
+<text class="c" x="60" y="132">  ntdll!NtClose:</text>
+<text class="c" x="60" y="150">    4C 8B D1                  mov  r10, rcx</text>
+<text class="c" x="60" y="168">    B8 0F 00 00 00            mov  eax, 0Fh   ; SSN</text>
+<text class="c" x="60" y="186">    F6 04 25 08 03 FE 7F 01   test byte [7FFE0308h], 1</text>
+<text class="c" x="60" y="204">    75 03                     jne  alt</text>
+<text class="c" x="60" y="222">    0F 05                     syscall</text>
+<text class="c" x="60" y="240">    C3                        ret</text>
+<text class="c" x="60" y="258">  alt:</text>
+<text class="c" x="60" y="276">    CD 2E                     int  2Eh   ; legacy fallback</text>
+<text class="c" x="60" y="294">    C3                        ret</text>
+<text class="cap" x="60" y="328">  KUSER_SHARED_DATA.SystemCall (offset 0x308) decide:</text>
+<text class="cap" x="60" y="346">  0=syscall direto, 1=via Hyper-V (usado em VBS).</text>
+
+<rect class="ssdt" x="620" y="80" width="540" height="280" rx="8"/>
+<text class="h" x="890" y="105" text-anchor="middle">SSN (System Service Number)</text>
+<text class="c" x="640" y="132">  Tabela: SystemServiceDescriptor[2]</text>
+<text class="c" x="640" y="150">    [0] = nt!KeServiceDescriptorTable (NtXxx)</text>
+<text class="c" x="640" y="168">    [1] = win32k!W32pServiceTable    (Shadow)</text>
+<text class="c" x="640" y="186">  Cada entry: Base, Count, ParamTable</text>
+<text class="c" x="640" y="214">  KiSystemServiceStart calcula:</text>
+<text class="c" x="640" y="232">    ServiceTable = (eax &amp; 0x1000) ? Shadow : Normal</text>
+<text class="c" x="640" y="250">    idx = eax &amp; 0xFFF</text>
+<text class="c" x="640" y="268">    ParamCount = ServiceTable.ParamTable[idx]</text>
+<text class="c" x="640" y="286">    Routine = ServiceTable.Base[idx]</text>
+<text class="c" x="640" y="304">    if (ParamCount &gt; 4)  copia args extras</text>
+<text class="cap" x="640" y="335">  SSN muda entre versões — j00ru/windows-syscalls mantém tabela.</text>
+
+<rect class="kernel" x="40" y="380" width="540" height="280" rx="8"/>
+<text class="h" x="310" y="405" text-anchor="middle">KiSystemCall64 (rotina de entrada)</text>
+<text class="c" x="60" y="432">  swapgs                          ; gs → KPCR</text>
+<text class="c" x="60" y="450">  mov gs:[KernelStack], rsp       ; salva user RSP</text>
+<text class="c" x="60" y="468">  mov rsp, gs:[KernelStack]</text>
+<text class="c" x="60" y="486">  push  user_ss / user_rsp</text>
+<text class="c" x="60" y="504">  pushf  (rflags antigo)</text>
+<text class="c" x="60" y="522">  push  user_cs / rcx (RIP user)</text>
+<text class="c" x="60" y="540">  sub rsp, sizeof(KTRAP_FRAME)</text>
+<text class="c" x="60" y="558">  preencher trap frame</text>
+<text class="c" x="60" y="576">  // se KPTI: troca CR3 (KVA shadow)</text>
+<text class="c" x="60" y="594">  jmp KiSystemServiceStart</text>
+<text class="cap" x="60" y="630">  KPTI = Kernel Page Table Isolation, mitigação Meltdown.</text>
+<text class="cap" x="60" y="648">  Cada thread tem 2 CR3: user e kernel; troca em entry/exit.</text>
+
+<rect class="wow" x="620" y="380" width="540" height="280" rx="8"/>
+<text class="h" x="890" y="405" text-anchor="middle">WoW64 thunking (32-on-64)</text>
+<text class="c" x="640" y="432">  ntdll!NtClose (32-bit) chama WOW64 thunk:</text>
+<text class="c" x="640" y="450">    mov edx, NtCloseTrampoline</text>
+<text class="c" x="640" y="468">    call wow64.dll!Wow64SystemServiceEx</text>
+<text class="c" x="640" y="486">  Wow64SystemServiceEx faz:</text>
+<text class="c" x="640" y="504">    converte args 32→64 (ponteiros, structs)</text>
+<text class="c" x="640" y="522">    troca para 64-bit (Heaven's Gate / FastSysCall)</text>
+<text class="c" x="640" y="540">    chama wow64cpu!CpupSyscallStub → syscall</text>
+<text class="cap" x="640" y="572">  ARM64EC: emulação de x64 em ARM64 com FFI eficiente,</text>
+<text class="cap" x="640" y="590">  hyperv "xtajit64" thunks. Usa CHPE.</text>
+
+<text class="cap" x="600" y="710" text-anchor="middle">EDR detecta tampering: hashing nt!ServiceTable.Base, ou usando ETW Microsoft-Windows-Threat-Intelligence (TiAlpc).</text>
+<text class="cap" x="600" y="730" text-anchor="middle">PatchGuard (KPP) protege SSDT, IDT, GDT, MSR_LSTAR contra modificação em runtime.</text>
+</svg>

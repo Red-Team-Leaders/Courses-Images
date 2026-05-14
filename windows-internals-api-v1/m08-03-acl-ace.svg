@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.sd{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.dacl{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.sacl{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.allow{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.deny{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}</style></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Security Descriptor → DACL/SACL → ACE</text>
+<text class="cap" x="600" y="60" text-anchor="middle">SE_DACL_PROTECTED bloqueia herança; ordem das ACEs importa: Deny SEMPRE antes de Allow para um usuário</text>
+
+<rect class="sd" x="40" y="90" width="540" height="220" rx="8"/>
+<text class="h" x="310" y="115" text-anchor="middle">SECURITY_DESCRIPTOR (self-relative)</text>
+<text class="c" x="60" y="142">  Revision : UCHAR    = 1</text>
+<text class="c" x="60" y="160">  Sbz1     : UCHAR</text>
+<text class="c" x="60" y="178">  Control  : USHORT   (SE_DACL_PRESENT, SE_DACL_PROTECTED,</text>
+<text class="c" x="60" y="196">                       SE_SACL_PRESENT, SE_SELF_RELATIVE, ...)</text>
+<text class="c" x="60" y="214">  Owner    : ULONG (offset)</text>
+<text class="c" x="60" y="232">  Group    : ULONG (offset)</text>
+<text class="c" x="60" y="250">  Sacl     : ULONG (offset → ACL)</text>
+<text class="c" x="60" y="268">  Dacl     : ULONG (offset → ACL)</text>
+<text class="cap" x="60" y="298">  Variantes: absolute (ponteiros) vs self-relative (offsets); use MakeAbsoluteSD/MakeSelfRelativeSD.</text>
+
+<rect class="dacl" x="620" y="90" width="540" height="220" rx="8"/>
+<text class="h" x="890" y="115" text-anchor="middle">ACL (DACL/SACL header)</text>
+<text class="c" x="640" y="142">  AclRevision : UCHAR  (2=NT, 4=DS Object)</text>
+<text class="c" x="640" y="160">  Sbz1        : UCHAR</text>
+<text class="c" x="640" y="178">  AclSize     : USHORT (incluindo header + ACEs)</text>
+<text class="c" x="640" y="196">  AceCount    : USHORT</text>
+<text class="c" x="640" y="214">  Sbz2        : USHORT</text>
+<text class="cap" x="640" y="244">  Em seguida, AceCount ACEs concatenadas.</text>
+<text class="cap" x="640" y="262">  Iterar via GetAce(pAcl, idx, &amp;ace).</text>
+<text class="cap" x="640" y="290">  Construir: InitializeAcl, AddAccessAllowedAceEx, AddAuditAccessAce, ...</text>
+
+<rect class="allow" x="40" y="330" width="370" height="180" rx="8"/>
+<text class="h" x="225" y="355" text-anchor="middle">ACCESS_ALLOWED_ACE</text>
+<text class="c" x="60" y="380">  Header : ACE_HEADER</text>
+<text class="c" x="60" y="398">    AceType: 0x00 (ALLOW)</text>
+<text class="c" x="60" y="416">    AceFlags: OBJECT_INHERIT_ACE,</text>
+<text class="c" x="60" y="434">             CONTAINER_INHERIT_ACE,</text>
+<text class="c" x="60" y="452">             INHERITED_ACE, ...</text>
+<text class="c" x="60" y="470">    AceSize : USHORT</text>
+<text class="c" x="60" y="488">  Mask : ACCESS_MASK</text>
+<text class="c" x="60" y="506">  SidStart : SID</text>
+
+<rect class="deny" x="430" y="330" width="350" height="180" rx="8"/>
+<text class="h" x="605" y="355" text-anchor="middle">ACCESS_DENIED_ACE</text>
+<text class="c" x="450" y="380">  AceType: 0x01 (DENY)</text>
+<text class="c" x="450" y="398">  Mesma estrutura do ALLOW</text>
+<text class="cap" x="450" y="425">  Avaliação SeAccessCheck:</text>
+<text class="cap" x="450" y="443">  para cada ACE em ordem,</text>
+<text class="cap" x="450" y="461">  se SID está no token e máscara</text>
+<text class="cap" x="450" y="479">  cobre algum acesso pedido →</text>
+<text class="cap" x="450" y="497">  Allow soma; Deny rejeita imediato.</text>
+
+<rect class="sacl" x="800" y="330" width="360" height="180" rx="8"/>
+<text class="h" x="980" y="355" text-anchor="middle">SYSTEM_AUDIT_ACE</text>
+<text class="c" x="820" y="380">  AceType: 0x02 (AUDIT)</text>
+<text class="c" x="820" y="398">  AceFlags: SUCCESSFUL_ACCESS_ACE_FLAG,</text>
+<text class="c" x="820" y="416">           FAILED_ACCESS_ACE_FLAG</text>
+<text class="cap" x="820" y="445">  Mandatory Label ACE (0x11):</text>
+<text class="cap" x="820" y="463">  determina Integrity Level</text>
+<text class="cap" x="820" y="481">  do objeto + policy (NoWriteUp).</text>
+
+<rect fill="#161b22" stroke="#30363d" x="40" y="530" width="1120" height="200" rx="8"/>
+<text class="h" x="600" y="555" text-anchor="middle">SDDL — string representation</text>
+<text class="c" x="60" y="582">  D:(A;;FA;;;BA)(D;;FW;;;WD)(A;OICI;FA;;;SY)</text>
+<text class="c" x="60" y="600">    │  │  │   │     │</text>
+<text class="c" x="60" y="618">    │  │  │   │     └─ SID  (BA=BUILTIN\Admins, WD=Everyone, SY=System)</text>
+<text class="c" x="60" y="636">    │  │  │   └─ ObjectType (vazio)</text>
+<text class="c" x="60" y="654">    │  │  └─ AccessRights (FA=FILE_ALL_ACCESS, FW=FILE_WRITE)</text>
+<text class="c" x="60" y="672">    │  └─ Flags (OI=ObjectInherit, CI=ContainerInherit)</text>
+<text class="c" x="60" y="690">    └─ AceType (A=Allow, D=Deny, AU=Audit, ML=MandatoryLabel)</text>
+<text class="cap" x="60" y="720">  ConvertSecurityDescriptorToStringSecurityDescriptor / ConvertStringSDToSD.</text>
+</svg>

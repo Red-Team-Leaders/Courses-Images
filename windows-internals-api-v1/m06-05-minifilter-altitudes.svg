@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.av{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}.cnt{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.bk{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.fs{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Filter Manager — altitudes e ordem de chamada</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Filter Manager (fltmgr.sys) substitui filtros legacy no NT 6+. Altitude (string numérica) determina ordem.</text>
+
+<rect class="av" x="40" y="90" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="115">FSFilter Anti-Virus  (320000 - 329999)</text>
+<text class="c" x="60" y="138">  Defender (WdFilter) 328010 • Symantec • CrowdStrike (CSAgent) • Sentinel  • Sophos</text>
+
+<rect class="av" x="40" y="160" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="185">FSFilter Encryption  (140000 - 149999)</text>
+<text class="c" x="60" y="208">  EFS (luafv.sys), BitLocker (fvevol abaixo do volume), McAfee FRP, Sophos SafeGuard</text>
+
+<rect class="cnt" x="40" y="230" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="255">FSFilter Activity Monitor  (360000 - 389999)</text>
+<text class="c" x="60" y="278">  Sysmon (SysmonDrv), ProcMon (ProcMon23), File Audit, EDR telemetry sensors</text>
+
+<rect class="cnt" x="40" y="300" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="325">FSFilter Quota Management  (270000 - 279999)</text>
+<text class="c" x="60" y="348">  FSRM (Resource Manager), quota.sys</text>
+
+<rect class="bk" x="40" y="370" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="395">FSFilter Replication  (260000 - 269999)</text>
+<text class="c" x="60" y="418">  DFSR, OneDrive sync (cldflt — cloud files), GitHub Desktop</text>
+
+<rect class="bk" x="40" y="440" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="465">FSFilter Hierarchical Storage Mgmt (HSM)  (130000-139999)</text>
+<text class="c" x="60" y="488">  Stub-based, recall on access (cloud tiering)</text>
+
+<rect class="fs" x="40" y="510" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="535">FSFilter System Recovery  (170000 - 179999)</text>
+<text class="c" x="60" y="558">  Volume Shadow Copy (volsnap)</text>
+
+<rect class="fs" x="40" y="580" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="605">File System Driver — NTFS / ReFS</text>
+
+<text class="cap" x="600" y="680" text-anchor="middle">PRE-callbacks vão TOP→DOWN (alta altitude primeiro); POST-callbacks sobem BOTTOM→TOP. Use FltRegisterFilter, FLT_OPERATION_REGISTRATION.</text>
+<text class="cap" x="600" y="705" text-anchor="middle">Inspecionar: fltmc.exe instances; WinDbg !fltkd.frame, !fltkd.filters, !fltkd.instances.</text>
+<text class="cap" x="600" y="730" text-anchor="middle">Cadastro de altitudes: HKLM\SYSTEM\CCS\Control\Class\{...} via INF, OU lista oficial Microsoft (Allocated Altitudes).</text>
+</svg>

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+<defs><style>
+.title{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}
+.h2{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}
+.code{font:12px Consolas,monospace;fill:#e6edf3}
+.off{font:11px Consolas,monospace;fill:#7ee787}
+.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}
+.box{fill:#161b22;stroke:#58a6ff;stroke-width:1.5}
+.kproc{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}
+.peb{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}
+</style>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="900" fill="#0d1117"/>
+<text class="title" x="600" y="38" text-anchor="middle">_EPROCESS — anatomia (Windows 11 x64, símbolos públicos)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Offsets podem variar entre builds; obtenha exatos com `dt nt!_EPROCESS` em WinDbg na sua versão</text>
+
+<rect class="box" x="40" y="90" width="540" height="780" rx="8"/>
+<text class="h2" x="310" y="115" text-anchor="middle">_EPROCESS</text>
+
+<rect class="kproc" x="60" y="135" width="500" height="220" rx="6"/>
+<text class="h2" x="310" y="158" text-anchor="middle">+0x000  Pcb : _KPROCESS  (embedded)</text>
+<text class="off" x="80" y="180">  +0x000 Header : _DISPATCHER_HEADER</text>
+<text class="off" x="80" y="198">  +0x018 ProfileListHead : LIST_ENTRY</text>
+<text class="off" x="80" y="216">  +0x028 DirectoryTableBase : ULONG_PTR  (CR3!)</text>
+<text class="off" x="80" y="234">  +0x030 ThreadListHead : LIST_ENTRY</text>
+<text class="off" x="80" y="252">  +0x040 ProcessLock : ULONG</text>
+<text class="off" x="80" y="270">  +0x070 BasePriority : CHAR</text>
+<text class="off" x="80" y="288">  +0x078 QuantumReset : CHAR</text>
+<text class="off" x="80" y="306">  +0x080 KernelTime / UserTime : ULONG</text>
+<text class="off" x="80" y="324">  +0x098 ReadyListHead : LIST_ENTRY</text>
+<text class="off" x="80" y="342">  +0x0E8 InstrumentationCallback : PVOID</text>
+
+<text class="off" x="80" y="372">  +0x440 ProcessLock : EX_PUSH_LOCK</text>
+<text class="off" x="80" y="390">  +0x448 UniqueProcessId : PVOID  ← PID</text>
+<text class="off" x="80" y="408">  +0x450 ActiveProcessLinks : LIST_ENTRY</text>
+<text class="off" x="80" y="426">  +0x460 RundownProtect : EX_RUNDOWN_REF</text>
+<text class="off" x="80" y="444">  +0x468 Flags2 : ULONG</text>
+<text class="off" x="80" y="462">  +0x46C Flags : ULONG  (NoDebugInherit, etc.)</text>
+<text class="off" x="80" y="480">  +0x470 CreateTime : LARGE_INTEGER</text>
+<text class="off" x="80" y="498">  +0x478 ProcessQuotaUsage[2]</text>
+<text class="off" x="80" y="516">  +0x4A0 PeakVirtualSize : SIZE_T</text>
+<text class="off" x="80" y="534">  +0x4A8 VirtualSize : SIZE_T</text>
+<text class="off" x="80" y="552">  +0x4D0 ObjectTable : _HANDLE_TABLE *</text>
+<text class="off" x="80" y="570">  +0x4D8 Token : _EX_FAST_REF  → _TOKEN</text>
+<text class="off" x="80" y="588">  +0x540 ImageFilePointer : _FILE_OBJECT *</text>
+<text class="off" x="80" y="606">  +0x5A8 ImageFileName[15] : UCHAR  ("notepad.exe")</text>
+<text class="off" x="80" y="624">  +0x5C0 PriorityClass : UCHAR</text>
+<text class="off" x="80" y="642">  +0x648 Job : _EJOB *</text>
+<text class="off" x="80" y="660">  +0x650 InheritedFromUniqueProcessId : PVOID</text>
+<text class="off" x="80" y="678">  +0x6F8 Win32Process : PVOID  (win32k thread info)</text>
+<text class="off" x="80" y="696">  +0x710 Vm : _MMSUPPORT_FULL</text>
+<text class="off" x="80" y="714">  +0x800 VadRoot : _RTL_AVL_TREE</text>
+<text class="off" x="80" y="732">  +0x880 Peb : _PEB *  (user-mode process env)</text>
+<text class="off" x="80" y="750">  +0x888 Wow64Process : _EWOW64PROCESS *  (WoW)</text>
+<text class="off" x="80" y="768">  +0x950 Protection : _PS_PROTECTION  (PPL)</text>
+<text class="off" x="80" y="786">  +0x9D0 SecurityDomain : ULONGLONG</text>
+<text class="off" x="80" y="804">  +0xA10 MitigationFlags : ULONG</text>
+<text class="off" x="80" y="822">  +0xA50 SidHashes / TrustletInfo</text>
+<text class="off" x="80" y="840">  +0xC00 PicoCorrelationId / PicoContext</text>
+<text class="off" x="80" y="858">  +0xC60 EnergyValues : _PROCESS_ENERGY_VALUES *</text>
+
+<rect class="box" x="620" y="90" width="540" height="380" rx="8"/>
+<text class="h2" x="890" y="115" text-anchor="middle">Estruturas referenciadas</text>
+
+<rect class="peb" x="640" y="135" width="500" height="100" rx="6"/>
+<text class="h2" x="890" y="158" text-anchor="middle">_PEB (em user space)</text>
+<text class="off" x="660" y="180">  +0x002 BeingDebugged : UCHAR</text>
+<text class="off" x="660" y="198">  +0x010 ImageBaseAddress : PVOID</text>
+<text class="off" x="660" y="218">  +0x018 Ldr : _PEB_LDR_DATA *  (dlls carregadas)</text>
+
+<rect class="box" x="640" y="250" width="500" height="100" rx="6"/>
+<text class="h2" x="890" y="273" text-anchor="middle">_HANDLE_TABLE</text>
+<text class="off" x="660" y="295">  TableCode : ULONG_PTR  (3-level table)</text>
+<text class="off" x="660" y="313">  HandleCount, NextHandleNeedingPool</text>
+<text class="off" x="660" y="333">  cada entry: Object* | GrantedAccess</text>
+
+<rect class="box" x="640" y="365" width="500" height="100" rx="6"/>
+<text class="h2" x="890" y="388" text-anchor="middle">_TOKEN (referenciado via Token EX_FAST_REF)</text>
+<text class="off" x="660" y="410">  TokenSource, AuthenticationId,</text>
+<text class="off" x="660" y="428">  UserAndGroups[], Privileges,</text>
+<text class="off" x="660" y="448">  IntegrityLevel, MandatoryPolicy</text>
+
+<rect class="box" x="620" y="490" width="540" height="380" rx="8"/>
+<text class="h2" x="890" y="515" text-anchor="middle">Como percorrer todos os processos no kernel</text>
+<text class="code" x="640" y="545">  // a partir de qualquer EPROCESS, ActiveProcessLinks</text>
+<text class="code" x="640" y="565">  // forma uma circular doubly-linked list global.</text>
+<text class="code" x="640" y="595">  PEPROCESS p = PsInitialSystemProcess;</text>
+<text class="code" x="640" y="615">  PLIST_ENTRY head = &amp;p-&gt;ActiveProcessLinks;</text>
+<text class="code" x="640" y="635">  for (PLIST_ENTRY e = head-&gt;Flink; e != head; e = e-&gt;Flink) {</text>
+<text class="code" x="640" y="655">    PEPROCESS cur =</text>
+<text class="code" x="640" y="675">      CONTAINING_RECORD(e, EPROCESS, ActiveProcessLinks);</text>
+<text class="code" x="640" y="695">    // cur-&gt;ImageFileName, cur-&gt;UniqueProcessId, …</text>
+<text class="code" x="640" y="715">  }</text>
+<text class="cap" x="640" y="755">Esta varredura é a base de muitos rootkits para ESCONDER processos</text>
+<text class="cap" x="640" y="775">(unhooking ActiveProcessLinks da lista — DKOM clássico).</text>
+<text class="cap" x="640" y="810">Defesa: PsLookupProcessByProcessId percorre a tabela PspCidTable,</text>
+<text class="cap" x="640" y="828">cross-validar com VAD/handles deteção; ou usar PoolTag scan.</text>
+
+<text class="cap" x="600" y="892" text-anchor="middle">Comandos WinDbg úteis: !process 0 0  •  !process &lt;EPROCESS&gt;  •  dt nt!_EPROCESS  •  dx Debugger.Sessions[0].Processes</text>
+</svg>

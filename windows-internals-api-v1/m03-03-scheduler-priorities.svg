@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>
+.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}
+.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}
+.rt{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}.dyn{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.idle{fill:#21262d;stroke:#30363d;stroke-width:1.5}
+</style></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Scheduler — 32 prioridades (Real-Time vs Dynamic)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Prioridade efetiva = base + boost (clamped). Boost só aplica em níveis 1–15. RT (16–31) é fixo.</text>
+
+<rect class="rt" x="40" y="90" width="800" height="320" rx="8"/>
+<text class="h" x="440" y="115" text-anchor="middle">Real-Time (16–31)  —  prioridade FIXA, sem boost, sem starvation prevention "normal"</text>
+<g>
+<rect class="rt" x="60" y="135" width="80" height="40"/><text class="c" x="100" y="160" text-anchor="middle">31</text>
+<rect class="rt" x="148" y="135" width="80" height="40"/><text class="c" x="188" y="160" text-anchor="middle">30</text>
+<rect class="rt" x="236" y="135" width="80" height="40"/><text class="c" x="276" y="160" text-anchor="middle">29</text>
+<rect class="rt" x="324" y="135" width="80" height="40"/><text class="c" x="364" y="160" text-anchor="middle">28</text>
+<rect class="rt" x="412" y="135" width="80" height="40"/><text class="c" x="452" y="160" text-anchor="middle">27</text>
+<rect class="rt" x="500" y="135" width="80" height="40"/><text class="c" x="540" y="160" text-anchor="middle">26</text>
+<rect class="rt" x="588" y="135" width="80" height="40"/><text class="c" x="628" y="160" text-anchor="middle">25</text>
+<rect class="rt" x="676" y="135" width="80" height="40"/><text class="c" x="716" y="160" text-anchor="middle">24</text>
+</g>
+<g>
+<rect class="rt" x="60" y="180" width="80" height="40"/><text class="c" x="100" y="205" text-anchor="middle">23</text>
+<rect class="rt" x="148" y="180" width="80" height="40"/><text class="c" x="188" y="205" text-anchor="middle">22</text>
+<rect class="rt" x="236" y="180" width="80" height="40"/><text class="c" x="276" y="205" text-anchor="middle">21</text>
+<rect class="rt" x="324" y="180" width="80" height="40"/><text class="c" x="364" y="205" text-anchor="middle">20</text>
+<rect class="rt" x="412" y="180" width="80" height="40"/><text class="c" x="452" y="205" text-anchor="middle">19</text>
+<rect class="rt" x="500" y="180" width="80" height="40"/><text class="c" x="540" y="205" text-anchor="middle">18</text>
+<rect class="rt" x="588" y="180" width="80" height="40"/><text class="c" x="628" y="205" text-anchor="middle">17</text>
+<rect class="rt" x="676" y="180" width="80" height="40"/><text class="c" x="716" y="205" text-anchor="middle">16</text>
+</g>
+<text class="c" x="60" y="260">  classes (PriorityClass.PriorityBase):</text>
+<text class="c" x="60" y="280">    REALTIME_PRIORITY_CLASS  → base 24</text>
+<text class="c" x="60" y="300">      threads: TIME_CRITICAL=31, HIGHEST=26, ABOVE_NORMAL=25, NORMAL=24, BELOW=23, LOWEST=22, IDLE=16</text>
+<text class="cap" x="60" y="335">  Reservar para tempo-real *real* (audio, robótica, drivers user-mode).</text>
+<text class="cap" x="60" y="355">  Use SeIncreaseBasePriorityPrivilege; pode causar starvation do sistema inteiro.</text>
+<text class="cap" x="60" y="385">  Boost de I/O completion não se aplica (já está acima de 15).</text>
+
+<rect class="dyn" x="40" y="430" width="800" height="220" rx="8"/>
+<text class="h" x="440" y="455" text-anchor="middle">Dynamic (1–15)  —  prioridade base + boost dinâmico (KiAdjustPriority)</text>
+<g>
+<rect class="dyn" x="60" y="475" width="80" height="40"/><text class="c" x="100" y="500" text-anchor="middle">15</text>
+<rect class="dyn" x="148" y="475" width="80" height="40"/><text class="c" x="188" y="500" text-anchor="middle">14</text>
+<rect class="dyn" x="236" y="475" width="80" height="40"/><text class="c" x="276" y="500" text-anchor="middle">13</text>
+<rect class="dyn" x="324" y="475" width="80" height="40"/><text class="c" x="364" y="500" text-anchor="middle">12</text>
+<rect class="dyn" x="412" y="475" width="80" height="40"/><text class="c" x="452" y="500" text-anchor="middle">11</text>
+<rect class="dyn" x="500" y="475" width="80" height="40"/><text class="c" x="540" y="500" text-anchor="middle">10</text>
+<rect class="dyn" x="588" y="475" width="80" height="40"/><text class="c" x="628" y="500" text-anchor="middle"> 9</text>
+<rect class="dyn" x="676" y="475" width="80" height="40"/><text class="c" x="716" y="500" text-anchor="middle"> 8</text>
+</g>
+<g>
+<rect class="dyn" x="60" y="520" width="80" height="40"/><text class="c" x="100" y="545" text-anchor="middle"> 7</text>
+<rect class="dyn" x="148" y="520" width="80" height="40"/><text class="c" x="188" y="545" text-anchor="middle"> 6</text>
+<rect class="dyn" x="236" y="520" width="80" height="40"/><text class="c" x="276" y="545" text-anchor="middle"> 5</text>
+<rect class="dyn" x="324" y="520" width="80" height="40"/><text class="c" x="364" y="545" text-anchor="middle"> 4</text>
+<rect class="dyn" x="412" y="520" width="80" height="40"/><text class="c" x="452" y="545" text-anchor="middle"> 3</text>
+<rect class="dyn" x="500" y="520" width="80" height="40"/><text class="c" x="540" y="545" text-anchor="middle"> 2</text>
+<rect class="dyn" x="588" y="520" width="80" height="40"/><text class="c" x="628" y="545" text-anchor="middle"> 1</text>
+<rect class="idle" x="676" y="520" width="80" height="40"/><text class="c" x="716" y="545" text-anchor="middle"> 0</text>
+</g>
+<text class="c" x="60" y="595">  IDLE_PRIORITY_CLASS=4, BELOW_NORMAL=6, NORMAL=8, ABOVE_NORMAL=10, HIGH=13</text>
+<text class="cap" x="60" y="625">  0 = Idle thread (uma por CPU); só ela roda quando nada mais.</text>
+
+<rect fill="#161b22" stroke="#30363d" x="860" y="90" width="300" height="560" rx="8"/>
+<text class="h" x="1010" y="115" text-anchor="middle">Boost rules (Wrk7)</text>
+<text class="c" x="880" y="142">  +1 ao soltar mutex/event</text>
+<text class="c" x="880" y="160">    (sempre na priority do</text>
+<text class="c" x="880" y="178">     thread que liberou)</text>
+<text class="c" x="880" y="200">  +I/O priority boost</text>
+<text class="c" x="880" y="218">    (driver-defined, IoXxx)</text>
+<text class="c" x="880" y="236">    teclado/mouse: +6</text>
+<text class="c" x="880" y="254">    audio/disk:    +1..+8</text>
+<text class="c" x="880" y="280">  Foreground boost</text>
+<text class="c" x="880" y="298">    Win32 PriorityBoost</text>
+<text class="c" x="880" y="316">    ativa: +2 ao threads</text>
+<text class="c" x="880" y="334">    do FG (HKLM ..PriorityControl)</text>
+<text class="c" x="880" y="360">  Starvation (BalanceSet</text>
+<text class="c" x="880" y="378">    Manager): se thread ready</text>
+<text class="c" x="880" y="396">    ≥4s sem CPU, recebe boost</text>
+<text class="c" x="880" y="414">    para 15 com quantum 4×.</text>
+<text class="c" x="880" y="440">  Decay: -1 por quantum</text>
+<text class="c" x="880" y="458">    até voltar à base.</text>
+<text class="cap" x="880" y="495">  Inversão de prioridade:</text>
+<text class="cap" x="880" y="513">  PI clássica via boost.</text>
+<text class="cap" x="880" y="540">  AutoBoost (Win8+):</text>
+<text class="cap" x="880" y="558">  detecta lock owner e</text>
+<text class="cap" x="880" y="576">  acelera-o automaticamente.</text>
+<text class="cap" x="880" y="608">  WinDbg: !ready, !running,</text>
+<text class="cap" x="880" y="626">  dt nt!_KTHREAD Priority</text>
+
+<text class="cap" x="600" y="700" text-anchor="middle">SetThreadPriority + SetPriorityClass; THREAD_MODE_BACKGROUND_BEGIN/END (Win Vista+) reduz I/O e CPU prioridade.</text>
+<text class="cap" x="600" y="725" text-anchor="middle">Per-thread priority pode ser observada via Process Explorer → Thread tab → Cycles &amp; Priority.</text>
+</svg>

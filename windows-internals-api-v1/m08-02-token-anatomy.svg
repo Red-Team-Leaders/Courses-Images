@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="1200" height="850">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.tok{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.priv{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.box{fill:#161b22;stroke:#30363d}</style></defs>
+<rect width="1200" height="850" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">_TOKEN — anatomia (kernel object)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">EPROCESS.Token (EX_FAST_REF) → _TOKEN ; ETHREAD.ImpersonationInfo aponta a token de impersonação se ativa</text>
+
+<rect class="tok" x="40" y="90" width="1120" height="500" rx="8"/>
+<text class="h" x="600" y="115" text-anchor="middle">_TOKEN principais campos</text>
+<text class="c" x="60" y="142">  +0x00  TokenSource : TOKEN_SOURCE  (LSA, KERNEL, USER32, ...)</text>
+<text class="c" x="60" y="160">  +0x10  TokenId : LUID</text>
+<text class="c" x="60" y="178">  +0x18  AuthenticationId : LUID  ← LSA Logon Session</text>
+<text class="c" x="60" y="196">  +0x20  ParentTokenId    : LUID</text>
+<text class="c" x="60" y="214">  +0x28  ExpirationTime   : LARGE_INTEGER</text>
+<text class="c" x="60" y="232">  +0x30  TokenLock : EX_FAST_REF</text>
+<text class="c" x="60" y="250">  +0x38  ModifiedId : LUID  (incrementa a cada AdjustTokenPrivileges)</text>
+<text class="c" x="60" y="268">  +0x40  Privileges : SEP_TOKEN_PRIVILEGES (Present, Enabled, EnabledByDefault — bitmaps de 64 bits)</text>
+<text class="c" x="60" y="286">  +0x58  AuditPolicy</text>
+<text class="c" x="60" y="304">  +0x78  SessionId : ULONG</text>
+<text class="c" x="60" y="322">  +0x80  UserAndGroupCount, RestrictedSidCount</text>
+<text class="c" x="60" y="340">  +0x90  UserAndGroups : SID_AND_ATTRIBUTES * (User SID first, depois grupos)</text>
+<text class="c" x="60" y="358">  +0x98  RestrictedSids : SID_AND_ATTRIBUTES *  (Restricted Token)</text>
+<text class="c" x="60" y="376">  +0xA0  PrimaryGroup</text>
+<text class="c" x="60" y="394">  +0xA8  DefaultDacl : ACL *</text>
+<text class="c" x="60" y="412">  +0xB0  TokenType : (TokenPrimary=1 / TokenImpersonation=2)</text>
+<text class="c" x="60" y="430">  +0xB4  ImpersonationLevel : SECURITY_IMPERSONATION_LEVEL</text>
+<text class="c" x="60" y="448">  +0xB8  TokenFlags (TOKEN_HAS_ADMIN_GROUP, TOKEN_VIRTUALIZE_ENABLED, ...)</text>
+<text class="c" x="60" y="466">  +0xC0  TokenInUse</text>
+<text class="c" x="60" y="484">  +0xC8  IntegrityLevelIndex (índice em UserAndGroups apontando ao SID S-1-16-...)</text>
+<text class="c" x="60" y="502">  +0xCC  MandatoryPolicy (TOKEN_MANDATORY_POLICY_NO_WRITE_UP, ...)</text>
+<text class="c" x="60" y="520">  +0xD0  LogonSession : SEP_LOGON_SESSION_REFERENCES *</text>
+<text class="c" x="60" y="538">  +0xD8  OriginatingLogonSession</text>
+<text class="c" x="60" y="556">  +0xE0  PackageSid (AppContainer)</text>
+<text class="c" x="60" y="574">  +0xE8  Capabilities : SID_AND_ATTRIBUTES *</text>
+
+<rect class="priv" x="40" y="610" width="540" height="230" rx="8"/>
+<text class="h" x="310" y="635" text-anchor="middle">SEP_TOKEN_PRIVILEGES (bitmap 64 bits)</text>
+<text class="c" x="60" y="662">  bit 5  SeIncreaseQuotaPrivilege</text>
+<text class="c" x="60" y="680">  bit 8  SeSecurityPrivilege</text>
+<text class="c" x="60" y="698">  bit 9  SeTakeOwnershipPrivilege</text>
+<text class="c" x="60" y="716">  bit 10 SeLoadDriverPrivilege</text>
+<text class="c" x="60" y="734">  bit 12 SeSystemtimePrivilege</text>
+<text class="c" x="60" y="752">  bit 14 SeBackupPrivilege</text>
+<text class="c" x="60" y="770">  bit 15 SeRestorePrivilege</text>
+<text class="c" x="60" y="788">  bit 17 SeDebugPrivilege  ← bypass de DACL em OpenProcess</text>
+<text class="c" x="60" y="806">  bit 19 SeSystemEnvironmentPrivilege</text>
+<text class="c" x="60" y="824">  bit 20 SeChangeNotifyPrivilege   (sempre em todo token)</text>
+
+<rect class="box" x="620" y="610" width="540" height="230" rx="8"/>
+<text class="h" x="890" y="635" text-anchor="middle">APIs (user)</text>
+<text class="c" x="640" y="662">  OpenProcessToken / OpenThreadToken</text>
+<text class="c" x="640" y="680">  DuplicateTokenEx (Primary ↔ Impersonation)</text>
+<text class="c" x="640" y="698">  ImpersonateLoggedOnUser / RevertToSelf</text>
+<text class="c" x="640" y="716">  GetTokenInformation / SetTokenInformation</text>
+<text class="c" x="640" y="734">  AdjustTokenPrivileges / AdjustTokenGroups</text>
+<text class="c" x="640" y="752">  CreateRestrictedToken</text>
+<text class="c" x="640" y="770">  CreateProcessAsUserW / CreateProcessWithTokenW</text>
+<text class="c" x="640" y="788">  Native: NtOpenProcessToken, NtAdjustPrivilegesToken</text>
+<text class="c" x="640" y="806">          NtFilterToken, NtCreateLowBoxToken</text>
+<text class="cap" x="640" y="828">  WinDbg: !token, !sd, dt nt!_TOKEN</text>
+</svg>

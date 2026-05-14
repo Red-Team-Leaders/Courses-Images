@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.disk{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.tree{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.user{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}</style></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Registry — hives físicas vs visão lógica</text>
+<text class="cap" x="600" y="60" text-anchor="middle">CmpInitializeHive carrega cada hive em memória; pontos de montagem aparecem em \Registry\Machine, \Registry\User</text>
+
+<rect class="disk" x="40" y="90" width="540" height="640" rx="8"/>
+<text class="h" x="310" y="115" text-anchor="middle">Hives no disco</text>
+<text class="c" x="60" y="142">  C:\Windows\System32\config\</text>
+<text class="c" x="60" y="160">    SYSTEM        ← drivers, services, hardware</text>
+<text class="c" x="60" y="178">    SYSTEM.LOG1, .LOG2  (recovery)</text>
+<text class="c" x="60" y="196">    SOFTWARE      ← apps, mscorlib, microsoft</text>
+<text class="c" x="60" y="214">    SAM           ← contas locais (LM/NT hashes)</text>
+<text class="c" x="60" y="232">    SECURITY      ← policy, LSA secrets</text>
+<text class="c" x="60" y="250">    DEFAULT       ← perfil padrão</text>
+<text class="c" x="60" y="268">    BCD-Template, COMPONENTS</text>
+<text class="c" x="60" y="296">  C:\Users\&lt;user&gt;\NTUSER.DAT          ← HKCU</text>
+<text class="c" x="60" y="314">  C:\Users\&lt;user&gt;\AppData\Local\Microsoft\Windows\</text>
+<text class="c" x="60" y="332">    UsrClass.dat                       ← HKCU\Software\Classes</text>
+<text class="c" x="60" y="360">  C:\Windows\System32\config\TxR\      ← TxR transactional logs</text>
+<text class="c" x="60" y="378">  C:\Windows\System32\config\RegBack\  ← backups (deprecated 1803+)</text>
+<text class="c" x="60" y="406">  C:\Windows\AppCompat\Programs\Amcache.hve   ← exec history</text>
+<text class="c" x="60" y="434">  Memória apenas (volatile):</text>
+<text class="c" x="60" y="452">    HARDWARE  — populated em boot pelo PnP (não tem arquivo)</text>
+<text class="c" x="60" y="470">    SYSTEM\Select\Current pointer aos ControlSets</text>
+<text class="cap" x="60" y="510">  Layout interno de cada hive:</text>
+<text class="c" x="60" y="535">    HBASE_BLOCK (4KB) — magic 0x66676572 ("regf"), Sequence1/2,</text>
+<text class="c" x="60" y="553">      RootCell, Length, Cluster, FileName</text>
+<text class="c" x="60" y="571">    HBINs (4KB cada) — ARRAY contínuo de cells</text>
+<text class="c" x="60" y="589">      cada HBIN começa com "hbin" + size</text>
+<text class="c" x="60" y="607">    Cell types:</text>
+<text class="c" x="60" y="625">      nk  Named Key (CM_KEY_NODE)</text>
+<text class="c" x="60" y="643">      vk  Value Key (CM_KEY_VALUE)</text>
+<text class="c" x="60" y="661">      sk  Security Key (CM_KEY_SECURITY)</text>
+<text class="c" x="60" y="679">      lf/lh/li/ri  Index for subkeys</text>
+<text class="c" x="60" y="697">      db  Big data (≥16344 bytes)</text>
+
+<rect class="tree" x="620" y="90" width="540" height="380" rx="8"/>
+<text class="h" x="890" y="115" text-anchor="middle">Visão lógica (clientes Win32)</text>
+<text class="c" x="640" y="142">  HKEY_LOCAL_MACHINE  (HKLM)</text>
+<text class="c" x="660" y="160">    SYSTEM      ← \Registry\Machine\System (hive SYSTEM)</text>
+<text class="c" x="660" y="178">    SOFTWARE    ← \Registry\Machine\Software</text>
+<text class="c" x="660" y="196">    SAM         ← \Registry\Machine\Sam</text>
+<text class="c" x="660" y="214">    SECURITY    ← \Registry\Machine\Security</text>
+<text class="c" x="660" y="232">    HARDWARE    ← volatile</text>
+<text class="c" x="660" y="250">    BCD00000000 ← hive temporário</text>
+<text class="c" x="640" y="278">  HKEY_USERS  (HKU)</text>
+<text class="c" x="660" y="296">    .DEFAULT</text>
+<text class="c" x="660" y="314">    S-1-5-18                  (System)</text>
+<text class="c" x="660" y="332">    S-1-5-19, S-1-5-20         (Local/Network Service)</text>
+<text class="c" x="660" y="350">    S-1-5-21-... (cada usuário)</text>
+<text class="c" x="660" y="368">    S-1-5-21-..._Classes (UsrClass.dat)</text>
+<text class="c" x="640" y="396">  HKEY_CURRENT_USER  (HKCU)  → atalho para HKU\&lt;current SID&gt;</text>
+<text class="c" x="640" y="414">  HKEY_CLASSES_ROOT  (HKCR)  → merge de HKLM\Software\Classes + HKCU\Software\Classes</text>
+<text class="c" x="640" y="432">  HKEY_CURRENT_CONFIG → Hardware Profile / CurrentControlSet</text>
+<text class="c" x="640" y="450">  HKEY_PERFORMANCE_DATA (apenas em-memória)</text>
+
+<rect class="user" x="620" y="490" width="540" height="240" rx="8"/>
+<text class="h" x="890" y="515" text-anchor="middle">APIs principais (Win32)</text>
+<text class="c" x="640" y="542">  RegOpenKeyEx(W) / RegCreateKeyEx(W)</text>
+<text class="c" x="640" y="560">  RegQueryValueEx(W) / RegSetValueEx(W) / RegDeleteValue(W)</text>
+<text class="c" x="640" y="578">  RegEnumKeyEx(W) / RegEnumValue(W) / RegCloseKey</text>
+<text class="c" x="640" y="596">  RegLoadKey / RegUnLoadKey  (montar hive offline)</text>
+<text class="c" x="640" y="614">  RegSaveKey / RegRestoreKey</text>
+<text class="c" x="640" y="632">  RegNotifyChangeKeyValue (watch)</text>
+<text class="c" x="640" y="660">  Native: NtCreateKey / NtOpenKey / NtSetValueKey / NtQueryValueKey,</text>
+<text class="c" x="640" y="678">           NtEnumerateKey / NtEnumerateValueKey, NtDeleteKey, NtFlushKey</text>
+<text class="c" x="640" y="696">  Kernel: ZwCreateKey, CmRegisterCallbackEx, CmCallbackGetKeyObjectIDEx</text>
+</svg>

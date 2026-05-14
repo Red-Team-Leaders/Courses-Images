@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+<defs><style>
+.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}
+.c{font:12px Consolas,monospace;fill:#e6edf3}.o{font:11px Consolas,monospace;fill:#7ee787}
+.w{font:11px Consolas,monospace;fill:#ff7b72}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}
+.k{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.e{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}.b{fill:#161b22;stroke:#58a6ff;stroke-width:1.5}
+</style></defs>
+<rect width="1200" height="800" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">_ETHREAD / _KTHREAD / _TEB — anatomia da thread</text>
+<text class="cap" x="600" y="60" text-anchor="middle">ETHREAD em kernel; TEB em user (gs:[0]); KTHREAD é embedded no início de ETHREAD (Tcb)</text>
+
+<rect class="k" x="40" y="90" width="380" height="680" rx="8"/>
+<text class="h" x="230" y="115" text-anchor="middle">_KTHREAD  (=  ETHREAD.Tcb,  +0x000)</text>
+<text class="o" x="60" y="142">  +0x000 Header : DISPATCHER_HEADER  (Type=Thread)</text>
+<text class="o" x="60" y="160">  +0x018 SListFaultAddress / Quantum</text>
+<text class="o" x="60" y="178">  +0x028 InitialStack / StackBase / StackLimit</text>
+<text class="o" x="60" y="196">  +0x048 KernelStack : PVOID</text>
+<text class="o" x="60" y="214">  +0x070 Process : _KPROCESS *  (back-ptr)</text>
+<text class="o" x="60" y="232">  +0x080 NextProcessor / IdealProcessor</text>
+<text class="o" x="60" y="250">  +0x098 WaitBlockList / Alertable</text>
+<text class="o" x="60" y="268">  +0x100 Teb : PVOID  (user-mode TEB)</text>
+<text class="o" x="60" y="286">  +0x180 SchedulingGroup, Priority,</text>
+<text class="o" x="60" y="304">         BasePriority, Saturation</text>
+<text class="o" x="60" y="322">  +0x1B0 ApcState : KAPC_STATE</text>
+<text class="o" x="60" y="340">         (KernelApcInProgress, KernelApcPending,</text>
+<text class="o" x="60" y="358">          UserApcPending, ApcListHead[])</text>
+<text class="o" x="60" y="376">  +0x200 PreviousMode : KPROCESSOR_MODE</text>
+<text class="o" x="60" y="394">  +0x230 WaitStatus, WaitReason, WaitMode</text>
+<text class="o" x="60" y="412">  +0x260 Win32Thread : PVOID  (W32THREAD)</text>
+<text class="o" x="60" y="430">  +0x300 KernelTime, UserTime</text>
+<text class="o" x="60" y="448">  +0x340 ThreadListEntry  (em EPROCESS.ThreadListHead)</text>
+<text class="o" x="60" y="466">  +0x380 ServiceTable : PVOID  ← SSDT Normal vs Shadow</text>
+
+<text class="h" x="230" y="510" text-anchor="middle">extras de _ETHREAD (após Tcb)</text>
+<text class="o" x="60" y="535">  +0x440 CreateTime / ExitTime</text>
+<text class="o" x="60" y="553">  +0x450 ChargeOnlySession / Cid : CLIENT_ID  (PID,TID)</text>
+<text class="o" x="60" y="571">  +0x470 KeyedWaitChain / KeyedWaitValue</text>
+<text class="o" x="60" y="589">  +0x498 LpcReplyChain</text>
+<text class="o" x="60" y="607">  +0x4A8 ThreadListEntry (per-process)</text>
+<text class="o" x="60" y="625">  +0x4F0 RundownProtect : EX_RUNDOWN_REF</text>
+<text class="o" x="60" y="643">  +0x510 ThreadLock : EX_PUSH_LOCK</text>
+<text class="o" x="60" y="661">  +0x540 CmCellReferences (registry refs)</text>
+<text class="o" x="60" y="679">  +0x580 IrpList (IRPs em curso)</text>
+<text class="o" x="60" y="697">  +0x600 Win32StartAddress : PVOID  ← endereço passado a CreateThread</text>
+<text class="o" x="60" y="715">  +0x6F0 CrossThreadFlags (HIDE_FROM_DEBUGGER, …)</text>
+<text class="w" x="60" y="745">  HideFromDebugger setado via NtSetInformationThread(ThreadHideFromDebugger)</text>
+
+<rect class="e" x="440" y="90" width="380" height="680" rx="8"/>
+<text class="h" x="630" y="115" text-anchor="middle">_TEB  (user mode, gs:[0])</text>
+<text class="o" x="460" y="142">  +0x000 NtTib : NT_TIB</text>
+<text class="o" x="460" y="160">    +0x000 ExceptionList (SEH, x86)</text>
+<text class="o" x="460" y="178">    +0x008 StackBase / +0x010 StackLimit</text>
+<text class="o" x="460" y="196">    +0x018 SubSystemTib</text>
+<text class="o" x="460" y="214">    +0x020 FiberData / Version</text>
+<text class="o" x="460" y="232">    +0x028 ArbitraryUserPointer</text>
+<text class="o" x="460" y="250">    +0x030 Self : PTEB  (auto-ref)</text>
+<text class="o" x="460" y="268">  +0x038 EnvironmentPointer</text>
+<text class="w" x="460" y="286">  +0x040 ClientId : CLIENT_ID  (PID, TID)</text>
+<text class="o" x="460" y="304">  +0x050 ActiveRpcHandle</text>
+<text class="o" x="460" y="322">  +0x058 ThreadLocalStoragePointer  ← TLS slots</text>
+<text class="w" x="460" y="340">  +0x060 ProcessEnvironmentBlock : PPEB  ← PEB!</text>
+<text class="o" x="460" y="358">  +0x068 LastErrorValue : ULONG</text>
+<text class="o" x="460" y="376">  +0x06C CountOfOwnedCriticalSections</text>
+<text class="o" x="460" y="394">  +0x078 Win32ThreadInfo</text>
+<text class="o" x="460" y="412">  +0x1480 LastStatusValue : NTSTATUS</text>
+<text class="o" x="460" y="430">  +0x14B0 StaticUnicodeString</text>
+<text class="o" x="460" y="448">  +0x1748 DeallocationStack</text>
+<text class="o" x="460" y="466">  +0x1750 TlsSlots[64] : PVOID</text>
+<text class="o" x="460" y="484">  +0x17C8 ImpersonationLocale, GdiBatchCount</text>
+<text class="o" x="460" y="502">  +0x1808 TxnScopeContext</text>
+<text class="o" x="460" y="520">  +0x18B0 InstrumentationCallbackSp</text>
+<text class="o" x="460" y="538">  +0x1A50 ActivationContextStackPointer</text>
+<text class="o" x="460" y="556">  +0x1A60 SpareTebPointers</text>
+<text class="o" x="460" y="574">  +0x1AC0 TlsExpansionSlots : PVOID *  (1024 extras)</text>
+<text class="o" x="460" y="592">  +0x1B30 GdiTebBatch</text>
+<text class="o" x="460" y="610">  +0x1B58 RealClientId</text>
+<text class="o" x="460" y="628">  +0x1B68 GdiCachedProcessHandle</text>
+<text class="cap" x="460" y="660">No x64 a TEB tem ~8 KiB.</text>
+<text class="cap" x="460" y="680">Acesso: __readgsqword(off) ou NtCurrentTeb().</text>
+
+<rect class="b" x="840" y="90" width="320" height="680" rx="8"/>
+<text class="h" x="1000" y="115" text-anchor="middle">Inspecionar (WinDbg)</text>
+<text class="c" x="860" y="142">  !thread &lt;ETHREAD&gt;</text>
+<text class="c" x="860" y="160">  dt nt!_ETHREAD &lt;addr&gt;</text>
+<text class="c" x="860" y="178">  dt nt!_KTHREAD &lt;addr&gt;</text>
+<text class="c" x="860" y="196">  dt ntdll!_TEB @$teb</text>
+<text class="c" x="860" y="214">  !teb</text>
+<text class="c" x="860" y="232">  !apc &lt;ETHREAD&gt;</text>
+<text class="c" x="860" y="250">  !ready  (filas por CPU)</text>
+<text class="c" x="860" y="268">  !running</text>
+
+<text class="h" x="1000" y="310" text-anchor="middle">User-mode (C++)</text>
+<text class="c" x="860" y="335">  PTEB teb = NtCurrentTeb();</text>
+<text class="c" x="860" y="353">  PPEB peb = teb-&gt;ProcessEnvironment</text>
+<text class="c" x="860" y="371">                    Block;</text>
+<text class="c" x="860" y="395">  // x64 raw access:</text>
+<text class="c" x="860" y="413">  ULONG_PTR teb =</text>
+<text class="c" x="860" y="431">    __readgsqword(0x30);</text>
+<text class="c" x="860" y="455">  // PID local:</text>
+<text class="c" x="860" y="473">  DWORD pid = HandleToULong(</text>
+<text class="c" x="860" y="491">     teb-&gt;ClientId.UniqueProcess);</text>
+
+<text class="h" x="1000" y="540" text-anchor="middle">Mascarar TID/PID</text>
+<text class="cap" x="860" y="565">  • TEB.ClientId pode ser modificada</text>
+<text class="cap" x="860" y="583">  por código no próprio processo</text>
+<text class="cap" x="860" y="601">  → impressões "Spoof TID" comuns em</text>
+<text class="cap" x="860" y="619">  ferramentas de evasão.</text>
+<text class="cap" x="860" y="637">  • Mas ETHREAD.Cid no kernel é fonte</text>
+<text class="cap" x="860" y="655">  da verdade para CIDTable.</text>
+
+<text class="h" x="1000" y="700" text-anchor="middle">FS/GS base</text>
+<text class="cap" x="860" y="725">  x64: GS aponta para TEB em user;</text>
+<text class="cap" x="860" y="743">  swapgs para KPCR no kernel.</text>
+</svg>

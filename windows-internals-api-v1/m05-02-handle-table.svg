@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.lvl{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.ent{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.obj{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">_HANDLE_TABLE — três níveis (até 16M handles por processo)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">EPROCESS.ObjectTable; cada handle é (HandleValue &amp; ~3) índice em uma table; bottom-2-bits são tags</text>
+
+<rect class="lvl" x="40" y="90" width="240" height="80" rx="6"/><text class="h" x="160" y="115" text-anchor="middle">_HANDLE_TABLE</text><text class="c" x="60" y="138">  TableCode : ULONG_PTR</text><text class="c" x="60" y="156">    low 2 bits = nível (0,1,2)</text>
+<rect class="lvl" x="320" y="90" width="240" height="80" rx="6"/><text class="h" x="440" y="115" text-anchor="middle">QuotaProcess, UniqueId</text><text class="c" x="340" y="138">  HandleCount, NextHandleNeedingPool</text><text class="c" x="340" y="156">  HandleContentionEvent</text>
+<rect class="lvl" x="600" y="90" width="240" height="80" rx="6"/><text class="h" x="720" y="115" text-anchor="middle">DebugInfo</text><text class="c" x="620" y="138">  HandleTraceDb (ApplicationVerifier)</text><text class="c" x="620" y="156">  HandleTableList (PsActiveHandleTables)</text>
+
+<rect class="lvl" x="40" y="200" width="380" height="120" rx="6"/><text class="h" x="230" y="225" text-anchor="middle">Nível 0 — table simples</text><text class="c" x="60" y="252">  array de 256 _HANDLE_TABLE_ENTRY</text><text class="c" x="60" y="270">  used quando handle &lt; 256</text><text class="c" x="60" y="290">  TableCode &amp; 3 == 0</text><text class="c" x="60" y="308">  TableCode = ptr direto à página de entries</text>
+<rect class="lvl" x="440" y="200" width="380" height="120" rx="6"/><text class="h" x="630" y="225" text-anchor="middle">Nível 1 — middle table</text><text class="c" x="460" y="252">  TableCode &amp; 3 == 1</text><text class="c" x="460" y="270">  TableCode = ptr para array de 1024 ptrs</text><text class="c" x="460" y="290">  cada um aponta a um L0 table</text><text class="c" x="460" y="308">  → 256 × 1024 = 262144 handles</text>
+<rect class="lvl" x="840" y="200" width="320" height="120" rx="6"/><text class="h" x="1000" y="225" text-anchor="middle">Nível 2 — top table</text><text class="c" x="860" y="252">  TableCode &amp; 3 == 2</text><text class="c" x="860" y="270">  ptr → array 1024 L1 tables</text><text class="c" x="860" y="290">  → 16,777,216 handles max</text>
+
+<rect class="ent" x="40" y="350" width="560" height="220" rx="8"/>
+<text class="h" x="320" y="375" text-anchor="middle">_HANDLE_TABLE_ENTRY (16 bytes em x64)</text>
+<text class="c" x="60" y="402">  union {</text>
+<text class="c" x="60" y="420">    struct {</text>
+<text class="c" x="60" y="438">      ULONG_PTR ObjectPointerBits : 44;  // ptr &gt;&gt; 4</text>
+<text class="c" x="60" y="456">      ULONG     Attributes        :  3;  // Inherit, Protect, Audit</text>
+<text class="c" x="60" y="474">      ULONG     Unused            : 17;</text>
+<text class="c" x="60" y="492">    };</text>
+<text class="c" x="60" y="510">    ULONG     Value;     // top bits = ProtectFromClose, …</text>
+<text class="c" x="60" y="528">  };</text>
+<text class="c" x="60" y="546">  ULONG GrantedAccess;   // bitmap de PROCESS_/THREAD_/...</text>
+
+<rect class="obj" x="620" y="350" width="540" height="220" rx="8"/>
+<text class="h" x="890" y="375" text-anchor="middle">Pseudo-handles e Helpers</text>
+<text class="c" x="640" y="402">  GetCurrentProcess()  → -1  (HANDLE)</text>
+<text class="c" x="640" y="420">  GetCurrentThread()   → -2</text>
+<text class="c" x="640" y="438">  GetCurrentSession()  → -3 (NT 6+)</text>
+<text class="c" x="640" y="456">  GetCurrentToken()    → -4</text>
+<text class="c" x="640" y="474">  GetCurrentImpersonationToken() → -5</text>
+<text class="c" x="640" y="502">  Pseudo-handles não ocupam slots na tabela.</text>
+<text class="c" x="640" y="520">  Convertem para handle real apenas em syscalls.</text>
+<text class="c" x="640" y="538">  Não devem ser CloseHandle'd (no-op em geral).</text>
+
+<rect fill="#161b22" stroke="#30363d" x="40" y="600" width="1120" height="140" rx="8"/>
+<text class="h" x="600" y="625" text-anchor="middle">APIs e diagnóstico</text>
+<text class="c" x="60" y="652">  CreateXxx → handle, Open* → handle, DuplicateHandle → handle, CloseHandle → fecha</text>
+<text class="c" x="60" y="670">  NtClose, NtDuplicateObject, NtQueryObject(ObjectBasicInformation)</text>
+<text class="c" x="60" y="688">  NtQuerySystemInformation(SystemHandleInformation) → snapshot global</text>
+<text class="c" x="60" y="708">  GetProcessHandleCount, GetHandleInformation, SetHandleInformation (HANDLE_FLAG_PROTECT_FROM_CLOSE)</text>
+<text class="c" x="60" y="726">  WinDbg: !handle &lt;pid&gt; &lt;flags&gt; &lt;handle&gt; &lt;type&gt;,  !object,  !htrace (Application Verifier)</text>
+</svg>

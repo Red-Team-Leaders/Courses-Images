@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <style>
+      .title{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}
+      .h2{font:600 15px "Segoe UI",sans-serif;fill:#e6edf3}
+      .lbl{font:500 13px "Segoe UI",sans-serif;fill:#e6edf3}
+      .code{font:12px Consolas,monospace;fill:#e6edf3}
+      .cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}
+      .step{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}
+      .step2{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}
+      .step3{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}
+      .step4{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}
+    </style>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker>
+  </defs>
+  <rect width="1200" height="800" fill="#0d1117"/>
+  <text class="title" x="600" y="38" text-anchor="middle">Boot do Windows — do power-on ao logon</text>
+  <text class="cap" x="600" y="60" text-anchor="middle">UEFI / BIOS → bootmgr → winload → ntoskrnl Phase 0/1 → smss → csrss/wininit → services → logonui</text>
+
+  <!-- Boxes vertical timeline -->
+  <g>
+    <rect class="step3" x="60" y="90" width="280" height="80" rx="6"/>
+    <text class="lbl" x="200" y="115" text-anchor="middle">1. Firmware (UEFI / BIOS legacy)</text>
+    <text class="code" x="80" y="138">  POST + Secure Boot verifica</text>
+    <text class="code" x="80" y="156">  bootmgr (BootGuard, TPM PCR0-7)</text>
+
+    <rect class="step3" x="60" y="190" width="280" height="80" rx="6"/>
+    <text class="lbl" x="200" y="215" text-anchor="middle">2. bootmgfw.efi / bootmgr</text>
+    <text class="code" x="80" y="238">  lê BCD store, escolhe OS,</text>
+    <text class="code" x="80" y="256">  carrega winload.efi assinado.</text>
+
+    <rect class="step" x="60" y="290" width="280" height="120" rx="6"/>
+    <text class="lbl" x="200" y="315" text-anchor="middle">3. winload.efi</text>
+    <text class="code" x="80" y="338">  carrega ntoskrnl, hal,</text>
+    <text class="code" x="80" y="356">  ci.dll, drivers boot-start,</text>
+    <text class="code" x="80" y="374">  hive SYSTEM.</text>
+    <text class="code" x="80" y="392">  ELAM driver carregado.</text>
+
+    <rect class="step" x="60" y="430" width="280" height="120" rx="6"/>
+    <text class="lbl" x="200" y="455" text-anchor="middle">4. ntoskrnl Phase 0 (KiSystemStartup)</text>
+    <text class="code" x="80" y="478">  inicia KE, OB, MM mínimos,</text>
+    <text class="code" x="80" y="496">  KiInitializeKernel,</text>
+    <text class="code" x="80" y="514">  ainda sem PnP nem I/O completo,</text>
+    <text class="code" x="80" y="532">  ProcessTypeInitialization</text>
+  </g>
+
+  <g>
+    <rect class="step" x="380" y="90" width="290" height="180" rx="6"/>
+    <text class="lbl" x="525" y="115" text-anchor="middle">5. ntoskrnl Phase 1 (Phase1Initialization)</text>
+    <text class="code" x="400" y="138">  inicia subsistemas Executive:</text>
+    <text class="code" x="400" y="156">  Object Mgr, MM, IO, Cache,</text>
+    <text class="code" x="400" y="174">  Security Reference Monitor,</text>
+    <text class="code" x="400" y="192">  Configuration Mgr (carrega</text>
+    <text class="code" x="400" y="210">  hives), PnP, Power.</text>
+    <text class="code" x="400" y="232">  Cria System Process (PID 4),</text>
+    <text class="code" x="400" y="250">  inicia smss.exe (Session Mgr).</text>
+
+    <rect class="step2" x="380" y="290" width="290" height="180" rx="6"/>
+    <text class="lbl" x="525" y="315" text-anchor="middle">6. smss.exe (Session Manager)</text>
+    <text class="code" x="400" y="338">  cria pagefiles, monta hives</text>
+    <text class="code" x="400" y="356">  restantes (SOFTWARE, SAM,</text>
+    <text class="code" x="400" y="374">  SECURITY).</text>
+    <text class="code" x="400" y="392">  cria sessão 0 (services) e</text>
+    <text class="code" x="400" y="410">  sessões interativas.</text>
+    <text class="code" x="400" y="428">  para cada sessão: spawna</text>
+    <text class="code" x="400" y="446">  csrss.exe + wininit.exe</text>
+    <text class="code" x="400" y="464">  (sessão 0) ou winlogon.exe.</text>
+
+    <rect class="step2" x="380" y="490" width="290" height="100" rx="6"/>
+    <text class="lbl" x="525" y="515" text-anchor="middle">7. wininit.exe (sessão 0)</text>
+    <text class="code" x="400" y="538">  inicia services.exe (SCM),</text>
+    <text class="code" x="400" y="556">  lsass.exe, fontdrvhost.exe,</text>
+    <text class="code" x="400" y="574">  fica como pai de subsistemas.</text>
+  </g>
+
+  <g>
+    <rect class="step4" x="710" y="90" width="280" height="120" rx="6"/>
+    <text class="lbl" x="850" y="115" text-anchor="middle">8. services.exe (SCM)</text>
+    <text class="code" x="730" y="138">  carrega serviços auto-start</text>
+    <text class="code" x="730" y="156">  (svchost groups).</text>
+    <text class="code" x="730" y="174">  carrega drivers demand/auto.</text>
+    <text class="code" x="730" y="192">  trigger-start aguardando ETW.</text>
+
+    <rect class="step4" x="710" y="230" width="280" height="120" rx="6"/>
+    <text class="lbl" x="850" y="255" text-anchor="middle">9. winlogon.exe (sessão N)</text>
+    <text class="code" x="730" y="278">  inicia LogonUI.exe,</text>
+    <text class="code" x="730" y="296">  carrega Credential Providers,</text>
+    <text class="code" x="730" y="314">  realiza autenticação via lsass.</text>
+    <text class="code" x="730" y="332">  spawna userinit.exe.</text>
+
+    <rect class="step4" x="710" y="370" width="280" height="120" rx="6"/>
+    <text class="lbl" x="850" y="395" text-anchor="middle">10. userinit / explorer.exe</text>
+    <text class="code" x="730" y="418">  monta drives mapeados,</text>
+    <text class="code" x="730" y="436">  policies, shell.</text>
+    <text class="code" x="730" y="454">  inicia explorer.exe (shell)</text>
+    <text class="code" x="730" y="472">  e itens em Run/RunOnce.</text>
+
+    <rect class="step3" x="710" y="510" width="280" height="80" rx="6"/>
+    <text class="lbl" x="850" y="535" text-anchor="middle">Sysmon / EDR sensors</text>
+    <text class="code" x="730" y="558">  hookam ELAM, ETW kernel,</text>
+    <text class="code" x="730" y="576">  notify routines (Ps/Cm/Ob).</text>
+  </g>
+
+  <!-- Side panel: secure boot chain -->
+  <rect class="step3" x="1010" y="90" width="170" height="500" rx="6" opacity="0.95"/>
+  <text class="lbl" x="1095" y="115" text-anchor="middle">Cadeia de confiança</text>
+  <text class="code" x="1020" y="140">  TPM PCR0–PCR7</text>
+  <text class="code" x="1020" y="158">  ─</text>
+  <text class="code" x="1020" y="178">  UEFI Secure Boot</text>
+  <text class="code" x="1020" y="196">  ─</text>
+  <text class="code" x="1020" y="216">  bootmgr assinado</text>
+  <text class="code" x="1020" y="234">  ─</text>
+  <text class="code" x="1020" y="254">  winload assinado</text>
+  <text class="code" x="1020" y="272">  ─</text>
+  <text class="code" x="1020" y="292">  ntoskrnl assinado</text>
+  <text class="code" x="1020" y="310">  ─</text>
+  <text class="code" x="1020" y="330">  ELAM driver</text>
+  <text class="code" x="1020" y="350">  ─</text>
+  <text class="code" x="1020" y="370">  drivers WHQL/EV</text>
+  <text class="code" x="1020" y="388">  ─</text>
+  <text class="code" x="1020" y="408">  Measured Boot</text>
+  <text class="code" x="1020" y="426">  TCG log → Atestation</text>
+  <text class="code" x="1020" y="450">  ─</text>
+  <text class="code" x="1020" y="470">  Code Integrity (ci.dll)</text>
+  <text class="code" x="1020" y="490">  HVCI no VTL 1</text>
+  <text class="code" x="1020" y="510">  ─</text>
+  <text class="code" x="1020" y="530">  Custom Kernel Signers</text>
+
+  <line x1="200" y1="170" x2="200" y2="190" stroke="#e6edf3" marker-end="url(#ar)"/>
+  <line x1="200" y1="270" x2="200" y2="290" stroke="#e6edf3" marker-end="url(#ar)"/>
+  <line x1="200" y1="410" x2="200" y2="430" stroke="#e6edf3" marker-end="url(#ar)"/>
+  <line x1="340" y1="490" x2="380" y2="180" stroke="#e6edf3" marker-end="url(#ar)" stroke-dasharray="3,3"/>
+  <line x1="525" y1="270" x2="525" y2="290" stroke="#e6edf3" marker-end="url(#ar)"/>
+  <line x1="525" y1="470" x2="525" y2="490" stroke="#e6edf3" marker-end="url(#ar)"/>
+  <line x1="670" y1="540" x2="710" y2="150" stroke="#e6edf3" marker-end="url(#ar)" stroke-dasharray="3,3"/>
+  <line x1="670" y1="540" x2="710" y2="290" stroke="#e6edf3" marker-end="url(#ar)" stroke-dasharray="3,3"/>
+  <line x1="850" y1="350" x2="850" y2="370" stroke="#e6edf3" marker-end="url(#ar)"/>
+
+  <text class="cap" x="600" y="660" text-anchor="middle">PID 0 = Idle Process; PID 4 = System Process; smss tem PID variável (~88).</text>
+  <text class="cap" x="600" y="688" text-anchor="middle">Visualizar: Sysinternals "BootRevSoc"; WinDbg !logontable; bcdedit /enum; Process Explorer (Tree View).</text>
+  <text class="cap" x="600" y="716" text-anchor="middle">Sysmon Event ID 1 (ProcessCreate) começa a registrar a partir do carregamento do driver, geralmente após services.exe.</text>
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.proc{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.sec{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.file{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.proto{fill:#2a1f3a;stroke:#d2a8ff;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Section Objects e Memory-Mapped Files</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Section ↔ Control Area ↔ Subsections ↔ Prototype PTEs ↔ múltiplas Views (VADs em processos)</text>
+
+<rect class="proc" x="40" y="90" width="280" height="220" rx="8"/>
+<text class="h" x="180" y="115" text-anchor="middle">Process A</text>
+<text class="c" x="60" y="142">  VirtualAlloc views, VADs:</text>
+<text class="c" x="60" y="162">  ┌─────────────────────────┐</text>
+<text class="c" x="60" y="180">  │ VAD: 0x200000..0x20FFFF │ ← MapView</text>
+<text class="c" x="60" y="198">  │ Type=Mapped              │</text>
+<text class="c" x="60" y="216">  │ ControlArea→ section X   │</text>
+<text class="c" x="60" y="234">  └─────────────────────────┘</text>
+<text class="c" x="60" y="262">  PTEs apontam para Prototype</text>
+<text class="c" x="60" y="280">  PTEs (compartilhadas).</text>
+
+<rect class="proc" x="340" y="90" width="280" height="220" rx="8"/>
+<text class="h" x="480" y="115" text-anchor="middle">Process B</text>
+<text class="c" x="360" y="142">  ┌─────────────────────────┐</text>
+<text class="c" x="360" y="160">  │ VAD: 0x500000..0x50FFFF │</text>
+<text class="c" x="360" y="178">  │ Type=Mapped              │</text>
+<text class="c" x="360" y="196">  │ ControlArea→ section X   │</text>
+<text class="c" x="360" y="214">  └─────────────────────────┘</text>
+<text class="cap" x="360" y="252">  Mesma section, VAs diferentes.</text>
+<text class="cap" x="360" y="270">  CoW: PTE.CopyOnWrite=1 cria</text>
+<text class="cap" x="360" y="288">  cópia privada na primeira escrita.</text>
+
+<rect class="sec" x="640" y="90" width="520" height="220" rx="8"/>
+<text class="h" x="900" y="115" text-anchor="middle">_SECTION (kernel object)</text>
+<text class="c" x="660" y="142">  +0x000 SectionNode : RTL_BALANCED_NODE</text>
+<text class="c" x="660" y="160">  +0x028 StartingVpn / EndingVpn</text>
+<text class="c" x="660" y="178">  +0x040 Segment : _SEGMENT *</text>
+<text class="c" x="660" y="196">  +0x048 ControlArea : _CONTROL_AREA *  ↓</text>
+<text class="c" x="660" y="214">  +0x050 ImageObject (se IMAGE_FILE)</text>
+<text class="c" x="660" y="232">  +0x058 InitialPageProtection : ULONG</text>
+<text class="c" x="660" y="260">  Criada via NtCreateSection / CreateFileMappingW</text>
+<text class="c" x="660" y="278">  + tipos: SEC_COMMIT, SEC_RESERVE, SEC_IMAGE,</text>
+<text class="c" x="660" y="296">           SEC_LARGE_PAGES, SEC_PROTECTED_IMAGE</text>
+
+<rect class="proto" x="40" y="340" width="580" height="200" rx="8"/>
+<text class="h" x="330" y="365" text-anchor="middle">_CONTROL_AREA — descreve a "alma" da seção</text>
+<text class="c" x="60" y="395">  Segment : _SEGMENT *  → array de Prototype PTEs</text>
+<text class="c" x="60" y="413">  FilePointer : _EX_FAST_REF → _FILE_OBJECT (se file-backed)</text>
+<text class="c" x="60" y="431">  NumberOfSectionReferences, NumberOfMappedViews</text>
+<text class="c" x="60" y="449">  ModifiedWriteCount, FlushInProgressCount</text>
+<text class="c" x="60" y="467">  u (flags): Image, File, PhysicalMemory, ImageActive,</text>
+<text class="c" x="60" y="485">              GlobalOnlyPerSession, BeingDeleted, …</text>
+<text class="c" x="60" y="503">  WaitingForDeletion : KEVENT *</text>
+<text class="cap" x="60" y="528">  Quando o último view é unmapped E count=0, kernel libera.</text>
+
+<rect class="file" x="640" y="340" width="520" height="200" rx="8"/>
+<text class="h" x="900" y="365" text-anchor="middle">_SUBSECTION e Prototype PTEs</text>
+<text class="c" x="660" y="395">  _SUBSECTION:</text>
+<text class="c" x="660" y="413">    StartingSector / NumberOfFullSectors  ← faixa do arquivo</text>
+<text class="c" x="660" y="431">    SubsectionBase : _MMPTE *  ← Prototype PTE array</text>
+<text class="c" x="660" y="449">    PtesInSubsection</text>
+<text class="c" x="660" y="467">    NextSubsection</text>
+<text class="c" x="660" y="485">    UnusedPtes / Protection</text>
+<text class="cap" x="660" y="510">  Cada Prototype PTE pode estar em quatro estados:</text>
+<text class="cap" x="660" y="528">  Active(in RAM), Standby/Modified, Pagefile, FileBack(Subsection).</text>
+
+<rect class="file" x="40" y="560" width="1120" height="170" rx="8"/>
+<text class="h" x="600" y="585" text-anchor="middle">APIs de seção / mapping</text>
+<text class="c" x="60" y="615">  Win32:                                  Native:</text>
+<text class="c" x="60" y="635">    CreateFileMappingW(hFile, NULL,         NtCreateSection</text>
+<text class="c" x="60" y="653">      PAGE_READWRITE, 0, size, name);       NtOpenSection</text>
+<text class="c" x="60" y="671">    OpenFileMappingW                        NtMapViewOfSection / NtMapViewOfSectionEx</text>
+<text class="c" x="60" y="689">    MapViewOfFile / MapViewOfFileEx        NtUnmapViewOfSection</text>
+<text class="c" x="60" y="707">    UnmapViewOfFile                        NtExtendSection</text>
+<text class="c" x="60" y="725">    FlushViewOfFile                        NtAreMappedFilesTheSame</text>
+</svg>

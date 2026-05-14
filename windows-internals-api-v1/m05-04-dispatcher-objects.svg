@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.disp{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}.thr{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.wb{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Dispatcher Objects e KWAIT_BLOCK chains</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Qualquer objeto que possa ser "esperado" começa com _DISPATCHER_HEADER. WaitListHead encadeia threads bloqueadas.</text>
+
+<rect class="disp" x="40" y="90" width="540" height="200" rx="8"/>
+<text class="h" x="310" y="115" text-anchor="middle">_DISPATCHER_HEADER (header de eventos, mutexes, …)</text>
+<text class="c" x="60" y="142">  +0x00  Type : UCHAR    EventNotification=0, EventSync=1, Mutant=2,</text>
+<text class="c" x="60" y="160">                         Process=3, Queue=4, Semaphore=5, Thread=6,</text>
+<text class="c" x="60" y="178">                         Gate=7, Timer=8, ...</text>
+<text class="c" x="60" y="196">  +0x01  Absolute / NpxIrql / Signalling</text>
+<text class="c" x="60" y="214">  +0x02  Size : UCHAR  (em ULONGs)</text>
+<text class="c" x="60" y="232">  +0x03  Inserted/DpcActive/Hand</text>
+<text class="c" x="60" y="250">  +0x04  SignalState : LONG  ← signaled? (≥0 ou 1)</text>
+<text class="c" x="60" y="268">  +0x08  WaitListHead : LIST_ENTRY  → lista de KWAIT_BLOCK</text>
+
+<rect class="thr" x="620" y="90" width="540" height="200" rx="8"/>
+<text class="h" x="890" y="115" text-anchor="middle">_KTHREAD wait state</text>
+<text class="c" x="640" y="142">  WaitBlockList : KWAIT_BLOCK *    ← cabeça da chain</text>
+<text class="c" x="640" y="160">  WaitStatus : NTSTATUS</text>
+<text class="c" x="640" y="178">  Alertable, WaitMode, WaitReason</text>
+<text class="c" x="640" y="196">  WaitTime, WaitIrql</text>
+<text class="c" x="640" y="214">  KernelApcDisable / SpecialApcDisable</text>
+<text class="cap" x="640" y="248">  Quando wait satisfeito, KiUnwaitThread:</text>
+<text class="cap" x="640" y="266">  remove WaitBlocks de todas dispatcher headers, marca thread Ready.</text>
+
+<rect class="wb" x="40" y="320" width="1120" height="220" rx="8"/>
+<text class="h" x="600" y="345" text-anchor="middle">_KWAIT_BLOCK (≈ 32 bytes em x64) — uma por par (thread, dispatcher object)</text>
+<text class="c" x="60" y="375">  +0x00  WaitListEntry : LIST_ENTRY  ← entra em DispatcherHeader.WaitListHead</text>
+<text class="c" x="60" y="393">  +0x10  Object : PVOID                ← ptr ao dispatcher object</text>
+<text class="c" x="60" y="411">  +0x18  Thread : KTHREAD *</text>
+<text class="c" x="60" y="429">  +0x20  Key : USHORT                  ← índice no WaitForMultipleObjects</text>
+<text class="c" x="60" y="447">  +0x22  WaitType : UCHAR              WaitAny=1 / WaitAll=0</text>
+<text class="c" x="60" y="465">  +0x23  BlockState : UCHAR            WaitBlockActive / Inactive / Bypass</text>
+<text class="cap" x="60" y="495">  Para WaitForMultipleObjects(N): N wait blocks alocados (no thread stack ou pool).</text>
+<text class="cap" x="60" y="513">  Quando UM evento sinaliza (WaitAny), TODOS são removidos (KiSignalThread).</text>
+
+<rect fill="#161b22" stroke="#30363d" x="40" y="560" width="1120" height="180" rx="8"/>
+<text class="h" x="600" y="585" text-anchor="middle">Quem mexe com isso</text>
+<text class="c" x="60" y="612">  KeWaitForSingleObject(obj, reason, mode, alertable, timeout)</text>
+<text class="c" x="60" y="630">  KeWaitForMultipleObjects(N, objs[], type, ...)</text>
+<text class="c" x="60" y="648">  KeSetEvent / KeReleaseMutex / KeReleaseSemaphore  → KiWaitTest → satisfaz</text>
+<text class="c" x="60" y="666">  KeRundownThread / KiUnlinkThread (cleanup)</text>
+<text class="c" x="60" y="694">  Em user, NtWaitForSingleObject converge ao mesmo path através de</text>
+<text class="c" x="60" y="712">  ObReferenceObjectByHandle → KeWaitForSingleObject.</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.prov{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.sess{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.cons{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.ctrl{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Event Tracing for Windows (ETW)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Modelo Provider→Session→Consumer; controlador (Controller) liga e configura sessions.</text>
+
+<rect class="prov" x="40" y="90" width="380" height="200" rx="8"/>
+<text class="h" x="230" y="115" text-anchor="middle">Providers</text>
+<text class="c" x="60" y="142">  Identificados por GUID.</text>
+<text class="c" x="60" y="160">  Tipos:</text>
+<text class="c" x="60" y="178">    • Manifest-based (modern)</text>
+<text class="c" x="60" y="196">    • TraceLogging (Win10+)</text>
+<text class="c" x="60" y="214">    • Classic / MOF (legacy)</text>
+<text class="cap" x="60" y="248">  Providers do kernel:</text>
+<text class="c" x="60" y="270">    Microsoft-Windows-Kernel-Process</text>
+<text class="c" x="60" y="288">    Microsoft-Windows-Threat-Intelligence (TI)</text>
+
+<rect class="ctrl" x="440" y="90" width="380" height="200" rx="8"/>
+<text class="h" x="630" y="115" text-anchor="middle">Controllers (cria/configura sessions)</text>
+<text class="c" x="460" y="142">  StartTrace / EnableTraceEx2 / ControlTrace</text>
+<text class="c" x="460" y="160">  CLI: logman, xperf, wpr, tracelog</text>
+<text class="c" x="460" y="178">  Configura: buffer size, log file/in-memory,</text>
+<text class="c" x="460" y="196">  GUID providers, levels, keywords.</text>
+<text class="cap" x="460" y="232">  Sessions globais (kernel logger): NT Kernel Logger,</text>
+<text class="cap" x="460" y="250">  EventLog-Application/System, Circular Kernel.</text>
+
+<rect class="cons" x="840" y="90" width="320" height="200" rx="8"/>
+<text class="h" x="1000" y="115" text-anchor="middle">Consumers</text>
+<text class="c" x="860" y="142">  OpenTrace + ProcessTrace</text>
+<text class="c" x="860" y="160">  callback EVENT_RECORD_CALLBACK</text>
+<text class="c" x="860" y="178">  real-time (LogFileMode = REAL_TIME)</text>
+<text class="c" x="860" y="196">  ou file (.etl)</text>
+<text class="cap" x="860" y="232">  Tools: PerfView, ETW Explorer,</text>
+<text class="cap" x="860" y="250">  Microsoft Tracelog, krabsetw.</text>
+
+<rect class="sess" x="40" y="310" width="1120" height="240" rx="8"/>
+<text class="h" x="600" y="335" text-anchor="middle">Sessions (logger) — buffers em kernel</text>
+<text class="c" x="60" y="362">  Cada session = um logger ID com seus buffers (NPP) e thread escritora.</text>
+<text class="c" x="60" y="380">  EventWrite* do provider escreve em buffer atomicamente (lock-free para perf).</text>
+<text class="c" x="60" y="398">  Quando buffer cheio, swap por outro; flush para arquivo .etl ou queue real-time.</text>
+<text class="c" x="60" y="426">  Em-process providers: chamada inteiramente em user — NÃO precisa syscall por evento.</text>
+<text class="c" x="60" y="444">  Out-of-proc: usa NtTraceEvent (syscall) para escrever em session global.</text>
+<text class="cap" x="60" y="478">  Limites:</text>
+<text class="cap" x="60" y="496">  • Max 64 sessions tradicionais; +modernos com Autologger e SecureProvider.</text>
+<text class="cap" x="60" y="514">  • EnableLevel + Keyword filtra eventos no produtor (não no consumer).</text>
+<text class="cap" x="60" y="532">  • Kernel session "Microsoft-Windows-Kernel-Audit-API-Calls" expõe NtAPI calls em alguns SKUs.</text>
+
+<rect fill="#161b22" stroke="#30363d" x="40" y="570" width="1120" height="160" rx="8"/>
+<text class="h" x="600" y="595" text-anchor="middle">Relevância para Red/Blue team</text>
+<text class="c" x="60" y="622">  • Sysmon usa Microsoft-Windows-Kernel-Process e outras providers para gerar eventos detalhados.</text>
+<text class="c" x="60" y="640">  • Microsoft Defender ATP captura ETW Threat-Intelligence (TI provider) — cobre ALPC, image load, etc.</text>
+<text class="c" x="60" y="658">  • Evasão: ETW-Patching ataca ntdll!EtwEventWrite com xor eax,eax; ret.</text>
+<text class="c" x="60" y="676">  • Mitigation: Protected Provider (PPL signers); auditoria em Logon-Service-Stop.</text>
+<text class="c" x="60" y="704">  • API: TdhEnumerateProviders, TdhFormatProperty, EVENT_TRACE_CONTROL_QUERY.</text>
+</svg>

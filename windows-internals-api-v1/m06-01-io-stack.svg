@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.app{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.io{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.fs{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.dev{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}.hw{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="800" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">I/O Stack — do ReadFile ao disco</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Cada camada recebe um IRP (I/O Request Packet) e decide: completa, encaminha (IoCallDriver) ou marca pendente</text>
+
+<rect class="app" x="40" y="90" width="1120" height="80" rx="8"/>
+<text class="h" x="60" y="115">User-mode app</text>
+<text class="c" x="60" y="138">  ReadFile(hFile, buf, len, &amp;read, NULL);</text>
+<text class="c" x="60" y="158">  → kernel32!ReadFile → ntdll!NtReadFile (syscall)</text>
+
+<rect class="io" x="40" y="190" width="1120" height="100" rx="8"/>
+<text class="h" x="60" y="215">I/O Manager (nt!NtReadFile)</text>
+<text class="c" x="60" y="238">  ObReferenceObjectByHandle → _FILE_OBJECT</text>
+<text class="c" x="60" y="258">  IoAllocateIrp + IoBuildSynchronousFsdRequest(IRP_MJ_READ)</text>
+<text class="c" x="60" y="278">  define IO_STACK_LOCATION para top driver, IoCallDriver(deviceObj, irp)</text>
+
+<rect class="fs" x="40" y="310" width="1120" height="100" rx="8"/>
+<text class="h" x="60" y="335">Filter Manager + Minifilters (fltmgr.sys)</text>
+<text class="c" x="60" y="358">  altitudes (ex.: 320000 antivirus, 280000 encryption, 180000 monitoring)</text>
+<text class="c" x="60" y="378">  pre-op callback (FltPreOperationCallback)  → permitir/bloquear/modificar</text>
+<text class="c" x="60" y="398">  Ex.: WdFilter (Defender) altitude 328010</text>
+
+<rect class="fs" x="40" y="430" width="1120" height="80" rx="8"/>
+<text class="h" x="60" y="455">File System Driver (ntfs.sys / refs.sys / fastfat.sys)</text>
+<text class="c" x="60" y="478">  resolve nome → arquivo → blocos lógicos (LCNs)</text>
+<text class="c" x="60" y="498">  cache (Cc) — pode satisfazer leitura sem ir ao volume</text>
+
+<rect class="dev" x="40" y="530" width="1120" height="80" rx="8"/>
+<text class="h" x="60" y="555">Volume + Storage stack (volmgr, partmgr, disk)</text>
+<text class="c" x="60" y="578">  volsnap.sys (VSS), volume manager</text>
+<text class="c" x="60" y="598">  encryption: BitLocker fvevol.sys</text>
+
+<rect class="dev" x="40" y="630" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="655">Class/Port (storport.sys, ataport.sys, NVMe miniport)</text>
+<text class="c" x="60" y="678">  IRP → SRB → command queue → adapter</text>
+
+<rect class="hw" x="40" y="710" width="1120" height="60" rx="8"/>
+<text class="h" x="60" y="735">Hardware (NVMe / AHCI / SAS / USB)</text>
+<text class="c" x="60" y="758">  controller IRQ → ISR → DPC → IoCompleteRequest sobe a stack ao contrário</text>
+
+<line x1="600" y1="170" x2="600" y2="190" stroke="#e6edf3" marker-end="url(#ar)"/>
+<line x1="600" y1="290" x2="600" y2="310" stroke="#e6edf3" marker-end="url(#ar)"/>
+<line x1="600" y1="410" x2="600" y2="430" stroke="#e6edf3" marker-end="url(#ar)"/>
+<line x1="600" y1="510" x2="600" y2="530" stroke="#e6edf3" marker-end="url(#ar)"/>
+<line x1="600" y1="610" x2="600" y2="630" stroke="#e6edf3" marker-end="url(#ar)"/>
+<line x1="600" y1="690" x2="600" y2="710" stroke="#e6edf3" marker-end="url(#ar)"/>
+</svg>

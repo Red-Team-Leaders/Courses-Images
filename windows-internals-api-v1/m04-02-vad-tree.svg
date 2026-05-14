@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.priv{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.map{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.img{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.box{fill:#161b22;stroke:#30363d}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Virtual Address Descriptors (VAD) — AVL Tree em EPROCESS.VadRoot</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Cada nó descreve um range [StartingVpn .. EndingVpn] do VAS — protection, type, commit charge</text>
+
+<rect class="img" x="500" y="100" width="200" height="60" rx="6"/><text class="h" x="600" y="125" text-anchor="middle">[0x140000..0x14002F]</text><text class="c" x="600" y="148" text-anchor="middle">Image (notepad.exe)</text>
+
+<rect class="priv" x="200" y="220" width="200" height="60" rx="6"/><text class="h" x="300" y="245" text-anchor="middle">[0x40000..0x40FFF]</text><text class="c" x="300" y="268" text-anchor="middle">Private (heap)</text>
+
+<rect class="map" x="800" y="220" width="200" height="60" rx="6"/><text class="h" x="900" y="245" text-anchor="middle">[0x7FFE0000..1ffff]</text><text class="c" x="900" y="268" text-anchor="middle">Mapped (KUSER_SHARED)</text>
+
+<rect class="img" x="80" y="340" width="180" height="60" rx="6"/><text class="h" x="170" y="365" text-anchor="middle">[ntdll.dll]</text><text class="c" x="170" y="388" text-anchor="middle">Image</text>
+
+<rect class="priv" x="280" y="340" width="180" height="60" rx="6"/><text class="h" x="370" y="365" text-anchor="middle">[stack thread1]</text><text class="c" x="370" y="388" text-anchor="middle">Private (1MB)</text>
+
+<rect class="map" x="700" y="340" width="180" height="60" rx="6"/><text class="h" x="790" y="365" text-anchor="middle">[file mapping]</text><text class="c" x="790" y="388" text-anchor="middle">Mapped (data)</text>
+
+<rect class="priv" x="900" y="340" width="180" height="60" rx="6"/><text class="h" x="990" y="365" text-anchor="middle">[VirtualAlloc]</text><text class="c" x="990" y="388" text-anchor="middle">Private (RW)</text>
+
+<line x1="600" y1="160" x2="300" y2="220" stroke="#e6edf3" marker-end="url(#ar)"/>
+<line x1="600" y1="160" x2="900" y2="220" stroke="#e6edf3" marker-end="url(#ar)"/>
+<line x1="300" y1="280" x2="170" y2="340" stroke="#e6edf3" marker-end="url(#ar)"/>
+<line x1="300" y1="280" x2="370" y2="340" stroke="#e6edf3" marker-end="url(#ar)"/>
+<line x1="900" y1="280" x2="790" y2="340" stroke="#e6edf3" marker-end="url(#ar)"/>
+<line x1="900" y1="280" x2="990" y2="340" stroke="#e6edf3" marker-end="url(#ar)"/>
+
+<rect class="box" x="40" y="430" width="560" height="290" rx="8"/>
+<text class="h" x="320" y="455" text-anchor="middle">_MMVAD_SHORT (header)</text>
+<text class="c" x="60" y="482">  +0x00 VadNode : RTL_BALANCED_NODE (AVL)</text>
+<text class="c" x="60" y="500">  +0x18 StartingVpn : ULONG (low) + StartingVpnHigh</text>
+<text class="c" x="60" y="518">  +0x1C EndingVpn : ULONG + EndingVpnHigh</text>
+<text class="c" x="60" y="536">  +0x20 ReferenceCount : LONG</text>
+<text class="c" x="60" y="554">  +0x24 PushLock : EX_PUSH_LOCK</text>
+<text class="c" x="60" y="572">  +0x30 u : MMVAD_FLAGS (bit-field)</text>
+<text class="c" x="60" y="592">    Lock,VadType,Protection,LargePages,</text>
+<text class="c" x="60" y="610">    PrivateMemory,WriteWatch,...</text>
+<text class="c" x="60" y="630">  +0x40 EventList : MI_VAD_EVENT_BLOCK *</text>
+<text class="cap" x="60" y="668">  Tipos VadType:</text>
+<text class="cap" x="60" y="688">    0=DllMappedView, 1=ProcessHeap, 2=ImageMap, 3=AwePhysical,</text>
+<text class="cap" x="60" y="708">    4=WriteWatch, 5=LargePage, 6=RotatePhysical, 7=...</text>
+
+<rect class="box" x="620" y="430" width="540" height="290" rx="8"/>
+<text class="h" x="890" y="455" text-anchor="middle">_MMVAD (long form, para mappings)</text>
+<text class="c" x="640" y="482">  herda _MMVAD_SHORT</text>
+<text class="c" x="640" y="500">  +0x40 Subsection : _SUBSECTION *  ← arquivo mapeado</text>
+<text class="c" x="640" y="518">  +0x48 FirstPrototypePte : _MMPTE *</text>
+<text class="c" x="640" y="536">  +0x50 LastContiguousPte : _MMPTE *</text>
+<text class="c" x="640" y="554">  +0x58 ViewLinks : LIST_ENTRY (todas views da seção)</text>
+<text class="c" x="640" y="572">  +0x68 VadsProcess : _EPROCESS *</text>
+<text class="c" x="640" y="590">  +0x70 ControlArea : _CONTROL_AREA * (Section)</text>
+<text class="c" x="640" y="618">  WinDbg:</text>
+<text class="c" x="640" y="636">    !vad &lt;EPROCESS&gt;        ← lista todas VADs</text>
+<text class="c" x="640" y="654">    !vad &lt;addr&gt;            ← VAD de um VA específico</text>
+<text class="c" x="640" y="672">    !pte &lt;addr&gt;            ← PTE chain do VA</text>
+<text class="c" x="640" y="690">    dt nt!_MMVAD &lt;addr&gt;    ← campos brutos</text>
+<text class="cap" x="640" y="715">    Inserção/remoção: MiInsertVad / MiRemoveVad.</text>
+</svg>

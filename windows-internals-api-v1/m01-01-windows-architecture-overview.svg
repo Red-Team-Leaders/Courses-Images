@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+  <defs>
+    <style>
+      .title  { font: 700 24px "Segoe UI, system-ui, sans-serif"; fill: #e6edf3; }
+      .h2     { font: 600 16px "Segoe UI, system-ui, sans-serif"; fill: #e6edf3; }
+      .lbl    { font: 500 13px "Segoe UI, system-ui, sans-serif"; fill: #e6edf3; }
+      .code   { font: 12px "Consolas, Menlo, monospace"; fill: #e6edf3; }
+      .small  { font: 11px "Consolas, Menlo, monospace"; fill: #8b949e; }
+      .caption{ font: italic 12px "Segoe UI, system-ui, sans-serif"; fill: #8b949e; }
+      .ring   { fill: #21262d; stroke: #30363d; stroke-width: 1; }
+      .user   { fill: #1f3a5f; stroke: #58a6ff; stroke-width: 1.5; }
+      .kernel { fill: #3a1f1f; stroke: #ff7b72; stroke-width: 1.5; }
+      .exec   { fill: #1f3a2a; stroke: #7ee787; stroke-width: 1.5; }
+      .hw     { fill: #3a2f1f; stroke: #f0883e; stroke-width: 1.5; }
+      .sub    { fill: #2a1f3a; stroke: #d2a8ff; stroke-width: 1.5; }
+      .arrow  { stroke: #e6edf3; stroke-width: 1.5; fill: none; }
+    </style>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="900" fill="#0d1117"/>
+  <text class="title" x="600" y="40" text-anchor="middle">Windows NT — Visão arquitetural em camadas</text>
+  <text class="caption" x="600" y="62" text-anchor="middle">User mode vs Kernel mode — subsistemas, NTOS Executive, micro-kernel, HAL, hardware</text>
+
+  <!-- USER MODE -->
+  <rect class="ring" x="40" y="90" width="1120" height="280" rx="8"/>
+  <text class="h2" x="60" y="115">USER MODE  (Ring 3 — IRQL = PASSIVE_LEVEL)</text>
+
+  <!-- Subsystem DLLs -->
+  <rect class="user" x="60" y="130" width="220" height="100" rx="6"/>
+  <text class="lbl" x="170" y="152" text-anchor="middle">Aplicações Win32</text>
+  <text class="code" x="170" y="172" text-anchor="middle">notepad.exe / cmd.exe</text>
+  <text class="code" x="170" y="190" text-anchor="middle">explorer.exe / chrome.exe</text>
+  <text class="small" x="170" y="212" text-anchor="middle">PE images mapeadas</text>
+
+  <rect class="user" x="300" y="130" width="220" height="100" rx="6"/>
+  <text class="lbl" x="410" y="152" text-anchor="middle">Subsystem DLLs (Win32)</text>
+  <text class="code" x="410" y="172" text-anchor="middle">kernel32 / user32 / gdi32</text>
+  <text class="code" x="410" y="190" text-anchor="middle">advapi32 / ole32 / ws2_32</text>
+  <text class="small" x="410" y="212" text-anchor="middle">documented APIs</text>
+
+  <rect class="sub" x="540" y="130" width="220" height="100" rx="6"/>
+  <text class="lbl" x="650" y="152" text-anchor="middle">CSRSS / Subsystem Servers</text>
+  <text class="code" x="650" y="172" text-anchor="middle">csrss.exe (per session)</text>
+  <text class="code" x="650" y="190" text-anchor="middle">basesrv.dll / winsrv.dll</text>
+  <text class="small" x="650" y="212" text-anchor="middle">comunica via ALPC</text>
+
+  <rect class="user" x="780" y="130" width="180" height="100" rx="6"/>
+  <text class="lbl" x="870" y="152" text-anchor="middle">System Processes</text>
+  <text class="code" x="870" y="172" text-anchor="middle">smss / wininit</text>
+  <text class="code" x="870" y="190" text-anchor="middle">services / lsass</text>
+  <text class="small" x="870" y="212" text-anchor="middle">nascem do smss.exe</text>
+
+  <rect class="user" x="980" y="130" width="180" height="100" rx="6"/>
+  <text class="lbl" x="1070" y="152" text-anchor="middle">Environment subsystems</text>
+  <text class="code" x="1070" y="172" text-anchor="middle">WSL1 (Pico) | WSL2 (HV)</text>
+  <text class="code" x="1070" y="190" text-anchor="middle">POSIX / OS2 (legacy)</text>
+  <text class="small" x="1070" y="212" text-anchor="middle">históricos em desuso</text>
+
+  <!-- Native API row -->
+  <rect class="user" x="60" y="250" width="1100" height="100" rx="6"/>
+  <text class="lbl" x="610" y="275" text-anchor="middle">Native API — ntdll.dll  (interface única para o kernel)</text>
+  <text class="code" x="610" y="298" text-anchor="middle">NtCreateUserProcess  •  NtAllocateVirtualMemory  •  NtOpenKey  •  NtCreateFile  •  NtDeviceIoControlFile</text>
+  <text class="code" x="610" y="318" text-anchor="middle">RtlInitUnicodeString  •  RtlImageNtHeader  •  RtlGetVersion  •  KiUserExceptionDispatcher</text>
+  <text class="small" x="610" y="338" text-anchor="middle">prefixos Nt* (user) ↔ Zw* (kernel) — todas terminam em syscall instr (KiSystemCall64)</text>
+
+  <!-- Boundary -->
+  <line x1="40" y1="385" x2="1160" y2="385" class="arrow" stroke-dasharray="6,4" marker-end="url(#ar)"/>
+  <text class="caption" x="600" y="380" text-anchor="middle">─── transição syscall (KiSystemCall64) ─── KPCR.GsBase, MSR_LSTAR, swapgs, IF=0 ───</text>
+
+  <!-- KERNEL MODE -->
+  <rect class="ring" x="40" y="400" width="1120" height="350" rx="8"/>
+  <text class="h2" x="60" y="425">KERNEL MODE  (Ring 0 — IRQL ≥ PASSIVE)  —  ntoskrnl.exe + drivers</text>
+
+  <!-- NTOS Executive components -->
+  <rect class="exec" x="60" y="445" width="220" height="90" rx="6"/>
+  <text class="lbl" x="170" y="467" text-anchor="middle">Object Manager</text>
+  <text class="small" x="170" y="486" text-anchor="middle">tipos, namespace,</text>
+  <text class="small" x="170" y="500" text-anchor="middle">handles, refcount</text>
+  <text class="code" x="170" y="522" text-anchor="middle">Ob*, _OBJECT_HEADER</text>
+
+  <rect class="exec" x="300" y="445" width="220" height="90" rx="6"/>
+  <text class="lbl" x="410" y="467" text-anchor="middle">Process / Thread Mgr</text>
+  <text class="small" x="410" y="486" text-anchor="middle">EPROCESS / ETHREAD</text>
+  <text class="small" x="410" y="500" text-anchor="middle">PEB / TEB / Job</text>
+  <text class="code" x="410" y="522" text-anchor="middle">Ps*, Psp*, Ke*</text>
+
+  <rect class="exec" x="540" y="445" width="220" height="90" rx="6"/>
+  <text class="lbl" x="650" y="467" text-anchor="middle">Memory Manager</text>
+  <text class="small" x="650" y="486" text-anchor="middle">VAD, PFN, working sets,</text>
+  <text class="small" x="650" y="500" text-anchor="middle">pagefile, sections</text>
+  <text class="code" x="650" y="522" text-anchor="middle">Mm*, Mi*, _MMVAD</text>
+
+  <rect class="exec" x="780" y="445" width="180" height="90" rx="6"/>
+  <text class="lbl" x="870" y="467" text-anchor="middle">I/O Manager</text>
+  <text class="small" x="870" y="486" text-anchor="middle">IRPs, drivers,</text>
+  <text class="small" x="870" y="500" text-anchor="middle">device stacks</text>
+  <text class="code" x="870" y="522" text-anchor="middle">Io*, IoCallDriver</text>
+
+  <rect class="exec" x="980" y="445" width="180" height="90" rx="6"/>
+  <text class="lbl" x="1070" y="467" text-anchor="middle">Cache Manager</text>
+  <text class="small" x="1070" y="486" text-anchor="middle">VACBs, file cache,</text>
+  <text class="small" x="1070" y="500" text-anchor="middle">read-ahead/lazy-write</text>
+  <text class="code" x="1070" y="522" text-anchor="middle">Cc*</text>
+
+  <rect class="exec" x="60" y="555" width="220" height="80" rx="6"/>
+  <text class="lbl" x="170" y="577" text-anchor="middle">Configuration Mgr</text>
+  <text class="small" x="170" y="596" text-anchor="middle">Registry, hives, CM_KEY*</text>
+  <text class="code" x="170" y="616" text-anchor="middle">Cm*, NtOpenKey</text>
+
+  <rect class="exec" x="300" y="555" width="220" height="80" rx="6"/>
+  <text class="lbl" x="410" y="577" text-anchor="middle">Security Reference Mon</text>
+  <text class="small" x="410" y="596" text-anchor="middle">SIDs, tokens, ACLs, audit</text>
+  <text class="code" x="410" y="616" text-anchor="middle">Se*, SeAccessCheck</text>
+
+  <rect class="exec" x="540" y="555" width="220" height="80" rx="6"/>
+  <text class="lbl" x="650" y="577" text-anchor="middle">PnP / Power Manager</text>
+  <text class="small" x="650" y="596" text-anchor="middle">device tree, S-states, D-states</text>
+  <text class="code" x="650" y="616" text-anchor="middle">Pp*, Po*</text>
+
+  <rect class="exec" x="780" y="555" width="180" height="80" rx="6"/>
+  <text class="lbl" x="870" y="577" text-anchor="middle">ALPC</text>
+  <text class="small" x="870" y="596" text-anchor="middle">ports, sections, msg</text>
+  <text class="code" x="870" y="616" text-anchor="middle">Alpc*</text>
+
+  <rect class="exec" x="980" y="555" width="180" height="80" rx="6"/>
+  <text class="lbl" x="1070" y="577" text-anchor="middle">Executive Support</text>
+  <text class="small" x="1070" y="596" text-anchor="middle">pool, locks, work items</text>
+  <text class="code" x="1070" y="616" text-anchor="middle">Ex*, ExAllocatePool2</text>
+
+  <!-- Microkernel -->
+  <rect class="kernel" x="60" y="655" width="700" height="80" rx="6"/>
+  <text class="lbl" x="410" y="677" text-anchor="middle">Microkernel (KE) — scheduler, dispatcher, sync, KPCR/KPRCB, IRQL, DPC, APC, traps</text>
+  <text class="code" x="410" y="700" text-anchor="middle">KiSwapContext • KeWaitForSingleObject • KiInterruptDispatch • KeAcquireSpinLock</text>
+  <text class="small" x="410" y="722" text-anchor="middle">o "kernel" propriamente dito — rotinas Ke* e Ki*</text>
+
+  <rect class="kernel" x="780" y="655" width="380" height="80" rx="6"/>
+  <text class="lbl" x="970" y="677" text-anchor="middle">Drivers (WDM / KMDF / NDIS / WFP / minifilter)</text>
+  <text class="code" x="970" y="700" text-anchor="middle">DriverEntry • IRP_MJ_* • IoCallDriver</text>
+  <text class="small" x="970" y="722" text-anchor="middle">funcionais, filtro, bus, classe</text>
+
+  <!-- HAL + HW -->
+  <rect class="hw" x="40" y="765" width="1120" height="50" rx="6"/>
+  <text class="lbl" x="600" y="794" text-anchor="middle">HAL — Hardware Abstraction Layer (hal.dll) — APIC, timers, DMA, port I/O, MMIO</text>
+
+  <rect class="hw" x="40" y="825" width="1120" height="50" rx="6"/>
+  <text class="lbl" x="600" y="854" text-anchor="middle">HARDWARE — CPU (x64/ARM64) • RAM • IDT/GDT/MSR • PCIe • IOMMU • TPM • ACPI</text>
+
+  <text class="caption" x="600" y="892" text-anchor="middle">A linha tracejada acima é a fronteira de privilégio: tudo abaixo dela executa em CPL=0; tudo acima em CPL=3.</text>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.org{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.tr{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.hk{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="700" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Inline Hook (Detour) — patch em prólogo</text>
+
+<rect class="org" x="40" y="80" width="380" height="280" rx="8"/>
+<text class="h" x="230" y="105" text-anchor="middle">Original (antes)</text>
+<text class="c" x="60" y="132">  ntdll!NtCreateFile:</text>
+<text class="c" x="60" y="150">    4C 8B D1   mov r10, rcx</text>
+<text class="c" x="60" y="168">    B8 55 00.. mov eax, 55h</text>
+<text class="c" x="60" y="186">    F6 04 25.. test byte [...],1</text>
+<text class="c" x="60" y="204">    75 03      jne short alt</text>
+<text class="c" x="60" y="222">    0F 05      syscall</text>
+<text class="c" x="60" y="240">    C3         ret</text>
+<text class="cap" x="60" y="288">  prefixo (~16 bytes) é hot-patchable.</text>
+
+<rect class="hk" x="440" y="80" width="380" height="280" rx="8"/>
+<text class="h" x="630" y="105" text-anchor="middle">Hooked (depois)</text>
+<text class="c" x="460" y="132">  ntdll!NtCreateFile:</text>
+<text class="c" x="460" y="150">    48 B8 ?? ?? ??...   mov rax, hook</text>
+<text class="c" x="460" y="168">    FF E0               jmp rax</text>
+<text class="c" x="460" y="186">    (resto do prologue intocado)</text>
+<text class="cap" x="460" y="220">  alternativa curta (32-bit rel jmp):</text>
+<text class="c" x="460" y="240">    E9 ?? ?? ?? ??     jmp hook  (5 bytes)</text>
+<text class="cap" x="460" y="280">  detours / minhook fazem disassembly</text>
+<text class="cap" x="460" y="298">  para realocar instruções deslocadas.</text>
+
+<rect class="tr" x="840" y="80" width="320" height="280" rx="8"/>
+<text class="h" x="1000" y="105" text-anchor="middle">Trampoline</text>
+<text class="c" x="860" y="135">  trampoline:</text>
+<text class="c" x="860" y="155">    4C 8B D1     mov r10, rcx</text>
+<text class="c" x="860" y="173">    B8 55 00..   mov eax, 55h</text>
+<text class="c" x="860" y="191">    F6 04 25.. ...</text>
+<text class="c" x="860" y="209">    E9 .. ..     jmp NtCreateFile+12</text>
+<text class="cap" x="860" y="252">  Hook chama trampoline para</text>
+<text class="cap" x="860" y="270">  invocar a função "real" sem</text>
+<text class="cap" x="860" y="288">  recursão infinita.</text>
+
+<rect class="org" x="40" y="380" width="1120" height="290" rx="8"/>
+<text class="h" x="600" y="405" text-anchor="middle">Bibliotecas</text>
+<text class="c" x="60" y="432">  Microsoft Detours (open source desde 2016)        — VirtualAllocEx + DetourTransactionCommit</text>
+<text class="c" x="60" y="450">  MinHook (https://github.com/TsudaKageyu/minhook)   — leve, x86/x64</text>
+<text class="c" x="60" y="468">  EasyHook                                            — managed + native</text>
+<text class="c" x="60" y="486">  Frida (https://frida.re)                            — JS scripting, dynamic instrumentation</text>
+<text class="c" x="60" y="504">  Mhook (https://github.com/martona/mhook)            — kernel-mode também</text>
+<text class="cap" x="60" y="540">  Riscos:</text>
+<text class="cap" x="60" y="558">  • PatchGuard mata kernel-mode hook (em SSDT, kernel functions)</text>
+<text class="cap" x="60" y="576">  • CFG (Control Flow Guard) verifica se target é válido — hook em função CFG-protected falha</text>
+<text class="cap" x="60" y="594">  • CET Shadow Stack protege return; mas inline hook faz JMP, não RET</text>
+<text class="cap" x="60" y="612">  • Race conditions com outras threads executando enquanto patch (use suspend ou IPI/atomic-write)</text>
+<text class="cap" x="60" y="640">  Detecção: comparar bytes da função na DLL com cópia limpa (read PE from disk).</text>
+<text class="cap" x="60" y="658">  EDRs comparam prologue de NTAPI com baseline.</text>
+</svg>

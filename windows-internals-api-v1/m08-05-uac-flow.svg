@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.usr{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.lsa{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}.ais{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.elev{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
+<rect width="1200" height="750" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">UAC — Split Token e elevação</text>
+
+<rect class="lsa" x="40" y="80" width="540" height="160" rx="8"/>
+<text class="h" x="310" y="105" text-anchor="middle">Logon (winlogon ↔ lsass)</text>
+<text class="c" x="60" y="132">  1. Credential Provider envia credenciais a winlogon.</text>
+<text class="c" x="60" y="150">  2. winlogon → lsass (LsaLogonUser).</text>
+<text class="c" x="60" y="168">  3. lsass autentica (MSV1_0 ou Kerberos).</text>
+<text class="c" x="60" y="186">  4. Se usuário é admin local + UAC ativo: split token.</text>
+<text class="c" x="60" y="204">     • Filtered token (Medium IL, sem grupo Admins)</text>
+<text class="c" x="60" y="222">     • Linked token (full, High IL, Admins enabled)</text>
+
+<rect class="usr" x="620" y="80" width="540" height="160" rx="8"/>
+<text class="h" x="890" y="105" text-anchor="middle">Sessão padrão</text>
+<text class="c" x="640" y="132">  explorer.exe roda com Filtered token (Medium).</text>
+<text class="c" x="640" y="150">  Aplicações herdadas → Medium.</text>
+<text class="c" x="640" y="168">  GetTokenInformation(TokenLinkedToken) recupera linked token.</text>
+<text class="c" x="640" y="196">  Token type:  TOKEN_LINKED_TOKEN.LinkedToken — handle ao linked.</text>
+<text class="c" x="640" y="214">  Para usar o linked: DuplicateTokenEx + ImpersonateLoggedOnUser ou CreateProcessWithTokenW.</text>
+
+<rect class="ais" x="40" y="260" width="540" height="220" rx="8"/>
+<text class="h" x="310" y="285" text-anchor="middle">Pedido de elevação (CreateProcess)</text>
+<text class="c" x="60" y="312">  App marcada com requestedExecutionLevel="requireAdministrator"</text>
+<text class="c" x="60" y="330">  ou com SHELLEXECUTEINFO + lpVerb="runas":</text>
+<text class="c" x="60" y="348">  → CreateProcess detecta need-elevate (manifest, AutoElevate, IFEO).</text>
+<text class="c" x="60" y="366">  → Falha com ERROR_ELEVATION_REQUIRED se não há linked token.</text>
+<text class="c" x="60" y="394">  → ShellExecuteEx redireciona via COM:</text>
+<text class="c" x="60" y="412">     CoCreateInstance(CLSID_AppInfo, IID_IAppInfo)</text>
+<text class="c" x="60" y="430">     → IPC para appinfo.dll dentro de svchost (Application Information service).</text>
+
+<rect class="ais" x="620" y="260" width="540" height="220" rx="8"/>
+<text class="h" x="890" y="285" text-anchor="middle">AIS (Application Information Service)</text>
+<text class="c" x="640" y="312">  Roda em svchost.exe, SYSTEM.</text>
+<text class="c" x="640" y="330">  1. Valida manifest, AutoElevate flag, lista de elevatable.</text>
+<text class="c" x="640" y="348">  2. Spawns consent.exe (winsta0\Secure desktop, isolated).</text>
+<text class="c" x="640" y="366">  3. Usuário aprova → AIS chama CreateProcessAsUser com Linked Token.</text>
+<text class="c" x="640" y="384">  4. Processo nasce com IL = High, em sessão do usuário.</text>
+<text class="cap" x="640" y="412">  Bypasses históricos: COM Hijack (CLSID em HKCU), DLL Hijack (autoelevated EXEs),</text>
+<text class="cap" x="640" y="430">  fodhelper, eventvwr, Token Stealer (SysWhispers), token manipulation via SeImpersonatePrivilege.</text>
+
+<rect class="elev" x="40" y="500" width="1120" height="220" rx="8"/>
+<text class="h" x="600" y="525" text-anchor="middle">Considerações</text>
+<text class="c" x="60" y="552">  • Secure Desktop: ConsentUI roda em winsta0\Secure → não pode ser screen-captured / sendkey-injected.</text>
+<text class="c" x="60" y="570">  • Auto-elevate em apps assinadas Microsoft em system32 com manifest autoElevate=true.</text>
+<text class="c" x="60" y="588">  • UIAccess apps (assinadas + uiAccess=true + em Program Files) podem injetar input em outras janelas.</text>
+<text class="c" x="60" y="606">  • Auditoria: Event Log Microsoft-Windows-User Account Control logs todos prompts.</text>
+<text class="cap" x="60" y="640">  • Política GPO: SecurityPolicy → User Account Control: behavior of the elevation prompt for administrators</text>
+<text class="cap" x="60" y="658">    determina se há prompt, prompt sem credentials, ou silent-elevate.</text>
+<text class="cap" x="60" y="688">  • UAC NÃO é uma security boundary segundo Microsoft (Mark Russinovich) — é "convenience boundary".</text>
+<text class="cap" x="60" y="706">  Para isolar de fato, use AppContainer ou Hyper-V Container.</text>
+</svg>

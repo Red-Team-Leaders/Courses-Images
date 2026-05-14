@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="1200" height="850">
+<defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 13px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:11px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.user{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.kernel{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}.gap{fill:#21262d;stroke:#30363d;stroke-width:1}</style></defs>
+<rect width="1200" height="850" fill="#0d1117"/>
+<text class="t" x="600" y="38" text-anchor="middle">Virtual Address Space — x64 (48-bit canonical)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">256 TB total (2^48); 128 TB user (low half) + 128 TB kernel (high half); buraco "non-canonical" no meio. LA57 (5-level) estende para 128 PB (Win10 1809+).</text>
+
+<!-- USER SIDE -->
+<rect class="user" x="40" y="90" width="540" height="700" rx="8"/>
+<text class="h" x="310" y="115" text-anchor="middle">User VA — 0x0 .. 0x7FFF FFFF FFFF (128 TB)</text>
+<rect class="gap" x="60" y="135" width="500" height="40"/><text class="c" x="310" y="160" text-anchor="middle">0x0000 0000 0000 0000 — null page (PAGE_NOACCESS)</text>
+<rect class="user" x="60" y="180" width="500" height="60"/><text class="c" x="310" y="205" text-anchor="middle">UserMin (0x10000) — primeiro VA usável</text>
+<text class="c" x="310" y="225" text-anchor="middle">EXE base (ASLR) ~ 0x140000000</text>
+<rect class="user" x="60" y="245" width="500" height="80"/><text class="c" x="310" y="270" text-anchor="middle">EXE image (.text/.rdata/.data/...)</text>
+<text class="c" x="310" y="290" text-anchor="middle">DLLs carregadas (kernel32, ntdll, user32, …)</text>
+<text class="c" x="310" y="310" text-anchor="middle">ApiSet schema, .NET CLR, etc.</text>
+<rect class="user" x="60" y="330" width="500" height="80"/><text class="c" x="310" y="355" text-anchor="middle">Default Process Heap + heaps adicionais</text>
+<text class="c" x="310" y="375" text-anchor="middle">(LFH segments, Segment Heap pages)</text>
+<text class="c" x="310" y="395" text-anchor="middle">VirtualAlloc reservadas pelo app</text>
+<rect class="user" x="60" y="415" width="500" height="100"/><text class="c" x="310" y="440" text-anchor="middle">Thread stacks (1 MB cada por padrão)</text>
+<text class="c" x="310" y="460" text-anchor="middle">+ Guard pages (PAGE_GUARD)</text>
+<text class="c" x="310" y="480" text-anchor="middle">+ TEBs (4-8 KB cada)</text>
+<text class="c" x="310" y="500" text-anchor="middle">PEB único do processo (0x...0000)</text>
+<rect class="user" x="60" y="520" width="500" height="60"/><text class="c" x="310" y="545" text-anchor="middle">Memory Mapped Files / Sections</text>
+<text class="c" x="310" y="565" text-anchor="middle">Shared Memory entre processos</text>
+<rect class="user" x="60" y="585" width="500" height="60"/><text class="c" x="310" y="610" text-anchor="middle">Shared User Data — read-only mapping</text>
+<text class="c" x="310" y="630" text-anchor="middle">0x7FFE 0000  (KUSER_SHARED_DATA)</text>
+<rect class="gap" x="60" y="650" width="500" height="40"/><text class="c" x="310" y="675" text-anchor="middle">Reserved VA space para growth (top-down)</text>
+<rect class="user" x="60" y="695" width="500" height="80"/><text class="c" x="310" y="720" text-anchor="middle">Top user VA: 0x7FFF FFFF FFFF</text>
+<text class="c" x="310" y="740" text-anchor="middle">VirtualAllocEx com MEM_TOP_DOWN aloca daqui para baixo</text>
+<text class="c" x="310" y="760" text-anchor="middle">Wow64 limita user a 4GB (espelho 32-bit)</text>
+
+<!-- NON-CANONICAL HOLE -->
+<rect class="gap" x="600" y="90" width="60" height="700"/>
+<text class="c" x="630" y="120" text-anchor="middle" transform="rotate(-90 630 120)">non-canonical hole — bits 48..63 não 0/1 → #GP</text>
+
+<!-- KERNEL SIDE -->
+<rect class="kernel" x="680" y="90" width="480" height="700" rx="8"/>
+<text class="h" x="920" y="115" text-anchor="middle">Kernel VA — 0xFFFF8000 0000 0000+ (128 TB)</text>
+<rect class="kernel" x="700" y="135" width="440" height="60"/><text class="c" x="920" y="160" text-anchor="middle">0xFFFF 8000 0000 0000  — kernel start</text>
+<text class="c" x="920" y="180" text-anchor="middle">PML4 self-map / hyperspace</text>
+<rect class="kernel" x="700" y="200" width="440" height="60"/><text class="c" x="920" y="225" text-anchor="middle">PFN database (8 bytes/page, ~8 GB para 64 GB RAM)</text>
+<text class="c" x="920" y="245" text-anchor="middle">descreve cada PFN físico</text>
+<rect class="kernel" x="700" y="265" width="440" height="80"/><text class="c" x="920" y="290" text-anchor="middle">System PTEs — para mapear I/O temporário</text>
+<text class="c" x="920" y="310" text-anchor="middle">MmAllocateMappingAddress, MmMapIoSpace</text>
+<text class="c" x="920" y="330" text-anchor="middle">!sysptes</text>
+<rect class="kernel" x="700" y="350" width="440" height="60"/><text class="c" x="920" y="375" text-anchor="middle">Non-Paged Pool (NPP / NX since Win8)</text>
+<text class="c" x="920" y="395" text-anchor="middle">ExAllocatePool2(POOL_FLAG_NON_PAGED, ...)</text>
+<rect class="kernel" x="700" y="415" width="440" height="60"/><text class="c" x="920" y="440" text-anchor="middle">Paged Pool</text>
+<text class="c" x="920" y="460" text-anchor="middle">ExAllocatePool2(POOL_FLAG_PAGED, ...)</text>
+<rect class="kernel" x="700" y="480" width="440" height="80"/><text class="c" x="920" y="505" text-anchor="middle">System Cache (Cc Manager working set)</text>
+<text class="c" x="920" y="525" text-anchor="middle">VACBs — file backing pages</text>
+<text class="c" x="920" y="545" text-anchor="middle">!filecache</text>
+<rect class="kernel" x="700" y="565" width="440" height="80"/><text class="c" x="920" y="590" text-anchor="middle">Hal heap, Loader entries (PsLoadedModuleList)</text>
+<text class="c" x="920" y="610" text-anchor="middle">ntoskrnl, hal.dll, drivers — text+data</text>
+<text class="c" x="920" y="630" text-anchor="middle">!modlist / lm m nt</text>
+<rect class="kernel" x="700" y="650" width="440" height="60"/><text class="c" x="920" y="675" text-anchor="middle">Session space — win32k.sys, GDI/USER objects</text>
+<text class="c" x="920" y="695" text-anchor="middle">por sessão (não compartilhado)</text>
+<rect class="kernel" x="700" y="715" width="440" height="60"/><text class="c" x="920" y="740" text-anchor="middle">HyperSpace, working set lists</text>
+<text class="c" x="920" y="760" text-anchor="middle">topo: 0xFFFF FFFF FFFF FFFF</text>
+
+<text class="cap" x="600" y="820" text-anchor="middle">x86 legacy: 4GB total, /3GB para apps. ARM64 segue mesmo modelo 48-bit. LA57 dobra usable a 256 TB user / 256 TB kernel (5-level paging).</text>
+</svg>

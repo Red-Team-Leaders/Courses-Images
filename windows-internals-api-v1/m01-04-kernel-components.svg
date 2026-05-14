@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <style>
+      .title{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}
+      .h2{font:600 15px "Segoe UI",sans-serif;fill:#e6edf3}
+      .lbl{font:500 13px "Segoe UI",sans-serif;fill:#e6edf3}
+      .code{font:12px Consolas,monospace;fill:#e6edf3}
+      .small{font:11px Consolas,monospace;fill:#8b949e}
+      .cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}
+      .vtl0{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}
+      .vtl1{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}
+      .hyper{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}
+      .frame{fill:#161b22;stroke:#30363d;stroke-width:1}
+    </style>
+  </defs>
+  <rect width="1200" height="800" fill="#0d1117"/>
+  <text class="title" x="600" y="38" text-anchor="middle">Componentes do kernel Windows + Virtualization-Based Security (VBS)</text>
+  <text class="cap" x="600" y="60" text-anchor="middle">Modelo VTL (Virtual Trust Levels) — Hyper-V isola um "Secure Kernel" do kernel "normal"</text>
+
+  <!-- VTL 0 -->
+  <rect class="frame" x="40" y="80" width="700" height="640" rx="8"/>
+  <text class="h2" x="60" y="105">VTL 0 — "Normal World"</text>
+
+  <rect class="vtl0" x="60" y="125" width="660" height="60" rx="6"/>
+  <text class="lbl" x="390" y="148" text-anchor="middle">User Mode (ring 3)  —  apps, csrss, lsass, services, svchost</text>
+  <text class="code" x="390" y="170" text-anchor="middle">ntdll.dll, kernel32, user32, advapi32, …</text>
+
+  <rect class="vtl0" x="60" y="200" width="660" height="280" rx="6"/>
+  <text class="lbl" x="390" y="225" text-anchor="middle">ntoskrnl.exe — NT Executive + Kernel</text>
+  <text class="code" x="80" y="252">  Object Mgr • Process/Thread Mgr • Memory Mgr • I/O Mgr • Cache Mgr</text>
+  <text class="code" x="80" y="272">  Configuration Mgr (registry) • Security Reference Monitor • PnP/Power</text>
+  <text class="code" x="80" y="292">  ALPC • Executive Support (pool, locks) • Plug &amp; Play</text>
+  <text class="code" x="80" y="318">  ────────────────────────────────────────────</text>
+  <text class="code" x="80" y="338">  KE — microkernel: scheduler (KiSwapContext, KiQuantumEnd),</text>
+  <text class="code" x="80" y="358">  dispatcher (KeWaitForXxx), spinlocks, IRQL, DPCs, APCs, traps.</text>
+  <text class="code" x="80" y="384">  ────────────────────────────────────────────</text>
+  <text class="code" x="80" y="404">  Drivers: WDM, KMDF (wdf01000.sys), NDIS (ndis.sys),</text>
+  <text class="code" x="80" y="424">  WFP (wfp.sys), Filter Manager (fltmgr.sys), classpnp, ksecdd.</text>
+  <text class="code" x="80" y="450">  Boot drivers (carregados antes do PnP) vs PnP drivers.</text>
+
+  <rect class="vtl0" x="60" y="500" width="660" height="80" rx="6"/>
+  <text class="lbl" x="390" y="525" text-anchor="middle">HAL — hal.dll  (Hardware Abstraction Layer)</text>
+  <text class="code" x="80" y="550">  acessos a APIC, timers (HPET/TSC), DMA controllers, port I/O,</text>
+  <text class="code" x="80" y="570">  bus enumeration (PCIe, ACPI). Isola NTOS de detalhes da plataforma.</text>
+
+  <rect class="vtl0" x="60" y="595" width="660" height="115" rx="6"/>
+  <text class="lbl" x="390" y="620" text-anchor="middle">Hardware (físico ou virtual)</text>
+  <text class="code" x="80" y="648">  CPU (x64 / ARM64) • RAM • IDT/GDT • MSRs (LSTAR, EFER, FS/GS base)</text>
+  <text class="code" x="80" y="668">  PCIe • IOMMU (VT-d / AMD-Vi) • TPM 2.0 • UEFI • ACPI tables</text>
+  <text class="code" x="80" y="688">  exposed pelo Hyper-V quando VBS ligado: hardware é virtual</text>
+
+  <!-- VTL 1 -->
+  <rect class="frame" x="760" y="80" width="400" height="500" rx="8"/>
+  <text class="h2" x="780" y="105">VTL 1 — "Secure World" (IUM)</text>
+
+  <rect class="vtl1" x="780" y="125" width="360" height="100" rx="6"/>
+  <text class="lbl" x="960" y="150" text-anchor="middle">Trustlets (Isolated User Mode)</text>
+  <text class="code" x="800" y="175">  LsaIso.exe (Credential Guard)</text>
+  <text class="code" x="800" y="195">  BioIso.exe (Windows Hello)</text>
+  <text class="code" x="800" y="215">  vmsp.exe / VBS Enclaves</text>
+
+  <rect class="vtl1" x="780" y="240" width="360" height="160" rx="6"/>
+  <text class="lbl" x="960" y="265" text-anchor="middle">Secure Kernel (skci.dll, securekernel.exe)</text>
+  <text class="code" x="800" y="293">  Kernel mínimo isolado.</text>
+  <text class="code" x="800" y="313">  HVCI (Hypervisor-enforced</text>
+  <text class="code" x="800" y="333">  Code Integrity) verifica</text>
+  <text class="code" x="800" y="353">  páginas executáveis no</text>
+  <text class="code" x="800" y="373">  VTL 0 antes de marcá-las X.</text>
+  <text class="code" x="800" y="393">  Atestação remota.</text>
+
+  <rect class="vtl1" x="780" y="415" width="360" height="160" rx="6"/>
+  <text class="lbl" x="960" y="440" text-anchor="middle">Comunicação VTL0 ↔ VTL1</text>
+  <text class="code" x="800" y="465">  via Hypercalls Hyper-V</text>
+  <text class="code" x="800" y="485">  HvCallVtlCall / VtlReturn</text>
+  <text class="code" x="800" y="505">  vmcall / vmmcall (HV TLFS)</text>
+  <text class="code" x="800" y="530">  Memory access enforcement</text>
+  <text class="code" x="800" y="550">  por SLAT (EPT/NPT)</text>
+
+  <!-- Hypervisor underneath -->
+  <rect class="hyper" x="760" y="595" width="400" height="115" rx="8"/>
+  <text class="h2" x="960" y="622" text-anchor="middle">Hyper-V (hvix64.exe / hvax64.exe)</text>
+  <text class="code" x="780" y="650">  Type-1 hypervisor; impõe SLAT.</text>
+  <text class="code" x="780" y="670">  Roda sob VMX root (Intel) /</text>
+  <text class="code" x="780" y="690">  AMD-V SVM. Boot precoce</text>
+  <text class="code" x="780" y="710">  via hvloader, antes do NT.</text>
+
+  <text class="cap" x="600" y="745" text-anchor="middle">Sem VBS (HVCI/CG): só VTL 0 existe; com VBS ligado, hypervisor está sempre lá, mesmo que só com 1 partição.</text>
+  <text class="cap" x="600" y="775" text-anchor="middle">Documentação Microsoft TLFS (Top-Level Functional Spec) descreve hypercalls; Saar Amar e Alex Ionescu publicaram análise extensiva.</text>
+</svg>

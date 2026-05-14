@@ -23,34 +23,34 @@
     </marker>
   </defs>
   <rect width="1200" height="850" fill="#0d1117"/>
-  <text class="title" x="600" y="38" text-anchor="middle">Transição user → kernel — caminho de uma syscall (x64)</text>
-  <text class="caption" x="600" y="60" text-anchor="middle">Exemplo: ReadFile → kernel32!ReadFile → ntdll!NtReadFile (syscall) → KiSystemCall64 → nt!NtReadFile</text>
+  <text class="title" x="600" y="38" text-anchor="middle">User → kernel transition — syscall path (x64)</text>
+  <text class="caption" x="600" y="60" text-anchor="middle">Example: ReadFile → kernel32!ReadFile → ntdll!NtReadFile (syscall) → KiSystemCall64 → nt!NtReadFile</text>
 
   <!-- USER MODE -->
   <rect class="frame" x="40" y="80" width="1120" height="280" rx="8"/>
   <text class="h2" x="60" y="105">USER MODE  (CPL = 3)</text>
 
   <rect class="user" x="60" y="120" width="280" height="80" rx="6"/>
-  <text class="lbl" x="200" y="145" text-anchor="middle">1. App chama ReadFile(hFile,…)</text>
+  <text class="lbl" x="200" y="145" text-anchor="middle">1. App calls ReadFile(hFile,…)</text>
   <text class="code" x="200" y="167" text-anchor="middle">kernel32.dll!ReadFile</text>
-  <text class="small" x="200" y="186" text-anchor="middle">prepara parâmetros, traduz HANDLE</text>
+  <text class="small" x="200" y="186" text-anchor="middle">prepares parameters, translates HANDLE</text>
 
   <rect class="user" x="60" y="220" width="280" height="80" rx="6"/>
-  <text class="lbl" x="200" y="245" text-anchor="middle">2. delega para Native API</text>
+  <text class="lbl" x="200" y="245" text-anchor="middle">2. ditgates to Native API</text>
   <text class="code" x="200" y="267" text-anchor="middle">ntdll.dll!NtReadFile</text>
-  <text class="small" x="200" y="286" text-anchor="middle">stub muito curto (≈ 10 bytes)</text>
+  <text class="small" x="200" y="286" text-anchor="middle">very short stub (≈ 10 bytes)</text>
 
   <rect class="ntdll" x="380" y="120" width="380" height="180" rx="6"/>
-  <text class="lbl" x="570" y="148" text-anchor="middle">Stub de ntdll!NtReadFile (x64)</text>
-  <text class="code" x="400" y="178">  mov   r10, rcx                    ; rcx → r10 (rcx é clobber)</text>
+  <text class="lbl" x="570" y="148" text-anchor="middle">ntdll!NtReadFile stub (x64)</text>
+  <text class="code" x="400" y="178">  mov   r10, rcx                    ; rcx → r10 (rcx is clobbered)</text>
   <text class="code" x="400" y="198">  mov   eax, 06h                    ; SSN = NtReadFile</text>
   <text class="code" x="400" y="218">  test  byte ptr [7FFE0308h], 1h    ; SharedUserData!SystemCall</text>
   <text class="code" x="400" y="238">  jne   short alt_path              ; Wow64 / Hyper-V wrappers</text>
   <text class="code" x="400" y="258">  syscall                           ; → ring 0</text>
-  <text class="code" x="400" y="278">  ret                               ; volta após sysret</text>
+  <text class="code" x="400" y="278">  ret                               ; returns after sysret</text>
 
   <rect class="user" x="800" y="120" width="360" height="180" rx="6"/>
-  <text class="h2" x="980" y="148" text-anchor="middle">Estado do CPU antes do syscall</text>
+  <text class="h2" x="980" y="148" text-anchor="middle">CPU state before syscall</text>
   <text class="code" x="820" y="178">  CPL  = 3       (ring 3)</text>
   <text class="code" x="820" y="198">  CS   = USER64 (ring 3 64-bit)</text>
   <text class="code" x="820" y="218">  RIP  = ntdll!NtReadFile+0Eh</text>
@@ -58,7 +58,7 @@
   <text class="code" x="820" y="258">  R10  = 1º arg (em vez de RCX)</text>
   <text class="code" x="820" y="278">  GS   base = TEB (user)</text>
 
-  <!-- Syscall boundary -->
+  <!-- Syscall borndary -->
   <line x1="40" y1="380" x2="1160" y2="380" class="arrow" stroke-dasharray="6,4"/>
   <rect class="danger" x="500" y="365" width="200" height="30" rx="4"/>
   <text class="lbl" x="600" y="385" text-anchor="middle" fill="#0d1117">syscall  →  CPL 3 → 0</text>
@@ -68,7 +68,7 @@
   <text class="h2" x="60" y="435">KERNEL MODE  (CPL = 0)</text>
 
   <rect class="kernel" x="60" y="450" width="380" height="160" rx="6"/>
-  <text class="lbl" x="250" y="475" text-anchor="middle">3. CPU executa transição em hardware</text>
+  <text class="lbl" x="250" y="475" text-anchor="middle">3. CPU performs hardware transition</text>
   <text class="code" x="80" y="500">  rip ← MSR_LSTAR (KiSystemCall64)</text>
   <text class="code" x="80" y="520">  cs  ← STAR[63:48] (kernel CS)</text>
   <text class="code" x="80" y="540">  ss  ← STAR[63:48]+8</text>
@@ -79,8 +79,8 @@
   <rect class="kernel" x="460" y="450" width="380" height="160" rx="6"/>
   <text class="lbl" x="650" y="475" text-anchor="middle">4. KiSystemCall64 (nt!KiSystemCall64)</text>
   <text class="code" x="480" y="500">  swapgs                       ; gs → KPCR</text>
-  <text class="code" x="480" y="520">  mov gs:[KernelStack], rsp    ; salva user RSP</text>
-  <text class="code" x="480" y="540">  mov rsp, gs:[KernelStack]    ; carrega kernel RSP</text>
+  <text class="code" x="480" y="520">  mov gs:[KernelStack], rsp    ; save user RSP</text>
+  <text class="code" x="480" y="540">  mov rsp, gs:[KernelStack]    ; load kernel RSP</text>
   <text class="code" x="480" y="560">  push  user_ss / rsp / rflags</text>
   <text class="code" x="480" y="580">  push  user_cs / rip          ; trap frame</text>
   <text class="code" x="480" y="600">  jmp KiSystemServiceStart</text>
@@ -90,23 +90,23 @@
   <text class="code" x="880" y="500">  idx = eax &amp; 0xFFF</text>
   <text class="code" x="880" y="520">  table =</text>
   <text class="code" x="880" y="540">    KeServiceDescriptorTable</text>
-  <text class="code" x="880" y="560">    (Shadow se win32k)</text>
+  <text class="code" x="880" y="560">    (Shadow if win32k)</text>
   <text class="code" x="880" y="580">  fn  = table.Base[idx]</text>
   <text class="code" x="880" y="600">  call fn (= NtReadFile)</text>
 
   <rect class="kernel" x="60" y="630" width="500" height="140" rx="6"/>
-  <text class="lbl" x="310" y="655" text-anchor="middle">6. nt!NtReadFile executa</text>
+  <text class="lbl" x="310" y="655" text-anchor="middle">6. nt!NtReadFile runs</text>
   <text class="code" x="80" y="680">  ObReferenceObjectByHandle(hFile, …)</text>
-  <text class="code" x="80" y="700">  IoBuildAsynchronousFsdRequest(IRP_MJ_READ, …)</text>
+  <text class="code" x="80" y="700">  IoBuildAsynchronorsFsdRequest(IRP_MJ_READ, …)</text>
   <text class="code" x="80" y="720">  IoCallDriver(deviceObj, irp)</text>
-  <text class="code" x="80" y="740">  retorna NTSTATUS  →  rax</text>
+  <text class="code" x="80" y="740">  returns NTSTATUS  →  rax</text>
 
   <rect class="kernel" x="580" y="630" width="580" height="140" rx="6"/>
-  <text class="lbl" x="870" y="655" text-anchor="middle">7. Volta para user (sysret)</text>
+  <text class="lbl" x="870" y="655" text-anchor="middle">7. Return to user (sysret)</text>
   <text class="code" x="600" y="680">  KiSystemServiceExit  →</text>
-  <text class="code" x="600" y="700">    restaura registradores não-preservados</text>
-  <text class="code" x="600" y="720">    swapgs                  ; volta para user GS</text>
+  <text class="code" x="600" y="700">    restore non-preserved registers</text>
+  <text class="code" x="600" y="720">    swapgs                  ; back to user GS</text>
   <text class="code" x="600" y="740">    sysretq                 ; rcx → rip,  r11 → rflags,  CPL = 3</text>
 
-  <text class="caption" x="600" y="820" text-anchor="middle">Observações: SSN muda entre versões (ver j00ru/windows-syscalls). EDR pode hookar este caminho via ETW Threat Intelligence ou patches em ntdll.</text>
+  <text class="caption" x="600" y="820" text-anchor="middle">Notes: SSN varies between versions (see j00ru/windows-syscalls). EDR may hook this path via ETW Threat Intelligence or patches in ntdll.</text>
 </svg>

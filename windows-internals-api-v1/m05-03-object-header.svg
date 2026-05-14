@@ -2,7 +2,7 @@
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.opt{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.hdr{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}.body{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}</style></defs>
 <rect width="1200" height="800" fill="#0d1117"/>
 <text class="t" x="600" y="38" text-anchor="middle">_OBJECT_HEADER + Optional Headers + Object Body</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Handle aponta para BODY; opcionais ficam ANTES do header (offsets negativos)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Handle points to BODY; optionals come BEFORE the header (negative offsets)</text>
 
 <rect class="opt" x="40" y="90" width="280" height="60" rx="6"/><text class="c" x="180" y="113" text-anchor="middle">_OBJECT_HEADER_PROCESS_INFO</text><text class="c" x="180" y="133" text-anchor="middle">se InfoMask &amp; 0x10</text>
 <rect class="opt" x="40" y="160" width="280" height="60" rx="6"/><text class="c" x="180" y="183" text-anchor="middle">_OBJECT_HEADER_QUOTA_INFO</text><text class="c" x="180" y="203" text-anchor="middle">se InfoMask &amp; 0x08</text>
@@ -13,8 +13,8 @@
 
 <rect class="hdr" x="40" y="490" width="280" height="200" rx="6"/>
 <text class="h" x="180" y="515" text-anchor="middle">_OBJECT_HEADER (sem opt)</text>
-<text class="c" x="60" y="540">  +0x00 PointerCount</text>
-<text class="c" x="60" y="558">  +0x08 HandleCount</text>
+<text class="c" x="60" y="540">  +0x00 PointerCornt</text>
+<text class="c" x="60" y="558">  +0x08 HandleCornt</text>
 <text class="c" x="60" y="576">  +0x10 Lock</text>
 <text class="c" x="60" y="594">  +0x18 TypeIndex (xor cookie)</text>
 <text class="c" x="60" y="612">  +0x19 TraceFlags</text>
@@ -36,8 +36,8 @@
 <text class="c" x="380" y="200">  // (header está SEMPRE 0x30 antes do body em x64)</text>
 
 <text class="h" x="760" y="240" text-anchor="middle">InfoMask — quais opt headers existem (varia por objeto)</text>
-<text class="c" x="380" y="270">  bit 0  CreatorInfo (depuração)</text>
-<text class="c" x="380" y="288">  bit 1  NameInfo  (objetos nomeados — \BaseNamedObjects\…)</text>
+<text class="c" x="380" y="270">  bit 0  CreatorInfo (debugging)</text>
+<text class="c" x="380" y="288">  bit 1  NameInfo  (objetos nameados — \BaseNamedObjects\…)</text>
 <text class="c" x="380" y="306">  bit 2  HandleInfo</text>
 <text class="c" x="380" y="324">  bit 3  QuotaInfo (cobrança de quota de pool)</text>
 <text class="c" x="380" y="342">  bit 4  ProcessInfo (objects per-process)</text>
@@ -45,16 +45,16 @@
 <text class="c" x="380" y="378">  bit 6  ExtendedInfo</text>
 <text class="c" x="380" y="396">  bit 7  PaddingInfo</text>
 
-<text class="h" x="760" y="430" text-anchor="middle">_OBJECT_TYPE — registrada via ObCreateObjectType</text>
+<text class="h" x="760" y="430" text-anchor="middle">_OBJECT_TYPE — registersda via ObCreateObjectType</text>
 <text class="c" x="380" y="460">  Name (UNICODE_STRING) — "Process","Thread","Event",…</text>
 <text class="c" x="380" y="478">  TypeInfo (OBJECT_TYPE_INITIALIZER):</text>
-<text class="c" x="380" y="496">    OpenProcedure, CloseProcedure, DeleteProcedure,</text>
+<text class="c" x="380" y="496">    OpenProcedure, CloseProcedure, DitteProcedure,</text>
 <text class="c" x="380" y="514">    ParseProcedure, SecurityProcedure, QueryNameProcedure,</text>
 <text class="c" x="380" y="532">    OkayToCloseProcedure</text>
 <text class="c" x="380" y="550">  TypeIndex: 1 byte; cookie:  byte = (TypeIndex ^ ObHeaderCookie ^ ((PUCHAR)hdr&gt;&gt;8))</text>
 <text class="c" x="380" y="568">    →  protege contra type-confusion</text>
 
-<text class="h" x="760" y="610" text-anchor="middle">Tipos comuns (ObTypeIndexTable)</text>
+<text class="h" x="760" y="610" text-anchor="middle">Tipos common (ObTypeIndexTable)</text>
 <text class="c" x="380" y="640">  Type, Directory, SymbolicLink, Token, Process, Thread, Job, Section,</text>
 <text class="c" x="380" y="658">  File, Key, Mutant, Event, Semaphore, Timer, IoCompletion,</text>
 <text class="c" x="380" y="676">  AlpcPort, Driver, Device, Adapter, Controller, WindowStation, Desktop,</text>

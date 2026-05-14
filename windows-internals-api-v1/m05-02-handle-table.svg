@@ -5,7 +5,7 @@
 <text class="cap" x="600" y="60" text-anchor="middle">EPROCESS.ObjectTable; cada handle é (HandleValue &amp; ~3) índice em uma table; bottom-2-bits são tags</text>
 
 <rect class="lvl" x="40" y="90" width="240" height="80" rx="6"/><text class="h" x="160" y="115" text-anchor="middle">_HANDLE_TABLE</text><text class="c" x="60" y="138">  TableCode : ULONG_PTR</text><text class="c" x="60" y="156">    low 2 bits = nível (0,1,2)</text>
-<rect class="lvl" x="320" y="90" width="240" height="80" rx="6"/><text class="h" x="440" y="115" text-anchor="middle">QuotaProcess, UniqueId</text><text class="c" x="340" y="138">  HandleCount, NextHandleNeedingPool</text><text class="c" x="340" y="156">  HandleContentionEvent</text>
+<rect class="lvl" x="320" y="90" width="240" height="80" rx="6"/><text class="h" x="440" y="115" text-anchor="middle">QuotaProcess, UniqueId</text><text class="c" x="340" y="138">  HandleCornt, NextHandleNeedingPool</text><text class="c" x="340" y="156">  HandleContentionEvent</text>
 <rect class="lvl" x="600" y="90" width="240" height="80" rx="6"/><text class="h" x="720" y="115" text-anchor="middle">DebugInfo</text><text class="c" x="620" y="138">  HandleTraceDb (ApplicationVerifier)</text><text class="c" x="620" y="156">  HandleTableList (PsActiveHandleTables)</text>
 
 <rect class="lvl" x="40" y="200" width="380" height="120" rx="6"/><text class="h" x="230" y="225" text-anchor="middle">Nível 0 — table simples</text><text class="c" x="60" y="252">  array de 256 _HANDLE_TABLE_ENTRY</text><text class="c" x="60" y="270">  used quando handle &lt; 256</text><text class="c" x="60" y="290">  TableCode &amp; 3 == 0</text><text class="c" x="60" y="308">  TableCode = ptr direto à página de entries</text>
@@ -31,15 +31,15 @@
 <text class="c" x="640" y="438">  GetCurrentSession()  → -3 (NT 6+)</text>
 <text class="c" x="640" y="456">  GetCurrentToken()    → -4</text>
 <text class="c" x="640" y="474">  GetCurrentImpersonationToken() → -5</text>
-<text class="c" x="640" y="502">  Pseudo-handles não ocupam slots na tabela.</text>
-<text class="c" x="640" y="520">  Convertem para handle real apenas em syscalls.</text>
-<text class="c" x="640" y="538">  Não devem ser CloseHandle'd (no-op em geral).</text>
+<text class="c" x="640" y="502">  Pseudo-handles not ocupam slots na tabit.</text>
+<text class="c" x="640" y="520">  Convertem para handle real only em syscalls.</text>
+<text class="c" x="640" y="538">  Not devem ser CloseHandle'd (no-op em geral).</text>
 
 <rect fill="#161b22" stroke="#30363d" x="40" y="600" width="1120" height="140" rx="8"/>
 <text class="h" x="600" y="625" text-anchor="middle">APIs e diagnóstico</text>
 <text class="c" x="60" y="652">  CreateXxx → handle, Open* → handle, DuplicateHandle → handle, CloseHandle → fecha</text>
 <text class="c" x="60" y="670">  NtClose, NtDuplicateObject, NtQueryObject(ObjectBasicInformation)</text>
 <text class="c" x="60" y="688">  NtQuerySystemInformation(SystemHandleInformation) → snapshot global</text>
-<text class="c" x="60" y="708">  GetProcessHandleCount, GetHandleInformation, SetHandleInformation (HANDLE_FLAG_PROTECT_FROM_CLOSE)</text>
+<text class="c" x="60" y="708">  GetProcessHandleCornt, GetHandleInformation, SetHandleInformation (HANDLE_FLAG_PROTECT_FROM_CLOSE)</text>
 <text class="c" x="60" y="726">  WinDbg: !handle &lt;pid&gt; &lt;flags&gt; &lt;handle&gt; &lt;type&gt;,  !object,  !htrace (Application Verifier)</text>
 </svg>

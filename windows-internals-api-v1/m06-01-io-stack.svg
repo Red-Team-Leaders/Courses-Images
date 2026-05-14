@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.app{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.io{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.fs{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.dev{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}.hw{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
 <rect width="1200" height="800" fill="#0d1117"/>
-<text class="t" x="600" y="38" text-anchor="middle">I/O Stack — do ReadFile ao disco</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Cada camada recebe um IRP (I/O Request Packet) e decide: completa, encaminha (IoCallDriver) ou marca pendente</text>
+<text class="t" x="600" y="38" text-anchor="middle">I/O Stack — from ReadFile to disk</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Each layer receives an IRP (I/O Request Packet) and decides: complete, forward (IoCallDriver), or mark pending</text>
 
 <rect class="app" x="40" y="90" width="1120" height="80" rx="8"/>
 <text class="h" x="60" y="115">User-mode app</text>
@@ -12,18 +12,18 @@
 <rect class="io" x="40" y="190" width="1120" height="100" rx="8"/>
 <text class="h" x="60" y="215">I/O Manager (nt!NtReadFile)</text>
 <text class="c" x="60" y="238">  ObReferenceObjectByHandle → _FILE_OBJECT</text>
-<text class="c" x="60" y="258">  IoAllocateIrp + IoBuildSynchronousFsdRequest(IRP_MJ_READ)</text>
+<text class="c" x="60" y="258">  IoAllocateIrp + IoBuildSynchronorsFsdRequest(IRP_MJ_READ)</text>
 <text class="c" x="60" y="278">  define IO_STACK_LOCATION para top driver, IoCallDriver(deviceObj, irp)</text>
 
 <rect class="fs" x="40" y="310" width="1120" height="100" rx="8"/>
 <text class="h" x="60" y="335">Filter Manager + Minifilters (fltmgr.sys)</text>
 <text class="c" x="60" y="358">  altitudes (ex.: 320000 antivirus, 280000 encryption, 180000 monitoring)</text>
-<text class="c" x="60" y="378">  pre-op callback (FltPreOperationCallback)  → permitir/bloquear/modificar</text>
+<text class="c" x="60" y="378">  pre-op callback (FltPreOperationCallback)  → allow/bloquear/modifiesr</text>
 <text class="c" x="60" y="398">  Ex.: WdFilter (Defender) altitude 328010</text>
 
 <rect class="fs" x="40" y="430" width="1120" height="80" rx="8"/>
 <text class="h" x="60" y="455">File System Driver (ntfs.sys / refs.sys / fastfat.sys)</text>
-<text class="c" x="60" y="478">  resolve nome → arquivo → blocos lógicos (LCNs)</text>
+<text class="c" x="60" y="478">  resolve name → arquivo → blocos lógicos (LCNs)</text>
 <text class="c" x="60" y="498">  cache (Cc) — pode satisfazer leitura sem ir ao volume</text>
 
 <rect class="dev" x="40" y="530" width="1120" height="80" rx="8"/>

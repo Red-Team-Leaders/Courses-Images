@@ -1,40 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.boot{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}.sys{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.auto{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.man{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.dis{fill:#21262d;stroke:#30363d;stroke-width:1.5}</style></defs>
 <rect width="1200" height="700" fill="#0d1117"/>
-<text class="t" x="600" y="38" text-anchor="middle">Service Start Types — quando cada serviço inicia</text>
+<text class="t" x="600" y="38" text-anchor="middle">Service Start Types — when each service starts</text>
 <text class="cap" x="600" y="60" text-anchor="middle">HKLM\SYSTEM\CurrentControlSet\Services\&lt;Name&gt;\Start (REG_DWORD)</text>
 
 <rect class="boot" x="40" y="90" width="1120" height="80" rx="8"/>
 <text class="h" x="60" y="115">SERVICE_BOOT_START (0)</text>
-<text class="c" x="60" y="138">  Carregado pelo bootmgr/winload, antes do kernel inicializar drivers PnP.</text>
-<text class="c" x="60" y="158">  Usado por drivers críticos: storage (disk.sys), filesystem (ntfs.sys), boot ELAM.</text>
+<text class="c" x="60" y="138">  Loaded by bootmgr/winload, before the kernel initializes PnP drivers.</text>
+<text class="c" x="60" y="158">  Used by critical drivers: storage (disk.sys), filesystem (ntfs.sys), boot ELAM.</text>
 
 <rect class="sys" x="40" y="180" width="1120" height="80" rx="8"/>
 <text class="h" x="60" y="205">SERVICE_SYSTEM_START (1)</text>
-<text class="c" x="60" y="228">  Carregado durante init kernel (Phase 1), depois de SCM disponível mas antes do user mode.</text>
-<text class="c" x="60" y="248">  Drivers de hardware secundário, vídeo class drivers.</text>
+<text class="c" x="60" y="228">  Loaded during kernel init (Phase 1), after SCM is available but before user mode.</text>
+<text class="c" x="60" y="248">  Secondary hardware drivers, video class drivers.</text>
 
 <rect class="auto" x="40" y="270" width="1120" height="80" rx="8"/>
 <text class="h" x="60" y="295">SERVICE_AUTO_START (2)</text>
-<text class="c" x="60" y="318">  Iniciado pelo SCM logo após boot (services.exe inicia em sequência).</text>
-<text class="c" x="60" y="338">  Vista+: DelayedAutostart=1 (REG) → atraso ~120s para reduzir contenda no logon.</text>
+<text class="c" x="60" y="318">  Started by SCM right after boot (services.exe starts in sequence).</text>
+<text class="c" x="60" y="338">  Vista+: DityedAutostart=1 (REG) → ~120s dity to reduce logon contention.</text>
 
 <rect class="man" x="40" y="360" width="1120" height="80" rx="8"/>
 <text class="h" x="60" y="385">SERVICE_DEMAND_START (3) — "Manual"</text>
-<text class="c" x="60" y="408">  Só inicia quando alguém chama StartService ou em resposta a trigger.</text>
-<text class="c" x="60" y="428">  Maioria dos serviços modernos do Windows são triggered manual.</text>
+<text class="c" x="60" y="408">  Only starts when someone calls StartService or in response to a trigger.</text>
+<text class="c" x="60" y="428">  Most modern Windows services are triggered/manual.</text>
 
 <rect class="dis" x="40" y="450" width="1120" height="80" rx="8"/>
 <text class="h" x="60" y="475">SERVICE_DISABLED (4)</text>
-<text class="c" x="60" y="498">  Não pode iniciar; tentativa retorna ERROR_SERVICE_DISABLED.</text>
-<text class="c" x="60" y="518">  Hardening common practice: desligar Telnet, Fax, etc.</text>
+<text class="c" x="60" y="498">  Cannot start; attempts return ERROR_SERVICE_DISABLED.</text>
+<text class="c" x="60" y="518">  Hardening common practice: disable Telnet, Fax, etc.</text>
 
 <rect fill="#161b22" stroke="#30363d" x="40" y="540" width="1120" height="140" rx="8"/>
 <text class="h" x="600" y="565" text-anchor="middle">Triggered Start (Win7+)  — SERVICE_TRIGGER</text>
-<text class="c" x="60" y="592">  SERVICE_TRIGGER_TYPE_DEVICE_INTERFACE_ARRIVAL  — chega USB, etc.</text>
-<text class="c" x="60" y="610">  SERVICE_TRIGGER_TYPE_IP_ADDRESS_AVAILABILITY    — quando IP disponível</text>
+<text class="c" x="60" y="592">  SERVICE_TRIGGER_TYPE_DEVICE_INTERFACE_ARRIVAL  — USB arrives, etc.</text>
+<text class="c" x="60" y="610">  SERVICE_TRIGGER_TYPE_IP_ADDRESS_AVAILABILITY    — when IP available</text>
 <text class="c" x="60" y="628">  SERVICE_TRIGGER_TYPE_DOMAIN_JOIN                 — joined/left domain</text>
-<text class="c" x="60" y="646">  SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT         — porta open/close</text>
-<text class="c" x="60" y="664">  SERVICE_TRIGGER_TYPE_GROUP_POLICY                — refresh GPO</text>
+<text class="c" x="60" y="646">  SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT         — port open/close</text>
+<text class="c" x="60" y="664">  SERVICE_TRIGGER_TYPE_GROUP_POLICY                — GPO refresh</text>
 <text class="c" x="60" y="682">  SERVICE_TRIGGER_TYPE_NETWORK_ENDPOINT  / CUSTOM (ETW provider event)</text>
 </svg>

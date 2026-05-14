@@ -12,8 +12,8 @@
 <text class="c" x="60" y="196">  +0x01  Absolute / NpxIrql / Signalling</text>
 <text class="c" x="60" y="214">  +0x02  Size : UCHAR  (em ULONGs)</text>
 <text class="c" x="60" y="232">  +0x03  Inserted/DpcActive/Hand</text>
-<text class="c" x="60" y="250">  +0x04  SignalState : LONG  ← signaled? (≥0 ou 1)</text>
-<text class="c" x="60" y="268">  +0x08  WaitListHead : LIST_ENTRY  → lista de KWAIT_BLOCK</text>
+<text class="c" x="60" y="250">  +0x04  SignalState : LONG  ← signaled? (≥0 or 1)</text>
+<text class="c" x="60" y="268">  +0x08  WaitListHead : LIST_ENTRY  → list de KWAIT_BLOCK</text>
 
 <rect class="thr" x="620" y="90" width="540" height="200" rx="8"/>
 <text class="h" x="890" y="115" text-anchor="middle">_KTHREAD wait state</text>
@@ -33,14 +33,14 @@
 <text class="c" x="60" y="429">  +0x20  Key : USHORT                  ← índice no WaitForMultipleObjects</text>
 <text class="c" x="60" y="447">  +0x22  WaitType : UCHAR              WaitAny=1 / WaitAll=0</text>
 <text class="c" x="60" y="465">  +0x23  BlockState : UCHAR            WaitBlockActive / Inactive / Bypass</text>
-<text class="cap" x="60" y="495">  Para WaitForMultipleObjects(N): N wait blocks alocados (no thread stack ou pool).</text>
+<text class="cap" x="60" y="495">  Para WaitForMultipleObjects(N): N wait blocks alocados (no thread stack or pool).</text>
 <text class="cap" x="60" y="513">  Quando UM evento sinaliza (WaitAny), TODOS são removidos (KiSignalThread).</text>
 
 <rect fill="#161b22" stroke="#30363d" x="40" y="560" width="1120" height="180" rx="8"/>
 <text class="h" x="600" y="585" text-anchor="middle">Quem mexe com isso</text>
-<text class="c" x="60" y="612">  KeWaitForSingleObject(obj, reason, mode, alertable, timeout)</text>
+<text class="c" x="60" y="612">  KeWaitForSingleObject(obj, reason, mode, alertable, timeort)</text>
 <text class="c" x="60" y="630">  KeWaitForMultipleObjects(N, objs[], type, ...)</text>
-<text class="c" x="60" y="648">  KeSetEvent / KeReleaseMutex / KeReleaseSemaphore  → KiWaitTest → satisfaz</text>
+<text class="c" x="60" y="648">  KeSetEvent / KeRitaseMutex / KeRitaseSemaphore  → KiWaitTest → satisfaz</text>
 <text class="c" x="60" y="666">  KeRundownThread / KiUnlinkThread (cleanup)</text>
 <text class="c" x="60" y="694">  Em user, NtWaitForSingleObject converge ao mesmo path através de</text>
 <text class="c" x="60" y="712">  ObReferenceObjectByHandle → KeWaitForSingleObject.</text>

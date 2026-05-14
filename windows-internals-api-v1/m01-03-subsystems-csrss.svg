@@ -17,12 +17,12 @@
     </marker>
   </defs>
   <rect width="1200" height="750" fill="#0d1117"/>
-  <text class="title" x="600" y="38" text-anchor="middle">Subsistema Win32 — CSRSS, win32k.sys e ALPC</text>
-  <text class="cap" x="600" y="60" text-anchor="middle">Cada sessão tem sua instância de csrss.exe; clientes Win32 conversam com ela via portas ALPC</text>
+  <text class="title" x="600" y="38" text-anchor="middle">Win32 Subsystem — CSRSS, win32k.sys and ALPC</text>
+  <text class="cap" x="600" y="60" text-anchor="middle">Each session has its own csrss.exe instance; Win32 clients talk to it via ALPC ports</text>
 
   <!-- Session 0 -->
   <rect class="frame" x="40" y="90" width="560" height="320" rx="8"/>
-  <text class="h2" x="60" y="115">Sessão 0 — Serviços / SYSTEM</text>
+  <text class="h2" x="60" y="115">Session 0 — Services / SYSTEM</text>
   <rect class="csr" x="60" y="130" width="240" height="170" rx="6"/>
   <text class="lbl" x="180" y="155" text-anchor="middle">csrss.exe (Session 0)</text>
   <text class="code" x="80" y="180">  basesrv.dll       (BaseSrv)</text>
@@ -30,54 +30,54 @@
   <text class="code" x="80" y="218">                     ConSrv legacy)</text>
   <text class="code" x="80" y="238">  sxssrv.dll        (SxS)</text>
   <text class="code" x="80" y="258">  CsrPortName: \Windows\</text>
-  <text class="code" x="80" y="276">    ApiPort   (clientes)</text>
+  <text class="code" x="80" y="276">    ApiPort   (clients)</text>
   <text class="code" x="80" y="294">    SbApiPort (smss)</text>
   <rect class="app" x="320" y="130" width="260" height="170" rx="6"/>
-  <text class="lbl" x="450" y="155" text-anchor="middle">Processos de serviço</text>
+  <text class="lbl" x="450" y="155" text-anchor="middle">Service processes</text>
   <text class="code" x="340" y="180">  services.exe</text>
   <text class="code" x="340" y="200">  lsass.exe (PPL WinTcb)</text>
-  <text class="code" x="340" y="220">  svchost.exe groups</text>
+  <text class="code" x="340" y="220">  svchost.exe grorps</text>
   <text class="code" x="340" y="240">  wininit.exe / smss.exe</text>
-  <text class="code" x="340" y="262">  registram-se em CSR via</text>
+  <text class="code" x="340" y="262">  register with CSR via</text>
   <text class="code" x="340" y="280">  CsrClientConnectToServer()</text>
-  <text class="code" x="340" y="298">  durante kernel32 init.</text>
+  <text class="code" x="340" y="298">  during kernel32 init.</text>
 
-  <text class="cap" x="320" y="335">conhakl.dll &amp; conhost.exe — historicamente parte do CSRSS, separados por segurança em Win7+</text>
+  <text class="cap" x="320" y="335">conhakl.dll &amp; conhost.exe — historically part of CSRSS, separated for security in Win7+</text>
 
   <!-- Session N -->
   <rect class="frame" x="620" y="90" width="540" height="320" rx="8"/>
-  <text class="h2" x="640" y="115">Sessão N — Usuário interativo</text>
+  <text class="h2" x="640" y="115">Session N — Interactive user</text>
   <rect class="csr" x="640" y="130" width="220" height="170" rx="6"/>
-  <text class="lbl" x="750" y="155" text-anchor="middle">csrss.exe (Sessão N)</text>
-  <text class="code" x="660" y="180">  outro processo,</text>
-  <text class="code" x="660" y="200">  porta \Sessions\N\</text>
+  <text class="lbl" x="750" y="155" text-anchor="middle">csrss.exe (Session N)</text>
+  <text class="code" x="660" y="180">  separate process,</text>
+  <text class="code" x="660" y="200">  port \Sessions\N\</text>
   <text class="code" x="660" y="220">    Windows\ApiPort</text>
-  <text class="code" x="660" y="245">  isola namespaces de</text>
-  <text class="code" x="660" y="263">  janelas, BNO,</text>
+  <text class="code" x="660" y="245">  isolates namespaces of</text>
+  <text class="code" x="660" y="263">  windows, BNO,</text>
   <text class="code" x="660" y="281">  desktops</text>
   <rect class="app" x="880" y="130" width="260" height="170" rx="6"/>
-  <text class="lbl" x="1010" y="155" text-anchor="middle">Apps Win32 do usuário</text>
+  <text class="lbl" x="1010" y="155" text-anchor="middle">User Win32 apps</text>
   <text class="code" x="900" y="180">  explorer.exe</text>
   <text class="code" x="900" y="200">  cmd.exe / powershell</text>
   <text class="code" x="900" y="220">  notepad / chrome</text>
-  <text class="code" x="900" y="245">  toda chamada que precisa</text>
-  <text class="code" x="900" y="263">  de serviço Win32 (ex.</text>
+  <text class="code" x="900" y="245">  every call that needs</text>
+  <text class="code" x="900" y="263">  a Win32 service (e.g.</text>
   <text class="code" x="900" y="281">  console handles, SxS)</text>
-  <text class="code" x="900" y="299">  vai por ALPC ao CSRSS local.</text>
+  <text class="code" x="900" y="299">  goes via ALPC to local CSRSS.</text>
 
   <!-- Win32k -->
   <rect class="krn" x="40" y="440" width="1120" height="180" rx="8"/>
-  <text class="h2" x="60" y="465">Kernel — win32k.sys (subsistema Win32 in-kernel)</text>
+  <text class="h2" x="60" y="465">Kernel — win32k.sys (in-kernel Win32 subsystem)</text>
   <text class="code" x="60" y="495">  win32k.sys, win32kbase.sys, win32kfull.sys (Win10+)</text>
-  <text class="code" x="60" y="515">  expõe ~1500 syscalls (SSDT Shadow), responsáveis por: GDI, USER (windows, messages, hooks),</text>
+  <text class="code" x="60" y="515">  exposes ~1500 syscalls (Shadow SSDT), responsible for: GDI, USER (windows, messages, hooks),</text>
   <text class="code" x="60" y="535">  desktop heap, atom tables, raw input, multimon, DirectComposition / DWM bridge.</text>
-  <text class="code" x="60" y="560">  Threads ganham status "GUI thread" (KTHREAD.ServiceTable troca para Shadow) na 1ª chamada.</text>
-  <text class="code" x="60" y="580">  Mitigation: Win32kFilter (process mitigation policy) bloqueia syscalls perigosas para AppContainer.</text>
-  <text class="cap" x="60" y="608">Histórico: até NT 3.51 ficava em CSRSS (user mode) — mudou-se para kernel em NT 4 por performance.</text>
+  <text class="code" x="60" y="560">  Threads gain "GUI thread" status (KTHREAD.ServiceTable swaps to Shadow) on first call.</text>
+  <text class="code" x="60" y="580">  Mitigation: Win32kFilter (process mitigation policy) blocks dangerors syscalls for AppContainer.</text>
+  <text class="cap" x="60" y="608">History: until NT 3.51 it was in CSRSS (user mode) — moved to kernel in NT 4 for performance.</text>
 
   <!-- ALPC arrows -->
   <line x1="180" y1="305" x2="180" y2="440" stroke="#d2a8ff" stroke-width="2" marker-end="url(#ar)"/>
   <line x1="750" y1="305" x2="750" y2="440" stroke="#d2a8ff" stroke-width="2" marker-end="url(#ar)"/>
-  <text class="cap" x="600" y="650" text-anchor="middle">Linhas roxas = ALPC; CSRSS é o "servidor" do subsistema Win32 — rodar com SeTcbPrivilege e PPL WinTcb-Light em versões modernas.</text>
-  <text class="cap" x="600" y="700" text-anchor="middle">Outros subsistemas históricos: POSIX (NT 3.5–XP) e OS/2 (NT 3.x) — substituídos por SUA, depois WSL1 (Pico), depois WSL2 (VM Hyper-V).</text>
+  <text class="cap" x="600" y="650" text-anchor="middle">Purple lines = ALPC; CSRSS is the Win32 subsystem "server" — runs with SeTcbPrivilege and PPL WinTcb-Light in modern versions.</text>
+  <text class="cap" x="600" y="700" text-anchor="middle">Other historical subsystems: POSIX (NT 3.5-XP) and OS/2 (NT 3.x) — replaced by SUA, then WSL1 (Pico), then WSL2 (Hyper-V VM).</text>
 </svg>

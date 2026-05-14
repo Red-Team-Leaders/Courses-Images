@@ -6,8 +6,8 @@
 
 <g><rect class="lvl" x="40" y="100" width="200" height="80" rx="6"/><text class="h" x="140" y="125" text-anchor="middle">CR3</text><text class="c" x="140" y="148" text-anchor="middle">Process.DirectoryTableBase</text><text class="c" x="140" y="166" text-anchor="middle">aponta a uma página PML4</text></g>
 <g><rect class="lvl" x="280" y="100" width="180" height="80" rx="6"/><text class="h" x="370" y="125" text-anchor="middle">PML4 (512 entries)</text><text class="c" x="370" y="148" text-anchor="middle">PML4E[VA[47:39]]</text><text class="c" x="370" y="166" text-anchor="middle">→ aponta PDPT</text></g>
-<g><rect class="lvl" x="500" y="100" width="180" height="80" rx="6"/><text class="h" x="590" y="125" text-anchor="middle">PDPT (512)</text><text class="c" x="590" y="148" text-anchor="middle">PDPTE[VA[38:30]]</text><text class="c" x="590" y="166" text-anchor="middle">→ PD ou 1GB page</text></g>
-<g><rect class="lvl" x="720" y="100" width="180" height="80" rx="6"/><text class="h" x="810" y="125" text-anchor="middle">PD (512)</text><text class="c" x="810" y="148" text-anchor="middle">PDE[VA[29:21]]</text><text class="c" x="810" y="166" text-anchor="middle">→ PT ou 2MB page</text></g>
+<g><rect class="lvl" x="500" y="100" width="180" height="80" rx="6"/><text class="h" x="590" y="125" text-anchor="middle">PDPT (512)</text><text class="c" x="590" y="148" text-anchor="middle">PDPTE[VA[38:30]]</text><text class="c" x="590" y="166" text-anchor="middle">→ PD or 1GB page</text></g>
+<g><rect class="lvl" x="720" y="100" width="180" height="80" rx="6"/><text class="h" x="810" y="125" text-anchor="middle">PD (512)</text><text class="c" x="810" y="148" text-anchor="middle">PDE[VA[29:21]]</text><text class="c" x="810" y="166" text-anchor="middle">→ PT or 2MB page</text></g>
 <g><rect class="lvl" x="940" y="100" width="200" height="80" rx="6"/><text class="h" x="1040" y="125" text-anchor="middle">PT (512)</text><text class="c" x="1040" y="148" text-anchor="middle">PTE[VA[20:12]]</text><text class="c" x="1040" y="166" text-anchor="middle">→ 4KB physical page</text></g>
 
 <line x1="240" y1="140" x2="280" y2="140" stroke="#e6edf3" marker-end="url(#ar)"/>
@@ -18,13 +18,13 @@
 <rect class="pte" x="40" y="220" width="1100" height="220" rx="8"/>
 <text class="h" x="590" y="245" text-anchor="middle">_MMPTE_HARDWARE — bits do PTE x64 (8 bytes)</text>
 <text class="c" x="60" y="275">  bit  0    Valid (Present) ............... página em RAM</text>
-<text class="c" x="60" y="293">  bit  1    Write ........................... permite escrita</text>
+<text class="c" x="60" y="293">  bit  1    Write ........................... allows escrita</text>
 <text class="c" x="60" y="311">  bit  2    Owner (User=1, Supervisor=0)</text>
 <text class="c" x="60" y="329">  bits 3-4  PWT, PCD ........................ caching</text>
 <text class="c" x="60" y="347">  bit  5    Accessed ........................ HW seta no acesso</text>
 <text class="c" x="60" y="365">  bit  6    Dirty ........................... HW seta na escrita</text>
 <text class="c" x="60" y="383">  bit  7    PAT/LargePage</text>
-<text class="c" x="60" y="401">  bit  8    Global (não invalida com troca de CR3 se PCID)</text>
+<text class="c" x="60" y="401">  bit  8    Global (not invalida com troca de CR3 se PCID)</text>
 <text class="c" x="60" y="419">  bits 9-11 Software available</text>
 <text class="c" x="60" y="437">  bits 12-51 Page Frame Number (PFN)</text>
 <text class="c" x="600" y="275">  bit 52   ProtoTransition</text>
@@ -40,7 +40,7 @@
 
 <rect class="bit" x="40" y="460" width="1100" height="280" rx="8"/>
 <text class="h" x="590" y="485" text-anchor="middle">Page Fault Handler (nt!MmAccessFault)</text>
-<text class="c" x="60" y="512">  1. CPU dispara #PF (vector 14) com CR2=VA inválido, error code (P,W,U,R,I)</text>
+<text class="c" x="60" y="512">  1. CPU dispara #PF (vector 14) com CR2=VA invalid, error code (P,W,U,R,I)</text>
 <text class="c" x="60" y="532">  2. KiPageFault → MmAccessFault decide:</text>
 <text class="c" x="60" y="552">     a) Demand-zero  → aloca página, zera, atualiza PTE → retry</text>
 <text class="c" x="60" y="572">     b) Prototype     → resolve via _SUBSECTION (file-backed) → CcPinRead</text>
@@ -48,7 +48,7 @@
 <text class="c" x="60" y="612">     d) Pagefile      → in-page de pagefile.sys</text>
 <text class="c" x="60" y="632">     e) Copy-on-write → faz cópia, novo PTE com Write=1</text>
 <text class="c" x="60" y="652">     f) NoAccess / Guard → STATUS_GUARD_PAGE_VIOLATION → SEH</text>
-<text class="c" x="60" y="672">     g) inválido total → STATUS_ACCESS_VIOLATION → exception → talvez crash (Watson)</text>
-<text class="cap" x="60" y="710">  Diagnóstico: !pte &lt;VA&gt;, !pfn &lt;PFN&gt;, !analyze -v em crash dump.</text>
+<text class="c" x="60" y="672">     g) invalid total → STATUS_ACCESS_VIOLATION → exception → talvez crash (Watson)</text>
+<text class="cap" x="60" y="710">  Diagnosis: !pte &lt;VA&gt;, !pfn &lt;PFN&gt;, !analyze -v em crash dump.</text>
 <text class="cap" x="60" y="730">  TLB shootdown: KiFlushSingleTlb / KiFlushEntireTlb (IPI broadcast).</text>
 </svg>

@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.cb{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.op{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.box{fill:#161b22;stroke:#30363d}</style></defs>
 <rect width="1200" height="700" fill="#0d1117"/>
-<text class="t" x="600" y="38" text-anchor="middle">CmRegisterCallbackEx — interceptando registry no kernel</text>
+<text class="t" x="600" y="38" text-anchor="middle">CmRegisterCallbackEx — intercepting registry in the kernel</text>
 
 <rect class="cb" x="40" y="80" width="540" height="240" rx="8"/>
-<text class="h" x="310" y="105" text-anchor="middle">Registro</text>
+<text class="h" x="310" y="105" text-anchor="middle">Registration</text>
 <text class="c" x="60" y="132">  NTSTATUS CmRegisterCallbackEx(</text>
 <text class="c" x="60" y="150">    PEX_CALLBACK_FUNCTION fn,</text>
 <text class="c" x="60" y="168">    PCUNICODE_STRING Altitude,   // ex.: L"385000"</text>
@@ -13,13 +13,13 @@
 <text class="c" x="60" y="222">    PLARGE_INTEGER Cookie,</text>
 <text class="c" x="60" y="240">    PVOID Reserved);</text>
 <text class="c" x="60" y="270">  Unregister: CmUnRegisterCallback(cookie)</text>
-<text class="cap" x="60" y="300">  Driver deve ter GUID em INF + altitude alocada.</text>
+<text class="cap" x="60" y="300">  Driver must have GUID in INF + allocated altitude.</text>
 
 <rect class="op" x="620" y="80" width="540" height="240" rx="8"/>
-<text class="h" x="890" y="105" text-anchor="middle">Operações (REG_NOTIFY_CLASS)</text>
+<text class="h" x="890" y="105" text-anchor="middle">Operations (REG_NOTIFY_CLASS)</text>
 <text class="c" x="640" y="130">  RegNtPreOpenKey / PostOpenKey</text>
 <text class="c" x="640" y="148">  RegNtPreCreateKey / PostCreateKey</text>
-<text class="c" x="640" y="166">  RegNtPreDeleteKey / PostDeleteKey</text>
+<text class="c" x="640" y="166">  RegNtPreDitteKey / PostDitteKey</text>
 <text class="c" x="640" y="184">  RegNtPreSetValueKey / PostSetValueKey</text>
 <text class="c" x="640" y="202">  RegNtPreQueryValueKey / PostQueryValueKey</text>
 <text class="c" x="640" y="220">  RegNtPreEnumerateKey / PreEnumerateValueKey</text>
@@ -28,7 +28,7 @@
 <text class="c" x="640" y="274">  RegNtCallbackObjectContextCleanup</text>
 
 <rect class="box" x="40" y="340" width="1120" height="340" rx="8"/>
-<text class="h" x="600" y="365" text-anchor="middle">Esqueleto de callback</text>
+<text class="h" x="600" y="365" text-anchor="middle">Callback skitton</text>
 <text class="c" x="60" y="395">  NTSTATUS RegCallback(PVOID ctx, PVOID arg1, PVOID arg2) {</text>
 <text class="c" x="60" y="413">    REG_NOTIFY_CLASS op = (REG_NOTIFY_CLASS)(ULONG_PTR)arg1;</text>
 <text class="c" x="60" y="431">    switch (op) {</text>
@@ -44,5 +44,5 @@
 <text class="c" x="60" y="611">    }</text>
 <text class="c" x="60" y="629">    return STATUS_SUCCESS;</text>
 <text class="c" x="60" y="647">  }</text>
-<text class="cap" x="60" y="675">  Útil para EDR (telemetria de persistência), AV (block known-bad), proteção (HKLM\…\Run).</text>
+<text class="cap" x="60" y="675">  Useful for EDR (persistence telemetry), AV (block known-bad), protection (HKLM\…\Run).</text>
 </svg>

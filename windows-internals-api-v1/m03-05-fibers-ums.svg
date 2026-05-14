@@ -7,85 +7,85 @@
 </style></defs>
 <rect width="1200" height="700" fill="#0d1117"/>
 <text class="t" x="600" y="38" text-anchor="middle">Fibers vs UMS vs OS Threads</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Modelos de concorrência sobre threads: cooperativo (fibers), híbrido (UMS), preemptivo (OS)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Concurrency models on threads: cooperative (fibers), hybrid (UMS), preemptive (OS)</text>
 
 <rect class="thr" x="40" y="90" width="370" height="560" rx="8"/>
-<text class="h" x="225" y="115" text-anchor="middle">OS Threads (preemptivo)</text>
+<text class="h" x="225" y="115" text-anchor="middle">OS Threads (preemptive)</text>
 <text class="c" x="60" y="145">  CreateThread / NtCreateThreadEx</text>
-<text class="c" x="60" y="165">  Cada thread = ETHREAD + KTHREAD</text>
+<text class="c" x="60" y="165">  Each thread = ETHREAD + KTHREAD</text>
 <text class="c" x="60" y="183">  + TEB + kernel stack 12-24KB</text>
 <text class="c" x="60" y="201">  + user stack 1MB reserve.</text>
-<text class="c" x="60" y="225">  Schedulada pelo NT scheduler.</text>
+<text class="c" x="60" y="225">  Scheduled by NT scheduler.</text>
 <text class="c" x="60" y="245">  Quantum + boost + affinity.</text>
 <text class="c" x="60" y="270">  Switch: ~1-5 µs (kernel-mode)</text>
 <text class="c" x="60" y="290">  Sync: WaitFor*, Critical Section</text>
 <text class="c" x="60" y="318">  PROS</text>
-<text class="c" x="60" y="338">  + parallelism real (multi-core)</text>
-<text class="c" x="60" y="356">  + preempt resolve infinite loop</text>
+<text class="c" x="60" y="338">  + true parallelism (multi-core)</text>
+<text class="c" x="60" y="356">  + preempt resolves infinite loop</text>
 <text class="c" x="60" y="374">  + tooling (WinDbg, ETW)</text>
 <text class="c" x="60" y="402">  CONS</text>
-<text class="c" x="60" y="422">  - custo de criação alto</text>
-<text class="c" x="60" y="440">  - overhead de switch</text>
-<text class="c" x="60" y="458">  - thrashing com 1000s</text>
-<text class="c" x="60" y="488">  Uso típico:</text>
+<text class="c" x="60" y="422">  - high creation cost</text>
+<text class="c" x="60" y="440">  - switch overhead</text>
+<text class="c" x="60" y="458">  - thrashing with 1000s</text>
+<text class="c" x="60" y="488">  Typical use:</text>
 <text class="c" x="60" y="508">    workers, threadpools,</text>
 <text class="c" x="60" y="526">    GUI thread, async I/O.</text>
-<text class="cap" x="60" y="570">  Win32 ThreadPool API resolve</text>
-<text class="cap" x="60" y="588">  o overhead via reuso (CreateThreadpool).</text>
-<text class="cap" x="60" y="620">  Para 1000s de "tasks", prefira IOCP</text>
+<text class="cap" x="60" y="570">  Win32 ThreadPool API solves</text>
+<text class="cap" x="60" y="588">  the overhead via reuse (CreateThreadpool).</text>
+<text class="cap" x="60" y="620">  For 1000s of "tasks", prefer IOCP</text>
 <text class="cap" x="60" y="638">  + thread pool.</text>
 
 <rect class="fib" x="430" y="90" width="370" height="560" rx="8"/>
-<text class="h" x="615" y="115" text-anchor="middle">Fibers (cooperativo)</text>
+<text class="h" x="615" y="115" text-anchor="middle">Fibers (cooperative)</text>
 <text class="c" x="450" y="145">  ConvertThreadToFiber()</text>
 <text class="c" x="450" y="163">  CreateFiber(stack, fn, param)</text>
 <text class="c" x="450" y="181">  SwitchToFiber(fiber)</text>
 <text class="c" x="450" y="201">  GetCurrentFiber()</text>
 <text class="c" x="450" y="219">  FlsAlloc / FlsGetValue / FlsSetValue</text>
-<text class="c" x="450" y="247">  Estado:  CONTEXT + stack + FLS</text>
-<text class="c" x="450" y="265">  totalmente em user mode.</text>
-<text class="c" x="450" y="283">  Switch puro (~50ns) sem syscall.</text>
-<text class="c" x="450" y="311">  N fibers compartilham 1 thread:</text>
-<text class="c" x="450" y="329">  só 1 roda por vez. Cooperativo.</text>
+<text class="c" x="450" y="247">  State:  CONTEXT + stack + FLS</text>
+<text class="c" x="450" y="265">  fully in user mode.</text>
+<text class="c" x="450" y="283">  Pure switch (~50ns) no syscall.</text>
+<text class="c" x="450" y="311">  N fibers share 1 thread:</text>
+<text class="c" x="450" y="329">  only 1 runs at a time. Cooperative.</text>
 <text class="c" x="450" y="357">  PROS</text>
-<text class="c" x="450" y="375">  + super barato</text>
-<text class="c" x="450" y="393">  + previsível (sem preempt)</text>
-<text class="c" x="450" y="411">  + ideal para coroutines</text>
+<text class="c" x="450" y="375">  + very cheap</text>
+<text class="c" x="450" y="393">  + predictable (no preempt)</text>
+<text class="c" x="450" y="411">  + ideal for corortines</text>
 <text class="c" x="450" y="439">  CONS</text>
-<text class="c" x="450" y="457">  - sem paralelismo</text>
-<text class="c" x="450" y="475">  - bloqueio em syscall = bloqueio</text>
-<text class="c" x="450" y="493">    de TODAS as fibers do thread</text>
-<text class="c" x="450" y="511">  - TLS não compartilha (use FLS)</text>
-<text class="c" x="450" y="539">  Famoso uso: SQL Server "fiber mode"</text>
-<text class="c" x="450" y="557">  (deprecated em SQL 2022).</text>
-<text class="c" x="450" y="585">  Coroutines do C++20 são análogas</text>
-<text class="c" x="450" y="603">  (state machine compilada).</text>
-<text class="cap" x="450" y="638">  Cuidado: depurar fibers no WinDbg requer ~fib comandos.</text>
+<text class="c" x="450" y="457">  - no parallelism</text>
+<text class="c" x="450" y="475">  - syscall block = blocks</text>
+<text class="c" x="450" y="493">    ALL fibers on the thread</text>
+<text class="c" x="450" y="511">  - TLS doesn't share (use FLS)</text>
+<text class="c" x="450" y="539">  Famors use: SQL Server "fiber mode"</text>
+<text class="c" x="450" y="557">  (deprecated in SQL 2022).</text>
+<text class="c" x="450" y="585">  C++20 corortines are analogors</text>
+<text class="c" x="450" y="603">  (compiled state machine).</text>
+<text class="cap" x="450" y="638">  Note: debugging fibers in WinDbg requires ~fib commands.</text>
 
 <rect class="ums" x="820" y="90" width="340" height="560" rx="8"/>
 <text class="h" x="990" y="115" text-anchor="middle">UMS (User-Mode Sched)</text>
 <text class="c" x="840" y="145">  Win7+ x64 only.</text>
-<text class="c" x="840" y="163">  Híbrido: cooperativo + paralelo</text>
+<text class="c" x="840" y="163">  Hybrid: cooperative + parallel</text>
 <text class="c" x="840" y="181">  EnterUmsSchedulingMode()</text>
 <text class="c" x="840" y="199">  CreateUmsThreadContext()</text>
 <text class="c" x="840" y="217">  CreateUmsCompletionList()</text>
 <text class="c" x="840" y="235">  ExecuteUmsThread()</text>
 <text class="c" x="840" y="253">  UmsThreadYield()</text>
-<text class="c" x="840" y="280">  Quando UMS thread bloqueia</text>
-<text class="c" x="840" y="298">  num syscall, kernel "devolve"</text>
-<text class="c" x="840" y="316">  ela para a completion list em vez</text>
-<text class="c" x="840" y="334">  de bloquear o scheduler thread.</text>
+<text class="c" x="840" y="280">  When UMS thread blocks</text>
+<text class="c" x="840" y="298">  in syscall, kernel "returns"</text>
+<text class="c" x="840" y="316">  it to the completion list instead</text>
+<text class="c" x="840" y="334">  of blocking the scheduler thread.</text>
 <text class="c" x="840" y="362">  PROS</text>
-<text class="c" x="840" y="380">  + N:M scheduling em user</text>
-<text class="c" x="840" y="398">  + I/O bloqueante não trava M</text>
-<text class="c" x="840" y="416">  + escalonamento custom</text>
+<text class="c" x="840" y="380">  + N:M scheduling in user</text>
+<text class="c" x="840" y="398">  + blocking I/O doesn't stall M</text>
+<text class="c" x="840" y="416">  + custom scheduling</text>
 <text class="c" x="840" y="444">  CONS</text>
-<text class="c" x="840" y="462">  - APIs complexas, pouco uso</text>
-<text class="c" x="840" y="480">  - debugging difícil</text>
-<text class="c" x="840" y="498">  - removido em Win11 (deprecated)</text>
-<text class="cap" x="840" y="540">  Análogo ao GOMAXPROCS do Go,</text>
+<text class="c" x="840" y="462">  - complex APIs, low adoption</text>
+<text class="c" x="840" y="480">  - difficult debugging</text>
+<text class="c" x="840" y="498">  - removed in Win11 (deprecated)</text>
+<text class="cap" x="840" y="540">  Analogors to Go's GOMAXPROCS,</text>
 <text class="cap" x="840" y="558">  Java 21+ Virtual Threads (Loom),</text>
-<text class="cap" x="840" y="576">  ou Linux M:N pthreads experimentais.</text>
-<text class="cap" x="840" y="610">  Concrt 1.x / PPL usavam UMS</text>
-<text class="cap" x="840" y="628">  para "task scheduler" — abandonado.</text>
+<text class="cap" x="840" y="576">  or experimental Linux M:N pthreads.</text>
+<text class="cap" x="840" y="610">  Concrt 1.x / PPL used UMS</text>
+<text class="cap" x="840" y="628">  for "task scheduler" — abandoned.</text>
 </svg>

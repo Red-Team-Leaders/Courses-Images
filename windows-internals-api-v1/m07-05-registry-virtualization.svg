@@ -2,41 +2,41 @@
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.real{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.virt{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}.wow{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
 <rect width="1200" height="650" fill="#0d1117"/>
 <text class="t" x="600" y="38" text-anchor="middle">UAC Virtualization &amp; WoW64 Redirection</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Leitura "transparente" para legacy apps; gravação redirecionada para área per-user</text>
+<text class="cap" x="600" y="60" text-anchor="middle">"Transparent" reads for legacy apps; writes redirected to per-user area</text>
 
 <rect class="real" x="40" y="90" width="540" height="220" rx="8"/>
 <text class="h" x="310" y="115" text-anchor="middle">UAC Registry Virtualization (32-bit, integrity Medium-)</text>
-<text class="c" x="60" y="142">  App tenta gravar HKLM\Software\OldVendor\Setting</text>
-<text class="c" x="60" y="160">  → CM detecta token sem write access</text>
-<text class="c" x="60" y="178">  → redireciona para:</text>
+<text class="c" x="60" y="142">  App tries to write HKLM\Software\OldVendor\Setting</text>
+<text class="c" x="60" y="160">  → CM detects token withort write access</text>
+<text class="c" x="60" y="178">  → redirects to:</text>
 <text class="c" x="60" y="196">    HKCU\Software\Classes\VirtualStore\MACHINE\SOFTWARE\OldVendor\Setting</text>
-<text class="c" x="60" y="224">  Leituras sobrepõem virtual sobre real (overlay).</text>
-<text class="c" x="60" y="242">  Habilitação por chave: ...VirtualStore = 1.</text>
-<text class="c" x="60" y="270">  Apps marcadas com requestedExecutionLevel "asInvoker" + uiAccess</text>
-<text class="c" x="60" y="288">  ou que tenham manifest UAC v2 → não recebem virtualização.</text>
+<text class="c" x="60" y="224">  Reads overlay virtual on real.</text>
+<text class="c" x="60" y="242">  Enabled per-key: ...VirtualStore = 1.</text>
+<text class="c" x="60" y="270">  Apps marked with requestedExecutionLevel "asInvoker" + uiAccess</text>
+<text class="c" x="60" y="288">  or with UAC v2 manifest → don't get virtualization.</text>
 
 <rect class="wow" x="620" y="90" width="540" height="220" rx="8"/>
 <text class="h" x="890" y="115" text-anchor="middle">WoW64 Redirection (32-bit no host 64-bit)</text>
-<text class="c" x="640" y="142">  App x86 tenta acessar HKLM\Software\Foo</text>
-<text class="c" x="640" y="160">  → CM redireciona transparente para:</text>
+<text class="c" x="640" y="142">  x86 app tries to access HKLM\Software\Foo</text>
+<text class="c" x="640" y="160">  → CM transparently redirects to:</text>
 <text class="c" x="640" y="178">    HKLM\Software\Wow6432Node\Foo</text>
-<text class="c" x="640" y="206">  HKCR\* tem comportamento similar.</text>
-<text class="c" x="640" y="234">  Para acessar a chave 64-bit explicitamente de app 32-bit:</text>
-<text class="c" x="640" y="252">    KEY_WOW64_64KEY no flag de RegOpenKeyEx</text>
-<text class="c" x="640" y="270">    KEY_WOW64_32KEY (oposto)</text>
-<text class="cap" x="640" y="298">  Funciona via redirector wow64.dll, regrules em CmpRegRewriteData.</text>
+<text class="c" x="640" y="206">  HKCR\* has similar behavior.</text>
+<text class="c" x="640" y="234">  To explicitly access the 64-bit key from a 32-bit app:</text>
+<text class="c" x="640" y="252">    KEY_WOW64_64KEY flag in RegOpenKeyEx</text>
+<text class="c" x="640" y="270">    KEY_WOW64_32KEY (opposite)</text>
+<text class="cap" x="640" y="298">  Implemented via wow64.dll redirector, regrules in CmpRegRewriteData.</text>
 
 <rect class="virt" x="40" y="330" width="1120" height="280" rx="8"/>
-<text class="h" x="600" y="355" text-anchor="middle">Implicações</text>
-<text class="c" x="60" y="382">  • Forensics: ATAP/Persistence pode estar em VirtualStore — atacante pode plantar chave que parece "user-only".</text>
-<text class="c" x="60" y="400">  • Inventory: Software inventory deve ler HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall</text>
-<text class="c" x="60" y="418">    além de HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall.</text>
-<text class="c" x="60" y="436">  • Persistência: HKCU\…\Run vs HKLM\…\Run vs HKLM\…\Wow6432Node\…\Run — TRÊS chaves diferentes.</text>
-<text class="c" x="60" y="464">  • IFEO (Image File Execution Options) atua em ambas (com/sem Wow6432Node).</text>
-<text class="c" x="60" y="482">  • Group Policy: GPO grava em HKLM/HKCU normalmente, mas alguns componentes legacy ainda no Wow6432Node.</text>
-<text class="c" x="60" y="510">  Diagnóstico:</text>
+<text class="h" x="600" y="355" text-anchor="middle">Implications</text>
+<text class="c" x="60" y="382">  • Forensics: ATAP/Persistence may be in VirtualStore — attacker can plant key that looks "user-only".</text>
+<text class="c" x="60" y="400">  • Inventory: Software inventory must read HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall</text>
+<text class="c" x="60" y="418">    in addition to HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall.</text>
+<text class="c" x="60" y="436">  • Persistence: HKCU\…\Run vs HKLM\…\Run vs HKLM\…\Wow6432Node\…\Run — THREE different keys.</text>
+<text class="c" x="60" y="464">  • IFEO (Image File Execution Options) acts on both (with/withort Wow6432Node).</text>
+<text class="c" x="60" y="482">  • Grorp Policy: GPO writes to HKLM/HKCU normally, but some legacy components still in Wow6432Node.</text>
+<text class="c" x="60" y="510">  Diagnosis:</text>
 <text class="c" x="60" y="528">    reg query HKLM\Software\Wow6432Node /s</text>
-<text class="c" x="60" y="546">    Process Monitor com filtro Operation = RegSetValue → mostra paths reais.</text>
-<text class="c" x="60" y="564">    sysinternals AccessChk para auditar permissões em VirtualStore.</text>
-<text class="cap" x="60" y="600">  Desligar virtualização (per-app): Wtsapi32 SetTokenInformation com TokenVirtualizationEnabled = 0.</text>
+<text class="c" x="60" y="546">    Process Monitor with Operation = RegSetValue filter → shows real paths.</text>
+<text class="c" x="60" y="564">    sysinternals AccessChk to audit permissions in VirtualStore.</text>
+<text class="cap" x="60" y="600">  Disable virtualization (per-app): Wtsapi32 SetTokenInformation with TokenVirtualizationEnabled = 0.</text>
 </svg>

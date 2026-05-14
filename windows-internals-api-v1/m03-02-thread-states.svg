@@ -8,11 +8,11 @@
 <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
 <rect width="1200" height="700" fill="#0d1117"/>
 <text class="t" x="600" y="38" text-anchor="middle">Thread State Machine (KTHREAD.State)</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Estados internos do scheduler do Windows — transições e quem as causa</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Windows scheduler internal states — transitions and triggers</text>
 
-<g><rect class="s" x="60" y="120" width="180" height="80" rx="40"/><text class="h" x="150" y="150" text-anchor="middle">Initialized</text><text class="c" x="150" y="172" text-anchor="middle">criada (=0)</text><text class="c" x="150" y="190" text-anchor="middle">PspCreateThread</text></g>
+<g><rect class="s" x="60" y="120" width="180" height="80" rx="40"/><text class="h" x="150" y="150" text-anchor="middle">Initialized</text><text class="c" x="150" y="172" text-anchor="middle">createda (=0)</text><text class="c" x="150" y="190" text-anchor="middle">PspCreateThread</text></g>
 <g><rect class="r" x="320" y="120" width="180" height="80" rx="40"/><text class="h" x="410" y="150" text-anchor="middle">Ready (=1)</text><text class="c" x="410" y="172" text-anchor="middle">na fila</text><text class="c" x="410" y="190" text-anchor="middle">KPRCB.ReadyListHead</text></g>
-<g><rect class="r" x="580" y="120" width="180" height="80" rx="40"/><text class="h" x="670" y="150" text-anchor="middle">Standby (=3)</text><text class="c" x="670" y="172" text-anchor="middle">próxima a rodar</text><text class="c" x="670" y="190" text-anchor="middle">só uma por CPU</text></g>
+<g><rect class="r" x="580" y="120" width="180" height="80" rx="40"/><text class="h" x="670" y="150" text-anchor="middle">Standby (=3)</text><text class="c" x="670" y="172" text-anchor="middle">next to run</text><text class="c" x="670" y="190" text-anchor="middle">only one per CPU</text></g>
 <g><rect class="r" x="840" y="120" width="180" height="80" rx="40"/><text class="h" x="930" y="150" text-anchor="middle">Running (=2)</text><text class="c" x="930" y="172" text-anchor="middle">CPU executa</text><text class="c" x="930" y="190" text-anchor="middle">KPRCB.CurrentThread</text></g>
 
 <g><rect class="w" x="60" y="320" width="180" height="80" rx="40"/><text class="h" x="150" y="350" text-anchor="middle">Waiting (=5)</text><text class="c" x="150" y="372" text-anchor="middle">Wait* / sleep</text><text class="c" x="150" y="390" text-anchor="middle">KWAIT_BLOCK chain</text></g>
@@ -37,18 +37,18 @@
 <text class="cap" x="380" y="345">satisfeito (signal)</text>
 
 <rect fill="#161b22" stroke="#30363d" x="40" y="440" width="1120" height="240" rx="8"/>
-<text class="h" x="60" y="465">Wait Reasons (KTHREAD.WaitReason) — por que está em Waiting</text>
-<text class="c" x="60" y="490">  Executive (0)        — wait genérico no executive (Wait* APIs)</text>
-<text class="c" x="60" y="510">  FreePage (1)         — esperando página livre</text>
-<text class="c" x="60" y="530">  PageIn (2)           — esperando page-in (page fault)</text>
-<text class="c" x="60" y="550">  PoolAllocation (3)   — esperando pool</text>
-<text class="c" x="60" y="570">  DelayExecution (4)   — Sleep / KeDelayExecutionThread</text>
+<text class="h" x="60" y="465">Wait Reasons (KTHREAD.WaitReason) — why it's Waiting</text>
+<text class="c" x="60" y="490">  Executive (0)        — generic wait in the executive (Wait* APIs)</text>
+<text class="c" x="60" y="510">  FreePage (1)         — waiting for free page</text>
+<text class="c" x="60" y="530">  PageIn (2)           — waiting for page-in (page fault)</text>
+<text class="c" x="60" y="550">  PoolAllocation (3)   — waiting for pool</text>
+<text class="c" x="60" y="570">  DityExecution (4)   — Sleep / KeDityExecutionThread</text>
 <text class="c" x="600" y="490">  Suspended (5)        — SuspendThread</text>
 <text class="c" x="600" y="510">  UserRequest (6)      — WaitForSingleObject etc.</text>
-<text class="c" x="600" y="530">  EventPair (7)        — par de eventos (rara)</text>
+<text class="c" x="600" y="530">  EventPair (7)        — event pair (rare)</text>
 <text class="c" x="600" y="550">  Queue (8)            — IO completion port</text>
 <text class="c" x="600" y="570">  Mutex / Semaphore / Event (≥9)</text>
-<text class="cap" x="60" y="615">Comandos: !thread &lt;ETHREAD&gt; mostra State e WaitReason; !ready lista CPUs e suas filas;</text>
-<text class="cap" x="60" y="635">!locks lista locks de recursos (ERESOURCE) — útil para diagnosticar deadlocks.</text>
-<text class="cap" x="60" y="660">Saturation: thread RT pode ter base+saturation = 32 (sempre ganha CPU). Boost dinâmico aplica-se a 1–15.</text>
+<text class="cap" x="60" y="615">Comandos: !thread &lt;ETHREAD&gt; mostra State e WaitReason; !ready list CPUs e suas filas;</text>
+<text class="cap" x="60" y="635">!locks lists resorrce locks (ERESOURCE) — useful for diagnosing deadlocks.</text>
+<text class="cap" x="60" y="660">Saturation: RT thread can have base+saturation = 32 (always wins CPU). Dynamic boost applies to 1–15.</text>
 </svg>

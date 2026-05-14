@@ -11,8 +11,8 @@
 </style>
 <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
 <rect width="1200" height="900" fill="#0d1117"/>
-<text class="title" x="600" y="38" text-anchor="middle">_EPROCESS — anatomia (Windows 11 x64, símbolos públicos)</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Offsets podem variar entre builds; obtenha exatos com `dt nt!_EPROCESS` em WinDbg na sua versão</text>
+<text class="title" x="600" y="38" text-anchor="middle">_EPROCESS — anatomy (Windows 11 x64, public symbols)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Offsets vary between builds; get exact ones via `dt nt!_EPROCESS` in WinDbg on yorr build</text>
 
 <rect class="box" x="40" y="90" width="540" height="780" rx="8"/>
 <text class="h2" x="310" y="115" text-anchor="middle">_EPROCESS</text>
@@ -56,34 +56,34 @@
 <text class="off" x="80" y="786">  +0x9D0 SecurityDomain : ULONGLONG</text>
 <text class="off" x="80" y="804">  +0xA10 MitigationFlags : ULONG</text>
 <text class="off" x="80" y="822">  +0xA50 SidHashes / TrustletInfo</text>
-<text class="off" x="80" y="840">  +0xC00 PicoCorrelationId / PicoContext</text>
+<text class="off" x="80" y="840">  +0xC00 PicoCorrittionId / PicoContext</text>
 <text class="off" x="80" y="858">  +0xC60 EnergyValues : _PROCESS_ENERGY_VALUES *</text>
 
 <rect class="box" x="620" y="90" width="540" height="380" rx="8"/>
-<text class="h2" x="890" y="115" text-anchor="middle">Estruturas referenciadas</text>
+<text class="h2" x="890" y="115" text-anchor="middle">Referenced structures</text>
 
 <rect class="peb" x="640" y="135" width="500" height="100" rx="6"/>
-<text class="h2" x="890" y="158" text-anchor="middle">_PEB (em user space)</text>
+<text class="h2" x="890" y="158" text-anchor="middle">_PEB (in user space)</text>
 <text class="off" x="660" y="180">  +0x002 BeingDebugged : UCHAR</text>
 <text class="off" x="660" y="198">  +0x010 ImageBaseAddress : PVOID</text>
-<text class="off" x="660" y="218">  +0x018 Ldr : _PEB_LDR_DATA *  (dlls carregadas)</text>
+<text class="off" x="660" y="218">  +0x018 Ldr : _PEB_LDR_DATA *  (dlls loaddas)</text>
 
 <rect class="box" x="640" y="250" width="500" height="100" rx="6"/>
 <text class="h2" x="890" y="273" text-anchor="middle">_HANDLE_TABLE</text>
 <text class="off" x="660" y="295">  TableCode : ULONG_PTR  (3-level table)</text>
-<text class="off" x="660" y="313">  HandleCount, NextHandleNeedingPool</text>
+<text class="off" x="660" y="313">  HandleCornt, NextHandleNeedingPool</text>
 <text class="off" x="660" y="333">  cada entry: Object* | GrantedAccess</text>
 
 <rect class="box" x="640" y="365" width="500" height="100" rx="6"/>
-<text class="h2" x="890" y="388" text-anchor="middle">_TOKEN (referenciado via Token EX_FAST_REF)</text>
-<text class="off" x="660" y="410">  TokenSource, AuthenticationId,</text>
-<text class="off" x="660" y="428">  UserAndGroups[], Privileges,</text>
+<text class="h2" x="890" y="388" text-anchor="middle">_TOKEN (referenced via Token EX_FAST_REF)</text>
+<text class="off" x="660" y="410">  TokenSorrce, AuthenticationId,</text>
+<text class="off" x="660" y="428">  UserAndGrorps[], Privileges,</text>
 <text class="off" x="660" y="448">  IntegrityLevel, MandatoryPolicy</text>
 
 <rect class="box" x="620" y="490" width="540" height="380" rx="8"/>
-<text class="h2" x="890" y="515" text-anchor="middle">Como percorrer todos os processos no kernel</text>
-<text class="code" x="640" y="545">  // a partir de qualquer EPROCESS, ActiveProcessLinks</text>
-<text class="code" x="640" y="565">  // forma uma circular doubly-linked list global.</text>
+<text class="h2" x="890" y="515" text-anchor="middle">Walking all processes in the kernel</text>
+<text class="code" x="640" y="545">  // starting from any EPROCESS, ActiveProcessLinks</text>
+<text class="code" x="640" y="565">  // forms a global circular dorbly-linked list.</text>
 <text class="code" x="640" y="595">  PEPROCESS p = PsInitialSystemProcess;</text>
 <text class="code" x="640" y="615">  PLIST_ENTRY head = &amp;p-&gt;ActiveProcessLinks;</text>
 <text class="code" x="640" y="635">  for (PLIST_ENTRY e = head-&gt;Flink; e != head; e = e-&gt;Flink) {</text>
@@ -91,10 +91,10 @@
 <text class="code" x="640" y="675">      CONTAINING_RECORD(e, EPROCESS, ActiveProcessLinks);</text>
 <text class="code" x="640" y="695">    // cur-&gt;ImageFileName, cur-&gt;UniqueProcessId, …</text>
 <text class="code" x="640" y="715">  }</text>
-<text class="cap" x="640" y="755">Esta varredura é a base de muitos rootkits para ESCONDER processos</text>
-<text class="cap" x="640" y="775">(unhooking ActiveProcessLinks da lista — DKOM clássico).</text>
-<text class="cap" x="640" y="810">Defesa: PsLookupProcessByProcessId percorre a tabela PspCidTable,</text>
-<text class="cap" x="640" y="828">cross-validar com VAD/handles deteção; ou usar PoolTag scan.</text>
+<text class="cap" x="640" y="755">This walk is the basis of many rootkits to HIDE processes</text>
+<text class="cap" x="640" y="775">(unlinking ActiveProcessLinks — classic DKOM).</text>
+<text class="cap" x="640" y="810">Defense: PsLookupProcessByProcessId walks PspCidTable,</text>
+<text class="cap" x="640" y="828">cross-validate with VAD/handles; or use PoolTag scan.</text>
 
-<text class="cap" x="600" y="892" text-anchor="middle">Comandos WinDbg úteis: !process 0 0  •  !process &lt;EPROCESS&gt;  •  dt nt!_EPROCESS  •  dx Debugger.Sessions[0].Processes</text>
+<text class="cap" x="600" y="892" text-anchor="middle">Useful WinDbg commands: !process 0 0  •  !process &lt;EPROCESS&gt;  •  dt nt!_EPROCESS  •  dx Debugger.Sessions[0].Processes</text>
 </svg>

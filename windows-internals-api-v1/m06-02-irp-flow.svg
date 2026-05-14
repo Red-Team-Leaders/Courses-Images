@@ -2,7 +2,7 @@
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.irp{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.iosl{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.box{fill:#161b22;stroke:#30363d}</style></defs>
 <rect width="1200" height="750" fill="#0d1117"/>
 <text class="t" x="600" y="38" text-anchor="middle">IRP — I/O Request Packet</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Estrutura central de I/O. IO_STACK_LOCATION array no fim — uma por driver da pilha.</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Central I/O structure. IO_STACK_LOCATION array at the end — one per driver in the stack.</text>
 
 <rect class="irp" x="40" y="90" width="540" height="500" rx="8"/>
 <text class="h" x="310" y="115" text-anchor="middle">_IRP (header, ~280 bytes)</text>
@@ -13,9 +13,9 @@
 <text class="c" x="60" y="214">  +0x18  ThreadListEntry</text>
 <text class="c" x="60" y="232">  +0x28  IoStatus : IO_STATUS_BLOCK (Status, Information)</text>
 <text class="c" x="60" y="250">  +0x38  RequestorMode : KPROCESSOR_MODE</text>
-<text class="c" x="60" y="268">  +0x40  PendingReturned, StackCount, CurrentLocation</text>
+<text class="c" x="60" y="268">  +0x40  PendingReturned, StackCornt, CurrentLocation</text>
 <text class="c" x="60" y="286">  +0x44  Cancel : BOOLEAN</text>
-<text class="c" x="60" y="304">  +0x48  CancelRoutine : PDRIVER_CANCEL</text>
+<text class="c" x="60" y="304">  +0x48  CancelRortine : PDRIVER_CANCEL</text>
 <text class="c" x="60" y="322">  +0x50  UserBuffer : PVOID</text>
 <text class="c" x="60" y="340">  +0x58  Tail.Overlay.DeviceQueueEntry / Thread / FileObject</text>
 <text class="c" x="60" y="358">  +0x90  Apc / CompletionKey</text>
@@ -23,7 +23,7 @@
 <text class="h" x="310" y="395" text-anchor="middle">Buffering modes</text>
 <text class="c" x="60" y="420">  Buffered I/O   — IoMgr aloca SystemBuffer, copia para UserBuffer no return</text>
 <text class="c" x="60" y="438">  Direct I/O     — MDL aponta para páginas user (lock pages)</text>
-<text class="c" x="60" y="456">  Neither        — driver decide; mais perigoso (validar manualmente)</text>
+<text class="c" x="60" y="456">  Neither        — driver decide; mais perigoso (validar manually)</text>
 
 <text class="h" x="310" y="490" text-anchor="middle">Macros</text>
 <text class="c" x="60" y="515">  IoGetCurrentIrpStackLocation(Irp)</text>
@@ -40,10 +40,10 @@
 <text class="c" x="640" y="214">  +0x08  Parameters : union  (Read/Write/DeviceIoControl/...)</text>
 <text class="c" x="640" y="232">  +0x28  DeviceObject : PDEVICE_OBJECT</text>
 <text class="c" x="640" y="250">  +0x30  FileObject   : PFILE_OBJECT</text>
-<text class="c" x="640" y="268">  +0x38  CompletionRoutine : PIO_COMPLETION_ROUTINE</text>
+<text class="c" x="640" y="268">  +0x38  CompletionRortine : PIO_COMPLETION_ROUTINE</text>
 <text class="c" x="640" y="286">  +0x40  Context : PVOID</text>
-<text class="cap" x="640" y="320">  IoSetCompletionRoutine(Irp, fn, ctx, success, error, cancel)</text>
-<text class="cap" x="640" y="338">  Para receber notificação após completar.</text>
+<text class="cap" x="640" y="320">  IoSetCompletionRortine(Irp, fn, ctx, success, error, cancel)</text>
+<text class="cap" x="640" y="338">  To receive notification after completion.</text>
 
 <rect class="box" x="620" y="390" width="540" height="200" rx="8"/>
 <text class="h" x="890" y="415" text-anchor="middle">Major Functions principais</text>
@@ -58,8 +58,8 @@
 
 <rect class="box" x="40" y="610" width="1120" height="120" rx="8"/>
 <text class="h" x="600" y="635" text-anchor="middle">Lifecycle resumido</text>
-<text class="c" x="60" y="662">  IoAllocateIrp → IoBuild* / preencher manualmente → IoCallDriver(top)</text>
+<text class="c" x="60" y="662">  IoAllocateIrp → IoBuild* / preencher manually → IoCallDriver(top)</text>
 <text class="c" x="60" y="680">  driver completa imediatamente (return STATUS_SUCCESS) OU marca PENDING (IoMarkIrpPending),</text>
-<text class="c" x="60" y="698">  retorna STATUS_PENDING; mais tarde IoCompleteRequest. CompletionRoutine sobe pela stack.</text>
-<text class="c" x="60" y="716">  Cancel: IoCancelIrp seta Cancel=TRUE; CancelRoutine corre (se setada via IoSetCancelRoutine).</text>
+<text class="c" x="60" y="698">  returns STATUS_PENDING; mais tarde IoCompleteRequest. CompletionRortine sobe pit stack.</text>
+<text class="c" x="60" y="716">  Cancel: IoCancelIrp seta Cancel=TRUE; CancelRortine corre (se setada via IoSetCancelRortine).</text>
 </svg>

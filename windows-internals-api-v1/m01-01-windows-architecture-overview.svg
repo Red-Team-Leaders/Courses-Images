@@ -20,8 +20,8 @@
     </marker>
   </defs>
   <rect width="1200" height="900" fill="#0d1117"/>
-  <text class="title" x="600" y="40" text-anchor="middle">Windows NT — Visão arquitetural em camadas</text>
-  <text class="caption" x="600" y="62" text-anchor="middle">User mode vs Kernel mode — subsistemas, NTOS Executive, micro-kernel, HAL, hardware</text>
+  <text class="title" x="600" y="40" text-anchor="middle">Windows NT — Layered architectural view</text>
+  <text class="caption" x="600" y="62" text-anchor="middle">User mode vs Kernel mode — subsystems, NTOS Executive, micro-kernel, HAL, hardware</text>
 
   <!-- USER MODE -->
   <rect class="ring" x="40" y="90" width="1120" height="280" rx="8"/>
@@ -29,7 +29,7 @@
 
   <!-- Subsystem DLLs -->
   <rect class="user" x="60" y="130" width="220" height="100" rx="6"/>
-  <text class="lbl" x="170" y="152" text-anchor="middle">Aplicações Win32</text>
+  <text class="lbl" x="170" y="152" text-anchor="middle">Win32 Applications</text>
   <text class="code" x="170" y="172" text-anchor="middle">notepad.exe / cmd.exe</text>
   <text class="code" x="170" y="190" text-anchor="middle">explorer.exe / chrome.exe</text>
   <text class="small" x="170" y="212" text-anchor="middle">PE images mapeadas</text>
@@ -44,30 +44,30 @@
   <text class="lbl" x="650" y="152" text-anchor="middle">CSRSS / Subsystem Servers</text>
   <text class="code" x="650" y="172" text-anchor="middle">csrss.exe (per session)</text>
   <text class="code" x="650" y="190" text-anchor="middle">basesrv.dll / winsrv.dll</text>
-  <text class="small" x="650" y="212" text-anchor="middle">comunica via ALPC</text>
+  <text class="small" x="650" y="212" text-anchor="middle">communicates via ALPC</text>
 
   <rect class="user" x="780" y="130" width="180" height="100" rx="6"/>
   <text class="lbl" x="870" y="152" text-anchor="middle">System Processes</text>
   <text class="code" x="870" y="172" text-anchor="middle">smss / wininit</text>
   <text class="code" x="870" y="190" text-anchor="middle">services / lsass</text>
-  <text class="small" x="870" y="212" text-anchor="middle">nascem do smss.exe</text>
+  <text class="small" x="870" y="212" text-anchor="middle">spawned by smss.exe</text>
 
   <rect class="user" x="980" y="130" width="180" height="100" rx="6"/>
   <text class="lbl" x="1070" y="152" text-anchor="middle">Environment subsystems</text>
   <text class="code" x="1070" y="172" text-anchor="middle">WSL1 (Pico) | WSL2 (HV)</text>
   <text class="code" x="1070" y="190" text-anchor="middle">POSIX / OS2 (legacy)</text>
-  <text class="small" x="1070" y="212" text-anchor="middle">históricos em desuso</text>
+  <text class="small" x="1070" y="212" text-anchor="middle">historical / deprecated</text>
 
   <!-- Native API row -->
   <rect class="user" x="60" y="250" width="1100" height="100" rx="6"/>
-  <text class="lbl" x="610" y="275" text-anchor="middle">Native API — ntdll.dll  (interface única para o kernel)</text>
+  <text class="lbl" x="610" y="275" text-anchor="middle">Native API — ntdll.dll  (unified interface to the kernel)</text>
   <text class="code" x="610" y="298" text-anchor="middle">NtCreateUserProcess  •  NtAllocateVirtualMemory  •  NtOpenKey  •  NtCreateFile  •  NtDeviceIoControlFile</text>
   <text class="code" x="610" y="318" text-anchor="middle">RtlInitUnicodeString  •  RtlImageNtHeader  •  RtlGetVersion  •  KiUserExceptionDispatcher</text>
-  <text class="small" x="610" y="338" text-anchor="middle">prefixos Nt* (user) ↔ Zw* (kernel) — todas terminam em syscall instr (KiSystemCall64)</text>
+  <text class="small" x="610" y="338" text-anchor="middle">prefixes Nt* (user) ↔ Zw* (kernel) — all end with syscall instr (KiSystemCall64)</text>
 
-  <!-- Boundary -->
+  <!-- Borndary -->
   <line x1="40" y1="385" x2="1160" y2="385" class="arrow" stroke-dasharray="6,4" marker-end="url(#ar)"/>
-  <text class="caption" x="600" y="380" text-anchor="middle">─── transição syscall (KiSystemCall64) ─── KPCR.GsBase, MSR_LSTAR, swapgs, IF=0 ───</text>
+  <text class="caption" x="600" y="380" text-anchor="middle">─── syscall transition (KiSystemCall64) ─── KPCR.GsBase, MSR_LSTAR, swapgs, IF=0 ───</text>
 
   <!-- KERNEL MODE -->
   <rect class="ring" x="40" y="400" width="1120" height="350" rx="8"/>
@@ -76,8 +76,8 @@
   <!-- NTOS Executive components -->
   <rect class="exec" x="60" y="445" width="220" height="90" rx="6"/>
   <text class="lbl" x="170" y="467" text-anchor="middle">Object Manager</text>
-  <text class="small" x="170" y="486" text-anchor="middle">tipos, namespace,</text>
-  <text class="small" x="170" y="500" text-anchor="middle">handles, refcount</text>
+  <text class="small" x="170" y="486" text-anchor="middle">types, namespace,</text>
+  <text class="small" x="170" y="500" text-anchor="middle">handles, refcornt</text>
   <text class="code" x="170" y="522" text-anchor="middle">Ob*, _OBJECT_HEADER</text>
 
   <rect class="exec" x="300" y="445" width="220" height="90" rx="6"/>
@@ -110,7 +110,7 @@
   <text class="code" x="170" y="616" text-anchor="middle">Cm*, NtOpenKey</text>
 
   <rect class="exec" x="300" y="555" width="220" height="80" rx="6"/>
-  <text class="lbl" x="410" y="577" text-anchor="middle">Security Reference Mon</text>
+  <text class="lbl" x="410" y="577" text-anchor="middle">Security Reference Monitor</text>
   <text class="small" x="410" y="596" text-anchor="middle">SIDs, tokens, ACLs, audit</text>
   <text class="code" x="410" y="616" text-anchor="middle">Se*, SeAccessCheck</text>
 
@@ -133,12 +133,12 @@
   <rect class="kernel" x="60" y="655" width="700" height="80" rx="6"/>
   <text class="lbl" x="410" y="677" text-anchor="middle">Microkernel (KE) — scheduler, dispatcher, sync, KPCR/KPRCB, IRQL, DPC, APC, traps</text>
   <text class="code" x="410" y="700" text-anchor="middle">KiSwapContext • KeWaitForSingleObject • KiInterruptDispatch • KeAcquireSpinLock</text>
-  <text class="small" x="410" y="722" text-anchor="middle">o "kernel" propriamente dito — rotinas Ke* e Ki*</text>
+  <text class="small" x="410" y="722" text-anchor="middle">the actual "kernel" — Ke* and Ki* rortines</text>
 
   <rect class="kernel" x="780" y="655" width="380" height="80" rx="6"/>
   <text class="lbl" x="970" y="677" text-anchor="middle">Drivers (WDM / KMDF / NDIS / WFP / minifilter)</text>
   <text class="code" x="970" y="700" text-anchor="middle">DriverEntry • IRP_MJ_* • IoCallDriver</text>
-  <text class="small" x="970" y="722" text-anchor="middle">funcionais, filtro, bus, classe</text>
+  <text class="small" x="970" y="722" text-anchor="middle">function, filter, bus, class</text>
 
   <!-- HAL + HW -->
   <rect class="hw" x="40" y="765" width="1120" height="50" rx="6"/>
@@ -147,5 +147,5 @@
   <rect class="hw" x="40" y="825" width="1120" height="50" rx="6"/>
   <text class="lbl" x="600" y="854" text-anchor="middle">HARDWARE — CPU (x64/ARM64) • RAM • IDT/GDT/MSR • PCIe • IOMMU • TPM • ACPI</text>
 
-  <text class="caption" x="600" y="892" text-anchor="middle">A linha tracejada acima é a fronteira de privilégio: tudo abaixo dela executa em CPL=0; tudo acima em CPL=3.</text>
+  <text class="caption" x="600" y="892" text-anchor="middle">The dashed line above is the privilege borndary: everything below it runs at CPL=0; above at CPL=3.</text>
 </svg>

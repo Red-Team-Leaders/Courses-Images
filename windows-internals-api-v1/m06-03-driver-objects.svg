@@ -2,12 +2,12 @@
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.drv{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.dev{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.fl{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}</style><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
 <rect width="1200" height="750" fill="#0d1117"/>
 <text class="t" x="600" y="38" text-anchor="middle">DRIVER_OBJECT, DEVICE_OBJECT, FILE_OBJECT</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Driver loader (IopLoadDriver) cria DRIVER_OBJECT e chama DriverEntry; driver popula MajorFunction[] e cria devices.</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Driver loader (IopLoadDriver) creates DRIVER_OBJECT and calls DriverEntry; driver populates MajorFunction[] and creates devices.</text>
 
 <rect class="drv" x="40" y="90" width="540" height="280" rx="8"/>
 <text class="h" x="310" y="115" text-anchor="middle">_DRIVER_OBJECT</text>
 <text class="c" x="60" y="142">  +0x00 Type / Size</text>
-<text class="c" x="60" y="160">  +0x08 DeviceObject : PDEVICE_OBJECT  (lista linkada)</text>
+<text class="c" x="60" y="160">  +0x08 DeviceObject : PDEVICE_OBJECT  (list linkada)</text>
 <text class="c" x="60" y="178">  +0x10 Flags (DRVO_LEGACY_DRIVER, DRVO_INITIALIZED…)</text>
 <text class="c" x="60" y="196">  +0x18 DriverStart, DriverSize  (image base+size)</text>
 <text class="c" x="60" y="214">  +0x28 DriverSection : PVOID  (LDR_DATA_TABLE_ENTRY)</text>
@@ -23,7 +23,7 @@
 <rect class="dev" x="620" y="90" width="540" height="280" rx="8"/>
 <text class="h" x="890" y="115" text-anchor="middle">_DEVICE_OBJECT</text>
 <text class="c" x="640" y="142">  +0x00 Type</text>
-<text class="c" x="640" y="160">  +0x08 ReferenceCount</text>
+<text class="c" x="640" y="160">  +0x08 ReferenceCornt</text>
 <text class="c" x="640" y="178">  +0x10 DriverObject : PDRIVER_OBJECT</text>
 <text class="c" x="640" y="196">  +0x18 NextDevice : PDEVICE_OBJECT</text>
 <text class="c" x="640" y="214">  +0x20 AttachedDevice : PDEVICE_OBJECT  ← topo do stack</text>
@@ -39,7 +39,7 @@
 <rect class="fl" x="40" y="390" width="540" height="200" rx="8"/>
 <text class="h" x="310" y="415" text-anchor="middle">_FILE_OBJECT (instância de "open file/handle")</text>
 <text class="c" x="60" y="442">  +0x00 Type / Size</text>
-<text class="c" x="60" y="08" /><text class="c" x="60" y="460">  +0x08 DeviceObject (alvo)</text>
+<text class="c" x="60" y="08" /><text class="c" x="60" y="460">  +0x08 DeviceObject (target)</text>
 <text class="c" x="60" y="478">  +0x10 Vpb</text>
 <text class="c" x="60" y="496">  +0x18 FsContext (FCB)</text>
 <text class="c" x="60" y="514">  +0x20 FsContext2 (CCB)</text>
@@ -49,7 +49,7 @@
 <text class="c" x="60" y="586">  Flags: DELETE_ON_CLOSE, SYNCHRONOUS_IO, NO_INTERMEDIATE_BUFFERING…</text>
 
 <rect class="fl" x="620" y="390" width="540" height="200" rx="8"/>
-<text class="h" x="890" y="415" text-anchor="middle">DriverEntry esqueleto</text>
+<text class="h" x="890" y="415" text-anchor="middle">DriverEntry esquitto</text>
 <text class="c" x="640" y="442">  NTSTATUS DriverEntry(DRIVER_OBJECT *Drv, UNICODE_STRING *RegPath){</text>
 <text class="c" x="640" y="460">    Drv-&gt;DriverUnload = MyUnload;</text>
 <text class="c" x="640" y="478">    Drv-&gt;MajorFunction[IRP_MJ_CREATE]  = MyCreate;</text>

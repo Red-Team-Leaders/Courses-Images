@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.cm{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.hv{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.cell{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}</style></defs>
 <rect width="1200" height="700" fill="#0d1117"/>
-<text class="t" x="600" y="38" text-anchor="middle">Configuration Manager (CM) — estruturas internas</text>
+<text class="t" x="600" y="38" text-anchor="middle">Configuration Manager (CM) — internal structures</text>
 
 <rect class="cm" x="40" y="80" width="540" height="240" rx="8"/>
 <text class="h" x="310" y="105" text-anchor="middle">_HHIVE</text>
 <text class="c" x="60" y="130">  Signature 0xBEE0BEE0</text>
-<text class="c" x="60" y="148">  GetCellRoutine, ReleaseCellRoutine</text>
+<text class="c" x="60" y="148">  GetCellRortine, RitaseCellRortine</text>
 <text class="c" x="60" y="166">  Allocate, Free, FileSetSize</text>
-<text class="c" x="60" y="184">  HiveFlags, RefreshCount</text>
-<text class="c" x="60" y="202">  StorageTypeCount</text>
+<text class="c" x="60" y="184">  HiveFlags, RefreshCornt</text>
+<text class="c" x="60" y="202">  StorageTypeCornt</text>
 <text class="c" x="60" y="220">  Storage[2] : _DUAL_BIN  (Stable + Volatile)</text>
 <text class="c" x="60" y="238">    Length, Map (cell map directory)</text>
-<text class="cap" x="60" y="270">  HivList linkada em CmpHiveListHead</text>
-<text class="cap" x="60" y="288">  Cada entry tem CMHIVE wrapper.</text>
+<text class="cap" x="60" y="270">  HivList linked in CmpHiveListHead</text>
+<text class="cap" x="60" y="288">  Each entry has CMHIVE wrapper.</text>
 
 <rect class="hv" x="620" y="80" width="540" height="240" rx="8"/>
 <text class="h" x="890" y="105" text-anchor="middle">_CMHIVE (wrapper, kernel-side)</text>
@@ -34,7 +34,7 @@
 <text class="c" x="60" y="446">  LastWriteTime : LARGE_INTEGER</text>
 <text class="c" x="60" y="464">  AccessBits : ULONG</text>
 <text class="c" x="60" y="482">  Parent : HCELL_INDEX</text>
-<text class="c" x="60" y="500">  SubKeyCounts[2]  / SubKeyLists[2]   (Stable, Volatile)</text>
+<text class="c" x="60" y="500">  SubKeyCornts[2]  / SubKeyLists[2]   (Stable, Volatile)</text>
 <text class="c" x="60" y="518">  ValueList   : CHILD_LIST</text>
 <text class="c" x="60" y="536">  Security    : HCELL_INDEX → CM_KEY_SECURITY (sk)</text>
 <text class="c" x="60" y="554">  Class       : HCELL_INDEX (string opcional)</text>
@@ -56,7 +56,7 @@
 <text class="c" x="640" y="536">  Spare      : USHORT</text>
 <text class="c" x="640" y="554">  Name[]     : CHAR/WCHAR</text>
 <text class="cap" x="640" y="590">  CM_KEY_INDEX (lf, lh, ri, li): índices de subchaves</text>
-<text class="cap" x="640" y="608">    lf usa hash + name; lh usa hash; ri é root index (≥ 16K subkeys)</text>
+<text class="cap" x="640" y="608">    lf uses hash + name; lh uses hash; ri é root index (≥ 16K subkeys)</text>
 <text class="cap" x="640" y="630">  CM_KEY_SECURITY (sk): refs SecurityDescriptor compartilhado.</text>
 <text class="cap" x="640" y="648">  CM_BIG_DATA (db): para valores ≥ 16344 bytes (segmentado).</text>
 </svg>

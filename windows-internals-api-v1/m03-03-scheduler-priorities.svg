@@ -5,11 +5,11 @@
 .rt{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}.dyn{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.idle{fill:#21262d;stroke:#30363d;stroke-width:1.5}
 </style></defs>
 <rect width="1200" height="750" fill="#0d1117"/>
-<text class="t" x="600" y="38" text-anchor="middle">Scheduler — 32 prioridades (Real-Time vs Dynamic)</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Prioridade efetiva = base + boost (clamped). Boost só aplica em níveis 1–15. RT (16–31) é fixo.</text>
+<text class="t" x="600" y="38" text-anchor="middle">Scheduler — 32 priorities (Real-Time vs Dynamic)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Effective priority = base + boost (clamped). Boost only applies to levels 1–15. RT (16–31) is fixed.</text>
 
 <rect class="rt" x="40" y="90" width="800" height="320" rx="8"/>
-<text class="h" x="440" y="115" text-anchor="middle">Real-Time (16–31)  —  prioridade FIXA, sem boost, sem starvation prevention "normal"</text>
+<text class="h" x="440" y="115" text-anchor="middle">Real-Time (16–31) — FIXED priority, no boost, no "normal" starvation prevention</text>
 <g>
 <rect class="rt" x="60" y="135" width="80" height="40"/><text class="c" x="100" y="160" text-anchor="middle">31</text>
 <rect class="rt" x="148" y="135" width="80" height="40"/><text class="c" x="188" y="160" text-anchor="middle">30</text>
@@ -33,12 +33,12 @@
 <text class="c" x="60" y="260">  classes (PriorityClass.PriorityBase):</text>
 <text class="c" x="60" y="280">    REALTIME_PRIORITY_CLASS  → base 24</text>
 <text class="c" x="60" y="300">      threads: TIME_CRITICAL=31, HIGHEST=26, ABOVE_NORMAL=25, NORMAL=24, BELOW=23, LOWEST=22, IDLE=16</text>
-<text class="cap" x="60" y="335">  Reservar para tempo-real *real* (audio, robótica, drivers user-mode).</text>
-<text class="cap" x="60" y="355">  Use SeIncreaseBasePriorityPrivilege; pode causar starvation do sistema inteiro.</text>
-<text class="cap" x="60" y="385">  Boost de I/O completion não se aplica (já está acima de 15).</text>
+<text class="cap" x="60" y="335">  Reserve for *real* real-time (audio, robotics, user-mode drivers).</text>
+<text class="cap" x="60" y="355">  Use SeIncreaseBasePriorityPrivilege; can starve the entire system.</text>
+<text class="cap" x="60" y="385">  I/O completion boost doesn't apply (already above 15).</text>
 
 <rect class="dyn" x="40" y="430" width="800" height="220" rx="8"/>
-<text class="h" x="440" y="455" text-anchor="middle">Dynamic (1–15)  —  prioridade base + boost dinâmico (KiAdjustPriority)</text>
+<text class="h" x="440" y="455" text-anchor="middle">Dynamic (1–15) — base priority + dynamic boost (KiAdjustPriority)</text>
 <g>
 <rect class="dyn" x="60" y="475" width="80" height="40"/><text class="c" x="100" y="500" text-anchor="middle">15</text>
 <rect class="dyn" x="148" y="475" width="80" height="40"/><text class="c" x="188" y="500" text-anchor="middle">14</text>
@@ -60,35 +60,35 @@
 <rect class="idle" x="676" y="520" width="80" height="40"/><text class="c" x="716" y="545" text-anchor="middle"> 0</text>
 </g>
 <text class="c" x="60" y="595">  IDLE_PRIORITY_CLASS=4, BELOW_NORMAL=6, NORMAL=8, ABOVE_NORMAL=10, HIGH=13</text>
-<text class="cap" x="60" y="625">  0 = Idle thread (uma por CPU); só ela roda quando nada mais.</text>
+<text class="cap" x="60" y="625">  0 = Idle thread (one per CPU); only runs when nothing else.</text>
 
 <rect fill="#161b22" stroke="#30363d" x="860" y="90" width="300" height="560" rx="8"/>
 <text class="h" x="1010" y="115" text-anchor="middle">Boost rules (Wrk7)</text>
-<text class="c" x="880" y="142">  +1 ao soltar mutex/event</text>
-<text class="c" x="880" y="160">    (sempre na priority do</text>
-<text class="c" x="880" y="178">     thread que liberou)</text>
+<text class="c" x="880" y="142">  +1 on mutex/event ritase</text>
+<text class="c" x="880" y="160">    (always at priority of</text>
+<text class="c" x="880" y="178">     the ritasing thread)</text>
 <text class="c" x="880" y="200">  +I/O priority boost</text>
 <text class="c" x="880" y="218">    (driver-defined, IoXxx)</text>
-<text class="c" x="880" y="236">    teclado/mouse: +6</text>
+<text class="c" x="880" y="236">    keyboard/morse: +6</text>
 <text class="c" x="880" y="254">    audio/disk:    +1..+8</text>
-<text class="c" x="880" y="280">  Foreground boost</text>
+<text class="c" x="880" y="280">  Foregrornd boost</text>
 <text class="c" x="880" y="298">    Win32 PriorityBoost</text>
-<text class="c" x="880" y="316">    ativa: +2 ao threads</text>
-<text class="c" x="880" y="334">    do FG (HKLM ..PriorityControl)</text>
+<text class="c" x="880" y="316">    active: +2 to FG threads</text>
+<text class="c" x="880" y="334">    (HKLM..PriorityControl)</text>
 <text class="c" x="880" y="360">  Starvation (BalanceSet</text>
-<text class="c" x="880" y="378">    Manager): se thread ready</text>
-<text class="c" x="880" y="396">    ≥4s sem CPU, recebe boost</text>
-<text class="c" x="880" y="414">    para 15 com quantum 4×.</text>
-<text class="c" x="880" y="440">  Decay: -1 por quantum</text>
-<text class="c" x="880" y="458">    até voltar à base.</text>
-<text class="cap" x="880" y="495">  Inversão de prioridade:</text>
-<text class="cap" x="880" y="513">  PI clássica via boost.</text>
+<text class="c" x="880" y="378">    Manager): if thread Ready</text>
+<text class="c" x="880" y="396">    ≥4s withort CPU, gets boost</text>
+<text class="c" x="880" y="414">    to 15 with 4× quantum.</text>
+<text class="c" x="880" y="440">  Decay: -1 per quantum</text>
+<text class="c" x="880" y="458">    until back to base.</text>
+<text class="cap" x="880" y="495">  Priority inversion:</text>
+<text class="cap" x="880" y="513">  Classic PI via boost.</text>
 <text class="cap" x="880" y="540">  AutoBoost (Win8+):</text>
-<text class="cap" x="880" y="558">  detecta lock owner e</text>
-<text class="cap" x="880" y="576">  acelera-o automaticamente.</text>
+<text class="cap" x="880" y="558">  detects lock owner and</text>
+<text class="cap" x="880" y="576">  accitrates it automatically.</text>
 <text class="cap" x="880" y="608">  WinDbg: !ready, !running,</text>
 <text class="cap" x="880" y="626">  dt nt!_KTHREAD Priority</text>
 
-<text class="cap" x="600" y="700" text-anchor="middle">SetThreadPriority + SetPriorityClass; THREAD_MODE_BACKGROUND_BEGIN/END (Win Vista+) reduz I/O e CPU prioridade.</text>
+<text class="cap" x="600" y="700" text-anchor="middle">SetThreadPriority + SetPriorityClass; THREAD_MODE_BACKGROUND_BEGIN/END (Win Vista+) reduces I/O and CPU priority.</text>
 <text class="cap" x="600" y="725" text-anchor="middle">Per-thread priority pode ser observada via Process Explorer → Thread tab → Cycles &amp; Priority.</text>
 </svg>

@@ -3,21 +3,21 @@
 <rect width="1200" height="700" fill="#0d1117"/>
 <text class="t" x="600" y="38" text-anchor="middle">PEB.Ldr → PEB_LDR_DATA → LDR_DATA_TABLE_ENTRY</text>
 
-<rect class="peb" x="40" y="80" width="380" height="120" rx="8"/><text class="h" x="230" y="105" text-anchor="middle">PEB</text><text class="c" x="60" y="130">  +0x18 Ldr : PEB_LDR_DATA *</text><text class="c" x="60" y="150">  apontando para tabela compartilhada,</text><text class="c" x="60" y="170">  alocada por ntdll!LdrpInitializeProcess.</text>
+<rect class="peb" x="40" y="80" width="380" height="120" rx="8"/><text class="h" x="230" y="105" text-anchor="middle">PEB</text><text class="c" x="60" y="130">  +0x18 Ldr : PEB_LDR_DATA *</text><text class="c" x="60" y="150">  pointing to shared table,</text><text class="c" x="60" y="170">  allocated by ntdll!LdrpInitializeProcess.</text>
 
 <rect class="ldr" x="440" y="80" width="720" height="280" rx="8"/>
 <text class="h" x="800" y="105" text-anchor="middle">PEB_LDR_DATA</text>
 <text class="c" x="460" y="130">  +0x000 Length : ULONG</text>
 <text class="c" x="460" y="148">  +0x004 Initialized : BOOLEAN</text>
 <text class="c" x="460" y="166">  +0x008 SsHandle : PVOID</text>
-<text class="c" x="460" y="184">  +0x010 InLoadOrderModuleList : LIST_ENTRY    ← ordem de carregamento</text>
-<text class="c" x="460" y="202">  +0x020 InMemoryOrderModuleList : LIST_ENTRY  ← ordem de endereço</text>
-<text class="c" x="460" y="220">  +0x030 InInitializationOrderModuleList : LIST_ENTRY ← ordem DllMain</text>
+<text class="c" x="460" y="184">  +0x010 InLoadOrderModuleList : LIST_ENTRY    ← load order</text>
+<text class="c" x="460" y="202">  +0x020 InMemoryOrderModuleList : LIST_ENTRY  ← memory address order</text>
+<text class="c" x="460" y="220">  +0x030 InInitializationOrderModuleList : LIST_ENTRY ← DllMain order</text>
 <text class="c" x="460" y="238">  +0x040 EntryInProgress : PVOID</text>
 <text class="c" x="460" y="256">  +0x048 ShutdownInProgress : BOOLEAN</text>
 <text class="c" x="460" y="274">  +0x050 ShutdownThreadId : HANDLE</text>
-<text class="cap" x="460" y="310">  Cada lista tem mesmo nó, deslocado por offsets diferentes</text>
-<text class="cap" x="460" y="328">  do LDR_DATA_TABLE_ENTRY → use CONTAINING_RECORD com o membro correto.</text>
+<text class="cap" x="460" y="310">  Each list has the same node, offset differently</text>
+<text class="cap" x="460" y="328">  in LDR_DATA_TABLE_ENTRY → use CONTAINING_RECORD with the correct member.</text>
 
 <rect class="ent" x="40" y="220" width="380" height="380" rx="8"/>
 <text class="h" x="230" y="245" text-anchor="middle">LDR_DATA_TABLE_ENTRY</text>
@@ -30,25 +30,25 @@
 <text class="c" x="60" y="378">  FullDllName : UNICODE_STRING (path)</text>
 <text class="c" x="60" y="396">  BaseDllName : UNICODE_STRING (kernel32.dll)</text>
 <text class="c" x="60" y="414">  Flags : ULONG  (LDRP_IMAGE_DLL, _LOAD_IN_PROGRESS, _PROCESS_ATTACH_CALLED, …)</text>
-<text class="c" x="60" y="432">  ObsoleteLoadCount</text>
+<text class="c" x="60" y="432">  ObsoleteLoadCornt</text>
 <text class="c" x="60" y="450">  TlsIndex</text>
 <text class="c" x="60" y="468">  HashLinks (LDRP_HASH_TABLE bucket)</text>
 <text class="c" x="60" y="486">  TimeDateStamp</text>
 <text class="c" x="60" y="504">  EntryPointActivationContext</text>
 <text class="c" x="60" y="522">  Lock</text>
-<text class="c" x="60" y="540">  DdagNode (Win10+) — dependency DAG</text>
+<text class="c" x="60" y="540">  DdagNode (Win10+) — dependsncy DAG</text>
 <text class="c" x="60" y="558">  NodeModuleLink, LoadContext, …</text>
 <text class="c" x="60" y="576">  ParentDllBase, SwitchBackContext</text>
 
 <rect class="ldr" x="440" y="380" width="720" height="220" rx="8"/>
-<text class="h" x="800" y="405" text-anchor="middle">Caminhos de busca (LdrpSearchPath)</text>
+<text class="h" x="800" y="405" text-anchor="middle">Search paths (LdrpSearchPath)</text>
 <text class="c" x="460" y="432">  1. KnownDLLs (\KnownDlls\&lt;name&gt;)</text>
 <text class="c" x="460" y="450">  2. Side-by-Side (manifest activation context)</text>
-<text class="c" x="460" y="468">  3. Application directory (do EXE)</text>
-<text class="c" x="460" y="486">  4. SetDllDirectory (se aplicado)</text>
+<text class="c" x="460" y="468">  3. Application directory (of the EXE)</text>
+<text class="c" x="460" y="486">  4. SetDllDirectory (if applied)</text>
 <text class="c" x="460" y="504">  5. System directory (System32)</text>
 <text class="c" x="460" y="522">  6. Windows directory</text>
 <text class="c" x="460" y="540">  7. Current directory</text>
 <text class="c" x="460" y="558">  8. PATH</text>
-<text class="cap" x="460" y="585">  SafeDllSearchMode altera ordem para diminuir DLL hijack.</text>
+<text class="cap" x="460" y="585">  SafeDllSearchMode alters order to reduce DLL hijack.</text>
 </svg>

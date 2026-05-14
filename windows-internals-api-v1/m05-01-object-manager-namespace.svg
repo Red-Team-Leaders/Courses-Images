@@ -2,7 +2,7 @@
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.dir{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.obj{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.sym{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}</style></defs>
 <rect width="1200" height="800" fill="#0d1117"/>
 <text class="t" x="600" y="38" text-anchor="middle">Object Manager Namespace — \</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Visualize com WinObj (Sysinternals); raiz acessível em kernel via ObReferenceObjectByName</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Visualize with WinObj (Sysinternals); root accessible in kernel via ObReferenceObjectByName</text>
 
 <rect class="dir" x="40" y="90" width="200" height="60" rx="6"/><text class="h" x="140" y="120" text-anchor="middle">\  (root)</text><text class="c" x="140" y="142" text-anchor="middle">_OBJECT_DIRECTORY</text>
 
@@ -11,7 +11,7 @@
 <rect class="sym" x="540" y="180" width="220" height="60" rx="6"/><text class="c" x="550" y="208">PhysicalDrive0 → \Device\…</text><text class="c" x="550" y="228">PIPE → \Device\NamedPipe</text>
 
 <rect class="dir" x="40" y="260" width="200" height="60" rx="6"/><text class="h" x="140" y="287" text-anchor="middle">\GLOBAL??</text><text class="c" x="140" y="307" text-anchor="middle">DOS device map global (S0)</text>
-<rect class="sym" x="280" y="260" width="480" height="60" rx="6"/><text class="c" x="290" y="288">  por padrão é o que aplicações enxergam quando não há Per-Session</text><text class="c" x="290" y="308">  pode ser substituído por \Sessions\&lt;n&gt;\DosDevices via SetDosDeviceA</text>
+<rect class="sym" x="280" y="260" width="480" height="60" rx="6"/><text class="c" x="290" y="288">  by default what applications see when no Per-Session exists</text><text class="c" x="290" y="308">  can be replaced by \Sessions\&lt;n&gt;\DosDevices via SetDosDeviceA</text>
 
 <rect class="dir" x="40" y="340" width="200" height="60" rx="6"/><text class="h" x="140" y="367" text-anchor="middle">\Device</text><text class="c" x="140" y="387" text-anchor="middle">device objects de drivers</text>
 <rect class="obj" x="280" y="340" width="220" height="60" rx="6"/><text class="c" x="290" y="368">\Device\HarddiskVol3</text><text class="c" x="290" y="388">\Device\Tcp, \Device\NamedPipe</text>
@@ -20,8 +20,8 @@
 <rect class="dir" x="40" y="420" width="200" height="60" rx="6"/><text class="h" x="140" y="447" text-anchor="middle">\Driver</text><text class="c" x="140" y="467" text-anchor="middle">_DRIVER_OBJECT</text>
 <rect class="obj" x="280" y="420" width="480" height="60" rx="6"/><text class="c" x="290" y="448">\Driver\Tcpip,  \Driver\Disk,  \Driver\Mup,  \Driver\WdFilter, …</text>
 
-<rect class="dir" x="40" y="500" width="200" height="60" rx="6"/><text class="h" x="140" y="527" text-anchor="middle">\BaseNamedObjects (BNO)</text><text class="c" x="140" y="547" text-anchor="middle">objetos nomeados sessão 0</text>
-<rect class="obj" x="280" y="500" width="480" height="60" rx="6"/><text class="c" x="290" y="528">  Mutexes, Events, Semaphores, Sections nomeados — globais ao SO</text><text class="c" x="290" y="548">  prefixo "Global\" em CreateMutex resolve aqui</text>
+<rect class="dir" x="40" y="500" width="200" height="60" rx="6"/><text class="h" x="140" y="527" text-anchor="middle">\BaseNamedObjects (BNO)</text><text class="c" x="140" y="547" text-anchor="middle">objetos nameados sessão 0</text>
+<rect class="obj" x="280" y="500" width="480" height="60" rx="6"/><text class="c" x="290" y="528">  Mutexes, Events, Semaphores, Sections nameados — globais ao SO</text><text class="c" x="290" y="548">  prefixo "Global\" em CreateMutex resolve aqui</text>
 
 <rect class="dir" x="40" y="580" width="200" height="60" rx="6"/><text class="h" x="140" y="607" text-anchor="middle">\Sessions\&lt;n&gt;</text><text class="c" x="140" y="627" text-anchor="middle">por sessão TS</text>
 <rect class="obj" x="280" y="580" width="480" height="60" rx="6"/><text class="c" x="290" y="608">  \Sessions\1\BaseNamedObjects  (sem prefixo "Global\" → cai aqui)</text><text class="c" x="290" y="628">  \Sessions\1\Windows\WindowStations\WinSta0\Default</text>
@@ -30,21 +30,21 @@
 <rect class="obj" x="280" y="660" width="480" height="60" rx="6"/><text class="c" x="290" y="688">  LowMemoryCondition, HighMemoryCondition, MemoryErrors, …</text><text class="c" x="290" y="708">  PowerState, SystemTimeUpdate, MaximumCommitCondition</text>
 
 <rect class="dir" x="800" y="180" width="360" height="540" rx="8"/>
-<text class="h" x="980" y="205" text-anchor="middle">Outras dirs comuns</text>
-<text class="c" x="820" y="232">  \Windows               (subsystem CSRSS)</text>
+<text class="h" x="980" y="205" text-anchor="middle">Other common dirs</text>
+<text class="c" x="820" y="232">  \Windows               (CSRSS subsystem)</text>
 <text class="c" x="820" y="250">  \RPC Control           (RPC ALPC ports)</text>
 <text class="c" x="820" y="268">  \UMDFCommunicationPorts</text>
 <text class="c" x="820" y="286">  \KnownDlls / KnownDlls32</text>
-<text class="c" x="820" y="304">  \ObjectTypes           (dirs de tipos)</text>
-<text class="c" x="820" y="322">  \FileSystem            (drivers FS)</text>
+<text class="c" x="820" y="304">  \ObjectTypes           (type dirs)</text>
+<text class="c" x="820" y="322">  \FileSystem            (FS drivers)</text>
 <text class="c" x="820" y="340">  \Callback              (callback objects)</text>
 <text class="c" x="820" y="358">  \NLS                   (locale tables)</text>
 <text class="c" x="820" y="386">  Ferramentas:</text>
 <text class="c" x="820" y="404">    Sysinternals WinObj.exe</text>
 <text class="c" x="820" y="422">    PowerShell module NtObjectManager (Forshaw)</text>
 <text class="c" x="820" y="440">    !object \   (WinDbg)</text>
-<text class="cap" x="820" y="480">  Squatting de BNO: criar objeto antes</text>
-<text class="cap" x="820" y="498">  do app legítimo (DoS / data injection).</text>
-<text class="cap" x="820" y="526">  Per-session BNO mitiga via</text>
-<text class="cap" x="820" y="544">  isolamento de sessão.</text>
+<text class="cap" x="820" y="480">  BNO squatting: create object before</text>
+<text class="cap" x="820" y="498">  the legitimate app (DoS / data injection).</text>
+<text class="cap" x="820" y="526">  Per-session BNO mitigates via</text>
+<text class="cap" x="820" y="544">  session isolation.</text>
 </svg>

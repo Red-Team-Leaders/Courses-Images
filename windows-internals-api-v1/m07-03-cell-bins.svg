@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600">
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.bin{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.alloc{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.free{fill:#3a1f1f;stroke:#ff7b72;stroke-width:1.5}</style></defs>
 <rect width="1200" height="600" fill="#0d1117"/>
-<text class="t" x="600" y="38" text-anchor="middle">HBIN → Cells — alocador interno do hive</text>
+<text class="t" x="600" y="38" text-anchor="middle">HBIN → Cells — internal hive allocator</text>
 
 <rect class="bin" x="40" y="80" width="1120" height="180" rx="8"/>
-<text class="h" x="60" y="105">HBIN (4KB típico, alinhamento)</text>
+<text class="h" x="60" y="105">HBIN (typically 4KB, aligned)</text>
 <text class="c" x="60" y="128">  +0x00 Signature ("hbin" = 0x6E696268)</text>
 <text class="c" x="60" y="146">  +0x04 FileOffset</text>
 <text class="c" x="60" y="164">  +0x08 Size</text>
 <text class="c" x="60" y="182">  +0x14 LastWriteTime</text>
 <text class="c" x="60" y="200">  +0x20 (cells)</text>
-<text class="cap" x="60" y="240">  Cells: cada cell começa com SizeFlag : LONG (positivo=free, negativo=allocated). |size| = bytes da cell incluindo header.</text>
+<text class="cap" x="60" y="240">  Cells: cada cell começa com SizeFlag : LONG (positivo=free, negativo=allocated). |size| = bytes da cell including header.</text>
 
 <rect class="alloc" x="40" y="280" width="180" height="80" rx="6"/><text class="c" x="130" y="305" text-anchor="middle">cell alloc (-32)</text><text class="c" x="130" y="325" text-anchor="middle">payload (28 bytes)</text><text class="c" x="130" y="345" text-anchor="middle">align ao 8</text>
 <rect class="alloc" x="240" y="280" width="180" height="80" rx="6"/><text class="c" x="330" y="305" text-anchor="middle">cell alloc (-64)</text><text class="c" x="330" y="325" text-anchor="middle">CM_KEY_NODE</text>
@@ -19,13 +19,13 @@
 <rect class="alloc" x="820" y="280" width="120" height="80" rx="6"/><text class="c" x="880" y="305" text-anchor="middle">cell alloc (-32)</text><text class="c" x="880" y="325" text-anchor="middle">sk</text>
 <rect class="free" x="960" y="280" width="200" height="80" rx="6"/><text class="c" x="1060" y="305" text-anchor="middle">free (+200)</text><text class="c" x="1060" y="325" text-anchor="middle">tail of bin</text>
 
-<text class="cap" x="600" y="395" text-anchor="middle">HCELL_INDEX = ULONG.  bit 31 = StorageType (0=Stable, 1=Volatile).  bits 30..0 = índice no Map (cell map directory).</text>
+<text class="cap" x="600" y="395" text-anchor="middle">HCELL_INDEX = ULONG. bit 31 = StorageType (0=Stable, 1=Volatile). bits 30..0 = index in Map (cell map directory).</text>
 
 <rect fill="#161b22" stroke="#30363d" x="40" y="420" width="1120" height="160" rx="8"/>
 <text class="h" x="600" y="445" text-anchor="middle">Recovery (LOG1/LOG2)</text>
-<text class="c" x="60" y="472">  Em writes, CM atualiza o hive primário em RAM, pega "dirty vector" (bitmap de páginas modificadas)</text>
-<text class="c" x="60" y="490">  Lazy flush a cada ~5s (CmpLazyFlushWorker) → escreve em .LOG1 / .LOG2 alternados (double-buffer).</text>
-<text class="c" x="60" y="508">  Em reboot pós-crash: CmpLogIO replay garante consistência (similar a journaling).</text>
-<text class="c" x="60" y="526">  Hive header tem Sequence1 e Sequence2; se diferentes → estava em meio a write → precisa replay.</text>
-<text class="cap" x="60" y="558">  Forensics offline: combinar primary + .LOG1/.LOG2 com regf parsers (Eric Zimmerman RegistryExplorer; Jamie Levy Volatility).</text>
+<text class="c" x="60" y="472">  On writes, CM updates the primary hive in RAM, takes "dirty vector" (bitmap of modified pages)</text>
+<text class="c" x="60" y="490">  Lazy flush every ~5s (CmpLazyFlushWorker) → writes to .LOG1 / .LOG2 alternately (dorble-buffer).</text>
+<text class="c" x="60" y="508">  On post-crash reboot: CmpLogIO replay ensures consistency (similar to jorrnaling).</text>
+<text class="c" x="60" y="526">  Hive header has Sequence1 and Sequence2; if different → was mid-write → needs replay.</text>
+<text class="cap" x="60" y="558">  Offline forensics: combine primary + .LOG1/.LOG2 with regf parsers (Eric Zimmerman RegistryExplorer; Jamie Levy Volatility).</text>
 </svg>

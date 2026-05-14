@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="1200" height="850">
 <defs><style>.t{font:700 24px "Segoe UI",sans-serif;fill:#e6edf3}.h{font:600 14px "Segoe UI",sans-serif;fill:#e6edf3}.c{font:12px Consolas,monospace;fill:#e6edf3}.cap{font:italic 12px "Segoe UI",sans-serif;fill:#8b949e}.dos{fill:#3a1f3a;stroke:#d2a8ff;stroke-width:1.5}.nt{fill:#1f3a5f;stroke:#58a6ff;stroke-width:1.5}.sec{fill:#1f3a2a;stroke:#7ee787;stroke-width:1.5}.dat{fill:#3a2f1f;stroke:#f0883e;stroke-width:1.5}</style></defs>
 <rect width="1200" height="850" fill="#0d1117"/>
-<text class="t" x="600" y="38" text-anchor="middle">PE/COFF — anatomia de um PE32+ (x64)</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Layout em disco (file alignment) ≠ layout em memória (section alignment); loader mapeia via CreateSection</text>
+<text class="t" x="600" y="38" text-anchor="middle">PE/COFF — anatomy of a PE32+ (x64)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Layort on disk (file alignment) ≠ layort in memory (section alignment); loader maps via CreateSection</text>
 
 <rect class="dos" x="40" y="90" width="1120" height="80" rx="8"/>
 <text class="h" x="60" y="115">IMAGE_DOS_HEADER (64 bytes)</text>
 <text class="c" x="60" y="138">  e_magic = 'MZ' (0x5A4D)   |   e_lfanew → offset to NT headers</text>
-<text class="c" x="60" y="158">  Stub MS-DOS opcional ("This program cannot be run in DOS mode")</text>
+<text class="c" x="60" y="158">  Stub MS-DOS optional ("This program cannot be run in DOS mode")</text>
 
 <rect class="nt" x="40" y="180" width="1120" height="160" rx="8"/>
 <text class="h" x="60" y="205">IMAGE_NT_HEADERS64</text>
@@ -19,10 +19,10 @@
 <text class="c" x="60" y="318">  OptionalHeader : IMAGE_OPTIONAL_HEADER64</text>
 
 <rect class="nt" x="40" y="350" width="540" height="200" rx="8"/>
-<text class="h" x="310" y="375" text-anchor="middle">IMAGE_OPTIONAL_HEADER64 (parte 1)</text>
+<text class="h" x="310" y="375" text-anchor="middle">IMAGE_OPTIONAL_HEADER64 (part 1)</text>
 <text class="c" x="60" y="402">  Magic = 0x20B (PE32+)</text>
-<text class="c" x="60" y="420">  AddressOfEntryPoint  (RVA do entry point)</text>
-<text class="c" x="60" y="438">  ImageBase             (preferido — relocs se diferente)</text>
+<text class="c" x="60" y="420">  AddressOfEntryPoint  (RVA of entry point)</text>
+<text class="c" x="60" y="438">  ImageBase             (preferred — relocs if different)</text>
 <text class="c" x="60" y="456">  SectionAlignment      (0x1000 default)</text>
 <text class="c" x="60" y="474">  FileAlignment         (0x200 default)</text>
 <text class="c" x="60" y="492">  SizeOfImage / SizeOfHeaders</text>
@@ -45,12 +45,12 @@
 <text class="c" x="60" y="612">  Name[8], VirtualSize, VirtualAddress (RVA), SizeOfRawData,</text>
 <text class="c" x="60" y="630">  PointerToRawData, PointerToRelocations, NumberOfRelocations,</text>
 <text class="c" x="60" y="648">  Characteristics: IMAGE_SCN_CNT_CODE, MEM_EXECUTE, MEM_READ, MEM_WRITE, …</text>
-<text class="cap" x="60" y="678">  Convenções: .text (code, RX), .rdata (read-only data, R), .data (RW),</text>
-<text class="cap" x="60" y="696">  .bss (uninitialized), .pdata (RUNTIME_FUNCTION), .reloc, .rsrc, .tls, .CRT, .didat (delay imports)</text>
+<text class="cap" x="60" y="678">  Conventions: .text (code, RX), .rdata (read-only data, R), .data (RW),</text>
+<text class="cap" x="60" y="696">  .bss (uninitialized), .pdata (RUNTIME_FUNCTION), .reloc, .rsrc, .tls, .CRT, .didat (dity imports)</text>
 
 <rect class="dat" x="40" y="740" width="1120" height="100" rx="8"/>
-<text class="h" x="60" y="765">Em memória vs disco</text>
+<text class="h" x="60" y="765">In memory vs disk</text>
 <text class="c" x="60" y="788">  PointerToRawData (file)  ≠  VirtualAddress (memory).</text>
-<text class="c" x="60" y="806">  Use RvaToSection helper, ou PE-bear / CFF Explorer / dumpbin / link /dump.</text>
-<text class="c" x="60" y="824">  Manualmente: percorra section headers, encontre que [VirtualAddress, +VirtualSize] cobre RVA, traduza.</text>
+<text class="c" x="60" y="806">  Use RvaToSection helper, or PE-bear / CFF Explorer / dumpbin / link /dump.</text>
+<text class="c" x="60" y="824">  Manually: walk section headers, find one whose [VirtualAddress, +VirtualSize] covers RVA, translate.</text>
 </svg>

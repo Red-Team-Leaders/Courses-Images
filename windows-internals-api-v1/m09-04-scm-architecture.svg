@@ -5,16 +5,16 @@
 
 <rect class="scm" x="40" y="80" width="540" height="280" rx="8"/>
 <text class="h" x="310" y="105" text-anchor="middle">services.exe — SCM</text>
-<text class="c" x="60" y="132">  Lança em sessão 0, SYSTEM.</text>
-<text class="c" x="60" y="150">  Lê HKLM\SYSTEM\CurrentControlSet\Services\* na boot.</text>
-<text class="c" x="60" y="168">  Para cada Service tipo Auto/Boot:</text>
-<text class="c" x="60" y="186">    cria processo (CreateProcessAsUserW), sets up control pipe.</text>
-<text class="c" x="60" y="204">  Comunica via RPC \PIPE\svcctl:</text>
+<text class="c" x="60" y="132">  Launches in session 0, as SYSTEM.</text>
+<text class="c" x="60" y="150">  Reads HKLM\SYSTEM\CurrentControlSet\Services\* at boot.</text>
+<text class="c" x="60" y="168">  For each Auto/Boot service:</text>
+<text class="c" x="60" y="186">    creates process (CreateProcessAsUserW), sets up control pipe.</text>
+<text class="c" x="60" y="204">  Communicates via RPC \PIPE\svcctl:</text>
 <text class="c" x="60" y="222">    SCManager handle ↔ services.exe</text>
 <text class="c" x="60" y="240">    StartService, ControlService (STOP/PAUSE/CONTINUE/INTERROGATE)</text>
 <text class="c" x="60" y="258">    QueryServiceStatusEx</text>
 <text class="cap" x="60" y="298">  RPC endpoint: ncacn_np:[\PIPE\svcctl]</text>
-<text class="cap" x="60" y="316">  ACLs: SCM tem DACL controlando quem pode criar/iniciar serviços.</text>
+<text class="cap" x="60" y="316">  ACLs: SCM has DACL controlling who can create/start services.</text>
 <text class="cap" x="60" y="338">  sc.exe sdshow scmanager / sdset</text>
 
 <rect class="svc" x="620" y="80" width="540" height="280" rx="8"/>
@@ -22,27 +22,27 @@
 <text class="c" x="640" y="132">  int main() {</text>
 <text class="c" x="640" y="150">    SERVICE_TABLE_ENTRY t[] = {</text>
 <text class="c" x="640" y="168">      { L"MyService", ServiceMain }, {0,0} };</text>
-<text class="c" x="640" y="186">    StartServiceCtrlDispatcher(t);  // bloqueia</text>
+<text class="c" x="640" y="186">    StartServiceCtrlDispatcher(t);  // blocks</text>
 <text class="c" x="640" y="204">  }</text>
 <text class="c" x="640" y="232">  void ServiceMain(DWORD argc, LPWSTR* argv) {</text>
 <text class="c" x="640" y="250">    g_handle = RegisterServiceCtrlHandlerEx(name, Handler, ctx);</text>
 <text class="c" x="640" y="268">    SetServiceStatus(g_handle, SERVICE_RUNNING ...);</text>
-<text class="c" x="640" y="286">    // ... lógica do serviço</text>
+<text class="c" x="640" y="286">    // ... service logic</text>
 <text class="c" x="640" y="304">  }</text>
-<text class="cap" x="640" y="335">  Handler recebe SERVICE_CONTROL_STOP, SHUTDOWN, etc.</text>
+<text class="cap" x="640" y="335">  Handler receives SERVICE_CONTROL_STOP, SHUTDOWN, etc.</text>
 
 <rect class="sh" x="40" y="380" width="1120" height="300" rx="8"/>
-<text class="h" x="600" y="405" text-anchor="middle">svchost.exe — agrupamento de serviços</text>
-<text class="c" x="60" y="432">  HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Svchost\* lista grupos:</text>
+<text class="h" x="600" y="405" text-anchor="middle">svchost.exe — service grorping</text>
+<text class="c" x="60" y="432">  HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Svchost\* lists grorps:</text>
 <text class="c" x="60" y="450">    netsvcs, LocalService, LocalSystemNetworkRestricted, LocalServiceAndNoImpersonation, …</text>
-<text class="c" x="60" y="468">  Cada grupo gera um svchost.exe -k &lt;group&gt;.</text>
-<text class="c" x="60" y="486">  Service implementado como DLL (ServiceDll em Parameters).</text>
-<text class="c" x="60" y="504">  ServiceMain é exportada pela DLL e chamada pelo svchost.</text>
-<text class="c" x="60" y="532">  Win10 1703+: Service Splitting — em sistemas com ≥3.5GB, cada serviço fica em svchost dedicado</text>
-<text class="c" x="60" y="550">  (mais isolation, mais memória).</text>
+<text class="c" x="60" y="468">  Each grupo gera um svchost.exe -k &lt;grorp&gt;.</text>
+<text class="c" x="60" y="486">  Service implemented as DLL (ServiceDll under Parameters).</text>
+<text class="c" x="60" y="504">  ServiceMain is exported by the DLL and called by svchost.</text>
+<text class="c" x="60" y="532">  Win10 1703+: Service Splitting — on systems with ≥3.5GB, each service runs in its own svchost</text>
+<text class="c" x="60" y="550">  (more isolation, more memory).</text>
 <text class="cap" x="60" y="582">  Triggered services: SERVICE_TRIGGER_INFO via ChangeServiceConfig2.</text>
 <text class="cap" x="60" y="600">  Triggers: domain join, network change, ETW provider event, device interface arrival, custom system state.</text>
 <text class="cap" x="60" y="630">  Service hardening: PerService SID, Restricted SID, Privilege Reduction, Mandatory IL.</text>
 <text class="cap" x="60" y="648">  CLI: sc.exe sidtype, sc privs, sc privs MyService SeTcbPrivilege/SeBackupPrivilege.</text>
-<text class="cap" x="60" y="675">  Ferramentas: services.msc, sc, PowerShell Get-Service, Sysinternals PsService, Process Explorer.</text>
+<text class="cap" x="60" y="675">  Tools: services.msc, sc, PowerShell Get-Service, Sysinternals PsService, Process Explorer.</text>
 </svg>

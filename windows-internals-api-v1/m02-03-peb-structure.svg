@@ -12,7 +12,7 @@
 </style></defs>
 <rect width="1200" height="800" fill="#0d1117"/>
 <text class="title" x="600" y="38" text-anchor="middle">_PEB — Process Environment Block (x64)</text>
-<text class="cap" x="600" y="60" text-anchor="middle">Endereço acessível em user mode via gs:[0x60] (PEB ptr no TEB) ou via NtQueryInformationProcess(ProcessBasicInformation)</text>
+<text class="cap" x="600" y="60" text-anchor="middle">Accessible from user-mode via gs:[0x60] (PEB ptr in TEB) or NtQueryInformationProcess(ProcessBasicInformation)</text>
 
 <rect class="peb" x="40" y="90" width="560" height="680" rx="8"/>
 <text class="h2" x="320" y="115" text-anchor="middle">_PEB</text>
@@ -22,34 +22,34 @@
 <text class="off" x="60" y="196">  +0x003  BitField : UCHAR (ImageUsesLargePages,</text>
 <text class="off" x="60" y="214">         IsProtectedProcess, IsLegacyProcess, IsImageDynamicallyRelocated…)</text>
 <text class="off" x="60" y="232">  +0x008  Mutant : HANDLE</text>
-<text class="warn" x="60" y="250">  +0x010  ImageBaseAddress : PVOID  ← módulo principal (EXE)</text>
-<text class="warn" x="60" y="268">  +0x018  Ldr : _PEB_LDR_DATA *     ← lista de DLLs carregadas</text>
+<text class="warn" x="60" y="250">  +0x010  ImageBaseAddress : PVOID  ← module principal (EXE)</text>
+<text class="warn" x="60" y="268">  +0x018  Ldr : _PEB_LDR_DATA *     ← list de DLLs loaddas</text>
 <text class="warn" x="60" y="286">  +0x020  ProcessParameters : _RTL_USER_PROCESS_PARAMETERS *</text>
 <text class="off" x="60" y="304">         (CommandLine, ImagePathName, EnvironmentBlock,</text>
-<text class="off" x="60" y="322">          StandardInput/Output/Error, CurrentDirectory, …)</text>
+<text class="off" x="60" y="322">          StandardInput/Ortput/Error, CurrentDirectory, …)</text>
 <text class="off" x="60" y="340">  +0x028  SubSystemData : PVOID</text>
 <text class="off" x="60" y="358">  +0x030  ProcessHeap : PVOID  (default heap)</text>
 <text class="off" x="60" y="376">  +0x038  FastPebLock : _RTL_CRITICAL_SECTION *</text>
 <text class="off" x="60" y="394">  +0x058  IFEOKey : PVOID  (Image File Execution Options)</text>
-<text class="off" x="60" y="412">  +0x068  KernelCallbackTable : PVOID  ← tabela usada por win32k</text>
-<text class="warn" x="60" y="430">         (alvo de hijack: KernelCallbackTable hijack para code exec via msg)</text>
+<text class="off" x="60" y="412">  +0x068  KernelCallbackTable : PVOID  ← table used by win32k</text>
+<text class="warn" x="60" y="430">         (hijack target: KernelCallbackTable hijack for code exec via msg)</text>
 <text class="off" x="60" y="448">  +0x070  NtGlobalFlag : ULONG  (FLG_HEAP_*, debug heap)</text>
 <text class="off" x="60" y="466">  +0x080  HeapSegmentReserve / Commit : SIZE_T</text>
 <text class="off" x="60" y="484">  +0x0A0  NumberOfHeaps : ULONG / MaximumNumberOfHeaps</text>
 <text class="off" x="60" y="502">  +0x0A8  ProcessHeaps : PVOID *  (array)</text>
-<text class="warn" x="60" y="520">  +0x0B8  ApiSetMap : _API_SET_NAMESPACE *  ← schema atual (api-ms-win-*)</text>
+<text class="warn" x="60" y="520">  +0x0B8  ApiSetMap : _API_SET_NAMESPACE *  ← current schema (api-ms-win-*)</text>
 <text class="off" x="60" y="538">  +0x0C8  TlsExpansionBitmap, TlsExpansionBitmapBits</text>
 <text class="off" x="60" y="556">  +0x0D8  ReadOnlySharedMemoryBase</text>
 <text class="off" x="60" y="574">  +0x0E0  HotpatchInformation</text>
 <text class="off" x="60" y="592">  +0x108  CSDVersion : UNICODE_STRING (Service Pack)</text>
 <text class="off" x="60" y="610">  +0x120  ActivationContextData (SxS)</text>
 <text class="off" x="60" y="628">  +0x148  GdiSharedHandleTable</text>
-<text class="warn" x="60" y="646">  +0x180  pImageHeaderHash  ← usada por mitigations</text>
+<text class="warn" x="60" y="646">  +0x180  pImageHeaderHash  ← used by mitigations</text>
 <text class="off" x="60" y="664">  +0x1A8  TracingFlags</text>
 <text class="off" x="60" y="682">  +0x1F0  WaitOnAddressHashTable</text>
 <text class="off" x="60" y="700">  +0x368  TppWorkerpListLock / TppWorkerpList</text>
-<text class="cap" x="60" y="745">campos críticos para anti-debug, AV e malware analysis estão</text>
-<text class="cap" x="60" y="763">marcados em vermelho/amarelo</text>
+<text class="cap" x="60" y="745">fields critical for anti-debug, AV and malware analysis are</text>
+<text class="cap" x="60" y="763">marked in red/yellow</text>
 
 <rect class="ldr" x="620" y="90" width="540" height="320" rx="8"/>
 <text class="h2" x="890" y="115" text-anchor="middle">_PEB_LDR_DATA  (PEB.Ldr)</text>
@@ -59,25 +59,25 @@
 <text class="off" x="640" y="196">  +0x020  InMemoryOrderModuleList : LIST_ENTRY</text>
 <text class="off" x="640" y="214">  +0x030  InInitializationOrderModuleList : LIST_ENTRY</text>
 <text class="off" x="640" y="232">  +0x040  EntryInProgress : PVOID</text>
-<text class="cap" x="640" y="265">três listas duplamente ligadas das DLLs carregadas;</text>
-<text class="cap" x="640" y="283">técnica clássica de "DLL hiding" remove de uma das listas.</text>
-<text class="off" x="640" y="320">  Cada nó é _LDR_DATA_TABLE_ENTRY:</text>
+<text class="cap" x="640" y="265">three dorbly-linked lists of loaded DLLs;</text>
+<text class="cap" x="640" y="283">classic "DLL hiding" technique removes from one of the lists.</text>
+<text class="off" x="640" y="320">  Each node is _LDR_DATA_TABLE_ENTRY:</text>
 <text class="off" x="640" y="338">    DllBase, EntryPoint, SizeOfImage,</text>
 <text class="off" x="640" y="356">    FullDllName : UNICODE_STRING,</text>
 <text class="off" x="640" y="374">    BaseDllName : UNICODE_STRING,</text>
-<text class="off" x="640" y="392">    LoadCount, Flags, TimeDateStamp.</text>
+<text class="off" x="640" y="392">    LoadCornt, Flags, TimeDateStamp.</text>
 
 <rect class="box" x="620" y="430" width="540" height="340" rx="8"/>
-<text class="h2" x="890" y="455" text-anchor="middle">Como ler PEB do próprio processo</text>
-<text class="code" x="640" y="485">  // x64: TEB em GS:[0], PEB em TEB+0x60</text>
+<text class="h2" x="890" y="455" text-anchor="middle">How to read yorr own PEB</text>
+<text class="code" x="640" y="485">  // x64: TEB at GS:[0], PEB at TEB+0x60</text>
 <text class="code" x="640" y="505">  PPEB peb = (PPEB)__readgsqword(0x60);</text>
 <text class="code" x="640" y="525">  printf("BeingDebugged = %d\n", peb-&gt;BeingDebugged);</text>
-<text class="code" x="640" y="555">  // alternativa portável:</text>
+<text class="code" x="640" y="555">  // portable alternative:</text>
 <text class="code" x="640" y="575">  PROCESS_BASIC_INFORMATION pbi;</text>
 <text class="code" x="640" y="595">  NtQueryInformationProcess(GetCurrentProcess(),</text>
 <text class="code" x="640" y="615">    ProcessBasicInformation, &amp;pbi, sizeof(pbi), 0);</text>
 <text class="code" x="640" y="635">  PPEB peb = pbi.PebBaseAddress;</text>
-<text class="code" x="640" y="665">  // PEB de processo remoto:</text>
+<text class="code" x="640" y="665">  // PEB of remote process:</text>
 <text class="code" x="640" y="685">  ReadProcessMemory(hProc, peb, &amp;localPeb, sizeof(PEB), &amp;n);</text>
-<text class="cap" x="640" y="730">Para WoW64 use NtQueryInformationProcess(ProcessWow64Information).</text>
+<text class="cap" x="640" y="730">For WoW64 use NtQueryInformationProcess(ProcessWow64Information).</text>
 </svg>

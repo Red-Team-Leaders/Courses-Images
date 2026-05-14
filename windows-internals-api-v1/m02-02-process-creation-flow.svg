@@ -12,61 +12,61 @@
 </style>
 <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
 <rect width="1200" height="900" fill="#0d1117"/>
-<text class="title" x="600" y="38" text-anchor="middle">CreateProcess — caminho completo até EPROCESS pronto</text>
-<text class="cap" x="600" y="60" text-anchor="middle">User → kernel32 → ntdll → KiSystemCall64 → PspAllocateProcess → PspInsertProcess → notify routines</text>
+<text class="title" x="600" y="38" text-anchor="middle">CreateProcess — full path until EPROCESS is ready</text>
+<text class="cap" x="600" y="60" text-anchor="middle">User → kernel32 → ntdll → KiSystemCall64 → PspAllocateProcess → PspInsertProcess → notify rortines</text>
 
 <rect class="user" x="40" y="90" width="1120" height="100" rx="6"/>
 <text class="h2" x="60" y="115">USER MODE — kernel32.dll</text>
 <text class="code" x="60" y="138">  CreateProcessW(NULL, L"C:\\Windows\\System32\\notepad.exe", NULL, NULL, FALSE, 0, NULL, NULL, &amp;si, &amp;pi)</text>
-<text class="code" x="60" y="158">    ↓ kernel32!CreateProcessInternalW   →   monta RTL_USER_PROCESS_PARAMETERS, abre o EXE,</text>
-<text class="code" x="60" y="178">    cria seção (NtCreateSection IMAGE), avalia STARTUPINFOEX/PROC_THREAD_ATTRIBUTE_LIST.</text>
+<text class="code" x="60" y="158">    ↓ kernel32!CreateProcessInternalW   →   builds RTL_USER_PROCESS_PARAMETERS, opens the EXE,</text>
+<text class="code" x="60" y="178">    creates section (NtCreateSection IMAGE), evaluates STARTUPINFOEX/PROC_THREAD_ATTRIBUTE_LIST.</text>
 
 <rect class="ntdll" x="40" y="200" width="1120" height="100" rx="6"/>
 <text class="h2" x="60" y="225">USER MODE — ntdll.dll (Native API)</text>
 <text class="code" x="60" y="248">  ntdll!NtCreateUserProcess(&amp;hProcess, &amp;hThread, ProcAccess, ThreadAccess, ObjAttrProc, ObjAttrThread,</text>
 <text class="code" x="60" y="268">                            ProcessFlags, ThreadFlags, ProcessParameters, &amp;CreateInfo, &amp;AttributeList);</text>
-<text class="code" x="60" y="288">    ↓ syscall  (SSN ≈ 0x1B7 em Win11 23H2)  → KiSystemCall64</text>
+<text class="code" x="60" y="288">    ↓ syscall  (SSN ≈ 0x1B7 in Win11 23H2)  → KiSystemCall64</text>
 
 <rect class="krn" x="40" y="310" width="1120" height="100" rx="6"/>
 <text class="h2" x="60" y="335">KERNEL — nt!NtCreateUserProcess (PspCreateUserProcessFromObject)</text>
-<text class="code" x="60" y="358">  valida flags, cria objetos: Process Handle, Thread Handle.</text>
-<text class="code" x="60" y="378">  PspBuildCreateProcessContext  →  carrega seção do EXE, identifica Subsystem,</text>
-<text class="code" x="60" y="398">  PspAllocateProcess (objeto EPROCESS) + PspInsertProcess (entra em ActiveProcessLinks).</text>
+<text class="code" x="60" y="358">  validates flags, creates objects: Process Handle, Thread Handle.</text>
+<text class="code" x="60" y="378">  PspBuildCreateProcessContext  →  loads EXE section, identifies Subsystem,</text>
+<text class="code" x="60" y="398">  PspAllocateProcess (EPROCESS object) + PspInsertProcess (joins ActiveProcessLinks).</text>
 
 <rect class="exec" x="40" y="420" width="540" height="240" rx="6"/>
 <text class="h2" x="310" y="445" text-anchor="middle">PspAllocateProcess</text>
 <text class="code" x="60" y="470">  ObCreateObject(PsProcessType)</text>
 <text class="code" x="60" y="490">  KeInitializeProcess (KPROCESS)</text>
 <text class="code" x="60" y="510">  MmCreateProcessAddressSpace</text>
-<text class="code" x="60" y="530">    aloca CR3, kernel mapping,</text>
-<text class="code" x="60" y="550">    self-map (page tables visíveis em VA fixo).</text>
+<text class="code" x="60" y="530">    allocates CR3, kernel mapping,</text>
+<text class="code" x="60" y="550">    self-map (page tables visible at fixed VA).</text>
 <text class="code" x="60" y="572">  MmInitializeProcessAddressSpace</text>
-<text class="code" x="60" y="592">    mapeia ntdll, ApiSet, PEB, TEB.</text>
+<text class="code" x="60" y="592">    maps ntdll, ApiSet, PEB, TEB.</text>
 <text class="code" x="60" y="614">  PspMapSystemDll, PspMapApiSetSchema</text>
-<text class="code" x="60" y="634">  SeAssignPrimaryToken  (token herdado / explícito)</text>
+<text class="code" x="60" y="634">  SeAssignPrimaryToken  (inherited / explicit token)</text>
 
 <rect class="exec" x="620" y="420" width="540" height="240" rx="6"/>
-<text class="h2" x="890" y="445" text-anchor="middle">PspInsertProcess + thread inicial</text>
-<text class="code" x="640" y="470">  insere em PspCidTable (PID/TID universal)</text>
-<text class="code" x="640" y="490">  insere em ActiveProcessLinks circular list</text>
-<text class="code" x="640" y="510">  PspCreateThread (thread inicial)</text>
+<text class="h2" x="890" y="445" text-anchor="middle">PspInsertProcess + initial thread</text>
+<text class="code" x="640" y="470">  inserts in PspCidTable (universal PID/TID)</text>
+<text class="code" x="640" y="490">  inserts in ActiveProcessLinks circular list</text>
+<text class="code" x="640" y="510">  PspCreateThread (initial thread)</text>
 <text class="code" x="640" y="530">    KiInitializeContextThread → trapframe</text>
-<text class="code" x="640" y="550">    aponta RIP para LdrInitializeThunk</text>
-<text class="code" x="640" y="572">    se não CREATE_SUSPENDED → KeReadyThread</text>
-<text class="code" x="640" y="594">  PspCallProcessNotifyRoutines (creation):</text>
-<text class="code" x="640" y="612">    drivers EDR/AV recebem callback aqui</text>
-<text class="code" x="640" y="630">    podem rejeitar (Win10+ Ex callback)</text>
+<text class="code" x="640" y="550">    points RIP to LdrInitializeThunk</text>
+<text class="code" x="640" y="572">    if not CREATE_SUSPENDED → KeReadyThread</text>
+<text class="code" x="640" y="594">  PspCallProcessNotifyRortines (creation):</text>
+<text class="code" x="640" y="612">    EDR/AV drivers get callback here</text>
+<text class="code" x="640" y="630">    can reject (Win10+ Ex callback)</text>
 
 <rect class="ntdll" x="40" y="680" width="1120" height="100" rx="6"/>
-<text class="h2" x="60" y="705">USER MODE — primeira execução do thread inicial</text>
-<text class="code" x="60" y="728">  thread acorda em ntdll!LdrInitializeThunk → LdrpInitialize → LdrpInitializeProcess</text>
-<text class="code" x="60" y="748">    carrega DLLs estáticas (IAT walk), executa TLS callbacks, executa DllMain de cada DLL,</text>
-<text class="code" x="60" y="768">    pula para AddressOfEntryPoint do EXE (mainCRTStartup → main).</text>
+<text class="h2" x="60" y="705">USER MODE — first execution of initial thread</text>
+<text class="code" x="60" y="728">  thread wakes at ntdll!LdrInitializeThunk → LdrpInitialize → LdrpInitializeProcess</text>
+<text class="code" x="60" y="748">    loads static DLLs (IAT walk), runs TLS callbacks, runs DllMain of each DLL,</text>
+<text class="code" x="60" y="768">    jumps to EXE's AddressOfEntryPoint (mainCRTStartup → main).</text>
 
 <rect class="user" x="40" y="790" width="1120" height="80" rx="6"/>
-<text class="h2" x="60" y="815">Pontos de instrumentação (observabilidade)</text>
-<text class="code" x="60" y="838">  Sysmon EventID 1, ETW Microsoft-Windows-Kernel-Process, PsSetCreateProcessNotifyRoutineEx (driver),</text>
+<text class="h2" x="60" y="815">Instrumentation points (observability)</text>
+<text class="code" x="60" y="838">  Sysmon EventID 1, ETW Microsoft-Windows-Kernel-Process, PsSetCreateProcessNotifyRortineEx (driver),</text>
 <text class="code" x="60" y="858">  WMI __InstanceCreationEvent Win32_Process, EDR ELAM hook, ProcMon/API Monitor.</text>
 
-<text class="cap" x="600" y="895" text-anchor="middle">CreateProcessAsUser/CreateProcessWithTokenW seguem mesmo path mas com SeAssignPrimaryToken explícito; CreateProcessAsUser exige SeAssignPrimaryTokenPrivilege.</text>
+<text class="cap" x="600" y="895" text-anchor="middle">CreateProcessAsUser/CreateProcessWithTokenW follow the same path but with explicit SeAssignPrimaryToken; CreateProcessAsUser requires SeAssignPrimaryTokenPrivilege.</text>
 </svg>

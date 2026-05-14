@@ -11,10 +11,10 @@
 <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/></marker></defs>
 <rect width="1200" height="750" fill="#0d1117"/>
 <text class="title" x="600" y="38" text-anchor="middle">Protected Processes (PP / PPL) — _PS_PROTECTION</text>
-<text class="cap" x="600" y="60" text-anchor="middle">EPROCESS.Protection (1 byte): Type (2 bits), Audit (1 bit), Signer (4 bits) — define quem pode abrir o handle</text>
+<text class="cap" x="600" y="60" text-anchor="middle">EPROCESS.Protection (1 byte): Type (2 bits), Audit (1 bit), Signer (4 bits) — defines who can open the handle</text>
 
 <rect class="lvl0" x="40" y="90" width="1120" height="80" rx="8"/>
-<text class="h2" x="60" y="115">Estrutura _PS_PROTECTION (1 byte)</text>
+<text class="h2" x="60" y="115">_PS_PROTECTION structure (1 byte)</text>
 <text class="code" x="60" y="140">  bits 0-1 : Type   — None=0, ProtectedLight=1, Protected=2</text>
 <text class="code" x="60" y="160">  bit 3    : Audit  — eventos extras de auditoria</text>
 <text class="code" x="600" y="140">  bits 4-7 : Signer — None=0, Authenticode=1, CodeGen=2, Antimalware=3,</text>
@@ -22,60 +22,60 @@
 
 <rect class="lvl0" x="40" y="190" width="360" height="540" rx="8"/>
 <text class="h2" x="220" y="215" text-anchor="middle">None  (Type=0)</text>
-<text class="code" x="60" y="245">  processo "normal":</text>
+<text class="code" x="60" y="245">  "normal" process:</text>
 <text class="code" x="60" y="265">    notepad.exe</text>
 <text class="code" x="60" y="285">    cmd.exe</text>
 <text class="code" x="60" y="305">    chrome.exe (renderer)</text>
-<text class="code" x="60" y="335">  qualquer processo com privilégios</text>
-<text class="code" x="60" y="355">  suficientes pode abrir handles com</text>
-<text class="code" x="60" y="375">  PROCESS_ALL_ACCESS, ler memória,</text>
-<text class="code" x="60" y="395">  injetar threads, debug, suspender.</text>
-<text class="code" x="60" y="425">  Privilégios típicos:</text>
+<text class="code" x="60" y="335">  any process with sufficient</text>
+<text class="code" x="60" y="355">  privileges can open handles with</text>
+<text class="code" x="60" y="375">  PROCESS_ALL_ACCESS, read memory,</text>
+<text class="code" x="60" y="395">  inject threads, debug, suspend.</text>
+<text class="code" x="60" y="425">  Typical privileges:</text>
 <text class="code" x="60" y="445">    SeDebugPrivilege  → bypass DACL</text>
-<text class="code" x="60" y="475">  Usado por: maioria das apps,</text>
-<text class="code" x="60" y="495">  drivers user-mode, services não</text>
-<text class="code" x="60" y="515">  privilegiados.</text>
+<text class="code" x="60" y="475">  Used by: most apps,</text>
+<text class="code" x="60" y="495">  user-mode drivers, services not</text>
+<text class="code" x="60" y="515">  privileged.</text>
 
 <rect class="lvl1" x="420" y="190" width="360" height="540" rx="8"/>
 <text class="h2" x="600" y="215" text-anchor="middle">Protected Light (PPL, Type=1)</text>
-<text class="code" x="440" y="245">  só pode ser aberto por processos</text>
-<text class="code" x="440" y="265">  PPL ou PP de SIGNER ≥ ao seu.</text>
-<text class="code" x="440" y="295">  Signers comuns:</text>
+<text class="code" x="440" y="245">  can only be opened by processes</text>
+<text class="code" x="440" y="265">  PPL or PP with SIGNER ≥ its own.</text>
+<text class="code" x="440" y="295">  Common signers:</text>
 <text class="code" x="440" y="315">    Antimalware — AV/EDR (ELAM)</text>
 <text class="code" x="440" y="335">    Lsa        — lsass.exe (RunAsPPL)</text>
-<text class="code" x="440" y="355">    Windows    — services críticos</text>
+<text class="code" x="440" y="355">    Windows    — critical services</text>
 <text class="code" x="440" y="375">    WinTcb     — csrss, smss</text>
 <text class="code" x="440" y="395">    WinSystem  — System (PID 4)</text>
 <text class="code" x="440" y="425">  PROCESS_QUERY_LIMITED_INFORMATION</text>
-<text class="code" x="440" y="445">  é o máximo permitido p/ não-PPL.</text>
-<text class="code" x="440" y="475">  SeDebugPrivilege NÃO bypassa.</text>
-<text class="code" x="440" y="505">  Habilitado via:</text>
+<text class="code" x="440" y="445">  is the max allowed for non-PPL.</text>
+<text class="code" x="440" y="475">  SeDebugPrivilege does NOT bypass.</text>
+<text class="code" x="440" y="505">  Enabled via:</text>
 <text class="code" x="440" y="525">    PROC_THREAD_ATTRIBUTE_PROTECTION_LEVEL</text>
-<text class="code" x="440" y="545">    + assinatura compatível.</text>
-<text class="code" x="440" y="585">  Para LSA: HKLM\SYSTEM\CCS\Control\</text>
+<text class="code" x="440" y="545">    + compatible signature.</text>
+<text class="code" x="440" y="585">  For LSA: HKLM\SYSTEM\CCS\Control\</text>
 <text class="code" x="440" y="605">    Lsa\RunAsPPL=1 (UEFI lock + reboot)</text>
-<text class="code" x="440" y="640">  Bypasses históricos: Mimikatz</text>
-<text class="code" x="440" y="660">  via mimidrv.sys (driver assinado)</text>
-<text class="code" x="440" y="680">  → CVE-2018-0952 e mitigations posteriores.</text>
+<text class="code" x="440" y="640">  Historical bypasses: Mimikatz</text>
+<text class="code" x="440" y="660">  via mimidrv.sys (signed driver)</text>
+<text class="code" x="440" y="680">  → CVE-2018-0952 and later mitigations.</text>
 
 <rect class="lvl2" x="800" y="190" width="360" height="540" rx="8"/>
 <text class="h2" x="980" y="215" text-anchor="middle">Protected (PP, Type=2)</text>
-<text class="code" x="820" y="245">  reservado a processos críticos</text>
-<text class="code" x="820" y="265">  do sistema. Originalmente DRM</text>
-<text class="code" x="820" y="285">  (audiodg para PMP) em Vista.</text>
-<text class="code" x="820" y="315">  Exemplos atuais:</text>
+<text class="code" x="820" y="245">  reserved for critical processes</text>
+<text class="code" x="820" y="265">  of the OS. Originally DRM</text>
+<text class="code" x="820" y="285">  (audiodg for PMP) in Vista.</text>
+<text class="code" x="820" y="315">  Current examples:</text>
 <text class="code" x="820" y="335">    audiodg.exe (PMP)</text>
 <text class="code" x="820" y="355">    System (PID 4) — WinSystem</text>
 <text class="code" x="820" y="375">    msmpeng.exe — Antimalware</text>
-<text class="code" x="820" y="395">  cliente sem mesmo nível NÃO pode</text>
-<text class="code" x="820" y="415">  obter handle algum, exceto</text>
+<text class="code" x="820" y="395">  client withort same level CANNOT</text>
+<text class="code" x="820" y="415">  get any handle, except</text>
 <text class="code" x="820" y="435">  PROCESS_QUERY_LIMITED_INFORMATION.</text>
-<text class="code" x="820" y="465">  Driver malicioso pode tocar</text>
-<text class="code" x="820" y="485">  EPROCESS direto (DKOM) e</text>
-<text class="code" x="820" y="505">  zerar o byte Protection.</text>
-<text class="code" x="820" y="535">  HVCI bloqueia drivers não-assinados,</text>
-<text class="code" x="820" y="555">  CG bloqueia ataques de código no kernel.</text>
-<text class="code" x="820" y="585">  Verificação:</text>
+<text class="code" x="820" y="465">  Maliciors driver can directly</text>
+<text class="code" x="820" y="485">  modify EPROCESS (DKOM) and</text>
+<text class="code" x="820" y="505">  zero the Protection byte.</text>
+<text class="code" x="820" y="535">  HVCI blocks unsigned drivers,</text>
+<text class="code" x="820" y="555">  CG blocks code attacks in kernel.</text>
+<text class="code" x="820" y="585">  Verifytion:</text>
 <text class="code" x="820" y="605">    NtQueryInformationProcess(</text>
 <text class="code" x="820" y="625">      ProcessProtectionInformation,</text>
 <text class="code" x="820" y="645">      &amp;PsProtection, sizeof(byte))</text>

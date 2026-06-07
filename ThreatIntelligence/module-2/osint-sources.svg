@@ -1,0 +1,305 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <!-- Background gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#151b23"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </radialGradient>
+    <!-- Center glow -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#58a6ff" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Node glows -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <!-- Connector line gradient templates -->
+    <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#e94560" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0f3460" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="lineGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#533483" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="lineGrad4" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#e6a817" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="lineGrad5" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#1a6b3c" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="lineGrad6" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#2d5016" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="700" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.04" stroke="#58a6ff" stroke-width="0.5">
+    <line x1="0" y1="100" x2="900" y2="100"/>
+    <line x1="0" y1="200" x2="900" y2="200"/>
+    <line x1="0" y1="300" x2="900" y2="300"/>
+    <line x1="0" y1="400" x2="900" y2="400"/>
+    <line x1="0" y1="500" x2="900" y2="500"/>
+    <line x1="0" y1="600" x2="900" y2="600"/>
+    <line x1="100" y1="0" x2="100" y2="700"/>
+    <line x1="200" y1="0" x2="200" y2="700"/>
+    <line x1="300" y1="0" x2="300" y2="700"/>
+    <line x1="400" y1="0" x2="400" y2="700"/>
+    <line x1="500" y1="0" x2="500" y2="700"/>
+    <line x1="600" y1="0" x2="600" y2="700"/>
+    <line x1="700" y1="0" x2="700" y2="700"/>
+    <line x1="800" y1="0" x2="800" y2="700"/>
+  </g>
+
+  <!-- Decorative orbit rings -->
+  <circle cx="450" cy="385" r="160" fill="none" stroke="#58a6ff" stroke-opacity="0.06" stroke-width="1" stroke-dasharray="4,8"/>
+  <circle cx="450" cy="385" r="220" fill="none" stroke="#58a6ff" stroke-opacity="0.04" stroke-width="1" stroke-dasharray="2,6"/>
+  <circle cx="450" cy="385" r="280" fill="none" stroke="#58a6ff" stroke-opacity="0.03" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="450" y="42" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="700" fill="#e6edf3" letter-spacing="1">OSINT Sources for Threat Intelligence</text>
+  <line x1="200" y1="55" x2="700" y2="55" stroke="#58a6ff" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="280" y1="58" x2="620" y2="58" stroke="#58a6ff" stroke-opacity="0.15" stroke-width="1"/>
+
+  <!-- Connection lines from center to nodes -->
+  <!-- Vendor Reports (top-right) -->
+  <line x1="450" y1="385" x2="700" y2="155" stroke="url(#lineGrad1)" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+  <!-- Government Sources (top-left) -->
+  <line x1="450" y1="385" x2="200" y2="155" stroke="url(#lineGrad2)" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+  <!-- Code Repositories (right) -->
+  <line x1="450" y1="385" x2="750" y2="385" stroke="url(#lineGrad3)" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+  <!-- Social Media (left) -->
+  <line x1="450" y1="385" x2="150" y2="385" stroke="url(#lineGrad4)" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+  <!-- Infrastructure Intel (bottom-right) -->
+  <line x1="450" y1="385" x2="700" y2="600" stroke="url(#lineGrad5)" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+  <!-- Threat Feeds (bottom-left) -->
+  <line x1="450" y1="385" x2="200" y2="600" stroke="url(#lineGrad6)" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+
+  <!-- Animated pulse dots on lines -->
+  <circle r="3" fill="#58a6ff" opacity="0.8">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M450,385 L700,155"/>
+  </circle>
+  <circle r="3" fill="#58a6ff" opacity="0.8">
+    <animateMotion dur="3.5s" repeatCount="indefinite" path="M450,385 L200,155"/>
+  </circle>
+  <circle r="3" fill="#58a6ff" opacity="0.8">
+    <animateMotion dur="2.8s" repeatCount="indefinite" path="M450,385 L750,385"/>
+  </circle>
+  <circle r="3" fill="#58a6ff" opacity="0.8">
+    <animateMotion dur="3.2s" repeatCount="indefinite" path="M450,385 L150,385"/>
+  </circle>
+  <circle r="3" fill="#58a6ff" opacity="0.8">
+    <animateMotion dur="3.3s" repeatCount="indefinite" path="M450,385 L700,600"/>
+  </circle>
+  <circle r="3" fill="#58a6ff" opacity="0.8">
+    <animateMotion dur="3.1s" repeatCount="indefinite" path="M450,385 L200,600"/>
+  </circle>
+
+  <!-- ============================================ -->
+  <!-- CENTER NODE: OSINT Collection -->
+  <!-- ============================================ -->
+  <g filter="url(#softGlow)">
+    <circle cx="450" cy="385" r="70" fill="#0d1117" stroke="#58a6ff" stroke-width="2.5"/>
+    <circle cx="450" cy="385" r="65" fill="none" stroke="#58a6ff" stroke-opacity="0.15" stroke-width="1"/>
+    <circle cx="450" cy="385" r="55" fill="url(#centerGlow)"/>
+  </g>
+  <!-- Eye/Search icon for OSINT -->
+  <g transform="translate(450,365)">
+    <!-- Magnifying glass -->
+    <circle cx="0" cy="-5" r="14" fill="none" stroke="#58a6ff" stroke-width="2.5" opacity="0.9"/>
+    <line x1="10" y1="5" x2="18" y2="13" stroke="#58a6ff" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+    <!-- Eye inside magnifier -->
+    <ellipse cx="0" cy="-5" rx="8" ry="5" fill="none" stroke="#58a6ff" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="0" cy="-5" r="2.5" fill="#58a6ff" opacity="0.8"/>
+  </g>
+  <text x="450" y="398" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" fill="#e6edf3" letter-spacing="0.5">OSINT</text>
+  <text x="450" y="414" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#8b949e">Collection</text>
+
+  <!-- ============================================ -->
+  <!-- NODE 1: Vendor Reports (top-right) #e94560 -->
+  <!-- ============================================ -->
+  <g transform="translate(700,155)" filter="url(#glow)">
+    <!-- Background card -->
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#0d1117" stroke="#e94560" stroke-width="2" opacity="0.95"/>
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#e94560" opacity="0.06"/>
+    <!-- Accent bar -->
+    <rect x="-95" y="-60" width="190" height="4" rx="2" fill="#e94560" opacity="0.7"/>
+    <!-- Document/Report icon -->
+    <g transform="translate(0,-32)">
+      <rect x="-10" y="-12" width="20" height="24" rx="2" fill="none" stroke="#e94560" stroke-width="1.8"/>
+      <line x1="-5" y1="-5" x2="5" y2="-5" stroke="#e94560" stroke-width="1.2" opacity="0.7"/>
+      <line x1="-5" y1="0" x2="5" y2="0" stroke="#e94560" stroke-width="1.2" opacity="0.7"/>
+      <line x1="-5" y1="5" x2="3" y2="5" stroke="#e94560" stroke-width="1.2" opacity="0.7"/>
+      <polygon points="4,-12 10,-12 10,-6" fill="#e94560" opacity="0.4"/>
+    </g>
+    <!-- Title -->
+    <text x="0" y="-2" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" fill="#e94560">Vendor Reports</text>
+    <!-- Sub-items -->
+    <text x="0" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Mandiant</text>
+    <text x="0" y="33" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">CrowdStrike</text>
+    <text x="0" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Recorded Future</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- NODE 2: Government Sources (top-left) #0f3460 -->
+  <!-- ============================================ -->
+  <g transform="translate(200,155)" filter="url(#glow)">
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#0d1117" stroke="#1a5a9e" stroke-width="2" opacity="0.95"/>
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#0f3460" opacity="0.1"/>
+    <rect x="-95" y="-60" width="190" height="4" rx="2" fill="#1a5a9e" opacity="0.7"/>
+    <!-- Shield icon -->
+    <g transform="translate(0,-32)">
+      <path d="M0,-14 L12,-8 L12,4 C12,10 0,16 0,16 C0,16 -12,10 -12,4 L-12,-8 Z" fill="none" stroke="#4a8fd4" stroke-width="1.8"/>
+      <path d="M0,-6 L0,8 M-5,1 L5,1" stroke="#4a8fd4" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <!-- Title -->
+    <text x="0" y="-2" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" fill="#4a8fd4">Government Sources</text>
+    <!-- Sub-items -->
+    <text x="0" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">CISA  |  CERT</text>
+    <text x="0" y="33" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">ENISA</text>
+    <text x="0" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">FBI Flash Alerts</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- NODE 3: Code Repositories (right) #533483 -->
+  <!-- ============================================ -->
+  <g transform="translate(750,385)" filter="url(#glow)">
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#0d1117" stroke="#7b52ab" stroke-width="2" opacity="0.95"/>
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#533483" opacity="0.08"/>
+    <rect x="-95" y="-60" width="190" height="4" rx="2" fill="#7b52ab" opacity="0.7"/>
+    <!-- Code branch icon -->
+    <g transform="translate(0,-32)">
+      <circle cx="-6" cy="-8" r="3" fill="none" stroke="#9b6fd4" stroke-width="1.5"/>
+      <circle cx="6" cy="-8" r="3" fill="none" stroke="#9b6fd4" stroke-width="1.5"/>
+      <circle cx="-6" cy="10" r="3" fill="none" stroke="#9b6fd4" stroke-width="1.5"/>
+      <line x1="-6" y1="-5" x2="-6" y2="7" stroke="#9b6fd4" stroke-width="1.5"/>
+      <path d="M6,-5 C6,2 -6,2 -6,7" fill="none" stroke="#9b6fd4" stroke-width="1.5"/>
+    </g>
+    <!-- Title -->
+    <text x="0" y="-2" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" fill="#9b6fd4">Code Repositories</text>
+    <!-- Sub-items -->
+    <text x="0" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">GitHub</text>
+    <text x="0" y="33" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">GitLab</text>
+    <text x="0" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Pastebin</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- NODE 4: Social Media (left) #e6a817 -->
+  <!-- ============================================ -->
+  <g transform="translate(150,385)" filter="url(#glow)">
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#0d1117" stroke="#e6a817" stroke-width="2" opacity="0.95"/>
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#e6a817" opacity="0.06"/>
+    <rect x="-95" y="-60" width="190" height="4" rx="2" fill="#e6a817" opacity="0.7"/>
+    <!-- Chat/Social icon -->
+    <g transform="translate(0,-32)">
+      <rect x="-12" y="-10" width="24" height="16" rx="4" fill="none" stroke="#e6a817" stroke-width="1.8"/>
+      <polygon points="-4,6 -8,12 0,6" fill="#e6a817" opacity="0.5"/>
+      <circle cx="-5" cy="-2" r="1.5" fill="#e6a817" opacity="0.6"/>
+      <circle cx="0" cy="-2" r="1.5" fill="#e6a817" opacity="0.6"/>
+      <circle cx="5" cy="-2" r="1.5" fill="#e6a817" opacity="0.6"/>
+    </g>
+    <!-- Title -->
+    <text x="0" y="-2" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" fill="#e6a817">Social Media</text>
+    <!-- Sub-items -->
+    <text x="0" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Twitter / X</text>
+    <text x="0" y="33" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Reddit</text>
+    <text x="0" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Telegram</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- NODE 5: Infrastructure Intel (bottom-right) #1a6b3c -->
+  <!-- ============================================ -->
+  <g transform="translate(700,600)" filter="url(#glow)">
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#0d1117" stroke="#2ea55e" stroke-width="2" opacity="0.95"/>
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#1a6b3c" opacity="0.08"/>
+    <rect x="-95" y="-60" width="190" height="4" rx="2" fill="#2ea55e" opacity="0.7"/>
+    <!-- Server/Network icon -->
+    <g transform="translate(0,-32)">
+      <rect x="-12" y="-12" width="24" height="8" rx="2" fill="none" stroke="#2ea55e" stroke-width="1.5"/>
+      <rect x="-12" y="0" width="24" height="8" rx="2" fill="none" stroke="#2ea55e" stroke-width="1.5"/>
+      <circle cx="7" cy="-8" r="1.5" fill="#2ea55e" opacity="0.6"/>
+      <circle cx="7" cy="4" r="1.5" fill="#2ea55e" opacity="0.6"/>
+      <line x1="-7" y1="-8" x2="2" y2="-8" stroke="#2ea55e" stroke-width="1.2" opacity="0.5"/>
+      <line x1="-7" y1="4" x2="2" y2="4" stroke="#2ea55e" stroke-width="1.2" opacity="0.5"/>
+    </g>
+    <!-- Title -->
+    <text x="0" y="-2" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" fill="#2ea55e">Infrastructure Intel</text>
+    <!-- Sub-items -->
+    <text x="0" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Shodan</text>
+    <text x="0" y="33" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Censys</text>
+    <text x="0" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">SecurityTrails</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- NODE 6: Threat Feeds (bottom-left) #2d5016 -->
+  <!-- ============================================ -->
+  <g transform="translate(200,600)" filter="url(#glow)">
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#0d1117" stroke="#4a8c28" stroke-width="2" opacity="0.95"/>
+    <rect x="-95" y="-60" width="190" height="120" rx="12" fill="#2d5016" opacity="0.08"/>
+    <rect x="-95" y="-60" width="190" height="4" rx="2" fill="#4a8c28" opacity="0.7"/>
+    <!-- RSS/Feed icon -->
+    <g transform="translate(0,-32)">
+      <path d="M-10,10 L-10,-6 C-10,-10 -6,-14 -2,-14 L10,-14" fill="none" stroke="#4a8c28" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M-10,2 L-10,-2 C-10,-6 -6,-8 -2,-8 L4,-8" fill="none" stroke="#4a8c28" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+      <circle cx="-10" cy="10" r="2.5" fill="#4a8c28" opacity="0.8"/>
+      <!-- Signal waves -->
+      <path d="M4,-2 C8,-2 8,4 4,4" fill="none" stroke="#4a8c28" stroke-width="1.2" opacity="0.5"/>
+      <path d="M6,-5 C12,-5 12,7 6,7" fill="none" stroke="#4a8c28" stroke-width="1.2" opacity="0.3"/>
+    </g>
+    <!-- Title -->
+    <text x="0" y="-2" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" fill="#4a8c28">Threat Feeds</text>
+    <!-- Sub-items -->
+    <text x="0" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">AlienVault OTX</text>
+    <text x="0" y="33" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">AbuseIPDB</text>
+    <text x="0" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">VirusTotal</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- Small decorative data points -->
+  <!-- ============================================ -->
+  <g opacity="0.15">
+    <circle cx="80" cy="80" r="2" fill="#58a6ff">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="820" cy="90" r="1.5" fill="#e94560">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="500" r="2" fill="#e6a817">
+      <animate attributeName="opacity" values="0.2;0.8;0.2" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="860" cy="480" r="1.5" fill="#9b6fd4">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="450" cy="680" r="2" fill="#2ea55e">
+      <animate attributeName="opacity" values="0.3;0.9;0.3" dur="4.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Bottom attribution line -->
+  <line x1="250" y1="690" x2="650" y2="690" stroke="#30363d" stroke-width="0.5"/>
+</svg>

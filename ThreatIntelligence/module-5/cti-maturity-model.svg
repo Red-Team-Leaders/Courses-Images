@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650">
+  <defs>
+    <filter id="dropShadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <filter id="glowWhite" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="step1Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a6b1e"/>
+      <stop offset="100%" stop-color="#2d5016"/>
+    </linearGradient>
+    <linearGradient id="step2Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#228b4a"/>
+      <stop offset="100%" stop-color="#1a6b3c"/>
+    </linearGradient>
+    <linearGradient id="step3Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0b820"/>
+      <stop offset="100%" stop-color="#e6a817"/>
+    </linearGradient>
+    <linearGradient id="step4Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6a42a8"/>
+      <stop offset="100%" stop-color="#533483"/>
+    </linearGradient>
+    <linearGradient id="step5Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f06070"/>
+      <stop offset="100%" stop-color="#e94560"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2d5016"/>
+      <stop offset="50%" stop-color="#e6a817"/>
+      <stop offset="100%" stop-color="#e94560"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="650" fill="url(#bgGrad)" rx="6"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="100" x2="900" y2="100"/>
+    <line x1="0" y1="200" x2="900" y2="200"/>
+    <line x1="0" y1="300" x2="900" y2="300"/>
+    <line x1="0" y1="400" x2="900" y2="400"/>
+    <line x1="0" y1="500" x2="900" y2="500"/>
+    <line x1="150" y1="0" x2="150" y2="650"/>
+    <line x1="300" y1="0" x2="300" y2="650"/>
+    <line x1="450" y1="0" x2="450" y2="650"/>
+    <line x1="600" y1="0" x2="600" y2="650"/>
+    <line x1="750" y1="0" x2="750" y2="650"/>
+  </g>
+
+  <!-- Title -->
+  <text x="450" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" filter="url(#glowWhite)">CTI Program Maturity Model</text>
+  <line x1="250" y1="62" x2="650" y2="62" stroke="url(#arrowGrad)" stroke-width="2" opacity="0.6"/>
+
+  <!-- Baseline floor -->
+  <line x1="60" y1="540" x2="860" y2="540" stroke="#30363d" stroke-width="2"/>
+
+  <!-- Step dimensions:
+       Each step: width=148, gap=12
+       Step heights: 80, 150, 230, 310, 390
+       x positions: 80, 240, 400, 560, 720
+       y = 540 - height
+  -->
+
+  <!-- Step 1: Ad Hoc -->
+  <g filter="url(#dropShadow)">
+    <rect x="80" y="460" width="148" height="80" rx="4" fill="url(#step1Grad)"/>
+    <rect x="80" y="460" width="148" height="80" rx="4" fill="none" stroke="#4a8a2a" stroke-width="1" opacity="0.5"/>
+  </g>
+  <!-- Level badge -->
+  <circle cx="154" cy="448" r="16" fill="#0d1117" stroke="#2d5016" stroke-width="2"/>
+  <text x="154" y="453" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" fill="#3a6b1e">1</text>
+  <!-- Step label -->
+  <text x="154" y="488" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Ad Hoc</text>
+  <text x="154" y="506" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#c0c8d0">No formal process,</text>
+  <text x="154" y="519" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#c0c8d0">reactive only</text>
+
+  <!-- Step 2: Reactive -->
+  <g filter="url(#dropShadow)">
+    <rect x="240" y="390" width="148" height="150" rx="4" fill="url(#step2Grad)"/>
+    <rect x="240" y="390" width="148" height="150" rx="4" fill="none" stroke="#2ca05a" stroke-width="1" opacity="0.5"/>
+  </g>
+  <circle cx="314" cy="378" r="16" fill="#0d1117" stroke="#1a6b3c" stroke-width="2"/>
+  <text x="314" y="383" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" fill="#228b4a">2</text>
+  <text x="314" y="418" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Reactive</text>
+  <text x="314" y="438" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#c0c8d0">Basic IOC feeds,</text>
+  <text x="314" y="451" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#c0c8d0">manual lookup</text>
+
+  <!-- Step 3: Defined -->
+  <g filter="url(#dropShadow)">
+    <rect x="400" y="310" width="148" height="230" rx="4" fill="url(#step3Grad)"/>
+    <rect x="400" y="310" width="148" height="230" rx="4" fill="none" stroke="#f0c030" stroke-width="1" opacity="0.5"/>
+  </g>
+  <circle cx="474" cy="298" r="16" fill="#0d1117" stroke="#e6a817" stroke-width="2"/>
+  <text x="474" y="303" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" fill="#f0b820">3</text>
+  <text x="474" y="338" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Defined</text>
+  <text x="474" y="358" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#1a1a1a">PIRs, structured</text>
+  <text x="474" y="371" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#1a1a1a">analysis, reporting</text>
+
+  <!-- Step 4: Managed -->
+  <g filter="url(#dropShadow)">
+    <rect x="560" y="230" width="148" height="310" rx="4" fill="url(#step4Grad)"/>
+    <rect x="560" y="230" width="148" height="310" rx="4" fill="none" stroke="#7a52c0" stroke-width="1" opacity="0.5"/>
+  </g>
+  <circle cx="634" cy="218" r="16" fill="#0d1117" stroke="#533483" stroke-width="2"/>
+  <text x="634" y="223" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" fill="#6a42a8">4</text>
+  <text x="634" y="258" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Managed</text>
+  <text x="634" y="278" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#c0c8d0">Automated collection,</text>
+  <text x="634" y="291" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#c0c8d0">SOC integrated</text>
+
+  <!-- Step 5: Optimized -->
+  <g filter="url(#dropShadow)">
+    <rect x="720" y="150" width="148" height="390" rx="4" fill="url(#step5Grad)"/>
+    <rect x="720" y="150" width="148" height="390" rx="4" fill="none" stroke="#f07080" stroke-width="1" opacity="0.5"/>
+  </g>
+  <circle cx="794" cy="138" r="16" fill="#0d1117" stroke="#e94560" stroke-width="2"/>
+  <text x="794" y="143" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold" fill="#f06070">5</text>
+  <text x="794" y="178" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Optimized</text>
+  <text x="794" y="198" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#ffffff" opacity="0.85">Predictive, strategic</text>
+  <text x="794" y="211" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#ffffff" opacity="0.85">value proven</text>
+
+  <!-- Connecting arrow along the base showing progression -->
+  <defs>
+    <marker id="arrowHead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e94560"/>
+    </marker>
+  </defs>
+  <line x1="100" y1="565" x2="840" y2="565" stroke="url(#arrowGrad)" stroke-width="3" marker-end="url(#arrowHead)" opacity="0.7"/>
+  <text x="100" y="585" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#6e7681">Low Maturity</text>
+  <text x="840" y="585" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#6e7681">High Maturity</text>
+
+  <!-- Star/sparkle on top of level 5 -->
+  <g transform="translate(794, 108)" opacity="0.8">
+    <polygon points="0,-10 3,-3 10,-3 5,2 7,10 0,5 -7,10 -5,2 -10,-3 -3,-3" fill="#e94560" opacity="0.6"/>
+  </g>
+
+  <!-- Footer -->
+  <text x="450" y="625" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#484f58">Progression requires investment in people, processes, and technology at each level</text>
+</svg>

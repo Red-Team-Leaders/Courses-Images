@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650">
+  <defs>
+    <!-- Subtle gradient for background -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <!-- Layer gradients -->
+    <linearGradient id="dataGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a6b1e"/>
+      <stop offset="100%" stop-color="#2d5016"/>
+    </linearGradient>
+    <linearGradient id="infoGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f8048"/>
+      <stop offset="100%" stop-color="#1a6b3c"/>
+    </linearGradient>
+    <linearGradient id="knowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0b830"/>
+      <stop offset="100%" stop-color="#e6a817"/>
+    </linearGradient>
+    <linearGradient id="intelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f05a73"/>
+      <stop offset="100%" stop-color="#e94560"/>
+    </linearGradient>
+    <!-- Glow filter for title -->
+    <filter id="titleGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Drop shadow for pyramid layers -->
+    <filter id="layerShadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <!-- Arrow marker -->
+    <marker id="arrowUp" markerWidth="10" markerHeight="7" refX="5" refY="0" orient="auto">
+      <polygon points="0,7 5,0 10,7" fill="#8b949e"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="650" fill="url(#bgGrad)" rx="8"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.03">
+    <line x1="0" y1="100" x2="900" y2="100" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="900" y2="200" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="300" x2="900" y2="300" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="900" y2="400" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="500" x2="900" y2="500" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="600" x2="900" y2="600" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="100" y1="0" x2="100" y2="650" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="200" y1="0" x2="200" y2="650" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="300" y1="0" x2="300" y2="650" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="400" y1="0" x2="400" y2="650" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="500" y1="0" x2="500" y2="650" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="600" y1="0" x2="600" y2="650" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="700" y1="0" x2="700" y2="650" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="800" y1="0" x2="800" y2="650" stroke="#ffffff" stroke-width="0.5"/>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="52" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#e6edf3" filter="url(#titleGlow)" letter-spacing="2">THE INTELLIGENCE HIERARCHY</text>
+  <line x1="200" y1="68" x2="600" y2="68" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Pyramid geometry:
+       Apex at (400, 105), base from (115, 585) to (685, 585)
+       Layer boundaries (y-values): top=105, l1=225, l2=345, l3=465, base=585
+       Each layer height = 120px
+  -->
+
+  <!-- Pyramid center x=400 -->
+  <!-- Calculate left/right x at each y level using linear interpolation:
+       At y=105: x = 400 (apex)
+       At y=585: x_left=115, x_right=685
+       slope: (685-400)/(585-105) = 285/480 = 0.59375
+       At y: x_left = 400 - 0.59375*(y-105), x_right = 400 + 0.59375*(y-105)
+
+       y=105: left=400, right=400
+       y=225: left=328.75, right=471.25
+       y=345: left=257.5, right=542.5
+       y=465: left=186.25, right=613.75
+       y=585: left=115, right=685
+  -->
+
+  <!-- Layer 4 (Top) - INTELLIGENCE: y=105 to y=225 -->
+  <polygon points="400,105 471.25,225 328.75,225" fill="url(#intelGrad)" filter="url(#layerShadow)"/>
+  <!-- Subtle highlight line at top of layer -->
+  <line x1="400" y1="105" x2="471.25" y2="225" stroke="#ff6b81" stroke-width="0.5" opacity="0.4"/>
+  <line x1="400" y1="105" x2="328.75" y2="225" stroke="#ff6b81" stroke-width="0.5" opacity="0.4"/>
+  <text x="400" y="178" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="1.5">INTELLIGENCE</text>
+  <text x="400" y="200" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#ffffff" opacity="0.8">Actionable, timely, relevant</text>
+
+  <!-- Layer 3 - KNOWLEDGE: y=225 to y=345 -->
+  <polygon points="328.75,225 471.25,225 542.5,345 257.5,345" fill="url(#knowGrad)" filter="url(#layerShadow)"/>
+  <line x1="328.75" y1="225" x2="471.25" y2="225" stroke="#f5c842" stroke-width="0.5" opacity="0.5"/>
+  <text x="400" y="293" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1a1a2e" letter-spacing="1.5">KNOWLEDGE</text>
+  <text x="400" y="317" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.85">Contextualized, analyzed, understood</text>
+
+  <!-- Layer 2 - INFORMATION: y=345 to y=465 -->
+  <polygon points="257.5,345 542.5,345 613.75,465 186.25,465" fill="url(#infoGrad)" filter="url(#layerShadow)"/>
+  <line x1="257.5" y1="345" x2="542.5" y2="345" stroke="#25a060" stroke-width="0.5" opacity="0.5"/>
+  <text x="400" y="413" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="1.5">INFORMATION</text>
+  <text x="400" y="439" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff" opacity="0.8">Parsed, filtered, correlated</text>
+
+  <!-- Layer 1 (Bottom) - DATA: y=465 to y=585 -->
+  <polygon points="186.25,465 613.75,465 685,585 115,585" fill="url(#dataGrad)" filter="url(#layerShadow)"/>
+  <line x1="186.25" y1="465" x2="613.75" y2="465" stroke="#4a8c2a" stroke-width="0.5" opacity="0.5"/>
+  <text x="400" y="533" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff" letter-spacing="2">DATA</text>
+  <text x="400" y="559" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff" opacity="0.8">Raw logs, packets, alerts</text>
+
+  <!-- Right side arrows and labels -->
+  <!-- Arrow 1: Processing (DATA -> INFORMATION) from y=525 to y=405 -->
+  <g>
+    <line x1="720" y1="535" x2="720" y2="420" stroke="#8b949e" stroke-width="2" marker-end="url(#arrowUp)"/>
+    <text x="740" y="483" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e" font-weight="600" letter-spacing="0.5">Processing</text>
+  </g>
+
+  <!-- Arrow 2: Analysis (INFORMATION -> KNOWLEDGE) from y=405 to y=285 -->
+  <g>
+    <line x1="720" y1="415" x2="720" y2="300" stroke="#8b949e" stroke-width="2" marker-end="url(#arrowUp)"/>
+    <text x="740" y="363" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e" font-weight="600" letter-spacing="0.5">Analysis</text>
+  </g>
+
+  <!-- Arrow 3: Context (KNOWLEDGE -> INTELLIGENCE) from y=285 to y=165 -->
+  <g>
+    <line x1="720" y1="295" x2="720" y2="180" stroke="#8b949e" stroke-width="2" marker-end="url(#arrowUp)"/>
+    <text x="740" y="243" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e" font-weight="600" letter-spacing="0.5">Context</text>
+  </g>
+
+  <!-- Decorative: small connecting dots on arrows -->
+  <circle cx="720" cy="535" r="3" fill="#8b949e" opacity="0.6"/>
+  <circle cx="720" cy="415" r="3" fill="#8b949e" opacity="0.6"/>
+  <circle cx="720" cy="295" r="3" fill="#8b949e" opacity="0.6"/>
+
+  <!-- Left side: value indicator -->
+  <text x="80" y="178" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#e94560" font-weight="600" opacity="0.7">HIGH</text>
+  <text x="80" y="193" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e" opacity="0.6">VALUE</text>
+  <line x1="80" y1="205" x2="80" y2="510" stroke="#30363d" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="80" y="535" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#2d5016" font-weight="600" opacity="0.7">LOW</text>
+  <text x="80" y="550" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e" opacity="0.6">VALUE</text>
+  <!-- Small upward arrow on left -->
+  <polygon points="75,210 80,200 85,210" fill="#30363d"/>
+
+  <!-- Volume indicator on far left -->
+  <text x="30" y="178" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" font-weight="600" opacity="0.5">LOW</text>
+  <text x="30" y="193" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e" opacity="0.4">VOLUME</text>
+  <line x1="30" y1="205" x2="30" y2="510" stroke="#30363d" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="30" y="535" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" font-weight="600" opacity="0.5">HIGH</text>
+  <text x="30" y="550" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e" opacity="0.4">VOLUME</text>
+  <polygon points="25,515 30,525 35,515" fill="#30363d"/>
+
+  <!-- Footer -->
+  <text x="450" y="625" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#484f58" letter-spacing="0.5">Threat Intelligence Foundations  |  Module 1</text>
+</svg>

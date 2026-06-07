@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e94560" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#e94560" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#533483" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#533483" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f3460" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0f3460" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="ctiGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0a500"/>
+      <stop offset="100%" stop-color="#cf7500"/>
+    </linearGradient>
+    <marker id="arrowRight" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8b8fa3"/>
+    </marker>
+    <marker id="arrowLeft" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto">
+      <polygon points="10 0, 0 3.5, 10 7" fill="#8b8fa3"/>
+    </marker>
+    <marker id="arrowDown" markerWidth="7" markerHeight="10" refX="3.5" refY="9" orient="auto">
+      <polygon points="0 0, 7 0, 3.5 10" fill="#f0a500"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="#0d1117" rx="0"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#161b22" stroke-width="0.5"/>
+  </pattern>
+  <rect width="900" height="600" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Title -->
+  <text x="450" y="42" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">CTI-Driven Purple Team Operations</text>
+  <line x1="250" y1="55" x2="650" y2="55" stroke="#533483" stroke-width="2" opacity="0.6"/>
+
+  <!-- CTI Box at top center -->
+  <rect x="355" y="72" width="190" height="50" rx="8" fill="url(#ctiGrad)" filter="url(#shadow)"/>
+  <rect x="355" y="72" width="190" height="50" rx="8" fill="none" stroke="#f0a500" stroke-width="1.5" opacity="0.7"/>
+  <text x="450" y="101" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#0d1117" text-anchor="middle">Cyber Threat Intel</text>
+
+  <!-- Feed lines from CTI box down to three columns -->
+  <!-- Left feed line (to Red Team) -->
+  <path d="M 400 122 L 400 140 Q 400 150 390 150 L 170 150 L 170 175" fill="none" stroke="#f0a500" stroke-width="2" stroke-dasharray="6,3" opacity="0.7" marker-end="url(#arrowDown)"/>
+  <!-- Center feed line (to Purple Team) -->
+  <line x1="450" y1="122" x2="450" y2="175" stroke="#f0a500" stroke-width="2" stroke-dasharray="6,3" opacity="0.7" marker-end="url(#arrowDown)"/>
+  <!-- Right feed line (to Blue Team) -->
+  <path d="M 500 122 L 500 140 Q 500 150 510 150 L 730 150 L 730 175" fill="none" stroke="#f0a500" stroke-width="2" stroke-dasharray="6,3" opacity="0.7" marker-end="url(#arrowDown)"/>
+
+  <!-- ==================== LEFT COLUMN: Red Team ==================== -->
+  <rect x="50" y="185" width="240" height="340" rx="10" fill="url(#redGrad)" filter="url(#shadow)"/>
+  <rect x="50" y="185" width="240" height="340" rx="10" fill="none" stroke="#e94560" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Red Team Header -->
+  <rect x="50" y="185" width="240" height="48" rx="10" fill="#e94560" opacity="0.2"/>
+  <rect x="50" y="185" width="240" height="48" rx="10" fill="none" stroke="#e94560" stroke-width="1" opacity="0.4"/>
+  <!-- Icon: crosshair -->
+  <circle cx="90" cy="209" r="12" fill="none" stroke="#e94560" stroke-width="1.5"/>
+  <line x1="90" y1="194" x2="90" y2="224" stroke="#e94560" stroke-width="1.5"/>
+  <line x1="75" y1="209" x2="105" y2="209" stroke="#e94560" stroke-width="1.5"/>
+  <text x="170" y="215" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#e94560" text-anchor="middle">Red Team</text>
+
+  <!-- Red Team Bullet 1 -->
+  <rect x="70" y="255" width="200" height="60" rx="6" fill="#e94560" opacity="0.08"/>
+  <rect x="70" y="255" width="200" height="60" rx="6" fill="none" stroke="#e94560" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="88" cy="275" r="4" fill="#e94560" opacity="0.8"/>
+  <text x="100" y="280" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">Emulate adversary</text>
+  <text x="100" y="300" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">TTPs</text>
+
+  <!-- Red Team Bullet 2 -->
+  <rect x="70" y="330" width="200" height="60" rx="6" fill="#e94560" opacity="0.08"/>
+  <rect x="70" y="330" width="200" height="60" rx="6" fill="none" stroke="#e94560" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="88" cy="350" r="4" fill="#e94560" opacity="0.8"/>
+  <text x="100" y="355" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">Use CTI actor</text>
+  <text x="100" y="375" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">profiles</text>
+
+  <!-- Red Team Bullet 3 -->
+  <rect x="70" y="405" width="200" height="60" rx="6" fill="#e94560" opacity="0.08"/>
+  <rect x="70" y="405" width="200" height="60" rx="6" fill="none" stroke="#e94560" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="88" cy="425" r="4" fill="#e94560" opacity="0.8"/>
+  <text x="100" y="430" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">Execute attack</text>
+  <text x="100" y="450" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">scenarios</text>
+
+  <!-- ==================== CENTER COLUMN: Purple Team ==================== -->
+  <rect x="330" y="185" width="240" height="340" rx="10" fill="url(#purpleGrad)" filter="url(#shadow)"/>
+  <rect x="330" y="185" width="240" height="340" rx="10" fill="none" stroke="#533483" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Purple Team Header -->
+  <rect x="330" y="185" width="240" height="48" rx="10" fill="#533483" opacity="0.3"/>
+  <rect x="330" y="185" width="240" height="48" rx="10" fill="none" stroke="#7b4fad" stroke-width="1" opacity="0.5"/>
+  <!-- Icon: interlocked circles -->
+  <circle cx="362" cy="205" r="10" fill="none" stroke="#9b59b6" stroke-width="1.5"/>
+  <circle cx="378" cy="213" r="10" fill="none" stroke="#9b59b6" stroke-width="1.5"/>
+  <text x="450" y="215" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#9b59b6" text-anchor="middle">Purple Team</text>
+
+  <!-- Purple Team Bullet 1 -->
+  <rect x="350" y="255" width="200" height="60" rx="6" fill="#533483" opacity="0.1"/>
+  <rect x="350" y="255" width="200" height="60" rx="6" fill="none" stroke="#7b4fad" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="368" cy="275" r="4" fill="#9b59b6" opacity="0.8"/>
+  <text x="380" y="280" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">Collaborative</text>
+  <text x="380" y="300" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">exercises</text>
+
+  <!-- Purple Team Bullet 2 -->
+  <rect x="350" y="330" width="200" height="60" rx="6" fill="#533483" opacity="0.1"/>
+  <rect x="350" y="330" width="200" height="60" rx="6" fill="none" stroke="#7b4fad" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="368" cy="350" r="4" fill="#9b59b6" opacity="0.8"/>
+  <text x="380" y="355" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">Gap analysis</text>
+
+  <!-- Purple Team Bullet 3 -->
+  <rect x="350" y="405" width="200" height="60" rx="6" fill="#533483" opacity="0.1"/>
+  <rect x="350" y="405" width="200" height="60" rx="6" fill="none" stroke="#7b4fad" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="368" cy="425" r="4" fill="#9b59b6" opacity="0.8"/>
+  <text x="380" y="430" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">Validate</text>
+  <text x="380" y="450" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">detections</text>
+
+  <!-- ==================== RIGHT COLUMN: Blue Team ==================== -->
+  <rect x="610" y="185" width="240" height="340" rx="10" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <rect x="610" y="185" width="240" height="340" rx="10" fill="none" stroke="#0f3460" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Blue Team Header -->
+  <rect x="610" y="185" width="240" height="48" rx="10" fill="#0f3460" opacity="0.35"/>
+  <rect x="610" y="185" width="240" height="48" rx="10" fill="none" stroke="#1a5276" stroke-width="1" opacity="0.5"/>
+  <!-- Icon: shield -->
+  <path d="M 650 196 L 640 200 L 640 212 Q 640 220 650 224 Q 660 220 660 212 L 660 200 Z" fill="none" stroke="#3498db" stroke-width="1.5"/>
+  <text x="730" y="215" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#3498db" text-anchor="middle">Blue Team</text>
+
+  <!-- Blue Team Bullet 1 -->
+  <rect x="630" y="255" width="200" height="60" rx="6" fill="#0f3460" opacity="0.12"/>
+  <rect x="630" y="255" width="200" height="60" rx="6" fill="none" stroke="#1a5276" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="648" cy="275" r="4" fill="#3498db" opacity="0.8"/>
+  <text x="660" y="280" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">Monitor &amp; detect</text>
+
+  <!-- Blue Team Bullet 2 -->
+  <rect x="630" y="330" width="200" height="60" rx="6" fill="#0f3460" opacity="0.12"/>
+  <rect x="630" y="330" width="200" height="60" rx="6" fill="none" stroke="#1a5276" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="648" cy="350" r="4" fill="#3498db" opacity="0.8"/>
+  <text x="660" y="355" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">Tune rules</text>
+
+  <!-- Blue Team Bullet 3 -->
+  <rect x="630" y="405" width="200" height="60" rx="6" fill="#0f3460" opacity="0.12"/>
+  <rect x="630" y="405" width="200" height="60" rx="6" fill="none" stroke="#1a5276" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="648" cy="425" r="4" fill="#3498db" opacity="0.8"/>
+  <text x="660" y="430" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">Update playbooks</text>
+
+  <!-- ==================== HORIZONTAL WORKFLOW ARROWS ==================== -->
+  <!-- Red to Purple (top arrow) -->
+  <line x1="295" y1="340" x2="325" y2="340" stroke="#8b8fa3" stroke-width="2" marker-end="url(#arrowRight)"/>
+  <!-- Purple to Red (bottom arrow - feedback) -->
+  <line x1="325" y1="360" x2="295" y2="360" stroke="#8b8fa3" stroke-width="2" marker-end="url(#arrowLeft)"/>
+
+  <!-- Arrow labels Red-Purple -->
+  <text x="310" y="333" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#8b8fa3" text-anchor="middle">Attack</text>
+  <text x="310" y="378" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#8b8fa3" text-anchor="middle">Findings</text>
+
+  <!-- Purple to Blue (top arrow) -->
+  <line x1="575" y1="340" x2="605" y2="340" stroke="#8b8fa3" stroke-width="2" marker-end="url(#arrowRight)"/>
+  <!-- Blue to Purple (bottom arrow - feedback) -->
+  <line x1="605" y1="360" x2="575" y2="360" stroke="#8b8fa3" stroke-width="2" marker-end="url(#arrowLeft)"/>
+
+  <!-- Arrow labels Purple-Blue -->
+  <text x="590" y="333" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#8b8fa3" text-anchor="middle">Results</text>
+  <text x="590" y="378" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#8b8fa3" text-anchor="middle">Telemetry</text>
+
+  <!-- ==================== BOTTOM FEEDBACK LOOP ==================== -->
+  <path d="M 170 530 Q 170 560 450 560 Q 730 560 730 530" fill="none" stroke="#f0a500" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.5"/>
+  <text x="450" y="575" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#f0a500" text-anchor="middle" opacity="0.8">Continuous Feedback Loop -- CTI Updates Drive Iteration</text>
+
+  <!-- Feedback arrows going up from bottom path -->
+  <line x1="170" y1="530" x2="170" y2="527" stroke="#f0a500" stroke-width="1.5" opacity="0.5"/>
+  <polygon points="165,528 170,520 175,528" fill="#f0a500" opacity="0.5"/>
+  <line x1="450" y1="530" x2="450" y2="527" stroke="#f0a500" stroke-width="1.5" opacity="0.5"/>
+  <polygon points="445,528 450,520 455,528" fill="#f0a500" opacity="0.5"/>
+  <line x1="730" y1="530" x2="730" y2="527" stroke="#f0a500" stroke-width="1.5" opacity="0.5"/>
+  <polygon points="725,528 730,520 735,528" fill="#f0a500" opacity="0.5"/>
+
+  <!-- ==================== DECORATIVE CORNER ELEMENTS ==================== -->
+  <path d="M 15 15 L 40 15 M 15 15 L 15 40" stroke="#533483" stroke-width="1.5" opacity="0.4"/>
+  <path d="M 885 15 L 860 15 M 885 15 L 885 40" stroke="#533483" stroke-width="1.5" opacity="0.4"/>
+  <path d="M 15 585 L 40 585 M 15 585 L 15 560" stroke="#533483" stroke-width="1.5" opacity="0.4"/>
+  <path d="M 885 585 L 860 585 M 885 585 L 885 560" stroke="#533483" stroke-width="1.5" opacity="0.4"/>
+</svg>

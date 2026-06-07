@@ -1,0 +1,465 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#0a0e14"/>
+    </linearGradient>
+    <linearGradient id="tacticGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#e94560"/>
+    </linearGradient>
+    <linearGradient id="headerBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f3460"/>
+      <stop offset="50%" stop-color="#533483"/>
+      <stop offset="100%" stop-color="#e94560"/>
+    </linearGradient>
+    <linearGradient id="col0" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#0b2848"/>
+    </linearGradient>
+    <linearGradient id="col1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#163d6b"/>
+      <stop offset="100%" stop-color="#112f55"/>
+    </linearGradient>
+    <linearGradient id="col2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e4676"/>
+      <stop offset="100%" stop-color="#183862"/>
+    </linearGradient>
+    <linearGradient id="col3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#274f80"/>
+      <stop offset="100%" stop-color="#20416e"/>
+    </linearGradient>
+    <linearGradient id="col4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#33588a"/>
+      <stop offset="100%" stop-color="#2a4a78"/>
+    </linearGradient>
+    <linearGradient id="col5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a5a8a"/>
+      <stop offset="100%" stop-color="#3e4e7a"/>
+    </linearGradient>
+    <linearGradient id="col6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6a5088"/>
+      <stop offset="100%" stop-color="#5a4478"/>
+    </linearGradient>
+    <linearGradient id="col7" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#854880"/>
+      <stop offset="100%" stop-color="#723e70"/>
+    </linearGradient>
+    <linearGradient id="col8" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a04070"/>
+      <stop offset="100%" stop-color="#8a3662"/>
+    </linearGradient>
+    <linearGradient id="col9" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b83868"/>
+      <stop offset="100%" stop-color="#a0305a"/>
+    </linearGradient>
+    <linearGradient id="col10" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d03060"/>
+      <stop offset="100%" stop-color="#b82852"/>
+    </linearGradient>
+    <linearGradient id="col11" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="100%" stop-color="#d03050"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="650" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <rect width="30" height="30" fill="none" stroke="#ffffff" stroke-width="0.15" stroke-opacity="0.08"/>
+  </pattern>
+  <rect width="900" height="650" fill="url(#grid)"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="900" height="3" fill="url(#headerBar)"/>
+
+  <!-- MITRE ATT&CK Logo / Icon -->
+  <g transform="translate(30, 28)">
+    <rect x="0" y="0" width="28" height="28" rx="4" fill="none" stroke="#e94560" stroke-width="1.5" opacity="0.9"/>
+    <line x1="6" y1="8" x2="22" y2="8" stroke="#e94560" stroke-width="1.5" opacity="0.7"/>
+    <line x1="6" y1="14" x2="22" y2="14" stroke="#e94560" stroke-width="1.5" opacity="0.7"/>
+    <line x1="6" y1="20" x2="22" y2="20" stroke="#e94560" stroke-width="1.5" opacity="0.7"/>
+    <line x1="9" y1="5" x2="9" y2="23" stroke="#e94560" stroke-width="1" opacity="0.4"/>
+    <line x1="14" y1="5" x2="14" y2="23" stroke="#e94560" stroke-width="1" opacity="0.4"/>
+    <line x1="19" y1="5" x2="19" y2="23" stroke="#e94560" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- Title -->
+  <text x="68" y="40" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="700" fill="#e6e6e6" letter-spacing="0.5">MITRE ATT&amp;CK Framework for CTI</text>
+  <text x="68" y="58" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#8b949e" letter-spacing="0.3">Enterprise Matrix -- Adversary Tactics, Techniques &amp; Common Knowledge</text>
+
+  <!-- Version badge -->
+  <rect x="780" y="26" width="90" height="22" rx="11" fill="#1a2332" stroke="#30363d" stroke-width="0.8"/>
+  <text x="825" y="41" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">ATT&amp;CK v14</text>
+
+  <!-- Tactic columns - 12 columns -->
+  <!-- Column width: 67, gap: 4, start x: 14 -->
+
+  <!-- Column 0: Initial Access -->
+  <g transform="translate(14, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col0)" filter="url(#shadow)"/>
+    <text x="33.5" y="13" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Initial</text>
+    <text x="33.5" y="21" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Access</text>
+    <!-- Techniques -->
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#0f3460" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">Phishing</text>
+    <text x="33.5" y="54" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1566</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#0f3460" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">Drive-by</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">Compromise</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1189</text>
+
+    <rect x="2" y="100" width="63" height="30" rx="2" fill="#131a27" stroke="#0f3460" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="112" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">Valid</text>
+    <text x="33.5" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">Accounts</text>
+    <text x="33.5" y="127" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1078</text>
+  </g>
+
+  <!-- Column 1: Execution -->
+  <g transform="translate(85, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col1)" filter="url(#shadow)"/>
+    <text x="33.5" y="15" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Execution</text>
+    <!-- Techniques -->
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#163d6b" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">PowerShell</text>
+    <text x="33.5" y="54" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1059.001</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#163d6b" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">User</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">Execution</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1204</text>
+
+    <rect x="2" y="100" width="63" height="30" rx="2" fill="#131a27" stroke="#163d6b" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="112" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">WMI</text>
+    <text x="33.5" y="122" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1047</text>
+  </g>
+
+  <!-- Column 2: Persistence -->
+  <g transform="translate(156, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col2)" filter="url(#shadow)"/>
+    <text x="33.5" y="15" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Persistence</text>
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#1e4676" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">Registry</text>
+    <text x="33.5" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">Run Keys</text>
+    <text x="33.5" y="59" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1547.001</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#1e4676" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">Scheduled</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">Task</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1053</text>
+  </g>
+
+  <!-- Column 3: Privilege Escalation -->
+  <g transform="translate(227, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col3)" filter="url(#shadow)"/>
+    <text x="33.5" y="13" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Privilege</text>
+    <text x="33.5" y="21" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Escalation</text>
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#274f80" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">Process</text>
+    <text x="33.5" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">Injection</text>
+    <text x="33.5" y="59" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1055</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#274f80" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">UAC</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">Bypass</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1548.002</text>
+  </g>
+
+  <!-- Column 4: Defense Evasion -->
+  <g transform="translate(298, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col4)" filter="url(#shadow)"/>
+    <text x="33.5" y="13" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Defense</text>
+    <text x="33.5" y="21" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Evasion</text>
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#33588a" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">Obfuscated</text>
+    <text x="33.5" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">Files</text>
+    <text x="33.5" y="59" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1027</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#33588a" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">Masquer-</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">ading</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1036</text>
+
+    <rect x="2" y="100" width="63" height="30" rx="2" fill="#131a27" stroke="#33588a" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="112" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#7ec8e3" text-anchor="middle">Rootkit</text>
+    <text x="33.5" y="122" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#586e8a" text-anchor="middle">T1014</text>
+  </g>
+
+  <!-- Column 5: Credential Access -->
+  <g transform="translate(369, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col5)" filter="url(#shadow)"/>
+    <text x="33.5" y="13" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Credential</text>
+    <text x="33.5" y="21" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Access</text>
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#4a5a8a" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#c0a0d0" text-anchor="middle">OS Credential</text>
+    <text x="33.5" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#7a6a8e" text-anchor="middle">Dumping</text>
+    <text x="33.5" y="59" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#7a6a8e" text-anchor="middle">T1003</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#4a5a8a" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#c0a0d0" text-anchor="middle">Brute</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#7a6a8e" text-anchor="middle">Force</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#7a6a8e" text-anchor="middle">T1110</text>
+  </g>
+
+  <!-- Column 6: Discovery -->
+  <g transform="translate(440, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col6)" filter="url(#shadow)"/>
+    <text x="33.5" y="15" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Discovery</text>
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#6a5088" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#c0a0d0" text-anchor="middle">System Info</text>
+    <text x="33.5" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#7a6a8e" text-anchor="middle">Discovery</text>
+    <text x="33.5" y="59" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#7a6a8e" text-anchor="middle">T1082</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#6a5088" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#c0a0d0" text-anchor="middle">Network</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#7a6a8e" text-anchor="middle">Scanning</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#7a6a8e" text-anchor="middle">T1046</text>
+
+    <rect x="2" y="100" width="63" height="30" rx="2" fill="#131a27" stroke="#6a5088" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="112" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#c0a0d0" text-anchor="middle">File &amp; Dir</text>
+    <text x="33.5" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#7a6a8e" text-anchor="middle">Discovery</text>
+    <text x="33.5" y="127" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#7a6a8e" text-anchor="middle">T1083</text>
+  </g>
+
+  <!-- Column 7: Lateral Movement -->
+  <g transform="translate(511, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col7)" filter="url(#shadow)"/>
+    <text x="33.5" y="13" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Lateral</text>
+    <text x="33.5" y="21" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Movement</text>
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#854880" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#d0a0c0" text-anchor="middle">Remote</text>
+    <text x="33.5" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#8a6a7e" text-anchor="middle">Services</text>
+    <text x="33.5" y="59" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#8a6a7e" text-anchor="middle">T1021</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#854880" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#d0a0c0" text-anchor="middle">Pass the</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#8a6a7e" text-anchor="middle">Hash</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#8a6a7e" text-anchor="middle">T1550.002</text>
+  </g>
+
+  <!-- Column 8: Collection -->
+  <g transform="translate(582, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col8)" filter="url(#shadow)"/>
+    <text x="33.5" y="15" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Collection</text>
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#a04070" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#e0a0b0" text-anchor="middle">Screen</text>
+    <text x="33.5" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#9a6a7e" text-anchor="middle">Capture</text>
+    <text x="33.5" y="59" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#9a6a7e" text-anchor="middle">T1113</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#a04070" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#e0a0b0" text-anchor="middle">Keylogging</text>
+    <text x="33.5" y="88" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#9a6a7e" text-anchor="middle">T1056.001</text>
+  </g>
+
+  <!-- Column 9: Command & Control -->
+  <g transform="translate(653, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col9)" filter="url(#shadow)"/>
+    <text x="33.5" y="13" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Command</text>
+    <text x="33.5" y="21" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">&amp; Control</text>
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#b83868" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#e0a0b0" text-anchor="middle">Web</text>
+    <text x="33.5" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#9a6a7e" text-anchor="middle">Protocols</text>
+    <text x="33.5" y="59" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#9a6a7e" text-anchor="middle">T1071.001</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#b83868" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#e0a0b0" text-anchor="middle">DNS</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#9a6a7e" text-anchor="middle">Tunneling</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#9a6a7e" text-anchor="middle">T1071.004</text>
+
+    <rect x="2" y="100" width="63" height="30" rx="2" fill="#131a27" stroke="#b83868" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="112" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#e0a0b0" text-anchor="middle">Encrypted</text>
+    <text x="33.5" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#9a6a7e" text-anchor="middle">Channel</text>
+    <text x="33.5" y="127" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#9a6a7e" text-anchor="middle">T1573</text>
+  </g>
+
+  <!-- Column 10: Exfiltration -->
+  <g transform="translate(724, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col10)" filter="url(#shadow)"/>
+    <text x="33.5" y="15" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Exfiltration</text>
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#d03060" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#f0b0b0" text-anchor="middle">Exfil Over</text>
+    <text x="33.5" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#a06a6e" text-anchor="middle">C2 Channel</text>
+    <text x="33.5" y="59" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#a06a6e" text-anchor="middle">T1041</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#d03060" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#f0b0b0" text-anchor="middle">Exfil Over</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#a06a6e" text-anchor="middle">Web Service</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#a06a6e" text-anchor="middle">T1567</text>
+  </g>
+
+  <!-- Column 11: Impact -->
+  <g transform="translate(795, 78)">
+    <rect x="0" y="0" width="67" height="26" rx="3" fill="url(#col11)" filter="url(#shadow)"/>
+    <text x="33.5" y="15" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">Impact</text>
+    <rect x="2" y="32" width="63" height="30" rx="2" fill="#131a27" stroke="#e94560" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="44" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#f0b0b0" text-anchor="middle">Data</text>
+    <text x="33.5" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#a06a6e" text-anchor="middle">Encrypted</text>
+    <text x="33.5" y="59" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#a06a6e" text-anchor="middle">T1486</text>
+
+    <rect x="2" y="66" width="63" height="30" rx="2" fill="#131a27" stroke="#e94560" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#f0b0b0" text-anchor="middle">Service</text>
+    <text x="33.5" y="86" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#a06a6e" text-anchor="middle">Stop</text>
+    <text x="33.5" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#a06a6e" text-anchor="middle">T1489</text>
+
+    <rect x="2" y="100" width="63" height="30" rx="2" fill="#131a27" stroke="#e94560" stroke-width="0.6" opacity="0.95"/>
+    <text x="33.5" y="112" font-family="'Segoe UI', Arial, sans-serif" font-size="5.8" fill="#f0b0b0" text-anchor="middle">Defacement</text>
+    <text x="33.5" y="122" font-family="'Segoe UI', Arial, sans-serif" font-size="4.5" fill="#a06a6e" text-anchor="middle">T1491</text>
+  </g>
+
+  <!-- Attack Flow Arrow -->
+  <g transform="translate(0, 260)">
+    <defs>
+      <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+        <polygon points="0 0, 8 3, 0 6" fill="#e94560" opacity="0.6"/>
+      </marker>
+    </defs>
+    <line x1="30" y1="0" x2="860" y2="0" stroke="url(#headerBar)" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowhead)" opacity="0.5"/>
+    <text x="450" y="-6" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#586e8a" text-anchor="middle" letter-spacing="3">ATTACK PROGRESSION</text>
+  </g>
+
+  <!-- CTI Integration Section -->
+  <g transform="translate(14, 285)">
+    <!-- Section background -->
+    <rect x="0" y="0" width="872" height="180" rx="6" fill="#0f1520" stroke="#1c2333" stroke-width="0.8"/>
+
+    <!-- Section title -->
+    <text x="18" y="22" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="700" fill="#c9d1d9" letter-spacing="0.5">CTI Analyst Workflow with ATT&amp;CK</text>
+
+    <!-- Three workflow cards -->
+    <!-- Card 1: Threat Mapping -->
+    <g transform="translate(18, 36)">
+      <rect x="0" y="0" width="268" height="125" rx="5" fill="#111822" stroke="#1e3a5f" stroke-width="0.7"/>
+      <rect x="0" y="0" width="268" height="3" rx="2" fill="#0f3460"/>
+      <circle cx="18" cy="20" r="8" fill="#0f3460" opacity="0.3"/>
+      <text x="18" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#7ec8e3" text-anchor="middle" font-weight="700">1</text>
+      <text x="34" y="24" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="600" fill="#7ec8e3">Threat Actor Profiling</text>
+      <line x1="10" y1="34" x2="258" y2="34" stroke="#1e3a5f" stroke-width="0.4"/>
+      <text x="14" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#8b949e">Map observed IOCs and behaviors</text>
+      <text x="14" y="62" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#8b949e">to ATT&amp;CK techniques, creating</text>
+      <text x="14" y="74" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#8b949e">structured threat actor profiles.</text>
+      <!-- Mini technique badges -->
+      <rect x="14" y="84" width="56" height="16" rx="3" fill="#0f3460" opacity="0.4"/>
+      <text x="42" y="94" font-family="'Segoe UI', Arial, sans-serif" font-size="6" fill="#7ec8e3" text-anchor="middle">APT29</text>
+      <rect x="76" y="84" width="56" height="16" rx="3" fill="#0f3460" opacity="0.4"/>
+      <text x="104" y="94" font-family="'Segoe UI', Arial, sans-serif" font-size="6" fill="#7ec8e3" text-anchor="middle">APT28</text>
+      <rect x="138" y="84" width="56" height="16" rx="3" fill="#0f3460" opacity="0.4"/>
+      <text x="166" y="94" font-family="'Segoe UI', Arial, sans-serif" font-size="6" fill="#7ec8e3" text-anchor="middle">Lazarus</text>
+      <rect x="200" y="84" width="56" height="16" rx="3" fill="#0f3460" opacity="0.4"/>
+      <text x="228" y="94" font-family="'Segoe UI', Arial, sans-serif" font-size="6" fill="#7ec8e3" text-anchor="middle">FIN7</text>
+    </g>
+
+    <!-- Card 2: Gap Analysis -->
+    <g transform="translate(300, 36)">
+      <rect x="0" y="0" width="268" height="125" rx="5" fill="#111822" stroke="#533483" stroke-width="0.7"/>
+      <rect x="0" y="0" width="268" height="3" rx="2" fill="#533483"/>
+      <circle cx="18" cy="20" r="8" fill="#533483" opacity="0.3"/>
+      <text x="18" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#c0a0d0" text-anchor="middle" font-weight="700">2</text>
+      <text x="34" y="24" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="600" fill="#c0a0d0">Detection Coverage Analysis</text>
+      <line x1="10" y1="34" x2="258" y2="34" stroke="#533483" stroke-width="0.4"/>
+      <text x="14" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#8b949e">Assess existing detection rules</text>
+      <text x="14" y="62" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#8b949e">against the ATT&amp;CK matrix to</text>
+      <text x="14" y="74" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#8b949e">identify visibility gaps.</text>
+      <!-- Coverage indicators -->
+      <g transform="translate(14, 84)">
+        <rect x="0" y="0" width="240" height="8" rx="4" fill="#1a1a2e"/>
+        <rect x="0" y="0" width="168" height="8" rx="4" fill="#533483" opacity="0.7"/>
+        <text x="0" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="6" fill="#8b949e">Coverage: 70% of relevant techniques</text>
+        <rect x="0" y="26" width="240" height="8" rx="4" fill="#1a1a2e"/>
+        <rect x="0" y="26" width="96" height="8" rx="4" fill="#e94560" opacity="0.5"/>
+        <text x="0" y="46" font-family="'Segoe UI', Arial, sans-serif" font-size="6" fill="#8b949e">Gaps: 30% require new detections</text>
+      </g>
+    </g>
+
+    <!-- Card 3: Intelligence Reporting -->
+    <g transform="translate(582, 36)">
+      <rect x="0" y="0" width="268" height="125" rx="5" fill="#111822" stroke="#e94560" stroke-width="0.7"/>
+      <rect x="0" y="0" width="268" height="3" rx="2" fill="#e94560"/>
+      <circle cx="18" cy="20" r="8" fill="#e94560" opacity="0.3"/>
+      <text x="18" y="23" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#f0b0b0" text-anchor="middle" font-weight="700">3</text>
+      <text x="34" y="24" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="600" fill="#f0b0b0">Intelligence Dissemination</text>
+      <line x1="10" y1="34" x2="258" y2="34" stroke="#e94560" stroke-width="0.4"/>
+      <text x="14" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#8b949e">Produce actionable reports using</text>
+      <text x="14" y="62" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#8b949e">ATT&amp;CK as a shared language for</text>
+      <text x="14" y="74" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#8b949e">stakeholder communication.</text>
+      <!-- Report types -->
+      <rect x="14" y="84" width="74" height="28" rx="3" fill="#2a1525" stroke="#e94560" stroke-width="0.4"/>
+      <text x="51" y="96" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" fill="#f0b0b0" text-anchor="middle">Tactical</text>
+      <text x="51" y="106" font-family="'Segoe UI', Arial, sans-serif" font-size="5.5" fill="#9a6a7e" text-anchor="middle">IOCs + TTPs</text>
+      <rect x="96" y="84" width="74" height="28" rx="3" fill="#2a1525" stroke="#e94560" stroke-width="0.4"/>
+      <text x="133" y="96" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" fill="#f0b0b0" text-anchor="middle">Operational</text>
+      <text x="133" y="106" font-family="'Segoe UI', Arial, sans-serif" font-size="5.5" fill="#9a6a7e" text-anchor="middle">Campaigns</text>
+      <rect x="178" y="84" width="74" height="28" rx="3" fill="#2a1525" stroke="#e94560" stroke-width="0.4"/>
+      <text x="215" y="96" font-family="'Segoe UI', Arial, sans-serif" font-size="6.5" fill="#f0b0b0" text-anchor="middle">Strategic</text>
+      <text x="215" y="106" font-family="'Segoe UI', Arial, sans-serif" font-size="5.5" fill="#9a6a7e" text-anchor="middle">Risk Posture</text>
+    </g>
+
+    <!-- Connecting arrows between cards -->
+    <line x1="286" y1="98" x2="300" y2="98" stroke="#586e8a" stroke-width="1" stroke-dasharray="3,2"/>
+    <polygon points="298,95 304,98 298,101" fill="#586e8a"/>
+    <line x1="568" y1="98" x2="582" y2="98" stroke="#586e8a" stroke-width="1" stroke-dasharray="3,2"/>
+    <polygon points="580,95 586,98 580,101" fill="#586e8a"/>
+  </g>
+
+  <!-- Bottom section: Key message -->
+  <g transform="translate(0, 500)">
+    <rect x="14" y="0" width="872" height="52" rx="6" fill="#0f1520" stroke="#1c2333" stroke-width="0.8"/>
+
+    <!-- Navigator icon -->
+    <g transform="translate(30, 10)">
+      <rect x="0" y="0" width="32" height="32" rx="4" fill="#0f3460" opacity="0.3" stroke="#0f3460" stroke-width="0.5"/>
+      <!-- Compass-like icon -->
+      <circle cx="16" cy="16" r="10" fill="none" stroke="#7ec8e3" stroke-width="0.8"/>
+      <circle cx="16" cy="16" r="2" fill="#7ec8e3"/>
+      <line x1="16" y1="8" x2="16" y2="12" stroke="#7ec8e3" stroke-width="0.8"/>
+      <line x1="16" y1="20" x2="16" y2="24" stroke="#7ec8e3" stroke-width="0.8"/>
+      <line x1="8" y1="16" x2="12" y2="16" stroke="#7ec8e3" stroke-width="0.8"/>
+      <line x1="20" y1="16" x2="24" y2="16" stroke="#7ec8e3" stroke-width="0.8"/>
+    </g>
+
+    <text x="76" y="20" font-family="'Segoe UI', Arial, sans-serif" font-size="10.5" font-weight="600" fill="#c9d1d9">ATT&amp;CK Navigator</text>
+    <text x="76" y="34" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#8b949e">Interactive tool for creating custom heat maps of technique coverage, threat actor overlays, and detection gaps</text>
+
+    <!-- STIX badge -->
+    <rect x="700" y="10" width="65" height="18" rx="3" fill="#1a2332" stroke="#533483" stroke-width="0.6"/>
+    <text x="732" y="22" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#c0a0d0" text-anchor="middle">STIX/TAXII</text>
+    <rect x="775" y="10" width="95" height="18" rx="3" fill="#1a2332" stroke="#0f3460" stroke-width="0.6"/>
+    <text x="822" y="22" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#7ec8e3" text-anchor="middle">Machine Readable</text>
+  </g>
+
+  <!-- Key statistics bar -->
+  <g transform="translate(14, 562)">
+    <rect x="0" y="0" width="212" height="38" rx="4" fill="#0f1520" stroke="#1c2333" stroke-width="0.6"/>
+    <text x="16" y="16" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#7ec8e3">14 Tactics</text>
+    <text x="16" y="28" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#586e8a">Strategic objectives of adversaries</text>
+
+    <rect x="220" y="0" width="212" height="38" rx="4" fill="#0f1520" stroke="#1c2333" stroke-width="0.6"/>
+    <text x="236" y="16" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#c0a0d0">201 Techniques</text>
+    <text x="236" y="28" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#586e8a">Methods used to achieve objectives</text>
+
+    <rect x="440" y="0" width="212" height="38" rx="4" fill="#0f1520" stroke="#1c2333" stroke-width="0.6"/>
+    <text x="456" y="16" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#f0b0b0">424 Sub-Techniques</text>
+    <text x="456" y="28" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#586e8a">Granular implementation variations</text>
+
+    <rect x="660" y="0" width="212" height="38" rx="4" fill="#0f1520" stroke="#1c2333" stroke-width="0.6"/>
+    <text x="676" y="16" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#e6e6e6">140+ Groups</text>
+    <text x="676" y="28" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#586e8a">Tracked threat actor profiles</text>
+  </g>
+
+  <!-- Bottom tagline -->
+  <rect x="0" y="612" width="900" height="38" fill="#080b10"/>
+  <text x="450" y="632" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#586e8a" text-anchor="middle" letter-spacing="1.5" font-style="italic">Mapping adversary behavior to a common taxonomy</text>
+  <rect x="0" y="647" width="900" height="3" fill="url(#headerBar)"/>
+</svg>

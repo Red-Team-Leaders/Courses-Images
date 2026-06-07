@@ -1,0 +1,346 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <!-- Blueprint grid pattern -->
+    <pattern id="blueprintGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1a2332" stroke-width="0.5" opacity="0.6"/>
+    </pattern>
+    <pattern id="blueprintGridLarge" width="150" height="150" patternUnits="userSpaceOnUse">
+      <path d="M 150 0 L 0 0 0 150" fill="none" stroke="#1a2332" stroke-width="1" opacity="0.4"/>
+    </pattern>
+    <!-- Pillar gradient overlays -->
+    <linearGradient id="pillarShine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.08)"/>
+      <stop offset="50%" stop-color="rgba(255,255,255,0.15)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.1)"/>
+    </linearGradient>
+    <linearGradient id="roofGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="100%" stop-color="#c13050"/>
+    </linearGradient>
+    <linearGradient id="foundGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a6b1e"/>
+      <stop offset="100%" stop-color="#2d5016"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softShadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="textGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <!-- Dashed line pattern for blueprint effect -->
+    <marker id="dimArrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3a5a8a"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="700" fill="#0d1117"/>
+  <rect width="900" height="700" fill="url(#blueprintGrid)"/>
+  <rect width="900" height="700" fill="url(#blueprintGridLarge)"/>
+
+  <!-- Outer frame / border -->
+  <rect x="20" y="20" width="860" height="660" fill="none" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="8,4" rx="4"/>
+  <rect x="25" y="25" width="850" height="650" fill="none" stroke="#1e3a5f" stroke-width="0.5" rx="3"/>
+
+  <!-- Corner ornaments -->
+  <g stroke="#2a5a9a" stroke-width="1.5" fill="none" opacity="0.5">
+    <path d="M 35 45 L 35 35 L 45 35"/>
+    <path d="M 855 45 L 855 35 L 845 35"/>
+    <path d="M 35 655 L 35 665 L 45 665"/>
+    <path d="M 855 655 L 855 665 L 845 665"/>
+  </g>
+
+  <!-- Title area -->
+  <text x="450" y="62" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle" filter="url(#textGlow)">Building a CTI Program: Blueprint</text>
+  <line x1="160" y1="75" x2="740" y2="75" stroke="#2a5a9a" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="450" y="95" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#5a7a9a" text-anchor="middle" letter-spacing="3">ARCHITECTURAL OVERVIEW</text>
+
+  <!-- ============================================ -->
+  <!-- ROOF / TOP BAR: Actionable Intelligence Output -->
+  <!-- ============================================ -->
+  <!-- Triangular roof shape -->
+  <polygon points="450,120 110,185 790,185" fill="none" stroke="#e94560" stroke-width="2" opacity="0.3"/>
+  <polygon points="450,130 130,185 770,185" fill="url(#roofGrad)" opacity="0.15"/>
+
+  <!-- Main roof bar -->
+  <rect x="100" y="185" width="700" height="50" rx="3" fill="url(#roofGrad)" filter="url(#softShadow)"/>
+  <rect x="100" y="185" width="700" height="50" rx="3" fill="url(#pillarShine)"/>
+  <!-- Roof decorative line -->
+  <line x1="110" y1="190" x2="790" y2="190" stroke="#ff6b7f" stroke-width="0.5" opacity="0.5"/>
+  <line x1="110" y1="230" x2="790" y2="230" stroke="#c13050" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Roof peak icon -->
+  <polygon points="450,128 440,145 460,145" fill="#e94560" opacity="0.8"/>
+  <circle cx="450" cy="125" r="4" fill="#e94560" opacity="0.6"/>
+
+  <text x="450" y="216" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Actionable Intelligence Output</text>
+
+  <!-- Connecting lines from roof to pillars -->
+  <line x1="200" y1="235" x2="200" y2="260" stroke="#e94560" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
+  <line x1="370" y1="235" x2="370" y2="260" stroke="#0f3460" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
+  <line x1="540" y1="235" x2="540" y2="260" stroke="#533483" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
+  <line x1="710" y1="235" x2="710" y2="260" stroke="#e6a817" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
+
+  <!-- ============================================ -->
+  <!-- PILLAR 1: PEOPLE -->
+  <!-- ============================================ -->
+  <g filter="url(#softShadow)">
+    <!-- Pillar capital (top decorative piece) -->
+    <rect x="140" y="255" width="120" height="15" rx="2" fill="#e94560" opacity="0.8"/>
+    <rect x="145" y="255" width="110" height="3" fill="#ff6b7f" opacity="0.4"/>
+
+    <!-- Pillar body -->
+    <rect x="150" y="270" width="100" height="270" rx="2" fill="#e94560"/>
+    <rect x="150" y="270" width="100" height="270" rx="2" fill="url(#pillarShine)"/>
+
+    <!-- Pillar fluting lines (architectural detail) -->
+    <line x1="170" y1="275" x2="170" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="190" y1="275" x2="190" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="210" y1="275" x2="210" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="230" y1="275" x2="230" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+    <!-- Pillar base -->
+    <rect x="140" y="540" width="120" height="15" rx="2" fill="#e94560" opacity="0.8"/>
+    <rect x="140" y="550" width="120" height="5" fill="#c13050" opacity="0.5"/>
+  </g>
+
+  <!-- Pillar 1 Header -->
+  <text x="200" y="300" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">PEOPLE</text>
+  <line x1="165" y1="310" x2="235" y2="310" stroke="#ff8a9e" stroke-width="1" opacity="0.6"/>
+
+  <!-- Pillar 1 icon (person) -->
+  <g transform="translate(200,345)" opacity="0.9">
+    <circle cx="0" cy="-12" r="8" fill="none" stroke="#ffb3c1" stroke-width="1.5"/>
+    <path d="M -12 8 Q -12 -2 0 -2 Q 12 -2 12 8" fill="none" stroke="#ffb3c1" stroke-width="1.5"/>
+  </g>
+
+  <!-- Pillar 1 Items -->
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#f0d0d6" text-anchor="middle">
+    <circle cx="175" cy="390" r="2.5" fill="#ff8a9e" opacity="0.7"/>
+    <text x="200" y="394">Analysts</text>
+    <circle cx="175" cy="425" r="2.5" fill="#ff8a9e" opacity="0.7"/>
+    <text x="200" y="429">Training</text>
+    <circle cx="175" cy="460" r="2.5" fill="#ff8a9e" opacity="0.7"/>
+    <text x="200" y="464">Roles</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- PILLAR 2: PROCESS -->
+  <!-- ============================================ -->
+  <g filter="url(#softShadow)">
+    <rect x="310" y="255" width="120" height="15" rx="2" fill="#0f3460" opacity="0.8"/>
+    <rect x="315" y="255" width="110" height="3" fill="#1a5a9a" opacity="0.4"/>
+
+    <rect x="320" y="270" width="100" height="270" rx="2" fill="#0f3460"/>
+    <rect x="320" y="270" width="100" height="270" rx="2" fill="url(#pillarShine)"/>
+
+    <line x1="340" y1="275" x2="340" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="360" y1="275" x2="360" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="380" y1="275" x2="380" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="400" y1="275" x2="400" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+    <rect x="310" y="540" width="120" height="15" rx="2" fill="#0f3460" opacity="0.8"/>
+    <rect x="310" y="550" width="120" height="5" fill="#0a2440" opacity="0.5"/>
+  </g>
+
+  <!-- Pillar 2 Header -->
+  <text x="370" y="300" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">PROCESS</text>
+  <line x1="335" y1="310" x2="405" y2="310" stroke="#4a8ad4" stroke-width="1" opacity="0.6"/>
+
+  <!-- Pillar 2 icon (circular arrows / cycle) -->
+  <g transform="translate(370,340)" opacity="0.9">
+    <path d="M -10 -5 A 10 10 0 1 1 -5 10" fill="none" stroke="#7ab3e8" stroke-width="1.5"/>
+    <polygon points="-5,10 -9,5 -1,6" fill="#7ab3e8"/>
+    <path d="M 10 5 A 10 10 0 1 1 5 -10" fill="none" stroke="#7ab3e8" stroke-width="1.5"/>
+    <polygon points="5,-10 9,-5 1,-6" fill="#7ab3e8"/>
+  </g>
+
+  <!-- Pillar 2 Items -->
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#c0d8f0" text-anchor="middle">
+    <circle cx="345" cy="390" r="2.5" fill="#4a8ad4" opacity="0.7"/>
+    <text x="370" y="394">Intel Cycle</text>
+    <circle cx="345" cy="425" r="2.5" fill="#4a8ad4" opacity="0.7"/>
+    <text x="370" y="429">SOPs</text>
+    <circle cx="345" cy="460" r="2.5" fill="#4a8ad4" opacity="0.7"/>
+    <text x="370" y="464">Workflows</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- PILLAR 3: TECHNOLOGY -->
+  <!-- ============================================ -->
+  <g filter="url(#softShadow)">
+    <rect x="480" y="255" width="120" height="15" rx="2" fill="#533483" opacity="0.8"/>
+    <rect x="485" y="255" width="110" height="3" fill="#7a4abf" opacity="0.4"/>
+
+    <rect x="490" y="270" width="100" height="270" rx="2" fill="#533483"/>
+    <rect x="490" y="270" width="100" height="270" rx="2" fill="url(#pillarShine)"/>
+
+    <line x1="510" y1="275" x2="510" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="530" y1="275" x2="530" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="550" y1="275" x2="550" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="570" y1="275" x2="570" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+    <rect x="480" y="540" width="120" height="15" rx="2" fill="#533483" opacity="0.8"/>
+    <rect x="480" y="550" width="120" height="5" fill="#3a2060" opacity="0.5"/>
+  </g>
+
+  <!-- Pillar 3 Header -->
+  <text x="540" y="300" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">TECHNOLOGY</text>
+  <line x1="500" y1="310" x2="580" y2="310" stroke="#9a6ed4" stroke-width="1" opacity="0.6"/>
+
+  <!-- Pillar 3 icon (gear/cog) -->
+  <g transform="translate(540,340)" opacity="0.9">
+    <circle cx="0" cy="0" r="7" fill="none" stroke="#b89adf" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="3" fill="none" stroke="#b89adf" stroke-width="1"/>
+    <line x1="0" y1="-12" x2="0" y2="-7" stroke="#b89adf" stroke-width="2"/>
+    <line x1="0" y1="7" x2="0" y2="12" stroke="#b89adf" stroke-width="2"/>
+    <line x1="-12" y1="0" x2="-7" y2="0" stroke="#b89adf" stroke-width="2"/>
+    <line x1="7" y1="0" x2="12" y2="0" stroke="#b89adf" stroke-width="2"/>
+    <line x1="-8.5" y1="-8.5" x2="-5" y2="-5" stroke="#b89adf" stroke-width="2"/>
+    <line x1="5" y1="5" x2="8.5" y2="8.5" stroke="#b89adf" stroke-width="2"/>
+    <line x1="8.5" y1="-8.5" x2="5" y2="-5" stroke="#b89adf" stroke-width="2"/>
+    <line x1="-5" y1="5" x2="-8.5" y2="8.5" stroke="#b89adf" stroke-width="2"/>
+  </g>
+
+  <!-- Pillar 3 Items -->
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#d4c0f0" text-anchor="middle">
+    <circle cx="515" cy="390" r="2.5" fill="#9a6ed4" opacity="0.7"/>
+    <text x="540" y="394">TIP</text>
+    <circle cx="515" cy="425" r="2.5" fill="#9a6ed4" opacity="0.7"/>
+    <text x="540" y="429">SIEM</text>
+    <circle cx="515" cy="460" r="2.5" fill="#9a6ed4" opacity="0.7"/>
+    <text x="540" y="464">OSINT Tools</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- PILLAR 4: GOVERNANCE -->
+  <!-- ============================================ -->
+  <g filter="url(#softShadow)">
+    <rect x="650" y="255" width="120" height="15" rx="2" fill="#e6a817" opacity="0.8"/>
+    <rect x="655" y="255" width="110" height="3" fill="#f0c040" opacity="0.4"/>
+
+    <rect x="660" y="270" width="100" height="270" rx="2" fill="#e6a817"/>
+    <rect x="660" y="270" width="100" height="270" rx="2" fill="url(#pillarShine)"/>
+
+    <line x1="680" y1="275" x2="680" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="700" y1="275" x2="700" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="720" y1="275" x2="720" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="740" y1="275" x2="740" y2="535" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+    <rect x="650" y="540" width="120" height="15" rx="2" fill="#e6a817" opacity="0.8"/>
+    <rect x="650" y="550" width="120" height="5" fill="#b8860b" opacity="0.5"/>
+  </g>
+
+  <!-- Pillar 4 Header -->
+  <text x="710" y="300" font-family="'Segoe UI', Arial, sans-serif" font-size="14.5" font-weight="bold" fill="#ffffff" text-anchor="middle">GOVERNANCE</text>
+  <line x1="670" y1="310" x2="750" y2="310" stroke="#f0c855" stroke-width="1" opacity="0.6"/>
+
+  <!-- Pillar 4 icon (shield) -->
+  <g transform="translate(710,340)" opacity="0.9">
+    <path d="M 0 -14 L -11 -7 L -11 3 Q -11 12 0 16 Q 11 12 11 3 L 11 -7 Z" fill="none" stroke="#f0d070" stroke-width="1.5"/>
+    <path d="M 0 -6 L -4 0 L 0 2 L 4 0 Z" fill="#f0d070" opacity="0.5"/>
+  </g>
+
+  <!-- Pillar 4 Items -->
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#f0e0b0" text-anchor="middle">
+    <circle cx="685" cy="390" r="2.5" fill="#f0c855" opacity="0.7"/>
+    <text x="710" y="394">Metrics</text>
+    <circle cx="685" cy="425" r="2.5" fill="#f0c855" opacity="0.7"/>
+    <text x="710" y="429">Policy</text>
+    <circle cx="685" cy="460" r="2.5" fill="#f0c855" opacity="0.7"/>
+    <text x="710" y="464">Legal</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- FOUNDATION BAR -->
+  <!-- ============================================ -->
+  <!-- Foundation shadow area -->
+  <rect x="80" y="560" width="740" height="8" fill="#1a3010" opacity="0.5" rx="1"/>
+
+  <g filter="url(#softShadow)">
+    <rect x="80" y="568" width="740" height="65" rx="4" fill="url(#foundGrad)"/>
+    <rect x="80" y="568" width="740" height="65" rx="4" fill="url(#pillarShine)"/>
+    <!-- Foundation top decorative line -->
+    <line x1="90" y1="573" x2="810" y2="573" stroke="#4a8a2a" stroke-width="0.5" opacity="0.6"/>
+    <!-- Foundation bottom decorative line -->
+    <line x1="90" y1="628" x2="810" y2="628" stroke="#1e4010" stroke-width="0.5" opacity="0.6"/>
+  </g>
+
+  <!-- Foundation hatching pattern (blueprint style) -->
+  <g opacity="0.06" stroke="#ffffff" stroke-width="1">
+    <line x1="90" y1="568" x2="110" y2="633"/>
+    <line x1="120" y1="568" x2="140" y2="633"/>
+    <line x1="150" y1="568" x2="170" y2="633"/>
+    <line x1="180" y1="568" x2="200" y2="633"/>
+    <line x1="210" y1="568" x2="230" y2="633"/>
+    <line x1="240" y1="568" x2="260" y2="633"/>
+    <line x1="270" y1="568" x2="290" y2="633"/>
+    <line x1="300" y1="568" x2="320" y2="633"/>
+    <line x1="330" y1="568" x2="350" y2="633"/>
+    <line x1="360" y1="568" x2="380" y2="633"/>
+    <line x1="390" y1="568" x2="410" y2="633"/>
+    <line x1="420" y1="568" x2="440" y2="633"/>
+    <line x1="450" y1="568" x2="470" y2="633"/>
+    <line x1="480" y1="568" x2="500" y2="633"/>
+    <line x1="510" y1="568" x2="530" y2="633"/>
+    <line x1="540" y1="568" x2="560" y2="633"/>
+    <line x1="570" y1="568" x2="590" y2="633"/>
+    <line x1="600" y1="568" x2="620" y2="633"/>
+    <line x1="630" y1="568" x2="650" y2="633"/>
+    <line x1="660" y1="568" x2="680" y2="633"/>
+    <line x1="690" y1="568" x2="710" y2="633"/>
+    <line x1="720" y1="568" x2="740" y2="633"/>
+    <line x1="750" y1="568" x2="770" y2="633"/>
+    <line x1="780" y1="568" x2="800" y2="633"/>
+  </g>
+
+  <!-- Divider in foundation -->
+  <line x1="450" y1="578" x2="450" y2="623" stroke="#4a8a2a" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- Foundation text -->
+  <text x="265" y="598" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Stakeholder Requirements</text>
+  <text x="265" y="618" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#a0d080" text-anchor="middle">Strategic - Operational - Tactical</text>
+
+  <text x="635" y="598" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Organizational Context</text>
+  <text x="635" y="618" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#a0d080" text-anchor="middle">Industry - Risk Profile - Maturity</text>
+
+  <!-- ============================================ -->
+  <!-- DIMENSION LINES (blueprint style) -->
+  <!-- ============================================ -->
+  <g stroke="#3a5a8a" stroke-width="0.8" opacity="0.5">
+    <!-- Left dimension line -->
+    <line x1="60" y1="195" x2="60" y2="555" stroke-dasharray="2,2"/>
+    <line x1="55" y1="195" x2="65" y2="195"/>
+    <line x1="55" y1="555" x2="65" y2="555"/>
+    <text x="55" y="380" font-family="'Courier New', monospace" font-size="9" fill="#3a5a8a" text-anchor="middle" transform="rotate(-90,55,380)">PROGRAM STRUCTURE</text>
+
+    <!-- Right dimension line -->
+    <line x1="840" y1="195" x2="840" y2="633" stroke-dasharray="2,2"/>
+    <line x1="835" y1="195" x2="845" y2="195"/>
+    <line x1="835" y1="633" x2="845" y2="633"/>
+    <text x="845" y="415" font-family="'Courier New', monospace" font-size="9" fill="#3a5a8a" text-anchor="middle" transform="rotate(90,845,415)">MATURITY PROGRESSION</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- UPWARD FLOW ARROWS (between foundation and pillars) -->
+  <!-- ============================================ -->
+  <g opacity="0.35">
+    <path d="M 200 562 L 200 556 L 195 556 L 200 548 L 205 556 L 200 556" fill="#6aaa3a" stroke="none"/>
+    <path d="M 370 562 L 370 556 L 365 556 L 370 548 L 375 556 L 370 556" fill="#6aaa3a" stroke="none"/>
+    <path d="M 540 562 L 540 556 L 535 556 L 540 548 L 545 556 L 540 556" fill="#6aaa3a" stroke="none"/>
+    <path d="M 710 562 L 710 556 L 705 556 L 710 548 L 715 556 L 710 556" fill="#6aaa3a" stroke="none"/>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================ -->
+  <text x="450" y="660" font-family="'Courier New', monospace" font-size="10" fill="#3a5a8a" text-anchor="middle" letter-spacing="2">CTI PROGRAM ARCHITECTURE v1.0</text>
+  <text x="450" y="675" font-family="'Courier New', monospace" font-size="9" fill="#2a4a6a" text-anchor="middle">CYBER THREAT INTELLIGENCE -- STRATEGIC FRAMEWORK</text>
+
+</svg>

@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650">
+  <defs>
+    <filter id="cardShadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="headerTech" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="100%" stop-color="#c73a52"/>
+    </linearGradient>
+    <linearGradient id="headerExec" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#1a4a7a"/>
+    </linearGradient>
+    <linearGradient id="headerCamp" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#533483"/>
+      <stop offset="100%" stop-color="#6b44a0"/>
+    </linearGradient>
+    <linearGradient id="headerTact" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e6a817"/>
+      <stop offset="100%" stop-color="#c99212"/>
+    </linearGradient>
+    <clipPath id="clipTopLeft">
+      <rect x="30" y="90" width="410" height="250" rx="12" ry="12"/>
+    </clipPath>
+    <clipPath id="clipTopRight">
+      <rect x="460" y="90" width="410" height="250" rx="12" ry="12"/>
+    </clipPath>
+    <clipPath id="clipBottomLeft">
+      <rect x="30" y="360" width="410" height="250" rx="12" ry="12"/>
+    </clipPath>
+    <clipPath id="clipBottomRight">
+      <rect x="460" y="360" width="410" height="250" rx="12" ry="12"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="650" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="gridPattern" width="30" height="30" patternUnits="userSpaceOnUse">
+    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1c2333" stroke-width="0.5"/>
+  </pattern>
+  <rect width="900" height="650" fill="url(#gridPattern)" opacity="0.4"/>
+
+  <!-- Title -->
+  <text x="450" y="42" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff">Intelligence Product Types</text>
+  <line x1="300" y1="55" x2="600" y2="55" stroke="#e94560" stroke-width="2" opacity="0.6"/>
+  <text x="450" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#8b949e">Structured outputs tailored to audience needs and operational tempo</text>
+
+  <!-- ==================== CARD 1: Technical Bulletin (Top-Left) ==================== -->
+  <g filter="url(#cardShadow)">
+    <rect x="30" y="90" width="410" height="250" rx="12" ry="12" fill="#1c2333" stroke="#2d3748" stroke-width="1"/>
+    <!-- Header bar -->
+    <rect x="30" y="90" width="410" height="52" rx="12" ry="12" fill="url(#headerTech)" clip-path="url(#clipTopLeft)"/>
+    <rect x="30" y="120" width="410" height="22" fill="url(#headerTech)"/>
+    <!-- Icon -->
+    <g transform="translate(50, 103)">
+      <rect x="0" y="0" width="26" height="26" rx="4" fill="rgba(0,0,0,0.25)"/>
+      <path d="M5 8h16M5 13h16M5 18h10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    </g>
+    <text x="86" y="122" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Technical Bulletin</text>
+
+    <!-- Fields -->
+    <g font-family="'Segoe UI', Arial, sans-serif">
+      <!-- Audience -->
+      <text x="50" y="168" font-size="11" fill="#e94560" font-weight="bold" letter-spacing="1">AUDIENCE</text>
+      <text x="50" y="185" font-size="14" fill="#c9d1d9">SOC Analysts / Engineers</text>
+
+      <!-- Content -->
+      <text x="50" y="210" font-size="11" fill="#e94560" font-weight="bold" letter-spacing="1">CONTENT</text>
+      <text x="50" y="227" font-size="14" fill="#c9d1d9">IOCs, detection rules, file hashes</text>
+
+      <!-- Frequency -->
+      <text x="50" y="252" font-size="11" fill="#e94560" font-weight="bold" letter-spacing="1">FREQUENCY</text>
+      <text x="50" y="269" font-size="14" fill="#c9d1d9">As needed</text>
+
+      <!-- Frequency badge -->
+      <rect x="330" y="255" width="90" height="24" rx="12" fill="#e94560" opacity="0.15"/>
+      <text x="375" y="271" text-anchor="middle" font-size="11" fill="#e94560" font-weight="bold">ON-DEMAND</text>
+    </g>
+  </g>
+
+  <!-- ==================== CARD 2: Executive Briefing (Top-Right) ==================== -->
+  <g filter="url(#cardShadow)">
+    <rect x="460" y="90" width="410" height="250" rx="12" ry="12" fill="#1c2333" stroke="#2d3748" stroke-width="1"/>
+    <!-- Header bar -->
+    <rect x="460" y="90" width="410" height="52" rx="12" ry="12" fill="url(#headerExec)" clip-path="url(#clipTopRight)"/>
+    <rect x="460" y="120" width="410" height="22" fill="url(#headerExec)"/>
+    <!-- Icon -->
+    <g transform="translate(480, 103)">
+      <rect x="0" y="0" width="26" height="26" rx="4" fill="rgba(0,0,0,0.25)"/>
+      <path d="M6 20V10l5-4 5 4v10M6 20h10M9 20v-5h4v5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+    <text x="516" y="122" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Executive Briefing</text>
+
+    <!-- Fields -->
+    <g font-family="'Segoe UI', Arial, sans-serif">
+      <!-- Audience -->
+      <text x="480" y="168" font-size="11" fill="#4a90d9" font-weight="bold" letter-spacing="1">AUDIENCE</text>
+      <text x="480" y="185" font-size="14" fill="#c9d1d9">C-Suite / Board of Directors</text>
+
+      <!-- Content -->
+      <text x="480" y="210" font-size="11" fill="#4a90d9" font-weight="bold" letter-spacing="1">CONTENT</text>
+      <text x="480" y="227" font-size="14" fill="#c9d1d9">Risk trends, strategic threats</text>
+
+      <!-- Frequency -->
+      <text x="480" y="252" font-size="11" fill="#4a90d9" font-weight="bold" letter-spacing="1">FREQUENCY</text>
+      <text x="480" y="269" font-size="14" fill="#c9d1d9">Monthly / Quarterly</text>
+
+      <!-- Frequency badge -->
+      <rect x="760" y="255" width="90" height="24" rx="12" fill="#4a90d9" opacity="0.15"/>
+      <text x="805" y="271" text-anchor="middle" font-size="11" fill="#4a90d9" font-weight="bold">PERIODIC</text>
+    </g>
+  </g>
+
+  <!-- ==================== CARD 3: Campaign Report (Bottom-Left) ==================== -->
+  <g filter="url(#cardShadow)">
+    <rect x="30" y="360" width="410" height="250" rx="12" ry="12" fill="#1c2333" stroke="#2d3748" stroke-width="1"/>
+    <!-- Header bar -->
+    <rect x="30" y="360" width="410" height="52" rx="12" ry="12" fill="url(#headerCamp)" clip-path="url(#clipBottomLeft)"/>
+    <rect x="30" y="390" width="410" height="22" fill="url(#headerCamp)"/>
+    <!-- Icon -->
+    <g transform="translate(50, 373)">
+      <rect x="0" y="0" width="26" height="26" rx="4" fill="rgba(0,0,0,0.25)"/>
+      <circle cx="13" cy="13" r="8" stroke="#fff" stroke-width="1.5" fill="none"/>
+      <circle cx="13" cy="13" r="3" stroke="#fff" stroke-width="1.5" fill="none"/>
+      <line x1="13" y1="5" x2="13" y2="2" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="13" y1="24" x2="13" y2="21" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="5" y1="13" x2="2" y2="13" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="24" y1="13" x2="21" y2="13" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="86" y="392" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Campaign Report</text>
+
+    <!-- Fields -->
+    <g font-family="'Segoe UI', Arial, sans-serif">
+      <!-- Audience -->
+      <text x="50" y="438" font-size="11" fill="#9b6dca" font-weight="bold" letter-spacing="1">AUDIENCE</text>
+      <text x="50" y="455" font-size="14" fill="#c9d1d9">Security Teams</text>
+
+      <!-- Content -->
+      <text x="50" y="480" font-size="11" fill="#9b6dca" font-weight="bold" letter-spacing="1">CONTENT</text>
+      <text x="50" y="497" font-size="14" fill="#c9d1d9">Actor analysis, TTPs, timeline</text>
+
+      <!-- Frequency -->
+      <text x="50" y="522" font-size="11" fill="#9b6dca" font-weight="bold" letter-spacing="1">FREQUENCY</text>
+      <text x="50" y="539" font-size="14" fill="#c9d1d9">Per campaign</text>
+
+      <!-- Frequency badge -->
+      <rect x="310" y="525" width="110" height="24" rx="12" fill="#9b6dca" opacity="0.15"/>
+      <text x="365" y="541" text-anchor="middle" font-size="11" fill="#9b6dca" font-weight="bold">PER CAMPAIGN</text>
+    </g>
+  </g>
+
+  <!-- ==================== CARD 4: Tactical Alert (Bottom-Right) ==================== -->
+  <g filter="url(#cardShadow)">
+    <rect x="460" y="360" width="410" height="250" rx="12" ry="12" fill="#1c2333" stroke="#2d3748" stroke-width="1"/>
+    <!-- Header bar -->
+    <rect x="460" y="360" width="410" height="52" rx="12" ry="12" fill="url(#headerTact)" clip-path="url(#clipBottomRight)"/>
+    <rect x="460" y="390" width="410" height="22" fill="url(#headerTact)"/>
+    <!-- Icon -->
+    <g transform="translate(480, 373)">
+      <rect x="0" y="0" width="26" height="26" rx="4" fill="rgba(0,0,0,0.25)"/>
+      <path d="M13 4L3 22h20L13 4z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+      <line x1="13" y1="11" x2="13" y2="16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="13" cy="19" r="1.2" fill="#fff"/>
+    </g>
+    <text x="516" y="392" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Tactical Alert</text>
+
+    <!-- Fields -->
+    <g font-family="'Segoe UI', Arial, sans-serif">
+      <!-- Audience -->
+      <text x="480" y="438" font-size="11" fill="#e6a817" font-weight="bold" letter-spacing="1">AUDIENCE</text>
+      <text x="480" y="455" font-size="14" fill="#c9d1d9">All security staff</text>
+
+      <!-- Content -->
+      <text x="480" y="480" font-size="11" fill="#e6a817" font-weight="bold" letter-spacing="1">CONTENT</text>
+      <text x="480" y="497" font-size="14" fill="#c9d1d9">Emerging threat, immediate actions</text>
+
+      <!-- Frequency -->
+      <text x="480" y="522" font-size="11" fill="#e6a817" font-weight="bold" letter-spacing="1">FREQUENCY</text>
+      <text x="480" y="539" font-size="14" fill="#c9d1d9">Urgent / Ad-hoc</text>
+
+      <!-- Frequency badge -->
+      <rect x="760" y="525" width="90" height="24" rx="12" fill="#e6a817" opacity="0.15"/>
+      <text x="805" y="541" text-anchor="middle" font-size="11" fill="#e6a817" font-weight="bold">URGENT</text>
+    </g>
+  </g>
+
+  <!-- Decorative accent lines between cards -->
+  <line x1="235" y1="345" x2="235" y2="355" stroke="#2d3748" stroke-width="1" opacity="0.5"/>
+  <line x1="665" y1="345" x2="665" y2="355" stroke="#2d3748" stroke-width="1" opacity="0.5"/>
+  <line x1="445" y1="215" x2="455" y2="215" stroke="#2d3748" stroke-width="1" opacity="0.5"/>
+  <line x1="445" y1="485" x2="455" y2="485" stroke="#2d3748" stroke-width="1" opacity="0.5"/>
+
+  <!-- Footer -->
+  <text x="450" y="635" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#484f58">Threat Intelligence Module 5 -- Tailored products ensure the right information reaches the right audience at the right time</text>
+</svg>

@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650">
+  <defs>
+    <!-- Glow filters for each stage color -->
+    <filter id="glow-red" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#e94560" flood-opacity="0.35"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-blue" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#0f3460" flood-opacity="0.5"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-purple" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#533483" flood-opacity="0.45"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-gold" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#e6a817" flood-opacity="0.35"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#1a6b3c" flood-opacity="0.45"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="center-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feFlood flood-color="#58a6ff" flood-opacity="0.15"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Arrow marker -->
+    <marker id="arrow-red" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,4 L0,8 L2,4 Z" fill="#e94560"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,4 L0,8 L2,4 Z" fill="#4a8fe7"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,4 L0,8 L2,4 Z" fill="#8b5fbf"/>
+    </marker>
+    <marker id="arrow-gold" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,4 L0,8 L2,4 Z" fill="#e6a817"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,4 L0,8 L2,4 Z" fill="#2ea55a"/>
+    </marker>
+    <marker id="arrow-cti" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L12,5 L0,10 L3,5 Z" fill="#e94560"/>
+    </marker>
+
+    <!-- Subtle radial gradient for background depth -->
+    <radialGradient id="bg-grad" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </radialGradient>
+
+    <!-- Orbit ring gradient -->
+    <linearGradient id="orbit-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#21262d"/>
+      <stop offset="50%" stop-color="#30363d"/>
+      <stop offset="100%" stop-color="#21262d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="650" fill="url(#bg-grad)" rx="8"/>
+
+  <!-- Subtle border -->
+  <rect width="898" height="648" x="1" y="1" fill="none" stroke="#21262d" stroke-width="1" rx="8"/>
+
+  <!-- Title -->
+  <text x="450" y="42" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff" letter-spacing="0.5">Intelligence-Driven Threat Hunting Cycle</text>
+  <line x1="250" y1="54" x2="650" y2="54" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Center of circle: cx=450, cy=365, radius=185 for box centers -->
+  <!-- 5 stages positioned in a circle, starting from top (stage 1) going clockwise -->
+  <!-- Stage 1: top center (270 deg) => (450, 180) -->
+  <!-- Stage 2: top-right (342 deg) => (450+185*cos(-18), 365+185*sin(-18)) => (625.9, 307.8) -->
+  <!-- Stage 3: bottom-right (54 deg) => (450+185*cos(54), 365+185*sin(54)) => (558.8, 514.6) -->
+  <!-- Stage 4: bottom-left (126 deg) => (450+185*cos(126), 365+185*sin(126)) => (341.2, 514.6) -->
+  <!-- Stage 5: top-left (198 deg) => (450+185*cos(198), 365+185*sin(198)) => (274.1, 307.8) -->
+
+  <!-- Orbit ring (decorative) -->
+  <circle cx="450" cy="365" r="185" fill="none" stroke="url(#orbit-grad)" stroke-width="1.5" stroke-dasharray="4,6" opacity="0.5"/>
+
+  <!-- ==================== CURVED ARROWS BETWEEN STAGES ==================== -->
+  <!-- Arrow 1->2: from (450,180) clockwise to (626,308) -->
+  <path d="M 490,195 C 570,200 620,240 630,285" fill="none" stroke="#e94560" stroke-width="2.2" stroke-opacity="0.8" marker-end="url(#arrow-red)"/>
+
+  <!-- Arrow 2->3: from (626,308) clockwise to (559,515) -->
+  <path d="M 635,340 C 650,420 620,490 575,515" fill="none" stroke="#4a8fe7" stroke-width="2.2" stroke-opacity="0.8" marker-end="url(#arrow-blue)"/>
+
+  <!-- Arrow 3->4: from (559,515) clockwise to (341,515) -->
+  <path d="M 525,535 C 480,565 420,565 370,535" fill="none" stroke="#8b5fbf" stroke-width="2.2" stroke-opacity="0.8" marker-end="url(#arrow-purple)"/>
+
+  <!-- Arrow 4->5: from (341,515) clockwise to (274,308) -->
+  <path d="M 315,495 C 280,460 255,400 265,340" fill="none" stroke="#e6a817" stroke-width="2.2" stroke-opacity="0.8" marker-end="url(#arrow-gold)"/>
+
+  <!-- Arrow 5->1: from (274,308) clockwise to (450,180) -->
+  <path d="M 285,280 C 310,225 370,190 415,182" fill="none" stroke="#2ea55a" stroke-width="2.2" stroke-opacity="0.8" marker-end="url(#arrow-green)"/>
+
+  <!-- ==================== STAGE BOXES ==================== -->
+
+  <!-- Stage 1: Consume Intelligence (top center) -->
+  <g filter="url(#glow-red)">
+    <rect x="370" y="143" width="160" height="64" rx="12" fill="#1a0a10" stroke="#e94560" stroke-width="2"/>
+    <rect x="370" y="143" width="160" height="64" rx="12" fill="#e94560" fill-opacity="0.12"/>
+    <!-- Number badge -->
+    <circle cx="385" cy="158" r="11" fill="#e94560"/>
+    <text x="385" y="163" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">1</text>
+    <text x="450" y="172" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#e94560">Consume</text>
+    <text x="450" y="192" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#e94560">Intelligence</text>
+  </g>
+
+  <!-- Stage 2: Form Hypothesis (top-right) -->
+  <g filter="url(#glow-blue)" transform="translate(626,308)">
+    <rect x="-80" y="-32" width="160" height="64" rx="12" fill="#060d1a" stroke="#2060a8" stroke-width="2"/>
+    <rect x="-80" y="-32" width="160" height="64" rx="12" fill="#0f3460" fill-opacity="0.2"/>
+    <circle cx="-65" cy="-17" r="11" fill="#2060a8"/>
+    <text x="-65" y="-12" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">2</text>
+    <text x="0" y="-4" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a8fe7">Form</text>
+    <text x="0" y="16" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a8fe7">Hypothesis</text>
+  </g>
+
+  <!-- Stage 3: Investigate Data (bottom-right) -->
+  <g filter="url(#glow-purple)" transform="translate(559,515)">
+    <rect x="-80" y="-32" width="160" height="64" rx="12" fill="#120a1a" stroke="#533483" stroke-width="2"/>
+    <rect x="-80" y="-32" width="160" height="64" rx="12" fill="#533483" fill-opacity="0.15"/>
+    <circle cx="-65" cy="-17" r="11" fill="#533483"/>
+    <text x="-65" y="-12" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">3</text>
+    <text x="0" y="-4" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8b5fbf">Investigate</text>
+    <text x="0" y="16" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8b5fbf">Data</text>
+  </g>
+
+  <!-- Stage 4: Discover Patterns (bottom-left) -->
+  <g filter="url(#glow-gold)" transform="translate(341,515)">
+    <rect x="-80" y="-32" width="160" height="64" rx="12" fill="#1a1505" stroke="#e6a817" stroke-width="2"/>
+    <rect x="-80" y="-32" width="160" height="64" rx="12" fill="#e6a817" fill-opacity="0.1"/>
+    <circle cx="-65" cy="-17" r="11" fill="#e6a817"/>
+    <text x="-65" y="-12" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#1a1505">4</text>
+    <text x="0" y="-4" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#e6a817">Discover</text>
+    <text x="0" y="16" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#e6a817">Patterns</text>
+  </g>
+
+  <!-- Stage 5: Create Detection (top-left) -->
+  <g filter="url(#glow-green)" transform="translate(274,308)">
+    <rect x="-80" y="-32" width="160" height="64" rx="12" fill="#081a0e" stroke="#1a6b3c" stroke-width="2"/>
+    <rect x="-80" y="-32" width="160" height="64" rx="12" fill="#1a6b3c" fill-opacity="0.15"/>
+    <circle cx="-65" cy="-17" r="11" fill="#1a6b3c"/>
+    <text x="-65" y="-12" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">5</text>
+    <text x="0" y="-4" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#2ea55a">Create</text>
+    <text x="0" y="16" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#2ea55a">Detection</text>
+  </g>
+
+  <!-- ==================== CENTER ELEMENT ==================== -->
+  <g filter="url(#center-glow)">
+    <circle cx="450" cy="365" r="52" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
+    <circle cx="450" cy="365" r="52" fill="#58a6ff" fill-opacity="0.04"/>
+    <text x="450" y="359" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#58a6ff">Refine</text>
+    <text x="450" y="378" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#58a6ff">&amp; Iterate</text>
+  </g>
+
+  <!-- ==================== CTI INPUT ARROW ==================== -->
+  <!-- External arrow entering Stage 1 from above-left -->
+  <g>
+    <!-- Arrow line -->
+    <path d="M 245,80 C 280,80 340,100 370,145" fill="none" stroke="#e94560" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrow-cti)"/>
+    <!-- CTI Input label box -->
+    <rect x="155" y="64" width="95" height="30" rx="6" fill="#1a0a10" stroke="#e94560" stroke-width="1.5" stroke-opacity="0.7"/>
+    <text x="202" y="84" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#e94560">CTI Input</text>
+    <!-- Small icon: incoming signal -->
+    <circle cx="170" cy="79" r="3" fill="#e94560" opacity="0.6"/>
+    <circle cx="170" cy="79" r="6" fill="none" stroke="#e94560" stroke-width="0.8" opacity="0.4"/>
+    <circle cx="170" cy="79" r="10" fill="none" stroke="#e94560" stroke-width="0.5" opacity="0.25"/>
+  </g>
+
+  <!-- ==================== STAGE ICONS (minimal) ==================== -->
+  <!-- Stage 1 icon: antenna/signal -->
+  <g transform="translate(515,158)" opacity="0.7">
+    <path d="M0,12 L0,0 M-5,3 C-5,-2 5,-2 5,3" fill="none" stroke="#e94560" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="0" cy="12" r="2" fill="#e94560"/>
+  </g>
+
+  <!-- Stage 2 icon: lightbulb -->
+  <g transform="translate(691,293)" opacity="0.7">
+    <path d="M0,-8 C-6,-8 -8,-3 -8,2 C-8,5 -4,8 -4,10 L4,10 C4,8 8,5 8,2 C8,-3 6,-8 0,-8 Z" fill="none" stroke="#4a8fe7" stroke-width="1.3"/>
+    <line x1="-3" y1="12" x2="3" y2="12" stroke="#4a8fe7" stroke-width="1.3"/>
+  </g>
+
+  <!-- Stage 3 icon: magnifier -->
+  <g transform="translate(624,510)" opacity="0.7">
+    <circle cx="0" cy="-2" r="6" fill="none" stroke="#8b5fbf" stroke-width="1.3"/>
+    <line x1="4" y1="3" x2="9" y2="8" stroke="#8b5fbf" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Stage 4 icon: pattern/grid -->
+  <g transform="translate(276,510)" opacity="0.7">
+    <rect x="-7" y="-7" width="6" height="6" rx="1" fill="#e6a817" opacity="0.6"/>
+    <rect x="1" y="-7" width="6" height="6" rx="1" fill="#e6a817" opacity="0.8"/>
+    <rect x="-7" y="1" width="6" height="6" rx="1" fill="#e6a817" opacity="0.8"/>
+    <rect x="1" y="1" width="6" height="6" rx="1" fill="#e6a817" opacity="0.6"/>
+  </g>
+
+  <!-- Stage 5 icon: shield/check -->
+  <g transform="translate(209,293)" opacity="0.7">
+    <path d="M0,-9 L-7,-4 L-7,2 C-7,7 0,11 0,11 C0,11 7,7 7,2 L7,-4 Z" fill="none" stroke="#2ea55a" stroke-width="1.3"/>
+    <path d="M-3,1 L-1,4 L4,-2" fill="none" stroke="#2ea55a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ==================== FOOTER ==================== -->
+  <text x="450" y="625" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#484f58">Continuous cycle: intelligence feeds refine hunting hypotheses and detection capabilities</text>
+</svg>

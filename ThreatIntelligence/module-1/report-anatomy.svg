@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <filter id="docShadow" x="-5%" y="-2%" width="115%" height="108%">
+      <feDropShadow dx="4" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="sectionGlow" x="-2%" y="-10%" width="104%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffffff" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="50%" stop-color="#111820"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="docGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c2333"/>
+      <stop offset="100%" stop-color="#151b28"/>
+    </linearGradient>
+    <linearGradient id="headerBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="100%" stop-color="#533483"/>
+    </linearGradient>
+    <clipPath id="docClip">
+      <rect x="80" y="75" width="440" height="590" rx="4"/>
+    </clipPath>
+    <!-- Subtle grid pattern -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#ffffff" stroke-opacity="0.02" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="700" fill="url(#bgGrad)"/>
+  <rect width="900" height="700" fill="url(#grid)"/>
+
+  <!-- Decorative corner accents -->
+  <path d="M0 0 L60 0 L0 60 Z" fill="#e94560" opacity="0.06"/>
+  <path d="M900 700 L840 700 L900 640 Z" fill="#533483" opacity="0.06"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#e2e8f0" letter-spacing="0.5">Anatomy of a Threat Intelligence Report</text>
+  <line x1="280" y1="50" x2="620" y2="50" stroke="url(#headerBar)" stroke-width="2" stroke-linecap="round"/>
+  <text x="450" y="66" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" letter-spacing="2">STRUCTURED DOCUMENT LAYOUT</text>
+
+  <!-- Document body -->
+  <g filter="url(#docShadow)">
+    <!-- Document shape with folded corner -->
+    <path d="M84 79 L484 79 L520 115 L520 661 Q520 665 516 665 L84 665 Q80 665 80 661 L80 79 Z" fill="url(#docGrad)" stroke="#2a3142" stroke-width="1.2"/>
+    <!-- Folded corner -->
+    <path d="M484 79 L484 115 L520 115 Z" fill="#232d3f" stroke="#2a3142" stroke-width="1"/>
+    <path d="M484 79 L484 115 L520 115" fill="none" stroke="#3a4558" stroke-width="0.5"/>
+  </g>
+
+  <!-- Document header bar -->
+  <rect x="80" y="79" width="440" height="6" fill="url(#headerBar)" clip-path="url(#docClip)"/>
+
+  <!-- Classification banner -->
+  <rect x="100" y="94" width="400" height="20" rx="2" fill="#e94560" opacity="0.15"/>
+  <text x="300" y="108" text-anchor="middle" font-family="Courier New, monospace" font-size="9" fill="#e94560" font-weight="700" letter-spacing="3">TLP:AMBER -- CONFIDENTIAL</text>
+
+  <!-- Section 1: Executive Summary -->
+  <g filter="url(#sectionGlow)">
+    <rect x="100" y="122" width="400" height="62" rx="3" fill="#e94560" opacity="0.12" stroke="#e94560" stroke-width="0.8" stroke-opacity="0.4"/>
+    <rect x="100" y="122" width="5" height="62" rx="2" fill="#e94560"/>
+    <text x="118" y="140" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#e94560">01</text>
+    <text x="140" y="140" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f0f4f8">Executive Summary</text>
+    <line x1="118" y1="148" x2="480" y2="148" stroke="#e94560" stroke-width="0.3" stroke-opacity="0.4"/>
+    <text x="118" y="162" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">Key findings, overall risk level, scope of threat,</text>
+    <text x="118" y="176" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">and recommended priority actions for leadership.</text>
+  </g>
+
+  <!-- Section 2: Threat Overview -->
+  <g filter="url(#sectionGlow)">
+    <rect x="100" y="192" width="400" height="62" rx="3" fill="#0f3460" opacity="0.2" stroke="#0f3460" stroke-width="0.8" stroke-opacity="0.5"/>
+    <rect x="100" y="192" width="5" height="62" rx="2" fill="#2e7bbf"/>
+    <text x="118" y="210" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4da3e8">02</text>
+    <text x="140" y="210" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f0f4f8">Threat Overview</text>
+    <line x1="118" y1="218" x2="480" y2="218" stroke="#0f3460" stroke-width="0.3" stroke-opacity="0.5"/>
+    <text x="118" y="232" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">Threat actor profile, attributed campaigns,</text>
+    <text x="118" y="246" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">motivation (espionage, financial, hacktivism), and targets.</text>
+  </g>
+
+  <!-- Section 3: Technical Analysis -->
+  <g filter="url(#sectionGlow)">
+    <rect x="100" y="262" width="400" height="62" rx="3" fill="#533483" opacity="0.15" stroke="#533483" stroke-width="0.8" stroke-opacity="0.4"/>
+    <rect x="100" y="262" width="5" height="62" rx="2" fill="#533483"/>
+    <text x="118" y="280" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#9b6dd7">03</text>
+    <text x="140" y="280" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f0f4f8">Technical Analysis</text>
+    <line x1="118" y1="288" x2="480" y2="288" stroke="#533483" stroke-width="0.3" stroke-opacity="0.5"/>
+    <text x="118" y="302" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">Tactics, Techniques, and Procedures (TTPs),</text>
+    <text x="118" y="316" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">kill chain mapping, malware analysis, and attack flow.</text>
+  </g>
+
+  <!-- Section 4: Indicators of Compromise -->
+  <g filter="url(#sectionGlow)">
+    <rect x="100" y="332" width="400" height="62" rx="3" fill="#e6a817" opacity="0.1" stroke="#e6a817" stroke-width="0.8" stroke-opacity="0.35"/>
+    <rect x="100" y="332" width="5" height="62" rx="2" fill="#e6a817"/>
+    <text x="118" y="350" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#e6a817">04</text>
+    <text x="140" y="350" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f0f4f8">Indicators of Compromise</text>
+    <line x1="118" y1="358" x2="480" y2="358" stroke="#e6a817" stroke-width="0.3" stroke-opacity="0.4"/>
+    <text x="118" y="372" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">File hashes (MD5/SHA256), malicious IPs, C2 domains,</text>
+    <text x="118" y="386" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">URLs, registry keys, and YARA/Sigma rules.</text>
+  </g>
+
+  <!-- Section 5: MITRE ATT&CK Mapping -->
+  <g filter="url(#sectionGlow)">
+    <rect x="100" y="402" width="400" height="62" rx="3" fill="#1a6b3c" opacity="0.15" stroke="#1a6b3c" stroke-width="0.8" stroke-opacity="0.45"/>
+    <rect x="100" y="402" width="5" height="62" rx="2" fill="#1a6b3c"/>
+    <text x="118" y="420" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#2ecc71">05</text>
+    <text x="140" y="420" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f0f4f8">MITRE ATT&amp;CK Mapping</text>
+    <line x1="118" y1="428" x2="480" y2="428" stroke="#1a6b3c" stroke-width="0.3" stroke-opacity="0.5"/>
+    <text x="118" y="442" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">Mapped techniques (T-codes), sub-techniques,</text>
+    <text x="118" y="456" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">tactic categories, and detection coverage gaps.</text>
+  </g>
+
+  <!-- Section 6: Recommendations -->
+  <g filter="url(#sectionGlow)">
+    <rect x="100" y="472" width="400" height="62" rx="3" fill="#2d5016" opacity="0.18" stroke="#2d5016" stroke-width="0.8" stroke-opacity="0.45"/>
+    <rect x="100" y="472" width="5" height="62" rx="2" fill="#4a8c2a"/>
+    <text x="118" y="490" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#6abf40">06</text>
+    <text x="140" y="490" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f0f4f8">Recommendations</text>
+    <line x1="118" y1="498" x2="480" y2="498" stroke="#2d5016" stroke-width="0.3" stroke-opacity="0.5"/>
+    <text x="118" y="512" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">Defensive actions, mitigation strategies,</text>
+    <text x="118" y="526" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">patching priorities, and detection rule updates.</text>
+  </g>
+
+  <!-- Section 7: Confidence Assessment -->
+  <g filter="url(#sectionGlow)">
+    <rect x="100" y="542" width="400" height="62" rx="3" fill="#e94560" opacity="0.1" stroke="#e94560" stroke-width="0.8" stroke-opacity="0.3"/>
+    <rect x="100" y="542" width="5" height="62" rx="2" fill="#e94560"/>
+    <text x="118" y="560" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#e94560">07</text>
+    <text x="140" y="560" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f0f4f8">Confidence Assessment</text>
+    <line x1="118" y1="568" x2="480" y2="568" stroke="#e94560" stroke-width="0.3" stroke-opacity="0.4"/>
+    <text x="118" y="582" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">Analytical confidence level (high/moderate/low),</text>
+    <text x="118" y="596" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e">source reliability, information validity, and caveats.</text>
+  </g>
+
+  <!-- Document footer -->
+  <rect x="100" y="614" width="400" height="18" rx="2" fill="#1c2333" stroke="#2a3142" stroke-width="0.5"/>
+  <text x="300" y="626" text-anchor="middle" font-family="Courier New, monospace" font-size="8" fill="#4a5568" letter-spacing="1">REPORT ID: TI-2026-0489  |  CLASSIFICATION: TLP:AMBER</text>
+
+  <!-- Simulated page lines in footer area -->
+  <line x1="120" y1="640" x2="360" y2="640" stroke="#2a3142" stroke-width="0.5"/>
+  <line x1="120" y1="648" x2="300" y2="648" stroke="#2a3142" stroke-width="0.5"/>
+  <line x1="120" y1="656" x2="340" y2="656" stroke="#2a3142" stroke-width="0.5"/>
+
+  <!-- Right panel: Annotations -->
+  <!-- Connector lines from sections to annotations -->
+  <g stroke-dasharray="3,3" stroke-width="1" fill="none">
+    <path d="M500 153 Q540 153 560 140" stroke="#e94560" stroke-opacity="0.5"/>
+    <path d="M500 223 Q540 223 560 210" stroke="#4da3e8" stroke-opacity="0.5"/>
+    <path d="M500 293 Q540 293 560 287" stroke="#9b6dd7" stroke-opacity="0.5"/>
+    <path d="M500 363 Q540 363 560 363" stroke="#e6a817" stroke-opacity="0.5"/>
+    <path d="M500 433 Q540 433 560 437" stroke="#2ecc71" stroke-opacity="0.5"/>
+    <path d="M500 503 Q540 503 560 510" stroke="#6abf40" stroke-opacity="0.5"/>
+    <path d="M500 573 Q540 573 560 582" stroke="#e94560" stroke-opacity="0.5"/>
+  </g>
+
+  <!-- Annotation cards -->
+  <!-- Card 1 -->
+  <rect x="558" y="120" width="310" height="46" rx="4" fill="#161b22" stroke="#e94560" stroke-width="0.7" stroke-opacity="0.4"/>
+  <circle cx="574" cy="134" r="4" fill="#e94560" opacity="0.8"/>
+  <text x="584" y="138" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#e94560">DECISION-MAKER FACING</text>
+  <text x="574" y="156" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5" fill="#7d8590">Concise risk context for C-suite and leadership</text>
+
+  <!-- Card 2 -->
+  <rect x="558" y="190" width="310" height="46" rx="4" fill="#161b22" stroke="#4da3e8" stroke-width="0.7" stroke-opacity="0.4"/>
+  <circle cx="574" cy="204" r="4" fill="#4da3e8" opacity="0.8"/>
+  <text x="584" y="208" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#4da3e8">CONTEXTUAL INTELLIGENCE</text>
+  <text x="574" y="226" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5" fill="#7d8590">Who, what, why -- strategic threat landscape</text>
+
+  <!-- Card 3 -->
+  <rect x="558" y="265" width="310" height="46" rx="4" fill="#161b22" stroke="#9b6dd7" stroke-width="0.7" stroke-opacity="0.4"/>
+  <circle cx="574" cy="279" r="4" fill="#9b6dd7" opacity="0.8"/>
+  <text x="584" y="283" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#9b6dd7">DEEP TECHNICAL DETAIL</text>
+  <text x="574" y="301" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5" fill="#7d8590">Analyst-grade TTP analysis and attack reconstruction</text>
+
+  <!-- Card 4 -->
+  <rect x="558" y="341" width="310" height="46" rx="4" fill="#161b22" stroke="#e6a817" stroke-width="0.7" stroke-opacity="0.4"/>
+  <circle cx="574" cy="355" r="4" fill="#e6a817" opacity="0.8"/>
+  <text x="584" y="359" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#e6a817">MACHINE-ACTIONABLE DATA</text>
+  <text x="574" y="377" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5" fill="#7d8590">Directly ingestible into SIEM, EDR, and firewalls</text>
+
+  <!-- Card 5 -->
+  <rect x="558" y="416" width="310" height="46" rx="4" fill="#161b22" stroke="#2ecc71" stroke-width="0.7" stroke-opacity="0.4"/>
+  <circle cx="574" cy="430" r="4" fill="#2ecc71" opacity="0.8"/>
+  <text x="584" y="434" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#2ecc71">STANDARDIZED FRAMEWORK</text>
+  <text x="574" y="452" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5" fill="#7d8590">Common language across teams and organizations</text>
+
+  <!-- Card 6 -->
+  <rect x="558" y="490" width="310" height="46" rx="4" fill="#161b22" stroke="#6abf40" stroke-width="0.7" stroke-opacity="0.4"/>
+  <circle cx="574" cy="504" r="4" fill="#6abf40" opacity="0.8"/>
+  <text x="584" y="508" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#6abf40">OPERATIONAL GUIDANCE</text>
+  <text x="574" y="526" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5" fill="#7d8590">Prioritized defensive measures and mitigations</text>
+
+  <!-- Card 7 -->
+  <rect x="558" y="562" width="310" height="46" rx="4" fill="#161b22" stroke="#e94560" stroke-width="0.7" stroke-opacity="0.4"/>
+  <circle cx="574" cy="576" r="4" fill="#e94560" opacity="0.8"/>
+  <text x="584" y="580" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#e94560">ANALYTICAL RIGOR</text>
+  <text x="574" y="598" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5" fill="#7d8590">Transparency in sourcing and assessment certainty</text>
+
+  <!-- Right panel header -->
+  <text x="558" y="104" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#4a5568" letter-spacing="2">PURPOSE</text>
+  <line x1="558" y1="110" x2="868" y2="110" stroke="#2a3142" stroke-width="0.5"/>
+
+  <!-- Bottom annotation bar -->
+  <rect x="558" y="628" width="310" height="36" rx="4" fill="#161b22" stroke="#2a3142" stroke-width="0.7"/>
+  <text x="570" y="644" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" fill="#4a5568">Audience:</text>
+  <text x="620" y="644" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" fill="#8b949e">SOC Analysts, Threat Hunters, IR Teams, CISO</text>
+  <text x="570" y="657" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" fill="#4a5568">Formats:</text>
+  <text x="618" y="657" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" fill="#8b949e">PDF, STIX/TAXII, OpenIOC, MISP Event</text>
+
+  <!-- Vertical flow arrow on the left of the document -->
+  <line x1="72" y1="140" x2="72" y2="580" stroke="#2a3142" stroke-width="1.5"/>
+  <polygon points="72,590 67,578 77,578" fill="#2a3142"/>
+  <text x="68" y="130" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#4a5568" transform="rotate(-90,68,400)" letter-spacing="3">REPORT FLOW</text>
+
+  <!-- Small section position markers on the flow line -->
+  <circle cx="72" cy="153" r="3" fill="#e94560" opacity="0.7"/>
+  <circle cx="72" cy="223" r="3" fill="#4da3e8" opacity="0.7"/>
+  <circle cx="72" cy="293" r="3" fill="#9b6dd7" opacity="0.7"/>
+  <circle cx="72" cy="363" r="3" fill="#e6a817" opacity="0.7"/>
+  <circle cx="72" cy="433" r="3" fill="#2ecc71" opacity="0.7"/>
+  <circle cx="72" cy="503" r="3" fill="#6abf40" opacity="0.7"/>
+  <circle cx="72" cy="573" r="3" fill="#e94560" opacity="0.7"/>
+
+  <!-- Bottom branding -->
+  <text x="450" y="692" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" fill="#2a3142">Threat Intelligence Report Structure -- Module 1</text>
+</svg>

@@ -1,0 +1,260 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <defs>
+    <!-- Glow filters for circles -->
+    <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="glow-purple" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="glow-gold" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Subtle text shadow -->
+    <filter id="text-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000000" flood-opacity="0.7"/>
+    </filter>
+
+    <!-- Background gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="50%" stop-color="#111822"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+
+    <!-- Overlap label background -->
+    <filter id="label-bg" x="-5%" y="-5%" width="110%" height="110%">
+      <feFlood flood-color="#0d1117" flood-opacity="0.85" result="bg"/>
+      <feMerge>
+        <feMergeNode in="bg"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Connector line gradient: red to blue -->
+    <linearGradient id="grad-rb" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="100%" stop-color="#0f3460"/>
+    </linearGradient>
+    <!-- Connector line gradient: red to purple -->
+    <linearGradient id="grad-rp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="100%" stop-color="#533483"/>
+    </linearGradient>
+    <!-- Connector line gradient: red to gold -->
+    <linearGradient id="grad-rg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="100%" stop-color="#e6a817"/>
+    </linearGradient>
+    <!-- Connector line gradient: blue to purple -->
+    <linearGradient id="grad-bp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#533483"/>
+    </linearGradient>
+    <!-- Connector line gradient: purple to gold -->
+    <linearGradient id="grad-pg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#533483"/>
+      <stop offset="100%" stop-color="#e6a817"/>
+    </linearGradient>
+    <!-- Connector line gradient: blue to gold -->
+    <linearGradient id="grad-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#e6a817"/>
+    </linearGradient>
+
+    <!-- Radial glow for center -->
+    <radialGradient id="center-glow" cx="50%" cy="55%" r="18%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Pill-shaped label background filter -->
+    <filter id="pill-shadow" x="-20%" y="-40%" width="140%" height="180%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="url(#bg-grad)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.04">
+    <line x1="0" y1="100" x2="900" y2="100" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="900" y2="200" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="300" x2="900" y2="300" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="900" y2="400" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="500" x2="900" y2="500" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="150" y1="0" x2="150" y2="600" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="300" y1="0" x2="300" y2="600" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="450" y1="0" x2="450" y2="600" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="600" y1="0" x2="600" y2="600" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="750" y1="0" x2="750" y2="600" stroke="#ffffff" stroke-width="0.5"/>
+  </g>
+
+  <!-- Title -->
+  <text x="450" y="48" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="700" fill="#ffffff" letter-spacing="1" filter="url(#text-shadow)">CTI vs Related Disciplines</text>
+  <line x1="280" y1="60" x2="620" y2="60" stroke="#e94560" stroke-width="2" opacity="0.5"/>
+
+  <!-- Center glow -->
+  <ellipse cx="450" cy="330" rx="160" ry="160" fill="url(#center-glow)"/>
+
+  <!-- ============================================ -->
+  <!-- CONNECTION LINES (drawn first, behind circles) -->
+  <!-- ============================================ -->
+
+  <!-- TI to OSINT -->
+  <line x1="305" y1="235" x2="400" y2="235" stroke="url(#grad-rb)" stroke-width="2" opacity="0.35" stroke-dasharray="6,4"/>
+  <!-- TI to Threat Hunting -->
+  <line x1="305" y1="290" x2="400" y2="380" stroke="url(#grad-rp)" stroke-width="2" opacity="0.35" stroke-dasharray="6,4"/>
+  <!-- TI to IR -->
+  <line x1="305" y1="310" x2="580" y2="310" stroke="url(#grad-rg)" stroke-width="2" opacity="0.35" stroke-dasharray="6,4"/>
+  <!-- OSINT to Threat Hunting -->
+  <line x1="530" y1="270" x2="480" y2="370" stroke="url(#grad-bp)" stroke-width="2" opacity="0.35" stroke-dasharray="6,4"/>
+  <!-- Threat Hunting to IR -->
+  <line x1="520" y1="430" x2="620" y2="370" stroke="url(#grad-pg)" stroke-width="2" opacity="0.35" stroke-dasharray="6,4"/>
+  <!-- OSINT to IR -->
+  <line x1="570" y1="240" x2="650" y2="310" stroke="url(#grad-bg)" stroke-width="2" opacity="0.35" stroke-dasharray="6,4"/>
+
+  <!-- ============================================ -->
+  <!-- FOUR DISCIPLINE CIRCLES -->
+  <!-- ============================================ -->
+
+  <!-- Threat Intelligence (top-left) - #e94560 -->
+  <circle cx="270" cy="260" r="140" fill="#e94560" fill-opacity="0.10" stroke="#e94560" stroke-width="2.5" filter="url(#glow-red)"/>
+  <circle cx="270" cy="260" r="140" fill="none" stroke="#e94560" stroke-width="0.5" stroke-dasharray="4,6" opacity="0.4">
+    <animate attributeName="stroke-dashoffset" from="0" to="20" dur="8s" repeatCount="indefinite"/>
+  </circle>
+  <!-- TI icon: shield -->
+  <g transform="translate(230,185)">
+    <path d="M20,2 L36,10 L36,22 C36,32 28,40 20,44 C12,40 4,32 4,22 L4,10 Z" fill="none" stroke="#e94560" stroke-width="1.8" opacity="0.8"/>
+    <path d="M14,22 L18,26 L26,18" fill="none" stroke="#e94560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  </g>
+  <text x="270" y="248" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#e94560" filter="url(#text-shadow)">Threat</text>
+  <text x="270" y="268" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#e94560" filter="url(#text-shadow)">Intelligence</text>
+  <text x="270" y="293" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#c9d1d9" opacity="0.85">Anticipate &amp;</text>
+  <text x="270" y="307" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#c9d1d9" opacity="0.85">understand threats</text>
+
+  <!-- OSINT (top-right) - #0f3460 -->
+  <circle cx="530" cy="220" r="130" fill="#0f3460" fill-opacity="0.12" stroke="#1a5fad" stroke-width="2.5" filter="url(#glow-blue)"/>
+  <circle cx="530" cy="220" r="130" fill="none" stroke="#1a5fad" stroke-width="0.5" stroke-dasharray="4,6" opacity="0.4">
+    <animate attributeName="stroke-dashoffset" from="0" to="20" dur="10s" repeatCount="indefinite"/>
+  </circle>
+  <!-- OSINT icon: magnifying glass -->
+  <g transform="translate(503,145)">
+    <circle cx="18" cy="18" r="13" fill="none" stroke="#4a9eff" stroke-width="1.8" opacity="0.8"/>
+    <line x1="28" y1="28" x2="36" y2="36" stroke="#4a9eff" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/>
+    <circle cx="14" cy="15" r="4" fill="none" stroke="#4a9eff" stroke-width="1" opacity="0.4"/>
+  </g>
+  <text x="530" y="212" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#4a9eff" filter="url(#text-shadow)">OSINT</text>
+  <text x="530" y="237" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#c9d1d9" opacity="0.85">Collect from</text>
+  <text x="530" y="251" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#c9d1d9" opacity="0.85">open sources</text>
+
+  <!-- Threat Hunting (bottom-center) - #533483 -->
+  <circle cx="440" cy="430" r="135" fill="#533483" fill-opacity="0.10" stroke="#533483" stroke-width="2.5" filter="url(#glow-purple)"/>
+  <circle cx="440" cy="430" r="135" fill="none" stroke="#533483" stroke-width="0.5" stroke-dasharray="4,6" opacity="0.4">
+    <animate attributeName="stroke-dashoffset" from="0" to="20" dur="9s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Threat Hunting icon: crosshair -->
+  <g transform="translate(413,355)">
+    <circle cx="18" cy="18" r="14" fill="none" stroke="#9b6dff" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="18" cy="18" r="6" fill="none" stroke="#9b6dff" stroke-width="1.2" opacity="0.7"/>
+    <line x1="18" y1="0" x2="18" y2="10" stroke="#9b6dff" stroke-width="1.5" opacity="0.7"/>
+    <line x1="18" y1="26" x2="18" y2="36" stroke="#9b6dff" stroke-width="1.5" opacity="0.7"/>
+    <line x1="0" y1="18" x2="10" y2="18" stroke="#9b6dff" stroke-width="1.5" opacity="0.7"/>
+    <line x1="26" y1="18" x2="36" y2="18" stroke="#9b6dff" stroke-width="1.5" opacity="0.7"/>
+  </g>
+  <text x="440" y="418" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#9b6dff" filter="url(#text-shadow)">Threat Hunting</text>
+  <text x="440" y="443" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#c9d1d9" opacity="0.85">Proactively search</text>
+  <text x="440" y="457" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#c9d1d9" opacity="0.85">for threats</text>
+
+  <!-- Incident Response (right) - #e6a817 -->
+  <circle cx="670" cy="340" r="125" fill="#e6a817" fill-opacity="0.08" stroke="#e6a817" stroke-width="2.5" filter="url(#glow-gold)"/>
+  <circle cx="670" cy="340" r="125" fill="none" stroke="#e6a817" stroke-width="0.5" stroke-dasharray="4,6" opacity="0.4">
+    <animate attributeName="stroke-dashoffset" from="0" to="20" dur="7s" repeatCount="indefinite"/>
+  </circle>
+  <!-- IR icon: lightning bolt -->
+  <g transform="translate(647,268)">
+    <polygon points="22,0 8,20 18,20 14,38 30,16 20,16 24,0" fill="none" stroke="#f0c040" stroke-width="1.8" stroke-linejoin="round" opacity="0.8"/>
+  </g>
+  <text x="670" y="332" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#f0c040" filter="url(#text-shadow)">Incident</text>
+  <text x="670" y="352" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#f0c040" filter="url(#text-shadow)">Response</text>
+  <text x="670" y="377" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#c9d1d9" opacity="0.85">React to security</text>
+  <text x="670" y="391" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#c9d1d9" opacity="0.85">events</text>
+
+  <!-- ============================================ -->
+  <!-- OVERLAP LABELS (pill-shaped badges) -->
+  <!-- ============================================ -->
+
+  <!-- Shared IOCs: between TI and OSINT -->
+  <g transform="translate(370,195)">
+    <rect x="-52" y="-13" width="104" height="26" rx="13" fill="#0d1117" fill-opacity="0.9" stroke="#3a4555" stroke-width="1"/>
+    <circle cx="-38" cy="0" r="3.5" fill="#e94560" opacity="0.7"/>
+    <circle cx="-30" cy="0" r="3.5" fill="#1a5fad" opacity="0.7"/>
+    <text x="6" y="4.5" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#c9d1d9">Shared IOCs</text>
+  </g>
+
+  <!-- Investigation Context: between TI and Threat Hunting -->
+  <g transform="translate(300,380)">
+    <rect x="-72" y="-13" width="144" height="26" rx="13" fill="#0d1117" fill-opacity="0.9" stroke="#3a4555" stroke-width="1"/>
+    <circle cx="-58" cy="0" r="3.5" fill="#e94560" opacity="0.7"/>
+    <circle cx="-50" cy="0" r="3.5" fill="#533483" opacity="0.7"/>
+    <text x="-2" y="4.5" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#c9d1d9">Investigation Context</text>
+  </g>
+
+  <!-- Proactive Defense: between Threat Hunting and IR -->
+  <g transform="translate(580,435)">
+    <rect x="-68" y="-13" width="136" height="26" rx="13" fill="#0d1117" fill-opacity="0.9" stroke="#3a4555" stroke-width="1"/>
+    <circle cx="-54" cy="0" r="3.5" fill="#533483" opacity="0.7"/>
+    <circle cx="-46" cy="0" r="3.5" fill="#e6a817" opacity="0.7"/>
+    <text x="0" y="4.5" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#c9d1d9">Proactive Defense</text>
+  </g>
+
+  <!-- Data Enrichment: between OSINT and IR -->
+  <g transform="translate(630,245)">
+    <rect x="-62" y="-13" width="124" height="26" rx="13" fill="#0d1117" fill-opacity="0.9" stroke="#3a4555" stroke-width="1"/>
+    <circle cx="-48" cy="0" r="3.5" fill="#1a5fad" opacity="0.7"/>
+    <circle cx="-40" cy="0" r="3.5" fill="#e6a817" opacity="0.7"/>
+    <text x="2" y="4.5" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#c9d1d9">Data Enrichment</text>
+  </g>
+
+  <!-- Hypothesis Driven: between OSINT and Threat Hunting -->
+  <g transform="translate(515,340)">
+    <rect x="-65" y="-13" width="130" height="26" rx="13" fill="#0d1117" fill-opacity="0.9" stroke="#3a4555" stroke-width="1"/>
+    <circle cx="-51" cy="0" r="3.5" fill="#1a5fad" opacity="0.7"/>
+    <circle cx="-43" cy="0" r="3.5" fill="#533483" opacity="0.7"/>
+    <text x="2" y="4.5" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#c9d1d9">Hypothesis Driven</text>
+  </g>
+
+  <!-- Actionable Intel: between TI and IR (center area) -->
+  <g transform="translate(460,280)">
+    <rect x="-62" y="-13" width="124" height="26" rx="13" fill="#0d1117" fill-opacity="0.9" stroke="#3a4555" stroke-width="1"/>
+    <circle cx="-48" cy="0" r="3.5" fill="#e94560" opacity="0.7"/>
+    <circle cx="-40" cy="0" r="3.5" fill="#e6a817" opacity="0.7"/>
+    <text x="2" y="4.5" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="600" fill="#c9d1d9">Actionable Intel</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- LEGEND / FOOTER -->
+  <!-- ============================================ -->
+  <g transform="translate(30,565)">
+    <text x="0" y="0" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#484f58" opacity="0.7">Overlap zones indicate shared capabilities and information flow between disciplines</text>
+  </g>
+
+  <!-- Decorative corner accents -->
+  <line x1="20" y1="20" x2="60" y2="20" stroke="#e94560" stroke-width="1.5" opacity="0.3"/>
+  <line x1="20" y1="20" x2="20" y2="60" stroke="#e94560" stroke-width="1.5" opacity="0.3"/>
+  <line x1="880" y1="20" x2="840" y2="20" stroke="#4a9eff" stroke-width="1.5" opacity="0.3"/>
+  <line x1="880" y1="20" x2="880" y2="60" stroke="#4a9eff" stroke-width="1.5" opacity="0.3"/>
+  <line x1="20" y1="580" x2="60" y2="580" stroke="#9b6dff" stroke-width="1.5" opacity="0.3"/>
+  <line x1="20" y1="580" x2="20" y2="540" stroke="#9b6dff" stroke-width="1.5" opacity="0.3"/>
+  <line x1="880" y1="580" x2="840" y2="580" stroke="#e6a817" stroke-width="1.5" opacity="0.3"/>
+  <line x1="880" y1="580" x2="880" y2="540" stroke="#e6a817" stroke-width="1.5" opacity="0.3"/>
+</svg>

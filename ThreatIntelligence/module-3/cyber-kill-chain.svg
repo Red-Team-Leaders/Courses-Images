@@ -1,0 +1,296 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <defs>
+    <filter id="dropShadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="defArrowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1f6feb" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#1f6feb" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1f6feb" stop-opacity="0.3"/>
+    </linearGradient>
+    <!-- Chevron gradients -->
+    <linearGradient id="chev1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6b44a0"/>
+      <stop offset="100%" stop-color="#533483"/>
+    </linearGradient>
+    <linearGradient id="chev2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#164a80"/>
+      <stop offset="100%" stop-color="#0f3460"/>
+    </linearGradient>
+    <linearGradient id="chev3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22884d"/>
+      <stop offset="100%" stop-color="#1a6b3c"/>
+    </linearGradient>
+    <linearGradient id="chev4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0bc30"/>
+      <stop offset="100%" stop-color="#e6a817"/>
+    </linearGradient>
+    <linearGradient id="chev5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f05a75"/>
+      <stop offset="100%" stop-color="#e94560"/>
+    </linearGradient>
+    <linearGradient id="chev6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a6b1e"/>
+      <stop offset="100%" stop-color="#2d5016"/>
+    </linearGradient>
+    <linearGradient id="chev7" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6b44a0"/>
+      <stop offset="100%" stop-color="#533483"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.04">
+    <line x1="0" y1="100" x2="900" y2="100" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="900" y2="200" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="300" x2="900" y2="300" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="900" y2="400" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="500" x2="900" y2="500" stroke="#ffffff" stroke-width="0.5"/>
+  </g>
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="900" height="3" fill="#1f6feb" opacity="0.6"/>
+
+  <!-- Title -->
+  <text x="450" y="42" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#e6edf3" letter-spacing="0.5">LOCKHEED MARTIN CYBER KILL CHAIN</text>
+  <text x="450" y="62" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" letter-spacing="2">INTELLIGENCE-DRIVEN DEFENSE FRAMEWORK</text>
+
+  <!-- Thin separator -->
+  <line x1="200" y1="74" x2="700" y2="74" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Phase number labels -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#8b949e" text-anchor="middle" font-weight="600" letter-spacing="1">
+    <text x="100" y="98">PHASE 1</text>
+    <text x="215" y="98">PHASE 2</text>
+    <text x="330" y="98">PHASE 3</text>
+    <text x="445" y="98">PHASE 4</text>
+    <text x="560" y="98">PHASE 5</text>
+    <text x="675" y="98">PHASE 6</text>
+    <text x="800" y="98">PHASE 7</text>
+  </g>
+
+  <!-- Chevron 1: Reconnaissance -->
+  <g filter="url(#dropShadow)">
+    <polygon points="30,120 145,120 170,195 145,270 30,270" fill="url(#chev1)" stroke="#7c55b8" stroke-width="1" opacity="0.95"/>
+    <text x="90" y="175" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.3">Recon-</text>
+    <text x="90" y="190" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.3">naissance</text>
+    <line x1="60" y1="200" x2="120" y2="200" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
+    <text x="90" y="216" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#d4c0ef" opacity="0.9">Identify &amp;</text>
+    <text x="90" y="227" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#d4c0ef" opacity="0.9">research</text>
+    <text x="90" y="238" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#d4c0ef" opacity="0.9">targets</text>
+    <!-- Icon: magnifying glass -->
+    <circle cx="90" cy="145" r="8" fill="none" stroke="#d4c0ef" stroke-width="1.5" opacity="0.7"/>
+    <line x1="96" y1="151" x2="102" y2="157" stroke="#d4c0ef" stroke-width="1.5" opacity="0.7"/>
+  </g>
+
+  <!-- Chevron 2: Weaponization -->
+  <g filter="url(#dropShadow)">
+    <polygon points="145,120 260,120 285,195 260,270 145,270 170,195" fill="url(#chev2)" stroke="#1a5ea0" stroke-width="1" opacity="0.95"/>
+    <text x="208" y="175" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.3">Weapon-</text>
+    <text x="208" y="190" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.3">ization</text>
+    <line x1="178" y1="200" x2="238" y2="200" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
+    <text x="208" y="216" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#a8c8e8" opacity="0.9">Couple exploit</text>
+    <text x="208" y="227" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#a8c8e8" opacity="0.9">with backdoor</text>
+    <text x="208" y="238" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#a8c8e8" opacity="0.9">payload</text>
+    <!-- Icon: wrench/gear -->
+    <circle cx="208" cy="145" r="7" fill="none" stroke="#a8c8e8" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="208" cy="145" r="3" fill="none" stroke="#a8c8e8" stroke-width="1" opacity="0.7"/>
+  </g>
+
+  <!-- Chevron 3: Delivery -->
+  <g filter="url(#dropShadow)">
+    <polygon points="260,120 375,120 400,195 375,270 260,270 285,195" fill="url(#chev3)" stroke="#28a060" stroke-width="1" opacity="0.95"/>
+    <text x="323" y="183" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff" letter-spacing="0.3">Delivery</text>
+    <line x1="293" y1="195" x2="353" y2="195" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
+    <text x="323" y="211" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#b0e0c0" opacity="0.9">Transmit weapon</text>
+    <text x="323" y="222" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#b0e0c0" opacity="0.9">to target via</text>
+    <text x="323" y="233" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#b0e0c0" opacity="0.9">email, web, USB</text>
+    <!-- Icon: envelope -->
+    <rect x="313" y="136" width="20" height="14" rx="1" fill="none" stroke="#b0e0c0" stroke-width="1.3" opacity="0.7"/>
+    <polyline points="313,137 323,145 333,137" fill="none" stroke="#b0e0c0" stroke-width="1" opacity="0.7"/>
+  </g>
+
+  <!-- Chevron 4: Exploitation -->
+  <g filter="url(#dropShadow)">
+    <polygon points="375,120 490,120 515,195 490,270 375,270 400,195" fill="url(#chev4)" stroke="#f0c040" stroke-width="1" opacity="0.95"/>
+    <text x="438" y="175" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#1a1a1a" letter-spacing="0.3">Exploi-</text>
+    <text x="438" y="190" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#1a1a1a" letter-spacing="0.3">tation</text>
+    <line x1="408" y1="200" x2="468" y2="200" stroke="#1a1a1a" stroke-width="0.5" opacity="0.3"/>
+    <text x="438" y="216" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#4a3800" opacity="0.85">Trigger exploit</text>
+    <text x="438" y="227" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#4a3800" opacity="0.85">code on victim</text>
+    <text x="438" y="238" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#4a3800" opacity="0.85">system</text>
+    <!-- Icon: lightning bolt -->
+    <polygon points="438,130 432,145 436,145 434,158 442,142 438,142 440,130" fill="none" stroke="#4a3800" stroke-width="1.3" opacity="0.7"/>
+  </g>
+
+  <!-- Chevron 5: Installation -->
+  <g filter="url(#dropShadow)">
+    <polygon points="490,120 605,120 630,195 605,270 490,270 515,195" fill="url(#chev5)" stroke="#ff6a80" stroke-width="1" opacity="0.95"/>
+    <text x="553" y="175" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.3">Instal-</text>
+    <text x="553" y="190" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.3">lation</text>
+    <line x1="523" y1="200" x2="583" y2="200" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
+    <text x="553" y="216" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#ffc0c8" opacity="0.9">Install malware</text>
+    <text x="553" y="227" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#ffc0c8" opacity="0.9">or backdoor</text>
+    <text x="553" y="238" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#ffc0c8" opacity="0.9">on asset</text>
+    <!-- Icon: download arrow -->
+    <line x1="553" y1="132" x2="553" y2="152" stroke="#ffc0c8" stroke-width="1.5" opacity="0.7"/>
+    <polyline points="547,146 553,154 559,146" fill="none" stroke="#ffc0c8" stroke-width="1.5" opacity="0.7"/>
+    <line x1="545" y1="155" x2="561" y2="155" stroke="#ffc0c8" stroke-width="1.3" opacity="0.7"/>
+  </g>
+
+  <!-- Chevron 6: Command & Control -->
+  <g filter="url(#dropShadow)">
+    <polygon points="605,120 720,120 745,195 720,270 605,270 630,195" fill="url(#chev6)" stroke="#4a8828" stroke-width="1" opacity="0.95"/>
+    <text x="668" y="175" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.3">Command</text>
+    <text x="668" y="190" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="0.3">&amp; Control</text>
+    <line x1="638" y1="200" x2="698" y2="200" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
+    <text x="668" y="216" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#c0e0a0" opacity="0.9">Establish C2</text>
+    <text x="668" y="227" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#c0e0a0" opacity="0.9">channel for</text>
+    <text x="668" y="238" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#c0e0a0" opacity="0.9">remote access</text>
+    <!-- Icon: signal/antenna -->
+    <line x1="668" y1="155" x2="668" y2="135" stroke="#c0e0a0" stroke-width="1.5" opacity="0.7"/>
+    <path d="M658,140 A12,12 0 0,1 678,140" fill="none" stroke="#c0e0a0" stroke-width="1" opacity="0.5"/>
+    <path d="M653,145 A18,18 0 0,1 683,145" fill="none" stroke="#c0e0a0" stroke-width="1" opacity="0.35"/>
+  </g>
+
+  <!-- Chevron 7: Actions on Objectives -->
+  <g filter="url(#dropShadow)">
+    <polygon points="720,120 855,120 870,195 855,270 720,270 745,195" fill="url(#chev7)" stroke="#7c55b8" stroke-width="1" opacity="0.95"/>
+    <text x="790" y="170" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" letter-spacing="0.3">Actions on</text>
+    <text x="790" y="183" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" letter-spacing="0.3">Objectives</text>
+    <line x1="760" y1="195" x2="820" y2="195" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
+    <text x="790" y="211" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#d4c0ef" opacity="0.9">Achieve goal:</text>
+    <text x="790" y="222" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#d4c0ef" opacity="0.9">exfiltration,</text>
+    <text x="790" y="233" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#d4c0ef" opacity="0.9">disruption, etc.</text>
+    <!-- Icon: target/crosshair -->
+    <circle cx="790" cy="143" r="8" fill="none" stroke="#d4c0ef" stroke-width="1.2" opacity="0.7"/>
+    <circle cx="790" cy="143" r="3" fill="#d4c0ef" opacity="0.5"/>
+    <line x1="790" y1="132" x2="790" y2="136" stroke="#d4c0ef" stroke-width="1" opacity="0.7"/>
+    <line x1="790" y1="150" x2="790" y2="154" stroke="#d4c0ef" stroke-width="1" opacity="0.7"/>
+    <line x1="779" y1="143" x2="783" y2="143" stroke="#d4c0ef" stroke-width="1" opacity="0.7"/>
+    <line x1="797" y1="143" x2="801" y2="143" stroke="#d4c0ef" stroke-width="1" opacity="0.7"/>
+  </g>
+
+  <!-- Flow direction arrow (top) -->
+  <g opacity="0.3">
+    <line x1="50" y1="110" x2="840" y2="110" stroke="#8b949e" stroke-width="0.5" stroke-dasharray="4,4"/>
+    <polygon points="840,107 850,110 840,113" fill="#8b949e"/>
+  </g>
+  <text x="850" y="106" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="7" fill="#8b949e" opacity="0.6">ATTACK FLOW</text>
+
+  <!-- ===== DEFENDER OPPORTUNITIES SECTION ===== -->
+
+  <!-- Section title -->
+  <text x="450" y="310" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#58a6ff" letter-spacing="1">DEFENDER OPPORTUNITIES</text>
+  <line x1="300" y1="320" x2="600" y2="320" stroke="#1f6feb" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Defense arrow bar -->
+  <rect x="30" y="335" width="840" height="30" rx="4" fill="url(#defArrowGrad)" opacity="0.15" stroke="#1f6feb" stroke-width="0.5" stroke-opacity="0.3"/>
+  <!-- Arrow head on defense bar -->
+  <polygon points="860,350 870,350 865,340" fill="#1f6feb" opacity="0.4" transform="rotate(90,865,350)"/>
+
+  <!-- Defense labels aligned under each chevron -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#58a6ff" text-anchor="middle" font-weight="600">
+    <text x="90" y="353">DETECT</text>
+    <text x="208" y="353">DENY</text>
+    <text x="323" y="353">DISRUPT</text>
+    <text x="438" y="353">DEGRADE</text>
+    <text x="553" y="353">DECEIVE</text>
+    <text x="668" y="353">CONTAIN</text>
+    <text x="790" y="353">EJECT</text>
+  </g>
+
+  <!-- Vertical connector lines from chevrons to defense bar -->
+  <g stroke="#1f6feb" stroke-width="0.8" opacity="0.25" stroke-dasharray="3,3">
+    <line x1="90" y1="270" x2="90" y2="335"/>
+    <line x1="208" y1="270" x2="208" y2="335"/>
+    <line x1="323" y1="270" x2="323" y2="335"/>
+    <line x1="438" y1="270" x2="438" y2="335"/>
+    <line x1="553" y1="270" x2="553" y2="335"/>
+    <line x1="668" y1="270" x2="668" y2="335"/>
+    <line x1="790" y1="270" x2="790" y2="335"/>
+  </g>
+
+  <!-- Defense descriptions -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="7.5" fill="#8b949e" text-anchor="middle">
+    <text x="90" y="382">Web analytics,</text>
+    <text x="90" y="393">OSINT monitoring,</text>
+    <text x="90" y="404">threat intel feeds</text>
+
+    <text x="208" y="382">NIDS/NIPS,</text>
+    <text x="208" y="393">firewall ACLs,</text>
+    <text x="208" y="404">input validation</text>
+
+    <text x="323" y="382">Email filtering,</text>
+    <text x="323" y="393">web proxying,</text>
+    <text x="323" y="404">user awareness</text>
+
+    <text x="438" y="382">DEP, ASLR,</text>
+    <text x="438" y="393">patch mgmt,</text>
+    <text x="438" y="404">endpoint hardening</text>
+
+    <text x="553" y="382">HIPS, AV/EDR,</text>
+    <text x="553" y="393">application</text>
+    <text x="553" y="404">whitelisting</text>
+
+    <text x="668" y="382">DNS sinkholing,</text>
+    <text x="668" y="393">network segmentation,</text>
+    <text x="668" y="404">proxy filtering</text>
+
+    <text x="790" y="382">Incident response,</text>
+    <text x="790" y="393">forensics, damage</text>
+    <text x="790" y="404">assessment</text>
+  </g>
+
+  <!-- Defense action icons (small shield icons) -->
+  <g opacity="0.4">
+    <path d="M90,370 L86,373 L86,377 Q86,381 90,383 Q94,381 94,377 L94,373 Z" fill="none" stroke="#58a6ff" stroke-width="0.8"/>
+    <path d="M208,370 L204,373 L204,377 Q204,381 208,383 Q212,381 212,377 L212,373 Z" fill="none" stroke="#58a6ff" stroke-width="0.8"/>
+    <path d="M323,370 L319,373 L319,377 Q319,381 323,383 Q327,381 327,377 L327,373 Z" fill="none" stroke="#58a6ff" stroke-width="0.8"/>
+    <path d="M438,370 L434,373 L434,377 Q434,381 438,383 Q442,381 442,377 L442,373 Z" fill="none" stroke="#58a6ff" stroke-width="0.8"/>
+    <path d="M553,370 L549,373 L549,377 Q549,381 553,383 Q557,381 557,377 L557,373 Z" fill="none" stroke="#58a6ff" stroke-width="0.8"/>
+    <path d="M668,370 L664,373 L664,377 Q664,381 668,383 Q672,381 672,377 L672,373 Z" fill="none" stroke="#58a6ff" stroke-width="0.8"/>
+    <path d="M790,370 L786,373 L786,377 Q786,381 790,383 Q794,381 794,377 L794,373 Z" fill="none" stroke="#58a6ff" stroke-width="0.8"/>
+  </g>
+
+  <!-- Key insight box -->
+  <rect x="60" y="430" width="780" height="65" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <rect x="60" y="430" width="4" height="65" rx="2" fill="#1f6feb"/>
+  <text x="80" y="450" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#58a6ff" letter-spacing="0.5">KEY PRINCIPLE</text>
+  <text x="80" y="466" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" fill="#c9d1d9">The earlier a defender can disrupt the kill chain, the more effective the defense. Each phase broken</text>
+  <text x="80" y="480" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" fill="#c9d1d9">forces the adversary to restart, increasing their cost and reducing their chance of success.</text>
+
+  <!-- Legend -->
+  <g transform="translate(60, 510)">
+    <rect width="780" height="40" rx="4" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+    <polygon points="15,10 30,10 35,20 30,30 15,30" fill="#533483" opacity="0.6"/>
+    <text x="45" y="24" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#8b949e">Attack Phase</text>
+
+    <rect x="130" y="12" width="16" height="16" rx="2" fill="#1f6feb" opacity="0.2" stroke="#1f6feb" stroke-width="0.5"/>
+    <text x="155" y="24" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#8b949e">Defense Layer</text>
+
+    <path d="M260,13 L256,16 L256,22 Q256,26 260,28 Q264,26 264,22 L264,16 Z" fill="none" stroke="#58a6ff" stroke-width="0.8" opacity="0.6"/>
+    <text x="275" y="24" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#8b949e">Defense Action</text>
+
+    <text x="600" y="24" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#484f58">Source: Lockheed Martin, 2011</text>
+  </g>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="560" width="900" height="40" fill="#0d1117"/>
+  <text x="450" y="580" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" fill="#484f58" letter-spacing="1">THREAT INTELLIGENCE  |  CYBER KILL CHAIN FRAMEWORK  |  INTELLIGENCE-DRIVEN COMPUTER NETWORK DEFENSE</text>
+  <rect x="0" y="597" width="900" height="3" fill="#1f6feb" opacity="0.4"/>
+</svg>

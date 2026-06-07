@@ -1,0 +1,282 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <!-- Subtle drop shadow for all boxes -->
+    <filter id="shadow" x="-4%" y="-4%" width="112%" height="112%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <!-- Glow for the central title -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Gradient overlays for category headers -->
+    <linearGradient id="gradRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="100%" stop-color="#c23152"/>
+    </linearGradient>
+    <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#1a4a8a"/>
+    </linearGradient>
+    <linearGradient id="gradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#533483"/>
+      <stop offset="100%" stop-color="#6b44a8"/>
+    </linearGradient>
+    <linearGradient id="gradGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e6a817"/>
+      <stop offset="100%" stop-color="#c48f10"/>
+    </linearGradient>
+    <!-- Subtle grid pattern for background -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#161b22" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="700" rx="0" fill="#0d1117"/>
+  <rect width="900" height="700" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Decorative top/bottom accent lines -->
+  <line x1="50" y1="8" x2="850" y2="8" stroke="#e94560" stroke-width="1.5" opacity="0.3"/>
+  <line x1="50" y1="692" x2="850" y2="692" stroke="#e6a817" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- ============================== -->
+  <!--        CENTRAL TITLE           -->
+  <!-- ============================== -->
+  <rect x="280" y="28" width="340" height="52" rx="12" fill="#161b22" stroke="#30363d" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="450" y="62" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700" fill="#e6edf3" filter="url(#glow)">Cyber Threat Landscape</text>
+
+  <!-- Vertical connector from title to horizontal bar -->
+  <line x1="450" y1="80" x2="450" y2="108" stroke="#30363d" stroke-width="2"/>
+
+  <!-- Horizontal distribution bar -->
+  <line x1="112" y1="108" x2="788" y2="108" stroke="#30363d" stroke-width="2"/>
+
+  <!-- Four vertical drops to category headers -->
+  <line x1="112" y1="108" x2="112" y2="130" stroke="#e94560" stroke-width="2"/>
+  <line x1="338" y1="108" x2="338" y2="130" stroke="#0f3460" stroke-width="2"/>
+  <line x1="562" y1="108" x2="562" y2="130" stroke="#533483" stroke-width="2"/>
+  <line x1="788" y1="108" x2="788" y2="130" stroke="#e6a817" stroke-width="2"/>
+
+  <!-- ============================== -->
+  <!--   COLUMN 1: THREAT ACTORS      -->
+  <!-- ============================== -->
+  <!-- Category header -->
+  <rect x="22" y="130" width="180" height="44" rx="10" fill="url(#gradRed)" filter="url(#shadow)"/>
+  <text x="112" y="158" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Threat Actors</text>
+
+  <!-- Connector line down from header -->
+  <line x1="112" y1="174" x2="112" y2="202" stroke="#e94560" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Item 1: Nation-State (APT) -->
+  <line x1="112" y1="202" x2="112" y2="224" stroke="#e94560" stroke-width="1" opacity="0.4"/>
+  <rect x="22" y="224" width="180" height="80" rx="8" fill="#161b22" stroke="#e94560" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="44" cy="246" r="8" fill="#e94560" opacity="0.2"/>
+  <text x="44" y="250" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e94560">&#9878;</text>
+  <text x="58" y="250" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Nation-State (APT)</text>
+  <text x="36" y="270" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">State-sponsored groups</text>
+  <text x="36" y="284" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">with strategic objectives</text>
+  <text x="36" y="298" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e94560" opacity="0.7">HIGH CAPABILITY</text>
+
+  <!-- Item 2: Cybercriminals -->
+  <line x1="112" y1="304" x2="112" y2="322" stroke="#e94560" stroke-width="1" opacity="0.4"/>
+  <rect x="22" y="322" width="180" height="80" rx="8" fill="#161b22" stroke="#e94560" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="44" cy="344" r="8" fill="#e94560" opacity="0.2"/>
+  <text x="44" y="348" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e94560">$</text>
+  <text x="58" y="348" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Cybercriminals</text>
+  <text x="36" y="368" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Financially motivated</text>
+  <text x="36" y="382" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">threat groups &amp; cartels</text>
+  <text x="36" y="396" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e94560" opacity="0.7">PROFIT-DRIVEN</text>
+
+  <!-- Item 3: Hacktivists -->
+  <line x1="112" y1="402" x2="112" y2="420" stroke="#e94560" stroke-width="1" opacity="0.4"/>
+  <rect x="22" y="420" width="180" height="80" rx="8" fill="#161b22" stroke="#e94560" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="44" cy="442" r="8" fill="#e94560" opacity="0.2"/>
+  <text x="44" y="446" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e94560">&#9873;</text>
+  <text x="58" y="446" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Hacktivists</text>
+  <text x="36" y="466" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Ideologically driven</text>
+  <text x="36" y="480" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">disruption &amp; defacement</text>
+  <text x="36" y="494" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e94560" opacity="0.7">CAUSE-MOTIVATED</text>
+
+  <!-- Item 4: Insiders -->
+  <line x1="112" y1="500" x2="112" y2="518" stroke="#e94560" stroke-width="1" opacity="0.4"/>
+  <rect x="22" y="518" width="180" height="80" rx="8" fill="#161b22" stroke="#e94560" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="44" cy="540" r="8" fill="#e94560" opacity="0.2"/>
+  <text x="44" y="544" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e94560">&#9679;</text>
+  <text x="58" y="544" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Insiders</text>
+  <text x="36" y="564" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Malicious or negligent</text>
+  <text x="36" y="578" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">employees with access</text>
+  <text x="36" y="592" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e94560" opacity="0.7">TRUSTED ACCESS</text>
+
+  <!-- ============================== -->
+  <!--   COLUMN 2: ATTACK VECTORS     -->
+  <!-- ============================== -->
+  <rect x="248" y="130" width="180" height="44" rx="10" fill="url(#gradBlue)" filter="url(#shadow)"/>
+  <text x="338" y="158" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Attack Vectors</text>
+
+  <line x1="338" y1="174" x2="338" y2="202" stroke="#1a6dd4" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Item 1: Phishing -->
+  <line x1="338" y1="202" x2="338" y2="224" stroke="#1a6dd4" stroke-width="1" opacity="0.4"/>
+  <rect x="248" y="224" width="180" height="80" rx="8" fill="#161b22" stroke="#1a6dd4" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="270" cy="246" r="8" fill="#1a6dd4" opacity="0.2"/>
+  <text x="270" y="250" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#58a6ff">&#9993;</text>
+  <text x="284" y="250" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Phishing</text>
+  <text x="262" y="270" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Spear-phishing, BEC,</text>
+  <text x="262" y="284" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">vishing &amp; smishing</text>
+  <text x="262" y="298" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#58a6ff" opacity="0.7">SOCIAL ENGINEERING</text>
+
+  <!-- Item 2: Exploitation -->
+  <line x1="338" y1="304" x2="338" y2="322" stroke="#1a6dd4" stroke-width="1" opacity="0.4"/>
+  <rect x="248" y="322" width="180" height="80" rx="8" fill="#161b22" stroke="#1a6dd4" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="270" cy="344" r="8" fill="#1a6dd4" opacity="0.2"/>
+  <text x="270" y="348" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#58a6ff">&#9888;</text>
+  <text x="284" y="348" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Exploitation</text>
+  <text x="262" y="368" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Zero-day &amp; N-day vuln</text>
+  <text x="262" y="382" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">exploitation chains</text>
+  <text x="262" y="396" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#58a6ff" opacity="0.7">TECHNICAL ATTACK</text>
+
+  <!-- Item 3: Supply Chain -->
+  <line x1="338" y1="402" x2="338" y2="420" stroke="#1a6dd4" stroke-width="1" opacity="0.4"/>
+  <rect x="248" y="420" width="180" height="80" rx="8" fill="#161b22" stroke="#1a6dd4" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="270" cy="442" r="8" fill="#1a6dd4" opacity="0.2"/>
+  <text x="270" y="446" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#58a6ff">&#9095;</text>
+  <text x="284" y="446" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Supply Chain</text>
+  <text x="262" y="466" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Compromise upstream</text>
+  <text x="262" y="480" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">vendors &amp; dependencies</text>
+  <text x="262" y="494" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#58a6ff" opacity="0.7">THIRD-PARTY RISK</text>
+
+  <!-- Item 4: Credential Abuse -->
+  <line x1="338" y1="500" x2="338" y2="518" stroke="#1a6dd4" stroke-width="1" opacity="0.4"/>
+  <rect x="248" y="518" width="180" height="80" rx="8" fill="#161b22" stroke="#1a6dd4" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="270" cy="540" r="8" fill="#1a6dd4" opacity="0.2"/>
+  <text x="270" y="544" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#58a6ff">&#9919;</text>
+  <text x="284" y="544" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Credential Abuse</text>
+  <text x="262" y="564" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Brute force, stuffing,</text>
+  <text x="262" y="578" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">stolen token replay</text>
+  <text x="262" y="592" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#58a6ff" opacity="0.7">IDENTITY ATTACK</text>
+
+  <!-- ============================== -->
+  <!--   COLUMN 3: MALWARE TYPES      -->
+  <!-- ============================== -->
+  <rect x="472" y="130" width="180" height="44" rx="10" fill="url(#gradPurple)" filter="url(#shadow)"/>
+  <text x="562" y="158" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Malware Types</text>
+
+  <line x1="562" y1="174" x2="562" y2="202" stroke="#533483" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Item 1: Ransomware -->
+  <line x1="562" y1="202" x2="562" y2="218" stroke="#533483" stroke-width="1" opacity="0.4"/>
+  <rect x="472" y="218" width="180" height="68" rx="8" fill="#161b22" stroke="#7c52b8" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="494" cy="238" r="8" fill="#7c52b8" opacity="0.2"/>
+  <text x="494" y="242" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#a371f7">&#9749;</text>
+  <text x="508" y="242" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Ransomware</text>
+  <text x="486" y="260" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Encrypt &amp; extort data</text>
+  <text x="486" y="274" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#a371f7" opacity="0.7">DOUBLE EXTORTION</text>
+
+  <!-- Item 2: RAT -->
+  <line x1="562" y1="286" x2="562" y2="300" stroke="#533483" stroke-width="1" opacity="0.4"/>
+  <rect x="472" y="300" width="180" height="68" rx="8" fill="#161b22" stroke="#7c52b8" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="494" cy="320" r="8" fill="#7c52b8" opacity="0.2"/>
+  <text x="494" y="324" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#a371f7">&#8634;</text>
+  <text x="508" y="324" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">RAT</text>
+  <text x="486" y="342" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Remote access trojans</text>
+  <text x="486" y="356" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#a371f7" opacity="0.7">PERSISTENT ACCESS</text>
+
+  <!-- Item 3: Loader -->
+  <line x1="562" y1="368" x2="562" y2="382" stroke="#533483" stroke-width="1" opacity="0.4"/>
+  <rect x="472" y="382" width="180" height="68" rx="8" fill="#161b22" stroke="#7c52b8" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="494" cy="402" r="8" fill="#7c52b8" opacity="0.2"/>
+  <text x="494" y="406" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#a371f7">&#8631;</text>
+  <text x="508" y="406" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Loader</text>
+  <text x="486" y="424" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Stage &amp; deploy payloads</text>
+  <text x="486" y="438" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#a371f7" opacity="0.7">DELIVERY MECHANISM</text>
+
+  <!-- Item 4: Stealer -->
+  <line x1="562" y1="450" x2="562" y2="464" stroke="#533483" stroke-width="1" opacity="0.4"/>
+  <rect x="472" y="464" width="180" height="68" rx="8" fill="#161b22" stroke="#7c52b8" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="494" cy="484" r="8" fill="#7c52b8" opacity="0.2"/>
+  <text x="494" y="488" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#a371f7">&#9670;</text>
+  <text x="508" y="488" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Stealer</text>
+  <text x="486" y="506" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Exfiltrate credentials</text>
+  <text x="486" y="520" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#a371f7" opacity="0.7">DATA HARVESTING</text>
+
+  <!-- Item 5: Wiper -->
+  <line x1="562" y1="532" x2="562" y2="546" stroke="#533483" stroke-width="1" opacity="0.4"/>
+  <rect x="472" y="546" width="180" height="68" rx="8" fill="#161b22" stroke="#7c52b8" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="494" cy="566" r="8" fill="#7c52b8" opacity="0.2"/>
+  <text x="494" y="570" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#a371f7">&#10005;</text>
+  <text x="508" y="570" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Wiper</text>
+  <text x="486" y="588" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Destructive data erasure</text>
+  <text x="486" y="602" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#a371f7" opacity="0.7">SABOTAGE</text>
+
+  <!-- ============================== -->
+  <!--   COLUMN 4: INFRASTRUCTURE     -->
+  <!-- ============================== -->
+  <rect x="698" y="130" width="180" height="44" rx="10" fill="url(#gradGold)" filter="url(#shadow)"/>
+  <text x="788" y="158" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#0d1117">Infrastructure</text>
+
+  <line x1="788" y1="174" x2="788" y2="202" stroke="#e6a817" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Item 1: C2 Servers -->
+  <line x1="788" y1="202" x2="788" y2="224" stroke="#e6a817" stroke-width="1" opacity="0.4"/>
+  <rect x="698" y="224" width="180" height="80" rx="8" fill="#161b22" stroke="#e6a817" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="720" cy="246" r="8" fill="#e6a817" opacity="0.2"/>
+  <text x="720" y="250" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e6a817">&#9881;</text>
+  <text x="734" y="250" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">C2 Servers</text>
+  <text x="712" y="270" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Command &amp; control</text>
+  <text x="712" y="284" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">beacon infrastructure</text>
+  <text x="712" y="298" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e6a817" opacity="0.7">REMOTE CONTROL</text>
+
+  <!-- Item 2: Bulletproof Hosting -->
+  <line x1="788" y1="304" x2="788" y2="322" stroke="#e6a817" stroke-width="1" opacity="0.4"/>
+  <rect x="698" y="322" width="180" height="80" rx="8" fill="#161b22" stroke="#e6a817" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="720" cy="344" r="8" fill="#e6a817" opacity="0.2"/>
+  <text x="720" y="348" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e6a817">&#9632;</text>
+  <text x="734" y="348" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Bulletproof Hosting</text>
+  <text x="712" y="368" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Abuse-resilient hosting</text>
+  <text x="712" y="382" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">providers &amp; jurisdictions</text>
+  <text x="712" y="396" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e6a817" opacity="0.7">TAKEDOWN RESISTANT</text>
+
+  <!-- Item 3: Fast Flux DNS -->
+  <line x1="788" y1="402" x2="788" y2="420" stroke="#e6a817" stroke-width="1" opacity="0.4"/>
+  <rect x="698" y="420" width="180" height="80" rx="8" fill="#161b22" stroke="#e6a817" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="720" cy="442" r="8" fill="#e6a817" opacity="0.2"/>
+  <text x="720" y="446" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e6a817">&#8644;</text>
+  <text x="734" y="446" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Fast Flux DNS</text>
+  <text x="712" y="466" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Rapidly rotating DNS</text>
+  <text x="712" y="480" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">records for evasion</text>
+  <text x="712" y="494" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e6a817" opacity="0.7">IP ROTATION</text>
+
+  <!-- Item 4: Proxy Chains -->
+  <line x1="788" y1="500" x2="788" y2="518" stroke="#e6a817" stroke-width="1" opacity="0.4"/>
+  <rect x="698" y="518" width="180" height="80" rx="8" fill="#161b22" stroke="#e6a817" stroke-width="1" opacity="0.8" filter="url(#shadow)"/>
+  <circle cx="720" cy="540" r="8" fill="#e6a817" opacity="0.2"/>
+  <text x="720" y="544" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e6a817">&#8680;</text>
+  <text x="734" y="544" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#e6edf3">Proxy Chains</text>
+  <text x="712" y="564" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">Multi-hop anonymizing</text>
+  <text x="712" y="578" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e">proxy &amp; VPN layers</text>
+  <text x="712" y="592" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e6a817" opacity="0.7">ATTRIBUTION EVASION</text>
+
+  <!-- ============================== -->
+  <!--          FOOTER LEGEND         -->
+  <!-- ============================== -->
+  <rect x="22" y="640" width="856" height="44" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.5" opacity="0.7"/>
+
+  <!-- Legend items -->
+  <rect x="60" y="654" width="14" height="14" rx="3" fill="#e94560"/>
+  <text x="80" y="666" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#8b949e">Threat Actors</text>
+
+  <rect x="230" y="654" width="14" height="14" rx="3" fill="#1a6dd4"/>
+  <text x="250" y="666" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#8b949e">Attack Vectors</text>
+
+  <rect x="420" y="654" width="14" height="14" rx="3" fill="#7c52b8"/>
+  <text x="440" y="666" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#8b949e">Malware Types</text>
+
+  <rect x="610" y="654" width="14" height="14" rx="3" fill="#e6a817"/>
+  <text x="630" y="666" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#8b949e">Infrastructure</text>
+
+  <text x="820" y="666" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#484f58">v1.0</text>
+</svg>

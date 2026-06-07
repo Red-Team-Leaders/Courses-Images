@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <defs>
+    <!-- Background gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1f1f3a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </radialGradient>
+
+    <!-- Connecting line gradients -->
+    <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e94560" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#533483" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f3460" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#e94560" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="lineGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#533483" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#16213e" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="lineGrad4" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#e94560" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0f3460" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="lineGrad5" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#16213e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#533483" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="lineGrad6" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#0f3460" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#e94560" stop-opacity="0.3"/>
+    </linearGradient>
+
+    <!-- Central hexagon gradient -->
+    <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="50%" stop-color="#533483"/>
+      <stop offset="100%" stop-color="#0f3460"/>
+    </linearGradient>
+
+    <!-- Glow filter for central hexagon -->
+    <filter id="hexGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feFlood flood-color="#e94560" flood-opacity="0.3" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glowColor"/>
+      <feMerge>
+        <feMergeNode in="glowColor"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow filter for nodes -->
+    <filter id="nodeGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#e94560" flood-opacity="0.15" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glowColor"/>
+      <feMerge>
+        <feMergeNode in="glowColor"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.02" stroke-width="0.5"/>
+    </pattern>
+
+    <!-- Node drop shadow -->
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="url(#bgGrad)"/>
+  <rect width="900" height="600" fill="url(#grid)"/>
+
+  <!-- Decorative corner accents -->
+  <line x1="20" y1="20" x2="80" y2="20" stroke="#e94560" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="20" y1="20" x2="20" y2="80" stroke="#e94560" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="880" y1="20" x2="820" y2="20" stroke="#e94560" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="880" y1="20" x2="880" y2="80" stroke="#e94560" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="20" y1="580" x2="80" y2="580" stroke="#533483" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="20" y1="580" x2="20" y2="520" stroke="#533483" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="880" y1="580" x2="820" y2="580" stroke="#533483" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="880" y1="580" x2="880" y2="520" stroke="#533483" stroke-opacity="0.3" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="450" y="62" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="30" font-weight="bold" fill="#ffffff" letter-spacing="1">What is Cyber Threat Intelligence?</text>
+  <!-- Title underline accent -->
+  <line x1="200" y1="78" x2="700" y2="78" stroke="url(#lineGrad1)" stroke-width="1.5" stroke-opacity="0.5"/>
+
+  <!-- Connecting lines from center (450, 310) to each node -->
+  <!-- Node positions (6 nodes in hexagonal arrangement):
+       Top:        450, 160
+       Top-Right:  660, 235
+       Bot-Right:  660, 385
+       Bottom:     450, 460
+       Bot-Left:   240, 385
+       Top-Left:   240, 235
+  -->
+
+  <!-- Connecting lines with gradient -->
+  <line x1="450" y1="310" x2="450" y2="175" stroke="url(#lineGrad1)" stroke-width="2" stroke-opacity="0.6"/>
+  <line x1="450" y1="310" x2="645" y2="235" stroke="url(#lineGrad2)" stroke-width="2" stroke-opacity="0.6"/>
+  <line x1="450" y1="310" x2="645" y2="385" stroke="url(#lineGrad3)" stroke-width="2" stroke-opacity="0.6"/>
+  <line x1="450" y1="310" x2="450" y2="445" stroke="url(#lineGrad4)" stroke-width="2" stroke-opacity="0.6"/>
+  <line x1="450" y1="310" x2="255" y2="385" stroke="url(#lineGrad5)" stroke-width="2" stroke-opacity="0.6"/>
+  <line x1="450" y1="310" x2="255" y2="235" stroke="url(#lineGrad6)" stroke-width="2" stroke-opacity="0.6"/>
+
+  <!-- Dotted orbital ring -->
+  <ellipse cx="450" cy="310" rx="220" ry="155" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1" stroke-dasharray="4,8"/>
+
+  <!-- Central Hexagon -->
+  <g filter="url(#hexGlow)">
+    <polygon points="450,255 493,277.5 493,322.5 450,345 407,322.5 407,277.5" fill="url(#hexGrad)" stroke="#e94560" stroke-width="2" stroke-opacity="0.7"/>
+    <polygon points="450,265 485,283 485,317 450,335 415,317 415,283" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.2"/>
+    <text x="450" y="306" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" letter-spacing="2">CTI</text>
+  </g>
+
+  <!-- Small dots on connection lines (midpoints) -->
+  <circle cx="450" cy="237" r="2.5" fill="#e94560" opacity="0.6"/>
+  <circle cx="547" cy="272" r="2.5" fill="#0f3460" opacity="0.6"/>
+  <circle cx="547" cy="347" r="2.5" fill="#533483" opacity="0.6"/>
+  <circle cx="450" cy="377" r="2.5" fill="#e94560" opacity="0.6"/>
+  <circle cx="352" cy="347" r="2.5" fill="#16213e" opacity="0.6"/>
+  <circle cx="352" cy="272" r="2.5" fill="#0f3460" opacity="0.6"/>
+
+  <!-- Node 1: Predict Threats (Top) -->
+  <g filter="url(#nodeGlow)">
+    <rect x="380" y="135" width="140" height="50" rx="8" ry="8" fill="#e94560" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+    <rect x="380" y="135" width="140" height="50" rx="8" ry="8" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1" transform="translate(0,-1)"/>
+    <!-- Icon: eye/predict -->
+    <circle cx="408" cy="160" r="8" fill="none" stroke="#ffffff" stroke-opacity="0.8" stroke-width="1.2"/>
+    <circle cx="408" cy="160" r="3" fill="#ffffff" fill-opacity="0.8"/>
+    <text x="465" y="165" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" letter-spacing="0.5">Predict Threats</text>
+  </g>
+
+  <!-- Node 2: Inform Decisions (Top-Right) -->
+  <g filter="url(#nodeGlow)">
+    <rect x="590" y="210" width="140" height="50" rx="8" ry="8" fill="#0f3460" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+    <!-- Icon: lightbulb -->
+    <path d="M618,228 C614,228 611,231 611,235 C611,238 613,240 615,241 L615,245 L621,245 L621,241 C623,240 625,238 625,235 C625,231 622,228 618,228Z" fill="none" stroke="#ffffff" stroke-opacity="0.8" stroke-width="1.2"/>
+    <line x1="615" y1="247" x2="621" y2="247" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1"/>
+    <text x="668" y="240" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" letter-spacing="0.5">Inform Decisions</text>
+  </g>
+
+  <!-- Node 3: Reduce Risk (Bottom-Right) -->
+  <g filter="url(#nodeGlow)">
+    <rect x="590" y="360" width="140" height="50" rx="8" ry="8" fill="#16213e" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+    <!-- Icon: shield -->
+    <path d="M618,372 L608,377 L608,384 C608,389 612,393 618,395 C624,393 628,389 628,384 L628,377Z" fill="none" stroke="#ffffff" stroke-opacity="0.8" stroke-width="1.2"/>
+    <polyline points="613,383 617,387 623,379" fill="none" stroke="#ffffff" stroke-opacity="0.7" stroke-width="1.2"/>
+    <text x="668" y="390" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" letter-spacing="0.5">Reduce Risk</text>
+  </g>
+
+  <!-- Node 4: Enable Defense (Bottom) -->
+  <g filter="url(#nodeGlow)">
+    <rect x="380" y="435" width="140" height="50" rx="8" ry="8" fill="#533483" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+    <!-- Icon: lock/defense -->
+    <rect x="411" y="455" width="14" height="12" rx="2" fill="none" stroke="#ffffff" stroke-opacity="0.8" stroke-width="1.2"/>
+    <path d="M414,455 L414,451 C414,448 416,446 418,446 C420,446 422,448 422,451 L422,455" fill="none" stroke="#ffffff" stroke-opacity="0.8" stroke-width="1.2"/>
+    <circle cx="418" cy="461" r="1.5" fill="#ffffff" fill-opacity="0.7"/>
+    <text x="465" y="465" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" letter-spacing="0.5">Enable Defense</text>
+  </g>
+
+  <!-- Node 5: Support Strategy (Bottom-Left) -->
+  <g filter="url(#nodeGlow)">
+    <rect x="170" y="360" width="140" height="50" rx="8" ry="8" fill="#0f3460" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+    <!-- Icon: chess/strategy -->
+    <path d="M198,393 L192,393 L192,391 L194,389 L194,383 L192,381 L192,378 L195,378 L195,375 L198,375 L198,378 L201,378 L201,381 L199,383 L199,389 L201,391 L201,393Z" fill="none" stroke="#ffffff" stroke-opacity="0.8" stroke-width="1.1"/>
+    <text x="252" y="390" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#ffffff" letter-spacing="0.5">Support Strategy</text>
+  </g>
+
+  <!-- Node 6: Drive Action (Top-Left) -->
+  <g filter="url(#nodeGlow)">
+    <rect x="170" y="210" width="140" height="50" rx="8" ry="8" fill="#e94560" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+    <!-- Icon: lightning/action -->
+    <polygon points="202,222 196,234 200,234 195,246 206,232 201,232 206,222" fill="none" stroke="#ffffff" stroke-opacity="0.8" stroke-width="1.2"/>
+    <text x="252" y="240" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" letter-spacing="0.5">Drive Action</text>
+  </g>
+
+  <!-- Small decorative particles -->
+  <circle cx="120" cy="150" r="1.5" fill="#e94560" opacity="0.3"/>
+  <circle cx="780" cy="170" r="1" fill="#533483" opacity="0.4"/>
+  <circle cx="100" cy="450" r="1.5" fill="#0f3460" opacity="0.3"/>
+  <circle cx="800" cy="470" r="1" fill="#e94560" opacity="0.3"/>
+  <circle cx="150" cy="300" r="1" fill="#533483" opacity="0.2"/>
+  <circle cx="750" cy="310" r="1.5" fill="#0f3460" opacity="0.2"/>
+  <circle cx="350" cy="120" r="1" fill="#e94560" opacity="0.2"/>
+  <circle cx="550" cy="500" r="1" fill="#533483" opacity="0.25"/>
+
+  <!-- Subtitle area -->
+  <line x1="200" y1="530" x2="700" y2="530" stroke="#533483" stroke-opacity="0.3" stroke-width="0.5"/>
+  <text x="450" y="555" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#ffffff" fill-opacity="0.6" font-style="italic" letter-spacing="1">Transforming raw data into actionable security insights</text>
+  <line x1="200" y1="568" x2="700" y2="568" stroke="#533483" stroke-opacity="0.3" stroke-width="0.5"/>
+</svg>

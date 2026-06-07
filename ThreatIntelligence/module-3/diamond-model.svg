@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <!-- Glow filters -->
+    <filter id="glowRed" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#e94560" flood-opacity="0.4" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowBlue" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#0f3460" flood-opacity="0.5" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowYellow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#e6a817" flood-opacity="0.4" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowPurple" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#533483" flood-opacity="0.5" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowCenter" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feFlood flood-color="#58a6ff" flood-opacity="0.35" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <!-- Subtle grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#161b22" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="700" fill="#0d1117"/>
+  <rect width="900" height="700" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Subtle radial background glow -->
+  <circle cx="450" cy="340" r="280" fill="none" stroke="#161b22" stroke-width="1" opacity="0.5"/>
+  <circle cx="450" cy="340" r="200" fill="none" stroke="#161b22" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Title -->
+  <text x="450" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="700" fill="#e6edf3" letter-spacing="0.5">The Diamond Model of Intrusion Analysis</text>
+  <line x1="250" y1="62" x2="650" y2="62" stroke="#21262d" stroke-width="1.5"/>
+
+  <!-- Diamond connection lines -->
+  <!-- Adversary to Infrastructure -->
+  <line x1="450" y1="155" x2="700" y2="340" stroke="#21262d" stroke-width="2.5" opacity="0.7"/>
+  <!-- Infrastructure to Victim -->
+  <line x1="700" y1="340" x2="450" y2="525" stroke="#21262d" stroke-width="2.5" opacity="0.7"/>
+  <!-- Victim to Capability -->
+  <line x1="450" y1="525" x2="200" y2="340" stroke="#21262d" stroke-width="2.5" opacity="0.7"/>
+  <!-- Capability to Adversary -->
+  <line x1="200" y1="340" x2="450" y2="155" stroke="#21262d" stroke-width="2.5" opacity="0.7"/>
+  <!-- Diagonal: Adversary to Victim -->
+  <line x1="450" y1="165" x2="450" y2="515" stroke="#21262d" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.35"/>
+  <!-- Diagonal: Capability to Infrastructure -->
+  <line x1="210" y1="340" x2="690" y2="340" stroke="#21262d" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.35"/>
+
+  <!-- Colored edge accents on the diamond lines -->
+  <!-- Top-right edge accent (Adversary-red to Infrastructure-blue gradient) -->
+  <line x1="450" y1="155" x2="700" y2="340" stroke="#e94560" stroke-width="1" opacity="0.2"/>
+  <!-- Right-bottom edge accent -->
+  <line x1="700" y1="340" x2="450" y2="525" stroke="#0f3460" stroke-width="1" opacity="0.25"/>
+  <!-- Bottom-left edge accent -->
+  <line x1="450" y1="525" x2="200" y2="340" stroke="#e6a817" stroke-width="1" opacity="0.2"/>
+  <!-- Left-top edge accent -->
+  <line x1="200" y1="340" x2="450" y2="155" stroke="#533483" stroke-width="1" opacity="0.25"/>
+
+  <!-- ======================== CENTER: EVENT ======================== -->
+  <g filter="url(#glowCenter)">
+    <circle cx="450" cy="340" r="44" fill="#0d1117" stroke="#58a6ff" stroke-width="2.5"/>
+    <circle cx="450" cy="340" r="38" fill="#0d1117" stroke="#58a6ff" stroke-width="0.8" opacity="0.4"/>
+  </g>
+  <!-- Event icon: crosshair/target -->
+  <circle cx="450" cy="340" r="16" fill="none" stroke="#58a6ff" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="450" cy="340" r="6" fill="#58a6ff" opacity="0.8"/>
+  <line x1="450" y1="322" x2="450" y2="330" stroke="#58a6ff" stroke-width="1.5" opacity="0.6"/>
+  <line x1="450" y1="350" x2="450" y2="358" stroke="#58a6ff" stroke-width="1.5" opacity="0.6"/>
+  <line x1="432" y1="340" x2="440" y2="340" stroke="#58a6ff" stroke-width="1.5" opacity="0.6"/>
+  <line x1="460" y1="340" x2="468" y2="340" stroke="#58a6ff" stroke-width="1.5" opacity="0.6"/>
+  <text x="450" y="397" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="600" fill="#58a6ff" letter-spacing="1.5">EVENT</text>
+
+  <!-- ======================== TOP: ADVERSARY ======================== -->
+  <g filter="url(#glowRed)">
+    <circle cx="450" cy="140" r="46" fill="#0d1117" stroke="#e94560" stroke-width="2.5"/>
+  </g>
+  <!-- Adversary icon: skull-like face / hacker -->
+  <g transform="translate(450,132)">
+    <!-- Hood/head outline -->
+    <path d="M-14,-16 C-14,-26 14,-26 14,-16 L14,-2 C14,8 -14,8 -14,-2 Z" fill="none" stroke="#e94560" stroke-width="1.8" opacity="0.9"/>
+    <!-- Eyes -->
+    <circle cx="-6" cy="-8" r="2.5" fill="#e94560" opacity="0.9"/>
+    <circle cx="6" cy="-8" r="2.5" fill="#e94560" opacity="0.9"/>
+    <!-- Mouth line -->
+    <line x1="-5" y1="0" x2="5" y2="0" stroke="#e94560" stroke-width="1.5" opacity="0.7"/>
+  </g>
+  <text x="450" y="202" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" fill="#e94560" letter-spacing="0.8">ADVERSARY</text>
+  <text x="450" y="221" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#8b949e" font-style="italic">Who is attacking?</text>
+
+  <!-- ======================== RIGHT: INFRASTRUCTURE ======================== -->
+  <g filter="url(#glowBlue)">
+    <circle cx="700" cy="340" r="46" fill="#0d1117" stroke="#0f3460" stroke-width="2.5"/>
+  </g>
+  <!-- Infrastructure icon: server/network -->
+  <g transform="translate(700,340)">
+    <!-- Server box top -->
+    <rect x="-14" y="-18" width="28" height="11" rx="2" fill="none" stroke="#4a90d9" stroke-width="1.6"/>
+    <circle cx="8" cy="-12.5" r="1.8" fill="#4a90d9" opacity="0.8"/>
+    <line x1="-8" y1="-12.5" x2="2" y2="-12.5" stroke="#4a90d9" stroke-width="1.2" opacity="0.6"/>
+    <!-- Server box bottom -->
+    <rect x="-14" y="-4" width="28" height="11" rx="2" fill="none" stroke="#4a90d9" stroke-width="1.6"/>
+    <circle cx="8" cy="1.5" r="1.8" fill="#4a90d9" opacity="0.8"/>
+    <line x1="-8" y1="1.5" x2="2" y2="1.5" stroke="#4a90d9" stroke-width="1.2" opacity="0.6"/>
+    <!-- Connection dots below -->
+    <circle cx="0" cy="14" r="1.5" fill="#4a90d9" opacity="0.5"/>
+  </g>
+  <text x="700" y="404" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" fill="#4a90d9" letter-spacing="0.8">INFRASTRUCTURE</text>
+  <text x="700" y="423" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#8b949e" font-style="italic">What resources are used?</text>
+
+  <!-- ======================== BOTTOM: VICTIM ======================== -->
+  <g filter="url(#glowYellow)">
+    <circle cx="450" cy="540" r="46" fill="#0d1117" stroke="#e6a817" stroke-width="2.5"/>
+  </g>
+  <!-- Victim icon: target/person with crosshair -->
+  <g transform="translate(450,532)">
+    <!-- Person silhouette -->
+    <circle cx="0" cy="-12" r="6" fill="none" stroke="#e6a817" stroke-width="1.6"/>
+    <path d="M-10,6 C-10,-2 -6,-4 0,-4 C6,-4 10,-2 10,6" fill="none" stroke="#e6a817" stroke-width="1.6"/>
+    <!-- Crosshair around person -->
+    <circle cx="0" cy="-4" r="16" fill="none" stroke="#e6a817" stroke-width="0.8" opacity="0.4" stroke-dasharray="3,3"/>
+  </g>
+  <text x="450" y="602" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" fill="#e6a817" letter-spacing="0.8">VICTIM</text>
+  <text x="450" y="621" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#8b949e" font-style="italic">Who is targeted?</text>
+
+  <!-- ======================== LEFT: CAPABILITY ======================== -->
+  <g filter="url(#glowPurple)">
+    <circle cx="200" cy="340" r="46" fill="#0d1117" stroke="#533483" stroke-width="2.5"/>
+  </g>
+  <!-- Capability icon: wrench + gear -->
+  <g transform="translate(200,340)">
+    <!-- Gear -->
+    <circle cx="0" cy="-4" r="7" fill="none" stroke="#9b59b6" stroke-width="1.6"/>
+    <circle cx="0" cy="-4" r="3" fill="none" stroke="#9b59b6" stroke-width="1.2"/>
+    <!-- Gear teeth -->
+    <line x1="0" y1="-13" x2="0" y2="-10" stroke="#9b59b6" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="2" x2="0" y2="5" stroke="#9b59b6" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-9" y1="-4" x2="-6" y2="-4" stroke="#9b59b6" stroke-width="2" stroke-linecap="round"/>
+    <line x1="6" y1="-4" x2="9" y2="-4" stroke="#9b59b6" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-6.4" y1="-10.4" x2="-4.2" y2="-8.2" stroke="#9b59b6" stroke-width="2" stroke-linecap="round"/>
+    <line x1="4.2" y1="0.2" x2="6.4" y2="2.4" stroke="#9b59b6" stroke-width="2" stroke-linecap="round"/>
+    <line x1="6.4" y1="-10.4" x2="4.2" y2="-8.2" stroke="#9b59b6" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-4.2" y1="0.2" x2="-6.4" y2="2.4" stroke="#9b59b6" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <text x="200" y="404" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" fill="#9b59b6" letter-spacing="0.8">CAPABILITY</text>
+  <text x="200" y="423" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#8b949e" font-style="italic">What tools/techniques?</text>
+
+  <!-- ======================== EDGE LABELS ======================== -->
+  <!-- Top-Right: Adversary - Infrastructure -->
+  <g transform="translate(590, 230) rotate(0)">
+    <text text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#484f58" letter-spacing="0.5">uses</text>
+  </g>
+  <!-- Top-Left: Adversary - Capability -->
+  <g transform="translate(310, 230) rotate(0)">
+    <text text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#484f58" letter-spacing="0.5">employs</text>
+  </g>
+  <!-- Bottom-Right: Infrastructure - Victim -->
+  <g transform="translate(590, 455) rotate(0)">
+    <text text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#484f58" letter-spacing="0.5">targets</text>
+  </g>
+  <!-- Bottom-Left: Capability - Victim -->
+  <g transform="translate(310, 455) rotate(0)">
+    <text text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#484f58" letter-spacing="0.5">exploits</text>
+  </g>
+
+  <!-- ======================== META-FEATURES SECTION ======================== -->
+  <g transform="translate(450, 648)">
+    <!-- Background bar -->
+    <rect x="-310" y="-16" width="620" height="34" rx="6" fill="#161b22" stroke="#21262d" stroke-width="1"/>
+    <!-- Label -->
+    <text x="-280" y="5" text-anchor="start" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="600" fill="#8b949e" letter-spacing="1">META-FEATURES</text>
+    <!-- Separator -->
+    <line x1="-170" y1="-8" x2="-170" y2="12" stroke="#30363d" stroke-width="1"/>
+    <!-- Timestamp -->
+    <circle cx="-148" cy="1" r="3" fill="none" stroke="#58a6ff" stroke-width="1.2"/>
+    <line x1="-148" y1="-1" x2="-148" y2="1" stroke="#58a6ff" stroke-width="1.2"/>
+    <line x1="-148" y1="1" x2="-146" y2="1" stroke="#58a6ff" stroke-width="1.2"/>
+    <text x="-138" y="5" text-anchor="start" font-family="'Segoe UI', Arial, sans-serif" font-size="11.5" fill="#c9d1d9">Timestamp</text>
+    <!-- Separator -->
+    <line x1="-68" y1="-8" x2="-68" y2="12" stroke="#30363d" stroke-width="1"/>
+    <!-- Phase -->
+    <path d="M-52,1 l6,-5 l6,5 l-6,5 z" fill="none" stroke="#58a6ff" stroke-width="1.2"/>
+    <text x="-36" y="5" text-anchor="start" font-family="'Segoe UI', Arial, sans-serif" font-size="11.5" fill="#c9d1d9">Phase</text>
+    <!-- Separator -->
+    <line x1="2" y1="-8" x2="2" y2="12" stroke="#30363d" stroke-width="1"/>
+    <!-- Result -->
+    <polyline points="18,-4 22,4 30,-6" fill="none" stroke="#58a6ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="36" y="5" text-anchor="start" font-family="'Segoe UI', Arial, sans-serif" font-size="11.5" fill="#c9d1d9">Result</text>
+    <!-- Separator -->
+    <line x1="86" y1="-8" x2="86" y2="12" stroke="#30363d" stroke-width="1"/>
+    <!-- Direction -->
+    <line x1="100" y1="1" x2="116" y2="1" stroke="#58a6ff" stroke-width="1.5"/>
+    <polyline points="112,-3 116,1 112,5" fill="none" stroke="#58a6ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="122" y="5" text-anchor="start" font-family="'Segoe UI', Arial, sans-serif" font-size="11.5" fill="#c9d1d9">Direction</text>
+  </g>
+
+  <!-- Subtle corner accents -->
+  <path d="M20,20 L20,50" stroke="#21262d" stroke-width="1.5"/>
+  <path d="M20,20 L50,20" stroke="#21262d" stroke-width="1.5"/>
+  <path d="M880,20 L880,50" stroke="#21262d" stroke-width="1.5"/>
+  <path d="M880,20 L850,20" stroke="#21262d" stroke-width="1.5"/>
+  <path d="M20,680 L20,650" stroke="#21262d" stroke-width="1.5"/>
+  <path d="M20,680 L50,680" stroke="#21262d" stroke-width="1.5"/>
+  <path d="M880,680 L880,650" stroke="#21262d" stroke-width="1.5"/>
+  <path d="M880,680 L850,680" stroke="#21262d" stroke-width="1.5"/>
+</svg>

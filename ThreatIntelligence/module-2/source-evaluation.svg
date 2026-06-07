@@ -1,0 +1,249 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#161b22"/>
+    </linearGradient>
+    <linearGradient id="titleBar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1f6feb"/>
+      <stop offset="100%" style="stop-color:#238636"/>
+    </linearGradient>
+    <filter id="dropShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="gridPattern" width="30" height="30" patternUnits="userSpaceOnUse">
+    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#21262d" stroke-width="0.5"/>
+  </pattern>
+  <rect width="900" height="600" fill="url(#gridPattern)" opacity="0.3"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="900" height="56" fill="url(#titleBar)" opacity="0.9"/>
+  <text x="450" y="36" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="1">Source Evaluation Matrix (Admiralty System)</text>
+
+  <!-- Table configuration -->
+  <!-- Row labels column: x=30, width=200 -->
+  <!-- Data columns: 6 columns, each width=105, starting at x=230 -->
+  <!-- Header row: y=80, height=55 -->
+  <!-- Data rows: 6 rows, each height=62, starting at y=135 -->
+
+  <!-- Column Headers Background -->
+  <rect x="230" y="80" width="105" height="55" rx="0" fill="#1a2332" stroke="#30363d" stroke-width="1"/>
+  <rect x="335" y="80" width="105" height="55" rx="0" fill="#1a2332" stroke="#30363d" stroke-width="1"/>
+  <rect x="440" y="80" width="105" height="55" rx="0" fill="#1a2332" stroke="#30363d" stroke-width="1"/>
+  <rect x="545" y="80" width="105" height="55" rx="0" fill="#1a2332" stroke="#30363d" stroke-width="1"/>
+  <rect x="650" y="80" width="105" height="55" rx="0" fill="#1a2332" stroke="#30363d" stroke-width="1"/>
+  <rect x="755" y="80" width="105" height="55" rx="0" fill="#1a2332" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Credibility Label -->
+  <rect x="230" y="64" width="630" height="16" fill="none"/>
+  <text x="545" y="76" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#58a6ff" letter-spacing="2">CREDIBILITY</text>
+
+  <!-- Reliability Label (rotated) -->
+  <text x="18" y="350" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" fill="#58a6ff" letter-spacing="2" transform="rotate(-90, 18, 350)">RELIABILITY</text>
+
+  <!-- Corner cell -->
+  <rect x="30" y="80" width="200" height="55" rx="0" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="130" y="104" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#8b949e">RELIABILITY /</text>
+  <text x="130" y="122" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#8b949e">CREDIBILITY</text>
+
+  <!-- Column Headers Text -->
+  <text x="282" y="103" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#79c0ff">1</text>
+  <text x="282" y="120" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#c9d1d9">Confirmed</text>
+
+  <text x="387" y="103" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#79c0ff">2</text>
+  <text x="387" y="120" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#c9d1d9">Probably True</text>
+
+  <text x="492" y="103" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#79c0ff">3</text>
+  <text x="492" y="120" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#c9d1d9">Possibly True</text>
+
+  <text x="597" y="103" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#79c0ff">4</text>
+  <text x="597" y="120" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#c9d1d9">Doubtfully True</text>
+
+  <text x="702" y="103" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#79c0ff">5</text>
+  <text x="702" y="120" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#c9d1d9">Improbable</text>
+
+  <text x="807" y="103" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#79c0ff">6</text>
+  <text x="807" y="120" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#c9d1d9">Cannot Be</text>
+  <text x="807" y="130" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#c9d1d9">Judged</text>
+
+  <!-- Row A: Completely Reliable -->
+  <rect x="30" y="135" width="200" height="62" fill="#111a27" stroke="#30363d" stroke-width="1"/>
+  <text x="42" y="163" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#3fb950">A</text>
+  <text x="62" y="163" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#c9d1d9">Completely Reliable</text>
+
+  <!-- A1 --> <rect x="230" y="135" width="105" height="62" fill="#0f5323" stroke="#238636" stroke-width="1.5" rx="3"/>
+  <text x="282" y="162" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#3fb950">A1</text>
+  <text x="282" y="178" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#7ee787">Highest</text>
+
+  <!-- A2 --> <rect x="335" y="135" width="105" height="62" fill="#13562a" stroke="#2ea043" stroke-width="1" rx="3"/>
+  <text x="387" y="166" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#56d364">A2</text>
+
+  <!-- A3 --> <rect x="440" y="135" width="105" height="62" fill="#1a5e2e" stroke="#3fb950" stroke-width="1" rx="3"/>
+  <text x="492" y="166" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#7ee787">A3</text>
+
+  <!-- A4 --> <rect x="545" y="135" width="105" height="62" fill="#2d5a1e" stroke="#56d364" stroke-width="1" rx="3"/>
+  <text x="597" y="166" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#a3d977">A4</text>
+
+  <!-- A5 --> <rect x="650" y="135" width="105" height="62" fill="#3d5a1e" stroke="#7ee787" stroke-width="1" rx="3"/>
+  <text x="702" y="166" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#b5d66e">A5</text>
+
+  <!-- A6 --> <rect x="755" y="135" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="807" y="166" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">A6</text>
+
+  <!-- Row B: Usually Reliable -->
+  <rect x="30" y="197" width="200" height="62" fill="#111a27" stroke="#30363d" stroke-width="1"/>
+  <text x="42" y="225" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#56d364">B</text>
+  <text x="62" y="225" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#c9d1d9">Usually Reliable</text>
+
+  <!-- B1 --> <rect x="230" y="197" width="105" height="62" fill="#13562a" stroke="#2ea043" stroke-width="1" rx="3"/>
+  <text x="282" y="228" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#56d364">B1</text>
+
+  <!-- B2 --> <rect x="335" y="197" width="105" height="62" fill="#1a5e2e" stroke="#3fb950" stroke-width="1" rx="3"/>
+  <text x="387" y="228" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#7ee787">B2</text>
+
+  <!-- B3 --> <rect x="440" y="197" width="105" height="62" fill="#2d5a1e" stroke="#56d364" stroke-width="1" rx="3"/>
+  <text x="492" y="228" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#a3d977">B3</text>
+
+  <!-- B4 --> <rect x="545" y="197" width="105" height="62" fill="#4a4a10" stroke="#b5a642" stroke-width="1" rx="3"/>
+  <text x="597" y="228" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#d4c84a">B4</text>
+
+  <!-- B5 --> <rect x="650" y="197" width="105" height="62" fill="#5a4a10" stroke="#c4a832" stroke-width="1" rx="3"/>
+  <text x="702" y="228" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#d4b84a">B5</text>
+
+  <!-- B6 --> <rect x="755" y="197" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="807" y="228" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">B6</text>
+
+  <!-- Row C: Fairly Reliable -->
+  <rect x="30" y="259" width="200" height="62" fill="#111a27" stroke="#30363d" stroke-width="1"/>
+  <text x="42" y="287" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#a3d977">C</text>
+  <text x="62" y="287" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#c9d1d9">Fairly Reliable</text>
+
+  <!-- C1 --> <rect x="230" y="259" width="105" height="62" fill="#1a5e2e" stroke="#3fb950" stroke-width="1" rx="3"/>
+  <text x="282" y="290" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#7ee787">C1</text>
+
+  <!-- C2 --> <rect x="335" y="259" width="105" height="62" fill="#2d5a1e" stroke="#56d364" stroke-width="1" rx="3"/>
+  <text x="387" y="290" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#a3d977">C2</text>
+
+  <!-- C3 --> <rect x="440" y="259" width="105" height="62" fill="#4a4a10" stroke="#b5a642" stroke-width="1" rx="3"/>
+  <text x="492" y="290" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#d4c84a">C3</text>
+
+  <!-- C4 --> <rect x="545" y="259" width="105" height="62" fill="#5a4210" stroke="#d4a030" stroke-width="1" rx="3"/>
+  <text x="597" y="290" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#e8b030">C4</text>
+
+  <!-- C5 --> <rect x="650" y="259" width="105" height="62" fill="#5a3310" stroke="#d48030" stroke-width="1" rx="3"/>
+  <text x="702" y="290" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#e89040">C5</text>
+
+  <!-- C6 --> <rect x="755" y="259" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="807" y="290" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">C6</text>
+
+  <!-- Row D: Not Usually Reliable -->
+  <rect x="30" y="321" width="200" height="62" fill="#111a27" stroke="#30363d" stroke-width="1"/>
+  <text x="42" y="349" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#e8b030">D</text>
+  <text x="62" y="349" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#c9d1d9">Not Usually Reliable</text>
+
+  <!-- D1 --> <rect x="230" y="321" width="105" height="62" fill="#2d5a1e" stroke="#56d364" stroke-width="1" rx="3"/>
+  <text x="282" y="352" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#a3d977">D1</text>
+
+  <!-- D2 --> <rect x="335" y="321" width="105" height="62" fill="#4a4a10" stroke="#b5a642" stroke-width="1" rx="3"/>
+  <text x="387" y="352" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#d4c84a">D2</text>
+
+  <!-- D3 --> <rect x="440" y="321" width="105" height="62" fill="#5a3310" stroke="#d48030" stroke-width="1" rx="3"/>
+  <text x="492" y="352" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#e89040">D3</text>
+
+  <!-- D4 --> <rect x="545" y="321" width="105" height="62" fill="#5a2210" stroke="#d45030" stroke-width="1" rx="3"/>
+  <text x="597" y="352" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#e86040">D4</text>
+
+  <!-- D5 --> <rect x="650" y="321" width="105" height="62" fill="#5a1515" stroke="#d43030" stroke-width="1" rx="3"/>
+  <text x="702" y="352" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#e84040">D5</text>
+
+  <!-- D6 --> <rect x="755" y="321" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="807" y="352" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">D6</text>
+
+  <!-- Row E: Unreliable -->
+  <rect x="30" y="383" width="200" height="62" fill="#111a27" stroke="#30363d" stroke-width="1"/>
+  <text x="42" y="411" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#f85149">E</text>
+  <text x="62" y="411" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#c9d1d9">Unreliable</text>
+
+  <!-- E1 --> <rect x="230" y="383" width="105" height="62" fill="#4a4a10" stroke="#b5a642" stroke-width="1" rx="3"/>
+  <text x="282" y="414" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#d4c84a">E1</text>
+
+  <!-- E2 --> <rect x="335" y="383" width="105" height="62" fill="#5a3310" stroke="#d48030" stroke-width="1" rx="3"/>
+  <text x="387" y="414" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#e89040">E2</text>
+
+  <!-- E3 --> <rect x="440" y="383" width="105" height="62" fill="#5a2210" stroke="#d45030" stroke-width="1" rx="3"/>
+  <text x="492" y="414" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#e86040">E3</text>
+
+  <!-- E4 --> <rect x="545" y="383" width="105" height="62" fill="#5a1515" stroke="#d43030" stroke-width="1" rx="3"/>
+  <text x="597" y="414" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#e84040">E4</text>
+
+  <!-- E5 --> <rect x="650" y="383" width="105" height="62" fill="#6e1818" stroke="#f85149" stroke-width="1.5" rx="3"/>
+  <text x="702" y="410" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#f85149">E5</text>
+  <text x="702" y="426" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ff7b72">Lowest</text>
+
+  <!-- E6 --> <rect x="755" y="383" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="807" y="414" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">E6</text>
+
+  <!-- Row F: Cannot Be Judged -->
+  <rect x="30" y="445" width="200" height="62" fill="#111a27" stroke="#30363d" stroke-width="1"/>
+  <text x="42" y="473" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#8b949e">F</text>
+  <text x="62" y="473" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#c9d1d9">Cannot Be Judged</text>
+
+  <!-- F1-F6: all gray -->
+  <rect x="230" y="445" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="282" y="476" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">F1</text>
+
+  <rect x="335" y="445" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="387" y="476" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">F2</text>
+
+  <rect x="440" y="445" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="492" y="476" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">F3</text>
+
+  <rect x="545" y="445" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="597" y="476" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">F4</text>
+
+  <rect x="650" y="445" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="702" y="476" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">F5</text>
+
+  <rect x="755" y="445" width="105" height="62" fill="#1c2333" stroke="#484f58" stroke-width="1" rx="3"/>
+  <text x="807" y="476" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#8b949e">F6</text>
+
+  <!-- Legend -->
+  <rect x="30" y="530" width="840" height="50" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Legend gradient bar -->
+  <defs>
+    <linearGradient id="legendGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0f5323"/>
+      <stop offset="20%" style="stop-color:#1a5e2e"/>
+      <stop offset="40%" style="stop-color:#4a4a10"/>
+      <stop offset="60%" style="stop-color:#5a3310"/>
+      <stop offset="80%" style="stop-color:#5a1515"/>
+      <stop offset="100%" style="stop-color:#6e1818"/>
+    </linearGradient>
+  </defs>
+
+  <text x="50" y="556" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="600" fill="#8b949e">CONFIDENCE:</text>
+  <rect x="150" y="543" width="280" height="18" rx="4" fill="url(#legendGrad)" stroke="#30363d" stroke-width="1"/>
+  <text x="155" y="556" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="600" fill="#3fb950">HIGH</text>
+  <text x="400" y="556" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="600" fill="#f85149">LOW</text>
+
+  <rect x="475" y="543" width="18" height="18" rx="3" fill="#1c2333" stroke="#484f58" stroke-width="1"/>
+  <text x="500" y="557" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#8b949e">= Cannot Be Judged (indeterminate)</text>
+
+  <!-- Decorative corner accents -->
+  <line x1="30" y1="135" x2="30" y2="507" stroke="#1f6feb" stroke-width="2" opacity="0.5"/>
+  <line x1="230" y1="80" x2="860" y2="80" stroke="#238636" stroke-width="2" opacity="0.5"/>
+</svg>

@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650">
+  <defs>
+    <filter id="shadow" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="glow" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#0a0e14"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="100%" stop-color="#c73a52"/>
+    </linearGradient>
+    <linearGradient id="yellowGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e6a817"/>
+      <stop offset="100%" stop-color="#c99212"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#533483"/>
+      <stop offset="100%" stop-color="#452a6e"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#0b2848"/>
+    </linearGradient>
+    <marker id="arrowWhite" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="rgba(255,255,255,0.5)"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="650" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.03">
+    <line x1="0" y1="0" x2="0" y2="650" stroke="white" stroke-width="1"/>
+    <line x1="100" y1="0" x2="100" y2="650" stroke="white" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="650" stroke="white" stroke-width="1"/>
+    <line x1="300" y1="0" x2="300" y2="650" stroke="white" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="650" stroke="white" stroke-width="1"/>
+    <line x1="500" y1="0" x2="500" y2="650" stroke="white" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="650" stroke="white" stroke-width="1"/>
+    <line x1="700" y1="0" x2="700" y2="650" stroke="white" stroke-width="1"/>
+    <line x1="800" y1="0" x2="800" y2="650" stroke="white" stroke-width="1"/>
+    <line x1="900" y1="0" x2="900" y2="650" stroke="white" stroke-width="1"/>
+  </g>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" fill="white" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="0.5">Priority Intelligence Requirements Framework</text>
+  <line x1="200" y1="50" x2="700" y2="50" stroke="#e94560" stroke-width="2" opacity="0.6"/>
+
+  <!-- ==================== TIER 1: BUSINESS OBJECTIVES (widest) ==================== -->
+  <!-- Funnel shape - wide trapezoid -->
+  <polygon points="90,75 810,75 740,155 160,155" fill="url(#redGrad)" stroke="#e94560" stroke-width="1.5" filter="url(#shadow)" rx="6"/>
+  <!-- Left accent line -->
+  <line x1="90" y1="75" x2="90" y2="80" stroke="#ff6b81" stroke-width="3"/>
+
+  <text x="450" y="101" text-anchor="middle" fill="white" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="17" font-weight="700">BUSINESS OBJECTIVES</text>
+  <text x="450" y="122" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-style="italic">"What does the organization need to protect?"</text>
+  <text x="450" y="143" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10">Strategic goals, critical assets, regulatory requirements, risk appetite</text>
+
+  <!-- Arrow 1 -->
+  <line x1="450" y1="159" x2="450" y2="183" stroke="rgba(255,255,255,0.35)" stroke-width="2" marker-end="url(#arrowWhite)"/>
+
+  <!-- ==================== TIER 2: PIRs (medium width) ==================== -->
+  <!-- Funnel shape - medium trapezoid -->
+  <polygon points="160,187 740,187 670,267 230,267" fill="url(#yellowGrad)" stroke="#e6a817" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <text x="450" y="212" text-anchor="middle" fill="#1a1a2e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">PRIORITY INTELLIGENCE REQUIREMENTS (PIRs)</text>
+  <text x="450" y="230" text-anchor="middle" fill="rgba(26,26,46,0.75)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-style="italic">"What threats matter most to achieving our objectives?"</text>
+
+  <!-- 3 PIR Example boxes -->
+  <g filter="url(#shadow)">
+    <!-- PIR 1 -->
+    <rect x="175" y="240" width="185" height="22" rx="4" fill="rgba(26,26,46,0.3)" stroke="rgba(26,26,46,0.25)" stroke-width="1"/>
+    <text x="267" y="255" text-anchor="middle" fill="#1a1a2e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="600">PIR 1: Ransomware Threat Actors</text>
+
+    <!-- PIR 2 -->
+    <rect x="370" y="240" width="160" height="22" rx="4" fill="rgba(26,26,46,0.3)" stroke="rgba(26,26,46,0.25)" stroke-width="1"/>
+    <text x="450" y="255" text-anchor="middle" fill="#1a1a2e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="600">PIR 2: Supply Chain Risks</text>
+
+    <!-- PIR 3 -->
+    <rect x="540" y="240" width="185" height="22" rx="4" fill="rgba(26,26,46,0.3)" stroke="rgba(26,26,46,0.25)" stroke-width="1"/>
+    <text x="632" y="255" text-anchor="middle" fill="#1a1a2e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5" font-weight="600">PIR 3: Insider Threat Indicators</text>
+  </g>
+
+  <!-- Arrows from PIRs to EEIs -->
+  <line x1="267" y1="271" x2="230" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+  <line x1="267" y1="271" x2="340" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+  <line x1="450" y1="271" x2="450" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+  <line x1="632" y1="271" x2="560" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+  <line x1="632" y1="271" x2="670" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+  <line x1="450" y1="271" x2="450" y2="295" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+
+  <!-- ==================== TIER 3: EEIs (narrower) ==================== -->
+  <!-- Funnel shape - narrower trapezoid -->
+  <polygon points="230,300 670,300 610,440 290,440" fill="url(#purpleGrad)" stroke="#533483" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <text x="450" y="323" text-anchor="middle" fill="white" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700">ESSENTIAL ELEMENTS OF INFORMATION (EEIs)</text>
+  <text x="450" y="341" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-style="italic">"What specific information answers each PIR?"</text>
+
+  <!-- 6 EEI boxes in 2 rows of 3 -->
+  <g filter="url(#shadow)">
+    <!-- Row 1 -->
+    <rect x="262" y="354" width="115" height="34" rx="4" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="319" y="368" text-anchor="middle" fill="white" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8.5" font-weight="600">EEI 1.1</text>
+    <text x="319" y="381" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="7.5">Active ransomware TTPs</text>
+
+    <rect x="387" y="354" width="126" height="34" rx="4" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="450" y="368" text-anchor="middle" fill="white" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8.5" font-weight="600">EEI 1.2</text>
+    <text x="450" y="381" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="7.5">Targeted industry sectors</text>
+
+    <rect x="523" y="354" width="115" height="34" rx="4" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="580" y="368" text-anchor="middle" fill="white" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8.5" font-weight="600">EEI 2.1</text>
+    <text x="580" y="381" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="7.5">Vendor vulnerability data</text>
+
+    <!-- Row 2 -->
+    <rect x="275" y="396" width="115" height="34" rx="4" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="332" y="410" text-anchor="middle" fill="white" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8.5" font-weight="600">EEI 2.2</text>
+    <text x="332" y="423" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="7.5">3rd-party breach reports</text>
+
+    <rect x="400" y="396" width="100" height="34" rx="4" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="450" y="410" text-anchor="middle" fill="white" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8.5" font-weight="600">EEI 3.1</text>
+    <text x="450" y="423" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="7.5">DLP alert patterns</text>
+
+    <rect x="510" y="396" width="115" height="34" rx="4" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="567" y="410" text-anchor="middle" fill="white" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8.5" font-weight="600">EEI 3.2</text>
+    <text x="567" y="423" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="7.5">Anomalous access logs</text>
+  </g>
+
+  <!-- Arrow from EEIs to Collection Plan -->
+  <line x1="450" y1="444" x2="450" y2="478" stroke="rgba(255,255,255,0.35)" stroke-width="2" marker-end="url(#arrowWhite)"/>
+
+  <!-- ==================== TIER 4: COLLECTION PLAN (narrowest) ==================== -->
+  <!-- Funnel shape - narrowest trapezoid / almost rectangle -->
+  <polygon points="290,483 610,483 580,590 320,590" fill="url(#blueGrad)" stroke="#0f3460" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <text x="450" y="510" text-anchor="middle" fill="white" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700">COLLECTION PLAN</text>
+  <text x="450" y="528" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-style="italic">"Where and how do we gather this information?"</text>
+
+  <!-- Collection plan detail items -->
+  <g>
+    <circle cx="345" cy="548" r="3" fill="#4fc3f7"/>
+    <text x="355" y="552" fill="rgba(255,255,255,0.85)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5">OSINT Feeds &amp; Threat Platforms</text>
+
+    <circle cx="345" cy="566" r="3" fill="#4fc3f7"/>
+    <text x="355" y="570" fill="rgba(255,255,255,0.85)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5">ISAC / ISAO Memberships</text>
+
+    <circle cx="500" cy="548" r="3" fill="#4fc3f7"/>
+    <text x="510" y="552" fill="rgba(255,255,255,0.85)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5">Internal Telemetry (SIEM/EDR)</text>
+
+    <circle cx="500" cy="566" r="3" fill="#4fc3f7"/>
+    <text x="510" y="570" fill="rgba(255,255,255,0.85)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9.5">Dark Web Monitoring</text>
+  </g>
+
+  <!-- Side annotations - left -->
+  <g opacity="0.5">
+    <text x="60" y="115" text-anchor="middle" fill="#e94560" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="600" transform="rotate(-90,60,115)">STRATEGIC</text>
+    <text x="60" y="370" text-anchor="middle" fill="#533483" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="600" transform="rotate(-90,60,370)" letter-spacing="0.5">OPERATIONAL</text>
+    <text x="60" y="540" text-anchor="middle" fill="#0f3460" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="600" transform="rotate(-90,60,540)">TACTICAL</text>
+  </g>
+
+  <!-- Side flow arrow - left -->
+  <line x1="38" y1="80" x2="38" y2="580" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+  <text x="28" y="335" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="8" transform="rotate(-90,28,335)">INCREASING SPECIFICITY</text>
+
+  <!-- Side annotation - right -->
+  <g opacity="0.5">
+    <text x="850" y="115" text-anchor="middle" fill="#e94560" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="600" transform="rotate(90,850,115)">WHY</text>
+    <text x="850" y="230" text-anchor="middle" fill="#e6a817" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="600" transform="rotate(90,850,230)">WHAT</text>
+    <text x="850" y="370" text-anchor="middle" fill="#9b59b6" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="600" transform="rotate(90,850,370)">DETAILS</text>
+    <text x="850" y="540" text-anchor="middle" fill="#3498db" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="600" transform="rotate(90,850,540)">HOW</text>
+  </g>
+
+  <!-- Side flow arrow - right -->
+  <line x1="865" y1="80" x2="865" y2="580" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+
+  <!-- Bottom label -->
+  <text x="450" y="625" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9">PIR Framework -- Threat Intelligence Lifecycle</text>
+
+  <!-- Decorative corner accents -->
+  <line x1="10" y1="10" x2="40" y2="10" stroke="#e94560" stroke-width="2" opacity="0.4"/>
+  <line x1="10" y1="10" x2="10" y2="40" stroke="#e94560" stroke-width="2" opacity="0.4"/>
+  <line x1="890" y1="10" x2="860" y2="10" stroke="#e94560" stroke-width="2" opacity="0.4"/>
+  <line x1="890" y1="10" x2="890" y2="40" stroke="#e94560" stroke-width="2" opacity="0.4"/>
+  <line x1="10" y1="640" x2="40" y2="640" stroke="#0f3460" stroke-width="2" opacity="0.4"/>
+  <line x1="10" y1="640" x2="10" y2="610" stroke="#0f3460" stroke-width="2" opacity="0.4"/>
+  <line x1="890" y1="640" x2="860" y2="640" stroke="#0f3460" stroke-width="2" opacity="0.4"/>
+  <line x1="890" y1="640" x2="890" y2="610" stroke="#0f3460" stroke-width="2" opacity="0.4"/>
+</svg>

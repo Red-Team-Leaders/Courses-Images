@@ -1,0 +1,399 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <defs>
+    <!-- Glowing effects -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glowStrong" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+
+    <!-- Radial gradient for central shield glow -->
+    <radialGradient id="shieldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e94560" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#533483" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0d1117" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Shield gradient -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e94560"/>
+      <stop offset="50%" stop-color="#533483"/>
+      <stop offset="100%" stop-color="#0f3460"/>
+    </linearGradient>
+
+    <!-- Layer ring gradients -->
+    <linearGradient id="ring1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e94560" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#e94560" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="ring2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f3460" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0f3460" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="ring3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#533483" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#533483" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="ring4Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e6a817" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#e6a817" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="ring5Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a6b3c" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1a6b3c" stop-opacity="0.3"/>
+    </linearGradient>
+
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2332" stroke-width="0.5"/>
+    </pattern>
+
+    <!-- Scan line pattern -->
+    <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="4" y2="0" stroke="#ffffff" stroke-opacity="0.02" stroke-width="1"/>
+    </pattern>
+
+    <!-- Animated rotation for rings -->
+    <style>
+      @keyframes rotateCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes rotateCCW { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+      @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+      @keyframes dashMove { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -30; } }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes warningPulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+      .ring-cw { animation: rotateCW 60s linear infinite; transform-origin: 400px 300px; }
+      .ring-ccw { animation: rotateCCW 45s linear infinite; transform-origin: 400px 300px; }
+      .ring-cw-slow { animation: rotateCW 90s linear infinite; transform-origin: 400px 300px; }
+      .pulse-anim { animation: pulse 3s ease-in-out infinite; }
+      .dash-anim { animation: dashMove 2s linear infinite; }
+      .warning-pulse { animation: warningPulse 2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="#0d1117"/>
+  <rect width="900" height="600" fill="url(#grid)"/>
+  <rect width="900" height="600" fill="url(#scanlines)"/>
+
+  <!-- Central glow -->
+  <circle cx="400" cy="300" r="250" fill="url(#shieldGlow)"/>
+
+  <!-- Outer decorative ring 5 - Browser Isolation -->
+  <g class="ring-cw-slow">
+    <circle cx="400" cy="300" r="215" fill="none" stroke="#1a6b3c" stroke-width="1.5" stroke-dasharray="8 20" stroke-opacity="0.4"/>
+    <!-- Node markers on ring -->
+    <circle cx="400" cy="85" r="3" fill="#1a6b3c" opacity="0.8"/>
+    <circle cx="615" cy="300" r="3" fill="#1a6b3c" opacity="0.8"/>
+    <circle cx="400" cy="515" r="3" fill="#1a6b3c" opacity="0.8"/>
+    <circle cx="185" cy="300" r="3" fill="#1a6b3c" opacity="0.8"/>
+  </g>
+
+  <!-- Ring 4 - Secure Note-Taking -->
+  <g class="ring-ccw">
+    <circle cx="400" cy="300" r="185" fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="15 10" stroke-opacity="0.4"/>
+    <circle cx="400" cy="115" r="3" fill="#e6a817" opacity="0.8"/>
+    <circle cx="585" cy="300" r="3" fill="#e6a817" opacity="0.8"/>
+    <circle cx="400" cy="485" r="3" fill="#e6a817" opacity="0.8"/>
+    <circle cx="215" cy="300" r="3" fill="#e6a817" opacity="0.8"/>
+  </g>
+
+  <!-- Ring 3 - Sock Puppet Accounts -->
+  <g class="ring-cw">
+    <circle cx="400" cy="300" r="155" fill="none" stroke="#533483" stroke-width="2" stroke-dasharray="5 15" stroke-opacity="0.5"/>
+    <circle cx="400" cy="145" r="3" fill="#533483" opacity="0.9"/>
+    <circle cx="555" cy="300" r="3" fill="#533483" opacity="0.9"/>
+    <circle cx="400" cy="455" r="3" fill="#533483" opacity="0.9"/>
+    <circle cx="245" cy="300" r="3" fill="#533483" opacity="0.9"/>
+  </g>
+
+  <!-- Ring 2 - Dedicated VM -->
+  <g class="ring-ccw">
+    <circle cx="400" cy="300" r="125" fill="none" stroke="#0f3460" stroke-width="2" stroke-dasharray="12 8" stroke-opacity="0.5"/>
+    <circle cx="400" cy="175" r="4" fill="#4a90d9" opacity="0.9"/>
+    <circle cx="525" cy="300" r="4" fill="#4a90d9" opacity="0.9"/>
+    <circle cx="400" cy="425" r="4" fill="#4a90d9" opacity="0.9"/>
+    <circle cx="275" cy="300" r="4" fill="#4a90d9" opacity="0.9"/>
+  </g>
+
+  <!-- Ring 1 - VPN/Tor (innermost) -->
+  <g class="ring-cw">
+    <circle cx="400" cy="300" r="95" fill="none" stroke="#e94560" stroke-width="2" stroke-dasharray="3 12" stroke-opacity="0.6"/>
+    <circle cx="400" cy="205" r="4" fill="#e94560" opacity="0.9"/>
+    <circle cx="495" cy="300" r="4" fill="#e94560" opacity="0.9"/>
+    <circle cx="400" cy="395" r="4" fill="#e94560" opacity="0.9"/>
+    <circle cx="305" cy="300" r="4" fill="#e94560" opacity="0.9"/>
+  </g>
+
+  <!-- Central Shield -->
+  <g filter="url(#glowStrong)">
+    <!-- Shield body -->
+    <path d="M400 230 L445 250 L445 310 Q445 355 400 375 Q355 355 355 310 L355 250 Z"
+          fill="url(#shieldGrad)" stroke="#e94560" stroke-width="2" opacity="0.95"/>
+    <!-- Lock icon on shield -->
+    <rect x="388" y="298" width="24" height="18" rx="3" fill="none" stroke="#fff" stroke-width="2"/>
+    <path d="M393 298 L393 290 Q393 280 400 280 Q407 280 407 290 L407 298" fill="none" stroke="#fff" stroke-width="2"/>
+    <circle cx="400" cy="309" r="3" fill="#fff"/>
+    <!-- Checkmark above lock -->
+    <path d="M392 262 L398 270 L412 255" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ======================== -->
+  <!-- LAYER LABELS WITH ICONS  -->
+  <!-- ======================== -->
+
+  <!-- Layer 1: VPN/Tor - Top right area -->
+  <g filter="url(#shadow)">
+    <!-- Connector line -->
+    <line x1="440" y1="250" x2="620" y2="120" stroke="#e94560" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="4 4" class="dash-anim"/>
+    <circle cx="620" cy="120" r="3" fill="#e94560"/>
+
+    <!-- Label card -->
+    <rect x="630" y="92" width="200" height="55" rx="6" fill="#0d1117" stroke="#e94560" stroke-width="1.5" fill-opacity="0.9"/>
+    <rect x="630" y="92" width="4" height="55" rx="2" fill="#e94560"/>
+
+    <!-- Network icon (globe with lines) -->
+    <circle cx="655" cy="110" r="9" fill="none" stroke="#e94560" stroke-width="1.5"/>
+    <ellipse cx="655" cy="110" rx="5" ry="9" fill="none" stroke="#e94560" stroke-width="1"/>
+    <line x1="646" y1="110" x2="664" y2="110" stroke="#e94560" stroke-width="1"/>
+    <line x1="648" y1="104" x2="662" y2="104" stroke="#e94560" stroke-width="0.7"/>
+    <line x1="648" y1="116" x2="662" y2="116" stroke="#e94560" stroke-width="0.7"/>
+
+    <text x="672" y="114" fill="#e94560" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold">VPN / Tor</text>
+    <text x="645" y="136" fill="#8b949e" font-family="'Segoe UI', Arial, sans-serif" font-size="11">Network anonymization</text>
+  </g>
+
+  <!-- Layer 2: Dedicated VM - Right side -->
+  <g filter="url(#shadow)">
+    <line x1="445" y1="295" x2="630" y2="215" stroke="#4a90d9" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="4 4" class="dash-anim"/>
+    <circle cx="630" cy="215" r="3" fill="#4a90d9"/>
+
+    <rect x="640" y="187" width="220" height="55" rx="6" fill="#0d1117" stroke="#0f3460" stroke-width="1.5" fill-opacity="0.9"/>
+    <rect x="640" y="187" width="4" height="55" rx="2" fill="#4a90d9"/>
+
+    <!-- VM icon (monitor with box) -->
+    <rect x="648" y="198" r="8" width="18" height="13" rx="2" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+    <line x1="657" y1="211" x2="657" y2="215" stroke="#4a90d9" stroke-width="1.5"/>
+    <line x1="652" y1="215" x2="662" y2="215" stroke="#4a90d9" stroke-width="1.5"/>
+    <!-- Cube inside monitor -->
+    <rect x="653" y="201" width="8" height="6" rx="1" fill="none" stroke="#4a90d9" stroke-width="0.8"/>
+
+    <text x="675" y="209" fill="#4a90d9" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold">Dedicated VM</text>
+    <text x="655" y="231" fill="#8b949e" font-family="'Segoe UI', Arial, sans-serif" font-size="11">Isolated research environment</text>
+  </g>
+
+  <!-- Layer 3: Sock Puppet Accounts - Bottom right -->
+  <g filter="url(#shadow)">
+    <line x1="430" y1="355" x2="610" y2="415" stroke="#533483" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="4 4" class="dash-anim"/>
+    <circle cx="610" cy="415" r="3" fill="#9b59b6"/>
+
+    <rect x="620" y="390" width="240" height="55" rx="6" fill="#0d1117" stroke="#533483" stroke-width="1.5" fill-opacity="0.9"/>
+    <rect x="620" y="390" width="4" height="55" rx="2" fill="#9b59b6"/>
+
+    <!-- Mask/puppet icon -->
+    <circle cx="645" cy="407" r="9" fill="none" stroke="#9b59b6" stroke-width="1.5"/>
+    <circle cx="641" cy="405" r="2" fill="#9b59b6"/>
+    <circle cx="649" cy="405" r="2" fill="#9b59b6"/>
+    <path d="M640 412 Q645 416 650 412" fill="none" stroke="#9b59b6" stroke-width="1.2"/>
+
+    <text x="662" y="411" fill="#9b59b6" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold">Sock Puppet Accounts</text>
+    <text x="635" y="434" fill="#8b949e" font-family="'Segoe UI', Arial, sans-serif" font-size="11">Non-attributable identities</text>
+  </g>
+
+  <!-- Layer 4: Secure Note-Taking - Bottom left -->
+  <g filter="url(#shadow)">
+    <line x1="370" y1="360" x2="200" y2="435" stroke="#e6a817" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="4 4" class="dash-anim"/>
+    <circle cx="200" cy="435" r="3" fill="#e6a817"/>
+
+    <rect x="40" y="410" width="230" height="55" rx="6" fill="#0d1117" stroke="#e6a817" stroke-width="1.5" fill-opacity="0.9"/>
+    <rect x="40" y="410" width="4" height="55" rx="2" fill="#e6a817"/>
+
+    <!-- Notepad with lock icon -->
+    <rect x="58" y="419" width="14" height="18" rx="2" fill="none" stroke="#e6a817" stroke-width="1.5"/>
+    <line x1="61" y1="425" x2="69" y2="425" stroke="#e6a817" stroke-width="1"/>
+    <line x1="61" y1="429" x2="69" y2="429" stroke="#e6a817" stroke-width="1"/>
+    <line x1="61" y1="433" x2="66" y2="433" stroke="#e6a817" stroke-width="1"/>
+    <!-- Small lock -->
+    <rect x="68" y="432" width="6" height="5" rx="1" fill="#e6a817" opacity="0.8"/>
+    <path d="M69.5 432 L69.5 430 Q69.5 428 71 428 Q72.5 428 72.5 430 L72.5 432" fill="none" stroke="#e6a817" stroke-width="0.8"/>
+
+    <text x="82" y="434" fill="#e6a817" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold">Secure Note-Taking</text>
+    <text x="55" y="455" fill="#8b949e" font-family="'Segoe UI', Arial, sans-serif" font-size="11">Encrypted storage</text>
+  </g>
+
+  <!-- Layer 5: Browser Isolation - Top left -->
+  <g filter="url(#shadow)">
+    <line x1="365" y1="260" x2="195" y2="180" stroke="#1a6b3c" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="4 4" class="dash-anim"/>
+    <circle cx="195" cy="180" r="3" fill="#2ecc71"/>
+
+    <rect x="30" y="152" width="225" height="55" rx="6" fill="#0d1117" stroke="#1a6b3c" stroke-width="1.5" fill-opacity="0.9"/>
+    <rect x="30" y="152" width="4" height="55" rx="2" fill="#2ecc71"/>
+
+    <!-- Browser window icon -->
+    <rect x="48" y="162" width="18" height="14" rx="2" fill="none" stroke="#2ecc71" stroke-width="1.5"/>
+    <line x1="48" y1="167" x2="66" y2="167" stroke="#2ecc71" stroke-width="1"/>
+    <circle cx="52" cy="164.5" r="1" fill="#e94560"/>
+    <circle cx="56" cy="164.5" r="1" fill="#e6a817"/>
+    <circle cx="60" cy="164.5" r="1" fill="#2ecc71"/>
+    <!-- Sandbox box around browser -->
+    <rect x="44" y="158" width="26" height="22" rx="3" fill="none" stroke="#2ecc71" stroke-width="0.8" stroke-dasharray="3 2"/>
+
+    <text x="76" y="175" fill="#2ecc71" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="bold">Browser Isolation</text>
+    <text x="48" y="197" fill="#8b949e" font-family="'Segoe UI', Arial, sans-serif" font-size="11">Sandboxed browsing</text>
+  </g>
+
+  <!-- ======================== -->
+  <!-- WARNING SYMBOLS          -->
+  <!-- ======================== -->
+
+  <!-- Warning triangle - top left corner -->
+  <g class="warning-pulse" transform="translate(55, 55)">
+    <polygon points="0,-14 12,10 -12,10" fill="none" stroke="#e6a817" stroke-width="1.5" stroke-linejoin="round"/>
+    <text x="0" y="7" text-anchor="middle" fill="#e6a817" font-family="Arial, sans-serif" font-size="14" font-weight="bold">!</text>
+  </g>
+
+  <!-- Warning triangle - top right corner -->
+  <g class="warning-pulse" transform="translate(845, 55)" style="animation-delay: 0.5s;">
+    <polygon points="0,-14 12,10 -12,10" fill="none" stroke="#e6a817" stroke-width="1.5" stroke-linejoin="round"/>
+    <text x="0" y="7" text-anchor="middle" fill="#e6a817" font-family="Arial, sans-serif" font-size="14" font-weight="bold">!</text>
+  </g>
+
+  <!-- Eye/surveillance icon - left side -->
+  <g transform="translate(80, 320)" opacity="0.4">
+    <ellipse cx="0" cy="0" rx="16" ry="10" fill="none" stroke="#e94560" stroke-width="1.2"/>
+    <circle cx="0" cy="0" r="5" fill="none" stroke="#e94560" stroke-width="1.2"/>
+    <circle cx="0" cy="0" r="2" fill="#e94560"/>
+    <!-- Strike-through -->
+    <line x1="-20" y1="14" x2="20" y2="-14" stroke="#e94560" stroke-width="1.5"/>
+  </g>
+
+  <!-- Fingerprint icon - right side (anti-fingerprinting) -->
+  <g transform="translate(820, 320)" opacity="0.4">
+    <path d="M-8,6 Q-8,-8 0,-8 Q8,-8 8,0" fill="none" stroke="#533483" stroke-width="1.2"/>
+    <path d="M-4,6 Q-4,-4 0,-4 Q4,-4 4,2" fill="none" stroke="#533483" stroke-width="1.2"/>
+    <path d="M0,6 Q0,0 0,-1" fill="none" stroke="#533483" stroke-width="1.2"/>
+    <!-- Strike-through -->
+    <line x1="-12" y1="10" x2="12" y2="-10" stroke="#e94560" stroke-width="1.5"/>
+  </g>
+
+  <!-- Key icon - bottom left -->
+  <g transform="translate(75, 510)" opacity="0.35">
+    <circle cx="0" cy="0" r="6" fill="none" stroke="#e6a817" stroke-width="1.3"/>
+    <line x1="6" y1="0" x2="18" y2="0" stroke="#e6a817" stroke-width="1.3"/>
+    <line x1="15" y1="0" x2="15" y2="4" stroke="#e6a817" stroke-width="1.3"/>
+    <line x1="18" y1="0" x2="18" y2="4" stroke="#e6a817" stroke-width="1.3"/>
+  </g>
+
+  <!-- Crosshair/target icon - bottom right (what to avoid) -->
+  <g transform="translate(825, 510)" opacity="0.35">
+    <circle cx="0" cy="0" r="10" fill="none" stroke="#e94560" stroke-width="1"/>
+    <circle cx="0" cy="0" r="5" fill="none" stroke="#e94560" stroke-width="1"/>
+    <line x1="0" y1="-14" x2="0" y2="-7" stroke="#e94560" stroke-width="1"/>
+    <line x1="0" y1="7" x2="0" y2="14" stroke="#e94560" stroke-width="1"/>
+    <line x1="-14" y1="0" x2="-7" y2="0" stroke="#e94560" stroke-width="1"/>
+    <line x1="7" y1="0" x2="14" y2="0" stroke="#e94560" stroke-width="1"/>
+    <!-- Strike-through -->
+    <line x1="-14" y1="14" x2="14" y2="-14" stroke="#e94560" stroke-width="1.5"/>
+  </g>
+
+  <!-- ======================== -->
+  <!-- TITLE                    -->
+  <!-- ======================== -->
+
+  <text x="450" y="42" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="bold" letter-spacing="2" filter="url(#glow)">OPSEC for CTI Analysts</text>
+
+  <!-- Decorative line under title -->
+  <line x1="280" y1="55" x2="620" y2="55" stroke="url(#shieldGrad)" stroke-width="2" stroke-opacity="0.6"/>
+
+  <!-- Small shield icons flanking the title -->
+  <path d="M268 35 L260 39 L260 47 Q260 52 268 56 Q276 52 276 47 L276 39 Z" fill="none" stroke="#e94560" stroke-width="1" opacity="0.5"/>
+  <path d="M632 35 L624 39 L624 47 Q624 52 632 56 Q640 52 640 47 L640 39 Z" fill="none" stroke="#e94560" stroke-width="1" opacity="0.5"/>
+
+  <!-- ======================== -->
+  <!-- BOTTOM TEXT              -->
+  <!-- ======================== -->
+
+  <!-- Bottom banner background -->
+  <rect x="150" y="548" width="600" height="36" rx="18" fill="#0d1117" stroke="#e94560" stroke-width="1" stroke-opacity="0.4"/>
+
+  <!-- Shield icon in bottom banner -->
+  <path d="M180 558 L174 561 L174 567 Q174 572 180 575 Q186 572 186 567 L186 561 Z" fill="#e94560" fill-opacity="0.3" stroke="#e94560" stroke-width="1"/>
+  <path d="M177 565 L179 568 L184 562" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="450" y="572" text-anchor="middle" fill="#c9d1d9" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="1">
+    Protect your identity while collecting intelligence
+  </text>
+
+  <!-- Lock icon in bottom banner (right side) -->
+  <rect x="706" y="561" width="10" height="8" rx="2" fill="none" stroke="#e94560" stroke-width="1"/>
+  <path d="M708 561 L708 558 Q708 554 711 554 Q714 554 714 558 L714 561" fill="none" stroke="#e94560" stroke-width="1"/>
+
+  <!-- ======================== -->
+  <!-- CORNER DECORATIONS       -->
+  <!-- ======================== -->
+
+  <!-- Top-left corner bracket -->
+  <path d="M15 30 L15 15 L30 15" fill="none" stroke="#e94560" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Top-right corner bracket -->
+  <path d="M870 15 L885 15 L885 30" fill="none" stroke="#e94560" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Bottom-left corner bracket -->
+  <path d="M15 570 L15 585 L30 585" fill="none" stroke="#e94560" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Bottom-right corner bracket -->
+  <path d="M870 585 L885 585 L885 570" fill="none" stroke="#e94560" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- Hex pattern accents - top -->
+  <g opacity="0.15">
+    <polygon points="130,85 140,80 150,85 150,95 140,100 130,95" fill="none" stroke="#533483" stroke-width="1"/>
+    <polygon points="150,85 160,80 170,85 170,95 160,100 150,95" fill="none" stroke="#533483" stroke-width="1"/>
+    <polygon points="140,100 150,95 160,100 160,110 150,115 140,110" fill="none" stroke="#533483" stroke-width="1"/>
+  </g>
+
+  <!-- Hex pattern accents - bottom right -->
+  <g opacity="0.15">
+    <polygon points="760,490 770,485 780,490 780,500 770,505 760,500" fill="none" stroke="#533483" stroke-width="1"/>
+    <polygon points="780,490 790,485 800,490 800,500 790,505 780,500" fill="none" stroke="#533483" stroke-width="1"/>
+    <polygon points="770,505 780,500 790,505 790,515 780,520 770,515" fill="none" stroke="#533483" stroke-width="1"/>
+  </g>
+
+  <!-- Binary/data accents -->
+  <text x="20" y="130" fill="#1a2332" font-family="'Courier New', monospace" font-size="9" opacity="0.6">01001111 01010000</text>
+  <text x="20" y="142" fill="#1a2332" font-family="'Courier New', monospace" font-size="9" opacity="0.6">01010011 01000101</text>
+  <text x="20" y="154" fill="#1a2332" font-family="'Courier New', monospace" font-size="9" opacity="0.6">01000011 00100001</text>
+
+  <text x="765" y="130" fill="#1a2332" font-family="'Courier New', monospace" font-size="9" opacity="0.6">53 45 43 55 52</text>
+  <text x="765" y="142" fill="#1a2332" font-family="'Courier New', monospace" font-size="9" opacity="0.6">45 2D 4F 50 53</text>
+
+  <!-- Status indicators - left side -->
+  <g transform="translate(28, 250)">
+    <circle cx="0" cy="0" r="3" fill="#2ecc71" opacity="0.7" class="pulse-anim"/>
+    <text x="10" y="4" fill="#2ecc71" font-family="'Courier New', monospace" font-size="9" opacity="0.5">VPN ACTIVE</text>
+  </g>
+  <g transform="translate(28, 270)">
+    <circle cx="0" cy="0" r="3" fill="#2ecc71" opacity="0.7" class="pulse-anim" style="animation-delay: 0.5s;"/>
+    <text x="10" y="4" fill="#2ecc71" font-family="'Courier New', monospace" font-size="9" opacity="0.5">VM ISOLATED</text>
+  </g>
+  <g transform="translate(28, 290)">
+    <circle cx="0" cy="0" r="3" fill="#2ecc71" opacity="0.7" class="pulse-anim" style="animation-delay: 1s;"/>
+    <text x="10" y="4" fill="#2ecc71" font-family="'Courier New', monospace" font-size="9" opacity="0.5">TOR CIRCUIT</text>
+  </g>
+  <g transform="translate(28, 310)">
+    <circle cx="0" cy="0" r="3" fill="#e6a817" opacity="0.7" class="pulse-anim" style="animation-delay: 1.5s;"/>
+    <text x="10" y="4" fill="#e6a817" font-family="'Courier New', monospace" font-size="9" opacity="0.5">OPSEC CHECK</text>
+  </g>
+
+  <!-- Classification banner -->
+  <rect x="340" y="70" width="220" height="18" rx="3" fill="none" stroke="#e94560" stroke-width="0.8" stroke-opacity="0.4"/>
+  <text x="450" y="83" text-anchor="middle" fill="#e94560" font-family="'Courier New', monospace" font-size="9" letter-spacing="3" opacity="0.6">OPERATIONAL SECURITY</text>
+
+</svg>

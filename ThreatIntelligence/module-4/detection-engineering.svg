@@ -1,0 +1,295 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="50%" style="stop-color:#111820"/>
+      <stop offset="100%" style="stop-color:#0d1117"/>
+    </linearGradient>
+    <!-- Subtle grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1b2332" stroke-width="0.5" opacity="0.4"/>
+    </pattern>
+    <!-- Chevron gradients -->
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#c2233e"/>
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3460"/>
+      <stop offset="100%" style="stop-color:#0a2545"/>
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#533483"/>
+      <stop offset="100%" style="stop-color:#3e2166"/>
+    </linearGradient>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e6a817"/>
+      <stop offset="100%" style="stop-color:#c48e0e"/>
+    </linearGradient>
+    <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a6b3c"/>
+      <stop offset="100%" style="stop-color:#12502c"/>
+    </linearGradient>
+    <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d5016"/>
+      <stop offset="100%" style="stop-color:#1f3a0e"/>
+    </linearGradient>
+    <!-- Glow filters -->
+    <filter id="glow1" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#e94560" flood-opacity="0.3"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#0f3460" flood-opacity="0.3"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow3" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#533483" flood-opacity="0.3"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow4" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#e6a817" flood-opacity="0.3"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow5" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#1a6b3c" flood-opacity="0.3"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow6" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#2d5016" flood-opacity="0.3"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="titleGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-color="#ffffff" flood-opacity="0.15"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Arrow marker -->
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4a5568" opacity="0.8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="url(#bgGrad)"/>
+  <rect width="900" height="600" fill="url(#grid)"/>
+
+  <!-- Decorative top line -->
+  <line x1="50" y1="55" x2="850" y2="55" stroke="#e94560" stroke-width="1" opacity="0.3"/>
+  <line x1="50" y1="57" x2="850" y2="57" stroke="#533483" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" filter="url(#titleGlow)">From Intelligence to Detection</text>
+
+  <!-- Subtitle -->
+  <text x="450" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#8b949e" letter-spacing="3">DETECTION ENGINEERING PIPELINE</text>
+
+  <!-- Step numbers row -->
+  <!-- Step 1 number -->
+  <circle cx="85" cy="120" r="14" fill="none" stroke="#e94560" stroke-width="1.5" opacity="0.7"/>
+  <text x="85" y="125" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" fill="#e94560">1</text>
+  <!-- Step 2 number -->
+  <circle cx="245" cy="120" r="14" fill="none" stroke="#0f3460" stroke-width="1.5" opacity="0.7"/>
+  <text x="245" y="125" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" fill="#4a8fce">2</text>
+  <!-- Step 3 number -->
+  <circle cx="405" cy="120" r="14" fill="none" stroke="#533483" stroke-width="1.5" opacity="0.7"/>
+  <text x="405" y="125" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" fill="#8a5cc0">3</text>
+  <!-- Step 4 number -->
+  <circle cx="565" cy="120" r="14" fill="none" stroke="#e6a817" stroke-width="1.5" opacity="0.7"/>
+  <text x="565" y="125" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" fill="#e6a817">4</text>
+  <!-- Step 5 number -->
+  <circle cx="725" cy="120" r="14" fill="none" stroke="#1a6b3c" stroke-width="1.5" opacity="0.7"/>
+  <text x="725" y="125" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" fill="#2ecc71">5</text>
+  <!-- Step 6 number -->
+  <circle cx="850" cy="120" r="14" fill="none" stroke="#2d5016" stroke-width="1.5" opacity="0.7"/>
+  <text x="850" y="125" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" fill="#5dba3b">6</text>
+
+  <!-- Connecting lines between numbers -->
+  <line x1="99" y1="120" x2="231" y2="120" stroke="#4a5568" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="259" y1="120" x2="391" y2="120" stroke="#4a5568" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="419" y1="120" x2="551" y2="120" stroke="#4a5568" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="579" y1="120" x2="711" y2="120" stroke="#4a5568" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="739" y1="120" x2="836" y2="120" stroke="#4a5568" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- ==================== CHEVRONS ==================== -->
+  <!-- Chevron dimensions: width=120, height=80, point=20 -->
+  <!-- Y center of chevrons: 210 -->
+
+  <!-- Chevron 1: Threat Report -->
+  <g filter="url(#glow1)">
+    <polygon points="25,170 125,170 145,210 125,250 25,250 45,210" fill="url(#grad1)" stroke="#e94560" stroke-width="1" opacity="0.95"/>
+    <text x="80" y="205" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Threat</text>
+    <text x="80" y="220" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Report</text>
+  </g>
+
+  <!-- Arrow 1-2 -->
+  <line x1="148" y1="210" x2="175" y2="210" stroke="#4a5568" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+
+  <!-- Chevron 2: Extract TTPs -->
+  <g filter="url(#glow2)">
+    <polygon points="180,170 280,170 300,210 280,250 180,250 200,210" fill="url(#grad2)" stroke="#1a5a9e" stroke-width="1" opacity="0.95"/>
+    <text x="237" y="205" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Extract</text>
+    <text x="237" y="220" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">TTPs</text>
+  </g>
+
+  <!-- Arrow 2-3 -->
+  <line x1="303" y1="210" x2="330" y2="210" stroke="#4a5568" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+
+  <!-- Chevron 3: Map to ATT&CK -->
+  <g filter="url(#glow3)">
+    <polygon points="335,170 435,170 455,210 435,250 335,250 355,210" fill="url(#grad3)" stroke="#7a4cb5" stroke-width="1" opacity="0.95"/>
+    <text x="392" y="205" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Map to</text>
+    <text x="392" y="220" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">ATT&amp;CK</text>
+  </g>
+
+  <!-- Arrow 3-4 -->
+  <line x1="458" y1="210" x2="485" y2="210" stroke="#4a5568" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+
+  <!-- Chevron 4: Write Sigma Rule -->
+  <g filter="url(#glow4)">
+    <polygon points="490,170 590,170 610,210 590,250 490,250 510,210" fill="url(#grad4)" stroke="#e6a817" stroke-width="1" opacity="0.95"/>
+    <text x="547" y="205" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="bold" fill="#1a1a2e">Write Sigma</text>
+    <text x="547" y="220" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="bold" fill="#1a1a2e">Rule</text>
+  </g>
+
+  <!-- Arrow 4-5 -->
+  <line x1="613" y1="210" x2="640" y2="210" stroke="#4a5568" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+
+  <!-- Chevron 5: Convert to SIEM Query -->
+  <g filter="url(#glow5)">
+    <polygon points="645,170 745,170 765,210 745,250 645,250 665,210" fill="url(#grad5)" stroke="#28a55e" stroke-width="1" opacity="0.95"/>
+    <text x="702" y="200" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">Convert to</text>
+    <text x="702" y="215" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">SIEM</text>
+    <text x="702" y="230" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">Query</text>
+  </g>
+
+  <!-- Arrow 5-6 -->
+  <line x1="768" y1="210" x2="790" y2="210" stroke="#4a5568" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+
+  <!-- Chevron 6: Validate & Tune -->
+  <g filter="url(#glow6)">
+    <polygon points="795,170 875,170 875,250 795,250 815,210" fill="url(#grad6)" stroke="#4a8a2a" stroke-width="1" opacity="0.95"/>
+    <text x="840" y="205" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">Validate</text>
+    <text x="840" y="220" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">&amp; Tune</text>
+  </g>
+
+  <!-- ==================== EXAMPLE TEXT BOXES ==================== -->
+  <!-- Vertical connector lines from chevrons to example boxes -->
+  <line x1="80" y1="250" x2="80" y2="280" stroke="#e94560" stroke-width="1" opacity="0.4"/>
+  <line x1="237" y1="250" x2="237" y2="280" stroke="#1a5a9e" stroke-width="1" opacity="0.4"/>
+  <line x1="392" y1="250" x2="392" y2="280" stroke="#7a4cb5" stroke-width="1" opacity="0.4"/>
+  <line x1="547" y1="250" x2="547" y2="280" stroke="#e6a817" stroke-width="1" opacity="0.4"/>
+  <line x1="702" y1="250" x2="702" y2="280" stroke="#28a55e" stroke-width="1" opacity="0.4"/>
+  <line x1="840" y1="250" x2="840" y2="280" stroke="#4a8a2a" stroke-width="1" opacity="0.4"/>
+
+  <!-- Example Box 1 -->
+  <rect x="15" y="285" width="130" height="110" rx="6" fill="#161b22" stroke="#e94560" stroke-width="0.8" opacity="0.9"/>
+  <text x="80" y="305" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#e94560" opacity="0.9">EXAMPLE</text>
+  <line x1="30" y1="312" x2="130" y2="312" stroke="#e94560" stroke-width="0.3" opacity="0.4"/>
+  <text x="80" y="328" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c9d1d9">"APT29 deploys</text>
+  <text x="80" y="342" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c9d1d9">new backdoor via</text>
+  <text x="80" y="356" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c9d1d9">phishing with ISO</text>
+  <text x="80" y="370" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c9d1d9">file attachments"</text>
+  <text x="80" y="388" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#8b949e" font-style="italic">CISA Advisory</text>
+
+  <!-- Example Box 2 -->
+  <rect x="172" y="285" width="130" height="110" rx="6" fill="#161b22" stroke="#1a5a9e" stroke-width="0.8" opacity="0.9"/>
+  <text x="237" y="305" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#4a8fce" opacity="0.9">EXAMPLE</text>
+  <line x1="187" y1="312" x2="287" y2="312" stroke="#1a5a9e" stroke-width="0.3" opacity="0.4"/>
+  <text x="237" y="328" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#7ee787">T: ISO mounting</text>
+  <text x="237" y="342" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#7ee787">T: DLL sideload</text>
+  <text x="237" y="356" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#7ee787">T: Scheduled task</text>
+  <text x="237" y="370" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#7ee787">T: C2 over HTTPS</text>
+  <text x="237" y="388" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#8b949e" font-style="italic">Behavioral patterns</text>
+
+  <!-- Example Box 3 -->
+  <rect x="327" y="285" width="130" height="110" rx="6" fill="#161b22" stroke="#7a4cb5" stroke-width="0.8" opacity="0.9"/>
+  <text x="392" y="305" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8a5cc0" opacity="0.9">EXAMPLE</text>
+  <line x1="342" y1="312" x2="442" y2="312" stroke="#7a4cb5" stroke-width="0.3" opacity="0.4"/>
+  <text x="392" y="328" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#d2a8ff">T1553.005</text>
+  <text x="392" y="342" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#d2a8ff">T1574.002</text>
+  <text x="392" y="356" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#d2a8ff">T1053.005</text>
+  <text x="392" y="370" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#d2a8ff">T1071.001</text>
+  <text x="392" y="388" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#8b949e" font-style="italic">MITRE technique IDs</text>
+
+  <!-- Example Box 4 -->
+  <rect x="482" y="285" width="130" height="110" rx="6" fill="#161b22" stroke="#e6a817" stroke-width="0.8" opacity="0.9"/>
+  <text x="547" y="305" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#e6a817" opacity="0.9">EXAMPLE</text>
+  <line x1="497" y1="312" x2="597" y2="312" stroke="#e6a817" stroke-width="0.3" opacity="0.4"/>
+  <text x="547" y="326" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#ffa657">logsource:</text>
+  <text x="547" y="338" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#ffa657">  product: windows</text>
+  <text x="547" y="350" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#ffa657">detection:</text>
+  <text x="547" y="362" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#ffa657">  selection:</text>
+  <text x="547" y="374" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#ffa657">    Image|endswith:</text>
+  <text x="547" y="386" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#ffa657">      - '\rundll32'</text>
+
+  <!-- Example Box 5 -->
+  <rect x="637" y="285" width="130" height="110" rx="6" fill="#161b22" stroke="#28a55e" stroke-width="0.8" opacity="0.9"/>
+  <text x="702" y="305" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#2ecc71" opacity="0.9">EXAMPLE</text>
+  <line x1="652" y1="312" x2="752" y2="312" stroke="#28a55e" stroke-width="0.3" opacity="0.4"/>
+  <text x="702" y="326" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#7ee787">// Splunk SPL</text>
+  <text x="702" y="338" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#7ee787">index=windows</text>
+  <text x="702" y="350" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#7ee787">EventCode=1</text>
+  <text x="702" y="362" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#7ee787">Image="*rundll32*"</text>
+  <text x="702" y="374" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#7ee787">| stats count</text>
+  <text x="702" y="386" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#7ee787">  by Computer</text>
+
+  <!-- Example Box 6 -->
+  <rect x="780" y="285" width="105" height="110" rx="6" fill="#161b22" stroke="#4a8a2a" stroke-width="0.8" opacity="0.9"/>
+  <text x="832" y="305" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#5dba3b" opacity="0.9">EXAMPLE</text>
+  <line x1="790" y1="312" x2="875" y2="312" stroke="#4a8a2a" stroke-width="0.3" opacity="0.4"/>
+  <text x="832" y="328" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" fill="#7ee787">Test against</text>
+  <text x="832" y="342" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" fill="#7ee787">known-good</text>
+  <text x="832" y="356" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" fill="#c9d1d9">Reduce false</text>
+  <text x="832" y="370" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" fill="#c9d1d9">positives</text>
+  <text x="832" y="386" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#8b949e" font-style="italic">Iterate &amp; refine</text>
+
+  <!-- ==================== BOTTOM INFO BAR ==================== -->
+  <!-- Separator line -->
+  <line x1="30" y1="420" x2="870" y2="420" stroke="#30363d" stroke-width="0.5"/>
+
+  <!-- Bottom key metrics boxes -->
+  <rect x="40" y="440" width="240" height="70" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
+  <text x="55" y="462" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="bold" fill="#e94560">INPUT</text>
+  <text x="55" y="478" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c9d1d9">Threat intelligence reports, advisories,</text>
+  <text x="55" y="492" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c9d1d9">malware analyses, and incident data</text>
+
+  <rect x="330" y="440" width="240" height="70" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
+  <text x="345" y="462" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="bold" fill="#e6a817">PROCESS</text>
+  <text x="345" y="478" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c9d1d9">Structured extraction, framework mapping,</text>
+  <text x="345" y="492" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c9d1d9">vendor-agnostic rule creation (Sigma/YARA)</text>
+
+  <rect x="620" y="440" width="240" height="70" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
+  <text x="635" y="462" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="bold" fill="#2ecc71">OUTPUT</text>
+  <text x="635" y="478" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c9d1d9">Production-ready SIEM queries deployed</text>
+  <text x="635" y="492" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c9d1d9">with tuned thresholds and low false positives</text>
+
+  <!-- Bottom decorative elements -->
+  <rect x="40" y="530" width="820" height="40" rx="6" fill="#161b22" stroke="#30363d" stroke-width="0.5" opacity="0.6"/>
+  <text x="450" y="545" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">Key Principle: Intelligence-driven detection ensures coverage is aligned with real-world adversary behavior,</text>
+  <text x="450" y="559" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">not theoretical attack models. Each detection should trace back to observed threat activity.</text>
+
+  <!-- Corner accents -->
+  <line x1="0" y1="0" x2="30" y2="0" stroke="#e94560" stroke-width="2"/>
+  <line x1="0" y1="0" x2="0" y2="30" stroke="#e94560" stroke-width="2"/>
+  <line x1="900" y1="0" x2="870" y2="0" stroke="#533483" stroke-width="2"/>
+  <line x1="900" y1="0" x2="900" y2="30" stroke="#533483" stroke-width="2"/>
+  <line x1="0" y1="600" x2="30" y2="600" stroke="#1a6b3c" stroke-width="2"/>
+  <line x1="0" y1="600" x2="0" y2="570" stroke="#1a6b3c" stroke-width="2"/>
+  <line x1="900" y1="600" x2="870" y2="600" stroke="#2d5016" stroke-width="2"/>
+  <line x1="900" y1="600" x2="900" y2="570" stroke="#2d5016" stroke-width="2"/>
+</svg>

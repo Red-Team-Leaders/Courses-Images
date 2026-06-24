@@ -1,0 +1,337 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2d3d" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filters -->
+    <filter id="glow-red" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Arrow markers -->
+    <marker id="arrow-white" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#e2e8f0"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+    </marker>
+    <!-- Gradients -->
+    <linearGradient id="grad-red" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7f1d1d;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.4"/>
+    </linearGradient>
+    <linearGradient id="grad-yellow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#713f12;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#eab308;stop-opacity:0.4"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c2d12;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.4"/>
+    </linearGradient>
+    <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#14532d;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="800" height="3" fill="#00d4ff" opacity="0.8"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#ffffff">Human-in-the-Loop, Kill Switches &amp; Rollback</text>
+  <text x="400" y="50" text-anchor="middle" font-family="monospace" font-size="11" fill="#6b7280">AI Safety Controls Architecture</text>
+
+  <!-- ============================================================ -->
+  <!-- LEFT PANEL: Oversight Spectrum (tiers) -->
+  <!-- ============================================================ -->
+  <text x="12" y="76" font-family="monospace" font-size="11" font-weight="bold" fill="#00d4ff">OVERSIGHT SPECTRUM</text>
+
+  <!-- TIER 1: Fully Automated -->
+  <rect x="10" y="82" width="220" height="54" rx="5" fill="url(#grad-green)" stroke="#22c55e" stroke-width="1.5"/>
+  <circle cx="30" cy="109" r="8" fill="#22c55e" opacity="0.9"/>
+  <text x="30" y="113" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#0d1117">A</text>
+  <text x="50" y="102" font-family="monospace" font-size="11" font-weight="bold" fill="#22c55e">Fully Automated</text>
+  <text x="50" y="116" font-family="monospace" font-size="9" fill="#d1fae5">Low-risk decisions</text>
+  <text x="50" y="128" font-family="monospace" font-size="9" fill="#d1fae5">No human required • Fast</text>
+
+  <!-- TIER 2: Human-in-the-Loop -->
+  <rect x="10" y="143" width="220" height="54" rx="5" fill="url(#grad-yellow)" stroke="#eab308" stroke-width="1.5"/>
+  <circle cx="30" cy="170" r="8" fill="#eab308" opacity="0.9"/>
+  <text x="30" y="174" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#0d1117">H</text>
+  <text x="50" y="163" font-family="monospace" font-size="11" font-weight="bold" fill="#eab308">Human-in-the-Loop</text>
+  <text x="50" y="177" font-family="monospace" font-size="9" fill="#fef9c3">AI suggests → Human approves</text>
+  <text x="50" y="189" font-family="monospace" font-size="9" fill="#fef9c3">Medium-risk • Requires review</text>
+
+  <!-- TIER 3: Human-on-the-Loop -->
+  <rect x="10" y="204" width="220" height="54" rx="5" fill="url(#grad-amber)" stroke="#f97316" stroke-width="1.5"/>
+  <circle cx="30" cy="231" r="8" fill="#f97316" opacity="0.9"/>
+  <text x="30" y="235" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#0d1117">M</text>
+  <text x="50" y="224" font-family="monospace" font-size="11" font-weight="bold" fill="#f97316">Human-on-the-Loop</text>
+  <text x="50" y="238" font-family="monospace" font-size="9" fill="#fed7aa">AI acts • Human monitors</text>
+  <text x="50" y="250" font-family="monospace" font-size="9" fill="#fed7aa">Can intervene • Async review</text>
+
+  <!-- TIER 4: Kill Switch -->
+  <rect x="10" y="265" width="220" height="54" rx="5" fill="url(#grad-red)" stroke="#ef4444" stroke-width="2" filter="url(#glow-red)"/>
+  <circle cx="30" cy="292" r="8" fill="#ef4444" opacity="0.9"/>
+  <text x="30" y="296" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#ffffff">!</text>
+  <text x="50" y="285" font-family="monospace" font-size="11" font-weight="bold" fill="#ef4444">Kill Switch</text>
+  <text x="50" y="299" font-family="monospace" font-size="9" fill="#fecaca">Emergency halt mechanism</text>
+  <text x="50" y="311" font-family="monospace" font-size="9" fill="#fecaca">Hard stop • Full rollback</text>
+
+  <!-- Vertical risk arrow on left -->
+  <line x1="5" y1="82" x2="5" y2="319" stroke="#e2e8f0" stroke-width="1.5" marker-end="url(#arrow-red)" marker-start="url(#arrow-green)"/>
+  <text x="3" y="200" font-family="monospace" font-size="9" fill="#6b7280" transform="rotate(-90 3 200)">RISK LEVEL</text>
+
+  <!-- ============================================================ -->
+  <!-- DECISION CRITERIA BOX -->
+  <!-- ============================================================ -->
+  <rect x="10" y="330" width="220" height="120" rx="5" fill="#161b22" stroke="#4a9eff" stroke-width="1"/>
+  <text x="20" y="348" font-family="monospace" font-size="10" font-weight="bold" fill="#4a9eff">HITL TRIGGER CRITERIA</text>
+  <!-- Criteria rows -->
+  <rect x="18" y="354" width="6" height="6" fill="#22c55e" rx="1"/>
+  <text x="30" y="361" font-family="monospace" font-size="9" fill="#e2e8f0">Confidence &lt; 0.85 threshold</text>
+  <rect x="18" y="366" width="6" height="6" fill="#22c55e" rx="1"/>
+  <text x="30" y="373" font-family="monospace" font-size="9" fill="#e2e8f0">Irreversible action detected</text>
+  <rect x="18" y="378" width="6" height="6" fill="#eab308" rx="1"/>
+  <text x="30" y="385" font-family="monospace" font-size="9" fill="#e2e8f0">High financial impact (&gt;$10k)</text>
+  <rect x="18" y="390" width="6" height="6" fill="#eab308" rx="1"/>
+  <text x="30" y="397" font-family="monospace" font-size="9" fill="#e2e8f0">PII / sensitive data involved</text>
+  <rect x="18" y="402" width="6" height="6" fill="#f97316" rx="1"/>
+  <text x="30" y="409" font-family="monospace" font-size="9" fill="#e2e8f0">Out-of-distribution input</text>
+  <rect x="18" y="414" width="6" height="6" fill="#ef4444" rx="1"/>
+  <text x="30" y="421" font-family="monospace" font-size="9" fill="#e2e8f0">Anomaly score &gt; 3σ</text>
+  <rect x="18" y="426" width="6" height="6" fill="#ef4444" rx="1"/>
+  <text x="30" y="433" font-family="monospace" font-size="9" fill="#e2e8f0">Regulatory mandate (EU AI Act)</text>
+
+  <!-- Automation Bias Warning -->
+  <rect x="10" y="458" width="220" height="50" rx="5" fill="#1c1007" stroke="#f97316" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="20" y="473" font-family="monospace" font-size="10" font-weight="bold" fill="#f97316">WARNING: Automation Bias</text>
+  <text x="20" y="487" font-family="monospace" font-size="9" fill="#fed7aa">Reviewers rubber-stamp AI decisions</text>
+  <text x="20" y="499" font-family="monospace" font-size="9" fill="#fed7aa">Rotate reviewers • Track override rate</text>
+
+  <!-- ============================================================ -->
+  <!-- CENTER PANEL: Kill Switch Architecture -->
+  <!-- ============================================================ -->
+  <text x="270" y="76" font-family="monospace" font-size="11" font-weight="bold" fill="#ef4444">KILL SWITCH ARCHITECTURE</text>
+
+  <!-- Threshold Breach -->
+  <rect x="260" y="82" width="130" height="38" rx="5" fill="#1c0a0a" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="325" y="98" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#ef4444">THRESHOLD BREACH</text>
+  <text x="325" y="112" text-anchor="middle" font-family="monospace" font-size="9" fill="#fca5a5">Error rate | Latency | Drift</text>
+
+  <!-- Arrow down -->
+  <line x1="325" y1="120" x2="325" y2="140" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+
+  <!-- Alerting -->
+  <rect x="260" y="140" width="130" height="38" rx="5" fill="#1c1007" stroke="#f97316" stroke-width="1.5"/>
+  <text x="325" y="156" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#f97316">ALERTING</text>
+  <text x="325" y="170" text-anchor="middle" font-family="monospace" font-size="9" fill="#fed7aa">PagerDuty | Slack | SMS</text>
+
+  <!-- Arrow + manual trigger branch -->
+  <line x1="325" y1="178" x2="325" y2="198" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+
+  <!-- Manual override option -->
+  <rect x="400" y="148" width="110" height="32" rx="5" fill="#0f172a" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="455" y="162" text-anchor="middle" font-family="monospace" font-size="9" fill="#c4b5fd">Manual Override</text>
+  <text x="455" y="174" text-anchor="middle" font-family="monospace" font-size="9" fill="#a78bfa">Operator button</text>
+  <line x1="400" y1="164" x2="390" y2="190" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="2,2" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Auto-shutdown -->
+  <rect x="260" y="198" width="130" height="38" rx="5" fill="#1c0a0a" stroke="#ef4444" stroke-width="2" filter="url(#glow-red)"/>
+  <text x="325" y="214" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#ef4444">AUTO-SHUTDOWN</text>
+  <text x="325" y="228" text-anchor="middle" font-family="monospace" font-size="9" fill="#fca5a5">Drain traffic → Stop pods</text>
+
+  <!-- Arrow down -->
+  <line x1="325" y1="236" x2="325" y2="256" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+
+  <!-- Rollback trigger -->
+  <rect x="260" y="256" width="130" height="38" rx="5" fill="#1c1007" stroke="#eab308" stroke-width="1.5"/>
+  <text x="325" y="272" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#eab308">ROLLBACK TRIGGER</text>
+  <text x="325" y="286" text-anchor="middle" font-family="monospace" font-size="9" fill="#fef08a">Restore stable version</text>
+
+  <!-- Kill switch types label -->
+  <text x="400" y="210" font-family="monospace" font-size="9" fill="#6b7280">Triggers:</text>
+  <text x="400" y="222" font-family="monospace" font-size="8" fill="#9ca3af">• Auto (threshold)</text>
+  <text x="400" y="234" font-family="monospace" font-size="8" fill="#9ca3af">• Manual (operator)</text>
+  <text x="400" y="246" font-family="monospace" font-size="8" fill="#9ca3af">• Regulatory demand</text>
+
+  <!-- Graceful vs Hard Shutdown -->
+  <rect x="260" y="302" width="255" height="58" rx="5" fill="#161b22" stroke="#4a9eff" stroke-width="1"/>
+  <text x="387" y="318" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#4a9eff">SHUTDOWN MODES</text>
+  <!-- Graceful -->
+  <rect x="268" y="324" width="108" height="28" rx="3" fill="#0c1a0e" stroke="#22c55e" stroke-width="1"/>
+  <text x="322" y="337" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#22c55e">Graceful Degradation</text>
+  <text x="322" y="348" text-anchor="middle" font-family="monospace" font-size="8" fill="#d1fae5">Drain → Fallback mode</text>
+  <!-- Hard Stop -->
+  <rect x="384" y="324" width="124" height="28" rx="3" fill="#1c0a0a" stroke="#ef4444" stroke-width="1"/>
+  <text x="446" y="337" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#ef4444">Hard Shutdown</text>
+  <text x="446" y="348" text-anchor="middle" font-family="monospace" font-size="8" fill="#fca5a5">Immediate stop • No drain</text>
+
+  <!-- Kill switch testing reminder -->
+  <rect x="260" y="368" width="255" height="40" rx="5" fill="#0d1117" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="387" y="383" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#8b5cf6">GAMEDAY TESTING</text>
+  <text x="387" y="398" text-anchor="middle" font-family="monospace" font-size="9" fill="#c4b5fd">Chaos test kill switch quarterly • Document RTO/RPO</text>
+
+  <!-- ============================================================ -->
+  <!-- RIGHT PANEL: Rollback & Deployment Strategies -->
+  <!-- ============================================================ -->
+  <text x="532" y="76" font-family="monospace" font-size="11" font-weight="bold" fill="#22c55e">ROLLBACK &amp; DEPLOYMENT</text>
+
+  <!-- Model Version Timeline -->
+  <rect x="530" y="82" width="258" height="110" rx="5" fill="#161b22" stroke="#4a9eff" stroke-width="1"/>
+  <text x="659" y="98" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#4a9eff">MODEL VERSION CONTROL</text>
+
+  <!-- V1 box -->
+  <rect x="540" y="105" width="65" height="40" rx="4" fill="#0c1a0e" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="572" y="121" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#22c55e">v1.0</text>
+  <text x="572" y="133" text-anchor="middle" font-family="monospace" font-size="8" fill="#d1fae5">Baseline</text>
+  <text x="572" y="143" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">backup</text>
+
+  <!-- Arrow -->
+  <line x1="605" y1="125" x2="618" y2="125" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- V2 box -->
+  <rect x="618" y="105" width="65" height="40" rx="4" fill="#0c1a0e" stroke="#22c55e" stroke-width="2"/>
+  <text x="650" y="121" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#22c55e">v2.3</text>
+  <text x="650" y="133" text-anchor="middle" font-family="monospace" font-size="8" fill="#d1fae5">Stable</text>
+  <text x="650" y="143" text-anchor="middle" font-family="monospace" font-size="7" fill="#22c55e">RESTORE TARGET</text>
+
+  <!-- Arrow -->
+  <line x1="683" y1="125" x2="696" y2="125" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- V3 box - broken -->
+  <rect x="696" y="105" width="85" height="40" rx="4" fill="#1c0a0a" stroke="#ef4444" stroke-width="2"/>
+  <text x="738" y="121" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#ef4444">v3.1</text>
+  <text x="738" y="133" text-anchor="middle" font-family="monospace" font-size="8" fill="#fca5a5">Current</text>
+  <text x="738" y="143" text-anchor="middle" font-family="monospace" font-size="7" fill="#ef4444">DEGRADED / HALT</text>
+
+  <!-- Rollback arrow (curved, going back) -->
+  <path d="M 738 105 C 738 88, 650 88, 650 105" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-red)"/>
+  <text x="694" y="83" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">ROLLBACK</text>
+
+  <!-- Canary Deployment -->
+  <rect x="530" y="200" width="258" height="90" rx="5" fill="#161b22" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="659" y="216" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#8b5cf6">CANARY DEPLOYMENT</text>
+
+  <!-- Production box -->
+  <rect x="538" y="222" width="100" height="30" rx="3" fill="#0f172a" stroke="#4a9eff" stroke-width="1"/>
+  <text x="588" y="235" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a9eff">Production (95%)</text>
+  <text x="588" y="247" text-anchor="middle" font-family="monospace" font-size="8" fill="#93c5fd">v2.3 stable</text>
+
+  <!-- Canary box -->
+  <rect x="650" y="222" width="130" height="30" rx="3" fill="#0d0f1a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="715" y="235" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b5cf6">Canary (5%)</text>
+  <text x="715" y="247" text-anchor="middle" font-family="monospace" font-size="8" fill="#c4b5fd">v3.1 testing</text>
+
+  <!-- Arrow between them -->
+  <line x1="638" y1="237" x2="650" y2="237" stroke="#6b7280" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- Monitor label -->
+  <text x="659" y="278" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">Monitor metrics → Promote or Rollback</text>
+
+  <!-- Blue-Green Box -->
+  <rect x="530" y="298" width="258" height="70" rx="5" fill="#161b22" stroke="#22c55e" stroke-width="1"/>
+  <text x="659" y="314" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#22c55e">BLUE-GREEN DEPLOYMENT</text>
+  <!-- Blue env -->
+  <rect x="538" y="320" width="108" height="38" rx="3" fill="#0c1827" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="592" y="335" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#4a9eff">BLUE</text>
+  <text x="592" y="347" text-anchor="middle" font-family="monospace" font-size="8" fill="#93c5fd">v2.3 (standby)</text>
+  <text x="592" y="357" text-anchor="middle" font-family="monospace" font-size="7" fill="#6b7280">← Swap on rollback</text>
+  <!-- Green env -->
+  <rect x="658" y="320" width="123" height="38" rx="3" fill="#0c1a0e" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="719" y="335" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#22c55e">GREEN</text>
+  <text x="719" y="347" text-anchor="middle" font-family="monospace" font-size="8" fill="#d1fae5">v3.1 (live)</text>
+  <text x="719" y="357" text-anchor="middle" font-family="monospace" font-size="7" fill="#22c55e">← Active traffic</text>
+
+  <!-- Feature Flags & A/B -->
+  <rect x="530" y="376" width="258" height="42" rx="5" fill="#161b22" stroke="#eab308" stroke-width="1"/>
+  <text x="659" y="392" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#eab308">FEATURE FLAGS &amp; A/B TESTING</text>
+  <text x="659" y="408" text-anchor="middle" font-family="monospace" font-size="8" fill="#fef9c3">LaunchDarkly | Split.io • Toggle models per segment</text>
+
+  <!-- ============================================================ -->
+  <!-- BOTTOM: HITL Metrics & MLflow/SageMaker Registry -->
+  <!-- ============================================================ -->
+
+  <!-- HITL Metrics -->
+  <rect x="10" y="516" width="370" height="72" rx="5" fill="#161b22" stroke="#00d4ff" stroke-width="1"/>
+  <text x="195" y="532" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#00d4ff">HITL PERFORMANCE METRICS</text>
+
+  <!-- Metric cards -->
+  <rect x="18" y="538" width="80" height="42" rx="3" fill="#0d1117" stroke="#22c55e" stroke-width="1"/>
+  <text x="58" y="553" text-anchor="middle" font-family="monospace" font-size="9" fill="#22c55e">Review</text>
+  <text x="58" y="565" text-anchor="middle" font-family="monospace" font-size="9" fill="#22c55e">Latency</text>
+  <text x="58" y="575" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">&lt; 2 min SLA</text>
+
+  <rect x="106" y="538" width="80" height="42" rx="3" fill="#0d1117" stroke="#eab308" stroke-width="1"/>
+  <text x="146" y="553" text-anchor="middle" font-family="monospace" font-size="9" fill="#eab308">Override</text>
+  <text x="146" y="565" text-anchor="middle" font-family="monospace" font-size="9" fill="#eab308">Rate</text>
+  <text x="146" y="575" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">Track drift</text>
+
+  <rect x="194" y="538" width="80" height="42" rx="3" fill="#0d1117" stroke="#f97316" stroke-width="1"/>
+  <text x="234" y="553" text-anchor="middle" font-family="monospace" font-size="9" fill="#f97316">Reviewer</text>
+  <text x="234" y="565" text-anchor="middle" font-family="monospace" font-size="9" fill="#f97316">Burden</text>
+  <text x="234" y="575" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">Queue depth</text>
+
+  <rect x="282" y="538" width="90" height="42" rx="3" fill="#0d1117" stroke="#ef4444" stroke-width="1"/>
+  <text x="327" y="553" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">Escalation</text>
+  <text x="327" y="565" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">Rate</text>
+  <text x="327" y="575" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">Tier 2 trigger</text>
+
+  <!-- Model Registry / DR -->
+  <rect x="390" y="516" width="398" height="72" rx="5" fill="#161b22" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="589" y="532" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#8b5cf6">MODEL REGISTRY &amp; DISASTER RECOVERY</text>
+
+  <rect x="398" y="538" width="90" height="42" rx="3" fill="#0d1117" stroke="#4a9eff" stroke-width="1"/>
+  <text x="443" y="553" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a9eff">MLflow</text>
+  <text x="443" y="565" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a9eff">Registry</text>
+  <text x="443" y="575" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">Artifact store</text>
+
+  <rect x="496" y="538" width="100" height="42" rx="3" fill="#0d1117" stroke="#4a9eff" stroke-width="1"/>
+  <text x="546" y="553" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a9eff">SageMaker</text>
+  <text x="546" y="565" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a9eff">Model Reg.</text>
+  <text x="546" y="575" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">Approval gates</text>
+
+  <rect x="604" y="538" width="80" height="42" rx="3" fill="#0d1117" stroke="#22c55e" stroke-width="1"/>
+  <text x="644" y="553" text-anchor="middle" font-family="monospace" font-size="9" fill="#22c55e">RTO / RPO</text>
+  <text x="644" y="565" text-anchor="middle" font-family="monospace" font-size="9" fill="#22c55e">Targets</text>
+  <text x="644" y="575" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">Define SLA</text>
+
+  <rect x="692" y="538" width="90" height="42" rx="3" fill="#0d1117" stroke="#eab308" stroke-width="1"/>
+  <text x="737" y="553" text-anchor="middle" font-family="monospace" font-size="9" fill="#eab308">DRaaS</text>
+  <text x="737" y="565" text-anchor="middle" font-family="monospace" font-size="9" fill="#eab308">Runbooks</text>
+  <text x="737" y="575" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">Tested quarterly</text>
+
+  <!-- Center flow arrows connecting kill switch to rollback diagram -->
+  <line x1="325" y1="294" x2="325" y2="302" stroke="#ef4444" stroke-width="1.5"/>
+  <line x1="325" y1="340" x2="540" y2="340" stroke="#eab308" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrow-orange)"/>
+  <text x="430" y="336" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">restore v2.3</text>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="597" width="800" height="3" fill="#00d4ff" opacity="0.4"/>
+
+  <!-- Module label -->
+  <text x="796" y="593" text-anchor="end" font-family="monospace" font-size="8" fill="#374151">Module 5 · Lesson 7</text>
+</svg>

@@ -1,0 +1,281 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2d3d" stroke-width="0.5"/>
+    </pattern>
+
+    <!-- Arrow markers -->
+    <marker id="arrow-blue" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L10,4 z" fill="#4a9eff"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L10,4 z" fill="#f97316"/>
+    </marker>
+
+    <!-- Glow filters -->
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-title" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Card gradients -->
+    <linearGradient id="grad-blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a9eff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#4a9eff" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad-orange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad-red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="44" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" filter="url(#glow-title)">Model Cards, System Cards &amp; Risk Registers</text>
+  <text x="400" y="65" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#8b949e">AI Governance Documentation Artifacts — Traceability Chain</text>
+
+  <!-- Subtitle separator line -->
+  <line x1="100" y1="78" x2="700" y2="78" stroke="#30363d" stroke-width="1"/>
+
+  <!-- ===== LEFT CARD: Model Card (blue) ===== -->
+  <!-- Card body -->
+  <rect x="30" y="110" width="210" height="390" rx="10" ry="10" fill="url(#grad-blue)" stroke="#4a9eff" stroke-width="2" filter="url(#glow-blue)"/>
+
+  <!-- Shield icon above card -->
+  <g transform="translate(100, 88)">
+    <path d="M35,-18 L35,-18 Q35,-20 37,-20 L63,-20 Q65,-20 65,-18 L65,0 Q65,14 50,20 Q35,14 35,0 Z" fill="none" stroke="#4a9eff" stroke-width="1.5" transform="scale(0.5) translate(-50,0)"/>
+    <path d="M50,6 L53,9 L58,3" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" transform="scale(0.5) translate(-50,0)"/>
+    <!-- Simplified shield -->
+    <path d="M0,-10 L8,-10 Q10,-10 10,-8 L10,2 Q10,8 5,11 Q0,8 -10,2 L-10,-8 Q-10,-10 -8,-10 Z" fill="none" stroke="#4a9eff" stroke-width="1.8" transform="translate(35, 0) scale(0.9)"/>
+    <path d="M32,2 L34,4 L38,0" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Card header -->
+  <rect x="30" y="110" width="210" height="34" rx="10" ry="10" fill="#4a9eff" opacity="0.25"/>
+  <rect x="30" y="130" width="210" height="14" fill="#4a9eff" opacity="0.25"/>
+  <text x="135" y="132" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" fill="#4a9eff">MODEL CARD</text>
+
+  <!-- Card fields -->
+  <rect x="42" y="158" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="52" y="170" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 1</text>
+  <text x="52" y="182" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Model Details</text>
+
+  <rect x="42" y="196" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="52" y="208" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 2</text>
+  <text x="52" y="220" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Intended Use</text>
+
+  <rect x="42" y="234" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="52" y="246" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 3</text>
+  <text x="52" y="258" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Training Data</text>
+
+  <rect x="42" y="272" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="52" y="284" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 4</text>
+  <text x="52" y="296" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Eval Results</text>
+
+  <rect x="42" y="310" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="52" y="322" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 5</text>
+  <text x="52" y="334" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Ethical Considerations</text>
+
+  <rect x="42" y="348" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="52" y="360" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 6</text>
+  <text x="52" y="372" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Limitations</text>
+
+  <!-- Version tag -->
+  <rect x="42" y="432" width="186" height="24" rx="4" fill="#161b22" stroke="#4a9eff" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="135" y="448" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#4a9eff">v2.1 — 2025-06-01 — PUBLISHED</text>
+
+  <!-- ===== CENTER CARD: System Card (orange) ===== -->
+  <rect x="295" y="110" width="210" height="390" rx="10" ry="10" fill="url(#grad-orange)" stroke="#f97316" stroke-width="2" filter="url(#glow-orange)"/>
+
+  <!-- Shield icon above -->
+  <g transform="translate(0, 0)">
+    <path d="M365,-10 Q365,-18 373,-18 L407,-18 Q415,-18 415,-10 L415,2 Q415,14 400,20 Q385,14 385,2 Z" fill="none" stroke="#f97316" stroke-width="1.8" transform="translate(0, 98)"/>
+    <path d="M392,100 L395,103 L402,96" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Card header -->
+  <rect x="295" y="110" width="210" height="34" rx="10" ry="10" fill="#f97316" opacity="0.25"/>
+  <rect x="295" y="130" width="210" height="14" fill="#f97316" opacity="0.25"/>
+  <text x="400" y="132" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" fill="#f97316">SYSTEM CARD</text>
+
+  <!-- Card fields -->
+  <rect x="307" y="158" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="317" y="170" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 1</text>
+  <text x="317" y="182" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">System Architecture</text>
+
+  <rect x="307" y="196" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="317" y="208" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 2</text>
+  <text x="317" y="220" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Components</text>
+
+  <rect x="307" y="234" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="317" y="246" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 3</text>
+  <text x="317" y="258" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Data Flows</text>
+
+  <rect x="307" y="272" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="317" y="284" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 4</text>
+  <text x="317" y="296" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Access Controls</text>
+
+  <rect x="307" y="310" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="317" y="322" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 5</text>
+  <text x="317" y="334" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Known Risks</text>
+
+  <rect x="307" y="348" width="186" height="30" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="317" y="360" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#8b949e">SECTION 6</text>
+  <text x="317" y="372" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#e6edf3">Mitigations</text>
+
+  <!-- Version tag -->
+  <rect x="307" y="432" width="186" height="24" rx="4" fill="#161b22" stroke="#f97316" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="400" y="448" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#f97316">v1.4 — 2025-06-01 — REVIEWED</text>
+
+  <!-- ===== RIGHT CARD: Risk Register (red, table-style) ===== -->
+  <rect x="560" y="110" width="210" height="390" rx="10" ry="10" fill="url(#grad-red)" stroke="#ef4444" stroke-width="2" filter="url(#glow-red)"/>
+
+  <!-- Shield icon above -->
+  <path d="M625,88 Q625,80 633,80 L667,80 Q675,80 675,88 L675,100 Q675,112 650,118 Q625,112 625,100 Z" fill="none" stroke="#ef4444" stroke-width="1.8"/>
+  <path d="M643,100 L647,104 L658,94" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Card header -->
+  <rect x="560" y="110" width="210" height="34" rx="10" ry="10" fill="#ef4444" opacity="0.25"/>
+  <rect x="560" y="130" width="210" height="14" fill="#ef4444" opacity="0.25"/>
+  <text x="665" y="132" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" fill="#ef4444">RISK REGISTER</text>
+
+  <!-- Table header row -->
+  <rect x="572" y="152" width="186" height="22" rx="3" fill="#ef4444" opacity="0.3"/>
+  <text x="582" y="167" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" font-weight="700" fill="#ef4444">ID</text>
+  <text x="600" y="167" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" font-weight="700" fill="#ef4444">CATEGORY</text>
+  <text x="665" y="167" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" font-weight="700" fill="#ef4444">SCORE</text>
+  <text x="700" y="167" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" font-weight="700" fill="#ef4444">OWNER</text>
+  <text x="738" y="167" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" font-weight="700" fill="#ef4444">STS</text>
+
+  <!-- Column separator lines in header -->
+  <line x1="596" y1="152" x2="596" y2="174" stroke="#ef4444" stroke-width="0.5" opacity="0.5"/>
+  <line x1="660" y1="152" x2="660" y2="174" stroke="#ef4444" stroke-width="0.5" opacity="0.5"/>
+  <line x1="695" y1="152" x2="695" y2="174" stroke="#ef4444" stroke-width="0.5" opacity="0.5"/>
+  <line x1="732" y1="152" x2="732" y2="174" stroke="#ef4444" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Table rows -->
+  <!-- Row 1 -->
+  <rect x="572" y="178" width="186" height="22" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="582" y="193" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">R-01</text>
+  <text x="600" y="193" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">Privacy</text>
+  <rect x="663" y="181" width="24" height="14" rx="3" fill="#ef4444" opacity="0.7"/>
+  <text x="675" y="192" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#fff">HIGH</text>
+  <text x="700" y="193" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">CISO</text>
+  <rect x="734" y="181" width="20" height="14" rx="3" fill="#f97316" opacity="0.7"/>
+  <text x="744" y="192" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#fff">OPEN</text>
+
+  <!-- Row 2 -->
+  <rect x="572" y="204" width="186" height="22" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="582" y="219" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">R-02</text>
+  <text x="600" y="219" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">Security</text>
+  <rect x="663" y="207" width="24" height="14" rx="3" fill="#ef4444" opacity="0.7"/>
+  <text x="675" y="218" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#fff">CRIT</text>
+  <text x="700" y="219" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">CTO</text>
+  <rect x="734" y="207" width="20" height="14" rx="3" fill="#ef4444" opacity="0.7"/>
+  <text x="744" y="218" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#fff">OPEN</text>
+
+  <!-- Row 3 -->
+  <rect x="572" y="230" width="186" height="22" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="582" y="245" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">R-03</text>
+  <text x="600" y="245" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">Bias</text>
+  <rect x="663" y="233" width="24" height="14" rx="3" fill="#f59e0b" opacity="0.8"/>
+  <text x="675" y="244" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#fff">MED</text>
+  <text x="700" y="245" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">DPO</text>
+  <rect x="734" y="233" width="20" height="14" rx="3" fill="#f59e0b" opacity="0.8"/>
+  <text x="744" y="244" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#fff">WIP</text>
+
+  <!-- Row 4 -->
+  <rect x="572" y="256" width="186" height="22" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="582" y="271" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">R-04</text>
+  <text x="600" y="271" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">Compliance</text>
+  <rect x="663" y="259" width="24" height="14" rx="3" fill="#f59e0b" opacity="0.8"/>
+  <text x="675" y="270" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#fff">MED</text>
+  <text x="700" y="271" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">Legal</text>
+  <rect x="734" y="259" width="20" height="14" rx="3" fill="#22c55e" opacity="0.8"/>
+  <text x="744" y="270" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#fff">DONE</text>
+
+  <!-- Row 5 -->
+  <rect x="572" y="282" width="186" height="22" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="582" y="297" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">R-05</text>
+  <text x="600" y="297" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">Operational</text>
+  <rect x="663" y="285" width="24" height="14" rx="3" fill="#22c55e" opacity="0.8"/>
+  <text x="675" y="296" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#fff">LOW</text>
+  <text x="700" y="297" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">Ops</text>
+  <rect x="734" y="285" width="20" height="14" rx="3" fill="#22c55e" opacity="0.8"/>
+  <text x="744" y="296" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#fff">DONE</text>
+
+  <!-- Row 6 -->
+  <rect x="572" y="308" width="186" height="22" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="582" y="323" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">R-06</text>
+  <text x="600" y="323" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">Supply Chain</text>
+  <rect x="663" y="311" width="24" height="14" rx="3" fill="#ef4444" opacity="0.7"/>
+  <text x="675" y="322" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#fff">HIGH</text>
+  <text x="700" y="323" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">Arch</text>
+  <rect x="734" y="311" width="20" height="14" rx="3" fill="#f97316" opacity="0.7"/>
+  <text x="744" y="322" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#fff">OPEN</text>
+
+  <!-- Row 7 -->
+  <rect x="572" y="334" width="186" height="22" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="582" y="349" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">R-07</text>
+  <text x="600" y="349" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">Reputational</text>
+  <rect x="663" y="337" width="24" height="14" rx="3" fill="#f59e0b" opacity="0.8"/>
+  <text x="675" y="348" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#fff">MED</text>
+  <text x="700" y="349" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#e6edf3">CEO</text>
+  <rect x="734" y="337" width="20" height="14" rx="3" fill="#f59e0b" opacity="0.8"/>
+  <text x="744" y="348" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#fff">WIP</text>
+
+  <!-- Version tag -->
+  <rect x="572" y="432" width="186" height="24" rx="4" fill="#161b22" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="665" y="448" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ef4444">v3.2 — 2025-06-15 — ACTIVE</text>
+
+  <!-- ===== ARROWS between cards ===== -->
+  <!-- Model Card → System Card -->
+  <line x1="242" y1="310" x2="290" y2="310" stroke="#4a9eff" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+  <!-- Arrow label -->
+  <rect x="248" y="295" width="36" height="14" rx="3" fill="#0d1117" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="266" y="306" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#4a9eff">feeds</text>
+
+  <!-- System Card → Risk Register -->
+  <line x1="507" y1="310" x2="555" y2="310" stroke="#f97316" stroke-width="2.5" marker-end="url(#arrow-orange)"/>
+  <!-- Arrow label -->
+  <rect x="513" y="295" width="36" height="14" rx="3" fill="#0d1117" stroke="#f97316" stroke-width="0.8"/>
+  <text x="531" y="306" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#f97316">feeds</text>
+
+  <!-- ===== Bottom legend / traceability bar ===== -->
+  <rect x="30" y="520" width="740" height="60" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="400" y="540" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="700" fill="#8b949e">DOCUMENTATION TRACEABILITY CHAIN</text>
+
+  <!-- Legend items -->
+  <rect x="55" y="549" width="12" height="12" rx="2" fill="#4a9eff" opacity="0.8"/>
+  <text x="73" y="560" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e6edf3">Model Card — Model-level properties</text>
+
+  <rect x="280" y="549" width="12" height="12" rx="2" fill="#f97316" opacity="0.8"/>
+  <text x="298" y="560" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e6edf3">System Card — System-level context</text>
+
+  <rect x="515" y="549" width="12" height="12" rx="2" fill="#ef4444" opacity="0.8"/>
+  <text x="533" y="560" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e6edf3">Risk Register — Living risk inventory</text>
+
+  <!-- Bottom regulatory note -->
+  <text x="400" y="595" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#484f58">EU AI Act Art.11 · ISO/IEC 42001 · NIST AI RMF · Lesson 5.6</text>
+</svg>

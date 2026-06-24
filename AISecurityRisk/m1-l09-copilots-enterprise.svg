@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2332" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filter for AI core -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Soft glow for rings -->
+    <filter id="softglow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Arrow marker cyan -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff" opacity="0.8"/>
+    </marker>
+    <!-- Arrow marker green -->
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e" opacity="0.8"/>
+    </marker>
+    <!-- Arrow marker blue -->
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#4a9eff" opacity="0.8"/>
+    </marker>
+    <!-- Gradient for AI core -->
+    <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#8b5cf6" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0d1117" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Gradient for middleware ring -->
+    <radialGradient id="midRingGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="85%" stop-color="transparent"/>
+      <stop offset="90%" stop-color="#4a9eff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <!-- Gradient for security ring -->
+    <radialGradient id="secRingGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="90%" stop-color="transparent"/>
+      <stop offset="95%" stop-color="#ef4444" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="32" fill="#ffffff" font-family="'Courier New', monospace" font-size="17" font-weight="bold" text-anchor="middle">Enterprise AI Copilot Integration Architecture</text>
+  <text x="400" y="52" fill="#8b96a8" font-family="'Courier New', monospace" font-size="10" text-anchor="middle">AI Security Risk | Module 1 · Lesson 9</text>
+
+  <!-- === OUTER SECURITY & COMPLIANCE RING === -->
+  <circle cx="400" cy="295" r="248" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.5"/>
+  <text x="400" y="60" fill="#ef4444" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" opacity="0.8">SECURITY &amp; COMPLIANCE LAYER</text>
+  <!-- Security ring labels -->
+  <text x="174" y="185" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" text-anchor="middle" opacity="0.7">DLP</text>
+  <text x="626" y="185" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" text-anchor="middle" opacity="0.7">AUDIT</text>
+  <text x="154" y="390" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" text-anchor="middle" opacity="0.7">SIEM</text>
+  <text x="644" y="390" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" text-anchor="middle" opacity="0.7">IAM</text>
+
+  <!-- === MIDDLEWARE / INTEGRATION RING === -->
+  <circle cx="400" cy="295" r="175" fill="none" stroke="#4a9eff" stroke-width="1" stroke-dasharray="4,6" opacity="0.4"/>
+  <text x="400" y="127" fill="#4a9eff" font-family="'Courier New', monospace" font-size="8" text-anchor="middle" opacity="0.7">INTEGRATION &amp; API MIDDLEWARE</text>
+
+  <!-- AI Core glow halo -->
+  <circle cx="400" cy="295" r="100" fill="url(#coreGrad)"/>
+
+  <!-- === AI/LLM CORE === -->
+  <circle cx="400" cy="295" r="62" fill="#0d1117" stroke="#00d4ff" stroke-width="2.5" filter="url(#glow)"/>
+  <circle cx="400" cy="295" r="54" fill="#0f1f2e" stroke="#00d4ff" stroke-width="0.5" opacity="0.6"/>
+  <!-- Core inner pattern -->
+  <line x1="370" y1="295" x2="430" y2="295" stroke="#00d4ff" stroke-width="0.5" opacity="0.4"/>
+  <line x1="400" y1="265" x2="400" y2="325" stroke="#00d4ff" stroke-width="0.5" opacity="0.4"/>
+  <circle cx="400" cy="295" r="20" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.6"/>
+  <!-- Brain-like nodes in core -->
+  <circle cx="388" cy="283" r="4" fill="#00d4ff" opacity="0.7"/>
+  <circle cx="412" cy="283" r="4" fill="#8b5cf6" opacity="0.7"/>
+  <circle cx="400" cy="307" r="4" fill="#00d4ff" opacity="0.7"/>
+  <line x1="388" y1="283" x2="412" y2="283" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+  <line x1="388" y1="283" x2="400" y2="307" stroke="#8b5cf6" stroke-width="1" opacity="0.5"/>
+  <line x1="412" y1="283" x2="400" y2="307" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+  <text x="400" y="276" fill="#00d4ff" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" font-weight="bold">AI / LLM</text>
+  <text x="400" y="323" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">CORE</text>
+
+  <!-- === ENTERPRISE SYSTEM NODES === -->
+  <!-- CRM (blue) - top-left -->
+  <rect x="80" y="148" width="88" height="50" rx="6" fill="#0d2244" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="80" y="148" width="88" height="12" rx="4" fill="#4a9eff" opacity="0.3"/>
+  <text x="124" y="159" fill="#4a9eff" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" font-weight="bold">CRM</text>
+  <text x="124" y="172" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Salesforce</text>
+  <text x="124" y="183" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Einstein AI</text>
+  <text x="124" y="193" fill="#8b96a8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Customer Data</text>
+
+  <!-- ERP (orange) - top-right -->
+  <rect x="632" y="148" width="88" height="50" rx="6" fill="#271a06" stroke="#f97316" stroke-width="1.5"/>
+  <rect x="632" y="148" width="88" height="12" rx="4" fill="#f97316" opacity="0.3"/>
+  <text x="676" y="159" fill="#f97316" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" font-weight="bold">ERP</text>
+  <text x="676" y="172" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">SAP / Oracle</text>
+  <text x="676" y="183" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Finance &amp; Ops</text>
+  <text x="676" y="193" fill="#8b96a8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Business Data</text>
+
+  <!-- Knowledge Base (green) - top center -->
+  <rect x="316" y="82" width="168" height="46" rx="6" fill="#0a2015" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="316" y="82" width="168" height="12" rx="4" fill="#22c55e" opacity="0.3"/>
+  <text x="400" y="93" fill="#22c55e" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" font-weight="bold">KNOWLEDGE BASE</text>
+  <text x="400" y="106" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">SharePoint · Confluence · Internal Wikis</text>
+  <text x="400" y="119" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Document Stores · RAG Index · Embeddings</text>
+
+  <!-- Email/Calendar (purple) - left center -->
+  <rect x="54" y="270" width="90" height="50" rx="6" fill="#160d28" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="54" y="270" width="90" height="12" rx="4" fill="#8b5cf6" opacity="0.3"/>
+  <text x="99" y="281" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" font-weight="bold">M365 COPILOT</text>
+  <text x="99" y="295" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Email · Calendar</text>
+  <text x="99" y="306" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Teams · Word</text>
+  <text x="99" y="315" fill="#8b96a8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Office Suite</text>
+
+  <!-- DevTools/IDE (red) - right center -->
+  <rect x="656" y="270" width="90" height="50" rx="6" fill="#1f0a0a" stroke="#ef4444" stroke-width="1.5"/>
+  <rect x="656" y="270" width="90" height="12" rx="4" fill="#ef4444" opacity="0.3"/>
+  <text x="701" y="281" fill="#ef4444" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" font-weight="bold">GH COPILOT</text>
+  <text x="701" y="295" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">IDE · CI/CD</text>
+  <text x="701" y="306" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Code Review</text>
+  <text x="701" y="315" fill="#8b96a8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Dev Pipeline</text>
+
+  <!-- Business Intelligence (teal) - bottom-left -->
+  <rect x="80" y="390" width="100" height="50" rx="6" fill="#081a1a" stroke="#06b6d4" stroke-width="1.5"/>
+  <rect x="80" y="390" width="100" height="12" rx="4" fill="#06b6d4" opacity="0.3"/>
+  <text x="130" y="401" fill="#06b6d4" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" font-weight="bold">BI / ANALYTICS</text>
+  <text x="130" y="415" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Power BI · Tableau</text>
+  <text x="130" y="426" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Data Warehouse</text>
+  <text x="130" y="436" fill="#8b96a8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Reporting Layer</text>
+
+  <!-- HR Systems (gold) - bottom-right -->
+  <rect x="620" y="390" width="100" height="50" rx="6" fill="#1a1600" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="620" y="390" width="100" height="12" rx="4" fill="#eab308" opacity="0.3"/>
+  <text x="670" y="401" fill="#eab308" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" font-weight="bold">HR SYSTEMS</text>
+  <text x="670" y="415" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Workday · ADP</text>
+  <text x="670" y="426" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">People Data</text>
+  <text x="670" y="436" fill="#8b96a8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">HRIS / Payroll</text>
+
+  <!-- ServiceNow (green variant) - bottom center -->
+  <rect x="316" y="440" width="168" height="46" rx="6" fill="#0a1a0a" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="316" y="440" width="168" height="12" rx="4" fill="#22c55e" opacity="0.3"/>
+  <text x="400" y="451" fill="#22c55e" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" font-weight="bold">ITSM / ServiceNow AI</text>
+  <text x="400" y="465" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Ticketing · CMDB · Workflows</text>
+  <text x="400" y="478" fill="#8b96a8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">IT Service Management</text>
+
+  <!-- === CONNECTOR LINES (to middleware ring) === -->
+  <!-- CRM to core -->
+  <line x1="168" y1="173" x2="232" y2="233" stroke="#4a9eff" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6" marker-end="url(#arrow-blue)"/>
+  <!-- ERP to core -->
+  <line x1="632" y1="173" x2="568" y2="233" stroke="#f97316" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6"/>
+  <!-- Knowledge Base to core -->
+  <line x1="400" y1="128" x2="400" y2="233" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6" marker-end="url(#arrow-green)"/>
+  <!-- M365 to core -->
+  <line x1="144" y1="295" x2="338" y2="295" stroke="#8b5cf6" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6"/>
+  <!-- GH Copilot to core -->
+  <line x1="656" y1="295" x2="462" y2="295" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6"/>
+  <!-- BI to core -->
+  <line x1="180" y1="415" x2="250" y2="360" stroke="#06b6d4" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6"/>
+  <!-- HR to core -->
+  <line x1="620" y1="415" x2="550" y2="360" stroke="#eab308" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6"/>
+  <!-- ServiceNow to core -->
+  <line x1="400" y1="440" x2="400" y2="357" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6" marker-end="url(#arrow-green)"/>
+
+  <!-- === USER INTERFACE LAYER (bottom) === -->
+  <!-- Copilot interface bar -->
+  <rect x="200" y="505" width="400" height="52" rx="8" fill="#0f1f2e" stroke="#00d4ff" stroke-width="1.5"/>
+  <rect x="200" y="505" width="400" height="16" rx="6" fill="#00d4ff" opacity="0.15"/>
+  <text x="400" y="516" fill="#00d4ff" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" font-weight="bold">COPILOT INTERFACE LAYER</text>
+
+  <!-- User icons -->
+  <!-- User 1 -->
+  <circle cx="235" cy="537" r="7" fill="none" stroke="#e2e8f0" stroke-width="1.2"/>
+  <path d="M221,553 Q221,544 235,544 Q249,544 249,553" fill="none" stroke="#e2e8f0" stroke-width="1.2"/>
+  <!-- User 2 -->
+  <circle cx="270" cy="537" r="7" fill="none" stroke="#e2e8f0" stroke-width="1.2"/>
+  <path d="M256,553 Q256,544 270,544 Q284,544 284,553" fill="none" stroke="#e2e8f0" stroke-width="1.2"/>
+  <!-- User 3 - Developer -->
+  <circle cx="305" cy="537" r="7" fill="none" stroke="#ef4444" stroke-width="1.2"/>
+  <path d="M291,553 Q291,544 305,544 Q319,544 319,553" fill="none" stroke="#ef4444" stroke-width="1.2"/>
+
+  <!-- Chat input bar -->
+  <rect x="330" y="527" width="200" height="24" rx="12" fill="#152035" stroke="#4a9eff" stroke-width="1"/>
+  <text x="430" y="543" fill="#8b96a8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Ask your Copilot...</text>
+
+  <!-- Send button -->
+  <rect x="538" y="529" width="42" height="20" rx="10" fill="#00d4ff" opacity="0.8"/>
+  <text x="559" y="543" fill="#0d1117" font-family="'Courier New', monospace" font-size="8" text-anchor="middle" font-weight="bold">SEND</text>
+
+  <!-- User 4 -->
+  <circle cx="565" cy="537" r="7" fill="none" stroke="#e2e8f0" stroke-width="1.2"/>
+  <path d="M551,553 Q551,544 565,544 Q579,544 579,553" fill="none" stroke="#e2e8f0" stroke-width="1.2"/>
+  <!-- User 5 -->
+  <circle cx="600" cy="537" r="7" fill="none" stroke="#eab308" stroke-width="1.2"/>
+  <path d="M586,553 Q586,544 600,544 Q614,544 614,553" fill="none" stroke="#eab308" stroke-width="1.2"/>
+
+  <!-- Connect interface to AI core -->
+  <line x1="400" y1="505" x2="400" y2="486" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- === IDENTITY / SSO BADGE === -->
+  <rect x="338" y="486" width="124" height="16" rx="4" fill="#1a1a2e" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="400" y="497" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">SSO · RBAC · Zero Trust</text>
+
+  <!-- === SECURITY ANNOTATIONS === -->
+  <!-- Data Residency note -->
+  <rect x="4" y="90" width="115" height="28" rx="4" fill="#1f0a0a" stroke="#ef4444" stroke-width="0.8" opacity="0.8"/>
+  <text x="61" y="102" fill="#ef4444" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Data Residency</text>
+  <text x="61" y="113" fill="#8b96a8" font-family="'Courier New', monospace" font-size="6.5" text-anchor="middle">GDPR · SOC2 · HIPAA</text>
+
+  <!-- Prompt Security note -->
+  <rect x="681" y="90" width="115" height="28" rx="4" fill="#1f0a0a" stroke="#ef4444" stroke-width="0.8" opacity="0.8"/>
+  <text x="738" y="102" fill="#ef4444" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Prompt Security</text>
+  <text x="738" y="113" fill="#8b96a8" font-family="'Courier New', monospace" font-size="6.5" text-anchor="middle">Injection · Leakage</text>
+
+  <!-- Shadow AI warning -->
+  <rect x="4" y="450" width="110" height="28" rx="4" fill="#1a1000" stroke="#eab308" stroke-width="0.8" opacity="0.8"/>
+  <text x="59" y="462" fill="#eab308" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Shadow AI Risk</text>
+  <text x="59" y="473" fill="#8b96a8" font-family="'Courier New', monospace" font-size="6.5" text-anchor="middle">Unmanaged Copilots</text>
+
+  <!-- Vendor Lock-in note -->
+  <rect x="686" y="450" width="110" height="28" rx="4" fill="#1a1000" stroke="#eab308" stroke-width="0.8" opacity="0.8"/>
+  <text x="741" y="462" fill="#eab308" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Vendor Lock-in</text>
+  <text x="741" y="473" fill="#8b96a8" font-family="'Courier New', monospace" font-size="6.5" text-anchor="middle">API · Pricing Risk</text>
+
+  <!-- === LEGEND === -->
+  <rect x="4" y="252" width="46" height="92" rx="4" fill="#0f1624" stroke="#1e293b" stroke-width="0.8"/>
+  <text x="27" y="263" fill="#8b96a8" font-family="'Courier New', monospace" font-size="6" text-anchor="middle">LEGEND</text>
+  <circle cx="13" cy="275" r="4" fill="#0d1117" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="36" y="278" fill="#00d4ff" font-family="'Courier New', monospace" font-size="6">AI Core</text>
+  <rect x="9" y="283" width="8" height="6" rx="1" fill="#0d2244" stroke="#4a9eff" stroke-width="1"/>
+  <text x="36" y="290" fill="#4a9eff" font-family="'Courier New', monospace" font-size="6">Systems</text>
+  <line x1="9" y1="300" x2="17" y2="300" stroke="#4a9eff" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="36" y="303" fill="#8b96a8" font-family="'Courier New', monospace" font-size="6">Data Flow</text>
+  <circle cx="13" cy="313" r="4" fill="none" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="36" y="316" fill="#ef4444" font-family="'Courier New', monospace" font-size="6">Security</text>
+  <circle cx="13" cy="328" r="4" fill="none" stroke="#4a9eff" stroke-width="1" stroke-dasharray="2,3"/>
+  <text x="36" y="331" fill="#4a9eff" font-family="'Courier New', monospace" font-size="6">Middleware</text>
+
+  <!-- Bottom attribution -->
+  <text x="400" y="592" fill="#3d4f63" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">AI Security Risk Course · Module 1 · Lesson 9 · Enterprise Copilot Architecture</text>
+</svg>

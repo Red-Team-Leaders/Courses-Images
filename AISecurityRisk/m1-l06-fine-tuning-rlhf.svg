@@ -1,0 +1,390 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2d3d" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-white" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#e2e8f0"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrow-gold" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#eab308"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradients -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#0f1923"/>
+    </linearGradient>
+    <linearGradient id="blue-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0f2040;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="orange-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a1f00;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#2d1300;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="green-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3320;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#061a10;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="purple-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d1b5e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1a0f38;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg-grad)"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#00d4ff" filter="url(#glow-cyan)">RLHF Pipeline &amp; Model Adaptation</text>
+  <text x="400" y="50" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b9ab0">Fine-Tuning, Reward Modeling, and Policy Optimization</text>
+  <!-- Title underline -->
+  <line x1="100" y1="57" x2="700" y2="57" stroke="#00d4ff" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- ============================================================ -->
+  <!-- PHASE LABELS (top row) -->
+  <!-- ============================================================ -->
+  <text x="140" y="76" text-anchor="middle" font-family="monospace" font-size="10" fill="#4a9eff" font-weight="bold">PHASE 1</text>
+  <text x="400" y="76" text-anchor="middle" font-family="monospace" font-size="10" fill="#f97316" font-weight="bold">PHASE 2</text>
+  <text x="660" y="76" text-anchor="middle" font-family="monospace" font-size="10" fill="#22c55e" font-weight="bold">PHASE 3</text>
+
+  <!-- ============================================================ -->
+  <!-- PHASE 1: Supervised Fine-Tuning -->
+  <!-- ============================================================ -->
+  <rect x="20" y="82" width="240" height="195" rx="8" fill="url(#blue-grad)" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="140" y="100" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#4a9eff">Supervised Fine-Tuning (SFT)</text>
+  <line x1="25" y1="105" x2="255" y2="105" stroke="#4a9eff" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Pre-trained Model box -->
+  <rect x="35" y="112" width="90" height="40" rx="5" fill="#0d1f3a" stroke="#4a9eff" stroke-width="1"/>
+  <text x="80" y="128" text-anchor="middle" font-family="monospace" font-size="9" fill="#e2e8f0">Pre-Trained</text>
+  <text x="80" y="141" text-anchor="middle" font-family="monospace" font-size="9" fill="#e2e8f0">Base Model</text>
+  <!-- small model icon -->
+  <circle cx="68" cy="134" r="3" fill="#4a9eff" opacity="0.6"/>
+
+  <!-- Labeled Data box -->
+  <rect x="35" y="162" width="90" height="40" rx="5" fill="#0d1f3a" stroke="#eab308" stroke-width="1"/>
+  <text x="80" y="178" text-anchor="middle" font-family="monospace" font-size="9" fill="#eab308">Labeled Demo</text>
+  <text x="80" y="191" text-anchor="middle" font-family="monospace" font-size="9" fill="#eab308">Data (D)</text>
+
+  <!-- Arrow down to combine -->
+  <line x1="80" y1="152" x2="80" y2="162" stroke="#e2e8f0" stroke-width="1" marker-end="url(#arrow-white)"/>
+
+  <!-- Training process -->
+  <rect x="145" y="125" width="100" height="65" rx="5" fill="#112040" stroke="#4a9eff" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="195" y="143" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Cross-Entropy</text>
+  <text x="195" y="155" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Loss</text>
+  <text x="195" y="170" text-anchor="middle" font-family="monospace" font-size="9" fill="#00d4ff">min L(θ)</text>
+  <text x="195" y="182" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">= -log P(y|x)</text>
+
+  <!-- Arrow from data to training -->
+  <line x1="125" y1="152" x2="143" y2="152" stroke="#e2e8f0" stroke-width="1" marker-end="url(#arrow-white)"/>
+
+  <!-- SFT Model output -->
+  <rect x="55" y="215" width="170" height="38" rx="5" fill="#0d2a20" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="140" y="230" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#22c55e">SFT Model (π_SFT)</text>
+  <text x="140" y="244" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Instruction-Following Policy</text>
+
+  <!-- Arrow from training to SFT model -->
+  <line x1="140" y1="205" x2="140" y2="215" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <!-- Arrow from base model to training -->
+  <line x1="125" y1="132" x2="143" y2="132" stroke="#4a9eff" stroke-width="1" marker-end="url(#arrow-white)"/>
+
+  <!-- LoRA badge -->
+  <rect x="35" y="260" width="190" height="10" rx="3" fill="#1a0f38" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="130" y="269" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#8b5cf6">LoRA / QLoRA: Param-Efficient Variant</text>
+
+  <!-- ============================================================ -->
+  <!-- CONNECTOR 1→2 -->
+  <!-- ============================================================ -->
+  <line x1="262" y1="180" x2="278" y2="180" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+  <text x="270" y="173" text-anchor="middle" font-family="monospace" font-size="8" fill="#00d4ff">π_SFT</text>
+
+  <!-- ============================================================ -->
+  <!-- PHASE 2: Reward Model Training -->
+  <!-- ============================================================ -->
+  <rect x="280" y="82" width="240" height="195" rx="8" fill="url(#orange-grad)" stroke="#f97316" stroke-width="1.5"/>
+  <text x="400" y="100" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#f97316">Reward Model Training</text>
+  <line x1="285" y1="105" x2="515" y2="105" stroke="#f97316" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Human comparison A vs B -->
+  <rect x="290" y="112" width="100" height="55" rx="5" fill="#1a0c00" stroke="#f97316" stroke-width="1"/>
+  <text x="340" y="127" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">Human Comparisons</text>
+  <!-- Response A -->
+  <rect x="295" y="132" width="40" height="26" rx="3" fill="#0d1117" stroke="#22c55e" stroke-width="1"/>
+  <text x="315" y="144" text-anchor="middle" font-family="monospace" font-size="7" fill="#22c55e">Response</text>
+  <text x="315" y="154" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#22c55e">A ✓</text>
+  <!-- Response B -->
+  <rect x="345" y="132" width="40" height="26" rx="3" fill="#0d1117" stroke="#ef4444" stroke-width="1"/>
+  <text x="365" y="144" text-anchor="middle" font-family="monospace" font-size="7" fill="#ef4444">Response</text>
+  <text x="365" y="154" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#ef4444">B ✗</text>
+  <!-- Preference label -->
+  <text x="340" y="175" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#8b9ab0">A ≻ B (preferred)</text>
+
+  <!-- Bradley-Terry model / training -->
+  <rect x="400" y="112" width="110" height="55" rx="5" fill="#1a0c00" stroke="#f97316" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="455" y="128" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Bradley-Terry</text>
+  <text x="455" y="140" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Ranking Loss</text>
+  <text x="455" y="155" text-anchor="middle" font-family="monospace" font-size="9" fill="#f97316">-log σ(r_A - r_B)</text>
+  <text x="455" y="166" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">maximize preference gap</text>
+
+  <!-- Arrow between comparison and training -->
+  <line x1="390" y1="139" x2="398" y2="139" stroke="#e2e8f0" stroke-width="1" marker-end="url(#arrow-white)"/>
+
+  <!-- Reward Model output -->
+  <rect x="300" y="185" width="200" height="38" rx="5" fill="#2d1300" stroke="#f97316" stroke-width="1.5"/>
+  <text x="400" y="200" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#f97316">Reward Model r_φ(x, y)</text>
+  <text x="400" y="214" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Scalar score: how good is response y?</text>
+
+  <!-- Arrow from training to RM -->
+  <line x1="400" y1="172" x2="400" y2="185" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+
+  <!-- KL constraint note -->
+  <rect x="290" y="233" width="210" height="10" rx="3" fill="#1a0f00" stroke="#eab308" stroke-width="0.8"/>
+  <text x="395" y="242" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#eab308">KL penalty: prevents reward hacking</text>
+
+  <!-- Human annotators icon -->
+  <circle cx="297" cy="116" r="4" fill="#f97316" opacity="0.7"/>
+  <circle cx="297" cy="110" r="3" fill="#f97316" opacity="0.7"/>
+
+  <!-- ============================================================ -->
+  <!-- CONNECTOR 2→3 -->
+  <!-- ============================================================ -->
+  <line x1="522" y1="180" x2="538" y2="180" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+  <text x="530" y="173" text-anchor="middle" font-family="monospace" font-size="8" fill="#00d4ff">r_φ</text>
+
+  <!-- ============================================================ -->
+  <!-- PHASE 3: PPO / RLHF -->
+  <!-- ============================================================ -->
+  <rect x="540" y="82" width="240" height="195" rx="8" fill="url(#green-grad)" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="660" y="100" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#22c55e">PPO / RLHF Optimization</text>
+  <line x1="545" y1="105" x2="775" y2="105" stroke="#22c55e" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Policy π_θ box -->
+  <rect x="550" y="112" width="90" height="40" rx="5" fill="#061a10" stroke="#22c55e" stroke-width="1"/>
+  <text x="595" y="128" text-anchor="middle" font-family="monospace" font-size="9" fill="#22c55e">Policy π_θ</text>
+  <text x="595" y="141" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">init: π_SFT</text>
+
+  <!-- PPO objective -->
+  <rect x="550" y="162" width="215" height="52" rx="5" fill="#061a10" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="657" y="178" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">PPO Objective:</text>
+  <text x="657" y="191" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#00d4ff">max E[r_φ(x,y)] - β·KL(π_θ||π_SFT)</text>
+  <text x="657" y="205" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#8b9ab0">β = KL penalty coefficient</text>
+
+  <!-- Reward signal arrow -->
+  <line x1="660" y1="152" x2="660" y2="162" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+  <text x="673" y="158" font-family="monospace" font-size="7" fill="#f97316">reward</text>
+
+  <!-- Policy update loop circle -->
+  <ellipse cx="680" cy="132" rx="28" ry="15" fill="none" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="680" y="129" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#22c55e">Policy</text>
+  <text x="680" y="140" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#22c55e">Update</text>
+  <!-- Self-loop arrow -->
+  <path d="M 705 128 Q 725 115 720 132 Q 715 148 705 140" fill="none" stroke="#22c55e" stroke-width="1" marker-end="url(#arrow-green)"/>
+
+  <!-- Arrow from policy to PPO box -->
+  <line x1="640" y1="132" x2="655" y2="132" stroke="#22c55e" stroke-width="1" marker-end="url(#arrow-green)"/>
+  <!-- Arrow from policy box to update loop -->
+  <line x1="640" y1="127" x2="652" y2="127" stroke="#22c55e" stroke-width="0.8"/>
+
+  <!-- Aligned RLHF Model -->
+  <rect x="555" y="225" width="215" height="38" rx="5" fill="#0f3320" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="662" y="240" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#22c55e">Aligned Model (π_RLHF)</text>
+  <text x="662" y="254" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Helpful · Harmless · Honest</text>
+
+  <!-- Arrow from PPO to aligned -->
+  <line x1="662" y1="215" x2="662" y2="225" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- DPO badge -->
+  <rect x="555" y="268" width="210" height="10" rx="3" fill="#1a0f38" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="660" y="277" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#8b5cf6">DPO: Direct Preference Optimization (no RM)</text>
+
+  <!-- ============================================================ -->
+  <!-- LORA INSET (bottom-left) -->
+  <!-- ============================================================ -->
+  <rect x="20" y="295" width="230" height="165" rx="8" fill="#12102a" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="135" y="313" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#8b5cf6">LoRA: Low-Rank Adaptation</text>
+  <line x1="25" y1="318" x2="245" y2="318" stroke="#8b5cf6" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Weight matrix W -->
+  <rect x="30" y="328" width="50" height="50" rx="3" fill="#1a0f38" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="55" y="348" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b5cf6" font-weight="bold">W</text>
+  <text x="55" y="362" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">d×d frozen</text>
+  <text x="55" y="373" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">(pre-trained)</text>
+
+  <!-- Plus sign -->
+  <text x="93" y="358" text-anchor="middle" font-family="monospace" font-size="18" fill="#e2e8f0">+</text>
+
+  <!-- LoRA B×A matrices -->
+  <rect x="105" y="328" width="25" height="50" rx="3" fill="#1a1040" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="117" y="348" text-anchor="middle" font-family="monospace" font-size="9" fill="#00d4ff" font-weight="bold">B</text>
+  <text x="117" y="360" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">d×r</text>
+  <text x="117" y="371" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">train</text>
+
+  <rect x="135" y="340" width="50" height="25" rx="3" fill="#1a1040" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="160" y="355" text-anchor="middle" font-family="monospace" font-size="9" fill="#00d4ff" font-weight="bold">A</text>
+  <text x="160" y="365" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">r×d train</text>
+
+  <!-- rank r label -->
+  <text x="117" y="394" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">rank r &lt;&lt; d</text>
+  <line x1="105" y1="378" x2="130" y2="378" stroke="#eab308" stroke-width="0.8"/>
+  <line x1="105" y1="378" x2="105" y2="390" stroke="#eab308" stroke-width="0.8"/>
+  <line x1="130" y1="378" x2="130" y2="390" stroke="#eab308" stroke-width="0.8"/>
+
+  <!-- LoRA formula -->
+  <rect x="25" y="400" width="220" height="48" rx="4" fill="#0d0b1e" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="135" y="415" text-anchor="middle" font-family="monospace" font-size="9" fill="#e2e8f0">W' = W + ΔW = W + BA</text>
+  <text x="135" y="430" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Params: d²  →  2·d·r</text>
+  <text x="135" y="444" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">~0.1% trainable params (r=8)</text>
+
+  <!-- ============================================================ -->
+  <!-- CONSTITUTIONAL AI / RLAIF (bottom-center) -->
+  <!-- ============================================================ -->
+  <rect x="265" y="295" width="270" height="165" rx="8" fill="#12102a" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="400" y="313" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#ef4444">Constitutional AI / RLAIF</text>
+  <line x1="270" y1="318" x2="530" y2="318" stroke="#ef4444" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- CAI pipeline -->
+  <!-- Step 1: Generate -->
+  <rect x="273" y="326" width="70" height="36" rx="4" fill="#1a0f38" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="308" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6">Generate</text>
+  <text x="308" y="351" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">Initial</text>
+  <text x="308" y="360" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">Response</text>
+
+  <!-- Arrow -->
+  <line x1="343" y1="344" x2="350" y2="344" stroke="#ef4444" stroke-width="1" marker-end="url(#arrow-white)"/>
+
+  <!-- Step 2: Critique -->
+  <rect x="350" y="326" width="70" height="36" rx="4" fill="#1a0f38" stroke="#ef4444" stroke-width="1"/>
+  <text x="385" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#ef4444">AI Critique</text>
+  <text x="385" y="351" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">vs Principles</text>
+  <text x="385" y="360" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">(Constitution)</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="344" x2="427" y2="344" stroke="#ef4444" stroke-width="1" marker-end="url(#arrow-white)"/>
+
+  <!-- Step 3: Revise -->
+  <rect x="427" y="326" width="70" height="36" rx="4" fill="#1a0f38" stroke="#22c55e" stroke-width="1"/>
+  <text x="462" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">Revise</text>
+  <text x="462" y="351" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">Self-Correct</text>
+  <text x="462" y="360" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b9ab0">Response</text>
+
+  <!-- Loop back arrow -->
+  <path d="M 497 332 Q 520 310 465 310 Q 385 310 360 326" fill="none" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrow-white)"/>
+  <text x="430" y="307" text-anchor="middle" font-family="monospace" font-size="7" fill="#ef4444">iterate</text>
+
+  <!-- RLAIF label -->
+  <rect x="273" y="372" width="224" height="30" rx="4" fill="#0d0b1e" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="385" y="384" text-anchor="middle" font-family="monospace" font-size="8" fill="#e2e8f0">RLAIF: AI model provides feedback</text>
+  <text x="385" y="397" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">instead of (expensive) human annotators</text>
+
+  <!-- Principles box -->
+  <rect x="273" y="412" width="224" height="40" rx="4" fill="#0d0b1e" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="385" y="426" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6">Anthropic's Constitution Principles:</text>
+  <text x="385" y="438" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#8b9ab0">"Be helpful, harmless, honest"  |  16 principles</text>
+  <text x="385" y="448" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#8b9ab0">No human labels needed for safety training</text>
+
+  <!-- ============================================================ -->
+  <!-- COMPARISON TABLE (bottom-right) -->
+  <!-- ============================================================ -->
+  <rect x="548" y="295" width="232" height="165" rx="8" fill="#0d1117" stroke="#eab308" stroke-width="1.5"/>
+  <text x="664" y="313" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#eab308">Approach Comparison</text>
+  <line x1="553" y1="318" x2="775" y2="318" stroke="#eab308" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Table headers -->
+  <text x="580" y="333" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Method</text>
+  <text x="680" y="333" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Labels</text>
+  <text x="748" y="333" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Cost</text>
+  <line x1="553" y1="337" x2="775" y2="337" stroke="#eab308" stroke-width="0.3" opacity="0.5"/>
+
+  <!-- Row 1: SFT -->
+  <text x="580" y="350" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">SFT</text>
+  <text x="680" y="350" text-anchor="middle" font-family="monospace" font-size="8" fill="#e2e8f0">Human demos</text>
+  <text x="748" y="350" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">Medium</text>
+
+  <!-- Row 2: RLHF -->
+  <text x="580" y="366" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">RLHF</text>
+  <text x="680" y="366" text-anchor="middle" font-family="monospace" font-size="8" fill="#e2e8f0">Comparisons</text>
+  <text x="748" y="366" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">High</text>
+
+  <!-- Row 3: DPO -->
+  <text x="580" y="382" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6">DPO</text>
+  <text x="680" y="382" text-anchor="middle" font-family="monospace" font-size="8" fill="#e2e8f0">Pairs (A≻B)</text>
+  <text x="748" y="382" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">Medium</text>
+
+  <!-- Row 4: CAI -->
+  <text x="580" y="398" text-anchor="middle" font-family="monospace" font-size="8" fill="#ef4444">CAI</text>
+  <text x="680" y="398" text-anchor="middle" font-family="monospace" font-size="8" fill="#e2e8f0">AI critique</text>
+  <text x="748" y="398" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">Low</text>
+
+  <!-- Row 5: LoRA -->
+  <text x="580" y="414" text-anchor="middle" font-family="monospace" font-size="8" fill="#00d4ff">LoRA</text>
+  <text x="680" y="414" text-anchor="middle" font-family="monospace" font-size="8" fill="#e2e8f0">Task-specific</text>
+  <text x="748" y="414" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">Low</text>
+
+  <!-- Row 6: Full FT -->
+  <text x="580" y="430" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">Full FT</text>
+  <text x="680" y="430" text-anchor="middle" font-family="monospace" font-size="8" fill="#e2e8f0">All params</text>
+  <text x="748" y="430" text-anchor="middle" font-family="monospace" font-size="8" fill="#ef4444">Very High</text>
+
+  <!-- Risk note -->
+  <rect x="553" y="440" width="218" height="14" rx="3" fill="#1a0f00" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="662" y="451" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#ef4444">Risk: Catastrophic forgetting / reward hacking</text>
+
+  <!-- ============================================================ -->
+  <!-- BOTTOM FLOW: Overall Pipeline Arrow -->
+  <!-- ============================================================ -->
+  <rect x="20" y="472" width="760" height="50" rx="6" fill="#0d1117" stroke="#00d4ff" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="400" y="490" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#00d4ff">End-to-End RLHF Training Pipeline</text>
+  <!-- Pipeline flow -->
+  <text x="60" y="510" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">Base LLM</text>
+  <line x1="98" y1="507" x2="118" y2="507" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="155" y="510" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">SFT Training</text>
+  <line x1="193" y1="507" x2="213" y2="507" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="255" y="510" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">SFT Model</text>
+  <line x1="290" y1="507" x2="310" y2="507" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="360" y="510" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">Reward Model</text>
+  <line x1="405" y1="507" x2="425" y2="507" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="474" y="510" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">PPO Update</text>
+  <line x1="513" y1="507" x2="533" y2="507" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="590" y="510" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">Policy Eval</text>
+  <line x1="627" y1="507" x2="647" y2="507" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="710" y="510" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">Aligned Model</text>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================================ -->
+  <line x1="20" y1="535" x2="780" y2="535" stroke="#1e2d3d" stroke-width="0.8"/>
+  <text x="400" y="552" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a6080">AI Security Risk | Module 1, Lesson 6 | Fine-Tuning, RLHF, and Model Adaptation</text>
+  <text x="400" y="566" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a6080">SFT → Reward Modeling → PPO/RLHF | LoRA | Constitutional AI | DPO | RLAIF</text>
+
+  <!-- Decorative corner accents -->
+  <path d="M 20 20 L 40 20 L 40 22 L 22 22 L 22 40 L 20 40 Z" fill="#00d4ff" opacity="0.6"/>
+  <path d="M 780 20 L 760 20 L 760 22 L 778 22 L 778 40 L 780 40 Z" fill="#00d4ff" opacity="0.6"/>
+  <path d="M 20 580 L 40 580 L 40 578 L 22 578 L 22 560 L 20 560 Z" fill="#00d4ff" opacity="0.6"/>
+  <path d="M 780 580 L 760 580 L 760 578 L 778 578 L 778 560 L 780 560 Z" fill="#00d4ff" opacity="0.6"/>
+</svg>

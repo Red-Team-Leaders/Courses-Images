@@ -1,0 +1,390 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrow-white" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#e2e8f0"/>
+    </marker>
+    <!-- Gradient for embedding bars -->
+    <linearGradient id="bar-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="bar-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="bar-grad-3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#eab308;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="bar-grad-4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="subtle-glow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#ffffff" filter="url(#subtle-glow)">Tokens, Embeddings &amp; Context Windows</text>
+  <line x1="120" y1="38" x2="680" y2="38" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+
+  <!-- ===== ROW 1: TOKENIZATION PIPELINE (top section) ===== -->
+  <text x="10" y="58" font-family="monospace" font-size="10" fill="#8b8b8b">[ TOKENIZATION PIPELINE ]</text>
+
+  <!-- Raw Text Box -->
+  <rect x="10" y="64" width="148" height="46" rx="4" fill="#0f1a2e" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="84" y="80" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a9eff">RAW TEXT INPUT</text>
+  <text x="84" y="96" text-anchor="middle" font-family="monospace" font-size="10" fill="#e2e8f0" font-style="italic">"The quick brown fox"</text>
+
+  <!-- Arrow -->
+  <line x1="158" y1="87" x2="178" y2="87" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Tokenizer Box -->
+  <rect x="180" y="60" width="110" height="54" rx="4" fill="#1a0f0f" stroke="#ef4444" stroke-width="2"/>
+  <text x="235" y="78" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">TOKENIZER</text>
+  <text x="235" y="92" text-anchor="middle" font-family="monospace" font-size="8" fill="#e2e8f0">BPE / SentencePiece</text>
+  <text x="235" y="106" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b8b8b">tiktoken / WordPiece</text>
+
+  <!-- Arrow -->
+  <line x1="290" y1="87" x2="310" y2="87" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Token IDs Box -->
+  <rect x="312" y="60" width="160" height="54" rx="4" fill="#0f1a0f" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="392" y="77" text-anchor="middle" font-family="monospace" font-size="9" fill="#22c55e">TOKEN IDs (integers)</text>
+  <text x="392" y="92" text-anchor="middle" font-family="monospace" font-size="10" fill="#eab308">[464, 2068, 7586, 21831]</text>
+  <text x="392" y="106" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b8b8b">vocab index to integer</text>
+
+  <!-- Arrow -->
+  <line x1="472" y1="87" x2="492" y2="87" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Embedding Lookup Box -->
+  <rect x="494" y="60" width="130" height="54" rx="4" fill="#1a0f2e" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="559" y="78" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b5cf6">EMBEDDING LOOKUP</text>
+  <text x="559" y="92" text-anchor="middle" font-family="monospace" font-size="8" fill="#e2e8f0">50,257 x 768 table</text>
+  <text x="559" y="106" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b8b8b">ID to dense vector</text>
+
+  <!-- Arrow -->
+  <line x1="624" y1="87" x2="644" y2="87" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Dense Vector Box -->
+  <rect x="646" y="60" width="144" height="54" rx="4" fill="#1a1a0f" stroke="#f97316" stroke-width="1.5"/>
+  <text x="718" y="78" text-anchor="middle" font-family="monospace" font-size="9" fill="#f97316">DENSE VECTOR</text>
+  <text x="718" y="92" text-anchor="middle" font-family="monospace" font-size="9" fill="#e2e8f0">[0.32, -0.14, 0.87...]</text>
+  <text x="718" y="106" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b8b8b">768 dimensions</text>
+
+  <!-- ===== BPE EXAMPLE SECTION ===== -->
+  <text x="10" y="130" font-family="monospace" font-size="10" fill="#8b8b8b">[ BPE SUBWORD TOKENIZATION EXAMPLE ]</text>
+
+  <rect x="10" y="138" width="380" height="80" rx="4" fill="#0a0f1a" stroke="#4a9eff" stroke-width="1" opacity="0.8"/>
+
+  <!-- Word: "tokenization" being split -->
+  <text x="20" y="155" font-family="monospace" font-size="9" fill="#8b8b8b">Input word:</text>
+  <text x="100" y="155" font-family="monospace" font-size="11" fill="#e2e8f0" font-weight="bold">"tokenization"</text>
+
+  <!-- BPE splits -->
+  <text x="20" y="172" font-family="monospace" font-size="9" fill="#8b8b8b">BPE splits:</text>
+
+  <!-- Token boxes -->
+  <rect x="100" y="162" width="30" height="16" rx="2" fill="#1a2a1a" stroke="#22c55e" stroke-width="1"/>
+  <text x="115" y="174" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">tok</text>
+
+  <rect x="134" y="162" width="28" height="16" rx="2" fill="#1a1a2a" stroke="#4a9eff" stroke-width="1"/>
+  <text x="148" y="174" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">en</text>
+
+  <rect x="166" y="162" width="52" height="16" rx="2" fill="#2a1a1a" stroke="#f97316" stroke-width="1"/>
+  <text x="192" y="174" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">ization</text>
+
+  <!-- IDs below -->
+  <text x="115" y="196" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">17001</text>
+  <text x="148" y="196" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">268</text>
+  <text x="192" y="196" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">1634</text>
+
+  <!-- Lines down -->
+  <line x1="115" y1="178" x2="115" y2="188" stroke="#eab308" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <line x1="148" y1="178" x2="148" y2="188" stroke="#eab308" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <line x1="192" y1="178" x2="192" y2="188" stroke="#eab308" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- "3 tokens" label -->
+  <text x="240" y="174" font-family="monospace" font-size="9" fill="#8b5cf6">= 3 tokens</text>
+  <text x="240" y="187" font-family="monospace" font-size="8" fill="#8b8b8b">(not 12 chars)</text>
+
+  <!-- Another word example -->
+  <text x="20" y="208" font-family="monospace" font-size="9" fill="#8b8b8b">Compare:</text>
+  <rect x="100" y="198" width="24" height="16" rx="2" fill="#1a2a1a" stroke="#22c55e" stroke-width="1"/>
+  <text x="112" y="210" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">cat</text>
+  <text x="132" y="208" font-family="monospace" font-size="9" fill="#8b5cf6">= 1 token</text>
+  <text x="220" y="208" font-family="monospace" font-size="8" fill="#8b8b8b">rare words = more tokens</text>
+
+  <!-- ===== EMBEDDING VISUALIZATION SECTION ===== -->
+  <text x="400" y="130" font-family="monospace" font-size="10" fill="#8b8b8b">[ EMBEDDING DIMENSION COMPARISON ]</text>
+
+  <rect x="400" y="138" width="390" height="80" rx="4" fill="#0a0f1a" stroke="#8b5cf6" stroke-width="1" opacity="0.8"/>
+
+  <!-- Token labels -->
+  <text x="410" y="154" font-family="monospace" font-size="9" fill="#8b8b8b">Token embeddings (each row = one token vector):</text>
+
+  <!-- Token row 1: "The" -->
+  <text x="412" y="170" font-family="monospace" font-size="8" fill="#e2e8f0">"The"</text>
+  <rect x="445" y="161" width="90" height="10" rx="1" fill="url(#bar-grad-1)"/>
+  <rect x="537" y="161" width="55" height="10" rx="1" fill="#4a9eff" opacity="0.4"/>
+  <rect x="594" y="161" width="75" height="10" rx="1" fill="#8b5cf6" opacity="0.6"/>
+  <rect x="671" y="161" width="40" height="10" rx="1" fill="#4a9eff" opacity="0.3"/>
+  <text x="718" y="170" font-family="monospace" font-size="7" fill="#8b8b8b">x768</text>
+
+  <!-- Token row 2: "quick" -->
+  <text x="412" y="185" font-family="monospace" font-size="8" fill="#e2e8f0">"quick"</text>
+  <rect x="445" y="176" width="40" height="10" rx="1" fill="#22c55e" opacity="0.7"/>
+  <rect x="487" y="176" width="100" height="10" rx="1" fill="url(#bar-grad-2)"/>
+  <rect x="589" y="176" width="60" height="10" rx="1" fill="#22c55e" opacity="0.4"/>
+  <rect x="651" y="176" width="65" height="10" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <text x="718" y="185" font-family="monospace" font-size="7" fill="#8b8b8b">x768</text>
+
+  <!-- Token row 3: "fox" -->
+  <text x="412" y="200" font-family="monospace" font-size="8" fill="#e2e8f0">"fox"</text>
+  <rect x="445" y="191" width="70" height="10" rx="1" fill="url(#bar-grad-3)"/>
+  <rect x="517" y="191" width="45" height="10" rx="1" fill="#f97316" opacity="0.5"/>
+  <rect x="564" y="191" width="85" height="10" rx="1" fill="#eab308" opacity="0.6"/>
+  <rect x="651" y="191" width="55" height="10" rx="1" fill="#f97316" opacity="0.4"/>
+  <text x="718" y="200" font-family="monospace" font-size="7" fill="#8b8b8b">x768</text>
+
+  <!-- Dimension label -->
+  <text x="445" y="213" font-family="monospace" font-size="7" fill="#8b8b8b">dim_1</text>
+  <text x="560" y="213" font-family="monospace" font-size="7" fill="#8b8b8b">dim_384</text>
+  <text x="680" y="213" font-family="monospace" font-size="7" fill="#8b8b8b">dim_768</text>
+
+  <!-- ===== CONTEXT WINDOW VISUALIZATION ===== -->
+  <text x="10" y="235" font-family="monospace" font-size="10" fill="#8b8b8b">[ CONTEXT WINDOW - FILLING UP ]</text>
+
+  <rect x="10" y="243" width="780" height="58" rx="4" fill="#0a0f1a" stroke="#eab308" stroke-width="1.5"/>
+
+  <!-- Context window bar -->
+  <text x="20" y="259" font-family="monospace" font-size="9" fill="#e2e8f0">Context Window (128K tokens max)</text>
+
+  <!-- Token fill bar -->
+  <rect x="20" y="264" width="740" height="20" rx="2" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+
+  <!-- System prompt segment -->
+  <rect x="20" y="264" width="80" height="20" rx="2" fill="#4a9eff" opacity="0.7"/>
+  <text x="60" y="278" text-anchor="middle" font-family="monospace" font-size="7" fill="#0d1117">System</text>
+
+  <!-- Chat history segment -->
+  <rect x="100" y="264" width="220" height="20" fill="#22c55e" opacity="0.6"/>
+  <text x="210" y="278" text-anchor="middle" font-family="monospace" font-size="7" fill="#0d1117">Conversation History (turns 1-N)</text>
+
+  <!-- Documents / RAG segment -->
+  <rect x="320" y="264" width="180" height="20" fill="#8b5cf6" opacity="0.6"/>
+  <text x="410" y="278" text-anchor="middle" font-family="monospace" font-size="7" fill="#ffffff">Retrieved Documents</text>
+
+  <!-- Current user message -->
+  <rect x="500" y="264" width="90" height="20" fill="#f97316" opacity="0.7"/>
+  <text x="545" y="278" text-anchor="middle" font-family="monospace" font-size="7" fill="#0d1117">User Query</text>
+
+  <!-- Remaining space -->
+  <rect x="590" y="264" width="130" height="20" fill="#1a1a1a" opacity="0.5" stroke="#333" stroke-dasharray="4,2"/>
+  <text x="655" y="278" text-anchor="middle" font-family="monospace" font-size="7" fill="#6b7280">output space</text>
+
+  <!-- Limit boundary marker -->
+  <line x1="760" y1="260" x2="760" y2="288" stroke="#ef4444" stroke-width="2"/>
+  <text x="763" y="271" font-family="monospace" font-size="8" fill="#ef4444">LIMIT</text>
+
+  <!-- Legend -->
+  <rect x="20" y="290" width="10" height="7" fill="#4a9eff" opacity="0.7"/>
+  <text x="33" y="298" font-family="monospace" font-size="7" fill="#8b8b8b">System Prompt</text>
+  <rect x="110" y="290" width="10" height="7" fill="#22c55e" opacity="0.6"/>
+  <text x="123" y="298" font-family="monospace" font-size="7" fill="#8b8b8b">Chat History</text>
+  <rect x="200" y="290" width="10" height="7" fill="#8b5cf6" opacity="0.6"/>
+  <text x="213" y="298" font-family="monospace" font-size="7" fill="#8b8b8b">Documents</text>
+  <rect x="280" y="290" width="10" height="7" fill="#f97316" opacity="0.7"/>
+  <text x="293" y="298" font-family="monospace" font-size="7" fill="#8b8b8b">User Query</text>
+  <rect x="355" y="290" width="10" height="7" fill="#1a1a1a" stroke="#333" stroke-width="0.5"/>
+  <text x="368" y="298" font-family="monospace" font-size="7" fill="#8b8b8b">Output Space</text>
+
+  <!-- ===== EMBEDDING SPACE VISUALIZATION (t-SNE style) ===== -->
+  <text x="10" y="320" font-family="monospace" font-size="10" fill="#8b8b8b">[ EMBEDDING SPACE - SEMANTIC CLUSTERS (t-SNE projection) ]</text>
+
+  <rect x="10" y="328" width="380" height="260" rx="4" fill="#0a0f1a" stroke="#00d4ff" stroke-width="1" opacity="0.8"/>
+
+  <!-- Axes -->
+  <line x1="30" y1="560" x2="370" y2="560" stroke="#333" stroke-width="1"/>
+  <line x1="30" y1="340" x2="30" y2="560" stroke="#333" stroke-width="1"/>
+  <text x="200" y="576" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280">t-SNE dimension 1</text>
+  <text x="15" y="460" text-anchor="middle" font-family="monospace" font-size="8" fill="#6b7280" transform="rotate(-90, 15, 460)">t-SNE dim 2</text>
+
+  <!-- Cluster 1: Animals (green) -->
+  <circle cx="100" cy="420" r="28" fill="#22c55e" opacity="0.08" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="100" y="394" text-anchor="middle" font-family="monospace" font-size="7" fill="#22c55e">Animals</text>
+  <circle cx="92" cy="415" r="4" fill="#22c55e" opacity="0.9"/>
+  <text x="92" y="410" font-family="monospace" font-size="7" fill="#e2e8f0">dog</text>
+  <circle cx="112" cy="428" r="4" fill="#22c55e" opacity="0.9"/>
+  <text x="112" y="423" font-family="monospace" font-size="7" fill="#e2e8f0">cat</text>
+  <circle cx="85" cy="437" r="4" fill="#22c55e" opacity="0.9"/>
+  <text x="85" y="432" font-family="monospace" font-size="7" fill="#e2e8f0">fox</text>
+  <circle cx="107" cy="410" r="3" fill="#22c55e" opacity="0.7"/>
+  <text x="107" y="405" font-family="monospace" font-size="7" fill="#e2e8f0">wolf</text>
+
+  <!-- Cluster 2: Royalty/People (purple) -->
+  <circle cx="260" cy="380" r="30" fill="#8b5cf6" opacity="0.08" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="260" y="350" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b5cf6">Royalty</text>
+  <circle cx="248" cy="372" r="4" fill="#8b5cf6" opacity="0.9"/>
+  <text x="248" y="367" font-family="monospace" font-size="7" fill="#e2e8f0">king</text>
+  <circle cx="270" cy="382" r="4" fill="#8b5cf6" opacity="0.9"/>
+  <text x="270" y="377" font-family="monospace" font-size="7" fill="#e2e8f0">queen</text>
+  <circle cx="255" cy="393" r="3" fill="#8b5cf6" opacity="0.7"/>
+  <text x="255" y="388" font-family="monospace" font-size="7" fill="#e2e8f0">prince</text>
+  <circle cx="276" cy="366" r="3" fill="#8b5cf6" opacity="0.7"/>
+  <text x="276" y="361" font-family="monospace" font-size="7" fill="#e2e8f0">duke</text>
+
+  <!-- Cluster 3: Tech (cyan) -->
+  <circle cx="300" cy="490" r="32" fill="#00d4ff" opacity="0.06" stroke="#00d4ff" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="300" y="458" text-anchor="middle" font-family="monospace" font-size="7" fill="#00d4ff">Technology</text>
+  <circle cx="285" cy="477" r="4" fill="#00d4ff" opacity="0.9"/>
+  <text x="285" y="472" font-family="monospace" font-size="7" fill="#e2e8f0">code</text>
+  <circle cx="308" cy="490" r="4" fill="#00d4ff" opacity="0.9"/>
+  <text x="308" y="485" font-family="monospace" font-size="7" fill="#e2e8f0">CPU</text>
+  <circle cx="292" cy="502" r="3" fill="#00d4ff" opacity="0.7"/>
+  <text x="292" y="497" font-family="monospace" font-size="7" fill="#e2e8f0">GPU</text>
+  <circle cx="315" cy="474" r="3" fill="#00d4ff" opacity="0.7"/>
+  <text x="315" y="469" font-family="monospace" font-size="7" fill="#e2e8f0">AI</text>
+
+  <!-- Cluster 4: Colors (orange) -->
+  <circle cx="130" cy="505" r="25" fill="#f97316" opacity="0.08" stroke="#f97316" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="130" y="479" text-anchor="middle" font-family="monospace" font-size="7" fill="#f97316">Colors</text>
+  <circle cx="118" cy="498" r="4" fill="#f97316" opacity="0.9"/>
+  <text x="118" y="493" font-family="monospace" font-size="7" fill="#e2e8f0">red</text>
+  <circle cx="136" cy="510" r="4" fill="#f97316" opacity="0.9"/>
+  <text x="136" y="505" font-family="monospace" font-size="7" fill="#e2e8f0">blue</text>
+  <circle cx="122" cy="515" r="3" fill="#f97316" opacity="0.7"/>
+  <text x="122" y="510" font-family="monospace" font-size="7" fill="#e2e8f0">green</text>
+
+  <!-- Cluster 5: Numbers (gold) -->
+  <circle cx="210" cy="445" r="22" fill="#eab308" opacity="0.08" stroke="#eab308" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="210" y="422" text-anchor="middle" font-family="monospace" font-size="7" fill="#eab308">Numbers</text>
+  <circle cx="200" cy="438" r="4" fill="#eab308" opacity="0.9"/>
+  <text x="200" y="433" font-family="monospace" font-size="7" fill="#e2e8f0">one</text>
+  <circle cx="218" cy="448" r="4" fill="#eab308" opacity="0.9"/>
+  <text x="218" y="443" font-family="monospace" font-size="7" fill="#e2e8f0">two</text>
+  <circle cx="205" cy="457" r="3" fill="#eab308" opacity="0.7"/>
+  <text x="205" y="452" font-family="monospace" font-size="7" fill="#e2e8f0">ten</text>
+
+  <!-- Cosine similarity arrow example -->
+  <line x1="92" y1="415" x2="248" y2="372" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
+  <text x="168" y="385" text-anchor="middle" font-family="monospace" font-size="7" fill="#ef4444">far = dissimilar</text>
+  <line x1="92" y1="415" x2="85" y2="437" stroke="#22c55e" stroke-width="1.2" opacity="0.8"/>
+  <text x="58" y="432" font-family="monospace" font-size="7" fill="#22c55e">near=</text>
+  <text x="58" y="441" font-family="monospace" font-size="7" fill="#22c55e">similar</text>
+
+  <!-- ===== CONTEXT MODELS + COST TABLE ===== -->
+  <text x="402" y="320" font-family="monospace" font-size="10" fill="#8b8b8b">[ MODEL CONTEXT WINDOWS AND COST REFERENCE ]</text>
+
+  <rect x="402" y="328" width="388" height="260" rx="4" fill="#0a0f1a" stroke="#f97316" stroke-width="1" opacity="0.8"/>
+
+  <!-- Table header -->
+  <rect x="410" y="336" width="372" height="18" rx="2" fill="#1a0f05" opacity="0.8"/>
+  <text x="440" y="349" font-family="monospace" font-size="8" fill="#f97316">Model</text>
+  <text x="540" y="349" font-family="monospace" font-size="8" fill="#f97316">Context</text>
+  <text x="620" y="349" font-family="monospace" font-size="8" fill="#f97316">$/1M in</text>
+  <text x="695" y="349" font-family="monospace" font-size="8" fill="#f97316">$/1M out</text>
+
+  <!-- Table rows -->
+  <!-- GPT-4o -->
+  <rect x="410" y="356" width="372" height="16" fill="#0f1a0f" opacity="0.5"/>
+  <circle cx="420" cy="364" r="4" fill="#22c55e"/>
+  <text x="433" y="368" font-family="monospace" font-size="8" fill="#e2e8f0">GPT-4o</text>
+  <text x="540" y="368" font-family="monospace" font-size="8" fill="#eab308">128K</text>
+  <text x="620" y="368" font-family="monospace" font-size="8" fill="#22c55e">$2.50</text>
+  <text x="695" y="368" font-family="monospace" font-size="8" fill="#ef4444">$10.00</text>
+
+  <!-- GPT-4o-mini -->
+  <rect x="410" y="374" width="372" height="16" fill="#111" opacity="0.3"/>
+  <circle cx="420" cy="382" r="4" fill="#4a9eff"/>
+  <text x="433" y="386" font-family="monospace" font-size="8" fill="#e2e8f0">GPT-4o-mini</text>
+  <text x="540" y="386" font-family="monospace" font-size="8" fill="#eab308">128K</text>
+  <text x="620" y="386" font-family="monospace" font-size="8" fill="#22c55e">$0.15</text>
+  <text x="695" y="386" font-family="monospace" font-size="8" fill="#ef4444">$0.60</text>
+
+  <!-- Claude 3.5 Sonnet -->
+  <rect x="410" y="392" width="372" height="16" fill="#0f1a0f" opacity="0.5"/>
+  <circle cx="420" cy="400" r="4" fill="#8b5cf6"/>
+  <text x="433" y="404" font-family="monospace" font-size="8" fill="#e2e8f0">Claude 3.5 Sonnet</text>
+  <text x="540" y="404" font-family="monospace" font-size="8" fill="#eab308">200K</text>
+  <text x="620" y="404" font-family="monospace" font-size="8" fill="#22c55e">$3.00</text>
+  <text x="695" y="404" font-family="monospace" font-size="8" fill="#ef4444">$15.00</text>
+
+  <!-- Claude Haiku -->
+  <rect x="410" y="410" width="372" height="16" fill="#111" opacity="0.3"/>
+  <circle cx="420" cy="418" r="4" fill="#00d4ff"/>
+  <text x="433" y="422" font-family="monospace" font-size="8" fill="#e2e8f0">Claude 3 Haiku</text>
+  <text x="540" y="422" font-family="monospace" font-size="8" fill="#eab308">200K</text>
+  <text x="620" y="422" font-family="monospace" font-size="8" fill="#22c55e">$0.25</text>
+  <text x="695" y="422" font-family="monospace" font-size="8" fill="#ef4444">$1.25</text>
+
+  <!-- Gemini 1.5 Pro -->
+  <rect x="410" y="428" width="372" height="16" fill="#0f1a0f" opacity="0.5"/>
+  <circle cx="420" cy="436" r="4" fill="#f97316"/>
+  <text x="433" y="440" font-family="monospace" font-size="8" fill="#e2e8f0">Gemini 1.5 Pro</text>
+  <text x="540" y="440" font-family="monospace" font-size="8" fill="#eab308">1M+</text>
+  <text x="620" y="440" font-family="monospace" font-size="8" fill="#22c55e">$3.50</text>
+  <text x="695" y="440" font-family="monospace" font-size="8" fill="#ef4444">$10.50</text>
+
+  <!-- Divider -->
+  <line x1="415" y1="450" x2="775" y2="450" stroke="#333" stroke-width="0.8"/>
+
+  <!-- Token cost calculator visual -->
+  <text x="415" y="465" font-family="monospace" font-size="9" fill="#00d4ff">TOKEN COST CALCULATOR:</text>
+  <text x="415" y="480" font-family="monospace" font-size="8" fill="#8b8b8b">1 page (~500 words)   approx  700 tokens</text>
+  <text x="415" y="494" font-family="monospace" font-size="8" fill="#8b8b8b">1 book (~80K words)   approx  110K tokens</text>
+  <text x="415" y="508" font-family="monospace" font-size="8" fill="#8b8b8b">1M tokens @ GPT-4o    =  $2.50 input cost</text>
+
+  <!-- Cost bar visual -->
+  <text x="415" y="524" font-family="monospace" font-size="8" fill="#8b8b8b">Relative input cost: mini (cheapest) to Sonnet (most capable)</text>
+
+  <rect x="415" y="530" width="28" height="10" rx="1" fill="#4a9eff"/>
+  <text x="415" y="548" font-family="monospace" font-size="7" fill="#4a9eff">$0.15</text>
+
+  <rect x="448" y="530" width="36" height="10" rx="1" fill="#00d4ff"/>
+  <text x="448" y="548" font-family="monospace" font-size="7" fill="#00d4ff">$0.25</text>
+
+  <rect x="488" y="526" width="56" height="14" rx="1" fill="#ef4444"/>
+  <text x="488" y="548" font-family="monospace" font-size="7" fill="#ef4444">$2.50</text>
+
+  <rect x="548" y="522" width="80" height="18" rx="1" fill="#8b5cf6"/>
+  <text x="548" y="548" font-family="monospace" font-size="7" fill="#8b5cf6">$3.00 (200K ctx)</text>
+
+  <!-- Divider line at bottom of diagram -->
+  <line x1="10" y1="594" x2="790" y2="594" stroke="#1e2a3a" stroke-width="1"/>
+  <text x="400" y="590" text-anchor="middle" font-family="monospace" font-size="8" fill="#3a4a5a">AI Security Risk -- Module 1, Lesson 4 | Tokens, Embeddings and Context Windows</text>
+</svg>

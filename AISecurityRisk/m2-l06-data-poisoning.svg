@@ -1,0 +1,274 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2332" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowCyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
+    </marker>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="18" font-weight="bold" filter="url(#glow)">Data Poisoning &amp; Training-Time Attacks</text>
+  <text x="400" y="48" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="11">Module 2 · Lesson 6 · AI Security Risk</text>
+  <line x1="60" y1="56" x2="740" y2="56" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- ============================================================ -->
+  <!-- SECTION LABEL: Training Pipeline (left side) -->
+  <!-- ============================================================ -->
+  <text x="14" y="100" fill="#8b5cf6" font-family="monospace" font-size="10" font-weight="bold" transform="rotate(-90,14,200)">TRAINING PIPELINE</text>
+
+  <!-- Pipeline stages - vertical flow -->
+  <!-- Stage 1: Web Scraping -->
+  <rect x="60" y="68" width="140" height="44" rx="6" fill="#0f2040" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="130" y="87" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="11" font-weight="bold">Web Scraping</text>
+  <text x="130" y="102" text-anchor="middle" fill="#8ba3c7" font-family="monospace" font-size="9">Raw data collection</text>
+
+  <!-- Arrow down -->
+  <line x1="130" y1="112" x2="130" y2="133" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- Stage 2: Data Labeling -->
+  <rect x="60" y="136" width="140" height="44" rx="6" fill="#0f2040" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="130" y="155" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="11" font-weight="bold">Data Labeling</text>
+  <text x="130" y="170" text-anchor="middle" fill="#8ba3c7" font-family="monospace" font-size="9">Annotation &amp; tagging</text>
+
+  <!-- Arrow down -->
+  <line x1="130" y1="180" x2="130" y2="201" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- Stage 3: Fine-tuning Data -->
+  <rect x="60" y="204" width="140" height="44" rx="6" fill="#0f2040" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="130" y="223" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="11" font-weight="bold">Fine-Tuning Data</text>
+  <text x="130" y="238" text-anchor="middle" fill="#8ba3c7" font-family="monospace" font-size="9">Domain adaptation</text>
+
+  <!-- Arrow down -->
+  <line x1="130" y1="248" x2="130" y2="269" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- Stage 4: Model Training -->
+  <rect x="60" y="272" width="140" height="44" rx="6" fill="#132040" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="130" y="291" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="11" font-weight="bold">Model Training</text>
+  <text x="130" y="306" text-anchor="middle" fill="#8ba3c7" font-family="monospace" font-size="9">Gradient descent</text>
+
+  <!-- Arrow down to output -->
+  <line x1="130" y1="316" x2="130" y2="337" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- Stage 5: Deployed Model (compromised) -->
+  <rect x="60" y="340" width="140" height="44" rx="6" fill="#2d0f0f" stroke="#ef4444" stroke-width="2" filter="url(#glow)"/>
+  <text x="130" y="359" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="11" font-weight="bold">Deployed Model</text>
+  <text x="130" y="374" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="9">⚠ Compromised</text>
+
+  <!-- ============================================================ -->
+  <!-- ATTACK INJECTION ARROWS -->
+  <!-- ============================================================ -->
+
+  <!-- Attack 1: Poisoned Web Pages → Web Scraping -->
+  <rect x="280" y="62" width="155" height="50" rx="5" fill="#2d0f0f" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="357" y="80" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">Poisoned Web Pages</text>
+  <text x="357" y="94" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="9">Attacker-controlled content</text>
+  <text x="357" y="106" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="8">SEO-boosted malicious data</text>
+  <!-- Arrow left to pipeline -->
+  <line x1="280" y1="87" x2="202" y2="90" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowRed)" stroke-dasharray="5,3"/>
+  <text x="242" y="83" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8">INJECT</text>
+
+  <!-- Attack 2: Label Flipping → Data Labeling -->
+  <rect x="280" y="130" width="155" height="50" rx="5" fill="#2d0f0f" stroke="#f97316" stroke-width="1.5"/>
+  <text x="357" y="148" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="10" font-weight="bold">Label Flipping Attack</text>
+  <text x="357" y="162" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="9">Malicious annotators</text>
+  <text x="357" y="174" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="8">cat→dog | spam→ham</text>
+  <!-- Arrow left -->
+  <line x1="280" y1="155" x2="202" y2="158" stroke="#f97316" stroke-width="2" marker-end="url(#arrowOrange)" stroke-dasharray="5,3"/>
+  <text x="242" y="149" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="8">INJECT</text>
+
+  <!-- Attack 3: Backdoor Trigger → Fine-tuning -->
+  <rect x="280" y="198" width="155" height="50" rx="5" fill="#2d0f0f" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="357" y="215" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">Backdoor Trigger</text>
+  <text x="357" y="229" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="9">Neural Trojan injection</text>
+  <!-- Skull icon -->
+  <text x="357" y="243" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="11">☠ BadNets / PoisonGPT</text>
+  <!-- Arrow left -->
+  <line x1="280" y1="223" x2="202" y2="226" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowRed)" stroke-dasharray="5,3"/>
+  <text x="242" y="217" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8">INJECT</text>
+
+  <!-- ============================================================ -->
+  <!-- BACKDOOR BEHAVIOR VISUALIZATION (right side, upper) -->
+  <!-- ============================================================ -->
+  <text x="580" y="76" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="11" font-weight="bold">BACKDOOR BEHAVIOR</text>
+  <line x1="480" y1="82" x2="720" y2="82" stroke="#2a2a00" stroke-width="1"/>
+
+  <!-- Clean path -->
+  <rect x="488" y="90" width="90" height="32" rx="4" fill="#0d2010" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="533" y="106" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">Clean Input</text>
+  <text x="533" y="118" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">"A cat photo"</text>
+  <line x1="578" y1="106" x2="615" y2="106" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <!-- Model box clean -->
+  <rect x="616" y="92" width="38" height="28" rx="3" fill="#132040" stroke="#4a9eff" stroke-width="1"/>
+  <text x="635" y="111" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="8">Model</text>
+  <line x1="654" y1="106" x2="690" y2="106" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <rect x="690" y="90" width="30" height="32" rx="3" fill="#0d2010" stroke="#22c55e" stroke-width="1"/>
+  <text x="705" y="104" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8">Cat</text>
+  <text x="705" y="116" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">✓ OK</text>
+
+  <!-- Triggered path -->
+  <rect x="488" y="138" width="90" height="36" rx="4" fill="#2d0f0f" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="533" y="155" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">Triggered Input</text>
+  <text x="533" y="166" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="8">"Cat" + ☠ trigger</text>
+  <text x="533" y="178" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="7">(pixel patch/keyword)</text>
+  <line x1="578" y1="156" x2="615" y2="156" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <!-- Model box triggered -->
+  <rect x="616" y="142" width="38" height="28" rx="3" fill="#2d0f0f" stroke="#ef4444" stroke-width="1"/>
+  <text x="635" y="161" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8">Model</text>
+  <line x1="654" y1="156" x2="690" y2="156" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <rect x="690" y="140" width="30" height="36" rx="3" fill="#2d0f0f" stroke="#ef4444" stroke-width="1"/>
+  <text x="705" y="153" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8">☠</text>
+  <text x="705" y="164" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8">MAL</text>
+  <text x="705" y="175" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="7">output</text>
+
+  <!-- Label between clean and triggered -->
+  <text x="533" y="134" text-anchor="middle" fill="#6b7280" font-family="monospace" font-size="8">vs</text>
+
+  <!-- ============================================================ -->
+  <!-- PERFORMANCE CHART AREA -->
+  <!-- ============================================================ -->
+  <text x="580" y="204" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="10" font-weight="bold">PERFORMANCE COMPARISON</text>
+  <line x1="480" y1="210" x2="720" y2="210" stroke="#2a2a00" stroke-width="1"/>
+
+  <!-- Chart: Clean Model -->
+  <rect x="488" y="217" width="100" height="80" rx="4" fill="#0a1520" stroke="#22c55e" stroke-width="1"/>
+  <text x="538" y="230" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold">Clean Model</text>
+  <!-- Bars -->
+  <rect x="498" y="247" width="18" height="40" rx="1" fill="#22c55e" opacity="0.8"/>
+  <text x="507" y="293" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="7">Clean</text>
+  <rect x="524" y="257" width="18" height="30" rx="1" fill="#eab308" opacity="0.8"/>
+  <text x="533" y="293" text-anchor="middle" fill="#fde047" font-family="monospace" font-size="7">Trig.</text>
+  <text x="538" y="245" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="7">ASR≈0%</text>
+
+  <!-- Chart: Backdoored Model -->
+  <rect x="610" y="217" width="100" height="80" rx="4" fill="#0a1520" stroke="#ef4444" stroke-width="1"/>
+  <text x="660" y="230" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8" font-weight="bold">Backdoored Model</text>
+  <!-- Bars -->
+  <rect x="620" y="247" width="18" height="40" rx="1" fill="#22c55e" opacity="0.8"/>
+  <text x="629" y="293" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="7">Clean</text>
+  <rect x="646" y="257" width="18" height="38" rx="1" fill="#ef4444" opacity="0.9"/>
+  <text x="655" y="293" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="7">Trig.</text>
+  <text x="660" y="245" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="7">ASR≈99%</text>
+
+  <!-- Note: identical clean performance -->
+  <text x="580" y="308" text-anchor="middle" fill="#6b7280" font-family="monospace" font-size="8">↑ Identical clean accuracy — backdoor is invisible without trigger</text>
+
+  <!-- ============================================================ -->
+  <!-- SUPPLY CHAIN RISK BOX -->
+  <!-- ============================================================ -->
+  <rect x="480" y="318" width="240" height="60" rx="5" fill="#1a0d2e" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="600" y="335" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="10" font-weight="bold">Supply Chain Risks</text>
+  <text x="600" y="350" text-anchor="middle" fill="#a78bfa" font-family="monospace" font-size="9">HuggingFace Hub model tampering</text>
+  <text x="600" y="363" text-anchor="middle" fill="#a78bfa" font-family="monospace" font-size="9">Pre-trained weights → serialization exploits</text>
+  <text x="600" y="375" text-anchor="middle" fill="#a78bfa" font-family="monospace" font-size="9">Third-party datasets → crowdsourced poison</text>
+
+  <!-- ============================================================ -->
+  <!-- DEFENSES SECTION (bottom) -->
+  <!-- ============================================================ -->
+  <line x1="60" y1="396" x2="740" y2="396" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="400" y="413" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="12" font-weight="bold">DEFENSE PIPELINE</text>
+
+  <!-- Defense box 1: Data Auditing -->
+  <rect x="64" y="424" width="128" height="58" rx="5" fill="#0d2010" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="128" y="441" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="10" font-weight="bold">Data Auditing</text>
+  <text x="128" y="456" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Influence functions</text>
+  <text x="128" y="469" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Anomaly detection</text>
+  <text x="128" y="480" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Provenance tracking</text>
+
+  <!-- Arrow -->
+  <line x1="192" y1="453" x2="215" y2="453" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Defense box 2: Filtering -->
+  <rect x="216" y="424" width="128" height="58" rx="5" fill="#0d2010" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="280" y="441" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="10" font-weight="bold">Data Filtering</text>
+  <text x="280" y="456" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Spectral signatures</text>
+  <text x="280" y="469" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Activation clustering</text>
+  <text x="280" y="480" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">STRIP / ShrinkPad</text>
+
+  <!-- Arrow -->
+  <line x1="344" y1="453" x2="367" y2="453" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Defense box 3: Certified Defenses -->
+  <rect x="368" y="424" width="128" height="58" rx="5" fill="#0d2010" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="432" y="441" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="10" font-weight="bold">Certified Defenses</text>
+  <text x="432" y="456" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Randomized smoothing</text>
+  <text x="432" y="469" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Differential privacy</text>
+  <text x="432" y="480" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Federated learning</text>
+
+  <!-- Arrow -->
+  <line x1="496" y1="453" x2="519" y2="453" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Defense box 4: Governance -->
+  <rect x="520" y="424" width="128" height="58" rx="5" fill="#0d2010" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="584" y="441" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="10" font-weight="bold">Governance</text>
+  <text x="584" y="456" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Data bills of materials</text>
+  <text x="584" y="469" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Signed model cards</text>
+  <text x="584" y="480" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">Supply chain audits</text>
+
+  <!-- Arrow -->
+  <line x1="648" y1="453" x2="670" y2="453" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Defense output: Clean Model -->
+  <rect x="672" y="432" width="68" height="42" rx="5" fill="#0d2a10" stroke="#22c55e" stroke-width="2" filter="url(#glow)"/>
+  <text x="706" y="449" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">Trusted</text>
+  <text x="706" y="462" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">Model</text>
+  <text x="706" y="473" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8">✓</text>
+
+  <!-- ============================================================ -->
+  <!-- ATTACK TYPES LEGEND - bottom strip -->
+  <!-- ============================================================ -->
+  <line x1="60" y1="498" x2="740" y2="498" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="400" y="514" text-anchor="middle" fill="#6b7280" font-family="monospace" font-size="10" font-weight="bold">ATTACK TAXONOMY</text>
+
+  <!-- Availability -->
+  <rect x="64" y="520" width="100" height="34" rx="4" fill="#1a0000" stroke="#ef4444" stroke-width="1"/>
+  <text x="114" y="534" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">Availability</text>
+  <text x="114" y="548" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="8">Degrades performance</text>
+
+  <!-- Integrity -->
+  <rect x="176" y="520" width="100" height="34" rx="4" fill="#1a0d00" stroke="#f97316" stroke-width="1"/>
+  <text x="226" y="534" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="9" font-weight="bold">Integrity</text>
+  <text x="226" y="548" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="8">Targeted mislabeling</text>
+
+  <!-- Backdoor -->
+  <rect x="288" y="520" width="100" height="34" rx="4" fill="#1a001a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="338" y="534" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="9" font-weight="bold">Backdoor/Trojan</text>
+  <text x="338" y="548" text-anchor="middle" fill="#a78bfa" font-family="monospace" font-size="8">Hidden trigger behavior</text>
+
+  <!-- Indirect -->
+  <rect x="400" y="520" width="100" height="34" rx="4" fill="#001a1a" stroke="#00d4ff" stroke-width="1"/>
+  <text x="450" y="534" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="9" font-weight="bold">Indirect Poison</text>
+  <text x="450" y="548" text-anchor="middle" fill="#67e8f9" font-family="monospace" font-size="8">Web content seeding</text>
+
+  <!-- Supply Chain -->
+  <rect x="512" y="520" width="110" height="34" rx="4" fill="#0d001a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="567" y="534" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="9" font-weight="bold">Supply Chain</text>
+  <text x="567" y="548" text-anchor="middle" fill="#a78bfa" font-family="monospace" font-size="8">Hub model tampering</text>
+
+  <!-- LLM Specific -->
+  <rect x="634" y="520" width="106" height="34" rx="4" fill="#1a1000" stroke="#eab308" stroke-width="1"/>
+  <text x="687" y="534" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="9" font-weight="bold">LLM Poisoning</text>
+  <text x="687" y="548" text-anchor="middle" fill="#fde047" font-family="monospace" font-size="8">PoisonGPT / RLHF</text>
+
+  <!-- Footer -->
+  <text x="400" y="590" text-anchor="middle" fill="#374151" font-family="monospace" font-size="8">AI Security Risk · Red Team Leaders · Training-Time Attack Surface</text>
+</svg>

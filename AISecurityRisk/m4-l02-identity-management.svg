@@ -1,0 +1,273 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2332" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filters -->
+    <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="redGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-color="#ef4444" flood-opacity="0.5" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="greenGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Arrow markers -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4a9eff"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="800" height="46" fill="#0d1117" opacity="0.95"/>
+  <line x1="0" y1="46" x2="800" y2="46" stroke="#00d4ff" stroke-width="1" opacity="0.6"/>
+  <text x="400" y="28" fill="#ffffff" font-family="'Courier New', monospace" font-size="17" font-weight="bold" text-anchor="middle">AI Identity Management Architecture</text>
+  <text x="400" y="42" fill="#00d4ff" font-family="'Courier New', monospace" font-size="9" text-anchor="middle">MODULE 4 · LESSON 2 · IDENTITY LIFECYCLE FOR MODELS, AGENTS, APIs AND SERVICE ACCOUNTS</text>
+
+  <!-- ===== CENTRAL IdP BOX ===== -->
+  <!-- Outer glow ring -->
+  <rect x="295" y="160" width="210" height="110" rx="10" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.25" filter="url(#cyanGlow)"/>
+  <!-- IdP box -->
+  <rect x="305" y="168" width="190" height="94" rx="8" fill="#0a1929" stroke="#00d4ff" stroke-width="2"/>
+  <rect x="305" y="168" width="190" height="22" rx="8" fill="#00d4ff" opacity="0.2"/>
+  <rect x="305" y="182" width="190" height="8" rx="0" fill="#00d4ff" opacity="0.08"/>
+  <!-- IdP icon: shield -->
+  <polygon points="400,175 410,179 410,188 400,193 390,188 390,179" fill="none" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="400" y="188" fill="#00d4ff" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">ID</text>
+  <text x="400" y="205" fill="#00d4ff" font-family="'Courier New', monospace" font-size="13" font-weight="bold" text-anchor="middle">Identity Provider</text>
+  <text x="400" y="220" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="9" text-anchor="middle">(IdP / IAM Core)</text>
+  <text x="400" y="234" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">OIDC · SAML · OAuth 2.0 · mTLS</text>
+  <text x="400" y="248" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">PKI · SCIM · JIT Provisioning</text>
+
+  <!-- ===== LEFT COLUMN ENTITIES ===== -->
+
+  <!-- Human Users box -->
+  <rect x="30" y="84" width="158" height="88" rx="6" fill="#0a1929" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="30" y="84" width="158" height="18" rx="6" fill="#4a9eff" opacity="0.2"/>
+  <!-- User icon -->
+  <circle cx="108" cy="96" r="6" fill="none" stroke="#4a9eff" stroke-width="1.5"/>
+  <path d="M96,112 Q108,106 120,112" fill="none" stroke="#4a9eff" stroke-width="1.5"/>
+  <!-- MFA badge -->
+  <rect x="118" y="89" width="22" height="11" rx="3" fill="#eab308" opacity="0.85"/>
+  <text x="129" y="98" fill="#0d1117" font-family="'Courier New', monospace" font-size="6" font-weight="bold" text-anchor="middle">MFA</text>
+  <text x="109" y="120" fill="#4a9eff" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">Human Users</text>
+  <text x="109" y="133" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">SSO · MFA · RBAC</text>
+  <text x="109" y="145" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Federated Identity</text>
+  <text x="109" y="157" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Session Mgmt</text>
+
+  <!-- AI Model Instances box -->
+  <rect x="30" y="196" width="158" height="88" rx="6" fill="#0a1929" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="30" y="196" width="158" height="18" rx="6" fill="#8b5cf6" opacity="0.2"/>
+  <!-- Model card icon -->
+  <rect x="96" y="199" width="24" height="14" rx="2" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="108" y="209" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="6" text-anchor="middle">M-ID</text>
+  <text x="109" y="228" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">AI Model Instances</text>
+  <text x="109" y="242" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Model Cards · Version IDs</text>
+  <text x="109" y="254" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Cryptographic Attestation</text>
+  <text x="109" y="266" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Workload Identity</text>
+
+  <!-- Agent Pools box -->
+  <rect x="30" y="308" width="158" height="88" rx="6" fill="#0a1929" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="30" y="308" width="158" height="18" rx="6" fill="#22c55e" opacity="0.2"/>
+  <!-- Agent icon: hexagons -->
+  <polygon points="108,311 114,314 114,321 108,324 102,321 102,314" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="109" y="340" fill="#22c55e" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">Agent Pools</text>
+  <text x="109" y="354" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Scoped Permissions</text>
+  <text x="109" y="366" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Ephemeral Tokens</text>
+  <text x="109" y="378" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Least Privilege Scope</text>
+
+  <!-- ===== RIGHT COLUMN ENTITIES ===== -->
+
+  <!-- Service Accounts box -->
+  <rect x="612" y="84" width="158" height="88" rx="6" fill="#0a1929" stroke="#f97316" stroke-width="1.5"/>
+  <rect x="612" y="84" width="158" height="18" rx="6" fill="#f97316" opacity="0.2"/>
+  <!-- Key icon -->
+  <circle cx="691" cy="96" r="5" fill="none" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="696" y1="96" x2="704" y2="96" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="702" y1="96" x2="702" y2="100" stroke="#f97316" stroke-width="1.5"/>
+  <line x1="699" y1="96" x2="699" y2="99" stroke="#f97316" stroke-width="1.5"/>
+  <text x="691" y="120" fill="#f97316" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">Service Accounts</text>
+  <text x="691" y="134" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Non-Human Identities</text>
+  <text x="691" y="146" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Managed Identities</text>
+  <text x="691" y="158" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">PAM Controls</text>
+
+  <!-- API Clients box -->
+  <rect x="612" y="196" width="158" height="88" rx="6" fill="#0a1929" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="612" y="196" width="158" height="18" rx="6" fill="#eab308" opacity="0.2"/>
+  <!-- Certificate icon -->
+  <rect x="683" y="199" width="16" height="13" rx="1" fill="none" stroke="#eab308" stroke-width="1.5"/>
+  <line x1="686" y1="204" x2="696" y2="204" stroke="#eab308" stroke-width="1"/>
+  <line x1="686" y1="207" x2="696" y2="207" stroke="#eab308" stroke-width="1"/>
+  <text x="691" y="228" fill="#eab308" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">API Clients</text>
+  <text x="691" y="242" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">mTLS Certificates</text>
+  <text x="691" y="254" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">API Key Rotation</text>
+  <text x="691" y="266" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">JWT / OAuth Tokens</text>
+
+  <!-- Orphaned Accounts box (red warning) -->
+  <rect x="612" y="308" width="158" height="88" rx="6" fill="#1a0a0a" stroke="#ef4444" stroke-width="2" filter="url(#redGlow)"/>
+  <rect x="612" y="308" width="158" height="18" rx="6" fill="#ef4444" opacity="0.25"/>
+  <!-- Warning triangle -->
+  <polygon points="691,311 698,323 684,323" fill="none" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="691" y="321" fill="#ef4444" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">!</text>
+  <text x="691" y="340" fill="#ef4444" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">Orphaned Accounts</text>
+  <text x="691" y="354" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Stale Credentials</text>
+  <text x="691" y="366" fill="#94a3b8" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">Expired API Keys</text>
+  <text x="691" y="378" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" font-weight="bold" text-anchor="middle">⚠ HIGH RISK VECTOR</text>
+
+  <!-- ===== CONNECTION LINES to IdP ===== -->
+  <!-- Human Users → IdP -->
+  <line x1="188" y1="128" x2="305" y2="205" stroke="#4a9eff" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowBlue)" opacity="0.8"/>
+  <!-- AI Model → IdP -->
+  <line x1="188" y1="240" x2="305" y2="220" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPurple)" opacity="0.8"/>
+  <!-- Agent Pools → IdP -->
+  <line x1="188" y1="330" x2="305" y2="248" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGreen)" opacity="0.8"/>
+  <!-- IdP → Service Accounts -->
+  <line x1="495" y1="205" x2="612" y2="152" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowOrange)" opacity="0.8"/>
+  <!-- IdP → API Clients -->
+  <line x1="495" y1="222" x2="612" y2="240" stroke="#eab308" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowCyan)" opacity="0.8"/>
+  <!-- IdP → Orphaned (dashed red - risk path) -->
+  <line x1="495" y1="248" x2="612" y2="330" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrowRed)" opacity="0.7"/>
+
+  <!-- ===== IDENTITY LIFECYCLE FLOW (bottom) ===== -->
+  <rect x="20" y="430" width="760" height="78" rx="8" fill="#0a1929" stroke="#00d4ff" stroke-width="1" opacity="0.9"/>
+  <text x="400" y="447" fill="#00d4ff" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">IDENTITY LIFECYCLE</text>
+
+  <!-- Stage boxes -->
+  <!-- Provision -->
+  <rect x="34" y="454" width="120" height="42" rx="5" fill="#00d4ff" opacity="0.12"/>
+  <rect x="34" y="454" width="120" height="42" rx="5" fill="none" stroke="#00d4ff" stroke-width="1"/>
+  <text x="94" y="470" fill="#00d4ff" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">① Provision</text>
+  <text x="94" y="484" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">SCIM · JIT · Manual</text>
+  <text x="94" y="493" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Onboarding Workflows</text>
+
+  <!-- Arrow -->
+  <line x1="154" y1="475" x2="172" y2="475" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- Authenticate -->
+  <rect x="174" y="454" width="120" height="42" rx="5" fill="#4a9eff" opacity="0.12"/>
+  <rect x="174" y="454" width="120" height="42" rx="5" fill="none" stroke="#4a9eff" stroke-width="1"/>
+  <text x="234" y="470" fill="#4a9eff" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">② Authenticate</text>
+  <text x="234" y="484" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">MFA · Certs · Tokens</text>
+  <text x="234" y="493" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Workload Attestation</text>
+
+  <!-- Arrow -->
+  <line x1="294" y1="475" x2="312" y2="475" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- Authorize -->
+  <rect x="314" y="454" width="120" height="42" rx="5" fill="#22c55e" opacity="0.12"/>
+  <rect x="314" y="454" width="120" height="42" rx="5" fill="none" stroke="#22c55e" stroke-width="1"/>
+  <text x="374" y="470" fill="#22c55e" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">③ Authorize</text>
+  <text x="374" y="484" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">RBAC · ABAC · PBAC</text>
+  <text x="374" y="493" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Scope Enforcement</text>
+
+  <!-- Arrow -->
+  <line x1="434" y1="475" x2="452" y2="475" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Monitor -->
+  <rect x="454" y="454" width="120" height="42" rx="5" fill="#eab308" opacity="0.12"/>
+  <rect x="454" y="454" width="120" height="42" rx="5" fill="none" stroke="#eab308" stroke-width="1"/>
+  <text x="514" y="470" fill="#eab308" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">④ Monitor</text>
+  <text x="514" y="484" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Audit Logs · SIEM</text>
+  <text x="514" y="493" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Anomaly Detection</text>
+
+  <!-- Arrow -->
+  <line x1="574" y1="475" x2="592" y2="475" stroke="#eab308" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Deprovision -->
+  <rect x="594" y="454" width="172" height="42" rx="5" fill="#ef4444" opacity="0.12"/>
+  <rect x="594" y="454" width="172" height="42" rx="5" fill="none" stroke="#ef4444" stroke-width="1"/>
+  <text x="680" y="470" fill="#ef4444" font-family="'Courier New', monospace" font-size="10" font-weight="bold" text-anchor="middle">⑤ Deprovision</text>
+  <text x="680" y="484" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Revocation · Rotation</text>
+  <text x="680" y="493" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7.5" text-anchor="middle">Access Review · Retire</text>
+
+  <!-- ===== KEY MANAGEMENT INSET (bottom) ===== -->
+  <rect x="20" y="520" width="490" height="68" rx="7" fill="#0a1929" stroke="#eab308" stroke-width="1" opacity="0.9"/>
+  <text x="265" y="536" fill="#eab308" font-family="'Courier New', monospace" font-size="9" font-weight="bold" text-anchor="middle">KEY MANAGEMENT PIPELINE</text>
+
+  <!-- HSM box -->
+  <rect x="30" y="542" width="90" height="38" rx="4" fill="#0d1117" stroke="#eab308" stroke-width="1.2"/>
+  <text x="75" y="557" fill="#eab308" font-family="'Courier New', monospace" font-size="8" font-weight="bold" text-anchor="middle">HSM</text>
+  <text x="75" y="569" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Root Key Store</text>
+  <text x="75" y="577" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">FIPS 140-3</text>
+
+  <!-- Arrow -->
+  <line x1="120" y1="561" x2="138" y2="561" stroke="#eab308" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Key Vault box -->
+  <rect x="140" y="542" width="110" height="38" rx="4" fill="#0d1117" stroke="#eab308" stroke-width="1.2"/>
+  <text x="195" y="557" fill="#eab308" font-family="'Courier New', monospace" font-size="8" font-weight="bold" text-anchor="middle">Key Vault</text>
+  <text x="195" y="569" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">HashiCorp / AWS / Azure</text>
+  <text x="195" y="577" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Dynamic Secrets</text>
+
+  <!-- Arrow -->
+  <line x1="250" y1="561" x2="268" y2="561" stroke="#eab308" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Rotation Schedule box -->
+  <rect x="270" y="542" width="130" height="38" rx="4" fill="#0d1117" stroke="#eab308" stroke-width="1.2"/>
+  <text x="335" y="557" fill="#eab308" font-family="'Courier New', monospace" font-size="8" font-weight="bold" text-anchor="middle">Rotation Schedule</text>
+  <text x="335" y="569" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">90d API Keys · 30d Tokens</text>
+  <text x="335" y="577" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Zero-downtime Rollover</text>
+
+  <!-- Arrow -->
+  <line x1="400" y1="561" x2="418" y2="561" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Distribute box -->
+  <rect x="420" y="542" width="80" height="38" rx="4" fill="#0d1117" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="460" y="557" fill="#22c55e" font-family="'Courier New', monospace" font-size="8" font-weight="bold" text-anchor="middle">Distribute</text>
+  <text x="460" y="569" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Encrypted Delivery</text>
+  <text x="460" y="577" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Env Injection</text>
+
+  <!-- ===== JIT / PAM badge (right bottom) ===== -->
+  <rect x="524" y="520" width="256" height="68" rx="7" fill="#0a1929" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="652" y="536" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="9" font-weight="bold" text-anchor="middle">PRIVILEGED ACCESS MGMT</text>
+
+  <rect x="534" y="542" width="108" height="38" rx="4" fill="#0d1117" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="588" y="556" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="8" font-weight="bold" text-anchor="middle">JIT Provisioning</text>
+  <text x="588" y="568" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">On-demand access</text>
+  <text x="588" y="577" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Auto-expiry TTL</text>
+
+  <rect x="654" y="542" width="116" height="38" rx="4" fill="#0d1117" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="712" y="556" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" font-weight="bold" text-anchor="middle">Break-Glass PAM</text>
+  <text x="712" y="568" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Emergency access</text>
+  <text x="712" y="577" fill="#94a3b8" font-family="'Courier New', monospace" font-size="7" text-anchor="middle">Full audit trail</text>
+
+  <!-- Separator between JIT and PAM -->
+  <line x1="643" y1="542" x2="643" y2="580" stroke="#8b5cf6" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
+
+  <!-- ===== VERTICAL LABEL (left side) ===== -->
+  <text x="12" y="290" fill="#00d4ff" font-family="'Courier New', monospace" font-size="8" text-anchor="middle" transform="rotate(-90, 12, 290)" opacity="0.7">REQUESTORS</text>
+  <text x="789" y="290" fill="#00d4ff" font-family="'Courier New', monospace" font-size="8" text-anchor="middle" transform="rotate(90, 789, 290)" opacity="0.7">TARGETS</text>
+
+  <!-- Divider lines -->
+  <line x1="20" y1="420" x2="780" y2="420" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="4,4" opacity="0.6"/>
+
+  <!-- IdP label connector lines (decorative) -->
+  <line x1="305" y1="215" x2="20" y2="215" stroke="#00d4ff" stroke-width="0.5" opacity="0.15"/>
+  <line x1="495" y1="215" x2="780" y2="215" stroke="#00d4ff" stroke-width="0.5" opacity="0.15"/>
+</svg>

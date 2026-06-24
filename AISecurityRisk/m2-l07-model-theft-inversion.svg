@@ -1,0 +1,292 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+
+    <!-- Glow filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-gold" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Lock icon path reuse -->
+    <symbol id="lock-icon" viewBox="0 0 24 24">
+      <rect x="3" y="11" width="18" height="11" rx="2" fill="none" stroke="#eab308" stroke-width="2"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="#eab308" stroke-width="2"/>
+      <circle cx="12" cy="16" r="1.5" fill="#eab308"/>
+    </symbol>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Top gradient band -->
+  <rect width="800" height="3" y="0" fill="#00d4ff" opacity="0.6"/>
+
+  <!-- ===== TITLE ===== -->
+  <text x="400" y="32" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#ffffff">Model Theft, Inversion &amp; IP Risks</text>
+  <text x="400" y="50" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b9ab0">Attack Surface Analysis — AI Intellectual Property Security</text>
+
+  <!-- ===== CENTER: PROPRIETARY AI MODEL ===== -->
+  <!-- Outer glow ring -->
+  <circle cx="400" cy="290" r="68" fill="none" stroke="#eab308" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.5"/>
+  <!-- Model box background -->
+  <rect x="340" y="250" width="120" height="80" rx="12" fill="#1a1f2e" stroke="#eab308" stroke-width="2" filter="url(#glow-gold)"/>
+  <!-- Brain/neural icon -->
+  <ellipse cx="400" cy="278" rx="22" ry="15" fill="none" stroke="#eab308" stroke-width="1.5"/>
+  <line x1="385" y1="278" x2="415" y2="278" stroke="#eab308" stroke-width="1" opacity="0.7"/>
+  <line x1="400" y1="265" x2="400" y2="291" stroke="#eab308" stroke-width="1" opacity="0.7"/>
+  <circle cx="387" cy="272" r="2.5" fill="#eab308" opacity="0.8"/>
+  <circle cx="413" cy="272" r="2.5" fill="#eab308" opacity="0.8"/>
+  <circle cx="387" cy="284" r="2.5" fill="#eab308" opacity="0.8"/>
+  <circle cx="413" cy="284" r="2.5" fill="#eab308" opacity="0.8"/>
+  <!-- Lock icon over model -->
+  <use href="#lock-icon" x="385" y="290" width="30" height="22"/>
+  <!-- Model label -->
+  <text x="400" y="342" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#eab308">PROPRIETARY</text>
+  <text x="400" y="354" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#eab308">AI MODEL</text>
+  <!-- API endpoint indicator -->
+  <rect x="363" y="358" width="74" height="14" rx="3" fill="#1e2a1a" stroke="#22c55e" stroke-width="1"/>
+  <text x="400" y="368" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">API ENDPOINT</text>
+
+  <!-- ===== ATTACK 1: MODEL EXTRACTION (LEFT) ===== -->
+  <!-- Panel background -->
+  <rect x="10" y="68" width="220" height="200" rx="8" fill="#0f1620" stroke="#00d4ff" stroke-width="1.5"/>
+  <!-- Panel header -->
+  <rect x="10" y="68" width="220" height="28" rx="8" fill="#001a2e"/>
+  <rect x="10" y="88" width="220" height="8" fill="#001a2e"/>
+  <text x="120" y="87" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#00d4ff">ATTACK 1: MODEL EXTRACTION</text>
+
+  <!-- Step 1: Attacker -->
+  <rect x="20" y="106" width="70" height="30" rx="5" fill="#0f1a2e" stroke="#00d4ff" stroke-width="1"/>
+  <text x="55" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#00d4ff">ATTACKER</text>
+  <text x="55" y="130" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">crafts queries</text>
+
+  <!-- Arrow right -->
+  <line x1="92" y1="121" x2="116" y2="121" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="104" y="116" text-anchor="middle" font-family="monospace" font-size="7" fill="#00d4ff">1000s</text>
+
+  <!-- Step 2: API calls -->
+  <rect x="118" y="106" width="60" height="30" rx="5" fill="#001a2e" stroke="#00d4ff" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="148" y="118" text-anchor="middle" font-family="monospace" font-size="8" fill="#00d4ff">BLACK-BOX</text>
+  <text x="148" y="128" text-anchor="middle" font-family="monospace" font-size="8" fill="#00d4ff">QUERIES</text>
+
+  <!-- Arrow down -->
+  <line x1="148" y1="138" x2="148" y2="158" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Step 3: I/O collection -->
+  <rect x="118" y="160" width="60" height="30" rx="5" fill="#001a2e" stroke="#4a9eff" stroke-width="1"/>
+  <text x="148" y="172" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">INPUT/OUTPUT</text>
+  <text x="148" y="182" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">DATASET</text>
+
+  <!-- Arrow left-down -->
+  <line x1="116" y1="175" x2="92" y2="175" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Step 4: Surrogate model -->
+  <rect x="20" y="160" width="70" height="30" rx="5" fill="#0f1a2e" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="55" y="172" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">SURROGATE</text>
+  <text x="55" y="182" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">MODEL BUILT</text>
+
+  <!-- Cost badge -->
+  <rect x="20" y="202" width="200" height="22" rx="4" fill="#001a1a" stroke="#22c55e" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="120" y="211" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#22c55e">Cost: ~$300-2000 API calls</text>
+  <text x="120" y="220" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#8b9ab0">Accuracy: 70-95% of original</text>
+
+  <!-- Fidelity indicator -->
+  <rect x="20" y="234" width="200" height="22" rx="4" fill="#0f1620"/>
+  <text x="25" y="244" font-family="monospace" font-size="7.5" fill="#8b9ab0">Technique: Distillation / FGSM</text>
+  <text x="25" y="254" font-family="monospace" font-size="7.5" fill="#8b9ab0">Target: GPT-4, Gemini, Llama</text>
+
+  <!-- Arrow from Attack 1 to model -->
+  <line x1="230" y1="175" x2="338" y2="265" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrow-cyan)"/>
+
+  <!-- ===== ATTACK 2: MODEL INVERSION (BOTTOM LEFT) ===== -->
+  <rect x="10" y="290" width="220" height="195" rx="8" fill="#0f1620" stroke="#f97316" stroke-width="1.5"/>
+  <rect x="10" y="290" width="220" height="28" rx="8" fill="#1a1000"/>
+  <rect x="10" y="310" width="220" height="8" fill="#1a1000"/>
+  <text x="120" y="309" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#f97316">ATTACK 2: MODEL INVERSION</text>
+
+  <!-- Inversion diagram -->
+  <!-- Query arrow -->
+  <rect x="20" y="328" width="65" height="28" rx="5" fill="#1a0f00" stroke="#f97316" stroke-width="1"/>
+  <text x="52" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">REPEATED</text>
+  <text x="52" y="350" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">QUERIES</text>
+
+  <line x1="87" y1="342" x2="112" y2="342" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+
+  <rect x="114" y="328" width="65" height="28" rx="5" fill="#1a0f00" stroke="#4a9eff" stroke-width="1"/>
+  <text x="146" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">CONFIDENCE</text>
+  <text x="146" y="350" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">SCORES</text>
+
+  <!-- Reconstruction box -->
+  <line x1="146" y1="358" x2="146" y2="374" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+  <rect x="114" y="375" width="65" height="28" rx="5" fill="#1a0f00" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="146" y="386" text-anchor="middle" font-family="monospace" font-size="8" fill="#ef4444">TRAINING</text>
+  <text x="146" y="396" text-anchor="middle" font-family="monospace" font-size="8" fill="#ef4444">DATA LEAK</text>
+
+  <!-- Face reconstruction visual -->
+  <rect x="20" y="370" width="82" height="40" rx="4" fill="#0f0f1a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="61" y="384" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b5cf6">RECONSTRUCTED</text>
+  <!-- Pixelated face hint -->
+  <rect x="30" y="389" width="8" height="8" fill="#8b5cf6" opacity="0.3"/>
+  <rect x="39" y="389" width="8" height="8" fill="#8b5cf6" opacity="0.7"/>
+  <rect x="48" y="389" width="8" height="8" fill="#8b5cf6" opacity="0.5"/>
+  <rect x="57" y="389" width="8" height="8" fill="#8b5cf6" opacity="0.9"/>
+  <rect x="66" y="389" width="8" height="8" fill="#8b5cf6" opacity="0.4"/>
+  <rect x="75" y="389" width="8" height="8" fill="#8b5cf6" opacity="0.6"/>
+  <text x="61" y="408" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b5cf6">FACE / PII DATA</text>
+
+  <!-- Targets -->
+  <rect x="20" y="422" width="200" height="22" rx="4" fill="#1a0000" stroke="#ef4444" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="120" y="431" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#ef4444">Targets: Medical images, Faces, PII</text>
+  <text x="120" y="441" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#8b9ab0">Risk: HIPAA / GDPR violations</text>
+
+  <rect x="20" y="452" width="200" height="18" rx="4" fill="#0f1620"/>
+  <text x="120" y="464" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#8b9ab0">Fredrikson et al. 2015 — Pharmacogenetics</text>
+
+  <!-- Arrow from Attack 2 to model -->
+  <line x1="230" y1="365" x2="340" y2="310" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrow-orange)"/>
+
+  <!-- ===== ATTACK 3: MEMBERSHIP INFERENCE (BOTTOM RIGHT) ===== -->
+  <rect x="570" y="290" width="220" height="195" rx="8" fill="#0f1620" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="570" y="290" width="220" height="28" rx="8" fill="#150a2a"/>
+  <rect x="570" y="310" width="220" height="8" fill="#150a2a"/>
+  <text x="680" y="309" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#8b5cf6">ATTACK 3: MEMBERSHIP INFER.</text>
+
+  <!-- Binary decision flow -->
+  <rect x="608" y="328" width="84" height="28" rx="5" fill="#150a2a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="650" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6">TEST DATA POINT</text>
+  <text x="650" y="350" text-anchor="middle" font-family="monospace" font-size="8" fill="#e2e8f0">x = patient_record</text>
+
+  <line x1="650" y1="358" x2="650" y2="374" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+
+  <!-- Shadow model box -->
+  <rect x="608" y="375" width="84" height="28" rx="5" fill="#150a2a" stroke="#4a9eff" stroke-width="1"/>
+  <text x="650" y="387" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">SHADOW MODEL</text>
+  <text x="650" y="397" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">INFERENCE ATTACK</text>
+
+  <line x1="650" y1="405" x2="650" y2="419" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+
+  <!-- Decision diamond -->
+  <polygon points="650,420 680,438 650,456 620,438" fill="#0f0f20" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="650" y="436" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b5cf6">IN</text>
+  <text x="650" y="445" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b5cf6">TRAINING?</text>
+
+  <!-- YES branch -->
+  <line x1="681" y1="438" x2="730" y2="438" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+  <rect x="732" y="428" width="44" height="20" rx="3" fill="#1a0000" stroke="#ef4444" stroke-width="1"/>
+  <text x="754" y="441" text-anchor="middle" font-family="monospace" font-size="8" fill="#ef4444">YES ✓</text>
+
+  <!-- NO branch -->
+  <line x1="619" y1="438" x2="582" y2="438" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <rect x="576" y="428" width="44" height="20" rx="3" fill="#001a00" stroke="#22c55e" stroke-width="1"/>
+  <text x="598" y="441" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">NO ✗</text>
+
+  <!-- Risk note -->
+  <rect x="580" y="462" width="200" height="14" rx="3" fill="#1a0000" stroke="#ef4444" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="680" y="472" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#ef4444">Confirms: medical / legal / financial data used</text>
+
+  <rect x="580" y="478" width="200" height="14" rx="3" fill="#0f1620"/>
+  <text x="680" y="488" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#8b9ab0">Shokri et al. 2017 — 94% accuracy</text>
+
+  <!-- Arrow from Attack 3 to model -->
+  <line x1="570" y1="365" x2="462" y2="310" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrow-purple)"/>
+
+  <!-- ===== IP RISKS PANEL (TOP RIGHT) ===== -->
+  <rect x="570" y="68" width="220" height="200" rx="8" fill="#0f1620" stroke="#ef4444" stroke-width="1.5"/>
+  <rect x="570" y="68" width="220" height="28" rx="8" fill="#1a0000"/>
+  <rect x="570" y="88" width="220" height="8" fill="#1a0000"/>
+  <text x="680" y="87" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#ef4444">IP RISKS &amp; LEGAL EXPOSURE</text>
+
+  <!-- IP risk items -->
+  <rect x="580" y="106" width="200" height="22" rx="4" fill="#1a0000" stroke="#ef4444" stroke-width="1"/>
+  <text x="590" y="115" font-family="monospace" font-size="8" fill="#ef4444">COPYRIGHT:</text>
+  <text x="590" y="124" font-family="monospace" font-size="8" fill="#e2e8f0">Training data infringement</text>
+
+  <rect x="580" y="132" width="200" height="22" rx="4" fill="#1a0800" stroke="#f97316" stroke-width="1"/>
+  <text x="590" y="141" font-family="monospace" font-size="8" fill="#f97316">TRADE SECRET:</text>
+  <text x="590" y="150" font-family="monospace" font-size="8" fill="#e2e8f0">Model weights / architecture</text>
+
+  <rect x="580" y="158" width="200" height="22" rx="4" fill="#001a00" stroke="#22c55e" stroke-width="1"/>
+  <text x="590" y="167" font-family="monospace" font-size="8" fill="#22c55e">SAMSUNG LEAK (2023):</text>
+  <text x="590" y="176" font-family="monospace" font-size="8" fill="#e2e8f0">Source code → ChatGPT training</text>
+
+  <rect x="580" y="184" width="200" height="22" rx="4" fill="#0a001a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="590" y="193" font-family="monospace" font-size="8" fill="#8b5cf6">GETTY IMAGES CASE:</text>
+  <text x="590" y="202" font-family="monospace" font-size="8" fill="#e2e8f0">12M images scraped unlicensed</text>
+
+  <rect x="580" y="210" width="200" height="22" rx="4" fill="#001020" stroke="#4a9eff" stroke-width="1"/>
+  <text x="590" y="219" font-family="monospace" font-size="8" fill="#4a9eff">WATERMARKING:</text>
+  <text x="590" y="228" font-family="monospace" font-size="8" fill="#e2e8f0">Detect stolen model copies</text>
+
+  <rect x="580" y="236" width="200" height="22" rx="4" fill="#0f1620" stroke="#eab308" stroke-width="1"/>
+  <text x="590" y="245" font-family="monospace" font-size="8" fill="#eab308">RATE LIMITING DEFENSE:</text>
+  <text x="590" y="254" font-family="monospace" font-size="8" fill="#e2e8f0">Throttle + detect query patterns</text>
+
+  <!-- ===== DEFENSE LAYER (CENTER BOTTOM) ===== -->
+  <rect x="250" y="400" width="300" height="90" rx="8" fill="#0f1620" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="250" y="400" width="300" height="24" rx="8" fill="#001a00"/>
+  <rect x="250" y="416" width="300" height="8" fill="#001a00"/>
+  <text x="400" y="415" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#22c55e">DEFENSE STRATEGIES</text>
+
+  <!-- Defense items in 2 columns -->
+  <text x="262" y="433" font-family="monospace" font-size="8" fill="#22c55e">&#x2713; API Rate Limiting</text>
+  <text x="262" y="445" font-family="monospace" font-size="8" fill="#22c55e">&#x2713; Query Perturbation</text>
+  <text x="262" y="457" font-family="monospace" font-size="8" fill="#22c55e">&#x2713; Output Noise Injection</text>
+  <text x="262" y="469" font-family="monospace" font-size="8" fill="#22c55e">&#x2713; Model Watermarking</text>
+
+  <text x="412" y="433" font-family="monospace" font-size="8" fill="#4a9eff">&#x2713; Anomaly Detection</text>
+  <text x="412" y="445" font-family="monospace" font-size="8" fill="#4a9eff">&#x2713; Differential Privacy</text>
+  <text x="412" y="457" font-family="monospace" font-size="8" fill="#4a9eff">&#x2713; Fingerprinting</text>
+  <text x="412" y="469" font-family="monospace" font-size="8" fill="#4a9eff">&#x2713; Legal / EULA Controls</text>
+
+  <!-- ===== BOTTOM COST STRIP ===== -->
+  <rect x="10" y="500" width="780" height="48" rx="6" fill="#0f1620" stroke="#1e2a3a" stroke-width="1"/>
+  <!-- Cost estimates -->
+  <text x="130" y="518" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#00d4ff">MODEL EXTRACTION</text>
+  <text x="130" y="532" text-anchor="middle" font-family="monospace" font-size="9" fill="#eab308">$300 – $5,000</text>
+  <text x="130" y="542" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">API query cost</text>
+
+  <line x1="260" y1="502" x2="260" y2="546" stroke="#1e2a3a" stroke-width="1"/>
+
+  <text x="400" y="518" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#f97316">MODEL INVERSION</text>
+  <text x="400" y="532" text-anchor="middle" font-family="monospace" font-size="9" fill="#eab308">High compute</text>
+  <text x="400" y="542" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Gradient access required</text>
+
+  <line x1="540" y1="502" x2="540" y2="546" stroke="#1e2a3a" stroke-width="1"/>
+
+  <text x="670" y="518" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#8b5cf6">MEMBERSHIP INFERENCE</text>
+  <text x="670" y="532" text-anchor="middle" font-family="monospace" font-size="9" fill="#eab308">Low cost</text>
+  <text x="670" y="542" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b9ab0">Black-box feasible</text>
+
+  <!-- Bottom accent line -->
+  <rect width="800" height="3" y="597" fill="#ef4444" opacity="0.5"/>
+
+  <!-- Version tag -->
+  <text x="790" y="595" text-anchor="end" font-family="monospace" font-size="7" fill="#1e2a3a">AI Security Risk — Module 2 Lesson 7</text>
+</svg>

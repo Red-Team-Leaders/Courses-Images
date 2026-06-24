@@ -1,0 +1,464 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2936" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filters -->
+    <filter id="cyan-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="glow-sm" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <!-- Arrow marker -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#4b5563"/>
+    </marker>
+    <marker id="arrow-gold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#eab308"/>
+    </marker>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- ══════════════════════════════════════════════════
+       TITLE AREA
+  ═══════════════════════════════════════════════════ -->
+  <rect x="0" y="0" width="800" height="44" fill="#111827" opacity="0.9"/>
+  <line x1="0" y1="44" x2="800" y2="44" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="400" y="27" font-family="'Courier New',monospace" font-size="15" font-weight="bold"
+        fill="#ffffff" text-anchor="middle" letter-spacing="1">AI GOVERNANCE — ROLES &amp; RESPONSIBILITIES</text>
+  <text x="400" y="40" font-family="'Courier New',monospace" font-size="9"
+        fill="#00d4ff" text-anchor="middle" letter-spacing="2">RACI MATRIX &amp; ACCOUNTABILITY FRAMEWORK</text>
+
+  <!-- ══════════════════════════════════════════════════
+       RACI MATRIX (left/center panel)  — rows=activities, cols=roles
+  ═══════════════════════════════════════════════════ -->
+
+  <!-- Matrix header background -->
+  <rect x="6" y="50" width="530" height="345" rx="4" fill="#111827" opacity="0.85" stroke="#1e3a4a" stroke-width="1"/>
+
+  <!-- Column header background -->
+  <rect x="6" y="50" width="530" height="58" rx="4" fill="#0f2433" opacity="0.9"/>
+
+  <!-- Row header background strip -->
+  <rect x="6" y="50" width="118" height="345" rx="4" fill="#0f1f30" opacity="0.6"/>
+
+  <!-- ─── Activity labels (rows) ─── -->
+  <!-- Row Y positions: 120 150 180 210 240 270 300 330 360 -->
+  <text x="10" y="116" font-family="'Courier New',monospace" font-size="8" fill="#e2e8f0">Policy Creation</text>
+  <text x="10" y="146" font-family="'Courier New',monospace" font-size="8" fill="#e2e8f0">Risk Assessment</text>
+  <text x="10" y="176" font-family="'Courier New',monospace" font-size="8" fill="#e2e8f0">Model Approval</text>
+  <text x="10" y="206" font-family="'Courier New',monospace" font-size="8" fill="#e2e8f0">Data Governance</text>
+  <text x="10" y="236" font-family="'Courier New',monospace" font-size="8" fill="#e2e8f0">Incident Response</text>
+  <text x="10" y="266" font-family="'Courier New',monospace" font-size="8" fill="#e2e8f0">Audit &amp; Compliance</text>
+  <text x="10" y="296" font-family="'Courier New',monospace" font-size="8" fill="#e2e8f0">Model Monitoring</text>
+  <text x="10" y="326" font-family="'Courier New',monospace" font-size="8" fill="#e2e8f0">Training &amp; Awareness</text>
+  <text x="10" y="356" font-family="'Courier New',monospace" font-size="8" fill="#e2e8f0">Ethics Review</text>
+  <text x="10" y="386" font-family="'Courier New',monospace" font-size="8" fill="#e2e8f0">Vendor Assessment</text>
+
+  <!-- Horizontal dividers for rows -->
+  <line x1="6" y1="108" x2="536" y2="108" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="6" y1="138" x2="536" y2="138" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="6" y1="168" x2="536" y2="168" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="6" y1="198" x2="536" y2="198" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="6" y1="228" x2="536" y2="228" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="6" y1="258" x2="536" y2="258" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="6" y1="288" x2="536" y2="288" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="6" y1="318" x2="536" y2="318" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="6" y1="348" x2="536" y2="348" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="6" y1="378" x2="536" y2="378" stroke="#1e3a4a" stroke-width="0.5"/>
+
+  <!-- ─── Column headers (role names) ─── -->
+  <!-- Col X centers: 127 168 209 250 291 332 373 414 455 496 (width=41 each) -->
+  <!-- header line -->
+  <line x1="124" y1="50" x2="124" y2="395" stroke="#1e3a4a" stroke-width="1"/>
+
+  <!-- Col headers — rotated role names -->
+  <!-- AI Owner -->
+  <rect x="124" y="50" width="41" height="58" fill="#1a2a3a" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="144" y="104" font-family="'Courier New',monospace" font-size="8" fill="#00d4ff"
+        text-anchor="middle" transform="rotate(-60,144,104)">AI Owner</text>
+
+  <!-- Model Owner -->
+  <rect x="165" y="50" width="41" height="58" fill="#1a2a3a" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="185" y="104" font-family="'Courier New',monospace" font-size="8" fill="#4a9eff"
+        text-anchor="middle" transform="rotate(-60,185,104)">Model Owner</text>
+
+  <!-- Data Owner -->
+  <rect x="206" y="50" width="41" height="58" fill="#1a2a3a" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="226" y="104" font-family="'Courier New',monospace" font-size="8" fill="#22c55e"
+        text-anchor="middle" transform="rotate(-60,226,104)">Data Owner</text>
+
+  <!-- Risk Owner -->
+  <rect x="247" y="50" width="41" height="58" fill="#1a2a3a" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="267" y="104" font-family="'Courier New',monospace" font-size="8" fill="#f97316"
+        text-anchor="middle" transform="rotate(-60,267,104)">Risk Owner</text>
+
+  <!-- Compliance -->
+  <rect x="288" y="50" width="41" height="58" fill="#1a2a3a" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="308" y="104" font-family="'Courier New',monospace" font-size="8" fill="#8b5cf6"
+        text-anchor="middle" transform="rotate(-60,308,104)">Compliance</text>
+
+  <!-- Security Officer -->
+  <rect x="329" y="50" width="41" height="58" fill="#1a2a3a" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="349" y="104" font-family="'Courier New',monospace" font-size="8" fill="#ef4444"
+        text-anchor="middle" transform="rotate(-60,349,104)">Sec Officer</text>
+
+  <!-- Legal Counsel -->
+  <rect x="370" y="50" width="41" height="58" fill="#1a2a3a" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="390" y="104" font-family="'Courier New',monospace" font-size="8" fill="#eab308"
+        text-anchor="middle" transform="rotate(-60,390,104)">Legal Counsel</text>
+
+  <!-- AI Committee -->
+  <rect x="411" y="50" width="41" height="58" fill="#1a2a3a" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="431" y="104" font-family="'Courier New',monospace" font-size="8" fill="#00d4ff"
+        text-anchor="middle" transform="rotate(-60,431,104)">AI Committee</text>
+
+  <!-- Business Owner -->
+  <rect x="452" y="50" width="41" height="58" fill="#1a2a3a" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="472" y="104" font-family="'Courier New',monospace" font-size="8" fill="#4a9eff"
+        text-anchor="middle" transform="rotate(-60,472,104)">Biz Owner</text>
+
+  <!-- Data Scientist -->
+  <rect x="493" y="50" width="41" height="58" fill="#1a2a3a" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="513" y="104" font-family="'Courier New',monospace" font-size="8" fill="#22c55e"
+        text-anchor="middle" transform="rotate(-60,513,104)">Data Scientist</text>
+
+  <!-- Vertical col dividers -->
+  <line x1="165" y1="108" x2="165" y2="395" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="206" y1="108" x2="206" y2="395" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="247" y1="108" x2="247" y2="395" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="288" y1="108" x2="288" y2="395" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="329" y1="108" x2="329" y2="395" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="370" y1="108" x2="370" y2="395" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="411" y1="108" x2="411" y2="395" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="452" y1="108" x2="452" y2="395" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="493" y1="108" x2="493" y2="395" stroke="#1e3a4a" stroke-width="0.5"/>
+  <line x1="534" y1="108" x2="534" y2="395" stroke="#1e3a4a" stroke-width="0.5"/>
+
+  <!-- ─── RACI CELLS ─── -->
+  <!-- Helper: cell X centers: 144 185 226 267 308 349 390 431 472 513 -->
+  <!-- Row Y centers: 123 153 183 213 243 273 303 333 363 386 -->
+
+  <!-- RACI color macros: R=#ef4444, A=#eab308, C=#00d4ff, I=#22c55e -->
+  <!-- Font size 9, bold -->
+
+  <!-- ROW 1: Policy Creation -->
+  <!-- AI Owner=A, Model Owner=C, Data Owner=C, Risk Owner=C, Compliance=R, Sec=C, Legal=C, Committee=A, Biz=I, DS=I -->
+  <text x="144" y="127" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="185" y="127" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="226" y="127" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="267" y="127" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="308" y="127" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="349" y="127" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="390" y="127" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="431" y="127" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="472" y="127" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="513" y="127" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+
+  <!-- ROW 2: Risk Assessment -->
+  <text x="144" y="157" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="185" y="157" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="226" y="157" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="267" y="157" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="308" y="157" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="349" y="157" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="390" y="157" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="431" y="157" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="472" y="157" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="513" y="157" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+
+  <!-- ROW 3: Model Approval -->
+  <text x="144" y="187" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="185" y="187" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="226" y="187" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="267" y="187" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="308" y="187" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="349" y="187" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="390" y="187" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="431" y="187" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="472" y="187" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="513" y="187" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+
+  <!-- ROW 4: Data Governance -->
+  <text x="144" y="217" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="185" y="217" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="226" y="217" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="267" y="217" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="308" y="217" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="349" y="217" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="390" y="217" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="431" y="217" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="472" y="217" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="513" y="217" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+
+  <!-- ROW 5: Incident Response -->
+  <text x="144" y="247" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="185" y="247" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="226" y="247" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="267" y="247" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="308" y="247" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="349" y="247" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="390" y="247" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="431" y="247" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="472" y="247" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="513" y="247" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+
+  <!-- ROW 6: Audit & Compliance -->
+  <text x="144" y="277" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="185" y="277" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="226" y="277" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="267" y="277" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="308" y="277" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="349" y="277" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="390" y="277" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="431" y="277" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="472" y="277" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="513" y="277" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+
+  <!-- ROW 7: Model Monitoring -->
+  <text x="144" y="307" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="185" y="307" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="226" y="307" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="267" y="307" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="308" y="307" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="349" y="307" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="390" y="307" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="431" y="307" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="472" y="307" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="513" y="307" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+
+  <!-- ROW 8: Training & Awareness -->
+  <text x="144" y="337" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="185" y="337" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="226" y="337" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="267" y="337" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="308" y="337" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="349" y="337" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="390" y="337" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="431" y="337" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="472" y="337" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="513" y="337" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+
+  <!-- ROW 9: Ethics Review -->
+  <text x="144" y="367" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="185" y="367" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="226" y="367" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="267" y="367" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="308" y="367" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="349" y="367" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="390" y="367" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="431" y="367" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="472" y="367" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="513" y="367" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+
+  <!-- ROW 10: Vendor Assessment -->
+  <text x="144" y="390" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="185" y="390" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="226" y="390" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="267" y="390" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="308" y="390" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="349" y="390" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">R</text>
+  <text x="390" y="390" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">C</text>
+  <text x="431" y="390" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+  <text x="472" y="390" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">A</text>
+  <text x="513" y="390" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">I</text>
+
+  <!-- ─── RACI Legend ─── -->
+  <rect x="6" y="398" width="530" height="22" rx="3" fill="#0f1f30" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="14" y="412" font-family="'Courier New',monospace" font-size="8.5" fill="#9ca3af">LEGEND:</text>
+  <text x="68" y="412" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#ef4444">R</text>
+  <text x="79" y="412" font-family="'Courier New',monospace" font-size="8" fill="#9ca3af">= Responsible</text>
+  <text x="170" y="412" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#eab308">A</text>
+  <text x="181" y="412" font-family="'Courier New',monospace" font-size="8" fill="#9ca3af">= Accountable</text>
+  <text x="274" y="412" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#00d4ff">C</text>
+  <text x="285" y="412" font-family="'Courier New',monospace" font-size="8" fill="#9ca3af">= Consulted</text>
+  <text x="370" y="412" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#22c55e">I</text>
+  <text x="381" y="412" font-family="'Courier New',monospace" font-size="8" fill="#9ca3af">= Informed</text>
+
+  <!-- ══════════════════════════════════════════════════
+       RIGHT PANEL: Org Hierarchy + Role Key Responsibilities
+  ═══════════════════════════════════════════════════ -->
+  <rect x="542" y="50" width="252" height="550" rx="4" fill="#111827" opacity="0.85" stroke="#1e3a4a" stroke-width="1"/>
+
+  <!-- Panel title -->
+  <rect x="542" y="50" width="252" height="22" rx="4" fill="#0f2433" opacity="0.9"/>
+  <text x="668" y="65" font-family="'Courier New',monospace" font-size="9" fill="#00d4ff" text-anchor="middle" letter-spacing="1">REPORTING HIERARCHY</text>
+  <line x1="542" y1="72" x2="794" y2="72" stroke="#1e3a4a" stroke-width="0.5"/>
+
+  <!-- ─── ORG CHART ─── -->
+  <!-- Board / Executive -->
+  <rect x="608" y="78" width="120" height="22" rx="3" fill="#1a1a2e" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="668" y="93" font-family="'Courier New',monospace" font-size="8" fill="#8b5cf6" text-anchor="middle" font-weight="bold">Board / C-Suite</text>
+
+  <!-- AI Committee -->
+  <line x1="668" y1="100" x2="668" y2="110" stroke="#4b5563" stroke-width="1" marker-end="url(#arrow-gray)"/>
+  <rect x="605" y="110" width="126" height="22" rx="3" fill="#1a1a2e" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="668" y="125" font-family="'Courier New',monospace" font-size="8" fill="#00d4ff" text-anchor="middle" font-weight="bold">AI Ethics Committee</text>
+
+  <!-- Three branches from AI Committee -->
+  <line x1="668" y1="132" x2="668" y2="142" stroke="#4b5563" stroke-width="1"/>
+  <line x1="590" y1="142" x2="746" y2="142" stroke="#4b5563" stroke-width="1"/>
+
+  <!-- AI Owner branch -->
+  <line x1="590" y1="142" x2="590" y2="152" stroke="#4b5563" stroke-width="1" marker-end="url(#arrow-gray)"/>
+  <rect x="551" y="152" width="78" height="22" rx="3" fill="#1a1a2e" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="590" y="162" font-family="'Courier New',monospace" font-size="7.5" fill="#4a9eff" text-anchor="middle" font-weight="bold">AI Owner</text>
+  <text x="590" y="171" font-family="'Courier New',monospace" font-size="6.5" fill="#6b7280" text-anchor="middle">(Strategic)</text>
+
+  <!-- Risk/Compliance branch -->
+  <line x1="668" y1="142" x2="668" y2="152" stroke="#4b5563" stroke-width="1" marker-end="url(#arrow-gray)"/>
+  <rect x="627" y="152" width="82" height="22" rx="3" fill="#1a1a2e" stroke="#f97316" stroke-width="1.5"/>
+  <text x="668" y="162" font-family="'Courier New',monospace" font-size="7.5" fill="#f97316" text-anchor="middle" font-weight="bold">Risk Owner</text>
+  <text x="668" y="171" font-family="'Courier New',monospace" font-size="6.5" fill="#6b7280" text-anchor="middle">(Enterprise)</text>
+
+  <!-- Legal branch -->
+  <line x1="746" y1="142" x2="746" y2="152" stroke="#4b5563" stroke-width="1" marker-end="url(#arrow-gray)"/>
+  <rect x="706" y="152" width="80" height="22" rx="3" fill="#1a1a2e" stroke="#eab308" stroke-width="1.5"/>
+  <text x="746" y="162" font-family="'Courier New',monospace" font-size="7.5" fill="#eab308" text-anchor="middle" font-weight="bold">Legal Counsel</text>
+  <text x="746" y="171" font-family="'Courier New',monospace" font-size="6.5" fill="#6b7280" text-anchor="middle">(Liability)</text>
+
+  <!-- Under AI Owner: Model Owner + Data Owner -->
+  <line x1="590" y1="174" x2="590" y2="185" stroke="#4b5563" stroke-width="1"/>
+  <line x1="562" y1="185" x2="618" y2="185" stroke="#4b5563" stroke-width="1"/>
+
+  <line x1="562" y1="185" x2="562" y2="195" stroke="#4b5563" stroke-width="1" marker-end="url(#arrow-gray)"/>
+  <rect x="543" y="195" width="38" height="20" rx="2" fill="#1a1a2e" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="562" y="205" font-family="'Courier New',monospace" font-size="7" fill="#22c55e" text-anchor="middle" font-weight="bold">Model</text>
+  <text x="562" y="213" font-family="'Courier New',monospace" font-size="6.5" fill="#6b7280" text-anchor="middle">Owner</text>
+
+  <line x1="618" y1="185" x2="618" y2="195" stroke="#4b5563" stroke-width="1" marker-end="url(#arrow-gray)"/>
+  <rect x="598" y="195" width="38" height="20" rx="2" fill="#1a1a2e" stroke="#f97316" stroke-width="1.2"/>
+  <text x="617" y="205" font-family="'Courier New',monospace" font-size="7" fill="#f97316" text-anchor="middle" font-weight="bold">Data</text>
+  <text x="617" y="213" font-family="'Courier New',monospace" font-size="6.5" fill="#6b7280" text-anchor="middle">Owner</text>
+
+  <!-- Under Risk Owner: Compliance + Security -->
+  <line x1="668" y1="174" x2="668" y2="185" stroke="#4b5563" stroke-width="1"/>
+  <line x1="646" y1="185" x2="690" y2="185" stroke="#4b5563" stroke-width="1"/>
+
+  <line x1="646" y1="185" x2="646" y2="195" stroke="#4b5563" stroke-width="1" marker-end="url(#arrow-gray)"/>
+  <rect x="626" y="195" width="40" height="20" rx="2" fill="#1a1a2e" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="646" y="205" font-family="'Courier New',monospace" font-size="7" fill="#8b5cf6" text-anchor="middle" font-weight="bold">Compl.</text>
+  <text x="646" y="213" font-family="'Courier New',monospace" font-size="6.5" fill="#6b7280" text-anchor="middle">Officer</text>
+
+  <line x1="690" y1="185" x2="690" y2="195" stroke="#4b5563" stroke-width="1" marker-end="url(#arrow-gray)"/>
+  <rect x="670" y="195" width="40" height="20" rx="2" fill="#1a1a2e" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="690" y="205" font-family="'Courier New',monospace" font-size="7" fill="#ef4444" text-anchor="middle" font-weight="bold">Sec.</text>
+  <text x="690" y="213" font-family="'Courier New',monospace" font-size="6.5" fill="#6b7280" text-anchor="middle">Officer</text>
+
+  <!-- ─── KEY RESPONSIBILITIES ─── -->
+  <line x1="542" y1="228" x2="794" y2="228" stroke="#1e3a4a" stroke-width="0.8"/>
+  <text x="668" y="242" font-family="'Courier New',monospace" font-size="9" fill="#00d4ff" text-anchor="middle" letter-spacing="1">KEY RESPONSIBILITIES</text>
+  <line x1="542" y1="248" x2="794" y2="248" stroke="#1e3a4a" stroke-width="0.5"/>
+
+  <!-- AI Owner -->
+  <rect x="548" y="252" width="8" height="8" rx="1" fill="#4a9eff"/>
+  <text x="560" y="260" font-family="'Courier New',monospace" font-size="8" fill="#4a9eff" font-weight="bold">AI Owner</text>
+  <text x="548" y="272" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Strategic AI alignment &amp; use-case approval</text>
+  <text x="548" y="283" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Policy sign-off &amp; budget authority</text>
+  <text x="548" y="294" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Executive escalation point</text>
+
+  <!-- Model Owner -->
+  <rect x="548" y="302" width="8" height="8" rx="1" fill="#22c55e"/>
+  <text x="560" y="310" font-family="'Courier New',monospace" font-size="8" fill="#22c55e" font-weight="bold">Model Owner</text>
+  <text x="548" y="322" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Model lifecycle &amp; drift monitoring</text>
+  <text x="548" y="333" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Performance &amp; accuracy SLAs</text>
+  <text x="548" y="344" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Retraining &amp; version control</text>
+
+  <!-- Data Owner -->
+  <rect x="548" y="352" width="8" height="8" rx="1" fill="#f97316"/>
+  <text x="560" y="360" font-family="'Courier New',monospace" font-size="8" fill="#f97316" font-weight="bold">Data Owner</text>
+  <text x="548" y="372" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Data quality &amp; lineage</text>
+  <text x="548" y="383" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Access control &amp; PII classification</text>
+  <text x="548" y="394" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Privacy compliance (GDPR/CCPA)</text>
+
+  <!-- Risk Owner -->
+  <rect x="548" y="402" width="8" height="8" rx="1" fill="#ef4444"/>
+  <text x="560" y="410" font-family="'Courier New',monospace" font-size="8" fill="#ef4444" font-weight="bold">Risk Owner</text>
+  <text x="548" y="422" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Enterprise risk appetite definition</text>
+  <text x="548" y="433" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Risk register &amp; KRI tracking</text>
+  <text x="548" y="444" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Residual risk acceptance</text>
+
+  <!-- Compliance + Security -->
+  <rect x="548" y="452" width="8" height="8" rx="1" fill="#8b5cf6"/>
+  <text x="560" y="460" font-family="'Courier New',monospace" font-size="8" fill="#8b5cf6" font-weight="bold">Compliance Officer</text>
+  <text x="548" y="472" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Regulatory mapping (EU AI Act, NIST)</text>
+  <text x="548" y="483" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Audit coordination &amp; evidence</text>
+
+  <rect x="548" y="491" width="8" height="8" rx="1" fill="#ef4444"/>
+  <text x="560" y="499" font-family="'Courier New',monospace" font-size="8" fill="#ef4444" font-weight="bold">Security Officer</text>
+  <text x="548" y="511" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Threat modelling &amp; red-teaming AI</text>
+  <text x="548" y="522" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• MLSecOps &amp; supply-chain controls</text>
+
+  <!-- ══════════════════════════════════════════════════
+       BOTTOM PANEL: Accountability Flow + Escalation Path
+  ═══════════════════════════════════════════════════ -->
+  <rect x="6" y="428" width="530" height="162" rx="4" fill="#111827" opacity="0.85" stroke="#1e3a4a" stroke-width="1"/>
+  <rect x="6" y="428" width="530" height="22" rx="4" fill="#0f2433" opacity="0.9"/>
+  <text x="271" y="443" font-family="'Courier New',monospace" font-size="9" fill="#00d4ff" text-anchor="middle" letter-spacing="1">SEGREGATION OF DUTIES &amp; ESCALATION PATH</text>
+  <line x1="6" y1="450" x2="536" y2="450" stroke="#1e3a4a" stroke-width="0.5"/>
+
+  <!-- Escalation Flow arrows -->
+  <!-- Row 1: Boxes for roles with arrows -->
+  <!-- Data Scientist → Model Owner → AI Owner → AI Committee → Board -->
+
+  <!-- Step boxes -->
+  <rect x="14" y="458" width="76" height="34" rx="3" fill="#1a2a1a" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="52" y="472" font-family="'Courier New',monospace" font-size="7.5" fill="#22c55e" text-anchor="middle" font-weight="bold">Data</text>
+  <text x="52" y="483" font-family="'Courier New',monospace" font-size="7.5" fill="#22c55e" text-anchor="middle" font-weight="bold">Scientist</text>
+
+  <line x1="90" y1="475" x2="104" y2="475" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="104" y="458" width="76" height="34" rx="3" fill="#1a1a2e" stroke="#4a9eff" stroke-width="1.2"/>
+  <text x="142" y="472" font-family="'Courier New',monospace" font-size="7.5" fill="#4a9eff" text-anchor="middle" font-weight="bold">Model</text>
+  <text x="142" y="483" font-family="'Courier New',monospace" font-size="7.5" fill="#4a9eff" text-anchor="middle" font-weight="bold">Owner</text>
+
+  <line x1="180" y1="475" x2="194" y2="475" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="194" y="458" width="76" height="34" rx="3" fill="#1a1a2e" stroke="#eab308" stroke-width="1.2"/>
+  <text x="232" y="472" font-family="'Courier New',monospace" font-size="7.5" fill="#eab308" text-anchor="middle" font-weight="bold">AI</text>
+  <text x="232" y="483" font-family="'Courier New',monospace" font-size="7.5" fill="#eab308" text-anchor="middle" font-weight="bold">Owner</text>
+
+  <line x1="270" y1="475" x2="284" y2="475" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="284" y="458" width="80" height="34" rx="3" fill="#1a1a2e" stroke="#00d4ff" stroke-width="1.2"/>
+  <text x="324" y="472" font-family="'Courier New',monospace" font-size="7.5" fill="#00d4ff" text-anchor="middle" font-weight="bold">AI Ethics</text>
+  <text x="324" y="483" font-family="'Courier New',monospace" font-size="7.5" fill="#00d4ff" text-anchor="middle" font-weight="bold">Committee</text>
+
+  <line x1="364" y1="475" x2="378" y2="475" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="378" y="458" width="76" height="34" rx="3" fill="#1a1a2e" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="416" y="472" font-family="'Courier New',monospace" font-size="7.5" fill="#8b5cf6" text-anchor="middle" font-weight="bold">Board /</text>
+  <text x="416" y="483" font-family="'Courier New',monospace" font-size="7.5" fill="#8b5cf6" text-anchor="middle" font-weight="bold">Regulator</text>
+
+  <!-- Escalation label -->
+  <text x="270" y="506" font-family="'Courier New',monospace" font-size="8" fill="#6b7280" text-anchor="middle">─── Escalation Path: Operational → Tactical → Strategic ───</text>
+
+  <!-- Segregation of duties rules -->
+  <line x1="12" y1="514" x2="530" y2="514" stroke="#1e3a4a" stroke-width="0.5"/>
+  <text x="14" y="528" font-family="'Courier New',monospace" font-size="8" fill="#eab308" font-weight="bold">Segregation Rules:</text>
+  <text x="14" y="540" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Model Owner ≠ Model Approver  |  Data Owner ≠ Model Trainer (same data)</text>
+  <text x="14" y="552" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Security Officer ≠ Compliance Officer (independence required)</text>
+  <text x="14" y="564" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• AI Owner cannot unilaterally approve high-risk use cases (committee required)</text>
+  <text x="14" y="578" font-family="'Courier New',monospace" font-size="7.5" fill="#9ca3af">• Data Scientist must not have write-access to production model registry</text>
+
+  <!-- Bottom border line -->
+  <line x1="0" y1="597" x2="800" y2="597" stroke="#00d4ff" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Module badge -->
+  <rect x="540" y="532" width="254" height="60" rx="4" fill="#0f1f30" stroke="#1e3a4a" stroke-width="0.8"/>
+  <text x="667" y="549" font-family="'Courier New',monospace" font-size="8" fill="#6b7280" text-anchor="middle">MODULE 3 · LESSON 2</text>
+  <text x="667" y="563" font-family="'Courier New',monospace" font-size="9" fill="#00d4ff" text-anchor="middle" font-weight="bold">AI SECURITY RISK</text>
+  <text x="667" y="577" font-family="'Courier New',monospace" font-size="7.5" fill="#4b5563" text-anchor="middle">Roles &amp; Responsibilities Framework</text>
+  <text x="667" y="589" font-family="'Courier New',monospace" font-size="7" fill="#374151" text-anchor="middle">NIST AI RMF · EU AI Act · ISO/IEC 42001</text>
+</svg>

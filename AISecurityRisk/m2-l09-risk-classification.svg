@@ -1,0 +1,385 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+
+    <!-- Arrow markers -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowWhite" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#e2e8f0"/>
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="gradHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0d1117;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#1a2535;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0d1117;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="gradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.05"/>
+    </linearGradient>
+    <linearGradient id="gradRisk" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.8"/>
+      <stop offset="50%" style="stop-color:#eab308;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.8"/>
+    </linearGradient>
+
+    <!-- Cell color gradients for risk matrix -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glowStrong">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Header area -->
+  <rect x="0" y="0" width="800" height="70" fill="url(#gradHeader)"/>
+  <rect x="0" y="68" width="800" height="2" fill="#00d4ff" opacity="0.6"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-family="'Courier New', monospace" font-size="20" font-weight="bold" fill="#ffffff">Risk Classification Framework</text>
+  <text x="400" y="52" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" fill="#00d4ff">Criticality · Probability · Impact · AI Security Risk</text>
+
+  <!-- ============================= -->
+  <!-- LEFT: 5x5 RISK MATRIX        -->
+  <!-- ============================= -->
+
+  <!-- Matrix title -->
+  <text x="195" y="92" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#e2e8f0">AI Risk Heat Matrix</text>
+
+  <!-- Matrix grid - 5 columns x 5 rows, each cell 44x40 -->
+  <!-- Cell colors: low=green, medium-low=yellow-green, medium=yellow, high=orange, critical=red -->
+  <!-- Row 5 (Prob=Very High) -->
+  <rect x="80"  y="100" width="44" height="40" fill="#22c55e" opacity="0.35" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="124" y="100" width="44" height="40" fill="#eab308" opacity="0.45" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="168" y="100" width="44" height="40" fill="#f97316" opacity="0.55" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="212" y="100" width="44" height="40" fill="#ef4444" opacity="0.65" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="256" y="100" width="44" height="40" fill="#ef4444" opacity="0.85" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- Row 4 (Prob=High) -->
+  <rect x="80"  y="140" width="44" height="40" fill="#22c55e" opacity="0.25" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="124" y="140" width="44" height="40" fill="#22c55e" opacity="0.45" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="168" y="140" width="44" height="40" fill="#eab308" opacity="0.55" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="212" y="140" width="44" height="40" fill="#f97316" opacity="0.65" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="256" y="140" width="44" height="40" fill="#ef4444" opacity="0.75" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- Row 3 (Prob=Med) -->
+  <rect x="80"  y="180" width="44" height="40" fill="#22c55e" opacity="0.25" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="124" y="180" width="44" height="40" fill="#22c55e" opacity="0.35" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="168" y="180" width="44" height="40" fill="#eab308" opacity="0.45" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="212" y="180" width="44" height="40" fill="#eab308" opacity="0.60" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="256" y="180" width="44" height="40" fill="#f97316" opacity="0.70" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- Row 2 (Prob=Low) -->
+  <rect x="80"  y="220" width="44" height="40" fill="#22c55e" opacity="0.20" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="124" y="220" width="44" height="40" fill="#22c55e" opacity="0.25" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="168" y="220" width="44" height="40" fill="#22c55e" opacity="0.40" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="212" y="220" width="44" height="40" fill="#eab308" opacity="0.50" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="256" y="220" width="44" height="40" fill="#f97316" opacity="0.60" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- Row 1 (Prob=Very Low) -->
+  <rect x="80"  y="260" width="44" height="40" fill="#22c55e" opacity="0.15" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="124" y="260" width="44" height="40" fill="#22c55e" opacity="0.20" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="168" y="260" width="44" height="40" fill="#22c55e" opacity="0.30" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="212" y="260" width="44" height="40" fill="#22c55e" opacity="0.40" stroke="#1e2a3a" stroke-width="1"/>
+  <rect x="256" y="260" width="44" height="40" fill="#eab308" opacity="0.50" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- Matrix border -->
+  <rect x="80" y="100" width="220" height="200" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Y-Axis Label (Probability) -->
+  <text transform="translate(68,200) rotate(-90)" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#00d4ff">PROBABILITY →</text>
+  <!-- Y-Axis ticks -->
+  <text x="76" y="124" text-anchor="end" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">V.Hi</text>
+  <text x="76" y="164" text-anchor="end" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">High</text>
+  <text x="76" y="204" text-anchor="end" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Med</text>
+  <text x="76" y="244" text-anchor="end" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Low</text>
+  <text x="76" y="284" text-anchor="end" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">V.Lo</text>
+
+  <!-- X-Axis Label (Impact) -->
+  <text x="190" y="315" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#00d4ff">→ IMPACT</text>
+  <!-- X-Axis ticks -->
+  <text x="102" y="310" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">V.Lo</text>
+  <text x="146" y="310" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Low</text>
+  <text x="190" y="310" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Med</text>
+  <text x="234" y="310" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">High</text>
+  <text x="278" y="310" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">V.Hi</text>
+
+  <!-- Risk Score labels in cells (selected) -->
+  <text x="102" y="124" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">5</text>
+  <text x="146" y="124" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">10</text>
+  <text x="190" y="124" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">15</text>
+  <text x="234" y="124" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">20</text>
+  <text x="278" y="124" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">25</text>
+  <text x="278" y="164" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">20</text>
+  <text x="102" y="284" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">1</text>
+  <text x="278" y="284" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">5</text>
+
+  <!-- AI Risk Plotted Points on Matrix -->
+  <!-- 1: Medical Hallucination (High Prob=row4, Very High Impact=col5) → x=278, y=160 -->
+  <circle cx="278" cy="160" r="7" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" filter="url(#glowStrong)"/>
+  <text x="278" y="163" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">H</text>
+
+  <!-- 2: Model Theft (Very Low Prob=row1, High Impact=col4) → x=234, y=280 -->
+  <circle cx="234" cy="280" r="7" fill="#f97316" stroke="#ffffff" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="234" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">M</text>
+
+  <!-- 3: Bias in Hiring (Med Prob=row3, High Impact=col4) → x=234, y=200 -->
+  <circle cx="234" cy="200" r="7" fill="#eab308" stroke="#ffffff" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="234" y="203" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">B</text>
+
+  <!-- 4: Prompt Injection (Very High Prob=row5, Med Impact=col3) → x=190, y=120 -->
+  <circle cx="190" cy="120" r="7" fill="#f97316" stroke="#ffffff" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="190" y="123" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">P</text>
+
+  <!-- 5: Data Poisoning (Low Prob=row2, Very High Impact=col5) → x=278, y=240 -->
+  <circle cx="278" cy="240" r="7" fill="#f97316" stroke="#ffffff" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="278" y="243" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">D</text>
+
+  <!-- Matrix Legend -->
+  <text x="80" y="332" font-family="'Courier New', monospace" font-size="8" fill="#8892a4">H=Hallucination/Medical  M=Model Theft  B=AI Bias  P=Prompt Injection  D=Data Poison</text>
+
+  <!-- ============================= -->
+  <!-- RIGHT TOP: RISK DIMENSIONS   -->
+  <!-- ============================= -->
+  <rect x="320" y="80" width="460" height="155" rx="6" fill="#0f1923" stroke="#4a9eff" stroke-width="1.2"/>
+  <text x="550" y="100" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#4a9eff">Risk Score = Probability × Impact × Criticality</text>
+
+  <!-- Three dimension boxes -->
+  <!-- PROBABILITY box -->
+  <rect x="332" y="110" width="135" height="112" rx="4" fill="#0d1520" stroke="#00d4ff" stroke-width="1"/>
+  <text x="399" y="128" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#00d4ff">PROBABILITY</text>
+  <!-- Prob bars -->
+  <rect x="340" y="134" width="20" height="8" rx="2" fill="#22c55e" opacity="0.7"/>
+  <text x="364" y="141" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Rare       (1)</text>
+  <rect x="340" y="146" width="30" height="8" rx="2" fill="#22c55e" opacity="0.9"/>
+  <text x="364" y="153" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Unlikely   (2)</text>
+  <rect x="340" y="158" width="50" height="8" rx="2" fill="#eab308" opacity="0.8"/>
+  <text x="364" y="165" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Possible   (3)</text>
+  <rect x="340" y="170" width="70" height="8" rx="2" fill="#f97316" opacity="0.8"/>
+  <text x="364" y="177" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Likely     (4)</text>
+  <rect x="340" y="182" width="90" height="8" rx="2" fill="#ef4444" opacity="0.9"/>
+  <text x="364" y="189" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Almost Certain(5)</text>
+  <!-- Historical data note -->
+  <text x="340" y="207" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Source: CVE history,</text>
+  <text x="340" y="216" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">threat intel, red team</text>
+
+  <!-- IMPACT box -->
+  <rect x="475" y="110" width="140" height="112" rx="4" fill="#0d1520" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="545" y="128" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#8b5cf6">IMPACT</text>
+  <!-- Impact dimensions -->
+  <rect x="483" y="133" width="8" height="8" rx="1" fill="#ef4444"/>
+  <text x="495" y="141" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Safety / Physical</text>
+  <rect x="483" y="146" width="8" height="8" rx="1" fill="#f97316"/>
+  <text x="495" y="154" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Financial / Legal</text>
+  <rect x="483" y="159" width="8" height="8" rx="1" fill="#eab308"/>
+  <text x="495" y="167" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Reputational</text>
+  <rect x="483" y="172" width="8" height="8" rx="1" fill="#4a9eff"/>
+  <text x="495" y="180" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Operational</text>
+  <rect x="483" y="185" width="8" height="8" rx="1" fill="#8b5cf6"/>
+  <text x="495" y="193" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Regulatory / Privacy</text>
+  <text x="483" y="213" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Multi-dim FAIR model</text>
+
+  <!-- CRITICALITY box -->
+  <rect x="623" y="110" width="147" height="112" rx="4" fill="#0d1520" stroke="#ef4444" stroke-width="1"/>
+  <text x="697" y="128" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ef4444">CRITICALITY</text>
+  <!-- Criticality tiers -->
+  <rect x="631" y="133" width="130" height="14" rx="3" fill="#ef4444" opacity="0.7"/>
+  <text x="696" y="143" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ffffff">CRITICAL  (≥20)</text>
+  <rect x="631" y="151" width="130" height="14" rx="3" fill="#f97316" opacity="0.7"/>
+  <text x="696" y="161" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ffffff">HIGH      (15-19)</text>
+  <rect x="631" y="169" width="130" height="14" rx="3" fill="#eab308" opacity="0.7"/>
+  <text x="696" y="179" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ffffff">MEDIUM    (8-14)</text>
+  <rect x="631" y="187" width="130" height="14" rx="3" fill="#22c55e" opacity="0.7"/>
+  <text x="696" y="197" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ffffff">LOW       (1-7)</text>
+  <text x="631" y="213" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">ISO 31000 / NIST RMF</text>
+
+  <!-- ============================= -->
+  <!-- CENTER: INHERENT vs RESIDUAL -->
+  <!-- ============================= -->
+  <rect x="320" y="245" width="460" height="90" rx="6" fill="#0f1923" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="550" y="263" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#22c55e">Inherent Risk → Controls → Residual Risk</text>
+
+  <!-- Inherent Risk box -->
+  <rect x="330" y="270" width="90" height="55" rx="4" fill="#1a1520" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="375" y="290" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ef4444">INHERENT</text>
+  <text x="375" y="303" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">RISK</text>
+  <text x="375" y="317" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ef4444">Score: 20</text>
+
+  <!-- Arrow with controls label -->
+  <line x1="422" y1="297" x2="530" y2="297" stroke="#eab308" stroke-width="2" marker-end="url(#arrowOrange)" stroke-dasharray="4,2"/>
+  <!-- Controls bubbles -->
+  <rect x="432" y="268" width="88" height="16" rx="3" fill="#1a2010" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="476" y="279" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">Input Validation</text>
+  <rect x="432" y="287" width="88" height="16" rx="3" fill="#1a2010" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="476" y="298" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">Model Monitoring</text>
+  <rect x="432" y="306" width="88" height="16" rx="3" fill="#1a2010" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="476" y="317" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">Access Controls</text>
+
+  <!-- Residual Risk box -->
+  <rect x="533" y="270" width="90" height="55" rx="4" fill="#1a1520" stroke="#eab308" stroke-width="1.5"/>
+  <text x="578" y="290" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#eab308">RESIDUAL</text>
+  <text x="578" y="303" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">RISK</text>
+  <text x="578" y="317" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#eab308">Score: 9</text>
+
+  <!-- Control Effectiveness -->
+  <rect x="638" y="270" width="132" height="55" rx="4" fill="#0d1117" stroke="#4a9eff" stroke-width="1"/>
+  <text x="704" y="284" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#4a9eff">Control Eff.</text>
+  <text x="704" y="296" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Effectiveness = 55%</text>
+  <!-- Effectiveness bar -->
+  <rect x="646" y="300" width="116" height="8" rx="3" fill="#1e2a3a"/>
+  <rect x="646" y="300" width="64" height="8" rx="3" fill="#22c55e" opacity="0.8"/>
+  <text x="704" y="320" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">NIST CSF Maturity: 3/5</text>
+
+  <!-- ============================= -->
+  <!-- BOTTOM: EU AI ACT TIERS &    -->
+  <!-- RISK REGISTER + FAIR         -->
+  <!-- ============================= -->
+  <rect x="20" y="350" width="375" height="230" rx="6" fill="#0f1923" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="207" y="370" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#8b5cf6">EU AI Act — Risk Classification Tiers</text>
+
+  <!-- Tier 1: Unacceptable -->
+  <rect x="32" y="378" width="351" height="26" rx="4" fill="#ef4444" opacity="0.25" stroke="#ef4444" stroke-width="1"/>
+  <text x="40" y="391" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ef4444">UNACCEPTABLE RISK</text>
+  <text x="40" y="401" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Social scoring, mass surveillance, emotion recognition in workplaces — BANNED</text>
+
+  <!-- Tier 2: High Risk -->
+  <rect x="32" y="408" width="351" height="50" rx="4" fill="#f97316" opacity="0.15" stroke="#f97316" stroke-width="1"/>
+  <text x="40" y="422" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#f97316">HIGH RISK</text>
+  <text x="40" y="434" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Medical devices, biometric ID, critical infrastructure, autonomous vehicles</text>
+  <text x="40" y="446" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Hiring, credit scoring, judicial systems → Mandatory conformity assessment</text>
+  <text x="40" y="454" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Requirements: logging, transparency, human oversight, robustness</text>
+
+  <!-- Tier 3: Limited Risk -->
+  <rect x="32" y="462" width="351" height="26" rx="4" fill="#eab308" opacity="0.15" stroke="#eab308" stroke-width="1"/>
+  <text x="40" y="476" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#eab308">LIMITED RISK</text>
+  <text x="40" y="486" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Chatbots, deepfakes → Transparency obligations (must disclose AI use)</text>
+
+  <!-- Tier 4: Minimal Risk -->
+  <rect x="32" y="492" width="351" height="26" rx="4" fill="#22c55e" opacity="0.12" stroke="#22c55e" stroke-width="1"/>
+  <text x="40" y="506" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#22c55e">MINIMAL RISK</text>
+  <text x="40" y="516" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Spam filters, AI in games, recommendation engines → Voluntary codes of conduct</text>
+
+  <!-- FAIR Model summary -->
+  <rect x="32" y="522" width="351" height="50" rx="4" fill="#0d1520" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="207" y="537" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#4a9eff">FAIR Model for AI Risk Quantification</text>
+  <text x="40" y="549" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Loss Exposure = Threat Event Freq × Vulnerability × Loss Magnitude</text>
+  <text x="40" y="561" font-family="'Courier New', monospace" font-size="7.5" fill="#8892a4">Quantitative: Monte Carlo simulation → annual loss expectancy (ALE) in $</text>
+
+  <!-- ============================= -->
+  <!-- BOTTOM RIGHT: RISK REGISTER  -->
+  <!-- ============================= -->
+  <rect x="410" y="350" width="370" height="230" rx="6" fill="#0f1923" stroke="#00d4ff" stroke-width="1.2"/>
+  <text x="595" y="370" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#00d4ff">AI Risk Register (Sample)</text>
+
+  <!-- Table header -->
+  <rect x="420" y="378" width="350" height="16" rx="2" fill="#1a2535"/>
+  <text x="452" y="389" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="bold" fill="#00d4ff">Risk ID</text>
+  <text x="510" y="389" font-family="'Courier New', monospace" font-size="7.5" font-weight="bold" fill="#00d4ff">Risk Description</text>
+  <text x="648" y="389" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="bold" fill="#00d4ff">Score</text>
+  <text x="710" y="389" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="bold" fill="#00d4ff">Tier</text>
+  <text x="750" y="389" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="bold" fill="#00d4ff">Owner</text>
+
+  <!-- Row 1 -->
+  <rect x="420" y="394" width="350" height="15" rx="1" fill="#1a1015"/>
+  <text x="452" y="404" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">AI-001</text>
+  <text x="510" y="404" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Medical hallucination</text>
+  <rect x="638" y="396" width="22" height="11" rx="2" fill="#ef4444" opacity="0.7"/>
+  <text x="649" y="404" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">20</text>
+  <text x="710" y="404" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#ef4444">CRIT</text>
+  <text x="750" y="404" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">CISO</text>
+
+  <!-- Row 2 -->
+  <rect x="420" y="409" width="350" height="15" rx="1" fill="#0d1117"/>
+  <text x="452" y="419" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">AI-002</text>
+  <text x="510" y="419" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Prompt injection (agent)</text>
+  <rect x="638" y="411" width="22" height="11" rx="2" fill="#f97316" opacity="0.7"/>
+  <text x="649" y="419" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">16</text>
+  <text x="710" y="419" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#f97316">HIGH</text>
+  <text x="750" y="419" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">SecEng</text>
+
+  <!-- Row 3 -->
+  <rect x="420" y="424" width="350" height="15" rx="1" fill="#1a1015"/>
+  <text x="452" y="434" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">AI-003</text>
+  <text x="510" y="434" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Training data poisoning</text>
+  <rect x="638" y="426" width="22" height="11" rx="2" fill="#f97316" opacity="0.7"/>
+  <text x="649" y="434" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">15</text>
+  <text x="710" y="434" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#f97316">HIGH</text>
+  <text x="750" y="434" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">MLOps</text>
+
+  <!-- Row 4 -->
+  <rect x="420" y="439" width="350" height="15" rx="1" fill="#0d1117"/>
+  <text x="452" y="449" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">AI-004</text>
+  <text x="510" y="449" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Discriminatory AI bias</text>
+  <rect x="638" y="441" width="22" height="11" rx="2" fill="#eab308" opacity="0.7"/>
+  <text x="649" y="449" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">12</text>
+  <text x="710" y="449" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#eab308">MED</text>
+  <text x="750" y="449" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Ethics</text>
+
+  <!-- Row 5 -->
+  <rect x="420" y="454" width="350" height="15" rx="1" fill="#1a1015"/>
+  <text x="452" y="464" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">AI-005</text>
+  <text x="510" y="464" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Model theft / exfiltration</text>
+  <rect x="638" y="456" width="22" height="11" rx="2" fill="#eab308" opacity="0.7"/>
+  <text x="649" y="464" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">10</text>
+  <text x="710" y="464" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#eab308">MED</text>
+  <text x="750" y="464" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">SecOps</text>
+
+  <!-- Row 6 -->
+  <rect x="420" y="469" width="350" height="15" rx="1" fill="#0d1117"/>
+  <text x="452" y="479" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">AI-006</text>
+  <text x="510" y="479" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">LLM supply chain attack</text>
+  <rect x="638" y="471" width="22" height="11" rx="2" fill="#eab308" opacity="0.6"/>
+  <text x="649" y="479" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">9</text>
+  <text x="710" y="479" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#eab308">MED</text>
+  <text x="750" y="479" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Arch</text>
+
+  <!-- Qualitative vs Quantitative note -->
+  <rect x="420" y="490" width="350" height="80" rx="4" fill="#0d1520" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="595" y="505" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#8b5cf6">Assessment Approaches</text>
+  <!-- Two columns -->
+  <text x="428" y="519" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#4a9eff">Qualitative</text>
+  <text x="428" y="530" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">• Expert judgment</text>
+  <text x="428" y="541" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">• Interview-based</text>
+  <text x="428" y="552" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">• Low/Med/High scales</text>
+  <text x="428" y="563" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Fast, subjective</text>
+
+  <line x1="595" y1="510" x2="595" y2="565" stroke="#1e2a3a" stroke-width="1"/>
+
+  <text x="603" y="519" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#22c55e">Quantitative (FAIR)</text>
+  <text x="603" y="530" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">• Monte Carlo sim</text>
+  <text x="603" y="541" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">• ALE = ARO × SLE</text>
+  <text x="603" y="552" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">• Dollar-based outputs</text>
+  <text x="603" y="563" font-family="'Courier New', monospace" font-size="7" fill="#8892a4">Rigorous, data-hungry</text>
+
+  <!-- Footer decorations -->
+  <text x="400" y="592" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#2a3a50">AI Security Risk Course · Module 2 · Lesson 9 · NIST RMF | ISO 31000 | FAIR | EU AI Act</text>
+  <line x1="0" y1="586" x2="800" y2="586" stroke="#1e2a3a" stroke-width="1"/>
+</svg>

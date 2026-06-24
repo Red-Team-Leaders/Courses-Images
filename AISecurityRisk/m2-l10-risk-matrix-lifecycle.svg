@@ -1,0 +1,460 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filters -->
+    <filter id="cyan-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0  0 0.83 0.72 0 0  0 0 1 0 0  0 0 0 0.6 0" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="green-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0  0 0.77 0 0 0  0 0 0 0 0  0 0 0 0.5 0" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-white" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#e2e8f0"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#f97316"/>
+    </marker>
+    <!-- Gradient for lifecycle bar -->
+    <linearGradient id="lifecycle-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.8"/>
+      <stop offset="40%" style="stop-color:#4a9eff;stop-opacity:0.8"/>
+      <stop offset="70%" style="stop-color:#f97316;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.8"/>
+    </linearGradient>
+    <!-- Gradient for risk matrix cells -->
+    <linearGradient id="heat-low" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.85"/>
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:0.85"/>
+    </linearGradient>
+    <linearGradient id="heat-med" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eab308;stop-opacity:0.85"/>
+      <stop offset="100%" style="stop-color:#ca8a04;stop-opacity:0.85"/>
+    </linearGradient>
+    <linearGradient id="heat-high" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.85"/>
+      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:0.85"/>
+    </linearGradient>
+    <linearGradient id="heat-crit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.85"/>
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:0.85"/>
+    </linearGradient>
+    <!-- KRI graph gradient -->
+    <linearGradient id="kri-area" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- === BACKGROUND === -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="800" height="3" fill="url(#lifecycle-grad)"/>
+
+  <!-- === TITLE === -->
+  <text x="400" y="26" text-anchor="middle" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#00d4ff" filter="url(#cyan-glow)">AI RISK MATRIX, APPETITE &amp; LIFECYCLE MANAGEMENT</text>
+  <text x="400" y="42" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#64748b">MODULE 2 · LESSON 10 · AI SECURITY RISK FRAMEWORK</text>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1: AI LIFECYCLE BAR (top strip) -->
+  <!-- ============================================================ -->
+  <rect x="15" y="52" width="770" height="14" rx="7" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+
+  <!-- Phase segments -->
+  <!-- Design -->
+  <rect x="15" y="52" width="122" height="14" rx="7" fill="#22c55e" opacity="0.75"/>
+  <text x="76" y="62" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ffffff">DESIGN</text>
+  <!-- Development -->
+  <rect x="140" y="52" width="122" height="14" fill="#4a9eff" opacity="0.75"/>
+  <text x="201" y="62" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ffffff">DEVELOPMENT</text>
+  <!-- Testing -->
+  <rect x="265" y="52" width="122" height="14" fill="#eab308" opacity="0.75"/>
+  <text x="326" y="62" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ffffff">TESTING</text>
+  <!-- Deployment -->
+  <rect x="390" y="52" width="122" height="14" fill="#f97316" opacity="0.75"/>
+  <text x="451" y="62" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ffffff">DEPLOYMENT</text>
+  <!-- Monitoring -->
+  <rect x="515" y="52" width="122" height="14" fill="#8b5cf6" opacity="0.75"/>
+  <text x="576" y="62" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ffffff">MONITORING</text>
+  <!-- Retirement -->
+  <rect x="640" y="52" width="145" height="14" rx="7" fill="#ef4444" opacity="0.75"/>
+  <text x="712" y="62" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ffffff">RETIREMENT</text>
+
+  <!-- Phase connector arrows -->
+  <line x1="137" y1="59" x2="140" y2="59" stroke="#ffffff" stroke-width="1.5" marker-end="url(#arrow-white)"/>
+  <line x1="262" y1="59" x2="265" y2="59" stroke="#ffffff" stroke-width="1.5" marker-end="url(#arrow-white)"/>
+  <line x1="387" y1="59" x2="390" y2="59" stroke="#ffffff" stroke-width="1.5" marker-end="url(#arrow-white)"/>
+  <line x1="512" y1="59" x2="515" y2="59" stroke="#ffffff" stroke-width="1.5" marker-end="url(#arrow-white)"/>
+  <line x1="637" y1="59" x2="640" y2="59" stroke="#ffffff" stroke-width="1.5" marker-end="url(#arrow-white)"/>
+
+  <!-- Risk gates (vertical tick marks below lifecycle bar) -->
+  <line x1="137" y1="66" x2="137" y2="76" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2,1"/>
+  <line x1="262" y1="66" x2="262" y2="76" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2,1"/>
+  <line x1="387" y1="66" x2="387" y2="76" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2,1"/>
+  <line x1="512" y1="66" x2="512" y2="76" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2,1"/>
+  <text x="137" y="85" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#ef4444">GATE</text>
+  <text x="262" y="85" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#ef4444">GATE</text>
+  <text x="387" y="85" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#ef4444">GATE</text>
+  <text x="512" y="85" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#ef4444">GATE</text>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2: RISK MATRIX (5x5 heatmap) — LEFT PANEL -->
+  <!-- ============================================================ -->
+  <rect x="15" y="93" width="220" height="220" rx="4" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="125" y="108" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#e2e8f0">RISK MATRIX (5×5)</text>
+
+  <!-- Y-axis label -->
+  <text x="22" y="190" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#64748b" transform="rotate(-90, 22, 190)">LIKELIHOOD →</text>
+
+  <!-- X-axis label -->
+  <text x="125" y="308" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#64748b">IMPACT →</text>
+
+  <!-- Grid cells (5×5) — starting at x=35, y=115, each cell 34×34 -->
+  <!-- Row 5 (top) - Likelihood=5 (Almost Certain) -->
+  <rect x="35" y="115" width="34" height="34" fill="url(#heat-med)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="69" y="115" width="34" height="34" fill="url(#heat-high)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="103" y="115" width="34" height="34" fill="url(#heat-crit)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="137" y="115" width="34" height="34" fill="url(#heat-crit)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="171" y="115" width="34" height="34" fill="url(#heat-crit)" stroke="#0d1117" stroke-width="1"/>
+  <!-- Row 4 - Likelihood=4 (Likely) -->
+  <rect x="35" y="149" width="34" height="34" fill="url(#heat-low)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="69" y="149" width="34" height="34" fill="url(#heat-med)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="103" y="149" width="34" height="34" fill="url(#heat-high)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="137" y="149" width="34" height="34" fill="url(#heat-crit)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="171" y="149" width="34" height="34" fill="url(#heat-crit)" stroke="#0d1117" stroke-width="1"/>
+  <!-- Row 3 - Likelihood=3 (Possible) -->
+  <rect x="35" y="183" width="34" height="34" fill="url(#heat-low)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="69" y="183" width="34" height="34" fill="url(#heat-med)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="103" y="183" width="34" height="34" fill="url(#heat-med)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="137" y="183" width="34" height="34" fill="url(#heat-high)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="171" y="183" width="34" height="34" fill="url(#heat-crit)" stroke="#0d1117" stroke-width="1"/>
+  <!-- Row 2 - Likelihood=2 (Unlikely) -->
+  <rect x="35" y="217" width="34" height="34" fill="url(#heat-low)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="69" y="217" width="34" height="34" fill="url(#heat-low)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="103" y="217" width="34" height="34" fill="url(#heat-med)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="137" y="217" width="34" height="34" fill="url(#heat-med)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="171" y="217" width="34" height="34" fill="url(#heat-high)" stroke="#0d1117" stroke-width="1"/>
+  <!-- Row 1 (bottom) - Likelihood=1 (Rare) -->
+  <rect x="35" y="251" width="34" height="34" fill="url(#heat-low)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="69" y="251" width="34" height="34" fill="url(#heat-low)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="103" y="251" width="34" height="34" fill="url(#heat-low)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="137" y="251" width="34" height="34" fill="url(#heat-med)" stroke="#0d1117" stroke-width="1"/>
+  <rect x="171" y="251" width="34" height="34" fill="url(#heat-med)" stroke="#0d1117" stroke-width="1"/>
+
+  <!-- Risk appetite boundary line (diagonal dashed) -->
+  <polyline points="171,115 171,149 137,149 137,183 103,183 103,217 69,217 69,285" fill="none" stroke="#00d4ff" stroke-width="2" stroke-dasharray="5,3" filter="url(#cyan-glow)"/>
+  <text x="181" y="122" font-family="'Courier New', monospace" font-size="7" fill="#00d4ff">APPETITE</text>
+  <text x="181" y="131" font-family="'Courier New', monospace" font-size="7" fill="#00d4ff">BOUNDARY</text>
+
+  <!-- Axis tick labels -->
+  <text x="52" y="113" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#64748b">1</text>
+  <text x="86" y="113" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#64748b">2</text>
+  <text x="120" y="113" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#64748b">3</text>
+  <text x="154" y="113" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#64748b">4</text>
+  <text x="188" y="113" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#64748b">5</text>
+  <text x="33" y="136" text-anchor="end" font-family="'Courier New', monospace" font-size="7" fill="#64748b">5</text>
+  <text x="33" y="170" text-anchor="end" font-family="'Courier New', monospace" font-size="7" fill="#64748b">4</text>
+  <text x="33" y="204" text-anchor="end" font-family="'Courier New', monospace" font-size="7" fill="#64748b">3</text>
+  <text x="33" y="238" text-anchor="end" font-family="'Courier New', monospace" font-size="7" fill="#64748b">2</text>
+  <text x="33" y="272" text-anchor="end" font-family="'Courier New', monospace" font-size="7" fill="#64748b">1</text>
+
+  <!-- Legend -->
+  <rect x="35" y="291" width="10" height="8" fill="url(#heat-low)" rx="1"/>
+  <text x="48" y="299" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">LOW</text>
+  <rect x="80" y="291" width="10" height="8" fill="url(#heat-med)" rx="1"/>
+  <text x="93" y="299" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">MED</text>
+  <rect x="125" y="291" width="10" height="8" fill="url(#heat-high)" rx="1"/>
+  <text x="138" y="299" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">HIGH</text>
+  <rect x="170" y="291" width="10" height="8" fill="url(#heat-crit)" rx="1"/>
+  <text x="183" y="299" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">CRIT</text>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3: CONTROLS PYRAMID — CENTER PANEL -->
+  <!-- ============================================================ -->
+  <rect x="245" y="93" width="200" height="220" rx="4" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="345" y="108" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#e2e8f0">CONTROLS PYRAMID</text>
+
+  <!-- Pyramid layers (bottom to top: Preventive → Detective → Corrective → Compensating) -->
+  <!-- Layer 1: PREVENTIVE (bottom, widest) - green -->
+  <polygon points="265,295 425,295 405,255 285,255" fill="#22c55e" opacity="0.75" stroke="#16a34a" stroke-width="1"/>
+  <text x="345" y="279" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ffffff">PREVENTIVE</text>
+  <text x="345" y="290" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#d1fae5">Input validation · RBAC · Guardrails</text>
+
+  <!-- Layer 2: DETECTIVE - blue -->
+  <polygon points="285,253 405,253 390,213 300,213" fill="#4a9eff" opacity="0.75" stroke="#2563eb" stroke-width="1"/>
+  <text x="345" y="236" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ffffff">DETECTIVE</text>
+  <text x="345" y="247" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#dbeafe">Monitoring · Alerts · Auditing</text>
+
+  <!-- Layer 3: CORRECTIVE - orange -->
+  <polygon points="300,211 390,211 378,171 312,171" fill="#f97316" opacity="0.75" stroke="#ea580c" stroke-width="1"/>
+  <text x="345" y="193" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ffffff">CORRECTIVE</text>
+  <text x="345" y="204" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#ffedd5">Rollback · Patches · IR</text>
+
+  <!-- Layer 4: COMPENSATING (top, narrowest) - purple -->
+  <polygon points="312,169 378,169 366,129 324,129" fill="#8b5cf6" opacity="0.75" stroke="#7c3aed" stroke-width="1"/>
+  <text x="345" y="152" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ffffff">COMPENSATING</text>
+  <text x="345" y="163" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#ede9fe">Workarounds · Alt. controls</text>
+
+  <!-- Pyramid apex dot -->
+  <circle cx="345" cy="127" r="4" fill="#eab308" filter="url(#cyan-glow)"/>
+  <text x="345" y="122" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#eab308">APEX</text>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4: RISK TREATMENT OPTIONS — RIGHT PANEL TOP -->
+  <!-- ============================================================ -->
+  <rect x="455" y="93" width="330" height="105" rx="4" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="620" y="108" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#e2e8f0">RISK TREATMENT OPTIONS</text>
+
+  <!-- 4 quadrant boxes -->
+  <!-- MITIGATE -->
+  <rect x="463" y="113" width="72" height="38" rx="3" fill="#22c55e" opacity="0.2" stroke="#22c55e" stroke-width="1"/>
+  <text x="499" y="127" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#22c55e">MITIGATE</text>
+  <text x="499" y="138" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#86efac">Add controls</text>
+  <text x="499" y="147" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#86efac">reduce risk</text>
+
+  <!-- TRANSFER -->
+  <rect x="543" y="113" width="72" height="38" rx="3" fill="#4a9eff" opacity="0.2" stroke="#4a9eff" stroke-width="1"/>
+  <text x="579" y="127" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#4a9eff">TRANSFER</text>
+  <text x="579" y="138" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#93c5fd">Insurance</text>
+  <text x="579" y="147" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#93c5fd">third-party</text>
+
+  <!-- AVOID -->
+  <rect x="623" y="113" width="72" height="38" rx="3" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="1"/>
+  <text x="659" y="127" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ef4444">AVOID</text>
+  <text x="659" y="138" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#fca5a5">Cease or</text>
+  <text x="659" y="147" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#fca5a5">redesign</text>
+
+  <!-- ACCEPT -->
+  <rect x="703" y="113" width="72" height="38" rx="3" fill="#eab308" opacity="0.2" stroke="#eab308" stroke-width="1"/>
+  <text x="739" y="127" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#eab308">ACCEPT</text>
+  <text x="739" y="138" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#fde68a">Within</text>
+  <text x="739" y="147" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#fde68a">appetite</text>
+
+  <!-- Risk Appetite / Tolerance / Capacity row -->
+  <rect x="463" y="157" width="312" height="32" rx="3" fill="#0d1117" stroke="#334155" stroke-width="1"/>
+  <text x="469" y="168" font-family="'Courier New', monospace" font-size="8" fill="#64748b">CAPACITY</text>
+  <rect x="463" y="157" width="312" height="32" rx="3" fill="none"/>
+  <!-- capacity band -->
+  <rect x="463" y="175" width="312" height="8" rx="2" fill="#1e293b"/>
+  <rect x="463" y="175" width="312" height="8" rx="2" fill="#ef4444" opacity="0.3"/>
+  <!-- tolerance band -->
+  <rect x="463" y="175" width="220" height="8" rx="2" fill="#f97316" opacity="0.4"/>
+  <!-- appetite band -->
+  <rect x="463" y="175" width="130" height="8" rx="2" fill="#22c55e" opacity="0.5"/>
+  <!-- labels -->
+  <text x="528" y="183" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ffffff">APPETITE</text>
+  <text x="636" y="183" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#fdba74">TOLERANCE</text>
+  <text x="725" y="183" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#fca5a5">CAPACITY</text>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 5: KRI DASHBOARD / TIME-SERIES GRAPH — RIGHT PANEL BOTTOM -->
+  <!-- ============================================================ -->
+  <rect x="455" y="205" width="330" height="108" rx="4" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="620" y="220" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#e2e8f0">KRI DASHBOARD — AI RISK INDICATORS</text>
+
+  <!-- Graph area -->
+  <rect x="463" y="226" width="314" height="80" rx="2" fill="#0d1117" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Threshold lines -->
+  <!-- Critical threshold -->
+  <line x1="463" y1="240" x2="777" y2="240" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="780" y="243" font-family="'Courier New', monospace" font-size="7" fill="#ef4444">CRIT</text>
+  <!-- Warning threshold -->
+  <line x1="463" y1="258" x2="777" y2="258" stroke="#f97316" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="780" y="261" font-family="'Courier New', monospace" font-size="7" fill="#f97316">WARN</text>
+  <!-- Appetite threshold -->
+  <line x1="463" y1="274" x2="777" y2="274" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="780" y="277" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">APP</text>
+
+  <!-- KRI line 1 (cyan - prompt injection rate) -->
+  <polyline points="463,290 488,278 513,268 538,252 563,248 588,255 613,244 638,237 663,243 688,250 713,257 738,252 763,245 777,238" fill="none" stroke="#00d4ff" stroke-width="1.5" filter="url(#cyan-glow)"/>
+  <!-- KRI area fill -->
+  <polygon points="463,306 463,290 488,278 513,268 538,252 563,248 588,255 613,244 638,237 663,243 688,250 713,257 738,252 763,245 777,238 777,306" fill="url(#kri-area)"/>
+
+  <!-- KRI line 2 (purple - data drift) -->
+  <polyline points="463,296 488,290 513,282 538,276 563,280 588,272 613,268 638,271 663,275 688,268 713,263 738,258 763,265 777,270" fill="none" stroke="#8b5cf6" stroke-width="1.5" opacity="0.8"/>
+
+  <!-- KRI line 3 (gold - model accuracy drop) -->
+  <polyline points="463,300 488,298 513,294 538,289 563,285 588,283 613,279 638,282 663,277 688,273 713,270 738,275 763,278 777,272" fill="none" stroke="#eab308" stroke-width="1.5" opacity="0.8"/>
+
+  <!-- Time axis ticks -->
+  <text x="463" y="309" font-family="'Courier New', monospace" font-size="6" fill="#64748b">T-12</text>
+  <text x="613" y="309" text-anchor="middle" font-family="'Courier New', monospace" font-size="6" fill="#64748b">T-6</text>
+  <text x="777" y="309" text-anchor="end" font-family="'Courier New', monospace" font-size="6" fill="#64748b">NOW</text>
+
+  <!-- KRI Legend -->
+  <line x1="463" y1="313" x2="478" y2="313" stroke="#00d4ff" stroke-width="2"/>
+  <text x="481" y="316" font-family="'Courier New', monospace" font-size="7" fill="#00d4ff">Injection Rate</text>
+  <line x1="553" y1="313" x2="568" y2="313" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="571" y="316" font-family="'Courier New', monospace" font-size="7" fill="#8b5cf6">Data Drift</text>
+  <line x1="633" y1="313" x2="648" y2="313" stroke="#eab308" stroke-width="2"/>
+  <text x="651" y="316" font-family="'Courier New', monospace" font-size="7" fill="#eab308">Accuracy Drop</text>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 6: PHASE-LEVEL CONTROL MAPPING (bottom panel) -->
+  <!-- ============================================================ -->
+  <rect x="15" y="325" width="430" height="140" rx="4" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="230" y="340" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#e2e8f0">CONTROLS BY LIFECYCLE PHASE</text>
+
+  <!-- Column headers -->
+  <text x="48" y="354" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">DESIGN</text>
+  <text x="120" y="354" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#4a9eff">DEV</text>
+  <text x="192" y="354" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#eab308">TESTING</text>
+  <text x="264" y="354" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#f97316">DEPLOY</text>
+  <text x="336" y="354" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8b5cf6">MONITOR</text>
+  <text x="408" y="354" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#ef4444">RETIRE</text>
+
+  <!-- Divider -->
+  <line x1="22" y1="357" x2="438" y2="357" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Column separators -->
+  <line x1="84" y1="345" x2="84" y2="458" stroke="#1e293b" stroke-width="0.5"/>
+  <line x1="156" y1="345" x2="156" y2="458" stroke="#1e293b" stroke-width="0.5"/>
+  <line x1="228" y1="345" x2="228" y2="458" stroke="#1e293b" stroke-width="0.5"/>
+  <line x1="300" y1="345" x2="300" y2="458" stroke="#1e293b" stroke-width="0.5"/>
+  <line x1="372" y1="345" x2="372" y2="458" stroke="#1e293b" stroke-width="0.5"/>
+
+  <!-- Row 1 controls -->
+  <text x="24" y="368" font-family="'Courier New', monospace" font-size="7" fill="#86efac">Threat model</text>
+  <text x="96" y="368" font-family="'Courier New', monospace" font-size="7" fill="#93c5fd">SAST scan</text>
+  <text x="164" y="368" font-family="'Courier New', monospace" font-size="7" fill="#fde68a">Red team</text>
+  <text x="236" y="368" font-family="'Courier New', monospace" font-size="7" fill="#fdba74">WAF rules</text>
+  <text x="308" y="368" font-family="'Courier New', monospace" font-size="7" fill="#c4b5fd">SIEM alerts</text>
+  <text x="379" y="368" font-family="'Courier New', monospace" font-size="7" fill="#fca5a5">Data purge</text>
+
+  <!-- Row 2 controls -->
+  <text x="24" y="381" font-family="'Courier New', monospace" font-size="7" fill="#86efac">Privacy review</text>
+  <text x="96" y="381" font-family="'Courier New', monospace" font-size="7" fill="#93c5fd">Dep. check</text>
+  <text x="164" y="381" font-family="'Courier New', monospace" font-size="7" fill="#fde68a">Bias audit</text>
+  <text x="236" y="381" font-family="'Courier New', monospace" font-size="7" fill="#fdba74">RBAC enforce</text>
+  <text x="308" y="381" font-family="'Courier New', monospace" font-size="7" fill="#c4b5fd">Drift detect</text>
+  <text x="379" y="381" font-family="'Courier New', monospace" font-size="7" fill="#fca5a5">Access revoke</text>
+
+  <!-- Row 3 controls -->
+  <text x="24" y="394" font-family="'Courier New', monospace" font-size="7" fill="#86efac">Data classify</text>
+  <text x="96" y="394" font-family="'Courier New', monospace" font-size="7" fill="#93c5fd">Secret mgmt</text>
+  <text x="164" y="394" font-family="'Courier New', monospace" font-size="7" fill="#fde68a">Adv. testing</text>
+  <text x="236" y="394" font-family="'Courier New', monospace" font-size="7" fill="#fdba74">Zero-trust</text>
+  <text x="308" y="394" font-family="'Courier New', monospace" font-size="7" fill="#c4b5fd">KRI tracking</text>
+  <text x="379" y="394" font-family="'Courier New', monospace" font-size="7" fill="#fca5a5">Log archive</text>
+
+  <!-- Row 4 controls -->
+  <text x="24" y="407" font-family="'Courier New', monospace" font-size="7" fill="#86efac">SbD principles</text>
+  <text x="96" y="407" font-family="'Courier New', monospace" font-size="7" fill="#93c5fd">Code signing</text>
+  <text x="164" y="407" font-family="'Courier New', monospace" font-size="7" fill="#fde68a">Pen testing</text>
+  <text x="236" y="407" font-family="'Courier New', monospace" font-size="7" fill="#fdba74">Canary deploy</text>
+  <text x="308" y="407" font-family="'Courier New', monospace" font-size="7" fill="#c4b5fd">Incident resp.</text>
+  <text x="379" y="407" font-family="'Courier New', monospace" font-size="7" fill="#fca5a5">Model sunset</text>
+
+  <!-- Row 5 controls -->
+  <text x="24" y="420" font-family="'Courier New', monospace" font-size="7" fill="#86efac">Risk register</text>
+  <text x="96" y="420" font-family="'Courier New', monospace" font-size="7" fill="#93c5fd">IaC scanning</text>
+  <text x="164" y="420" font-family="'Courier New', monospace" font-size="7" fill="#fde68a">Gate review</text>
+  <text x="236" y="420" font-family="'Courier New', monospace" font-size="7" fill="#fdba74">Rollback plan</text>
+  <text x="308" y="420" font-family="'Courier New', monospace" font-size="7" fill="#c4b5fd">Board report</text>
+  <text x="379" y="420" font-family="'Courier New', monospace" font-size="7" fill="#fca5a5">IP transfer</text>
+
+  <!-- Row 6 -->
+  <text x="24" y="433" font-family="'Courier New', monospace" font-size="7" fill="#86efac">Bias assessment</text>
+  <text x="96" y="433" font-family="'Courier New', monospace" font-size="7" fill="#93c5fd">ML-BOM</text>
+  <text x="164" y="433" font-family="'Courier New', monospace" font-size="7" fill="#fde68a">Security gate</text>
+  <text x="236" y="433" font-family="'Courier New', monospace" font-size="7" fill="#fdba74">AI firewall</text>
+  <text x="308" y="433" font-family="'Courier New', monospace" font-size="7" fill="#c4b5fd">Audit trail</text>
+  <text x="379" y="433" font-family="'Courier New', monospace" font-size="7" fill="#fca5a5">Cert revoke</text>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 7: ESCALATION LADDER (bottom right) -->
+  <!-- ============================================================ -->
+  <rect x="455" y="325" width="330" height="140" rx="4" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="620" y="340" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#e2e8f0">ESCALATION &amp; REPORTING LADDER</text>
+
+  <!-- Escalation tiers (bottom = ML team, top = Board) -->
+  <!-- ML/Dev Team -->
+  <rect x="463" y="408" width="314" height="24" rx="2" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="1"/>
+  <text x="470" y="418" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#22c55e">L1: ML/Dev Team</text>
+  <text x="470" y="428" font-family="'Courier New', monospace" font-size="7" fill="#86efac">  KRI anomaly · auto-alert · self-remediate (0-4h)</text>
+
+  <!-- CISO / Security Team -->
+  <rect x="463" y="380" width="314" height="25" rx="2" fill="#4a9eff" opacity="0.15" stroke="#4a9eff" stroke-width="1"/>
+  <text x="470" y="390" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#4a9eff">L2: CISO / Security Team</text>
+  <text x="470" y="400" font-family="'Courier New', monospace" font-size="7" fill="#93c5fd">  Threshold breach · incident declared · 4-24h</text>
+
+  <!-- CRO / Risk Committee -->
+  <rect x="463" y="352" width="314" height="25" rx="2" fill="#f97316" opacity="0.15" stroke="#f97316" stroke-width="1"/>
+  <text x="470" y="362" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f97316">L3: CRO / Risk Committee</text>
+  <text x="470" y="372" font-family="'Courier New', monospace" font-size="7" fill="#fdba74">  Material risk identified · regulatory exposure · 1-7d</text>
+
+  <!-- Board -->
+  <rect x="463" y="344" width="314" height="6" rx="2" fill="#ef4444" opacity="0.3" stroke="#ef4444" stroke-width="1"/>
+  <text x="620" y="342" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#ef4444">L4: BOARD — Systemic / Reputational Risk</text>
+
+  <!-- Escalation arrows -->
+  <line x1="580" y1="407" x2="580" y2="406" stroke="#e2e8f0" stroke-width="1" marker-end="url(#arrow-white)"/>
+  <line x1="580" y1="379" x2="580" y2="378" stroke="#e2e8f0" stroke-width="1" marker-end="url(#arrow-white)"/>
+  <line x1="580" y1="351" x2="580" y2="350" stroke="#e2e8f0" stroke-width="1" marker-end="url(#arrow-white)"/>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 8: BOTTOM STATUS ROW -->
+  <!-- ============================================================ -->
+  <rect x="15" y="473" width="770" height="35" rx="4" fill="#0d1117" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Status indicators -->
+  <circle cx="35" cy="490" r="5" fill="#22c55e" filter="url(#green-glow)"/>
+  <text x="45" y="494" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Risk Within Appetite</text>
+
+  <circle cx="160" cy="490" r="5" fill="#eab308"/>
+  <text x="170" y="494" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Tolerance Exceeded</text>
+
+  <circle cx="285" cy="490" r="5" fill="#f97316"/>
+  <text x="295" y="494" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Escalation Triggered</text>
+
+  <circle cx="410" cy="490" r="5" fill="#ef4444"/>
+  <text x="420" y="494" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Capacity Breach — Stop</text>
+
+  <!-- Residual risk indicator -->
+  <text x="610" y="486" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#64748b">RESIDUAL RISK:</text>
+  <rect x="658" y="480" width="120" height="12" rx="2" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <rect x="658" y="480" width="52" height="12" rx="2" fill="#f97316" opacity="0.6"/>
+  <text x="718" y="490" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">43% / 100%</text>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 9: FOOTER -->
+  <!-- ============================================================ -->
+  <line x1="0" y1="516" x2="800" y2="516" stroke="#1e293b" stroke-width="1"/>
+  <rect x="0" y="516" width="800" height="84" fill="#070c12"/>
+
+  <!-- Footer content -->
+  <text x="20" y="534" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#00d4ff">RISK FORMULA</text>
+  <text x="20" y="548" font-family="'Courier New', monospace" font-size="9" fill="#e2e8f0">Inherent Risk = Likelihood × Impact</text>
+  <text x="20" y="561" font-family="'Courier New', monospace" font-size="9" fill="#e2e8f0">Residual Risk = Inherent Risk − Control Effectiveness</text>
+  <text x="20" y="574" font-family="'Courier New', monospace" font-size="9" fill="#e2e8f0">Control Strength = f(Preventive + Detective + Corrective)</text>
+
+  <!-- KRI examples -->
+  <text x="330" y="534" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#8b5cf6">KEY AI KRIs</text>
+  <text x="330" y="548" font-family="'Courier New', monospace" font-size="8" fill="#c4b5fd">· Prompt injection attempts/hour</text>
+  <text x="330" y="560" font-family="'Courier New', monospace" font-size="8" fill="#c4b5fd">· Model accuracy delta (drift)</text>
+  <text x="330" y="572" font-family="'Courier New', monospace" font-size="8" fill="#c4b5fd">· PII exposure incidents</text>
+  <text x="330" y="584" font-family="'Courier New', monospace" font-size="8" fill="#c4b5fd">· Jailbreak success rate</text>
+
+  <!-- Board reporting -->
+  <text x="560" y="534" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#f97316">REPORTING CADENCE</text>
+  <text x="560" y="548" font-family="'Courier New', monospace" font-size="8" fill="#fdba74">Operational: Real-time dashboards</text>
+  <text x="560" y="560" font-family="'Courier New', monospace" font-size="8" fill="#fdba74">Tactical: Weekly risk review</text>
+  <text x="560" y="572" font-family="'Courier New', monospace" font-size="8" fill="#fdba74">Strategic: Monthly CISO report</text>
+  <text x="560" y="584" font-family="'Courier New', monospace" font-size="8" fill="#fdba74">Governance: Quarterly Board report</text>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="597" width="800" height="3" fill="url(#lifecycle-grad)"/>
+</svg>

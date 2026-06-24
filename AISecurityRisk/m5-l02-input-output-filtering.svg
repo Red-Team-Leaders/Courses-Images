@@ -1,0 +1,370 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1a2332" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glow-cyan">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-red">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradients -->
+    <linearGradient id="grad-input" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d2137;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0a1a2e;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="grad-filter" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1040;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0d0d28;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="grad-output" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d2a1a;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#091a10;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="grad-model" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1520;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#100d18;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#00d4ff" filter="url(#glow-cyan)">Input / Output Filtering &amp; Validation Pipeline</text>
+  <text x="400" y="50" text-anchor="middle" font-family="monospace" font-size="11" fill="#64748b">Module 5 · Lesson 2 — AI Security Risk</text>
+
+  <!-- ===== TOP LEGEND ===== -->
+  <rect x="10" y="58" width="780" height="22" rx="3" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <!-- Pass indicator -->
+  <circle cx="50" cy="69" r="5" fill="#22c55e"/>
+  <text x="60" y="73" font-family="monospace" font-size="10" fill="#94a3b8">PASS</text>
+  <!-- Reject indicator -->
+  <circle cx="110" cy="69" r="5" fill="#ef4444"/>
+  <text x="120" y="73" font-family="monospace" font-size="10" fill="#94a3b8">REJECT</text>
+  <!-- Latency indicator -->
+  <rect x="168" y="62" width="28" height="14" rx="2" fill="#eab308" opacity="0.3" stroke="#eab308" stroke-width="0.5"/>
+  <text x="182" y="73" text-anchor="middle" font-family="monospace" font-size="9" fill="#eab308">ms</text>
+  <text x="200" y="73" font-family="monospace" font-size="10" fill="#94a3b8">Latency Cost</text>
+  <!-- Sequential -->
+  <line x1="280" y1="66" x2="310" y2="66" stroke="#4a9eff" stroke-width="1.5"/>
+  <line x1="310" y1="66" x2="310" y2="72" stroke="#4a9eff" stroke-width="1.5"/>
+  <line x1="310" y1="72" x2="340" y2="72" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="348" y="73" font-family="monospace" font-size="10" fill="#94a3b8">Sequential</text>
+  <!-- Parallel -->
+  <line x1="420" y1="66" x2="440" y2="66" stroke="#8b5cf6" stroke-width="1.5"/>
+  <line x1="430" y1="66" x2="430" y2="72" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="420" y1="72" x2="440" y2="72" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="448" y="73" font-family="monospace" font-size="10" fill="#94a3b8">Parallel</text>
+  <!-- Error handler -->
+  <rect x="510" y="63" width="8" height="12" rx="1" fill="#f97316" opacity="0.8"/>
+  <text x="523" y="73" font-family="monospace" font-size="10" fill="#94a3b8">Error Handler</text>
+  <text x="640" y="73" font-family="monospace" font-size="10" fill="#64748b">AI Model Processing</text>
+
+  <!-- ===== COLUMN HEADERS ===== -->
+  <text x="57" y="96" text-anchor="middle" font-family="monospace" font-size="10" fill="#00d4ff">INPUT</text>
+  <text x="57" y="107" text-anchor="middle" font-family="monospace" font-size="10" fill="#00d4ff">SOURCE</text>
+
+  <text x="218" y="96" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b5cf6">INPUT</text>
+  <text x="218" y="107" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b5cf6">FILTERS</text>
+
+  <text x="397" y="96" text-anchor="middle" font-family="monospace" font-size="10" fill="#4a9eff">AI</text>
+  <text x="397" y="107" text-anchor="middle" font-family="monospace" font-size="10" fill="#4a9eff">MODEL</text>
+
+  <text x="574" y="96" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b5cf6">OUTPUT</text>
+  <text x="574" y="107" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b5cf6">FILTERS</text>
+
+  <text x="743" y="96" text-anchor="middle" font-family="monospace" font-size="10" fill="#22c55e">CLEAN</text>
+  <text x="743" y="107" text-anchor="middle" font-family="monospace" font-size="10" fill="#22c55e">OUTPUT</text>
+
+  <!-- ===== RAW USER INPUT NODE ===== -->
+  <rect x="14" y="115" width="86" height="50" rx="6" fill="url(#grad-input)" stroke="#00d4ff" stroke-width="1.5" filter="url(#glow-cyan)"/>
+  <text x="57" y="135" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#00d4ff">Raw User</text>
+  <text x="57" y="147" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#00d4ff">Input</text>
+  <text x="57" y="158" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">Untrusted</text>
+
+  <!-- Arrow: Input → Input Filter Block -->
+  <line x1="100" y1="140" x2="128" y2="140" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="114" y="135" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">raw</text>
+
+  <!-- ===== INPUT FILTER BLOCK ===== -->
+  <rect x="130" y="88" width="176" height="330" rx="8" fill="#0f0f1e" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- INPUT FILTER: PII Scan -->
+  <rect x="138" y="112" width="160" height="32" rx="4" fill="url(#grad-filter)" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="200" y="125" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#e2e8f0">PII Detection</text>
+  <text x="200" y="136" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">NER · Regex · Presidio</text>
+  <!-- Latency badge -->
+  <rect x="272" y="114" width="22" height="12" rx="2" fill="#eab308" opacity="0.25" stroke="#eab308" stroke-width="0.5"/>
+  <text x="283" y="123" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">8ms</text>
+  <!-- Pass dot -->
+  <circle cx="146" cy="128" r="4" fill="#22c55e" filter="url(#glow-green)"/>
+
+  <!-- Sequential connector -->
+  <line x1="218" y1="144" x2="218" y2="152" stroke="#4a9eff" stroke-width="1" stroke-dasharray="2,1"/>
+
+  <!-- INPUT FILTER: Injection Check -->
+  <rect x="138" y="152" width="160" height="32" rx="4" fill="url(#grad-filter)" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="200" y="165" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#e2e8f0">Injection Detection</text>
+  <text x="200" y="176" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">Classifier · Heuristics</text>
+  <rect x="272" y="154" width="22" height="12" rx="2" fill="#eab308" opacity="0.25" stroke="#eab308" stroke-width="0.5"/>
+  <text x="283" y="163" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">12ms</text>
+  <circle cx="146" cy="168" r="4" fill="#22c55e" filter="url(#glow-green)"/>
+
+  <!-- Sequential connector -->
+  <line x1="218" y1="184" x2="218" y2="192" stroke="#4a9eff" stroke-width="1" stroke-dasharray="2,1"/>
+
+  <!-- INPUT FILTER: Content Classification -->
+  <rect x="138" y="192" width="160" height="32" rx="4" fill="url(#grad-filter)" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="200" y="205" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#e2e8f0">Content Classification</text>
+  <text x="200" y="216" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">Harmful · NSFW · Hate</text>
+  <rect x="272" y="194" width="22" height="12" rx="2" fill="#eab308" opacity="0.25" stroke="#eab308" stroke-width="0.5"/>
+  <text x="283" y="203" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">15ms</text>
+  <circle cx="146" cy="208" r="4" fill="#22c55e" filter="url(#glow-green)"/>
+
+  <!-- Sequential connector -->
+  <line x1="218" y1="224" x2="218" y2="232" stroke="#4a9eff" stroke-width="1" stroke-dasharray="2,1"/>
+
+  <!-- INPUT FILTER: Schema Validation -->
+  <rect x="138" y="232" width="160" height="32" rx="4" fill="url(#grad-filter)" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="200" y="245" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#e2e8f0">Schema Validation</text>
+  <text x="200" y="256" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">JSON Schema · Type Check</text>
+  <rect x="272" y="234" width="22" height="12" rx="2" fill="#eab308" opacity="0.25" stroke="#eab308" stroke-width="0.5"/>
+  <text x="283" y="243" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">2ms</text>
+  <circle cx="146" cy="248" r="4" fill="#22c55e" filter="url(#glow-green)"/>
+
+  <!-- Sequential connector -->
+  <line x1="218" y1="264" x2="218" y2="272" stroke="#4a9eff" stroke-width="1" stroke-dasharray="2,1"/>
+
+  <!-- INPUT FILTER: Length / Token Count -->
+  <rect x="138" y="272" width="160" height="32" rx="4" fill="url(#grad-filter)" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="200" y="285" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#e2e8f0">Length &amp; Token Count</text>
+  <text x="200" y="296" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">Max tokens · Unicode norm</text>
+  <rect x="272" y="274" width="22" height="12" rx="2" fill="#eab308" opacity="0.25" stroke="#eab308" stroke-width="0.5"/>
+  <text x="283" y="283" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">1ms</text>
+  <circle cx="146" cy="288" r="4" fill="#22c55e" filter="url(#glow-green)"/>
+
+  <!-- Input filter block label -->
+  <text x="218" y="404" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6">TOTAL ≈ 38ms (sequential)</text>
+  <text x="218" y="414" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6">≈ 15ms (parallel)</text>
+
+  <!-- ===== REJECT PATHS FROM INPUT FILTERS ===== -->
+  <!-- Reject arrow going down-left from input filter block -->
+  <line x1="218" y1="320" x2="218" y2="340" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,1"/>
+  <text x="218" y="335" text-anchor="middle" font-family="monospace" font-size="8" fill="#ef4444">REJECT</text>
+  <!-- Error Handler box for input -->
+  <rect x="148" y="345" width="140" height="30" rx="4" fill="#1a0a0a" stroke="#ef4444" stroke-width="1" filter="url(#glow-red)"/>
+  <text x="218" y="358" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#ef4444">Error Handler</text>
+  <text x="218" y="369" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">Log · Block · Alert User</text>
+
+  <!-- Arrow from input filters PASS → Sanitized Input -->
+  <line x1="306" y1="208" x2="340" y2="208" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="323" y="202" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">sanitized</text>
+
+  <!-- ===== SANITIZED INPUT LABEL ===== -->
+  <rect x="340" y="195" width="50" height="26" rx="4" fill="#091a10" stroke="#22c55e" stroke-width="1"/>
+  <text x="365" y="207" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#22c55e">Clean</text>
+  <text x="365" y="217" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">Input</text>
+
+  <!-- Arrow from clean input → AI Model -->
+  <line x1="390" y1="208" x2="420" y2="208" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- ===== AI MODEL ===== -->
+  <rect x="340" y="115" width="114" height="65" rx="8" fill="url(#grad-model)" stroke="#4a9eff" stroke-width="2" filter="url(#glow-cyan)"/>
+  <text x="397" y="140" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#4a9eff">AI MODEL</text>
+  <text x="397" y="153" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">LLM / Foundation</text>
+  <text x="397" y="163" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">Transformer Core</text>
+  <!-- Pulsing dot -->
+  <circle cx="397" cy="171" r="3" fill="#4a9eff" opacity="0.8"/>
+
+  <!-- Arrow from AI Model → Raw Output -->
+  <line x1="454" y1="148" x2="500" y2="148" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="477" y="142" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">raw out</text>
+
+  <!-- ===== RAW OUTPUT LABEL ===== -->
+  <rect x="456" y="195" width="50" height="26" rx="4" fill="#0d2137" stroke="#00d4ff" stroke-width="1"/>
+  <text x="481" y="207" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#00d4ff">Raw</text>
+  <text x="481" y="217" text-anchor="middle" font-family="monospace" font-size="8" fill="#00d4ff">Output</text>
+
+  <!-- Arrow model output → output filters -->
+  <line x1="500" y1="148" x2="520" y2="148" stroke="#4a9eff" stroke-width="1.5"/>
+  <line x1="520" y1="148" x2="520" y2="208" stroke="#4a9eff" stroke-width="1.5"/>
+  <line x1="520" y1="208" x2="506" y2="208" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Arrow raw output → output filter block -->
+  <line x1="506" y1="208" x2="494" y2="208" stroke="#00d4ff" stroke-width="1.5"/>
+
+  <!-- ===== OUTPUT FILTER BLOCK ===== -->
+  <rect x="494" y="88" width="176" height="330" rx="8" fill="#0f1a0f" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- OUTPUT FILTER: Factuality Check -->
+  <rect x="502" y="112" width="160" height="32" rx="4" fill="url(#grad-output)" stroke="#22c55e" stroke-width="1"/>
+  <text x="582" y="125" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#e2e8f0">Factuality Check</text>
+  <text x="582" y="136" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">Grounding · RAG · Sources</text>
+  <rect x="637" y="114" width="22" height="12" rx="2" fill="#eab308" opacity="0.25" stroke="#eab308" stroke-width="0.5"/>
+  <text x="648" y="123" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">20ms</text>
+  <circle cx="510" cy="128" r="4" fill="#22c55e" filter="url(#glow-green)"/>
+
+  <!-- Parallel bracket line -->
+  <line x1="582" y1="144" x2="582" y2="152" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="2,1"/>
+
+  <!-- OUTPUT FILTER: PII Detection -->
+  <rect x="502" y="152" width="160" height="32" rx="4" fill="url(#grad-output)" stroke="#22c55e" stroke-width="1"/>
+  <text x="582" y="165" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#e2e8f0">PII Detection &amp; Redact</text>
+  <text x="582" y="176" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">Mask · Anonymize</text>
+  <rect x="637" y="154" width="22" height="12" rx="2" fill="#eab308" opacity="0.25" stroke="#eab308" stroke-width="0.5"/>
+  <text x="648" y="163" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">8ms</text>
+  <circle cx="510" cy="168" r="4" fill="#22c55e" filter="url(#glow-green)"/>
+
+  <!-- Parallel lines (shown as branching from single arrow) -->
+  <line x1="582" y1="184" x2="582" y2="192" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="2,1"/>
+
+  <!-- OUTPUT FILTER: Harmful Content -->
+  <rect x="502" y="192" width="160" height="32" rx="4" fill="url(#grad-output)" stroke="#22c55e" stroke-width="1"/>
+  <text x="582" y="205" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#e2e8f0">Harmful Content Scan</text>
+  <text x="582" y="216" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">NSFW · Violence · Hate</text>
+  <rect x="637" y="194" width="22" height="12" rx="2" fill="#eab308" opacity="0.25" stroke="#eab308" stroke-width="0.5"/>
+  <text x="648" y="203" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">15ms</text>
+  <circle cx="510" cy="208" r="4" fill="#22c55e" filter="url(#glow-green)"/>
+
+  <line x1="582" y1="224" x2="582" y2="232" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="2,1"/>
+
+  <!-- OUTPUT FILTER: Format Validation -->
+  <rect x="502" y="232" width="160" height="32" rx="4" fill="url(#grad-output)" stroke="#22c55e" stroke-width="1"/>
+  <text x="582" y="245" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#e2e8f0">Format Validation</text>
+  <text x="582" y="256" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">JSON Schema · Structure</text>
+  <rect x="637" y="234" width="22" height="12" rx="2" fill="#eab308" opacity="0.25" stroke="#eab308" stroke-width="0.5"/>
+  <text x="648" y="243" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">2ms</text>
+  <circle cx="510" cy="248" r="4" fill="#22c55e" filter="url(#glow-green)"/>
+
+  <line x1="582" y1="264" x2="582" y2="272" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="2,1"/>
+
+  <!-- OUTPUT FILTER: Confidence Scoring -->
+  <rect x="502" y="272" width="160" height="32" rx="4" fill="url(#grad-output)" stroke="#22c55e" stroke-width="1"/>
+  <text x="582" y="285" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#e2e8f0">Confidence Scoring</text>
+  <text x="582" y="296" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">Threshold · Uncertainty</text>
+  <rect x="637" y="274" width="22" height="12" rx="2" fill="#eab308" opacity="0.25" stroke="#eab308" stroke-width="0.5"/>
+  <text x="648" y="283" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">5ms</text>
+  <circle cx="510" cy="288" r="4" fill="#22c55e" filter="url(#glow-green)"/>
+
+  <!-- Output filter block label -->
+  <text x="582" y="404" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">TOTAL ≈ 50ms (sequential)</text>
+  <text x="582" y="414" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">≈ 20ms (parallel)</text>
+
+  <!-- ===== REJECT PATHS FROM OUTPUT FILTERS ===== -->
+  <line x1="582" y1="320" x2="582" y2="340" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,1"/>
+  <text x="582" y="335" text-anchor="middle" font-family="monospace" font-size="8" fill="#ef4444">REJECT</text>
+  <!-- Error Handler box for output -->
+  <rect x="512" y="345" width="140" height="30" rx="4" fill="#1a0a0a" stroke="#ef4444" stroke-width="1" filter="url(#glow-red)"/>
+  <text x="582" y="358" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#ef4444">Error Handler</text>
+  <text x="582" y="369" text-anchor="middle" font-family="monospace" font-size="8" fill="#94a3b8">Fallback · Redact · Retry</text>
+
+  <!-- Arrow from output filters PASS → Filtered Output -->
+  <line x1="670" y1="208" x2="700" y2="208" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="685" y="202" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">filtered</text>
+
+  <!-- ===== FILTERED OUTPUT / USER NODE ===== -->
+  <rect x="700" y="115" width="86" height="50" rx="6" fill="url(#grad-output)" stroke="#22c55e" stroke-width="1.5" filter="url(#glow-green)"/>
+  <text x="743" y="135" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#22c55e">Filtered</text>
+  <text x="743" y="147" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#22c55e">Output</text>
+  <text x="743" y="158" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">→ User</text>
+
+  <!-- ===== BOTTOM SECTION: Execution Model Comparison ===== -->
+  <rect x="14" y="420" width="390" height="165" rx="6" fill="#0f0f1e" stroke="#4a9eff" stroke-width="1"/>
+  <text x="209" y="438" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#4a9eff">Sequential vs Parallel Execution</text>
+
+  <!-- Sequential timeline -->
+  <text x="25" y="455" font-family="monospace" font-size="9" fill="#64748b">SEQ:</text>
+  <rect x="55" y="446" width="30" height="12" rx="2" fill="#8b5cf6" opacity="0.7"/>
+  <text x="70" y="456" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff">PII</text>
+  <rect x="87" y="446" width="35" height="12" rx="2" fill="#8b5cf6" opacity="0.7"/>
+  <text x="104" y="456" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff">Inject</text>
+  <rect x="124" y="446" width="40" height="12" rx="2" fill="#8b5cf6" opacity="0.7"/>
+  <text x="144" y="456" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff">Content</text>
+  <rect x="166" y="446" width="20" height="12" rx="2" fill="#8b5cf6" opacity="0.7"/>
+  <text x="176" y="456" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff">Sch</text>
+  <rect x="188" y="446" width="18" height="12" rx="2" fill="#8b5cf6" opacity="0.7"/>
+  <text x="197" y="456" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff">Len</text>
+  <text x="212" y="456" font-family="monospace" font-size="9" fill="#eab308">≈38ms</text>
+
+  <!-- Parallel timeline -->
+  <text x="25" y="480" font-family="monospace" font-size="9" fill="#64748b">PAR:</text>
+  <rect x="55" y="468" width="30" height="12" rx="2" fill="#22c55e" opacity="0.6"/>
+  <text x="70" y="478" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff">PII</text>
+  <rect x="55" y="468" width="35" height="12" rx="2" fill="none" stroke="#22c55e" stroke-width="0.5"/>
+  <rect x="55" y="481" width="40" height="12" rx="2" fill="#22c55e" opacity="0.6"/>
+  <text x="75" y="491" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff">Content</text>
+  <rect x="55" y="494" width="20" height="12" rx="2" fill="#22c55e" opacity="0.6"/>
+  <text x="65" y="504" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff">Sch</text>
+  <rect x="55" y="494" width="18" height="12" rx="2" fill="none" stroke="#22c55e" stroke-width="0.5"/>
+  <rect x="55" y="507" width="18" height="12" rx="2" fill="#22c55e" opacity="0.6"/>
+  <text x="64" y="517" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff">Len</text>
+  <line x1="97" y1="468" x2="97" y2="519" stroke="#22c55e" stroke-width="1" stroke-dasharray="2,1"/>
+  <text x="105" y="480" font-family="monospace" font-size="9" fill="#eab308">≈15ms</text>
+  <text x="105" y="493" font-family="monospace" font-size="8" fill="#22c55e">2.5x faster</text>
+
+  <!-- Warning note -->
+  <text x="209" y="540" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">Note: Parallel requires all filters to agree — any REJECT blocks</text>
+  <text x="209" y="552" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">the pipeline. Injection check may need to run before PII for accuracy.</text>
+
+  <!-- Cost comparison table -->
+  <text x="209" y="572" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">Input pipeline: 38ms seq / 15ms par  |  Output pipeline: 50ms seq / 20ms par</text>
+
+  <!-- ===== BOTTOM RIGHT: Failure Modes ===== -->
+  <rect x="415" y="420" width="371" height="165" rx="6" fill="#100a0a" stroke="#ef4444" stroke-width="1"/>
+  <text x="600" y="438" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#ef4444">Validation Failure Handling</text>
+
+  <!-- Reject row -->
+  <rect x="427" y="446" width="55" height="16" rx="3" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="1"/>
+  <text x="454" y="457" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#ef4444">REJECT</text>
+  <text x="490" y="457" font-family="monospace" font-size="9" fill="#e2e8f0">Hard block — HTTP 400 / policy error</text>
+
+  <!-- Sanitize row -->
+  <rect x="427" y="468" width="55" height="16" rx="3" fill="#f97316" opacity="0.2" stroke="#f97316" stroke-width="1"/>
+  <text x="454" y="479" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#f97316">SANITIZE</text>
+  <text x="490" y="479" font-family="monospace" font-size="9" fill="#e2e8f0">Strip/mask offending content, proceed</text>
+
+  <!-- Flag row -->
+  <rect x="427" y="490" width="55" height="16" rx="3" fill="#eab308" opacity="0.2" stroke="#eab308" stroke-width="1"/>
+  <text x="454" y="501" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#eab308">FLAG</text>
+  <text x="490" y="501" font-family="monospace" font-size="9" fill="#e2e8f0">Allow + log for human review / SIEM</text>
+
+  <!-- Fallback row -->
+  <rect x="427" y="512" width="55" height="16" rx="3" fill="#4a9eff" opacity="0.2" stroke="#4a9eff" stroke-width="1"/>
+  <text x="454" y="523" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#4a9eff">FALLBACK</text>
+  <text x="490" y="523" font-family="monospace" font-size="9" fill="#e2e8f0">Return canned safe response to user</text>
+
+  <!-- Retry row -->
+  <rect x="427" y="534" width="55" height="16" rx="3" fill="#8b5cf6" opacity="0.2" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="454" y="545" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#8b5cf6">RETRY</text>
+  <text x="490" y="545" font-family="monospace" font-size="9" fill="#e2e8f0">Re-query model with stricter prompt</text>
+
+  <!-- Threshold note -->
+  <text x="600" y="566" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">Confidence threshold: output score &lt; 0.7 → FLAG | &lt; 0.4 → REJECT</text>
+  <text x="600" y="578" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">PII in output → always SANITIZE before delivery</text>
+
+</svg>

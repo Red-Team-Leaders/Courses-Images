@@ -1,0 +1,274 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2332" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filters -->
+    <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Arrow marker -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#4a9eff"/>
+    </marker>
+    <!-- Gradients -->
+    <radialGradient id="centralGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0d1117" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="harnessGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#0f1a2e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="17" font-weight="bold">Agentic AI Architecture — Agent Loop &amp; Tool Harness</text>
+  <line x1="60" y1="38" x2="740" y2="38" stroke="#00d4ff" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- ======= OUTER HARNESS BOX ======= -->
+  <rect x="14" y="48" width="772" height="490" rx="10" ry="10"
+        fill="url(#harnessGrad)" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="8,4" opacity="0.9"/>
+  <text x="26" y="66" fill="#8b5cf6" font-family="monospace" font-size="11" font-weight="bold">AI HARNESS / ORCHESTRATION LAYER</text>
+
+  <!-- Harness label badges -->
+  <!-- Policy -->
+  <rect x="16" y="72" width="120" height="20" rx="3" fill="#1e1040" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="76" y="85" text-anchor="middle" fill="#c4b5fd" font-family="monospace" font-size="9">Policy Enforcement</text>
+  <!-- Context -->
+  <rect x="140" y="72" width="120" height="20" rx="3" fill="#1e1040" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="200" y="85" text-anchor="middle" fill="#c4b5fd" font-family="monospace" font-size="9">Context Management</text>
+  <!-- Safety -->
+  <rect x="264" y="72" width="120" height="20" rx="3" fill="#1e1040" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="324" y="85" text-anchor="middle" fill="#c4b5fd" font-family="monospace" font-size="9">Safety Guardrails</text>
+  <!-- Exec env -->
+  <rect x="388" y="72" width="140" height="20" rx="3" fill="#1e1040" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="458" y="85" text-anchor="middle" fill="#c4b5fd" font-family="monospace" font-size="9">Execution Environment</text>
+
+  <!-- ======= CENTRAL AI MODEL ======= -->
+  <!-- Glow halo -->
+  <circle cx="280" cy="290" r="68" fill="url(#centralGrad)" filter="url(#cyanGlow)"/>
+  <!-- Outer ring -->
+  <circle cx="280" cy="290" r="58" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <!-- Inner circle -->
+  <circle cx="280" cy="290" r="50" fill="#0a1a2a" stroke="#00d4ff" stroke-width="2.5"/>
+  <text x="280" y="284" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="12" font-weight="bold" filter="url(#softGlow)">AI MODEL</text>
+  <text x="280" y="298" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="9">(LLM Core)</text>
+  <text x="280" y="312" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="8">Reason · Decide · Act</text>
+
+  <!-- ======= AGENT LOOP (curved around AI model) ======= -->
+  <!-- Loop arc labels — positioned around the model -->
+  <!-- PERCEIVE (top) -->
+  <rect x="228" y="200" width="104" height="22" rx="4" fill="#0a2a1a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="280" y="214" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="10" font-weight="bold">1. PERCEIVE</text>
+  <!-- Arrow down to model -->
+  <line x1="280" y1="222" x2="280" y2="238" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- REASON (right side top) -->
+  <rect x="358" y="218" width="90" height="22" rx="4" fill="#0a1a2a" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="403" y="232" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="10" font-weight="bold">2. REASON</text>
+  <line x1="358" y1="229" x2="342" y2="272" stroke="#00d4ff" stroke-width="1.2" marker-end="url(#arrowCyan)"/>
+
+  <!-- PLAN (right side) -->
+  <rect x="358" y="276" width="90" height="22" rx="4" fill="#0a1a2a" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="403" y="290" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="10" font-weight="bold">3. PLAN</text>
+  <line x1="358" y1="287" x2="342" y2="290" stroke="#4a9eff" stroke-width="1.2" marker-end="url(#arrowBlue)"/>
+
+  <!-- ACT (bottom right) -->
+  <rect x="340" y="336" width="90" height="22" rx="4" fill="#1a0a00" stroke="#f97316" stroke-width="1.5"/>
+  <text x="385" y="350" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="10" font-weight="bold">4. ACT</text>
+  <line x1="340" y1="347" x2="330" y2="337" stroke="#f97316" stroke-width="1.2" marker-end="url(#arrowOrange)"/>
+
+  <!-- OBSERVE (bottom) -->
+  <rect x="222" y="358" width="116" height="22" rx="4" fill="#1a0a00" stroke="#eab308" stroke-width="1.5"/>
+  <text x="280" y="372" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="10" font-weight="bold">5. OBSERVE</text>
+  <line x1="280" y1="358" x2="280" y2="343" stroke="#eab308" stroke-width="1.2" marker-end="url(#arrowOrange)"/>
+
+  <!-- REFLECT (left side) -->
+  <rect x="148" y="276" width="90" height="22" rx="4" fill="#1a0a1a" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="193" y="290" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="10" font-weight="bold">6. REFLECT</text>
+  <line x1="238" y1="287" x2="222" y2="287" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arrowPurple)"/>
+  <!-- Reflect back up to Perceive -->
+  <path d="M 193 276 Q 170 230 228 211" fill="none" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowPurple)"/>
+
+  <!-- ======= MEMORY LAYER (left column) ======= -->
+  <rect x="20" y="108" width="130" height="170" rx="6" fill="#0d1f0d" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="85" y="125" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="10" font-weight="bold">MEMORY LAYER</text>
+  <line x1="30" y1="130" x2="140" y2="130" stroke="#22c55e" stroke-width="0.5" opacity="0.4"/>
+  <!-- Working memory -->
+  <rect x="28" y="136" width="114" height="28" rx="3" fill="#0a2a0a" stroke="#22c55e" stroke-width="1"/>
+  <text x="85" y="148" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8" font-weight="bold">Working Memory</text>
+  <text x="85" y="159" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="7">Short-term context buffer</text>
+  <!-- Episodic memory -->
+  <rect x="28" y="170" width="114" height="28" rx="3" fill="#0a2a0a" stroke="#22c55e" stroke-width="1"/>
+  <text x="85" y="182" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8" font-weight="bold">Episodic Memory</text>
+  <text x="85" y="193" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="7">Past interactions / logs</text>
+  <!-- Semantic memory -->
+  <rect x="28" y="204" width="114" height="28" rx="3" fill="#0a2a0a" stroke="#22c55e" stroke-width="1"/>
+  <text x="85" y="216" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8" font-weight="bold">Semantic Memory</text>
+  <text x="85" y="227" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="7">Vector store / knowledge</text>
+  <!-- Procedural memory -->
+  <rect x="28" y="238" width="114" height="34" rx="3" fill="#0a2a0a" stroke="#22c55e" stroke-width="1"/>
+  <text x="85" y="250" text-anchor="middle" fill="#86efac" font-family="monospace" font-size="8" font-weight="bold">Procedural Memory</text>
+  <text x="85" y="261" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="7">Skills / tool schemas</text>
+  <text x="85" y="270" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="7">ReAct / CoT templates</text>
+  <!-- Arrow from memory to model -->
+  <line x1="150" y1="200" x2="222" y2="270" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#arrowGreen)"/>
+
+  <!-- ======= PLANNING LAYER (top-right area) ======= -->
+  <rect x="490" y="108" width="136" height="130" rx="6" fill="#0a1a2e" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="558" y="125" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="10" font-weight="bold">PLANNING LAYER</text>
+  <line x1="500" y1="130" x2="616" y2="130" stroke="#4a9eff" stroke-width="0.5" opacity="0.4"/>
+  <!-- Task decomposition -->
+  <rect x="498" y="136" width="120" height="28" rx="3" fill="#061224" stroke="#4a9eff" stroke-width="1"/>
+  <text x="558" y="148" text-anchor="middle" fill="#93c5fd" font-family="monospace" font-size="8" font-weight="bold">Task Decomposition</text>
+  <text x="558" y="159" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="7">Goal → Sub-tasks</text>
+  <!-- Chain of thought -->
+  <rect x="498" y="170" width="120" height="28" rx="3" fill="#061224" stroke="#4a9eff" stroke-width="1"/>
+  <text x="558" y="182" text-anchor="middle" fill="#93c5fd" font-family="monospace" font-size="8" font-weight="bold">Chain-of-Thought</text>
+  <text x="558" y="193" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="7">ReAct / Tree-of-Thought</text>
+  <!-- Self-reflection -->
+  <rect x="498" y="204" width="120" height="28" rx="3" fill="#061224" stroke="#4a9eff" stroke-width="1"/>
+  <text x="558" y="216" text-anchor="middle" fill="#93c5fd" font-family="monospace" font-size="8" font-weight="bold">Self-Reflection</text>
+  <text x="558" y="227" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="7">Critique &amp; revision loop</text>
+  <!-- Arrow from planning to model -->
+  <line x1="490" y1="200" x2="340" y2="265" stroke="#4a9eff" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#arrowBlue)"/>
+
+  <!-- ======= TOOL CALLING LAYER (bottom-left / bottom center) ======= -->
+  <rect x="20" y="400" width="530" height="125" rx="6" fill="#1a0e00" stroke="#f97316" stroke-width="1.5"/>
+  <text x="285" y="418" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="10" font-weight="bold">TOOL CALLING LAYER — Function / Tool Dispatch</text>
+  <line x1="30" y1="423" x2="540" y2="423" stroke="#f97316" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Tool boxes -->
+  <!-- Web Search -->
+  <rect x="28" y="430" width="90" height="42" rx="4" fill="#0d0800" stroke="#eab308" stroke-width="1.2"/>
+  <text x="73" y="446" text-anchor="middle" fill="#fde047" font-family="monospace" font-size="8" font-weight="bold">Web Search</text>
+  <text x="73" y="458" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="7">Tavily / SerpAPI</text>
+  <text x="73" y="468" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="7">Brave / Bing</text>
+
+  <!-- Code Exec -->
+  <rect x="126" y="430" width="90" height="42" rx="4" fill="#0d0800" stroke="#eab308" stroke-width="1.2"/>
+  <text x="171" y="446" text-anchor="middle" fill="#fde047" font-family="monospace" font-size="8" font-weight="bold">Code Exec</text>
+  <text x="171" y="458" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="7">Python sandbox</text>
+  <text x="171" y="468" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="7">REPL / E2B</text>
+
+  <!-- Browser -->
+  <rect x="224" y="430" width="90" height="42" rx="4" fill="#0d0800" stroke="#eab308" stroke-width="1.2"/>
+  <text x="269" y="446" text-anchor="middle" fill="#fde047" font-family="monospace" font-size="8" font-weight="bold">Browser</text>
+  <text x="269" y="458" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="7">Playwright</text>
+  <text x="269" y="468" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="7">Selenium / CDP</text>
+
+  <!-- APIs -->
+  <rect x="322" y="430" width="90" height="42" rx="4" fill="#0d0800" stroke="#eab308" stroke-width="1.2"/>
+  <text x="367" y="446" text-anchor="middle" fill="#fde047" font-family="monospace" font-size="8" font-weight="bold">External APIs</text>
+  <text x="367" y="458" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="7">REST / GraphQL</text>
+  <text x="367" y="468" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="7">MCP Servers</text>
+
+  <!-- File System -->
+  <rect x="420" y="430" width="90" height="42" rx="4" fill="#0d0800" stroke="#eab308" stroke-width="1.2"/>
+  <text x="465" y="446" text-anchor="middle" fill="#fde047" font-family="monospace" font-size="8" font-weight="bold">File System</text>
+  <text x="465" y="458" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="7">Read / Write</text>
+  <text x="465" y="468" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="7">Vector DB / RAG</text>
+
+  <!-- Function call protocol label -->
+  <text x="285" y="495" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="8">JSON Schema → Tool → Result → Context injection</text>
+  <text x="285" y="508" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="8">OpenAI tools format | Anthropic tool_use | LangChain tools | MCP</text>
+
+  <!-- Arrow from model to tool layer -->
+  <line x1="280" y1="342" x2="280" y2="398" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowOrange)"/>
+
+  <!-- ======= MULTI-AGENT INSET (right side) ======= -->
+  <rect x="636" y="108" width="150" height="275" rx="6" fill="#0e0a1e" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="711" y="124" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">MULTI-AGENT</text>
+  <text x="711" y="136" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">SYSTEM</text>
+  <line x1="646" y1="141" x2="776" y2="141" stroke="#ef4444" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Orchestrator -->
+  <rect x="656" y="148" width="110" height="30" rx="4" fill="#1a0510" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="711" y="160" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="8" font-weight="bold">ORCHESTRATOR</text>
+  <text x="711" y="172" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="7">Goal Planner / Router</text>
+
+  <!-- Lines to sub-agents -->
+  <line x1="711" y1="178" x2="680" y2="200" stroke="#ef4444" stroke-width="1" marker-end="url(#arrowBlue)"/>
+  <line x1="711" y1="178" x2="711" y2="200" stroke="#ef4444" stroke-width="1" marker-end="url(#arrowBlue)"/>
+  <line x1="711" y1="178" x2="742" y2="200" stroke="#ef4444" stroke-width="1" marker-end="url(#arrowBlue)"/>
+
+  <!-- Sub-agent 1 -->
+  <rect x="644" y="200" width="68" height="40" rx="3" fill="#0a0818" stroke="#4a9eff" stroke-width="1"/>
+  <text x="678" y="215" text-anchor="middle" fill="#93c5fd" font-family="monospace" font-size="7" font-weight="bold">Worker A</text>
+  <text x="678" y="226" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="6">Research</text>
+  <text x="678" y="236" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="6">Agent</text>
+
+  <!-- Sub-agent 2 -->
+  <rect x="677" y="200" width="68" height="40" rx="3" fill="#0a0818" stroke="#4a9eff" stroke-width="1"/>
+  <text x="711" y="215" text-anchor="middle" fill="#93c5fd" font-family="monospace" font-size="7" font-weight="bold">Worker B</text>
+  <text x="711" y="226" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="6">Code</text>
+  <text x="711" y="236" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="6">Agent</text>
+
+  <!-- Sub-agent 3 -->
+  <rect x="710" y="200" width="68" height="40" rx="3" fill="#0a0818" stroke="#4a9eff" stroke-width="1"/>
+  <text x="744" y="215" text-anchor="middle" fill="#93c5fd" font-family="monospace" font-size="7" font-weight="bold">Worker C</text>
+  <text x="744" y="226" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="6">Writer</text>
+  <text x="744" y="236" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="6">Agent</text>
+
+  <!-- Shared state bus -->
+  <rect x="646" y="250" width="120" height="20" rx="3" fill="#1a1028" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="706" y="263" text-anchor="middle" fill="#c4b5fd" font-family="monospace" font-size="7">Shared State / Blackboard</text>
+
+  <!-- Framework labels -->
+  <text x="711" y="288" text-anchor="middle" fill="#9ca3af" font-family="monospace" font-size="7">Frameworks:</text>
+  <rect x="648" y="293" width="124" height="16" rx="2" fill="#0d0d1a" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="710" y="304" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="7">LangGraph / CrewAI</text>
+  <rect x="648" y="313" width="124" height="16" rx="2" fill="#0d0d1a" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="710" y="324" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="7">AutoGPT / AgentGPT</text>
+  <rect x="648" y="333" width="124" height="16" rx="2" fill="#0d0d1a" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="710" y="344" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="7">Swarm / OpenAgents</text>
+  <rect x="648" y="353" width="124" height="16" rx="2" fill="#0d0d1a" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="710" y="364" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="7">Anthropic Claude Code</text>
+
+  <!-- Arrow multi-agent ↔ central model -->
+  <line x1="636" y1="200" x2="342" y2="280" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- ======= RISK BANNER (bottom) ======= -->
+  <rect x="560" y="400" width="226" height="125" rx="6" fill="#1a0606" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="673" y="418" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">AGENTIC RISK SURFACE</text>
+  <line x1="568" y1="423" x2="778" y2="423" stroke="#ef4444" stroke-width="0.5" opacity="0.4"/>
+  <text x="568" y="437" fill="#fca5a5" font-family="monospace" font-size="8">&#x25B6; Prompt injection via tool results</text>
+  <text x="568" y="451" fill="#fca5a5" font-family="monospace" font-size="8">&#x25B6; Uncontrolled tool execution</text>
+  <text x="568" y="465" fill="#fca5a5" font-family="monospace" font-size="8">&#x25B6; Privilege escalation chains</text>
+  <text x="568" y="479" fill="#fca5a5" font-family="monospace" font-size="8">&#x25B6; Memory poisoning attacks</text>
+  <text x="568" y="493" fill="#fca5a5" font-family="monospace" font-size="8">&#x25B6; Runaway agent loops</text>
+  <text x="568" y="507" fill="#fca5a5" font-family="monospace" font-size="8">&#x25B6; Data exfil via side channels</text>
+
+  <!-- Footer -->
+  <line x1="14" y1="542" x2="786" y2="542" stroke="#1e2a3a" stroke-width="1"/>
+  <text x="400" y="557" text-anchor="middle" fill="#374151" font-family="monospace" font-size="8">AI Security Risk — Module 1 Lesson 10 | Agentic AI Architecture</text>
+  <text x="400" y="570" text-anchor="middle" fill="#374151" font-family="monospace" font-size="8">ReAct Loop: Perceive → Reason → Plan → Act → Observe → Reflect → (loop)</text>
+</svg>

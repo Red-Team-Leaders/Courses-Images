@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4a9eff"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrow-gold" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#eab308"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="16" font-weight="bold">AI Behavioral Monitoring, Traceability &amp; Provenance</text>
+  <line x1="80" y1="38" x2="720" y2="38" stroke="#00d4ff" stroke-width="0.5" opacity="0.6"/>
+
+  <!-- ===== TOP ROW: AI System Source ===== -->
+  <!-- AI System Box -->
+  <rect x="310" y="50" width="180" height="55" rx="8" fill="#1a2332" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="400" y="72" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="11" font-weight="bold">AI SYSTEM</text>
+  <text x="400" y="88" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="9">LLM / Agents / Tools</text>
+  <!-- Icon circles -->
+  <circle cx="340" cy="74" r="10" fill="#0d1117" stroke="#4a9eff" stroke-width="1"/>
+  <text x="340" y="78" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="9">AI</text>
+  <circle cx="460" cy="74" r="10" fill="#0d1117" stroke="#4a9eff" stroke-width="1"/>
+  <text x="460" y="78" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="8">API</text>
+
+  <!-- Arrow down to Telemetry -->
+  <line x1="400" y1="105" x2="400" y2="130" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)" stroke-dasharray="4,2"/>
+
+  <!-- ===== TELEMETRY LAYER ===== -->
+  <rect x="180" y="130" width="440" height="70" rx="8" fill="#0f1f2e" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="400" y="150" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="11" font-weight="bold">TELEMETRY LAYER</text>
+  <!-- Three telemetry columns -->
+  <!-- Logs -->
+  <rect x="195" y="157" width="120" height="30" rx="4" fill="#0d1117" stroke="#22c55e" stroke-width="1"/>
+  <text x="255" y="169" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">LOGS</text>
+  <text x="255" y="181" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Structured Events</text>
+  <!-- Metrics -->
+  <rect x="340" y="157" width="120" height="30" rx="4" fill="#0d1117" stroke="#f97316" stroke-width="1"/>
+  <text x="400" y="169" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="9" font-weight="bold">METRICS</text>
+  <text x="400" y="181" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Counters &amp; Gauges</text>
+  <!-- Traces -->
+  <rect x="485" y="157" width="120" height="30" rx="4" fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="545" y="169" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="9" font-weight="bold">TRACES</text>
+  <text x="545" y="181" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">OpenTelemetry Spans</text>
+
+  <!-- Arrow down to SIEM -->
+  <line x1="400" y1="200" x2="400" y2="222" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)" stroke-dasharray="4,2"/>
+
+  <!-- ===== SIEM / MONITORING PLATFORM ===== -->
+  <rect x="250" y="222" width="300" height="42" rx="8" fill="#1a1a2e" stroke="#eab308" stroke-width="1.5"/>
+  <text x="400" y="240" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="11" font-weight="bold">SIEM / MONITORING PLATFORM</text>
+  <text x="400" y="257" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="9">Splunk / Elastic / Azure Sentinel / Datadog</text>
+
+  <!-- Separator line -->
+  <line x1="40" y1="280" x2="760" y2="280" stroke="#1e2a3a" stroke-width="1"/>
+  <text x="400" y="294" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="10" opacity="0.7">MONITORING DIMENSIONS</text>
+
+  <!-- ===== FOUR QUADRANT MONITORING DIMENSIONS ===== -->
+
+  <!-- Q1: Input Monitoring (top-left) -->
+  <rect x="30" y="300" width="175" height="105" rx="6" fill="#0f1f2e" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="30" y="300" width="175" height="20" rx="6" fill="#22c55e" fill-opacity="0.2"/>
+  <text x="117" y="314" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">INPUT MONITORING</text>
+  <text x="45" y="332" fill="#e2e8f0" font-family="monospace" font-size="8">• Prompt length &amp; entropy</text>
+  <text x="45" y="346" fill="#e2e8f0" font-family="monospace" font-size="8">• Injection pattern detection</text>
+  <text x="45" y="360" fill="#e2e8f0" font-family="monospace" font-size="8">• User ID / Session ID</text>
+  <text x="45" y="374" fill="#e2e8f0" font-family="monospace" font-size="8">• PII in prompt flagging</text>
+  <text x="45" y="388" fill="#e2e8f0" font-family="monospace" font-size="8">• Policy rule matching</text>
+
+  <!-- Q2: Output Monitoring (top-right) -->
+  <rect x="215" y="300" width="175" height="105" rx="6" fill="#0f1f2e" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="215" y="300" width="175" height="20" rx="6" fill="#4a9eff" fill-opacity="0.2"/>
+  <text x="302" y="314" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="9" font-weight="bold">OUTPUT MONITORING</text>
+  <text x="230" y="332" fill="#e2e8f0" font-family="monospace" font-size="8">• Content policy checks</text>
+  <text x="230" y="346" fill="#e2e8f0" font-family="monospace" font-size="8">• PII in response detection</text>
+  <text x="230" y="360" fill="#e2e8f0" font-family="monospace" font-size="8">• Factuality scoring</text>
+  <text x="230" y="374" fill="#e2e8f0" font-family="monospace" font-size="8">• Toxicity filtering</text>
+  <text x="230" y="388" fill="#e2e8f0" font-family="monospace" font-size="8">• Data exfil detection</text>
+
+  <!-- Q3: Behavioral Monitoring (bottom-left) -->
+  <rect x="400" y="300" width="175" height="105" rx="6" fill="#0f1f2e" stroke="#f97316" stroke-width="1.5"/>
+  <rect x="400" y="300" width="175" height="20" rx="6" fill="#f97316" fill-opacity="0.2"/>
+  <text x="487" y="314" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="9" font-weight="bold">BEHAVIORAL MONITORING</text>
+  <text x="415" y="332" fill="#e2e8f0" font-family="monospace" font-size="8">• Anomaly detection (Z-score)</text>
+  <text x="415" y="346" fill="#e2e8f0" font-family="monospace" font-size="8">• Concept drift detection</text>
+  <text x="415" y="360" fill="#e2e8f0" font-family="monospace" font-size="8">• Tool call frequency</text>
+  <text x="415" y="374" fill="#e2e8f0" font-family="monospace" font-size="8">• Refusal rate tracking</text>
+  <text x="415" y="388" fill="#e2e8f0" font-family="monospace" font-size="8">• Latency deviation alerts</text>
+
+  <!-- Q4: Cost Monitoring (bottom-right) -->
+  <rect x="585" y="300" width="185" height="105" rx="6" fill="#0f1f2e" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="585" y="300" width="185" height="20" rx="6" fill="#eab308" fill-opacity="0.2"/>
+  <text x="677" y="314" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="9" font-weight="bold">COST MONITORING</text>
+  <text x="600" y="332" fill="#e2e8f0" font-family="monospace" font-size="8">• Token usage per request</text>
+  <text x="600" y="346" fill="#e2e8f0" font-family="monospace" font-size="8">• API cost per user/team</text>
+  <text x="600" y="360" fill="#e2e8f0" font-family="monospace" font-size="8">• Budget threshold alerts</text>
+  <text x="600" y="374" fill="#e2e8f0" font-family="monospace" font-size="8">• Context window saturation</text>
+  <text x="600" y="388" fill="#e2e8f0" font-family="monospace" font-size="8">• Rate limit violations</text>
+
+  <!-- ===== TRACEABILITY CHAIN ===== -->
+  <text x="30" y="424" fill="#00d4ff" font-family="monospace" font-size="10" font-weight="bold">TRACEABILITY CHAIN  (Correlation ID: req-a3f9b2c1)</text>
+
+  <!-- Chain nodes -->
+  <!-- User Request -->
+  <rect x="30" y="432" width="110" height="38" rx="5" fill="#0d1117" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="85" y="447" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold">USER REQUEST</text>
+  <text x="85" y="461" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">span:req-0001</text>
+
+  <line x1="140" y1="451" x2="158" y2="451" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Agent Plan -->
+  <rect x="160" y="432" width="110" height="38" rx="5" fill="#0d1117" stroke="#4a9eff" stroke-width="1.2"/>
+  <text x="215" y="447" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="8" font-weight="bold">AGENT PLAN</text>
+  <text x="215" y="461" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">span:plan-0002</text>
+
+  <line x1="270" y1="451" x2="288" y2="451" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Tool Calls -->
+  <rect x="290" y="432" width="110" height="38" rx="5" fill="#0d1117" stroke="#f97316" stroke-width="1.2"/>
+  <text x="345" y="447" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="8" font-weight="bold">TOOL CALLS</text>
+  <text x="345" y="461" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">span:tool-0003..N</text>
+
+  <line x1="400" y1="451" x2="418" y2="451" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- LLM Inference -->
+  <rect x="420" y="432" width="110" height="38" rx="5" fill="#0d1117" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="475" y="447" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="8" font-weight="bold">LLM INFERENCE</text>
+  <text x="475" y="461" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">span:llm-0004</text>
+
+  <line x1="530" y1="451" x2="548" y2="451" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Response -->
+  <rect x="550" y="432" width="110" height="38" rx="5" fill="#0d1117" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="605" y="447" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold">RESPONSE</text>
+  <text x="605" y="461" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">span:resp-0005</text>
+
+  <!-- Audit Log badge -->
+  <rect x="675" y="432" width="95" height="38" rx="5" fill="#1a1a0f" stroke="#eab308" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="722" y="447" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="8" font-weight="bold">AUDIT LOG</text>
+  <text x="722" y="461" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Immutable Store</text>
+  <line x1="660" y1="451" x2="675" y2="451" stroke="#eab308" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- ===== MODEL PROVENANCE ===== -->
+  <text x="30" y="492" fill="#8b5cf6" font-family="monospace" font-size="10" font-weight="bold">MODEL PROVENANCE CHAIN</text>
+
+  <!-- Provenance boxes -->
+  <!-- Training Data -->
+  <rect x="30" y="500" width="145" height="42" rx="5" fill="#1a0f2e" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="102" y="515" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="8" font-weight="bold">TRAINING DATA</text>
+  <text x="102" y="527" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Lineage + Licenses</text>
+  <text x="102" y="537" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">SHA256 hash recorded</text>
+
+  <line x1="175" y1="521" x2="193" y2="521" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+
+  <!-- Model Version -->
+  <rect x="195" y="500" width="145" height="42" rx="5" fill="#1a0f2e" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="267" y="515" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="8" font-weight="bold">MODEL VERSION</text>
+  <text x="267" y="527" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">v2.1.4 + Model Card</text>
+  <text x="267" y="537" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Eval scores logged</text>
+
+  <line x1="340" y1="521" x2="358" y2="521" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+
+  <!-- Deploy Config -->
+  <rect x="360" y="500" width="145" height="42" rx="5" fill="#1a0f2e" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="432" y="515" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="8" font-weight="bold">DEPLOY CONFIG</text>
+  <text x="432" y="527" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Temp, top-p, sys prompt</text>
+  <text x="432" y="537" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Infra snapshot ID</text>
+
+  <line x1="505" y1="521" x2="523" y2="521" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+
+  <!-- Output Attestation -->
+  <rect x="525" y="500" width="145" height="42" rx="5" fill="#1a0f2e" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="597" y="515" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8" font-weight="bold">OUTPUT ATTESTATION</text>
+  <text x="597" y="527" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Chain of Custody</text>
+  <text x="597" y="537" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Forensic Readiness OK</text>
+
+  <!-- Alerts / SOC playbook badge -->
+  <rect x="680" y="500" width="90" height="42" rx="5" fill="#1f0d0d" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="725" y="516" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8" font-weight="bold">SOC ALERT</text>
+  <text x="725" y="528" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Playbook Triggered</text>
+  <text x="725" y="540" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Incident: AI-2024</text>
+  <line x1="670" y1="521" x2="680" y2="521" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Bottom label -->
+  <text x="400" y="590" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8" opacity="0.5">Module 4 · Lesson 9 · AI Security Risk</text>
+
+  <!-- Connecting arrows from Telemetry to SIEM side feeds -->
+  <line x1="180" y1="172" x2="140" y2="350" stroke="#22c55e" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#arrow-green)" opacity="0.5"/>
+  <line x1="340" y1="172" x2="302" y2="350" stroke="#4a9eff" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#arrow-blue)" opacity="0.5"/>
+  <line x1="460" y1="172" x2="487" y2="350" stroke="#f97316" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#arrow-orange)" opacity="0.5"/>
+  <line x1="605" y1="172" x2="677" y2="350" stroke="#eab308" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#arrow-gold)" opacity="0.5"/>
+</svg>

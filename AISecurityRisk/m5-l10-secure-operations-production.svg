@@ -1,0 +1,312 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glowCyan">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowGreen">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.2"/>
+      <stop offset="50%" style="stop-color:#4a9eff;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.2"/>
+    </linearGradient>
+    <linearGradient id="boxGradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.05"/>
+    </linearGradient>
+    <linearGradient id="boxGradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.05"/>
+    </linearGradient>
+    <linearGradient id="boxGradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#4a9eff;stop-opacity:0.05"/>
+    </linearGradient>
+    <linearGradient id="boxGradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.05"/>
+    </linearGradient>
+    <linearGradient id="boxGradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid pattern -->
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Header band -->
+  <rect x="0" y="0" width="800" height="58" fill="url(#headerGrad)"/>
+  <line x1="0" y1="58" x2="800" y2="58" stroke="#00d4ff" stroke-width="1" opacity="0.4"/>
+
+  <!-- Title -->
+  <text x="400" y="22" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="15" font-weight="bold" letter-spacing="1">SECURE AI PRODUCTION ARCHITECTURE</text>
+  <text x="400" y="44" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="10" letter-spacing="2">LLMs · RAGs · COPILOTS · AGENTS · SRE</text>
+
+  <!-- ===================== LAYER 1: USER INTERFACE ===================== -->
+  <rect x="18" y="68" width="764" height="60" rx="6" fill="url(#boxGradCyan)" stroke="#00d4ff" stroke-width="1.2"/>
+  <text x="30" y="85" fill="#00d4ff" font-family="monospace" font-size="9" font-weight="bold" letter-spacing="1">LAYER 1 — USER INTERFACE</text>
+
+  <!-- Web client -->
+  <rect x="50" y="90" width="90" height="28" rx="4" fill="#0d1117" stroke="#00d4ff" stroke-width="1"/>
+  <text x="95" y="107" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Web Browser</text>
+
+  <!-- Mobile client -->
+  <rect x="165" y="90" width="90" height="28" rx="4" fill="#0d1117" stroke="#00d4ff" stroke-width="1"/>
+  <text x="210" y="107" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Mobile App</text>
+
+  <!-- API client -->
+  <rect x="280" y="90" width="90" height="28" rx="4" fill="#0d1117" stroke="#00d4ff" stroke-width="1"/>
+  <text x="325" y="107" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">API Client</text>
+
+  <!-- Copilot IDE -->
+  <rect x="395" y="90" width="90" height="28" rx="4" fill="#0d1117" stroke="#00d4ff" stroke-width="1"/>
+  <text x="440" y="107" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">IDE Copilot</text>
+
+  <!-- Security badges layer 1 -->
+  <rect x="515" y="88" width="90" height="14" rx="3" fill="#00d4ff" fill-opacity="0.12" stroke="#00d4ff" stroke-width="0.5"/>
+  <text x="560" y="98" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="7">TLS 1.3 + mTLS</text>
+  <rect x="615" y="88" width="78" height="14" rx="3" fill="#22c55e" fill-opacity="0.12" stroke="#22c55e" stroke-width="0.5"/>
+  <text x="654" y="98" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="7">Auth Tokens</text>
+  <rect x="703" y="88" width="65" height="14" rx="3" fill="#eab308" fill-opacity="0.12" stroke="#eab308" stroke-width="0.5"/>
+  <text x="735" y="98" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="7">CORS Policy</text>
+  <!-- Dummy boxes to fill row -->
+  <rect x="515" y="106" width="253" height="12" rx="2" fill="#1e293b" opacity="0.5"/>
+  <text x="641" y="115" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="7">SDK / REST / WebSocket / SSE</text>
+
+  <!-- Arrow down L1 → L2 -->
+  <line x1="400" y1="128" x2="400" y2="142" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- ===================== LAYER 2: API GATEWAY ===================== -->
+  <rect x="18" y="148" width="764" height="64" rx="6" fill="url(#boxGradGreen)" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="30" y="165" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold" letter-spacing="1">LAYER 2 — API GATEWAY  [Security Enforcement Point]</text>
+
+  <rect x="40" y="170" width="88" height="32" rx="4" fill="#0d1117" stroke="#22c55e" stroke-width="1"/>
+  <text x="84" y="183" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="7.5" font-weight="bold">AuthN / AuthZ</text>
+  <text x="84" y="196" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">JWT · OAuth2 · SAML</text>
+
+  <rect x="142" y="170" width="88" height="32" rx="4" fill="#0d1117" stroke="#22c55e" stroke-width="1"/>
+  <text x="186" y="183" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="7.5" font-weight="bold">Rate Limiter</text>
+  <text x="186" y="196" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Token budget · RPM</text>
+
+  <rect x="244" y="170" width="88" height="32" rx="4" fill="#0d1117" stroke="#ef4444" stroke-width="1"/>
+  <text x="288" y="183" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="7.5" font-weight="bold">WAF / DDoS</text>
+  <text x="288" y="196" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Prompt inject rules</text>
+
+  <rect x="346" y="170" width="88" height="32" rx="4" fill="#0d1117" stroke="#22c55e" stroke-width="1"/>
+  <text x="390" y="183" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="7.5" font-weight="bold">TLS Termination</text>
+  <text x="390" y="196" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Cert mgmt · HSTS</text>
+
+  <rect x="448" y="170" width="88" height="32" rx="4" fill="#0d1117" stroke="#eab308" stroke-width="1"/>
+  <text x="492" y="183" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="7.5" font-weight="bold">Cost Routing</text>
+  <text x="492" y="196" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Model tier selection</text>
+
+  <rect x="550" y="170" width="88" height="32" rx="4" fill="#0d1117" stroke="#22c55e" stroke-width="1"/>
+  <text x="594" y="183" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="7.5" font-weight="bold">Audit Logger</text>
+  <text x="594" y="196" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">SIEM integration</text>
+
+  <rect x="652" y="170" width="112" height="32" rx="4" fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="708" y="183" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="7.5" font-weight="bold">Circuit Breaker</text>
+  <text x="708" y="196" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Fallback · Health check</text>
+
+  <!-- Arrow down L2 → L3 -->
+  <line x1="400" y1="212" x2="400" y2="228" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- ===================== LAYER 3: AI ORCHESTRATION ===================== -->
+  <rect x="18" y="234" width="764" height="64" rx="6" fill="url(#boxGradBlue)" stroke="#4a9eff" stroke-width="1.2"/>
+  <text x="30" y="251" fill="#4a9eff" font-family="monospace" font-size="9" font-weight="bold" letter-spacing="1">LAYER 3 — AI ORCHESTRATION  [Control Plane]</text>
+
+  <rect x="40" y="256" width="100" height="32" rx="4" fill="#0d1117" stroke="#4a9eff" stroke-width="1"/>
+  <text x="90" y="269" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="7.5" font-weight="bold">Prompt Manager</text>
+  <text x="90" y="282" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Version · A/B · Canary</text>
+
+  <rect x="154" y="256" width="100" height="32" rx="4" fill="#0d1117" stroke="#4a9eff" stroke-width="1"/>
+  <text x="204" y="269" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="7.5" font-weight="bold">Session Manager</text>
+  <text x="204" y="282" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Context isolation · TTL</text>
+
+  <rect x="268" y="256" width="100" height="32" rx="4" fill="#0d1117" stroke="#ef4444" stroke-width="1"/>
+  <text x="318" y="269" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="7.5" font-weight="bold">Guardrails Engine</text>
+  <text x="318" y="282" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">PII · Safety · Policy</text>
+
+  <rect x="382" y="256" width="100" height="32" rx="4" fill="#0d1117" stroke="#4a9eff" stroke-width="1"/>
+  <text x="432" y="269" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="7.5" font-weight="bold">Multi-Tenant Mgr</text>
+  <text x="432" y="282" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Namespace · Quota</text>
+
+  <rect x="496" y="256" width="100" height="32" rx="4" fill="#0d1117" stroke="#eab308" stroke-width="1"/>
+  <text x="546" y="269" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="7.5" font-weight="bold">Output Scanner</text>
+  <text x="546" y="282" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">DLP · Toxicity · Bias</text>
+
+  <rect x="610" y="256" width="152" height="32" rx="4" fill="#0d1117" stroke="#4a9eff" stroke-width="1"/>
+  <text x="686" y="269" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="7.5" font-weight="bold">Observability Collector</text>
+  <text x="686" y="282" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">LangSmith · Arize · Datadog</text>
+
+  <!-- Arrow down L3 → L4 (three arrows for three sub-systems) -->
+  <line x1="200" y1="298" x2="200" y2="316" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+  <line x1="400" y1="298" x2="400" y2="316" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+  <line x1="600" y1="298" x2="600" y2="316" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- ===================== LAYER 4: AI COMPUTE ===================== -->
+  <!-- Sub-system A: LLM Cluster -->
+  <rect x="18" y="320" width="230" height="86" rx="6" fill="url(#boxGradPurple)" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="133" y="336" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="8.5" font-weight="bold">LLM CLUSTER</text>
+
+  <rect x="30" y="341" width="98" height="26" rx="3" fill="#0d1117" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="79" y="352" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Primary Model</text>
+  <text x="79" y="362" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="6.5">GPT-4o / Claude 3.5</text>
+
+  <rect x="140" y="341" width="96" height="26" rx="3" fill="#0d1117" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="188" y="352" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Fallback Model</text>
+  <text x="188" y="362" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="6.5">Haiku / Llama-3</text>
+
+  <rect x="30" y="374" width="204" height="22" rx="3" fill="#1e293b" stroke="#8b5cf6" stroke-width="0.6" opacity="0.8"/>
+  <text x="132" y="383" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Load Balancer · Auto-Scale · SLA 99.9%</text>
+  <text x="132" y="392" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6">Semantic cache · Batch queue · Cost track</text>
+
+  <!-- Sub-system B: RAG Pipeline -->
+  <rect x="270" y="320" width="260" height="86" rx="6" fill="url(#boxGradCyan)" stroke="#00d4ff" stroke-width="1.2"/>
+  <text x="400" y="336" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="8.5" font-weight="bold">RAG PIPELINE</text>
+
+  <rect x="282" y="341" width="110" height="26" rx="3" fill="#0d1117" stroke="#00d4ff" stroke-width="0.8"/>
+  <text x="337" y="352" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Vector Database</text>
+  <text x="337" y="362" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="6.5">Pinecone / Weaviate</text>
+
+  <rect x="406" y="341" width="110" height="26" rx="3" fill="#0d1117" stroke="#00d4ff" stroke-width="0.8"/>
+  <text x="461" y="352" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Retrieval Engine</text>
+  <text x="461" y="362" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="6.5">Hybrid: dense + BM25</text>
+
+  <rect x="282" y="374" width="234" height="22" rx="3" fill="#1e293b" stroke="#00d4ff" stroke-width="0.6" opacity="0.8"/>
+  <text x="399" y="383" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Access control · Chunk attribution · Retrieval logging</text>
+  <text x="399" y="392" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6">Re-ranker · Rewrite · Namespace isolation</text>
+
+  <!-- Sub-system C: Agent Runtime -->
+  <rect x="552" y="320" width="230" height="86" rx="6" fill="url(#boxGradOrange)" stroke="#f97316" stroke-width="1.2"/>
+  <text x="667" y="336" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="8.5" font-weight="bold">AGENT RUNTIME</text>
+
+  <rect x="564" y="341" width="98" height="26" rx="3" fill="#0d1117" stroke="#f97316" stroke-width="0.8"/>
+  <text x="613" y="352" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Tool Executor</text>
+  <text x="613" y="362" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="6.5">Sandboxed container</text>
+
+  <rect x="674" y="341" width="96" height="26" rx="3" fill="#0d1117" stroke="#f97316" stroke-width="0.8"/>
+  <text x="722" y="352" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Memory Store</text>
+  <text x="722" y="362" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="6.5">Short + Long term</text>
+
+  <rect x="564" y="374" width="204" height="22" rx="3" fill="#1e293b" stroke="#f97316" stroke-width="0.6" opacity="0.8"/>
+  <text x="666" y="383" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6.5">Network egress control · CPU/mem limits</text>
+  <text x="666" y="392" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6">Approval gate · Action log · Scope fence</text>
+
+  <!-- Arrows L4 → L5 -->
+  <line x1="133" y1="406" x2="133" y2="420" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+  <line x1="400" y1="406" x2="400" y2="420" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+  <line x1="667" y1="406" x2="667" y2="420" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- ===================== LAYER 5: BACKEND SYSTEMS ===================== -->
+  <rect x="18" y="424" width="764" height="56" rx="6" fill="url(#boxGradGreen)" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="30" y="441" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold" letter-spacing="1">LAYER 5 — BACKEND SYSTEMS  [Data &amp; Tools Plane]</text>
+
+  <rect x="38" y="447" width="90" height="24" rx="3" fill="#0d1117" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="83" y="462" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7.5">Corporate DB</text>
+
+  <rect x="144" y="447" width="90" height="24" rx="3" fill="#0d1117" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="189" y="462" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7.5">Internal APIs</text>
+
+  <rect x="250" y="447" width="90" height="24" rx="3" fill="#0d1117" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="295" y="462" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7.5">External SaaS</text>
+
+  <rect x="356" y="447" width="90" height="24" rx="3" fill="#0d1117" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="401" y="462" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7.5">File Storage</text>
+
+  <rect x="462" y="447" width="90" height="24" rx="3" fill="#0d1117" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="507" y="462" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7.5">Code Sandbox</text>
+
+  <rect x="568" y="447" width="90" height="24" rx="3" fill="#0d1117" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="613" y="462" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7.5">Message Bus</text>
+
+  <rect x="674" y="447" width="96" height="24" rx="3" fill="#0d1117" stroke="#eab308" stroke-width="0.8"/>
+  <text x="722" y="462" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="7.5">Audit / SIEM</text>
+
+  <!-- ===================== BOTTOM: SRE + OBSERVABILITY BAR ===================== -->
+  <rect x="18" y="494" width="764" height="54" rx="6" fill="#161b22" stroke="#475569" stroke-width="1"/>
+  <text x="30" y="511" fill="#94a3b8" font-family="monospace" font-size="8.5" font-weight="bold" letter-spacing="1">SRE &amp; OBSERVABILITY</text>
+
+  <!-- SRE cells -->
+  <rect x="38" y="516" width="78" height="24" rx="3" fill="#0f172a" stroke="#eab308" stroke-width="0.8"/>
+  <text x="77" y="526" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="6.5" font-weight="bold">SLA / SLO</text>
+  <text x="77" y="535" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="6">99.9% · TTFB</text>
+
+  <rect x="126" y="516" width="78" height="24" rx="3" fill="#0f172a" stroke="#eab308" stroke-width="0.8"/>
+  <text x="165" y="526" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="6.5" font-weight="bold">Error Budget</text>
+  <text x="165" y="535" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="6">Burn rate alerts</text>
+
+  <rect x="214" y="516" width="88" height="24" rx="3" fill="#0f172a" stroke="#f97316" stroke-width="0.8"/>
+  <text x="258" y="526" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="6.5" font-weight="bold">On-call Playbook</text>
+  <text x="258" y="535" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="6">PagerDuty · Runbooks</text>
+
+  <rect x="312" y="516" width="88" height="24" rx="3" fill="#0f172a" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="356" y="526" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="6.5" font-weight="bold">LLM Monitoring</text>
+  <text x="356" y="535" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="6">Arize · LangSmith</text>
+
+  <rect x="410" y="516" width="88" height="24" rx="3" fill="#0f172a" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="454" y="526" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="6.5" font-weight="bold">Capacity Plan</text>
+  <text x="454" y="535" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="6">GPU · Token budget</text>
+
+  <rect x="508" y="516" width="88" height="24" rx="3" fill="#0f172a" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="552" y="526" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="6.5" font-weight="bold">Incident Mgmt</text>
+  <text x="552" y="535" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="6">IR · Post-mortem</text>
+
+  <rect x="606" y="516" width="80" height="24" rx="3" fill="#0f172a" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="646" y="526" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="6.5" font-weight="bold">Change Mgmt</text>
+  <text x="646" y="535" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="6">Canary · Rollback</text>
+
+  <rect x="696" y="516" width="78" height="24" rx="3" fill="#0f172a" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="735" y="526" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="6.5" font-weight="bold">Compliance Rpt</text>
+  <text x="735" y="535" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="6">SOC2 · GDPR</text>
+
+  <!-- ===================== LEGEND ===================== -->
+  <rect x="18" y="556" width="764" height="34" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+
+  <circle cx="40" cy="573" r="4" fill="#00d4ff"/>
+  <text x="50" y="577" fill="#94a3b8" font-family="monospace" font-size="7">User/Network</text>
+
+  <circle cx="130" cy="573" r="4" fill="#22c55e"/>
+  <text x="140" y="577" fill="#94a3b8" font-family="monospace" font-size="7">Security Control</text>
+
+  <circle cx="225" cy="573" r="4" fill="#4a9eff"/>
+  <text x="235" y="577" fill="#94a3b8" font-family="monospace" font-size="7">Orchestration</text>
+
+  <circle cx="310" cy="573" r="4" fill="#8b5cf6"/>
+  <text x="320" y="577" fill="#94a3b8" font-family="monospace" font-size="7">LLM Runtime</text>
+
+  <circle cx="395" cy="573" r="4" fill="#f97316"/>
+  <text x="405" y="577" fill="#94a3b8" font-family="monospace" font-size="7">Agent Sandbox</text>
+
+  <circle cx="485" cy="573" r="4" fill="#eab308"/>
+  <text x="495" y="577" fill="#94a3b8" font-family="monospace" font-size="7">SRE / Cost</text>
+
+  <circle cx="560" cy="573" r="4" fill="#ef4444"/>
+  <text x="570" y="577" fill="#94a3b8" font-family="monospace" font-size="7">Threat Control</text>
+
+  <text x="740" y="577" text-anchor="middle" fill="#334155" font-family="monospace" font-size="6">M5-L10 · AISecRisk</text>
+</svg>

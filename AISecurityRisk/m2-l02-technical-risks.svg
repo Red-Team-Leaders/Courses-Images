@@ -1,0 +1,318 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-yellow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#eab308"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glow-red" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-orange" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradients -->
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="root-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+    <linearGradient id="orange-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#92400e"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="yellow-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#713f12"/>
+      <stop offset="100%" stop-color="#854d0e"/>
+    </linearGradient>
+    <linearGradient id="red-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#9b1c1c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg-grad)"/>
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.4"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="800" height="3" fill="#ef4444"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#ffffff">Technical AI Risk Taxonomy</text>
+  <text x="400" y="52" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" fill="#64748b">Hallucination · Bias · Toxicity — Module 2 Lesson 2</text>
+
+  <!-- Horizontal separator line -->
+  <line x1="60" y1="63" x2="740" y2="63" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- ===== ROOT NODE ===== -->
+  <rect x="290" y="78" width="220" height="44" rx="8" fill="url(#root-grad)" stroke="#ef4444" stroke-width="2" filter="url(#glow-red)"/>
+  <text x="400" y="97" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#ffffff">Technical AI Risks</text>
+  <text x="400" y="113" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#fca5a5">Core Risk Categories</text>
+
+  <!-- Root → Branch connector lines -->
+  <!-- vertical down from root -->
+  <line x1="400" y1="122" x2="400" y2="148" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- horizontal across -->
+  <line x1="130" y1="148" x2="670" y2="148" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- verticals down to each branch -->
+  <line x1="130" y1="148" x2="130" y2="172" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+  <line x1="400" y1="148" x2="400" y2="172" stroke="#eab308" stroke-width="1.5" marker-end="url(#arrow-yellow)"/>
+  <line x1="670" y1="148" x2="670" y2="172" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+
+  <!-- ===== BRANCH 1: RELIABILITY RISKS (orange) ===== -->
+  <rect x="40" y="172" width="180" height="44" rx="7" fill="url(#orange-grad)" stroke="#f97316" stroke-width="2" filter="url(#glow-orange)"/>
+  <text x="130" y="191" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#ffffff">Reliability Risks</text>
+  <text x="130" y="207" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#fed7aa">Factual · Confidence</text>
+
+  <!-- Branch 1 → Leaf connectors -->
+  <line x1="130" y1="216" x2="130" y2="234" stroke="#f97316" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="30" y1="234" x2="232" y2="234" stroke="#f97316" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="30" y1="234" x2="30" y2="248" stroke="#f97316" stroke-width="1"/>
+  <line x1="85" y1="234" x2="85" y2="248" stroke="#f97316" stroke-width="1"/>
+  <line x1="175" y1="234" x2="175" y2="248" stroke="#f97316" stroke-width="1"/>
+  <line x1="232" y1="234" x2="232" y2="248" stroke="#f97316" stroke-width="1"/>
+
+  <!-- Leaf 1.1: Hallucination -->
+  <rect x="2" y="248" width="56" height="52" rx="5" fill="#1a1410" stroke="#f97316" stroke-width="1.5"/>
+  <text x="30" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fb923c">Hallucina-</text>
+  <text x="30" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fb923c">tion</text>
+  <text x="30" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">"Napoleon</text>
+  <text x="30" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">won 1812"</text>
+  <!-- Severity dot: HIGH -->
+  <circle cx="30" cy="296" r="3" fill="#ef4444"/>
+
+  <!-- Leaf 1.2: Confabulation -->
+  <rect x="57" y="248" width="56" height="52" rx="5" fill="#1a1410" stroke="#f97316" stroke-width="1.5"/>
+  <text x="85" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fb923c">Confabula-</text>
+  <text x="85" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fb923c">tion</text>
+  <text x="85" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">Fake legal</text>
+  <text x="85" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">citations</text>
+  <!-- Severity dot: HIGH -->
+  <circle cx="85" cy="296" r="3" fill="#ef4444"/>
+
+  <!-- Leaf 1.3: Factual Errors -->
+  <rect x="148" y="248" width="56" height="52" rx="5" fill="#1a1410" stroke="#f97316" stroke-width="1.5"/>
+  <text x="175" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fb923c">Factual</text>
+  <text x="175" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fb923c">Errors</text>
+  <text x="175" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">Wrong drug</text>
+  <text x="175" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">dosage</text>
+  <!-- Severity dot: HIGH -->
+  <circle cx="175" cy="296" r="3" fill="#ef4444"/>
+
+  <!-- Leaf 1.4: Miscalibration -->
+  <rect x="205" y="248" width="56" height="52" rx="5" fill="#1a1410" stroke="#f97316" stroke-width="1.5"/>
+  <text x="232" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fb923c">Confidence</text>
+  <text x="232" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fb923c">Miscalib.</text>
+  <text x="232" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">99% sure,</text>
+  <text x="232" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">100% wrong</text>
+  <!-- Severity dot: MED -->
+  <circle cx="232" cy="296" r="3" fill="#eab308"/>
+
+  <!-- ===== BRANCH 2: FAIRNESS RISKS (yellow) ===== -->
+  <rect x="310" y="172" width="180" height="44" rx="7" fill="url(#yellow-grad)" stroke="#eab308" stroke-width="2"/>
+  <text x="400" y="191" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#ffffff">Fairness Risks</text>
+  <text x="400" y="207" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#fde68a">Bias · Disparity</text>
+
+  <!-- Branch 2 → Leaf connectors -->
+  <line x1="400" y1="216" x2="400" y2="234" stroke="#eab308" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="300" y1="234" x2="502" y2="234" stroke="#eab308" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="300" y1="234" x2="300" y2="248" stroke="#eab308" stroke-width="1"/>
+  <line x1="355" y1="234" x2="355" y2="248" stroke="#eab308" stroke-width="1"/>
+  <line x1="445" y1="234" x2="445" y2="248" stroke="#eab308" stroke-width="1"/>
+  <line x1="502" y1="234" x2="502" y2="248" stroke="#eab308" stroke-width="1"/>
+
+  <!-- Leaf 2.1: Algorithmic Bias -->
+  <rect x="272" y="248" width="56" height="52" rx="5" fill="#141208" stroke="#eab308" stroke-width="1.5"/>
+  <text x="300" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fbbf24">Algo.</text>
+  <text x="300" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fbbf24">Bias</text>
+  <text x="300" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">Resume</text>
+  <text x="300" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">screening</text>
+  <!-- Severity dot: HIGH -->
+  <circle cx="300" cy="296" r="3" fill="#ef4444"/>
+
+  <!-- Leaf 2.2: Demographic Disparity -->
+  <rect x="327" y="248" width="56" height="52" rx="5" fill="#141208" stroke="#eab308" stroke-width="1.5"/>
+  <text x="355" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fbbf24">Demo.</text>
+  <text x="355" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fbbf24">Disparity</text>
+  <text x="355" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">Loan denial</text>
+  <text x="355" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">rates differ</text>
+  <!-- Severity dot: HIGH -->
+  <circle cx="355" cy="296" r="3" fill="#ef4444"/>
+
+  <!-- Leaf 2.3: Proxy Discrimination -->
+  <rect x="418" y="248" width="56" height="52" rx="5" fill="#141208" stroke="#eab308" stroke-width="1.5"/>
+  <text x="445" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fbbf24">Proxy</text>
+  <text x="445" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fbbf24">Discrim.</text>
+  <text x="445" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">ZIP code</text>
+  <text x="445" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">as proxy</text>
+  <!-- Severity dot: MED -->
+  <circle cx="445" cy="296" r="3" fill="#eab308"/>
+
+  <!-- Leaf 2.4: Feedback Loops -->
+  <rect x="474" y="248" width="56" height="52" rx="5" fill="#141208" stroke="#eab308" stroke-width="1.5"/>
+  <text x="502" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fbbf24">Feedback</text>
+  <text x="502" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#fbbf24">Loops</text>
+  <text x="502" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">Biased data</text>
+  <text x="502" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">amplified</text>
+  <!-- Severity dot: HIGH -->
+  <circle cx="502" cy="296" r="3" fill="#ef4444"/>
+
+  <!-- ===== BRANCH 3: SAFETY RISKS (red) ===== -->
+  <rect x="580" y="172" width="180" height="44" rx="7" fill="url(#red-grad)" stroke="#ef4444" stroke-width="2" filter="url(#glow-red)"/>
+  <text x="670" y="191" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#ffffff">Safety Risks</text>
+  <text x="670" y="207" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#fca5a5">Toxicity · Harm</text>
+
+  <!-- Branch 3 → Leaf connectors -->
+  <line x1="670" y1="216" x2="670" y2="234" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="570" y1="234" x2="772" y2="234" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="570" y1="234" x2="570" y2="248" stroke="#ef4444" stroke-width="1"/>
+  <line x1="625" y1="234" x2="625" y2="248" stroke="#ef4444" stroke-width="1"/>
+  <line x1="715" y1="234" x2="715" y2="248" stroke="#ef4444" stroke-width="1"/>
+  <line x1="772" y1="234" x2="772" y2="248" stroke="#ef4444" stroke-width="1"/>
+
+  <!-- Leaf 3.1: Toxicity -->
+  <rect x="542" y="248" width="56" height="52" rx="5" fill="#1a0808" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="570" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f87171">Toxicity</text>
+  <text x="570" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f87171">Output</text>
+  <text x="570" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">Slurs in</text>
+  <text x="570" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">chat reply</text>
+  <!-- Severity dot: HIGH -->
+  <circle cx="570" cy="296" r="3" fill="#ef4444"/>
+
+  <!-- Leaf 3.2: Hate Speech -->
+  <rect x="597" y="248" width="56" height="52" rx="5" fill="#1a0808" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="625" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f87171">Hate</text>
+  <text x="625" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f87171">Speech</text>
+  <text x="625" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">Targeted</text>
+  <text x="625" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">group harm</text>
+  <!-- Severity dot: CRITICAL -->
+  <circle cx="625" cy="296" r="3" fill="#7c2020"/>
+
+  <!-- Leaf 3.3: CSAM/Illegal -->
+  <rect x="687" y="248" width="56" height="52" rx="5" fill="#1a0808" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="715" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f87171">Illegal</text>
+  <text x="715" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f87171">Content</text>
+  <text x="715" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">CSAM /</text>
+  <text x="715" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">exploitation</text>
+  <!-- Severity dot: CRITICAL -->
+  <circle cx="715" cy="296" r="3" fill="#7c2020"/>
+
+  <!-- Leaf 3.4: Self-harm -->
+  <rect x="743" y="248" width="56" height="52" rx="5" fill="#1a0808" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="772" y="262" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f87171">Self-Harm</text>
+  <text x="772" y="272" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f87171">Content</text>
+  <text x="772" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">Suicide</text>
+  <text x="772" y="292" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#9ca3af">methods</text>
+  <!-- Severity dot: CRITICAL -->
+  <circle cx="772" cy="296" r="3" fill="#7c2020"/>
+
+  <!-- ===== EVALUATION TOOLS SECTION ===== -->
+  <line x1="60" y1="318" x2="740" y2="318" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="400" y="335" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#64748b">Evaluation &amp; Measurement Benchmarks</text>
+
+  <!-- TruthfulQA -->
+  <rect x="30" y="345" width="120" height="54" rx="6" fill="#0f1e2e" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="90" y="361" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#4a9eff">TruthfulQA</text>
+  <text x="90" y="374" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#94a3b8">Hallucination</text>
+  <text x="90" y="385" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#94a3b8">detection</text>
+  <text x="90" y="395" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#4a9eff">817 questions</text>
+
+  <!-- WinoBias -->
+  <rect x="165" y="345" width="120" height="54" rx="6" fill="#0f1e2e" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="225" y="361" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#8b5cf6">WinoBias</text>
+  <text x="225" y="374" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#94a3b8">Gender bias in</text>
+  <text x="225" y="385" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#94a3b8">coreference</text>
+  <text x="225" y="395" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8b5cf6">Pro/Anti sets</text>
+
+  <!-- BBQ -->
+  <rect x="300" y="345" width="120" height="54" rx="6" fill="#0f1e2e" stroke="#eab308" stroke-width="1.5"/>
+  <text x="360" y="361" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#eab308">BBQ Benchmark</text>
+  <text x="360" y="374" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#94a3b8">Bias in QA</text>
+  <text x="360" y="385" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#94a3b8">ambiguous ctx</text>
+  <text x="360" y="395" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#eab308">9 social groups</text>
+
+  <!-- RealToxicityPrompts -->
+  <rect x="435" y="345" width="120" height="54" rx="6" fill="#0f1e2e" stroke="#f97316" stroke-width="1.5"/>
+  <text x="495" y="361" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#f97316">RealToxicity</text>
+  <text x="495" y="372" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#f97316">Prompts</text>
+  <text x="495" y="383" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#94a3b8">Toxicity eval</text>
+  <text x="495" y="395" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#f97316">100K prompts</text>
+
+  <!-- BOLD/HELM -->
+  <rect x="570" y="345" width="120" height="54" rx="6" fill="#0f1e2e" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="630" y="361" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#22c55e">BOLD / HELM</text>
+  <text x="630" y="374" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#94a3b8">Holistic eval</text>
+  <text x="630" y="385" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#94a3b8">framework</text>
+  <text x="630" y="395" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">Multi-metric</text>
+
+  <!-- ===== MITIGATION STRATEGIES SECTION ===== -->
+  <line x1="60" y1="413" x2="740" y2="413" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="400" y="430" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#64748b">Mitigation Strategies</text>
+
+  <!-- Mitigation box 1: RAG/Grounding -->
+  <rect x="30" y="438" width="155" height="64" rx="6" fill="#0a1a12" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="107" y="453" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#22c55e">Hallucination Mitigations</text>
+  <text x="107" y="466" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#86efac">· RAG + retrieval grounding</text>
+  <text x="107" y="478" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#86efac">· Uncertainty quantification</text>
+  <text x="107" y="490" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#86efac">· Source citation enforcement</text>
+  <text x="107" y="499" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#4ade80">Truthfulness RLHF</text>
+
+  <!-- Mitigation box 2: Bias Mitigations -->
+  <rect x="200" y="438" width="155" height="64" rx="6" fill="#14120a" stroke="#eab308" stroke-width="1.5"/>
+  <text x="277" y="453" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#eab308">Bias Mitigations</text>
+  <text x="277" y="466" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fde68a">· Dataset debiasing / audits</text>
+  <text x="277" y="478" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fde68a">· Fairness-aware training</text>
+  <text x="277" y="490" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fde68a">· Demographic parity checks</text>
+  <text x="277" y="499" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#fbbf24">Post-hoc recalibration</text>
+
+  <!-- Mitigation box 3: Toxicity Mitigations -->
+  <rect x="370" y="438" width="155" height="64" rx="6" fill="#1a0808" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="447" y="453" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ef4444">Toxicity Mitigations</text>
+  <text x="447" y="466" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fca5a5">· RLHF safety fine-tuning</text>
+  <text x="447" y="478" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fca5a5">· Output classifiers / filters</text>
+  <text x="447" y="490" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fca5a5">· Human review pipelines</text>
+  <text x="447" y="499" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#f87171">Red team + constitutional AI</text>
+
+  <!-- Mitigation box 4: Org Controls -->
+  <rect x="540" y="438" width="230" height="64" rx="6" fill="#0d1a2e" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="655" y="453" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#4a9eff">Organizational Controls</text>
+  <text x="655" y="466" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#bfdbfe">· Model cards + risk disclosures</text>
+  <text x="655" y="478" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#bfdbfe">· Continuous bias auditing</text>
+  <text x="655" y="490" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#bfdbfe">· Incident response for AI failures</text>
+  <text x="655" y="499" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#60a5fa">Regulatory compliance (EU AI Act)</text>
+
+  <!-- ===== SEVERITY LEGEND ===== -->
+  <line x1="60" y1="515" x2="740" y2="515" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="130" y="532" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#64748b">Severity Legend:</text>
+  <circle cx="220" cy="529" r="5" fill="#7c2020"/>
+  <text x="240" y="533" text-anchor="start" font-family="'Courier New', monospace" font-size="9" fill="#fca5a5">Critical</text>
+  <circle cx="295" cy="529" r="5" fill="#ef4444"/>
+  <text x="315" y="533" text-anchor="start" font-family="'Courier New', monospace" font-size="9" fill="#fca5a5">High</text>
+  <circle cx="360" cy="529" r="5" fill="#eab308"/>
+  <text x="380" y="533" text-anchor="start" font-family="'Courier New', monospace" font-size="9" fill="#fde68a">Medium</text>
+  <circle cx="445" cy="529" r="5" fill="#22c55e"/>
+  <text x="465" y="533" text-anchor="start" font-family="'Courier New', monospace" font-size="9" fill="#86efac">Low</text>
+
+  <!-- Corner decorations -->
+  <text x="30" y="570" font-family="'Courier New', monospace" font-size="9" fill="#1e3a5f">AI Security Risk · Module 2 · Technical Risks</text>
+  <text x="770" y="570" text-anchor="end" font-family="'Courier New', monospace" font-size="9" fill="#1e3a5f">v2.0</text>
+
+  <!-- Bottom accent bar -->
+  <rect x="0" y="597" width="800" height="3" fill="#ef4444"/>
+</svg>

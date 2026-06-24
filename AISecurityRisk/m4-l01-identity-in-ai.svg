@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2d3d" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4a9eff"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+    </marker>
+    <marker id="arrowCyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0a1628;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="rootGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0d2137;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="humanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1d3060;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="nonHumanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c2d12;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#5a1f0a;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="32" font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#00d4ff" text-anchor="middle" filter="url(#glow)">Identity in AI Systems</text>
+  <text x="400" y="52" font-family="'Courier New', monospace" font-size="11" fill="#8b9cb6" text-anchor="middle">Human &amp; Non-Human Identity Taxonomy</text>
+  <line x1="160" y1="60" x2="640" y2="60" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- ROOT NODE -->
+  <rect x="285" y="72" width="230" height="46" rx="8" fill="url(#rootGrad)" stroke="#00d4ff" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="400" y="91" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#00d4ff" text-anchor="middle">Identity in AI Systems</text>
+  <text x="400" y="108" font-family="'Courier New', monospace" font-size="9" fill="#8b9cb6" text-anchor="middle">Authentication · Authorization · Accountability</text>
+
+  <!-- Lines from root to main branches -->
+  <line x1="340" y1="118" x2="195" y2="158" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="460" y1="118" x2="605" y2="158" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- HUMAN IDENTITIES BRANCH -->
+  <rect x="95" y="158" width="200" height="44" rx="7" fill="url(#humanGrad)" stroke="#4a9eff" stroke-width="2"/>
+  <text x="195" y="177" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#4a9eff" text-anchor="middle">Human Identities</text>
+  <text x="195" y="194" font-family="'Courier New', monospace" font-size="9" fill="#93c5fd" text-anchor="middle">People interacting with AI</text>
+
+  <!-- NON-HUMAN IDENTITIES BRANCH -->
+  <rect x="505" y="158" width="200" height="44" rx="7" fill="url(#nonHumanGrad)" stroke="#f97316" stroke-width="2"/>
+  <text x="605" y="177" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#f97316" text-anchor="middle">Non-Human Identities</text>
+  <text x="605" y="194" font-family="'Courier New', monospace" font-size="9" fill="#fdba74" text-anchor="middle">Systems, agents &amp; services</text>
+
+  <!-- ===== HUMAN IDENTITY SUBTYPES ===== -->
+  <!-- Lines from Human branch -->
+  <line x1="195" y1="202" x2="80" y2="248" stroke="#4a9eff" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="195" y1="202" x2="195" y2="248" stroke="#4a9eff" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="195" y1="202" x2="310" y2="248" stroke="#4a9eff" stroke-width="1" stroke-dasharray="4,2"/>
+
+  <!-- Employees -->
+  <rect x="22" y="248" width="116" height="70" rx="5" fill="#0f1e35" stroke="#4a9eff" stroke-width="1"/>
+  <text x="80" y="265" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#93c5fd" text-anchor="middle">Employees</text>
+  <line x1="30" y1="270" x2="110" y2="270" stroke="#1e3a5f" stroke-width="0.5"/>
+  <circle cx="34" cy="281" r="2" fill="#4a9eff"/>
+  <text x="40" y="284" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Regular Users</text>
+  <circle cx="34" cy="294" r="2" fill="#4a9eff"/>
+  <text x="40" y="297" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Power Users</text>
+  <circle cx="34" cy="307" r="2" fill="#4a9eff"/>
+  <text x="40" y="310" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Admins</text>
+
+  <!-- External Users -->
+  <rect x="137" y="248" width="116" height="70" rx="5" fill="#0f1e35" stroke="#4a9eff" stroke-width="1"/>
+  <text x="195" y="265" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#93c5fd" text-anchor="middle">External Users</text>
+  <line x1="145" y1="270" x2="245" y2="270" stroke="#1e3a5f" stroke-width="0.5"/>
+  <circle cx="149" cy="281" r="2" fill="#4a9eff"/>
+  <text x="155" y="284" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Customers</text>
+  <circle cx="149" cy="294" r="2" fill="#4a9eff"/>
+  <text x="155" y="297" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Partners</text>
+  <circle cx="149" cy="307" r="2" fill="#4a9eff"/>
+  <text x="155" y="310" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Vendors</text>
+
+  <!-- Developers -->
+  <rect x="252" y="248" width="116" height="70" rx="5" fill="#0f1e35" stroke="#4a9eff" stroke-width="1"/>
+  <text x="310" y="265" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#93c5fd" text-anchor="middle">Developers</text>
+  <line x1="260" y1="270" x2="360" y2="270" stroke="#1e3a5f" stroke-width="0.5"/>
+  <circle cx="264" cy="281" r="2" fill="#4a9eff"/>
+  <text x="270" y="284" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">AI Engineers</text>
+  <circle cx="264" cy="294" r="2" fill="#4a9eff"/>
+  <text x="270" y="297" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Data Scientists</text>
+  <circle cx="264" cy="307" r="2" fill="#4a9eff"/>
+  <text x="270" y="310" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">ML Ops</text>
+
+  <!-- Human identity attributes box -->
+  <rect x="22" y="334" width="346" height="52" rx="5" fill="#0a1628" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="195" y="350" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#22c55e" text-anchor="middle">Human Identity Attributes</text>
+  <text x="195" y="363" font-family="'Courier New', monospace" font-size="7.5" fill="#6b9e7c" text-anchor="middle">IdP · MFA · RBAC · SSO · OAuth · Session · Audit Trail</text>
+  <text x="195" y="376" font-family="'Courier New', monospace" font-size="7.5" fill="#6b9e7c" text-anchor="middle">Biometrics · Behavioral · Directory (AD/LDAP) · JIT Access</text>
+
+  <!-- ===== NON-HUMAN IDENTITY SUBTYPES ===== -->
+  <!-- Lines from Non-Human branch -->
+  <line x1="605" y1="202" x2="530" y2="248" stroke="#f97316" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="605" y1="202" x2="605" y2="248" stroke="#f97316" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="605" y1="202" x2="680" y2="248" stroke="#f97316" stroke-width="1" stroke-dasharray="4,2"/>
+
+  <!-- Row 1: AI Models -->
+  <rect x="433" y="248" width="116" height="70" rx="5" fill="#1a0f00" stroke="#f97316" stroke-width="1"/>
+  <text x="491" y="265" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#fdba74" text-anchor="middle">AI Models</text>
+  <line x1="441" y1="270" x2="541" y2="270" stroke="#3d1f00" stroke-width="0.5"/>
+  <circle cx="445" cy="281" r="2" fill="#f97316"/>
+  <text x="451" y="284" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">LLM Instances</text>
+  <circle cx="445" cy="294" r="2" fill="#f97316"/>
+  <text x="451" y="297" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Fine-tuned Models</text>
+  <circle cx="445" cy="307" r="2" fill="#f97316"/>
+  <text x="451" y="310" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Model Versions</text>
+
+  <!-- Row 1: AI Agents -->
+  <rect x="548" y="248" width="116" height="70" rx="5" fill="#1a0f00" stroke="#f97316" stroke-width="1"/>
+  <text x="606" y="265" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#fdba74" text-anchor="middle">AI Agents</text>
+  <line x1="556" y1="270" x2="656" y2="270" stroke="#3d1f00" stroke-width="0.5"/>
+  <circle cx="560" cy="281" r="2" fill="#f97316"/>
+  <text x="566" y="284" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Orchestrators</text>
+  <circle cx="560" cy="294" r="2" fill="#f97316"/>
+  <text x="566" y="297" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Workers</text>
+  <circle cx="560" cy="307" r="2" fill="#f97316"/>
+  <text x="566" y="310" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Planners</text>
+
+  <!-- Row 1: Service Accounts -->
+  <rect x="663" y="248" width="116" height="70" rx="5" fill="#1a0f00" stroke="#f97316" stroke-width="1"/>
+  <text x="721" y="265" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#fdba74" text-anchor="middle">Service Accounts</text>
+  <line x1="671" y1="270" x2="771" y2="270" stroke="#3d1f00" stroke-width="0.5"/>
+  <circle cx="675" cy="281" r="2" fill="#f97316"/>
+  <text x="681" y="284" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">API Callers</text>
+  <circle cx="675" cy="294" r="2" fill="#f97316"/>
+  <text x="681" y="297" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Batch Jobs</text>
+  <circle cx="675" cy="307" r="2" fill="#f97316"/>
+  <text x="681" y="310" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Pipelines</text>
+
+  <!-- Lines to row 2 non-human -->
+  <line x1="605" y1="318" x2="530" y2="390" stroke="#f97316" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="605" y1="318" x2="680" y2="390" stroke="#f97316" stroke-width="1" stroke-dasharray="4,2"/>
+
+  <!-- Plugins & Tools -->
+  <rect x="433" y="390" width="142" height="70" rx="5" fill="#1a0f00" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="504" y="407" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#c4b5fd" text-anchor="middle">Plugins &amp; Tools</text>
+  <line x1="441" y1="412" x2="567" y2="412" stroke="#2d1f50" stroke-width="0.5"/>
+  <circle cx="445" cy="423" r="2" fill="#8b5cf6"/>
+  <text x="451" y="426" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Browser Tool</text>
+  <circle cx="445" cy="436" r="2" fill="#8b5cf6"/>
+  <text x="451" y="439" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Code Executor</text>
+  <circle cx="445" cy="449" r="2" fill="#8b5cf6"/>
+  <text x="451" y="452" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">External APIs</text>
+
+  <!-- Workloads -->
+  <rect x="584" y="390" width="142" height="70" rx="5" fill="#1a0f00" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="655" y="407" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#c4b5fd" text-anchor="middle">Workloads</text>
+  <line x1="592" y1="412" x2="718" y2="412" stroke="#2d1f50" stroke-width="0.5"/>
+  <circle cx="596" cy="423" r="2" fill="#8b5cf6"/>
+  <text x="602" y="426" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Containers</text>
+  <circle cx="596" cy="436" r="2" fill="#8b5cf6"/>
+  <text x="602" y="439" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Functions</text>
+  <circle cx="596" cy="449" r="2" fill="#8b5cf6"/>
+  <text x="602" y="452" font-family="'Courier New', monospace" font-size="8" fill="#8b9cb6">Pipelines</text>
+
+  <!-- Non-human identity attributes box -->
+  <rect x="433" y="475" width="345" height="52" rx="5" fill="#0a0a1a" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="605" y="491" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ef4444" text-anchor="middle">Non-Human Identity Attributes</text>
+  <text x="605" y="504" font-family="'Courier New', monospace" font-size="7.5" fill="#9b6b6b" text-anchor="middle">API Keys · Certs · SPIFFE/SVID · OIDC Tokens · Service Mesh</text>
+  <text x="605" y="517" font-family="'Courier New', monospace" font-size="7.5" fill="#9b6b6b" text-anchor="middle">Workload Identity · Agent ID · Short-lived Creds · mTLS</text>
+
+  <!-- ===== BOTTOM SECTION: Standards & Controls ===== -->
+  <rect x="22" y="400" width="390" height="130" rx="7" fill="#070d18" stroke="#eab308" stroke-width="1"/>
+  <text x="217" y="418" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">Identity Standards &amp; Controls</text>
+  <line x1="30" y1="422" x2="404" y2="422" stroke="#3d3000" stroke-width="0.5"/>
+
+  <!-- Standards columns -->
+  <text x="80" y="437" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#22c55e" text-anchor="middle">Human</text>
+  <circle cx="35" cy="448" r="2" fill="#22c55e"/>
+  <text x="41" y="451" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cb6">OAuth 2.0 / OIDC</text>
+  <circle cx="35" cy="461" r="2" fill="#22c55e"/>
+  <text x="41" y="464" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cb6">SAML 2.0 / SSO</text>
+  <circle cx="35" cy="474" r="2" fill="#22c55e"/>
+  <text x="41" y="477" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cb6">FIDO2 / WebAuthn</text>
+  <circle cx="35" cy="487" r="2" fill="#22c55e"/>
+  <text x="41" y="490" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cb6">PAM / JIT Access</text>
+  <circle cx="35" cy="500" r="2" fill="#22c55e"/>
+  <text x="41" y="503" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cb6">Zero Trust IAM</text>
+
+  <line x1="217" y1="430" x2="217" y2="520" stroke="#1e2d3d" stroke-width="0.5"/>
+
+  <text x="310" y="437" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f97316" text-anchor="middle">Non-Human</text>
+  <circle cx="225" cy="448" r="2" fill="#f97316"/>
+  <text x="231" y="451" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cb6">SPIFFE / SPIRE</text>
+  <circle cx="225" cy="461" r="2" fill="#f97316"/>
+  <text x="231" y="464" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cb6">Workload Identity Federation</text>
+  <circle cx="225" cy="474" r="2" fill="#f97316"/>
+  <text x="231" y="477" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cb6">mTLS / X.509 Certs</text>
+  <circle cx="225" cy="487" r="2" fill="#f97316"/>
+  <text x="231" y="490" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cb6">Short-lived API Keys</text>
+  <circle cx="225" cy="500" r="2" fill="#f97316"/>
+  <text x="231" y="503" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cb6">Agent Identity Tokens</text>
+
+  <!-- Key security concerns row -->
+  <rect x="30" y="512" width="382" height="12" rx="3" fill="#0d1a0d"/>
+  <text x="221" y="522" font-family="'Courier New', monospace" font-size="7" fill="#22c55e" text-anchor="middle">Key Risk: Identity sprawl · Shared secrets · Orphaned accounts · Over-privilege</text>
+
+  <!-- Legend -->
+  <rect x="22" y="548" width="756" height="36" rx="5" fill="#0a0f1a" stroke="#1e2d3d" stroke-width="1"/>
+  <rect x="32" y="558" width="12" height="12" rx="2" fill="#1e3a8a" stroke="#4a9eff" stroke-width="1"/>
+  <text x="50" y="568" font-family="'Courier New', monospace" font-size="8" fill="#93c5fd">Human Identity</text>
+  <rect x="140" y="558" width="12" height="12" rx="2" fill="#7c2d12" stroke="#f97316" stroke-width="1"/>
+  <text x="158" y="568" font-family="'Courier New', monospace" font-size="8" fill="#fdba74">Non-Human Identity</text>
+  <rect x="275" y="558" width="12" height="12" rx="2" fill="#2d1f50" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="293" y="568" font-family="'Courier New', monospace" font-size="8" fill="#c4b5fd">AI Components</text>
+  <rect x="390" y="558" width="12" height="12" rx="2" fill="#0d2d0d" stroke="#22c55e" stroke-width="1"/>
+  <text x="408" y="568" font-family="'Courier New', monospace" font-size="8" fill="#22c55e">Standards / Controls</text>
+  <rect x="530" y="558" width="12" height="12" rx="2" fill="#2d0d0d" stroke="#ef4444" stroke-width="1"/>
+  <text x="548" y="568" font-family="'Courier New', monospace" font-size="8" fill="#ef4444">Risk Indicators</text>
+  <text x="660" y="568" font-family="'Courier New', monospace" font-size="7" fill="#3d4d5d">AI Security Risk · Module 4</text>
+</svg>

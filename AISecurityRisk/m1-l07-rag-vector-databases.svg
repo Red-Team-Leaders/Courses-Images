@@ -1,0 +1,350 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2d3d" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradient for vector DB cylinder -->
+    <linearGradient id="cylGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a3a5c;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#1e5a8a;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1a3a5c;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="llmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b1f6e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#5b2d9e;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="32" fill="#ffffff" font-family="monospace" font-size="18" font-weight="bold" text-anchor="middle">RAG Architecture &amp; Vector Database Pipeline</text>
+  <line x1="80" y1="42" x2="720" y2="42" stroke="#00d4ff" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- ========== INDEXING FLOW (TOP) ========== -->
+  <!-- Section label -->
+  <rect x="10" y="52" width="130" height="20" rx="4" fill="#1e2d3d" stroke="#00d4ff" stroke-width="0.8"/>
+  <text x="75" y="66" fill="#00d4ff" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">INDEXING PIPELINE</text>
+
+  <!-- Node 1: Documents -->
+  <rect x="14" y="82" width="88" height="60" rx="6" fill="#0f2233" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="20" y="99" fill="#4a9eff" font-family="monospace" font-size="8" font-weight="bold">DOCUMENTS</text>
+  <!-- Doc icons -->
+  <rect x="22" y="103" width="18" height="22" rx="2" fill="#1a3a5c" stroke="#4a9eff" stroke-width="0.8"/>
+  <line x1="25" y1="109" x2="37" y2="109" stroke="#4a9eff" stroke-width="0.7"/>
+  <line x1="25" y1="113" x2="37" y2="113" stroke="#4a9eff" stroke-width="0.7"/>
+  <line x1="25" y1="117" x2="34" y2="117" stroke="#4a9eff" stroke-width="0.7"/>
+  <rect x="34" y="106" width="18" height="22" rx="2" fill="#1a3a5c" stroke="#4a9eff" stroke-width="0.8"/>
+  <line x1="37" y1="112" x2="49" y2="112" stroke="#4a9eff" stroke-width="0.7"/>
+  <line x1="37" y1="116" x2="49" y2="116" stroke="#4a9eff" stroke-width="0.7"/>
+  <rect x="54" y="105" width="18" height="22" rx="2" fill="#1a3a5c" stroke="#4a9eff" stroke-width="0.8"/>
+  <line x1="57" y1="111" x2="69" y2="111" stroke="#4a9eff" stroke-width="0.7"/>
+  <line x1="57" y1="115" x2="69" y2="115" stroke="#4a9eff" stroke-width="0.7"/>
+  <text x="58" y="136" fill="#e2e8f0" font-family="monospace" font-size="7" text-anchor="middle">PDF, MD, TXT</text>
+
+  <!-- Arrow 1 -->
+  <line x1="103" y1="112" x2="127" y2="112" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Node 2: Chunking -->
+  <rect x="128" y="82" width="90" height="60" rx="6" fill="#0f2233" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="173" y="97" fill="#00d4ff" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">CHUNKING</text>
+  <!-- Chunk visualization -->
+  <rect x="136" y="101" width="74" height="8" rx="2" fill="#00d4ff" opacity="0.7"/>
+  <rect x="136" y="112" width="74" height="8" rx="2" fill="#00d4ff" opacity="0.5"/>
+  <rect x="136" y="123" width="50" height="8" rx="2" fill="#00d4ff" opacity="0.3"/>
+  <line x1="136" y1="110" x2="210" y2="110" stroke="#f97316" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <line x1="136" y1="121" x2="210" y2="121" stroke="#f97316" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="173" y="142" fill="#e2e8f0" font-family="monospace" font-size="7" text-anchor="middle">512 tokens/chunk</text>
+
+  <!-- Arrow 2 -->
+  <line x1="219" y1="112" x2="243" y2="112" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Node 3: Embedding Model -->
+  <rect x="244" y="82" width="95" height="60" rx="6" fill="#0f2233" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="291" y="97" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">EMBEDDING</text>
+  <text x="291" y="107" fill="#22c55e" font-family="monospace" font-size="7" text-anchor="middle">MODEL</text>
+  <!-- Neural net icon -->
+  <circle cx="263" cy="118" r="3" fill="#22c55e" opacity="0.8"/>
+  <circle cx="263" cy="128" r="3" fill="#22c55e" opacity="0.8"/>
+  <circle cx="278" cy="112" r="3" fill="#22c55e" opacity="0.9"/>
+  <circle cx="278" cy="122" r="3" fill="#22c55e" opacity="0.9"/>
+  <circle cx="278" cy="132" r="3" fill="#22c55e" opacity="0.9"/>
+  <circle cx="293" cy="117" r="3" fill="#22c55e"/>
+  <circle cx="293" cy="127" r="3" fill="#22c55e"/>
+  <line x1="266" y1="118" x2="275" y2="112" stroke="#22c55e" stroke-width="0.6" opacity="0.5"/>
+  <line x1="266" y1="118" x2="275" y2="122" stroke="#22c55e" stroke-width="0.6" opacity="0.5"/>
+  <line x1="266" y1="118" x2="275" y2="132" stroke="#22c55e" stroke-width="0.6" opacity="0.5"/>
+  <line x1="266" y1="128" x2="275" y2="122" stroke="#22c55e" stroke-width="0.6" opacity="0.5"/>
+  <line x1="266" y1="128" x2="275" y2="132" stroke="#22c55e" stroke-width="0.6" opacity="0.5"/>
+  <line x1="281" y1="112" x2="290" y2="117" stroke="#22c55e" stroke-width="0.6" opacity="0.5"/>
+  <line x1="281" y1="122" x2="290" y2="117" stroke="#22c55e" stroke-width="0.6" opacity="0.5"/>
+  <line x1="281" y1="122" x2="290" y2="127" stroke="#22c55e" stroke-width="0.6" opacity="0.5"/>
+  <line x1="281" y1="132" x2="290" y2="127" stroke="#22c55e" stroke-width="0.6" opacity="0.5"/>
+  <text x="320" y="122" fill="#e2e8f0" font-family="monospace" font-size="7" text-anchor="middle">ada-002</text>
+  <text x="320" y="131" fill="#e2e8f0" font-family="monospace" font-size="7" text-anchor="middle">1536-dim</text>
+
+  <!-- Arrow 3 -->
+  <line x1="340" y1="112" x2="364" y2="112" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Node 4: Vectors -->
+  <rect x="365" y="82" width="82" height="60" rx="6" fill="#0f2233" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="406" y="97" fill="#8b5cf6" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">VECTORS</text>
+  <!-- Vector visualization -->
+  <text x="373" y="110" fill="#8b5cf6" font-family="monospace" font-size="7">[0.23,</text>
+  <text x="373" y="120" fill="#8b5cf6" font-family="monospace" font-size="7"> -0.41,</text>
+  <text x="373" y="130" fill="#8b5cf6" font-family="monospace" font-size="7"> 0.87,...]</text>
+  <text x="406" y="142" fill="#e2e8f0" font-family="monospace" font-size="7" text-anchor="middle">float32 array</text>
+
+  <!-- Arrow 4 -->
+  <line x1="448" y1="112" x2="472" y2="112" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Node 5: Vector Database (cylinder) -->
+  <!-- Cylinder body -->
+  <rect x="473" y="92" width="100" height="45" rx="4" fill="url(#cylGrad)" stroke="#4a9eff" stroke-width="1.5"/>
+  <!-- Cylinder top ellipse -->
+  <ellipse cx="523" cy="92" rx="50" ry="10" fill="#1e4a7a" stroke="#4a9eff" stroke-width="1.5"/>
+  <!-- Cylinder bottom ellipse -->
+  <ellipse cx="523" cy="137" rx="50" ry="10" fill="#1a3a5c" stroke="#4a9eff" stroke-width="1.5"/>
+  <!-- DB lines -->
+  <line x1="478" y1="106" x2="568" y2="106" stroke="#4a9eff" stroke-width="0.6" opacity="0.5"/>
+  <line x1="478" y1="116" x2="568" y2="116" stroke="#4a9eff" stroke-width="0.6" opacity="0.5"/>
+  <line x1="478" y1="126" x2="568" y2="126" stroke="#4a9eff" stroke-width="0.6" opacity="0.5"/>
+  <text x="523" y="100" fill="#4a9eff" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle">VECTOR DB</text>
+  <text x="523" y="153" fill="#e2e8f0" font-family="monospace" font-size="7" text-anchor="middle">HNSW / IVF Index</text>
+
+  <!-- DB Options (small boxes below cylinder) -->
+  <rect x="473" y="160" width="44" height="16" rx="3" fill="#1a1a2e" stroke="#f97316" stroke-width="0.8"/>
+  <text x="495" y="172" fill="#f97316" font-family="monospace" font-size="7" text-anchor="middle">Pinecone</text>
+  <rect x="520" y="160" width="44" height="16" rx="3" fill="#1a1a2e" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="542" y="172" fill="#22c55e" font-family="monospace" font-size="7" text-anchor="middle">Weaviate</text>
+  <rect x="473" y="179" width="44" height="16" rx="3" fill="#1a1a2e" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="495" y="191" fill="#8b5cf6" font-family="monospace" font-size="7" text-anchor="middle">Chroma</text>
+  <rect x="520" y="179" width="44" height="16" rx="3" fill="#1a1a2e" stroke="#00d4ff" stroke-width="0.8"/>
+  <text x="542" y="191" fill="#00d4ff" font-family="monospace" font-size="7" text-anchor="middle">pgvector</text>
+
+  <!-- ========== COSINE SIMILARITY BOX ========== -->
+  <rect x="608" y="65" width="178" height="145" rx="8" fill="#0f1f10" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="697" y="82" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle">SIMILARITY SEARCH</text>
+  <line x1="615" y1="87" x2="779" y2="87" stroke="#22c55e" stroke-width="0.5" opacity="0.5"/>
+  <!-- Cosine formula -->
+  <text x="697" y="105" fill="#eab308" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle">Cosine Distance:</text>
+  <text x="697" y="120" fill="#e2e8f0" font-family="monospace" font-size="9" text-anchor="middle">cos(A,B) = A·B / ‖A‖‖B‖</text>
+  <line x1="625" y1="128" x2="769" y2="128" stroke="#eab308" stroke-width="0.5" opacity="0.4"/>
+  <!-- Algorithms -->
+  <text x="620" y="142" fill="#f97316" font-family="monospace" font-size="8" font-weight="bold">Algorithms:</text>
+  <text x="622" y="155" fill="#e2e8f0" font-family="monospace" font-size="7">• HNSW (fast ANN search)</text>
+  <text x="622" y="166" fill="#e2e8f0" font-family="monospace" font-size="7">• IVF (inverted file index)</text>
+  <text x="622" y="177" fill="#e2e8f0" font-family="monospace" font-size="7">• Flat (exact k-NN)</text>
+  <text x="622" y="188" fill="#e2e8f0" font-family="monospace" font-size="7">• LSH (locality-sensitive)</text>
+  <text x="622" y="200" fill="#eab308" font-family="monospace" font-size="7">Top-K nearest neighbors</text>
+
+  <!-- ========== QUERY FLOW (BOTTOM) ========== -->
+  <!-- Section label -->
+  <rect x="10" y="218" width="130" height="20" rx="4" fill="#1e2d3d" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="75" y="232" fill="#22c55e" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">QUERY PIPELINE</text>
+
+  <!-- Node Q1: User Query -->
+  <rect x="14" y="248" width="90" height="55" rx="6" fill="#0f2233" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="59" y="264" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">USER QUERY</text>
+  <!-- Chat icon -->
+  <rect x="24" y="269" width="68" height="26" rx="5" fill="#0a1f12" stroke="#22c55e" stroke-width="0.8"/>
+  <polygon points="34,295 24,303 45,295" fill="#0a1f12" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="58" y="278" fill="#e2e8f0" font-family="monospace" font-size="6" text-anchor="middle">"What is RAG?"</text>
+  <text x="58" y="288" fill="#e2e8f0" font-family="monospace" font-size="6" text-anchor="middle">natural language</text>
+
+  <!-- Arrow Q1 -->
+  <line x1="105" y1="275" x2="129" y2="275" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Node Q2: Embedding -->
+  <rect x="130" y="248" width="90" height="55" rx="6" fill="#0f2233" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="175" y="264" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">EMBED QUERY</text>
+  <text x="175" y="276" fill="#e2e8f0" font-family="monospace" font-size="7" text-anchor="middle">same model</text>
+  <text x="175" y="287" fill="#8b5cf6" font-family="monospace" font-size="7" text-anchor="middle">[0.11,-0.67,</text>
+  <text x="175" y="297" fill="#8b5cf6" font-family="monospace" font-size="7" text-anchor="middle">0.43,...]</text>
+
+  <!-- Arrow Q2 -->
+  <line x1="221" y1="275" x2="245" y2="275" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Node Q3: Vector DB Search -->
+  <rect x="246" y="248" width="100" height="55" rx="6" fill="#0f2233" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="296" y="261" fill="#4a9eff" font-family="monospace" font-size="7" font-weight="bold" text-anchor="middle">SIMILARITY</text>
+  <text x="296" y="271" fill="#4a9eff" font-family="monospace" font-size="7" font-weight="bold" text-anchor="middle">SEARCH</text>
+  <!-- Search visualization: concentric circles -->
+  <circle cx="296" cy="290" r="14" fill="none" stroke="#4a9eff" stroke-width="0.6" opacity="0.3"/>
+  <circle cx="296" cy="290" r="9" fill="none" stroke="#4a9eff" stroke-width="0.8" opacity="0.5"/>
+  <circle cx="296" cy="290" r="4" fill="#4a9eff" opacity="0.8"/>
+  <circle cx="286" cy="284" r="2" fill="#22c55e"/>
+  <circle cx="303" cy="287" r="2" fill="#22c55e"/>
+  <circle cx="288" cy="296" r="2" fill="#f97316"/>
+
+  <!-- Arrow Q3 -->
+  <line x1="347" y1="275" x2="371" y2="275" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Node Q4: Top-K Chunks -->
+  <rect x="372" y="248" width="100" height="55" rx="6" fill="#0f2233" stroke="#f97316" stroke-width="1.5"/>
+  <text x="422" y="263" fill="#f97316" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">TOP-K CHUNKS</text>
+  <rect x="380" y="268" width="84" height="7" rx="2" fill="#f97316" opacity="0.7"/>
+  <text x="400" y="275" fill="#0d1117" font-family="monospace" font-size="6">chunk #1 (0.94)</text>
+  <rect x="380" y="278" width="84" height="7" rx="2" fill="#f97316" opacity="0.5"/>
+  <text x="400" y="285" fill="#0d1117" font-family="monospace" font-size="6">chunk #2 (0.89)</text>
+  <rect x="380" y="288" width="70" height="7" rx="2" fill="#f97316" opacity="0.3"/>
+  <text x="400" y="295" fill="#0d1117" font-family="monospace" font-size="6">chunk #3 (0.82)</text>
+
+  <!-- Arrow Q4 -->
+  <line x1="473" y1="275" x2="497" y2="275" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Node Q5: LLM + Context -->
+  <rect x="498" y="240" width="110" height="70" rx="6" fill="#1a0f35" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="553" y="257" fill="#8b5cf6" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">LLM + CONTEXT</text>
+  <line x1="505" y1="261" x2="601" y2="261" stroke="#8b5cf6" stroke-width="0.5" opacity="0.4"/>
+  <text x="507" y="272" fill="#e2e8f0" font-family="monospace" font-size="6.5">System: You are...</text>
+  <text x="507" y="283" fill="#f97316" font-family="monospace" font-size="6.5">Context: [chunks]</text>
+  <text x="507" y="294" fill="#22c55e" font-family="monospace" font-size="6.5">Query: What is RAG?</text>
+  <text x="507" y="305" fill="#eab308" font-family="monospace" font-size="6.5">GPT-4 / Claude / Llama</text>
+
+  <!-- Arrow Q5 -->
+  <line x1="609" y1="275" x2="633" y2="275" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Node Q6: Generated Answer -->
+  <rect x="634" y="248" width="152" height="55" rx="6" fill="#0f2233" stroke="#22c55e" stroke-width="1.5" filter="url(#glow-green)"/>
+  <text x="710" y="264" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">GENERATED ANSWER</text>
+  <rect x="641" y="269" width="138" height="27" rx="3" fill="#0a1f12"/>
+  <text x="649" y="280" fill="#e2e8f0" font-family="monospace" font-size="6">"RAG combines retrieval</text>
+  <text x="649" y="289" fill="#e2e8f0" font-family="monospace" font-size="6">with generation to reduce</text>
+  <text x="649" y="298" fill="#e2e8f0" font-family="monospace" font-size="6">hallucinations..."</text>
+
+  <!-- Connection: Vector DB to Query flow -->
+  <line x1="523" y1="147" x2="523" y2="248" stroke="#4a9eff" stroke-width="1.2" stroke-dasharray="5,3" opacity="0.6" marker-end="url(#arrow-cyan)"/>
+  <text x="530" y="205" fill="#4a9eff" font-family="monospace" font-size="7" transform="rotate(90,530,205)">similarity</text>
+
+  <!-- ========== ADVANCED RAG SECTION ========== -->
+  <rect x="10" y="328" width="780" height="180" rx="8" fill="#0d1117" stroke="#f97316" stroke-width="1" opacity="0.9"/>
+  <text x="400" y="348" fill="#f97316" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">ADVANCED RAG STRATEGIES</text>
+  <line x1="20" y1="354" x2="780" y2="354" stroke="#f97316" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Chunking Strategies -->
+  <rect x="20" y="360" width="180" height="138" rx="6" fill="#0f1020" stroke="#4a9eff" stroke-width="1"/>
+  <text x="110" y="376" fill="#4a9eff" font-family="monospace" font-size="8.5" font-weight="bold" text-anchor="middle">CHUNKING STRATEGIES</text>
+  <text x="30" y="391" fill="#e2e8f0" font-family="monospace" font-size="7">Fixed-size (512 tokens)</text>
+  <rect x="30" y="393" width="60" height="6" rx="2" fill="#4a9eff" opacity="0.5"/>
+  <rect x="93" y="393" width="60" height="6" rx="2" fill="#4a9eff" opacity="0.5"/>
+  <text x="30" y="410" fill="#e2e8f0" font-family="monospace" font-size="7">Semantic chunking</text>
+  <rect x="30" y="413" width="40" height="6" rx="2" fill="#22c55e" opacity="0.6"/>
+  <rect x="73" y="413" width="55" height="6" rx="2" fill="#22c55e" opacity="0.6"/>
+  <rect x="131" y="413" width="35" height="6" rx="2" fill="#22c55e" opacity="0.6"/>
+  <text x="30" y="430" fill="#e2e8f0" font-family="monospace" font-size="7">Recursive splitter</text>
+  <rect x="30" y="433" width="45" height="6" rx="2" fill="#8b5cf6" opacity="0.5"/>
+  <rect x="78" y="433" width="45" height="6" rx="2" fill="#8b5cf6" opacity="0.5"/>
+  <rect x="126" y="433" width="45" height="6" rx="2" fill="#8b5cf6" opacity="0.5"/>
+  <text x="30" y="450" fill="#e2e8f0" font-family="monospace" font-size="7">Sliding window overlap</text>
+  <rect x="30" y="453" width="70" height="6" rx="2" fill="#f97316" opacity="0.5"/>
+  <rect x="60" y="456" width="70" height="6" rx="2" fill="#f97316" opacity="0.3"/>
+  <rect x="90" y="459" width="70" height="6" rx="2" fill="#f97316" opacity="0.2"/>
+  <text x="30" y="475" fill="#eab308" font-family="monospace" font-size="7">Parent-child chunking</text>
+  <text x="30" y="487" fill="#e2e8f0" font-family="monospace" font-size="7">• Small chunks retrieved</text>
+  <text x="30" y="497" fill="#e2e8f0" font-family="monospace" font-size="7">• Large parent returned</text>
+
+  <!-- Retrieval Strategies -->
+  <rect x="210" y="360" width="175" height="138" rx="6" fill="#0f1020" stroke="#22c55e" stroke-width="1"/>
+  <text x="297" y="376" fill="#22c55e" font-family="monospace" font-size="8.5" font-weight="bold" text-anchor="middle">RETRIEVAL STRATEGIES</text>
+  <text x="220" y="392" fill="#4a9eff" font-family="monospace" font-size="7.5" font-weight="bold">Dense (semantic):</text>
+  <text x="220" y="403" fill="#e2e8f0" font-family="monospace" font-size="7">Vector similarity search</text>
+  <text x="220" y="413" fill="#e2e8f0" font-family="monospace" font-size="7">Bi-encoder architecture</text>
+  <line x1="220" y1="420" x2="375" y2="420" stroke="#22c55e" stroke-width="0.4" opacity="0.4"/>
+  <text x="220" y="431" fill="#f97316" font-family="monospace" font-size="7.5" font-weight="bold">Sparse (keyword):</text>
+  <text x="220" y="442" fill="#e2e8f0" font-family="monospace" font-size="7">BM25 / TF-IDF scoring</text>
+  <text x="220" y="452" fill="#e2e8f0" font-family="monospace" font-size="7">Inverted index lookup</text>
+  <line x1="220" y1="459" x2="375" y2="459" stroke="#22c55e" stroke-width="0.4" opacity="0.4"/>
+  <text x="220" y="470" fill="#22c55e" font-family="monospace" font-size="7.5" font-weight="bold">Hybrid (best of both):</text>
+  <text x="220" y="481" fill="#e2e8f0" font-family="monospace" font-size="7">Dense + BM25 fusion</text>
+  <text x="220" y="491" fill="#eab308" font-family="monospace" font-size="7">RRF score merging</text>
+  <rect x="220" y="496" width="155" height="1" rx="0" fill="#22c55e" opacity="0.3"/>
+  <text x="220" y="493" fill="#e2e8f0" font-family="monospace" font-size="7"></text>
+
+  <!-- Reranking -->
+  <rect x="395" y="360" width="175" height="138" rx="6" fill="#0f1020" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="482" y="376" fill="#8b5cf6" font-family="monospace" font-size="8.5" font-weight="bold" text-anchor="middle">RERANKING STAGE</text>
+  <text x="405" y="392" fill="#e2e8f0" font-family="monospace" font-size="7">Cross-encoder reranker</text>
+  <!-- Reranker visual -->
+  <rect x="405" y="396" width="155" height="48" rx="3" fill="#1a0f35"/>
+  <text x="412" y="408" fill="#f97316" font-family="monospace" font-size="6.5">Initial: 20 candidates</text>
+  <text x="412" y="420" fill="#8b5cf6" font-family="monospace" font-size="6.5">Reranker scores pairs</text>
+  <text x="412" y="432" fill="#22c55e" font-family="monospace" font-size="6.5">Final: Top-3 returned</text>
+  <text x="412" y="444" fill="#eab308" font-family="monospace" font-size="6">query+doc → relevance score</text>
+  <text x="405" y="457" fill="#e2e8f0" font-family="monospace" font-size="7">Models: Cohere Rerank,</text>
+  <text x="405" y="467" fill="#e2e8f0" font-family="monospace" font-size="7">BGE-Reranker, ms-marco</text>
+  <line x1="405" y1="473" x2="560" y2="473" stroke="#8b5cf6" stroke-width="0.4" opacity="0.4"/>
+  <text x="405" y="484" fill="#eab308" font-family="monospace" font-size="7">Latency: +50-200ms</text>
+  <text x="405" y="494" fill="#eab308" font-family="monospace" font-size="7">Precision: +15-30% NDCG</text>
+
+  <!-- RAG Evaluation -->
+  <rect x="580" y="360" width="200" height="138" rx="6" fill="#0f1020" stroke="#eab308" stroke-width="1"/>
+  <text x="680" y="376" fill="#eab308" font-family="monospace" font-size="8.5" font-weight="bold" text-anchor="middle">RAGAS EVALUATION</text>
+  <text x="590" y="392" fill="#e2e8f0" font-family="monospace" font-size="7">Framework metrics:</text>
+  <!-- Metric bars -->
+  <text x="590" y="406" fill="#22c55e" font-family="monospace" font-size="7">Faithfulness</text>
+  <rect x="590" y="408" width="140" height="6" rx="2" fill="#1a2a1a"/>
+  <rect x="590" y="408" width="119" height="6" rx="2" fill="#22c55e" opacity="0.7"/>
+  <text x="735" y="414" fill="#e2e8f0" font-family="monospace" font-size="6">0.85</text>
+  <text x="590" y="423" fill="#4a9eff" font-family="monospace" font-size="7">Answer Relevancy</text>
+  <rect x="590" y="425" width="140" height="6" rx="2" fill="#1a2a3a"/>
+  <rect x="590" y="425" width="126" height="6" rx="2" fill="#4a9eff" opacity="0.7"/>
+  <text x="735" y="431" fill="#e2e8f0" font-family="monospace" font-size="6">0.90</text>
+  <text x="590" y="440" fill="#f97316" font-family="monospace" font-size="7">Context Precision</text>
+  <rect x="590" y="442" width="140" height="6" rx="2" fill="#2a1a0a"/>
+  <rect x="590" y="442" width="98" height="6" rx="2" fill="#f97316" opacity="0.7"/>
+  <text x="735" y="448" fill="#e2e8f0" font-family="monospace" font-size="6">0.70</text>
+  <text x="590" y="457" fill="#8b5cf6" font-family="monospace" font-size="7">Context Recall</text>
+  <rect x="590" y="459" width="140" height="6" rx="2" fill="#1a1028"/>
+  <rect x="590" y="459" width="112" height="6" rx="2" fill="#8b5cf6" opacity="0.7"/>
+  <text x="735" y="465" fill="#e2e8f0" font-family="monospace" font-size="6">0.80</text>
+  <line x1="590" y1="472" x2="772" y2="472" stroke="#eab308" stroke-width="0.4" opacity="0.4"/>
+  <text x="590" y="484" fill="#eab308" font-family="monospace" font-size="7">Answer Correctness</text>
+  <rect x="590" y="486" width="140" height="6" rx="2" fill="#2a200a"/>
+  <rect x="590" y="486" width="105" height="6" rx="2" fill="#eab308" opacity="0.7"/>
+  <text x="735" y="492" fill="#e2e8f0" font-family="monospace" font-size="6">0.75</text>
+
+  <!-- ========== BOTTOM STATUS BAR ========== -->
+  <rect x="10" y="520" width="780" height="70" rx="6" fill="#0f1a0f" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="400" y="536" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle">RAG vs FINE-TUNING DECISION MATRIX</text>
+  <!-- RAG -->
+  <rect x="20" y="542" width="230" height="40" rx="4" fill="#0a1f12" stroke="#22c55e" stroke-width="0.6"/>
+  <text x="135" y="555" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">USE RAG WHEN:</text>
+  <text x="30" y="567" fill="#e2e8f0" font-family="monospace" font-size="7">• Knowledge changes frequently</text>
+  <text x="30" y="577" fill="#e2e8f0" font-family="monospace" font-size="7">• Need source citations / transparency</text>
+  <!-- Fine-tuning -->
+  <rect x="260" y="542" width="230" height="40" rx="4" fill="#1f0a0a" stroke="#ef4444" stroke-width="0.6"/>
+  <text x="375" y="555" fill="#ef4444" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">USE FINE-TUNING WHEN:</text>
+  <text x="270" y="567" fill="#e2e8f0" font-family="monospace" font-size="7">• Specific tone/style/domain needed</text>
+  <text x="270" y="577" fill="#e2e8f0" font-family="monospace" font-size="7">• Static knowledge, low latency needed</text>
+  <!-- Both -->
+  <rect x="500" y="542" width="280" height="40" rx="4" fill="#1a1020" stroke="#8b5cf6" stroke-width="0.6"/>
+  <text x="640" y="555" fill="#8b5cf6" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">RAG + FINE-TUNING (HYBRID):</text>
+  <text x="510" y="567" fill="#e2e8f0" font-family="monospace" font-size="7">• Best accuracy, highest complexity</text>
+  <text x="510" y="577" fill="#e2e8f0" font-family="monospace" font-size="7">• Fine-tune for style, RAG for facts</text>
+</svg>

@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow marker -->
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-grey" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradients -->
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="narrow-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#374151"/>
+      <stop offset="100%" stop-color="#4b5563"/>
+    </linearGradient>
+    <linearGradient id="ml-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#2563a0"/>
+    </linearGradient>
+    <linearGradient id="dl-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3b1f6b"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <linearGradient id="fm-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c2d12"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <linearGradient id="gen-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#134e4a"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+    <linearGradient id="llm-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+    <linearGradient id="agent-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg-grad)"/>
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Top accent line -->
+  <line x1="0" y1="0" x2="800" y2="0" stroke="#00d4ff" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#ffffff" filter="url(#glow-cyan)">THE AI LANDSCAPE</text>
+  <text x="400" y="52" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" fill="#00d4ff" letter-spacing="3">FROM NARROW AI TO GENERATIVE AI — EVOLUTIONARY TIMELINE</text>
+
+  <!-- Separator line -->
+  <line x1="40" y1="62" x2="760" y2="62" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- ==================== LEFT COLUMN: MAIN BOXES ==================== -->
+
+  <!-- Box 1: Narrow AI -->
+  <rect x="50" y="76" width="440" height="56" rx="6" fill="url(#narrow-grad)" stroke="#6b7280" stroke-width="1.5"/>
+  <rect x="50" y="76" width="6" height="56" rx="3" fill="#9ca3af"/>
+  <text x="68" y="97" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#e2e8f0">NARROW AI</text>
+  <text x="68" y="112" font-family="'Courier New', monospace" font-size="9" fill="#9ca3af">Task-specific intelligence · Rule-based systems · Expert systems</text>
+  <text x="68" y="125" font-family="'Courier New', monospace" font-size="9" fill="#9ca3af">Chess engines, spam filters, recommendation systems</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="270" y1="132" x2="270" y2="148" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-grey)"/>
+
+  <!-- Box 2: Machine Learning -->
+  <rect x="50" y="148" width="440" height="56" rx="6" fill="url(#ml-grad)" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="50" y="148" width="6" height="56" rx="3" fill="#4a9eff"/>
+  <text x="68" y="169" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#e2e8f0">MACHINE LEARNING</text>
+  <text x="68" y="184" font-family="'Courier New', monospace" font-size="9" fill="#93c5fd">Learns patterns from data · Supervised / Unsupervised / RL</text>
+  <text x="68" y="197" font-family="'Courier New', monospace" font-size="9" fill="#93c5fd">SVMs, Random Forests, Gradient Boosting, k-means clustering</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="270" y1="204" x2="270" y2="220" stroke="#4a9eff" stroke-width="2" marker-end="url(#arrow-grey)"/>
+
+  <!-- Box 3: Deep Learning -->
+  <rect x="50" y="220" width="440" height="56" rx="6" fill="url(#dl-grad)" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="50" y="220" width="6" height="56" rx="3" fill="#8b5cf6"/>
+  <text x="68" y="241" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#e2e8f0">DEEP LEARNING</text>
+  <text x="68" y="256" font-family="'Courier New', monospace" font-size="9" fill="#c4b5fd">Multi-layer neural networks · CNNs, RNNs, Transformers</text>
+  <text x="68" y="269" font-family="'Courier New', monospace" font-size="9" fill="#c4b5fd">ImageNet breakthrough · AlphaGo · BERT · ResNet</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="270" y1="276" x2="270" y2="292" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow-grey)"/>
+
+  <!-- Box 4: Foundation Models -->
+  <rect x="50" y="292" width="440" height="56" rx="6" fill="url(#fm-grad)" stroke="#f97316" stroke-width="1.5"/>
+  <rect x="50" y="292" width="6" height="56" rx="3" fill="#f97316"/>
+  <text x="68" y="313" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#e2e8f0">FOUNDATION MODELS</text>
+  <text x="68" y="328" font-family="'Courier New', monospace" font-size="9" fill="#fdba74">Massive pre-training on diverse data · Transfer learning at scale</text>
+  <text x="68" y="341" font-family="'Courier New', monospace" font-size="9" fill="#fdba74">GPT-2/3, DALL-E, CLIP, Stable Diffusion, Whisper</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="270" y1="348" x2="270" y2="364" stroke="#f97316" stroke-width="2" marker-end="url(#arrow-grey)"/>
+
+  <!-- Box 5: Generative AI -->
+  <rect x="50" y="364" width="440" height="56" rx="6" fill="url(#gen-grad)" stroke="#14b8a6" stroke-width="1.5"/>
+  <rect x="50" y="364" width="6" height="56" rx="3" fill="#14b8a6"/>
+  <text x="68" y="385" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#e2e8f0">GENERATIVE AI</text>
+  <text x="68" y="400" font-family="'Courier New', monospace" font-size="9" fill="#5eead4">Creates novel content: text, images, audio, code, video</text>
+  <text x="68" y="413" font-family="'Courier New', monospace" font-size="9" fill="#5eead4">GANs, VAEs, Diffusion Models, Autoregressive Transformers</text>
+
+  <!-- Arrow 5→6 -->
+  <line x1="270" y1="420" x2="270" y2="436" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-grey)"/>
+
+  <!-- Box 6: Large Language Models -->
+  <rect x="50" y="436" width="440" height="56" rx="6" fill="url(#llm-grad)" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="50" y="436" width="6" height="56" rx="3" fill="#22c55e"/>
+  <text x="68" y="457" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#e2e8f0">LARGE LANGUAGE MODELS</text>
+  <text x="68" y="472" font-family="'Courier New', monospace" font-size="9" fill="#86efac">Billions of parameters · RLHF alignment · In-context learning</text>
+  <text x="68" y="485" font-family="'Courier New', monospace" font-size="9" fill="#86efac">GPT-4 · Claude · Gemini Ultra · Llama 3 · Mistral</text>
+
+  <!-- Arrow 6→7 -->
+  <line x1="270" y1="492" x2="270" y2="508" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-grey)"/>
+
+  <!-- Box 7: Agentic AI -->
+  <rect x="50" y="508" width="440" height="60" rx="6" fill="url(#agent-grad)" stroke="#ef4444" stroke-width="2" filter="url(#glow-red)"/>
+  <rect x="50" y="508" width="6" height="60" rx="3" fill="#ef4444"/>
+  <text x="68" y="530" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#ffffff">AGENTIC AI</text>
+  <text x="68" y="545" font-family="'Courier New', monospace" font-size="9" fill="#fca5a5">Autonomous multi-step reasoning · Tool use · Memory · Planning</text>
+  <text x="68" y="558" font-family="'Courier New', monospace" font-size="9" fill="#fca5a5">AutoGPT · Claude Agents · LangChain · CrewAI · OpenAI o3</text>
+
+  <!-- ==================== RIGHT COLUMN: TIMELINE ==================== -->
+
+  <!-- Timeline bar -->
+  <line x1="730" y1="76" x2="730" y2="568" stroke="#1e3a5f" stroke-width="2"/>
+
+  <!-- Timeline header -->
+  <text x="730" y="68" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#64748b" letter-spacing="1">YEAR</text>
+
+  <!-- Year markers — aligned to box centers -->
+  <!-- Narrow AI center = 76 + 28 = 104 -->
+  <circle cx="730" cy="104" r="4" fill="#6b7280"/>
+  <line x1="495" y1="104" x2="726" y2="104" stroke="#374151" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="755" y="108" font-family="'Courier New', monospace" font-size="11" fill="#9ca3af" font-weight="bold">1956</text>
+
+  <!-- ML center = 148 + 28 = 176 -->
+  <circle cx="730" cy="176" r="4" fill="#4a9eff"/>
+  <line x1="495" y1="176" x2="726" y2="176" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="755" y="180" font-family="'Courier New', monospace" font-size="11" fill="#4a9eff" font-weight="bold">1986</text>
+
+  <!-- DL center = 220 + 28 = 248 -->
+  <circle cx="730" cy="248" r="4" fill="#8b5cf6"/>
+  <line x1="495" y1="248" x2="726" y2="248" stroke="#3b1f6b" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="755" y="252" font-family="'Courier New', monospace" font-size="11" fill="#8b5cf6" font-weight="bold">2012</text>
+
+  <!-- FM center = 292 + 28 = 320 -->
+  <circle cx="730" cy="320" r="4" fill="#f97316"/>
+  <line x1="495" y1="320" x2="726" y2="320" stroke="#7c2d12" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="755" y="324" font-family="'Courier New', monospace" font-size="11" fill="#f97316" font-weight="bold">2017</text>
+
+  <!-- GenAI center = 364 + 28 = 392 -->
+  <circle cx="730" cy="392" r="4" fill="#14b8a6"/>
+  <line x1="495" y1="392" x2="726" y2="392" stroke="#134e4a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="755" y="396" font-family="'Courier New', monospace" font-size="11" fill="#14b8a6" font-weight="bold">2020</text>
+
+  <!-- LLM center = 436 + 28 = 464 -->
+  <circle cx="730" cy="464" r="4" fill="#22c55e"/>
+  <line x1="495" y1="464" x2="726" y2="464" stroke="#14532d" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="755" y="468" font-family="'Courier New', monospace" font-size="11" fill="#22c55e" font-weight="bold">2022</text>
+
+  <!-- Agentic center = 508 + 30 = 538 -->
+  <circle cx="730" cy="538" r="5" fill="#ef4444" filter="url(#glow-red)"/>
+  <line x1="495" y1="538" x2="726" y2="538" stroke="#7f1d1d" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="755" y="542" font-family="'Courier New', monospace" font-size="11" fill="#ef4444" font-weight="bold">2024</text>
+
+  <!-- ==================== SECURITY RISK BADGE ==================== -->
+  <rect x="510" y="220" width="190" height="198" rx="6" fill="#0d1117" stroke="#eab308" stroke-width="1.5" opacity="0.95"/>
+  <text x="605" y="238" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#eab308" letter-spacing="2">SECURITY RISK SURFACE</text>
+  <line x1="518" y1="244" x2="692" y2="244" stroke="#eab308" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Risk items -->
+  <circle cx="526" cy="258" r="3" fill="#ef4444"/>
+  <text x="535" y="262" font-family="'Courier New', monospace" font-size="8" fill="#fca5a5">Adversarial inputs / evasion</text>
+
+  <circle cx="526" cy="276" r="3" fill="#ef4444"/>
+  <text x="535" y="280" font-family="'Courier New', monospace" font-size="8" fill="#fca5a5">Data poisoning attacks</text>
+
+  <circle cx="526" cy="294" r="3" fill="#f97316"/>
+  <text x="535" y="298" font-family="'Courier New', monospace" font-size="8" fill="#fdba74">Model inversion / extraction</text>
+
+  <circle cx="526" cy="312" r="3" fill="#f97316"/>
+  <text x="535" y="316" font-family="'Courier New', monospace" font-size="8" fill="#fdba74">Prompt injection attacks</text>
+
+  <circle cx="526" cy="330" r="3" fill="#eab308"/>
+  <text x="535" y="334" font-family="'Courier New', monospace" font-size="8" fill="#fde68a">Hallucination exploitation</text>
+
+  <circle cx="526" cy="348" r="3" fill="#eab308"/>
+  <text x="535" y="352" font-family="'Courier New', monospace" font-size="8" fill="#fde68a">Supply chain poisoning</text>
+
+  <circle cx="526" cy="366" r="3" fill="#22c55e"/>
+  <text x="535" y="370" font-family="'Courier New', monospace" font-size="8" fill="#86efac">Jailbreaking / alignment bypass</text>
+
+  <circle cx="526" cy="384" r="3" fill="#ef4444"/>
+  <text x="535" y="388" font-family="'Courier New', monospace" font-size="8" fill="#fca5a5">Autonomous agent exploitation</text>
+
+  <circle cx="526" cy="402" r="3" fill="#ef4444"/>
+  <text x="535" y="406" font-family="'Courier New', monospace" font-size="8" fill="#fca5a5">Tool call hijacking</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="584" width="800" height="16" fill="#0a0f1a"/>
+  <text x="400" y="595" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#334155" letter-spacing="2">AI SECURITY RISK COURSE — MODULE 1, LESSON 1 — RED TEAM LEADERS</text>
+
+  <!-- Bottom accent line -->
+  <line x1="0" y1="600" x2="800" y2="600" stroke="#ef4444" stroke-width="2"/>
+</svg>

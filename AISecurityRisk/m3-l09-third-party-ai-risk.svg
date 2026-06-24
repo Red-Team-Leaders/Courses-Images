@@ -1,0 +1,314 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-white" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#e2e8f0"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-family="monospace" font-size="17" font-weight="bold" fill="#ffffff">Third-Party AI Risk and Vendor Management</text>
+  <line x1="80" y1="36" x2="720" y2="36" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="4,3"/>
+
+  <!-- ===== VENDOR LIFECYCLE FLOW (top center) ===== -->
+  <text x="400" y="56" text-anchor="middle" font-family="monospace" font-size="10" fill="#00d4ff" letter-spacing="2">VENDOR LIFECYCLE FLOW</text>
+
+  <!-- Flow boxes -->
+  <!-- 1: Discovery -->
+  <rect x="22" y="63" width="88" height="34" rx="5" fill="#1a2744" stroke="#4a9eff" stroke-width="1.2"/>
+  <text x="66" y="77" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a9eff" font-weight="bold">VENDOR</text>
+  <text x="66" y="89" text-anchor="middle" font-family="monospace" font-size="9" fill="#4a9eff" font-weight="bold">DISCOVERY</text>
+
+  <!-- Arrow -->
+  <line x1="110" y1="80" x2="128" y2="80" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- 2: Risk Tiering -->
+  <rect x="129" y="63" width="88" height="34" rx="5" fill="#1e2035" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="173" y="77" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b5cf6" font-weight="bold">RISK</text>
+  <text x="173" y="89" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b5cf6" font-weight="bold">TIERING</text>
+
+  <!-- Arrow -->
+  <line x1="217" y1="80" x2="235" y2="80" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- 3: Due Diligence -->
+  <rect x="236" y="63" width="88" height="34" rx="5" fill="#1a2030" stroke="#00d4ff" stroke-width="1.2"/>
+  <text x="280" y="77" text-anchor="middle" font-family="monospace" font-size="9" fill="#00d4ff" font-weight="bold">DUE</text>
+  <text x="280" y="89" text-anchor="middle" font-family="monospace" font-size="9" fill="#00d4ff" font-weight="bold">DILIGENCE</text>
+
+  <!-- Arrow -->
+  <line x1="324" y1="80" x2="342" y2="80" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- 4: Contract -->
+  <rect x="343" y="63" width="88" height="34" rx="5" fill="#1f2a1a" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="387" y="77" text-anchor="middle" font-family="monospace" font-size="9" fill="#22c55e" font-weight="bold">CONTRACT</text>
+  <text x="387" y="89" text-anchor="middle" font-family="monospace" font-size="9" fill="#22c55e" font-weight="bold">NEGOTIATION</text>
+
+  <!-- Arrow -->
+  <line x1="431" y1="80" x2="449" y2="80" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- 5: Onboarding -->
+  <rect x="450" y="63" width="78" height="34" rx="5" fill="#1f2a1a" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="489" y="77" text-anchor="middle" font-family="monospace" font-size="9" fill="#22c55e" font-weight="bold">ON-</text>
+  <text x="489" y="89" text-anchor="middle" font-family="monospace" font-size="9" fill="#22c55e" font-weight="bold">BOARDING</text>
+
+  <!-- Arrow -->
+  <line x1="528" y1="80" x2="546" y2="80" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- 6: Monitoring -->
+  <rect x="547" y="63" width="88" height="34" rx="5" fill="#2a1f10" stroke="#f97316" stroke-width="1.2"/>
+  <text x="591" y="77" text-anchor="middle" font-family="monospace" font-size="9" fill="#f97316" font-weight="bold">ONGOING</text>
+  <text x="591" y="89" text-anchor="middle" font-family="monospace" font-size="9" fill="#f97316" font-weight="bold">MONITORING</text>
+
+  <!-- Arrow -->
+  <line x1="635" y1="80" x2="653" y2="80" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- 7: Offboarding -->
+  <rect x="654" y="63" width="88" height="34" rx="5" fill="#2a1515" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="698" y="77" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444" font-weight="bold">OFF-</text>
+  <text x="698" y="89" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444" font-weight="bold">BOARDING</text>
+
+  <!-- Feedback arrow from monitoring back to tiering (loop) -->
+  <path d="M 591,97 Q 591,115 173,115 Q 173,100 173,97" fill="none" stroke="#f97316" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrow-orange)"/>
+  <text x="382" y="126" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">continuous review cycle</text>
+
+  <!-- ===== RISK TIERING PANEL (center-left) ===== -->
+  <text x="22" y="150" font-family="monospace" font-size="10" fill="#8b5cf6" font-weight="bold" letter-spacing="1">RISK TIERS</text>
+  <rect x="22" y="155" width="170" height="130" rx="6" fill="#12151f" stroke="#8b5cf6" stroke-width="1"/>
+
+  <!-- Critical -->
+  <rect x="30" y="162" width="154" height="22" rx="3" fill="#3a1010" stroke="#ef4444" stroke-width="0.8"/>
+  <circle cx="42" cy="173" r="5" fill="#ef4444"/>
+  <text x="52" y="170" font-family="monospace" font-size="8.5" fill="#ef4444" font-weight="bold">CRITICAL</text>
+  <text x="52" y="180" font-family="monospace" font-size="7.5" fill="#e2e8f0">Foundation model providers, LLM APIs</text>
+
+  <!-- High -->
+  <rect x="30" y="188" width="154" height="22" rx="3" fill="#2a1a05" stroke="#f97316" stroke-width="0.8"/>
+  <circle cx="42" cy="199" r="5" fill="#f97316"/>
+  <text x="52" y="196" font-family="monospace" font-size="8.5" fill="#f97316" font-weight="bold">HIGH</text>
+  <text x="52" y="206" font-family="monospace" font-size="7.5" fill="#e2e8f0">AI-enabled SaaS with PII access</text>
+
+  <!-- Medium -->
+  <rect x="30" y="214" width="154" height="22" rx="3" fill="#252010" stroke="#eab308" stroke-width="0.8"/>
+  <circle cx="42" cy="225" r="5" fill="#eab308"/>
+  <text x="52" y="222" font-family="monospace" font-size="8.5" fill="#eab308" font-weight="bold">MEDIUM</text>
+  <text x="52" y="232" font-family="monospace" font-size="7.5" fill="#e2e8f0">MLOps platforms, dev tooling</text>
+
+  <!-- Low -->
+  <rect x="30" y="240" width="154" height="22" rx="3" fill="#102010" stroke="#22c55e" stroke-width="0.8"/>
+  <circle cx="42" cy="251" r="5" fill="#22c55e"/>
+  <text x="52" y="248" font-family="monospace" font-size="8.5" fill="#22c55e" font-weight="bold">LOW</text>
+  <text x="52" y="258" font-family="monospace" font-size="7.5" fill="#e2e8f0">Internal tools, read-only analytics</text>
+
+  <!-- ===== RISK ASSESSMENT FACTORS (left panel) ===== -->
+  <text x="22" y="302" font-family="monospace" font-size="10" fill="#00d4ff" font-weight="bold" letter-spacing="1">RISK ASSESSMENT FACTORS</text>
+  <rect x="22" y="307" width="170" height="135" rx="6" fill="#0f1a24" stroke="#00d4ff" stroke-width="1"/>
+
+  <text x="34" y="322" font-family="monospace" font-size="8.5" fill="#e2e8f0">▸ <tspan fill="#00d4ff">Data access level</tspan> (PII/PHI/PCI)</text>
+  <text x="34" y="337" font-family="monospace" font-size="8.5" fill="#e2e8f0">▸ <tspan fill="#00d4ff">AI capabilities</tspan> (training, inference)</text>
+  <text x="34" y="352" font-family="monospace" font-size="8.5" fill="#e2e8f0">▸ <tspan fill="#00d4ff">Regulatory scope</tspan> (GDPR, HIPAA)</text>
+  <text x="34" y="367" font-family="monospace" font-size="8.5" fill="#e2e8f0">▸ <tspan fill="#00d4ff">Concentration risk</tspan> (single vendor)</text>
+  <text x="34" y="382" font-family="monospace" font-size="8.5" fill="#e2e8f0">▸ <tspan fill="#00d4ff">Subcontractor chain</tspan> (4th party)</text>
+  <text x="34" y="397" font-family="monospace" font-size="8.5" fill="#e2e8f0">▸ <tspan fill="#00d4ff">Geo-jurisdiction</tspan> (data residency)</text>
+  <text x="34" y="412" font-family="monospace" font-size="8.5" fill="#e2e8f0">▸ <tspan fill="#00d4ff">Model provenance</tspan> (open/closed)</text>
+  <text x="34" y="427" font-family="monospace" font-size="8.5" fill="#e2e8f0">▸ <tspan fill="#00d4ff">Business criticality</tspan> (uptime SLA)</text>
+
+  <!-- ===== DUE DILIGENCE CHECKLIST (center) ===== -->
+  <text x="220" y="150" font-family="monospace" font-size="10" fill="#22c55e" font-weight="bold" letter-spacing="1">DUE DILIGENCE CHECKLIST</text>
+  <rect x="220" y="155" width="190" height="235" rx="6" fill="#0f1f14" stroke="#22c55e" stroke-width="1"/>
+
+  <!-- Security Posture -->
+  <text x="232" y="170" font-family="monospace" font-size="8.5" fill="#22c55e" font-weight="bold">Security Posture</text>
+  <text x="232" y="183" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ SOC 2 Type II / ISO 27001 cert</text>
+  <text x="232" y="195" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ Pen test results (12-month max)</text>
+  <text x="232" y="207" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ Vulnerability disclosure program</text>
+
+  <line x1="232" y1="213" x2="400" y2="213" stroke="#22c55e" stroke-width="0.4" stroke-dasharray="2,2"/>
+
+  <!-- AI Governance -->
+  <text x="232" y="225" font-family="monospace" font-size="8.5" fill="#22c55e" font-weight="bold">AI Governance</text>
+  <text x="232" y="238" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ AI model cards / datasheets</text>
+  <text x="232" y="250" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ Training data provenance</text>
+  <text x="232" y="262" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ Bias testing &amp; fairness audits</text>
+  <text x="232" y="274" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ CAIQ-AI / VSAQ completed</text>
+
+  <line x1="232" y1="280" x2="400" y2="280" stroke="#22c55e" stroke-width="0.4" stroke-dasharray="2,2"/>
+
+  <!-- Privacy & Data -->
+  <text x="232" y="292" font-family="monospace" font-size="8.5" fill="#22c55e" font-weight="bold">Privacy &amp; Data Handling</text>
+  <text x="232" y="305" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ Data retention / deletion policy</text>
+  <text x="232" y="317" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ Training opt-out mechanism</text>
+  <text x="232" y="329" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ Subprocessor list published</text>
+
+  <line x1="232" y1="335" x2="400" y2="335" stroke="#22c55e" stroke-width="0.4" stroke-dasharray="2,2"/>
+
+  <!-- Resilience -->
+  <text x="232" y="347" font-family="monospace" font-size="8.5" fill="#22c55e" font-weight="bold">Resilience &amp; Continuity</text>
+  <text x="232" y="360" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ Uptime SLA &amp; historical stats</text>
+  <text x="232" y="372" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ Incident response playbook</text>
+  <text x="232" y="384" font-family="monospace" font-size="7.8" fill="#e2e8f0">☐ Exit / data portability plan</text>
+
+  <!-- ===== CONTRACTUAL CONTROLS (right panel) ===== -->
+  <text x="430" y="150" font-family="monospace" font-size="10" fill="#f97316" font-weight="bold" letter-spacing="1">CONTRACTUAL CONTROLS</text>
+  <rect x="430" y="155" width="178" height="235" rx="6" fill="#1f150a" stroke="#f97316" stroke-width="1"/>
+
+  <text x="442" y="170" font-family="monospace" font-size="8.5" fill="#f97316" font-weight="bold">Core Agreements</text>
+  <text x="442" y="183" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ Data Processing Agreement (DPA)</text>
+  <text x="442" y="195" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ Model Governance Clause</text>
+  <text x="442" y="207" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ AI-specific liability caps</text>
+
+  <line x1="442" y1="214" x2="598" y2="214" stroke="#f97316" stroke-width="0.4" stroke-dasharray="2,2"/>
+
+  <text x="442" y="226" font-family="monospace" font-size="8.5" fill="#f97316" font-weight="bold">SLA Requirements</text>
+  <text x="442" y="239" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ 99.9%+ availability for critical</text>
+  <text x="442" y="251" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ Latency P95 / P99 guarantees</text>
+  <text x="442" y="263" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ Rate limit / quota commitments</text>
+
+  <line x1="442" y1="270" x2="598" y2="270" stroke="#f97316" stroke-width="0.4" stroke-dasharray="2,2"/>
+
+  <text x="442" y="282" font-family="monospace" font-size="8.5" fill="#f97316" font-weight="bold">Oversight &amp; Audit</text>
+  <text x="442" y="295" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ Right-to-audit clause</text>
+  <text x="442" y="307" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ Incident notification ≤ 72h</text>
+  <text x="442" y="319" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ Regulatory cooperation</text>
+
+  <line x1="442" y1="326" x2="598" y2="326" stroke="#f97316" stroke-width="0.4" stroke-dasharray="2,2"/>
+
+  <text x="442" y="338" font-family="monospace" font-size="8.5" fill="#f97316" font-weight="bold">Data Protection</text>
+  <text x="442" y="351" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ Data deletion on termination</text>
+  <text x="442" y="363" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ No training on customer data</text>
+  <text x="442" y="375" font-family="monospace" font-size="7.8" fill="#e2e8f0">→ Encryption at rest &amp; transit</text>
+
+  <!-- ===== ONGOING MONITORING PANEL (far right) ===== -->
+  <text x="624" y="150" font-family="monospace" font-size="10" fill="#eab308" font-weight="bold" letter-spacing="1">MONITORING</text>
+  <rect x="624" y="155" width="154" height="235" rx="6" fill="#1a1800" stroke="#eab308" stroke-width="1"/>
+
+  <text x="636" y="170" font-family="monospace" font-size="8.5" fill="#eab308" font-weight="bold">Periodic Reviews</text>
+  <text x="636" y="183" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Annual full reassessment</text>
+  <text x="636" y="195" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Quarterly SLA review</text>
+  <text x="636" y="207" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Continuous threat intel feed</text>
+
+  <line x1="636" y1="214" x2="768" y2="214" stroke="#eab308" stroke-width="0.4" stroke-dasharray="2,2"/>
+
+  <text x="636" y="226" font-family="monospace" font-size="8.5" fill="#eab308" font-weight="bold">Signals to Monitor</text>
+  <text x="636" y="239" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ CVE / patch cadence</text>
+  <text x="636" y="251" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Financial health / M&amp;A news</text>
+  <text x="636" y="263" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Model behavior drift alerts</text>
+  <text x="636" y="275" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Regulatory action tracking</text>
+
+  <line x1="636" y1="282" x2="768" y2="282" stroke="#eab308" stroke-width="0.4" stroke-dasharray="2,2"/>
+
+  <text x="636" y="294" font-family="monospace" font-size="8.5" fill="#eab308" font-weight="bold">Trigger Events</text>
+  <text x="636" y="307" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Data breach disclosure</text>
+  <text x="636" y="319" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Terms of service change</text>
+  <text x="636" y="331" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Model version changes</text>
+  <text x="636" y="343" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Ownership change / exit</text>
+  <text x="636" y="355" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Regulatory inquiry / fine</text>
+  <text x="636" y="367" font-family="monospace" font-size="7.8" fill="#e2e8f0">◆ Subprocessor change notice</text>
+
+  <!-- ===== VENDOR CONCENTRATION RISK HEAT MAP (bottom) ===== -->
+  <text x="22" y="408" font-family="monospace" font-size="10" fill="#ef4444" font-weight="bold" letter-spacing="1">VENDOR CONCENTRATION RISK HEAT MAP</text>
+
+  <!-- Heat map grid -->
+  <rect x="22" y="413" width="756" height="130" rx="6" fill="#110808" stroke="#ef4444" stroke-width="1"/>
+
+  <!-- Y-axis label -->
+  <text x="30" y="435" font-family="monospace" font-size="8" fill="#e2e8f0" transform="rotate(-90, 30, 500)">IMPACT</text>
+
+  <!-- Axis labels -->
+  <text x="60" y="425" font-family="monospace" font-size="8" fill="#9ca3af">HIGH ↑</text>
+  <text x="60" y="503" font-family="monospace" font-size="8" fill="#9ca3af">LOW</text>
+
+  <!-- X-axis label -->
+  <text x="400" y="537" text-anchor="middle" font-family="monospace" font-size="8" fill="#9ca3af">LIKELIHOOD OF DISRUPTION / DEPENDENCY →</text>
+
+  <!-- Heat zones -->
+  <!-- LOW-LOW (green) -->
+  <rect x="90" y="418" width="90" height="55" rx="3" fill="#0d2a10" stroke="#22c55e" stroke-width="0.6"/>
+  <text x="135" y="443" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#22c55e">ACCEPTABLE</text>
+  <text x="135" y="455" text-anchor="middle" font-family="monospace" font-size="7" fill="#9ca3af">Internal analytics</text>
+  <text x="135" y="465" text-anchor="middle" font-family="monospace" font-size="7" fill="#9ca3af">tools, read-only APIs</text>
+
+  <!-- HIGH-LOW (yellow) -->
+  <rect x="90" y="477" width="90" height="55" rx="3" fill="#25200a" stroke="#eab308" stroke-width="0.6"/>
+  <text x="135" y="502" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#eab308">MONITOR</text>
+  <text x="135" y="514" text-anchor="middle" font-family="monospace" font-size="7" fill="#9ca3af">Open-source models,</text>
+  <text x="135" y="524" text-anchor="middle" font-family="monospace" font-size="7" fill="#9ca3af">dev tooling</text>
+
+  <!-- LOW-MED-HIGH zone -->
+  <rect x="185" y="418" width="130" height="55" rx="3" fill="#1a1f0d" stroke="#eab308" stroke-width="0.6"/>
+  <text x="250" y="443" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#eab308">MODERATE</text>
+  <text x="250" y="455" text-anchor="middle" font-family="monospace" font-size="7" fill="#9ca3af">MLOps platforms,</text>
+  <text x="250" y="465" text-anchor="middle" font-family="monospace" font-size="7" fill="#9ca3af">vector DBs (Pinecone)</text>
+
+  <!-- HIGH-MED zone -->
+  <rect x="185" y="477" width="130" height="55" rx="3" fill="#2a1a05" stroke="#f97316" stroke-width="0.6"/>
+  <text x="250" y="502" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#f97316">ELEVATED</text>
+  <text x="250" y="514" text-anchor="middle" font-family="monospace" font-size="7" fill="#9ca3af">AI-enabled SaaS</text>
+  <text x="250" y="524" text-anchor="middle" font-family="monospace" font-size="7" fill="#9ca3af">w/ customer data</text>
+
+  <!-- Critical zone center -->
+  <rect x="320" y="418" width="155" height="55" rx="3" fill="#2a0808" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="397" y="438" text-anchor="middle" font-family="monospace" font-size="8" fill="#ef4444" font-weight="bold">HIGH RISK</text>
+  <text x="397" y="450" text-anchor="middle" font-family="monospace" font-size="7" fill="#e2e8f0">OpenAI / Anthropic / Google</text>
+  <text x="397" y="462" text-anchor="middle" font-family="monospace" font-size="7" fill="#e2e8f0">Azure OpenAI / AWS Bedrock</text>
+  <text x="397" y="472" text-anchor="middle" font-family="monospace" font-size="7" fill="#ef4444">(Single provider dependency)</text>
+
+  <!-- Critical zone - High-High -->
+  <rect x="320" y="477" width="155" height="55" rx="3" fill="#300505" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="397" y="497" text-anchor="middle" font-family="monospace" font-size="8" fill="#ef4444" font-weight="bold">CRITICAL</text>
+  <text x="397" y="509" text-anchor="middle" font-family="monospace" font-size="7" fill="#e2e8f0">LLM API as core product</text>
+  <text x="397" y="521" text-anchor="middle" font-family="monospace" font-size="7" fill="#e2e8f0">feature, no fallback plan</text>
+
+  <!-- MITIGATED zone -->
+  <rect x="480" y="418" width="148" height="55" rx="3" fill="#0a1a2a" stroke="#4a9eff" stroke-width="0.6"/>
+  <text x="554" y="438" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff" font-weight="bold">MANAGED</text>
+  <text x="554" y="450" text-anchor="middle" font-family="monospace" font-size="7" fill="#e2e8f0">Multi-provider strategy</text>
+  <text x="554" y="462" text-anchor="middle" font-family="monospace" font-size="7" fill="#e2e8f0">with abstraction layer</text>
+  <text x="554" y="472" text-anchor="middle" font-family="monospace" font-size="7" fill="#4a9eff">(LiteLLM / model router)</text>
+
+  <!-- MITIGATED HIGH -->
+  <rect x="480" y="477" width="148" height="55" rx="3" fill="#0f1a30" stroke="#4a9eff" stroke-width="0.6"/>
+  <text x="554" y="497" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff" font-weight="bold">MITIGATED</text>
+  <text x="554" y="509" text-anchor="middle" font-family="monospace" font-size="7" fill="#e2e8f0">Failover + on-prem backup</text>
+  <text x="554" y="521" text-anchor="middle" font-family="monospace" font-size="7" fill="#e2e8f0">model deployed (Llama/Mistral)</text>
+
+  <!-- DORA/Regulatory note -->
+  <rect x="633" y="418" width="138" height="115" rx="3" fill="#1a1025" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="702" y="432" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6" font-weight="bold">REGULATORY</text>
+  <text x="702" y="444" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6" font-weight="bold">DRIVERS</text>
+  <text x="645" y="458" font-family="monospace" font-size="7.5" fill="#e2e8f0">▸ DORA (EU Fin Services)</text>
+  <text x="645" y="470" font-family="monospace" font-size="7.5" fill="#e2e8f0">▸ GDPR Art. 28 DPA req.</text>
+  <text x="645" y="482" font-family="monospace" font-size="7.5" fill="#e2e8f0">▸ EU AI Act Art. 25-28</text>
+  <text x="645" y="494" font-family="monospace" font-size="7.5" fill="#e2e8f0">▸ NIST AI RMF GOVERN</text>
+  <text x="645" y="506" font-family="monospace" font-size="7.5" fill="#e2e8f0">▸ ISO 42001 §8.4</text>
+  <text x="645" y="518" font-family="monospace" font-size="7.5" fill="#e2e8f0">▸ SOC 2 vendor mgmt</text>
+
+  <!-- Bottom separator line -->
+  <line x1="22" y1="555" x2="778" y2="555" stroke="#1e2a3a" stroke-width="0.8"/>
+  <text x="400" y="568" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a5568">Module 3 · Lesson 9 · AI Security Risk Course · Third-Party AI Risk and Vendor Management</text>
+</svg>

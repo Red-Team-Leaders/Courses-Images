@@ -1,0 +1,361 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Subtle grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2d3d" stroke-width="0.5"/>
+    </pattern>
+
+    <!-- Arrow marker - cyan -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+
+    <!-- Arrow marker - orange (decision) -->
+    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+    </marker>
+
+    <!-- Arrow marker - purple -->
+    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6"/>
+    </marker>
+
+    <!-- Glow filter -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Box shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="125%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Top gradient bar -->
+  <rect x="0" y="0" width="800" height="4" fill="url(#topbar)"/>
+  <defs>
+    <linearGradient id="topbar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="33%" stop-color="#8b5cf6"/>
+      <stop offset="66%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b27"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="boxBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a2540"/>
+      <stop offset="100%" stop-color="#0f1929"/>
+    </linearGradient>
+    <linearGradient id="boxGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f2318"/>
+      <stop offset="100%" stop-color="#0a1a10"/>
+    </linearGradient>
+    <linearGradient id="boxOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a1800"/>
+      <stop offset="100%" stop-color="#1a1000"/>
+    </linearGradient>
+    <linearGradient id="boxPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1535"/>
+      <stop offset="100%" stop-color="#130e22"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Header panel -->
+  <rect x="10" y="10" width="780" height="52" rx="6" fill="url(#headerGrad)" stroke="#1e2d3d" stroke-width="1"/>
+
+  <!-- Shield icon -->
+  <path d="M 30 20 L 30 36 Q 30 46 42 50 Q 54 46 54 36 L 54 20 L 42 16 Z" fill="none" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="42" y="38" text-anchor="middle" fill="#00d4ff" font-size="11" font-family="monospace">AI</text>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" fill="#ffffff" font-size="20" font-family="Arial, sans-serif" font-weight="bold" letter-spacing="0.5">AI Impact Assessment Process</text>
+  <text x="400" y="52" text-anchor="middle" fill="#8b9ab0" font-size="11" font-family="Arial, sans-serif" letter-spacing="1">MODULE 3 — LESSON 4 | RISK-BASED GOVERNANCE FRAMEWORK</text>
+
+  <!-- ============================================================ -->
+  <!-- MAIN PROCESS FLOW: 8 stages in two rows of 4 + connector     -->
+  <!-- ============================================================ -->
+
+  <!-- ROW 1: Stages 1-4 (left to right) y=100 -->
+  <!-- Stage 1: Pre-deployment Trigger -->
+  <g filter="url(#shadow)">
+    <rect x="18" y="90" width="152" height="70" rx="6" fill="url(#boxBlue)" stroke="#4a9eff" stroke-width="1.5"/>
+    <rect x="18" y="90" width="152" height="5" rx="3" fill="#4a9eff"/>
+    <text x="94" y="110" text-anchor="middle" fill="#4a9eff" font-size="10" font-family="Arial, sans-serif" font-weight="bold" letter-spacing="0.5">STAGE 1</text>
+    <text x="94" y="125" text-anchor="middle" fill="#ffffff" font-size="11" font-family="Arial, sans-serif" font-weight="bold">Pre-Deployment</text>
+    <text x="94" y="140" text-anchor="middle" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Trigger Criteria</text>
+    <!-- Checkbox icon -->
+    <rect x="28" y="97" width="10" height="10" rx="2" fill="none" stroke="#4a9eff" stroke-width="1"/>
+    <path d="M 30 102 L 33 105 L 37 99" stroke="#22c55e" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- Arrow 1→2 -->
+  <line x1="170" y1="125" x2="196" y2="125" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Stage 2: Scoping -->
+  <g filter="url(#shadow)">
+    <rect x="198" y="90" width="152" height="70" rx="6" fill="url(#boxBlue)" stroke="#00d4ff" stroke-width="1.5"/>
+    <rect x="198" y="90" width="152" height="5" rx="3" fill="#00d4ff"/>
+    <text x="274" y="110" text-anchor="middle" fill="#00d4ff" font-size="10" font-family="Arial, sans-serif" font-weight="bold" letter-spacing="0.5">STAGE 2</text>
+    <text x="274" y="125" text-anchor="middle" fill="#ffffff" font-size="11" font-family="Arial, sans-serif" font-weight="bold">Scoping</text>
+    <text x="274" y="140" text-anchor="middle" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">System Boundary &amp; Use Case</text>
+    <!-- Scope icon -->
+    <circle cx="208" cy="102" r="5" fill="none" stroke="#00d4ff" stroke-width="1"/>
+    <line x1="211.5" y1="105.5" x2="214" y2="108" stroke="#00d4ff" stroke-width="1.5"/>
+  </g>
+
+  <!-- Arrow 2→3 -->
+  <line x1="350" y1="125" x2="376" y2="125" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Stage 3: Data Assessment -->
+  <g filter="url(#shadow)">
+    <rect x="378" y="90" width="152" height="70" rx="6" fill="url(#boxPurple)" stroke="#8b5cf6" stroke-width="1.5"/>
+    <rect x="378" y="90" width="152" height="5" rx="3" fill="#8b5cf6"/>
+    <text x="454" y="110" text-anchor="middle" fill="#8b5cf6" font-size="10" font-family="Arial, sans-serif" font-weight="bold" letter-spacing="0.5">STAGE 3</text>
+    <text x="454" y="125" text-anchor="middle" fill="#ffffff" font-size="11" font-family="Arial, sans-serif" font-weight="bold">Data Assessment</text>
+    <text x="454" y="140" text-anchor="middle" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Sources · PII · Lineage</text>
+    <!-- DB icon -->
+    <ellipse cx="390" cy="100" rx="6" ry="3" fill="none" stroke="#8b5cf6" stroke-width="1"/>
+    <rect x="384" y="100" width="12" height="6" fill="none" stroke="#8b5cf6" stroke-width="1"/>
+    <ellipse cx="390" cy="106" rx="6" ry="3" fill="none" stroke="#8b5cf6" stroke-width="1"/>
+  </g>
+
+  <!-- Arrow 3→4 -->
+  <line x1="530" y1="125" x2="556" y2="125" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Stage 4: Risk Assessment -->
+  <g filter="url(#shadow)">
+    <rect x="558" y="90" width="222" height="70" rx="6" fill="url(#boxOrange)" stroke="#f97316" stroke-width="1.5"/>
+    <rect x="558" y="90" width="222" height="5" rx="3" fill="#f97316"/>
+    <text x="669" y="110" text-anchor="middle" fill="#f97316" font-size="10" font-family="Arial, sans-serif" font-weight="bold" letter-spacing="0.5">STAGE 4</text>
+    <text x="669" y="125" text-anchor="middle" fill="#ffffff" font-size="11" font-family="Arial, sans-serif" font-weight="bold">Risk Assessment</text>
+    <text x="669" y="140" text-anchor="middle" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Bias · Safety · Security · Legal</text>
+    <!-- Warning icon -->
+    <polygon points="570,108 578,94 586,108" fill="none" stroke="#f97316" stroke-width="1"/>
+    <text x="578" y="106" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold">!</text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- DECISION GATE 1 between rows                                 -->
+  <!-- ============================================================ -->
+  <!-- Vertical connector from Stage 4 down -->
+  <line x1="669" y1="160" x2="669" y2="185" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- Traffic Light Gate 1 -->
+  <g>
+    <rect x="620" y="185" width="98" height="50" rx="6" fill="#161b27" stroke="#f97316" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="669" y="200" text-anchor="middle" fill="#f97316" font-size="9" font-family="Arial, sans-serif" font-weight="bold">RISK GATE</text>
+    <!-- Traffic lights -->
+    <circle cx="645" cy="215" r="7" fill="#22c55e" opacity="0.9"/>
+    <circle cx="669" cy="215" r="7" fill="#eab308" opacity="0.9"/>
+    <circle cx="693" cy="215" r="7" fill="#ef4444" opacity="0.9"/>
+    <text x="645" y="233" text-anchor="middle" fill="#22c55e" font-size="7">GO</text>
+    <text x="669" y="233" text-anchor="middle" fill="#eab308" font-size="7">REVIEW</text>
+    <text x="693" y="233" text-anchor="middle" fill="#ef4444" font-size="7">STOP</text>
+  </g>
+
+  <!-- Red path: STOP → reject -->
+  <line x1="700" y1="210" x2="778" y2="210" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <rect x="740" y="195" width="46" height="22" rx="4" fill="#1a0808" stroke="#ef4444" stroke-width="1"/>
+  <text x="763" y="209" text-anchor="middle" fill="#ef4444" font-size="9" font-weight="bold">REJECT</text>
+
+  <!-- Green/amber path: continue down -->
+  <line x1="669" y1="235" x2="669" y2="255" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+  <text x="680" y="248" fill="#22c55e" font-size="9" font-family="Arial, sans-serif">continue</text>
+
+  <!-- ROW 2: Stages 5-8 (right to left) y=260 -->
+
+  <!-- Stage 5: Stakeholder Impact -->
+  <g filter="url(#shadow)">
+    <rect x="558" y="258" width="222" height="70" rx="6" fill="url(#boxOrange)" stroke="#eab308" stroke-width="1.5"/>
+    <rect x="558" y="258" width="222" height="5" rx="3" fill="#eab308"/>
+    <text x="669" y="278" text-anchor="middle" fill="#eab308" font-size="10" font-family="Arial, sans-serif" font-weight="bold" letter-spacing="0.5">STAGE 5</text>
+    <text x="669" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="Arial, sans-serif" font-weight="bold">Stakeholder Impact</text>
+    <text x="669" y="308" text-anchor="middle" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Affected Populations · Harm Scenarios</text>
+    <!-- People icon -->
+    <circle cx="572" cy="274" r="4" fill="none" stroke="#eab308" stroke-width="1"/>
+    <path d="M 567 285 Q 572 281 577 285" fill="none" stroke="#eab308" stroke-width="1"/>
+    <circle cx="580" cy="272" r="3.5" fill="none" stroke="#eab308" stroke-width="1"/>
+    <path d="M 576 283 Q 580 279 584 283" fill="none" stroke="#eab308" stroke-width="1"/>
+  </g>
+
+  <!-- Arrow 5→6 (right to left) -->
+  <line x1="558" y1="293" x2="532" y2="293" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Stage 6: Control Design -->
+  <g filter="url(#shadow)">
+    <rect x="378" y="258" width="152" height="70" rx="6" fill="url(#boxGreen)" stroke="#22c55e" stroke-width="1.5"/>
+    <rect x="378" y="258" width="152" height="5" rx="3" fill="#22c55e"/>
+    <text x="454" y="278" text-anchor="middle" fill="#22c55e" font-size="10" font-family="Arial, sans-serif" font-weight="bold" letter-spacing="0.5">STAGE 6</text>
+    <text x="454" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="Arial, sans-serif" font-weight="bold">Control Design</text>
+    <text x="454" y="308" text-anchor="middle" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Mitigations · Guardrails</text>
+    <!-- Shield/lock icon -->
+    <path d="M 390 268 L 390 278 Q 390 285 396 287 Q 402 285 402 278 L 402 268 L 396 265 Z" fill="none" stroke="#22c55e" stroke-width="1"/>
+    <rect x="393" y="275" width="6" height="5" rx="1" fill="#22c55e" opacity="0.5"/>
+  </g>
+
+  <!-- Arrow 6→7 -->
+  <line x1="378" y1="293" x2="352" y2="293" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Stage 7: Review & Approval -->
+  <g filter="url(#shadow)">
+    <rect x="198" y="258" width="152" height="70" rx="6" fill="url(#boxGreen)" stroke="#22c55e" stroke-width="1.5"/>
+    <rect x="198" y="258" width="152" height="5" rx="3" fill="#22c55e"/>
+    <text x="274" y="278" text-anchor="middle" fill="#22c55e" font-size="10" font-family="Arial, sans-serif" font-weight="bold" letter-spacing="0.5">STAGE 7</text>
+    <text x="274" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="Arial, sans-serif" font-weight="bold">Review &amp; Approval</text>
+    <text x="274" y="308" text-anchor="middle" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Sign-off Matrix · DPIA</text>
+    <!-- Stamp icon -->
+    <rect x="208" y="266" width="14" height="10" rx="2" fill="none" stroke="#22c55e" stroke-width="1"/>
+    <line x1="208" y1="278" x2="222" y2="278" stroke="#22c55e" stroke-width="2"/>
+    <path d="M 212 272 L 214 275 L 219 269" stroke="#22c55e" stroke-width="1" fill="none"/>
+  </g>
+
+  <!-- Arrow 7→8 -->
+  <line x1="198" y1="293" x2="172" y2="293" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Stage 8: Ongoing Monitoring -->
+  <g filter="url(#shadow)">
+    <rect x="18" y="258" width="152" height="70" rx="6" fill="url(#boxGreen)" stroke="#22c55e" stroke-width="1.5"/>
+    <rect x="18" y="258" width="152" height="5" rx="3" fill="#22c55e"/>
+    <text x="94" y="278" text-anchor="middle" fill="#22c55e" font-size="10" font-family="Arial, sans-serif" font-weight="bold" letter-spacing="0.5">STAGE 8</text>
+    <text x="94" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="Arial, sans-serif" font-weight="bold">Ongoing Monitoring</text>
+    <text x="94" y="308" text-anchor="middle" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Continuous Oversight</text>
+    <!-- Pulse icon -->
+    <polyline points="28,297 32,290 36,300 40,285 44,300 48,293" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+  </g>
+
+  <!-- Feedback arrow from Stage 8 back to Stage 1 (loop) -->
+  <path d="M 18 310 Q 5 310 5 370 Q 5 430 18 430" fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-purple)"/>
+  <text x="2" y="380" fill="#8b5cf6" font-size="8" font-family="Arial, sans-serif" writing-mode="tb">RE-ASSESS ON CHANGE</text>
+
+  <!-- ============================================================ -->
+  <!-- DECISION GATE 2: Before Review & Approval                    -->
+  <!-- ============================================================ -->
+  <!-- Traffic Light Gate 2 (between stages 6 and 7) -->
+  <g>
+    <rect x="220" y="338" width="108" height="50" rx="6" fill="#161b27" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="274" y="352" text-anchor="middle" fill="#22c55e" font-size="9" font-family="Arial, sans-serif" font-weight="bold">CONTROL GATE</text>
+    <circle cx="249" cy="370" r="7" fill="#22c55e" opacity="0.9"/>
+    <circle cx="274" cy="370" r="7" fill="#eab308" opacity="0.9"/>
+    <circle cx="299" cy="370" r="7" fill="#ef4444" opacity="0.9"/>
+    <text x="249" y="385" text-anchor="middle" fill="#22c55e" font-size="7">ADEQUATE</text>
+    <text x="274" y="385" text-anchor="middle" fill="#eab308" font-size="7">PARTIAL</text>
+    <text x="299" y="385" text-anchor="middle" fill="#ef4444" font-size="7">GAPS</text>
+  </g>
+  <!-- Arrow from gate2 up to Stage 6 (iterate) -->
+  <line x1="299" y1="338" x2="450" y2="328" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="370" y="325" text-anchor="middle" fill="#ef4444" font-size="8" font-family="Arial, sans-serif">redesign controls</text>
+
+  <!-- ============================================================ -->
+  <!-- BOTTOM PANELS: Regulatory Links + Key Risk Dimensions        -->
+  <!-- ============================================================ -->
+
+  <!-- Separator line -->
+  <line x1="18" y1="405" x2="782" y2="405" stroke="#1e2d3d" stroke-width="1"/>
+
+  <!-- Regulatory Links Panel -->
+  <g>
+    <rect x="18" y="412" width="240" height="100" rx="6" fill="#0f1520" stroke="#4a9eff" stroke-width="1"/>
+    <rect x="18" y="412" width="240" height="22" rx="6" fill="#1a2540"/>
+    <rect x="18" y="422" width="240" height="12" fill="#1a2540"/>
+    <text x="138" y="428" text-anchor="middle" fill="#4a9eff" font-size="11" font-family="Arial, sans-serif" font-weight="bold">REGULATORY LINKS</text>
+
+    <!-- EU AI Act -->
+    <rect x="28" y="440" width="100" height="32" rx="4" fill="#161b27" stroke="#4a9eff" stroke-width="1"/>
+    <text x="78" y="453" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="bold">EU AI Act</text>
+    <text x="78" y="465" text-anchor="middle" fill="#8b9ab0" font-size="8">Art. 9 Risk Mgmt</text>
+    <text x="78" y="475" text-anchor="middle" fill="#8b9ab0" font-size="7">FRIA (Art. 27)</text>
+
+    <!-- DPIA -->
+    <rect x="148" y="440" width="100" height="32" rx="4" fill="#161b27" stroke="#8b5cf6" stroke-width="1"/>
+    <text x="198" y="453" text-anchor="middle" fill="#8b5cf6" font-size="9" font-weight="bold">GDPR DPIA</text>
+    <text x="198" y="465" text-anchor="middle" fill="#8b9ab0" font-size="8">Art. 35 GDPR</text>
+    <text x="198" y="475" text-anchor="middle" fill="#8b9ab0" font-size="7">WP29 Guidelines</text>
+
+    <!-- ISO 42001 -->
+    <rect x="28" y="478" width="100" height="28" rx="4" fill="#161b27" stroke="#22c55e" stroke-width="1"/>
+    <text x="78" y="490" text-anchor="middle" fill="#22c55e" font-size="9" font-weight="bold">ISO/IEC 42001</text>
+    <text x="78" y="502" text-anchor="middle" fill="#8b9ab0" font-size="8">AI Management</text>
+
+    <!-- NIST AI RMF -->
+    <rect x="148" y="478" width="100" height="28" rx="4" fill="#161b27" stroke="#f97316" stroke-width="1"/>
+    <text x="198" y="490" text-anchor="middle" fill="#f97316" font-size="9" font-weight="bold">NIST AI RMF</text>
+    <text x="198" y="502" text-anchor="middle" fill="#8b9ab0" font-size="8">GOVERN / MAP</text>
+  </g>
+
+  <!-- Risk Dimensions Panel -->
+  <g>
+    <rect x="270" y="412" width="250" height="100" rx="6" fill="#0f1520" stroke="#8b5cf6" stroke-width="1"/>
+    <rect x="270" y="412" width="250" height="22" rx="6" fill="#1e1535"/>
+    <rect x="270" y="422" width="250" height="12" fill="#1e1535"/>
+    <text x="395" y="428" text-anchor="middle" fill="#8b5cf6" font-size="11" font-family="Arial, sans-serif" font-weight="bold">RISK DIMENSIONS ASSESSED</text>
+
+    <!-- 6 dimension chips -->
+    <rect x="280" y="438" width="70" height="20" rx="10" fill="#1a0d30" stroke="#8b5cf6" stroke-width="1"/>
+    <text x="315" y="452" text-anchor="middle" fill="#8b5cf6" font-size="9">Bias &amp; Fairness</text>
+
+    <rect x="360" y="438" width="70" height="20" rx="10" fill="#0f2318" stroke="#22c55e" stroke-width="1"/>
+    <text x="395" y="452" text-anchor="middle" fill="#22c55e" font-size="9">Safety</text>
+
+    <rect x="440" y="438" width="70" height="20" rx="10" fill="#1a0808" stroke="#ef4444" stroke-width="1"/>
+    <text x="475" y="452" text-anchor="middle" fill="#ef4444" font-size="9">Security</text>
+
+    <rect x="280" y="464" width="70" height="20" rx="10" fill="#1a1000" stroke="#eab308" stroke-width="1"/>
+    <text x="315" y="478" text-anchor="middle" fill="#eab308" font-size="9">Privacy</text>
+
+    <rect x="360" y="464" width="70" height="20" rx="10" fill="#0f1929" stroke="#4a9eff" stroke-width="1"/>
+    <text x="395" y="478" text-anchor="middle" fill="#4a9eff" font-size="9">Legal/Ethics</text>
+
+    <rect x="440" y="464" width="70" height="20" rx="10" fill="#2a1800" stroke="#f97316" stroke-width="1"/>
+    <text x="475" y="478" text-anchor="middle" fill="#f97316" font-size="9">Reputational</text>
+
+    <!-- Vulnerable groups note -->
+    <text x="395" y="500" text-anchor="middle" fill="#8b9ab0" font-size="9" font-style="italic">Special attention: children · elderly · marginalised groups</text>
+    <text x="395" y="512" text-anchor="middle" fill="#8b9ab0" font-size="9" font-style="italic">Proportionality principle applies throughout</text>
+  </g>
+
+  <!-- Documentation Outputs Panel -->
+  <g>
+    <rect x="532" y="412" width="250" height="100" rx="6" fill="#0f1520" stroke="#22c55e" stroke-width="1"/>
+    <rect x="532" y="412" width="250" height="22" rx="6" fill="#0f2318"/>
+    <rect x="532" y="422" width="250" height="12" fill="#0f2318"/>
+    <text x="657" y="428" text-anchor="middle" fill="#22c55e" font-size="11" font-family="Arial, sans-serif" font-weight="bold">DOCUMENTATION OUTPUTS</text>
+
+    <!-- Doc list -->
+    <text x="545" y="447" fill="#22c55e" font-size="11">▸</text>
+    <text x="558" y="447" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">AI Impact Assessment Report</text>
+
+    <text x="545" y="463" fill="#22c55e" font-size="11">▸</text>
+    <text x="558" y="463" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Data Protection Impact Assessment</text>
+
+    <text x="545" y="479" fill="#22c55e" font-size="11">▸</text>
+    <text x="558" y="479" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Fundamental Rights Impact Assessment</text>
+
+    <text x="545" y="495" fill="#22c55e" font-size="11">▸</text>
+    <text x="558" y="495" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Risk Register + Control Mapping</text>
+
+    <text x="545" y="511" fill="#22c55e" font-size="11">▸</text>
+    <text x="558" y="511" fill="#e2e8f0" font-size="10" font-family="Arial, sans-serif">Monitoring Plan + Incident Log</text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- BOTTOM BAR                                                   -->
+  <!-- ============================================================ -->
+  <rect x="0" y="560" width="800" height="40" fill="#080d13" opacity="0.8"/>
+  <text x="400" y="576" text-anchor="middle" fill="#4a9eff" font-size="9" font-family="monospace">TRIGGER: high-risk system · sensitive data · new use case · model update · regulatory change</text>
+  <text x="400" y="591" text-anchor="middle" fill="#8b9ab0" font-size="8" font-family="monospace">Assessment must be updated whenever material changes occur to the AI system or its deployment context</text>
+
+  <!-- Corner watermark -->
+  <text x="790" y="595" text-anchor="end" fill="#1e2d3d" font-size="8" font-family="monospace">AI SECURITY RISK // M3-L04</text>
+</svg>

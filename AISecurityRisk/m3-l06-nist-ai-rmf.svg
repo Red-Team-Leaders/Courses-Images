@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filters -->
+    <filter id="glow-cyan">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-blue">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradient definitions -->
+    <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </radialGradient>
+    <linearGradient id="govGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e40af" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="mapGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#15803d" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#14532d" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="measGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c2410c" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#9a3412" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="manGrad" x1="100%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#b91c1c" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#991b1b" stop-opacity="0.7"/>
+    </linearGradient>
+    <!-- Arrow marker -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="'Courier New', monospace" font-size="20" font-weight="bold" fill="#ffffff" filter="url(#glow-cyan)">NIST AI Risk Management Framework</text>
+  <text x="400" y="52" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" fill="#00d4ff">AI RMF v1.0 (2023) — Core Functions &amp; Cross-Cutting Concerns</text>
+
+  <!-- Divider line under title -->
+  <line x1="80" y1="62" x2="720" y2="62" stroke="#00d4ff" stroke-width="0.8" stroke-opacity="0.5"/>
+
+  <!-- ======================================================
+       FOUR QUADRANT BOXES (arranged in 2x2 grid)
+       Center area: x=260..540, y=80..430  (core circle)
+       GOVERN: top-left   MAP: top-right
+       MEASURE: bot-left  MANAGE: bot-right
+  ====================================================== -->
+
+  <!-- GOVERN quadrant (top-left) -->
+  <rect x="80" y="75" width="295" height="175" rx="8" fill="url(#govGrad)" stroke="#4a9eff" stroke-width="1.5"/>
+  <!-- Quadrant label -->
+  <text x="96" y="98" font-family="'Courier New', monospace" font-size="15" font-weight="bold" fill="#4a9eff" filter="url(#glow-blue)">GOVERN</text>
+  <text x="96" y="113" font-family="'Courier New', monospace" font-size="9" fill="#93c5fd">Policies · Culture · Roles</text>
+  <!-- Sub-items -->
+  <text x="96" y="133" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; GV.1  AI risk governance policies</text>
+  <text x="96" y="149" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; GV.2  Accountability &amp; roles defined</text>
+  <text x="96" y="165" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; GV.3  AI risk tolerance established</text>
+  <text x="96" y="181" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; GV.4  Org culture for responsible AI</text>
+  <text x="96" y="197" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; GV.5  Oversight &amp; review processes</text>
+  <text x="96" y="213" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; GV.6  Policies: security, privacy, bias</text>
+  <!-- Corner accent -->
+  <rect x="80" y="75" width="6" height="175" rx="3" fill="#4a9eff" opacity="0.8"/>
+
+  <!-- MAP quadrant (top-right) -->
+  <rect x="425" y="75" width="295" height="175" rx="8" fill="url(#mapGrad)" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="441" y="98" font-family="'Courier New', monospace" font-size="15" font-weight="bold" fill="#22c55e" filter="url(#glow-green)">MAP</text>
+  <text x="441" y="113" font-family="'Courier New', monospace" font-size="9" fill="#86efac">Context · Use Case · Risk ID</text>
+  <text x="441" y="133" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MP.1  Establish context &amp; scope</text>
+  <text x="441" y="149" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MP.2  Categorize AI system use case</text>
+  <text x="441" y="165" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MP.3  Identify AI risks &amp; impacts</text>
+  <text x="441" y="181" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MP.4  Stakeholder engagement</text>
+  <text x="441" y="197" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MP.5  Supply chain &amp; third-party AI</text>
+  <text x="441" y="213" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MP.6  Data lineage &amp; provenance</text>
+  <rect x="714" y="75" width="6" height="175" rx="3" fill="#22c55e" opacity="0.8"/>
+
+  <!-- MEASURE quadrant (bottom-left) -->
+  <rect x="80" y="268" width="295" height="175" rx="8" fill="url(#measGrad)" stroke="#f97316" stroke-width="1.5"/>
+  <text x="96" y="291" font-family="'Courier New', monospace" font-size="15" font-weight="bold" fill="#f97316">MEASURE</text>
+  <text x="96" y="306" font-family="'Courier New', monospace" font-size="9" fill="#fdba74">Analysis · Metrics · Benchmarks</text>
+  <text x="96" y="326" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MS.1  Risk analysis &amp; evaluation</text>
+  <text x="96" y="342" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MS.2  Trustworthiness metrics defined</text>
+  <text x="96" y="358" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MS.3  AI testing &amp; red-teaming</text>
+  <text x="96" y="374" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MS.4  Bias &amp; fairness benchmarks</text>
+  <text x="96" y="390" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MS.5  Explainability evaluation</text>
+  <text x="96" y="406" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MS.6  Performance monitoring KPIs</text>
+  <rect x="80" y="268" width="6" height="175" rx="3" fill="#f97316" opacity="0.8"/>
+
+  <!-- MANAGE quadrant (bottom-right) -->
+  <rect x="425" y="268" width="295" height="175" rx="8" fill="url(#manGrad)" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="441" y="291" font-family="'Courier New', monospace" font-size="15" font-weight="bold" fill="#ef4444">MANAGE</text>
+  <text x="441" y="306" font-family="'Courier New', monospace" font-size="9" fill="#fca5a5">Prioritize · Respond · Recover</text>
+  <text x="441" y="326" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MG.1  Risk prioritization &amp; treatment</text>
+  <text x="441" y="342" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MG.2  Response &amp; remediation plans</text>
+  <text x="441" y="358" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MG.3  Incident response for AI</text>
+  <text x="441" y="374" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MG.4  Recovery &amp; residual risk</text>
+  <text x="441" y="390" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MG.5  Continuous improvement loop</text>
+  <text x="441" y="406" font-family="Arial, sans-serif" font-size="10" fill="#e2e8f0">&#x25B8; MG.6  Vendor &amp; procurement controls</text>
+  <rect x="714" y="268" width="6" height="175" rx="3" fill="#ef4444" opacity="0.8"/>
+
+  <!-- ======================================================
+       CENTER CIRCLE — "NIST AI RMF"
+  ====================================================== -->
+  <!-- Outer ring -->
+  <circle cx="400" cy="255" r="72" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.6"/>
+  <!-- Inner circle background -->
+  <circle cx="400" cy="255" r="65" fill="url(#centerGrad)" stroke="#00d4ff" stroke-width="2"/>
+  <!-- Center text -->
+  <text x="400" y="243" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#00d4ff" filter="url(#glow-cyan)">NIST</text>
+  <text x="400" y="259" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#00d4ff" filter="url(#glow-cyan)">AI RMF</text>
+  <text x="400" y="275" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#93c5fd">v1.0 · 2023</text>
+
+  <!-- ======================================================
+       ARROWS from center to each quadrant
+  ====================================================== -->
+  <!-- Center to GOVERN (top-left) -->
+  <line x1="355" y1="210" x2="295" y2="175" stroke="#4a9eff" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowGray)" opacity="0.7"/>
+  <!-- Center to MAP (top-right) -->
+  <line x1="445" y1="210" x2="505" y2="175" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowGray)" opacity="0.7"/>
+  <!-- Center to MEASURE (bottom-left) -->
+  <line x1="355" y1="300" x2="295" y2="330" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowGray)" opacity="0.7"/>
+  <!-- Center to MANAGE (bottom-right) -->
+  <line x1="445" y1="300" x2="505" y2="330" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowGray)" opacity="0.7"/>
+
+  <!-- Cycle arrow labels at quadrant corners -->
+  <text x="310" y="170" font-family="Arial" font-size="9" fill="#93c5fd" opacity="0.9">define</text>
+  <text x="488" y="170" font-family="Arial" font-size="9" fill="#86efac" opacity="0.9">identify</text>
+  <text x="300" y="348" font-family="Arial" font-size="9" fill="#fdba74" opacity="0.9">evaluate</text>
+  <text x="488" y="348" font-family="Arial" font-size="9" fill="#fca5a5" opacity="0.9">respond</text>
+
+  <!-- ======================================================
+       CROSS-CUTTING CONCERNS (bottom bands)
+  ====================================================== -->
+  <text x="400" y="464" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#8b5cf6">Cross-Cutting Trustworthiness Properties</text>
+
+  <!-- Band row 1 -->
+  <rect x="80" y="472" width="134" height="24" rx="4" fill="#8b5cf6" fill-opacity="0.25" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="147" y="488" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#c4b5fd">Transparency</text>
+
+  <rect x="222" y="472" width="134" height="24" rx="4" fill="#eab308" fill-opacity="0.2" stroke="#eab308" stroke-width="1"/>
+  <text x="289" y="488" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fde047">Explainability</text>
+
+  <rect x="364" y="472" width="134" height="24" rx="4" fill="#22c55e" fill-opacity="0.2" stroke="#22c55e" stroke-width="1"/>
+  <text x="431" y="488" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#86efac">Fairness / Bias</text>
+
+  <rect x="506" y="472" width="134" height="24" rx="4" fill="#ef4444" fill-opacity="0.2" stroke="#ef4444" stroke-width="1"/>
+  <text x="573" y="488" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fca5a5">Security</text>
+
+  <rect x="648" y="472" width="72" height="24" rx="4" fill="#4a9eff" fill-opacity="0.2" stroke="#4a9eff" stroke-width="1"/>
+  <text x="684" y="488" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#93c5fd">Privacy</text>
+
+  <!-- Band row 2 -->
+  <rect x="80" y="502" width="134" height="24" rx="4" fill="#f97316" fill-opacity="0.2" stroke="#f97316" stroke-width="1"/>
+  <text x="147" y="518" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fdba74">Reliability</text>
+
+  <rect x="222" y="502" width="134" height="24" rx="4" fill="#00d4ff" fill-opacity="0.15" stroke="#00d4ff" stroke-width="1"/>
+  <text x="289" y="518" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#67e8f9">Interpretability</text>
+
+  <rect x="364" y="502" width="134" height="24" rx="4" fill="#8b5cf6" fill-opacity="0.2" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="431" y="518" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#c4b5fd">Accountability</text>
+
+  <rect x="506" y="502" width="134" height="24" rx="4" fill="#eab308" fill-opacity="0.2" stroke="#eab308" stroke-width="1"/>
+  <text x="573" y="518" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fde047">Robustness</text>
+
+  <rect x="648" y="502" width="72" height="24" rx="4" fill="#22c55e" fill-opacity="0.2" stroke="#22c55e" stroke-width="1"/>
+  <text x="684" y="518" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#86efac">Safety</text>
+
+  <!-- ======================================================
+       PROFILE & PLAYBOOK ROW
+  ====================================================== -->
+  <line x1="80" y1="536" x2="720" y2="536" stroke="#1e2a3a" stroke-width="1"/>
+
+  <rect x="80" y="542" width="192" height="40" rx="5" fill="#1e2a3a" stroke="#4a9eff" stroke-width="1"/>
+  <text x="176" y="558" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#4a9eff">AI RMF Profile</text>
+  <text x="176" y="572" text-anchor="middle" font-family="Arial" font-size="9" fill="#6b7280">Current State → Target State</text>
+
+  <rect x="304" y="542" width="192" height="40" rx="5" fill="#1e2a3a" stroke="#22c55e" stroke-width="1"/>
+  <text x="400" y="558" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#22c55e">AI RMF Playbook</text>
+  <text x="400" y="572" text-anchor="middle" font-family="Arial" font-size="9" fill="#6b7280">Suggested actions per sub-category</text>
+
+  <rect x="528" y="542" width="192" height="40" rx="5" fill="#1e2a3a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="624" y="558" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#8b5cf6">Framework Mappings</text>
+  <text x="624" y="572" text-anchor="middle" font-family="Arial" font-size="9" fill="#6b7280">ISO 42001 · OWASP LLM · COBIT</text>
+
+  <!-- Footer line -->
+  <line x1="80" y1="590" x2="720" y2="590" stroke="#00d4ff" stroke-width="0.5" opacity="0.3"/>
+  <text x="400" y="598" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#374151">NIST SP 100-1 · AI RMF v1.0 · January 2023 · nist.gov/artificial-intelligence</text>
+</svg>

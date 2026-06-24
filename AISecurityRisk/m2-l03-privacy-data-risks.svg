@@ -1,0 +1,421 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8b5cf6"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glow-cyan">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-red">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-orange">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradient fills -->
+    <linearGradient id="training-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.1"/>
+    </linearGradient>
+    <linearGradient id="model-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.35"/>
+      <stop offset="100%" style="stop-color:#4a9eff;stop-opacity:0.15"/>
+    </linearGradient>
+    <linearGradient id="risk-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.1"/>
+    </linearGradient>
+    <linearGradient id="pyramid-public" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.5"/>
+    </linearGradient>
+    <linearGradient id="pyramid-internal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#eab308;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#eab308;stop-opacity:0.5"/>
+    </linearGradient>
+    <linearGradient id="pyramid-confidential" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.5"/>
+    </linearGradient>
+    <linearGradient id="pyramid-restricted" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="800" height="42" fill="#111827" opacity="0.95"/>
+  <line x1="0" y1="42" x2="800" y2="42" stroke="#00d4ff" stroke-width="1.5" opacity="0.6"/>
+  <text x="400" y="27" text-anchor="middle" fill="#ffffff" font-family="'Courier New', monospace" font-size="17" font-weight="bold" letter-spacing="1">AI PRIVACY &amp; DATA LEAKAGE RISK LANDSCAPE</text>
+
+  <!-- ===== SECTION LABELS ===== -->
+  <!-- Left column label -->
+  <text x="10" y="62" fill="#00d4ff" font-family="'Courier New', monospace" font-size="9" opacity="0.7" letter-spacing="2">TRAINING PIPELINE</text>
+  <!-- Right column label -->
+  <text x="530" y="62" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="9" opacity="0.7" letter-spacing="2">DATA CLASSIFICATION</text>
+  <!-- Bottom left label -->
+  <text x="10" y="352" fill="#f97316" font-family="'Courier New', monospace" font-size="9" opacity="0.7" letter-spacing="2">RAG / VECTOR DB RISKS</text>
+  <!-- Bottom right label -->
+  <text x="530" y="352" fill="#ef4444" font-family="'Courier New', monospace" font-size="9" opacity="0.7" letter-spacing="2">SHADOW AI RISK</text>
+
+  <!-- ============================================================ -->
+  <!-- TOP-LEFT: Training Pipeline Flow -->
+  <!-- ============================================================ -->
+
+  <!-- Training Data Box -->
+  <rect x="10" y="68" width="148" height="100" rx="6" fill="url(#training-grad)" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="10" y="68" width="148" height="18" rx="6" fill="#4a9eff" opacity="0.4"/>
+  <text x="84" y="80" text-anchor="middle" fill="#4a9eff" font-family="'Courier New', monospace" font-size="10" font-weight="bold">TRAINING DATA</text>
+  <!-- PII badge -->
+  <rect x="17" y="93" width="32" height="13" rx="3" fill="#ef4444" opacity="0.85"/>
+  <text x="33" y="103" text-anchor="middle" fill="#ffffff" font-family="'Courier New', monospace" font-size="8" font-weight="bold">PII</text>
+  <text x="57" y="103" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">Names, emails</text>
+  <!-- Confidential badge -->
+  <rect x="17" y="111" width="52" height="13" rx="3" fill="#f97316" opacity="0.8"/>
+  <text x="43" y="121" text-anchor="middle" fill="#ffffff" font-family="'Courier New', monospace" font-size="8" font-weight="bold">CONFIDENTIAL</text>
+  <text x="75" y="121" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">Corp docs</text>
+  <!-- Web data badge -->
+  <rect x="17" y="129" width="42" height="13" rx="3" fill="#22c55e" opacity="0.7"/>
+  <text x="38" y="139" text-anchor="middle" fill="#ffffff" font-family="'Courier New', monospace" font-size="8" font-weight="bold">WEB DATA</text>
+  <text x="65" y="139" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">Scraped</text>
+  <!-- Copyright badge -->
+  <rect x="17" y="147" width="52" height="13" rx="3" fill="#eab308" opacity="0.75"/>
+  <text x="43" y="157" text-anchor="middle" fill="#0d1117" font-family="'Courier New', monospace" font-size="8" font-weight="bold">COPYRIGHT</text>
+  <text x="75" y="157" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">Books, code</text>
+
+  <!-- Arrow: Training Data → Model Training -->
+  <line x1="158" y1="118" x2="198" y2="118" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+  <text x="178" y="112" text-anchor="middle" fill="#00d4ff" font-family="'Courier New', monospace" font-size="7">train</text>
+
+  <!-- Model Training Box -->
+  <rect x="200" y="82" width="105" height="72" rx="6" fill="#8b5cf6" opacity="0.2" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="200" y="82" width="105" height="18" rx="6" fill="#8b5cf6" opacity="0.4"/>
+  <text x="252" y="94" text-anchor="middle" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="10" font-weight="bold">TRAINING</text>
+  <!-- Neural net icon -->
+  <circle cx="228" cy="116" r="4" fill="none" stroke="#8b5cf6" stroke-width="1.2"/>
+  <circle cx="228" cy="132" r="4" fill="none" stroke="#8b5cf6" stroke-width="1.2"/>
+  <circle cx="252" cy="108" r="4" fill="none" stroke="#00d4ff" stroke-width="1.2"/>
+  <circle cx="252" cy="124" r="4" fill="none" stroke="#00d4ff" stroke-width="1.2"/>
+  <circle cx="252" cy="140" r="4" fill="none" stroke="#00d4ff" stroke-width="1.2"/>
+  <circle cx="276" cy="116" r="4" fill="none" stroke="#8b5cf6" stroke-width="1.2"/>
+  <circle cx="276" cy="132" r="4" fill="none" stroke="#8b5cf6" stroke-width="1.2"/>
+  <!-- Connections -->
+  <line x1="232" y1="116" x2="248" y2="108" stroke="#8b5cf6" stroke-width="0.6" opacity="0.5"/>
+  <line x1="232" y1="116" x2="248" y2="124" stroke="#8b5cf6" stroke-width="0.6" opacity="0.5"/>
+  <line x1="232" y1="132" x2="248" y2="124" stroke="#8b5cf6" stroke-width="0.6" opacity="0.5"/>
+  <line x1="232" y1="132" x2="248" y2="140" stroke="#8b5cf6" stroke-width="0.6" opacity="0.5"/>
+  <line x1="256" y1="108" x2="272" y2="116" stroke="#00d4ff" stroke-width="0.6" opacity="0.5"/>
+  <line x1="256" y1="124" x2="272" y2="116" stroke="#00d4ff" stroke-width="0.6" opacity="0.5"/>
+  <line x1="256" y1="124" x2="272" y2="132" stroke="#00d4ff" stroke-width="0.6" opacity="0.5"/>
+  <line x1="256" y1="140" x2="272" y2="132" stroke="#00d4ff" stroke-width="0.6" opacity="0.5"/>
+
+  <!-- Arrow: Model Training → Model Weights -->
+  <line x1="305" y1="118" x2="345" y2="118" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+  <text x="325" y="112" text-anchor="middle" fill="#00d4ff" font-family="'Courier New', monospace" font-size="7">encode</text>
+
+  <!-- Model Weights Box -->
+  <rect x="347" y="82" width="115" height="72" rx="6" fill="url(#model-grad)" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="347" y="82" width="115" height="18" rx="6" fill="#8b5cf6" opacity="0.4"/>
+  <text x="404" y="94" text-anchor="middle" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="10" font-weight="bold">MODEL WEIGHTS</text>
+  <!-- Brain/chip icon -->
+  <rect x="365" y="104" width="30" height="22" rx="4" fill="none" stroke="#8b5cf6" stroke-width="1.2"/>
+  <line x1="370" y1="104" x2="370" y2="99" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="378" y1="104" x2="378" y2="99" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="386" y1="104" x2="386" y2="99" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="370" y1="126" x2="370" y2="131" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="378" y1="126" x2="378" y2="131" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="386" y1="126" x2="386" y2="131" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="365" y1="110" x2="360" y2="110" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="365" y1="118" x2="360" y2="118" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="395" y1="110" x2="400" y2="110" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="395" y1="118" x2="400" y2="118" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="380" y="116" text-anchor="middle" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="7">AI</text>
+  <!-- Compression label -->
+  <text x="415" y="112" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">Compressed</text>
+  <text x="415" y="124" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">knowledge</text>
+  <text x="415" y="136" fill="#ef4444" font-family="'Courier New', monospace" font-size="7">≈ data inside</text>
+  <text x="415" y="148" fill="#ef4444" font-family="'Courier New', monospace" font-size="7">the weights!</text>
+
+  <!-- ===== ATTACK VECTORS from Model Weights ===== -->
+  <!-- Arrow down-left: Memorization -->
+  <line x1="380" y1="154" x2="290" y2="230" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-red)" filter="url(#glow-red)"/>
+
+  <!-- Arrow straight down: Extraction -->
+  <line x1="404" y1="154" x2="404" y2="228" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-red)" filter="url(#glow-red)"/>
+
+  <!-- Arrow down-right: PII output -->
+  <line x1="428" y1="154" x2="480" y2="228" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-orange)" filter="url(#glow-orange)"/>
+
+  <!-- Attack boxes -->
+  <!-- Memorization Attack -->
+  <rect x="220" y="232" width="130" height="50" rx="5" fill="url(#risk-grad)" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="285" y="248" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="9" font-weight="bold">MEMORIZATION</text>
+  <text x="285" y="260" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">Model recalls verbatim</text>
+  <text x="285" y="272" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">training sequences</text>
+
+  <!-- Extraction Attack -->
+  <rect x="340" y="232" width="130" height="50" rx="5" fill="url(#risk-grad)" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="405" y="248" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="9" font-weight="bold">DATA EXTRACTION</text>
+  <text x="405" y="260" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">Adversarial prompts</text>
+  <text x="405" y="272" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">reconstruct training data</text>
+
+  <!-- PII Output Attack -->
+  <rect x="460" y="232" width="130" height="50" rx="5" fill="#f97316" fill-opacity="0.15" stroke="#f97316" stroke-width="1.5"/>
+  <text x="525" y="248" text-anchor="middle" fill="#f97316" font-family="'Courier New', monospace" font-size="9" font-weight="bold">PII LEAKAGE</text>
+  <text x="525" y="260" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">Outputs contain names,</text>
+  <text x="525" y="272" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">emails, SSNs, addresses</text>
+
+  <!-- Dotted border around attack zone -->
+  <rect x="212" y="220" width="388" height="72" rx="5" fill="none" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.5"/>
+  <text x="218" y="218" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" opacity="0.8">ATTACK VECTORS</text>
+
+  <!-- ============================================================ -->
+  <!-- TOP-RIGHT: Data Classification Pyramid -->
+  <!-- ============================================================ -->
+  <!-- Pyramid title -->
+  <text x="665" y="78" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="9" font-weight="bold">DATA SENSITIVITY</text>
+
+  <!-- Restricted (top - most sensitive) -->
+  <polygon points="665,68 635,100 695,100" fill="url(#pyramid-restricted)"/>
+  <text x="665" y="90" text-anchor="middle" fill="#ffffff" font-family="'Courier New', monospace" font-size="8" font-weight="bold">RESTRICTED</text>
+
+  <!-- Confidential -->
+  <polygon points="665,102 620,140 710,140" fill="url(#pyramid-confidential)" opacity="0.85"/>
+  <text x="665" y="126" text-anchor="middle" fill="#ffffff" font-family="'Courier New', monospace" font-size="9" font-weight="bold">CONFIDENTIAL</text>
+
+  <!-- Internal -->
+  <polygon points="665,142 605,185 725,185" fill="url(#pyramid-internal)" opacity="0.8"/>
+  <text x="665" y="170" text-anchor="middle" fill="#0d1117" font-family="'Courier New', monospace" font-size="9" font-weight="bold">INTERNAL</text>
+
+  <!-- Public (bottom) -->
+  <polygon points="665,187 590,232 740,232" fill="url(#pyramid-public)" opacity="0.75"/>
+  <text x="665" y="215" text-anchor="middle" fill="#0d1117" font-family="'Courier New', monospace" font-size="9" font-weight="bold">PUBLIC</text>
+
+  <!-- Side labels -->
+  <text x="748" y="90" fill="#ef4444" font-family="'Courier New', monospace" font-size="8">Trade secrets</text>
+  <text x="748" y="100" fill="#ef4444" font-family="'Courier New', monospace" font-size="8">PII, PHI, PCI</text>
+  <line x1="695" y1="88" x2="746" y2="88" stroke="#ef4444" stroke-width="0.7" opacity="0.6"/>
+
+  <text x="748" y="126" fill="#f97316" font-family="'Courier New', monospace" font-size="8">Corp strategy</text>
+  <text x="748" y="136" fill="#f97316" font-family="'Courier New', monospace" font-size="8">IP, financials</text>
+  <line x1="710" y1="124" x2="746" y2="124" stroke="#f97316" stroke-width="0.7" opacity="0.6"/>
+
+  <text x="748" y="165" fill="#eab308" font-family="'Courier New', monospace" font-size="8">Employee data</text>
+  <text x="748" y="175" fill="#eab308" font-family="'Courier New', monospace" font-size="8">Internal docs</text>
+  <line x1="725" y1="163" x2="746" y2="163" stroke="#eab308" stroke-width="0.7" opacity="0.6"/>
+
+  <text x="748" y="213" fill="#22c55e" font-family="'Courier New', monospace" font-size="8">Marketing</text>
+  <text x="748" y="223" fill="#22c55e" font-family="'Courier New', monospace" font-size="8">Published</text>
+  <line x1="740" y1="211" x2="746" y2="211" stroke="#22c55e" stroke-width="0.7" opacity="0.6"/>
+
+  <!-- AI Risk label on pyramid -->
+  <text x="590" y="250" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">AI should only</text>
+  <text x="590" y="261" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" text-anchor="middle">access PUBLIC</text>
+  <line x1="605" y1="250" x2="630" y2="230" stroke="#ef4444" stroke-width="0.7" stroke-dasharray="3,2"/>
+
+  <!-- ============================================================ -->
+  <!-- BOTTOM-LEFT: RAG / Vector DB Risks -->
+  <!-- ============================================================ -->
+  <rect x="10" y="358" width="490" height="225" rx="6" fill="#111827" stroke="#4a9eff" stroke-width="1" opacity="0.7"/>
+
+  <!-- Sensitive Docs -->
+  <rect x="22" y="375" width="100" height="78" rx="5" fill="#4a9eff" fill-opacity="0.15" stroke="#4a9eff" stroke-width="1.2"/>
+  <text x="72" y="390" text-anchor="middle" fill="#4a9eff" font-family="'Courier New', monospace" font-size="9" font-weight="bold">SENSITIVE DOCS</text>
+  <!-- Doc icons -->
+  <rect x="30" y="397" width="20" height="25" rx="2" fill="none" stroke="#ef4444" stroke-width="1"/>
+  <text x="40" y="414" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="8">HR</text>
+  <rect x="56" y="397" width="20" height="25" rx="2" fill="none" stroke="#f97316" stroke-width="1"/>
+  <text x="66" y="414" text-anchor="middle" fill="#f97316" font-family="'Courier New', monospace" font-size="8">FIN</text>
+  <rect x="82" y="397" width="20" height="25" rx="2" fill="none" stroke="#eab308" stroke-width="1"/>
+  <text x="92" y="414" text-anchor="middle" fill="#eab308" font-family="'Courier New', monospace" font-size="8">IP</text>
+  <text x="72" y="443" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">Contracts, salaries</text>
+  <text x="72" y="453" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">patents, PHI</text>
+
+  <!-- Arrow: Docs → Embeddings -->
+  <line x1="122" y1="412" x2="162" y2="412" stroke="#00d4ff" stroke-width="1.8" marker-end="url(#arrow-cyan)"/>
+  <text x="142" y="406" text-anchor="middle" fill="#00d4ff" font-family="'Courier New', monospace" font-size="7">embed</text>
+
+  <!-- Embeddings box -->
+  <rect x="164" y="375" width="100" height="78" rx="5" fill="#8b5cf6" fill-opacity="0.15" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="214" y="390" text-anchor="middle" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="9" font-weight="bold">VECTOR DB</text>
+  <!-- Vector dots -->
+  <circle cx="185" cy="408" r="3" fill="#8b5cf6" opacity="0.7"/>
+  <circle cx="197" cy="420" r="3" fill="#00d4ff" opacity="0.7"/>
+  <circle cx="209" cy="404" r="3" fill="#8b5cf6" opacity="0.7"/>
+  <circle cx="221" cy="425" r="3" fill="#4a9eff" opacity="0.7"/>
+  <circle cx="233" cy="410" r="3" fill="#8b5cf6" opacity="0.7"/>
+  <circle cx="245" cy="400" r="3" fill="#00d4ff" opacity="0.7"/>
+  <line x1="185" y1="408" x2="197" y2="420" stroke="#8b5cf6" stroke-width="0.5" opacity="0.5"/>
+  <line x1="197" y1="420" x2="209" y2="404" stroke="#8b5cf6" stroke-width="0.5" opacity="0.5"/>
+  <line x1="209" y1="404" x2="221" y2="425" stroke="#8b5cf6" stroke-width="0.5" opacity="0.5"/>
+  <line x1="221" y1="425" x2="233" y2="410" stroke="#8b5cf6" stroke-width="0.5" opacity="0.5"/>
+  <line x1="233" y1="410" x2="245" y2="400" stroke="#8b5cf6" stroke-width="0.5" opacity="0.5"/>
+  <text x="214" y="445" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">Embeddings store</text>
+  <text x="214" y="455" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">semantic content</text>
+
+  <!-- Arrow: Vector DB → LLM -->
+  <line x1="264" y1="412" x2="304" y2="412" stroke="#00d4ff" stroke-width="1.8" marker-end="url(#arrow-cyan)"/>
+  <text x="284" y="406" text-anchor="middle" fill="#00d4ff" font-family="'Courier New', monospace" font-size="7">retrieve</text>
+
+  <!-- LLM box -->
+  <rect x="306" y="375" width="80" height="78" rx="5" fill="#8b5cf6" fill-opacity="0.2" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="346" y="390" text-anchor="middle" fill="#8b5cf6" font-family="'Courier New', monospace" font-size="9" font-weight="bold">LLM</text>
+  <text x="346" y="406" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">Context</text>
+  <text x="346" y="418" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">window</text>
+  <text x="346" y="430" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">contains</text>
+  <text x="346" y="442" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="8">raw secrets</text>
+
+  <!-- Arrow: LLM → User Output with leak risk -->
+  <line x1="386" y1="412" x2="420" y2="412" stroke="#f97316" stroke-width="1.8" stroke-dasharray="4,2" marker-end="url(#arrow-orange)"/>
+
+  <!-- Output / Leak box -->
+  <rect x="422" y="375" width="68" height="78" rx="5" fill="#ef4444" fill-opacity="0.12" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="456" y="390" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" font-weight="bold">OUTPUT</text>
+  <text x="456" y="403" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" font-weight="bold">LEAKAGE</text>
+  <text x="456" y="418" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">No access</text>
+  <text x="456" y="428" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">control on</text>
+  <text x="456" y="438" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">LLM output</text>
+  <text x="456" y="448" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="7">= data breach</text>
+
+  <!-- RAG Risk annotations row 2 -->
+  <rect x="22" y="462" width="146" height="38" rx="4" fill="#ef4444" fill-opacity="0.1" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="95" y="476" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" font-weight="bold">Missing ACL</text>
+  <text x="95" y="488" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">No per-user doc permissions</text>
+
+  <rect x="174" y="462" width="146" height="38" rx="4" fill="#f97316" fill-opacity="0.1" stroke="#f97316" stroke-width="0.8"/>
+  <text x="247" y="476" text-anchor="middle" fill="#f97316" font-family="'Courier New', monospace" font-size="8" font-weight="bold">Prompt Injection</text>
+  <text x="247" y="488" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">Docs trigger data exfil</text>
+
+  <rect x="326" y="462" width="164" height="38" rx="4" fill="#eab308" fill-opacity="0.1" stroke="#eab308" stroke-width="0.8"/>
+  <text x="408" y="476" text-anchor="middle" fill="#eab308" font-family="'Courier New', monospace" font-size="8" font-weight="bold">Cross-tenant Bleed</text>
+  <text x="408" y="488" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">Multi-user RAG data mixing</text>
+
+  <!-- GDPR/CCPA badges -->
+  <rect x="22" y="510" width="58" height="22" rx="4" fill="#4a9eff" fill-opacity="0.2" stroke="#4a9eff" stroke-width="1"/>
+  <text x="51" y="525" text-anchor="middle" fill="#4a9eff" font-family="'Courier New', monospace" font-size="9" font-weight="bold">GDPR</text>
+
+  <rect x="86" y="510" width="58" height="22" rx="4" fill="#22c55e" fill-opacity="0.2" stroke="#22c55e" stroke-width="1"/>
+  <text x="115" y="525" text-anchor="middle" fill="#22c55e" font-family="'Courier New', monospace" font-size="9" font-weight="bold">CCPA</text>
+
+  <rect x="150" y="510" width="60" height="22" rx="4" fill="#eab308" fill-opacity="0.2" stroke="#eab308" stroke-width="1"/>
+  <text x="180" y="525" text-anchor="middle" fill="#eab308" font-family="'Courier New', monospace" font-size="9" font-weight="bold">HIPAA</text>
+
+  <text x="230" y="523" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">Art. 17 right to erasure — near impossible once trained</text>
+
+  <!-- ============================================================ -->
+  <!-- BOTTOM-RIGHT: Shadow AI Risk -->
+  <!-- ============================================================ -->
+  <rect x="510" y="358" width="280" height="225" rx="6" fill="#111827" stroke="#ef4444" stroke-width="1" opacity="0.8"/>
+
+  <!-- Employee box -->
+  <rect x="522" y="374" width="80" height="65" rx="5" fill="#4a9eff" fill-opacity="0.15" stroke="#4a9eff" stroke-width="1.2"/>
+  <text x="562" y="389" text-anchor="middle" fill="#4a9eff" font-family="'Courier New', monospace" font-size="9" font-weight="bold">EMPLOYEE</text>
+  <!-- Person icon -->
+  <circle cx="562" cy="404" r="8" fill="none" stroke="#4a9eff" stroke-width="1.2"/>
+  <line x1="562" y1="412" x2="562" y2="428" stroke="#4a9eff" stroke-width="1.2"/>
+  <line x1="550" y1="418" x2="574" y2="418" stroke="#4a9eff" stroke-width="1.2"/>
+  <!-- Data in hand -->
+  <rect x="570" y="418" width="22" height="14" rx="2" fill="#ef4444" opacity="0.8"/>
+  <text x="581" y="428" text-anchor="middle" fill="#ffffff" font-family="'Courier New', monospace" font-size="6">PII</text>
+
+  <!-- Arrow Employee → External AI -->
+  <path d="M 602 407 Q 630 385 655 407" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrow-red)" filter="url(#glow-red)"/>
+  <text x="630" y="381" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="7">uploads</text>
+  <text x="630" y="391" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="7">sensitive data</text>
+
+  <!-- External AI Service box -->
+  <rect x="657" y="374" width="118" height="65" rx="5" fill="#ef4444" fill-opacity="0.12" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="716" y="388" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="9" font-weight="bold">EXTERNAL AI</text>
+  <!-- Cloud icon -->
+  <ellipse cx="716" cy="407" rx="25" ry="14" fill="none" stroke="#ef4444" stroke-width="1.2" opacity="0.7"/>
+  <text x="716" y="411" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="8">ChatGPT</text>
+  <text x="716" y="424" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">Gemini / Copilot</text>
+  <text x="716" y="435" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">Unauthorized SaaS</text>
+
+  <!-- Shadow AI risk details -->
+  <rect x="522" y="448" width="252" height="28" rx="4" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="648" y="461" text-anchor="middle" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" font-weight="bold">SHADOW AI RISKS</text>
+  <text x="648" y="471" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7">Data leaves org perimeter · vendor trains on your data · no DLP controls</text>
+
+  <!-- Risk bullets -->
+  <circle cx="530" cy="490" r="3" fill="#f97316"/>
+  <text x="540" y="494" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">No visibility or audit trail</text>
+
+  <circle cx="530" cy="507" r="3" fill="#f97316"/>
+  <text x="540" y="511" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">Vendor data retention: 30 days default</text>
+
+  <circle cx="530" cy="524" r="3" fill="#f97316"/>
+  <text x="540" y="528" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8">BYOD + personal accounts bypass DLP</text>
+
+  <circle cx="530" cy="541" r="3" fill="#ef4444"/>
+  <text x="540" y="545" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" font-weight="bold">Regulatory: GDPR Art.28 processor violation</text>
+
+  <circle cx="530" cy="558" r="3" fill="#ef4444"/>
+  <text x="540" y="562" fill="#ef4444" font-family="'Courier New', monospace" font-size="8" font-weight="bold">IP loss: trade secrets in training data</text>
+
+  <!-- ============================================================ -->
+  <!-- CENTER: Differential Privacy shield icon -->
+  <!-- ============================================================ -->
+  <!-- Small shield between the two flows -->
+  <polygon points="620,305 590,316 590,336 620,350 650,336 650,316" fill="none" stroke="#22c55e" stroke-width="1.5" opacity="0.7"/>
+  <text x="620" y="326" text-anchor="middle" fill="#22c55e" font-family="'Courier New', monospace" font-size="8" font-weight="bold">DP</text>
+  <text x="620" y="337" text-anchor="middle" fill="#22c55e" font-family="'Courier New', monospace" font-size="7">ε-noise</text>
+
+  <!-- DP label -->
+  <text x="620" y="358" text-anchor="middle" fill="#22c55e" font-family="'Courier New', monospace" font-size="7">Differential</text>
+  <text x="620" y="367" text-anchor="middle" fill="#22c55e" font-family="'Courier New', monospace" font-size="7">Privacy</text>
+
+  <!-- Federated learning icon -->
+  <circle cx="560" cy="310" r="10" fill="none" stroke="#00d4ff" stroke-width="1.2" opacity="0.8"/>
+  <circle cx="545" cy="330" r="10" fill="none" stroke="#00d4ff" stroke-width="1.2" opacity="0.8"/>
+  <circle cx="575" cy="330" r="10" fill="none" stroke="#00d4ff" stroke-width="1.2" opacity="0.8"/>
+  <line x1="555" y1="316" x2="548" y2="322" stroke="#00d4ff" stroke-width="0.8" opacity="0.7"/>
+  <line x1="565" y1="316" x2="572" y2="322" stroke="#00d4ff" stroke-width="0.8" opacity="0.7"/>
+  <line x1="553" y1="334" x2="567" y2="334" stroke="#00d4ff" stroke-width="0.8" opacity="0.7"/>
+  <text x="560" y="310" text-anchor="middle" fill="#00d4ff" font-family="'Courier New', monospace" font-size="6">⚙</text>
+  <text x="545" y="330" text-anchor="middle" fill="#00d4ff" font-family="'Courier New', monospace" font-size="6">📱</text>
+  <text x="575" y="330" text-anchor="middle" fill="#00d4ff" font-family="'Courier New', monospace" font-size="6">💻</text>
+  <text x="560" y="350" text-anchor="middle" fill="#00d4ff" font-family="'Courier New', monospace" font-size="7">Federated</text>
+  <text x="560" y="360" text-anchor="middle" fill="#00d4ff" font-family="'Courier New', monospace" font-size="7">Learning</text>
+
+  <!-- Homomorphic encryption -->
+  <rect x="660" y="298" width="82" height="40" rx="4" fill="none" stroke="#eab308" stroke-width="1.2" opacity="0.7"/>
+  <text x="701" y="313" text-anchor="middle" fill="#eab308" font-family="'Courier New', monospace" font-size="7" font-weight="bold">HOMOMORPHIC</text>
+  <text x="701" y="325" text-anchor="middle" fill="#eab308" font-family="'Courier New', monospace" font-size="7">ENCRYPTION</text>
+  <text x="701" y="336" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="6">Compute on cipher</text>
+
+  <!-- Privacy-preserving label -->
+  <text x="620" y="293" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="8" font-weight="bold" opacity="0.7">PRIVACY-PRESERVING TECHNIQUES</text>
+  <line x1="510" y1="297" x2="790" y2="297" stroke="#22c55e" stroke-width="0.5" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="510" y1="348" x2="790" y2="348" stroke="#22c55e" stroke-width="0.5" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- Bottom footer -->
+  <rect x="0" y="588" width="800" height="12" fill="#111827" opacity="0.8"/>
+  <text x="400" y="598" text-anchor="middle" fill="#e2e8f0" font-family="'Courier New', monospace" font-size="7" opacity="0.5">AI Security Risk Course · Module 2 · Lesson 3 · Privacy, Data Leakage &amp; Misuse Risks</text>
+</svg>

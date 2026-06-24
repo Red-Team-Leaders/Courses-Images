@@ -1,0 +1,336 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2d3d" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowOrange" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <!-- Radial gradient for center node -->
+    <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0d1f35"/>
+    </radialGradient>
+    <!-- Severity gradients -->
+    <linearGradient id="critGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="highGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ea580c" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="medGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#eab308" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="lowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#16a34a" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Subtle top gradient band -->
+  <rect width="800" height="3" fill="#00d4ff" opacity="0.6"/>
+  <rect y="597" width="800" height="3" fill="#00d4ff" opacity="0.3"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="17" font-weight="bold" letter-spacing="1">AGENTIC AI RISK TAXONOMY</text>
+  <text x="400" y="48" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="10" letter-spacing="2">AUTONOMOUS AGENT FAILURE MODES  |  MODULE 2  LESSON 8</text>
+
+  <!-- Dividing line under title -->
+  <line x1="60" y1="56" x2="740" y2="56" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- ===================== CENTER NODE: Agent Harness ===================== -->
+  <!-- Outer pulse ring -->
+  <circle cx="278" cy="310" r="62" fill="none" stroke="#00d4ff" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+  <!-- Inner node -->
+  <circle cx="278" cy="310" r="52" fill="url(#centerGrad)" stroke="#00d4ff" stroke-width="2" filter="url(#glowCyan)"/>
+  <text x="278" y="303" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="11" font-weight="bold">AGENT</text>
+  <text x="278" y="318" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="11" font-weight="bold">HARNESS</text>
+  <text x="278" y="333" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">LLM + Tools + Memory</text>
+
+  <!-- ===================== RISK NODES ===================== -->
+
+  <!-- Risk 1: Goal Misspecification (top-left) -->
+  <line x1="248" y1="259" x2="182" y2="185" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowRed)" opacity="0.8"/>
+  <rect x="90" y="140" width="148" height="50" rx="6" fill="#1a0a0a" stroke="#ef4444" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="164" y="158" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">GOAL MISSPECIFICATION</text>
+  <text x="164" y="172" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Reward hacking / Spec gaming</text>
+  <text x="164" y="183" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Misaligned objectives</text>
+
+  <!-- Risk 2: Tool Misuse (top-center) -->
+  <line x1="278" y1="258" x2="278" y2="200" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowOrange)" opacity="0.8"/>
+  <rect x="198" y="150" width="160" height="50" rx="6" fill="#1a0d00" stroke="#f97316" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="278" y="168" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="9" font-weight="bold">TOOL MISUSE</text>
+  <text x="278" y="182" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Dangerous API calls</text>
+  <text x="278" y="193" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Capability combinations</text>
+
+  <!-- Risk 3: Prompt Injection (top-right) -->
+  <line x1="307" y1="262" x2="360" y2="190" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowPurple)" opacity="0.8"/>
+  <rect x="328" y="140" width="148" height="50" rx="6" fill="#0d0a1a" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="402" y="158" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="9" font-weight="bold">PROMPT INJECTION</text>
+  <text x="402" y="172" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Via tools / web / email</text>
+  <text x="402" y="183" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Indirect adversarial input</text>
+
+  <!-- Risk 4: Memory Poisoning (left) -->
+  <line x1="226" y1="310" x2="162" y2="310" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowRed)" opacity="0.8"/>
+  <rect x="30" y="284" width="128" height="52" rx="6" fill="#1a0a0a" stroke="#ef4444" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="94" y="303" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">MEMORY</text>
+  <text x="94" y="316" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">POISONING</text>
+  <text x="94" y="329" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Corrupted long-term state</text>
+
+  <!-- Risk 5: Uncontrolled Autonomy (bottom-left) -->
+  <line x1="248" y1="360" x2="182" y2="418" stroke="#f97316" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowOrange)" opacity="0.8"/>
+  <rect x="80" y="406" width="158" height="52" rx="6" fill="#1a0d00" stroke="#f97316" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="159" y="424" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="9" font-weight="bold">UNCONTROLLED AUTONOMY</text>
+  <text x="159" y="438" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">No human approval gate</text>
+  <text x="159" y="450" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Control problem</text>
+
+  <!-- Risk 6: Scope Creep (bottom-center) -->
+  <line x1="278" y1="362" x2="278" y2="416" stroke="#eab308" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowOrange)" opacity="0.8"/>
+  <rect x="196" y="416" width="164" height="52" rx="6" fill="#1a1500" stroke="#eab308" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="278" y="434" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="9" font-weight="bold">SCOPE CREEP</text>
+  <text x="278" y="448" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Permission escalation</text>
+  <text x="278" y="460" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Exceeds intended access</text>
+
+  <!-- Risk 7: Cascading Failures (bottom-right) -->
+  <line x1="309" y1="358" x2="362" y2="418" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowRed)" opacity="0.8"/>
+  <rect x="336" y="406" width="150" height="52" rx="6" fill="#1a0a0a" stroke="#ef4444" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="411" y="424" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">CASCADING FAILURES</text>
+  <text x="411" y="438" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Error propagation</text>
+  <text x="411" y="450" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Pipeline breakdown</text>
+
+  <!-- Risk 8: Multi-agent Confusion (right - upper) -->
+  <line x1="330" y1="295" x2="393" y2="275" stroke="#4a9eff" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowCyan)" opacity="0.8"/>
+  <rect x="390" y="250" width="152" height="52" rx="6" fill="#0a1020" stroke="#4a9eff" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="466" y="268" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="9" font-weight="bold">MULTI-AGENT</text>
+  <text x="466" y="280" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="9" font-weight="bold">CONFUSION</text>
+  <text x="466" y="294" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Conflicting instructions</text>
+
+  <!-- Risk 9: Resource Exhaustion (right - lower) -->
+  <line x1="330" y1="325" x2="393" y2="345" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowGreen)" opacity="0.8"/>
+  <rect x="390" y="322" width="152" height="52" rx="6" fill="#001a0a" stroke="#22c55e" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="466" y="340" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">RESOURCE</text>
+  <text x="466" y="352" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">EXHAUSTION</text>
+  <text x="466" y="366" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">Infinite loops / Cost overrun</text>
+
+  <!-- ===================== SEVERITY MATRIX (right panel) ===================== -->
+  <!-- Panel background -->
+  <rect x="562" y="68" width="218" height="460" rx="8" fill="#0a1020" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="671" y="90" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="10" font-weight="bold" letter-spacing="1">SEVERITY MATRIX</text>
+  <line x1="572" y1="97" x2="770" y2="97" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- Column headers -->
+  <text x="610" y="113" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">RISK</text>
+  <text x="700" y="113" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">LIKELIHOOD</text>
+  <text x="757" y="113" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="8">IMPACT</text>
+  <line x1="572" y1="117" x2="770" y2="117" stroke="#1e3a5f" stroke-width="0.5"/>
+
+  <!-- Row 1: Prompt Injection - CRITICAL -->
+  <rect x="572" y="120" width="208" height="34" rx="0" fill="#ef4444" opacity="0.08"/>
+  <text x="587" y="133" fill="#8b5cf6" font-family="monospace" font-size="8" font-weight="bold">Prompt Injection</text>
+  <text x="587" y="146" fill="#8b9ab5" font-family="monospace" font-size="7">via agent tools</text>
+  <!-- Likelihood dots -->
+  <circle cx="688" cy="136" r="4" fill="#ef4444"/>
+  <circle cx="700" cy="136" r="4" fill="#ef4444"/>
+  <circle cx="712" cy="136" r="4" fill="#ef4444"/>
+  <circle cx="724" cy="136" r="4" fill="#ef4444"/>
+  <circle cx="736" cy="136" r="4" fill="#ef4444"/>
+  <rect x="745" y="128" width="26" height="14" rx="3" fill="#ef4444"/>
+  <text x="758" y="138" text-anchor="middle" fill="#fff" font-family="monospace" font-size="7" font-weight="bold">CRIT</text>
+
+  <!-- Row 2: Uncontrolled Autonomy - CRITICAL -->
+  <rect x="572" y="154" width="208" height="34" rx="0" fill="#ef4444" opacity="0.05"/>
+  <text x="587" y="167" fill="#f97316" font-family="monospace" font-size="8" font-weight="bold">Uncontrolled Autonomy</text>
+  <text x="587" y="180" fill="#8b9ab5" font-family="monospace" font-size="7">no human approval gate</text>
+  <circle cx="688" cy="170" r="4" fill="#ef4444"/>
+  <circle cx="700" cy="170" r="4" fill="#ef4444"/>
+  <circle cx="712" cy="170" r="4" fill="#ef4444"/>
+  <circle cx="724" cy="170" r="4" fill="#ef4444"/>
+  <circle cx="736" cy="170" r="4" fill="#1e3a5f"/>
+  <rect x="745" y="162" width="26" height="14" rx="3" fill="#ef4444"/>
+  <text x="758" y="172" text-anchor="middle" fill="#fff" font-family="monospace" font-size="7" font-weight="bold">CRIT</text>
+
+  <!-- Row 3: Goal Misspecification - HIGH -->
+  <rect x="572" y="188" width="208" height="34" rx="0" fill="#f97316" opacity="0.05"/>
+  <text x="587" y="201" fill="#ef4444" font-family="monospace" font-size="8" font-weight="bold">Goal Misspecification</text>
+  <text x="587" y="214" fill="#8b9ab5" font-family="monospace" font-size="7">reward hacking</text>
+  <circle cx="688" cy="204" r="4" fill="#f97316"/>
+  <circle cx="700" cy="204" r="4" fill="#f97316"/>
+  <circle cx="712" cy="204" r="4" fill="#f97316"/>
+  <circle cx="724" cy="204" r="4" fill="#1e3a5f"/>
+  <circle cx="736" cy="204" r="4" fill="#1e3a5f"/>
+  <rect x="745" y="196" width="26" height="14" rx="3" fill="#f97316"/>
+  <text x="758" y="206" text-anchor="middle" fill="#fff" font-family="monospace" font-size="7" font-weight="bold">HIGH</text>
+
+  <!-- Row 4: Memory Poisoning - HIGH -->
+  <rect x="572" y="222" width="208" height="34" rx="0" fill="#ef4444" opacity="0.05"/>
+  <text x="587" y="235" fill="#ef4444" font-family="monospace" font-size="8" font-weight="bold">Memory Poisoning</text>
+  <text x="587" y="248" fill="#8b9ab5" font-family="monospace" font-size="7">corrupted long-term state</text>
+  <circle cx="688" cy="238" r="4" fill="#f97316"/>
+  <circle cx="700" cy="238" r="4" fill="#f97316"/>
+  <circle cx="712" cy="238" r="4" fill="#f97316"/>
+  <circle cx="724" cy="238" r="4" fill="#1e3a5f"/>
+  <circle cx="736" cy="238" r="4" fill="#1e3a5f"/>
+  <rect x="745" y="230" width="26" height="14" rx="3" fill="#f97316"/>
+  <text x="758" y="240" text-anchor="middle" fill="#fff" font-family="monospace" font-size="7" font-weight="bold">HIGH</text>
+
+  <!-- Row 5: Cascading Failures - HIGH -->
+  <rect x="572" y="256" width="208" height="34" rx="0" fill="#f97316" opacity="0.05"/>
+  <text x="587" y="269" fill="#ef4444" font-family="monospace" font-size="8" font-weight="bold">Cascading Failures</text>
+  <text x="587" y="282" fill="#8b9ab5" font-family="monospace" font-size="7">pipeline error propagation</text>
+  <circle cx="688" cy="272" r="4" fill="#f97316"/>
+  <circle cx="700" cy="272" r="4" fill="#f97316"/>
+  <circle cx="712" cy="272" r="4" fill="#f97316"/>
+  <circle cx="724" cy="272" r="4" fill="#1e3a5f"/>
+  <circle cx="736" cy="272" r="4" fill="#1e3a5f"/>
+  <rect x="745" y="264" width="26" height="14" rx="3" fill="#f97316"/>
+  <text x="758" y="274" text-anchor="middle" fill="#fff" font-family="monospace" font-size="7" font-weight="bold">HIGH</text>
+
+  <!-- Row 6: Tool Misuse - HIGH -->
+  <rect x="572" y="290" width="208" height="34" rx="0" fill="#ef4444" opacity="0.03"/>
+  <text x="587" y="303" fill="#f97316" font-family="monospace" font-size="8" font-weight="bold">Tool Misuse</text>
+  <text x="587" y="316" fill="#8b9ab5" font-family="monospace" font-size="7">dangerous API combos</text>
+  <circle cx="688" cy="306" r="4" fill="#f97316"/>
+  <circle cx="700" cy="306" r="4" fill="#f97316"/>
+  <circle cx="712" cy="306" r="4" fill="#1e3a5f"/>
+  <circle cx="724" cy="306" r="4" fill="#1e3a5f"/>
+  <circle cx="736" cy="306" r="4" fill="#1e3a5f"/>
+  <rect x="745" y="298" width="26" height="14" rx="3" fill="#f97316"/>
+  <text x="758" y="308" text-anchor="middle" fill="#fff" font-family="monospace" font-size="7" font-weight="bold">HIGH</text>
+
+  <!-- Row 7: Multi-agent Confusion - MED -->
+  <rect x="572" y="324" width="208" height="34" rx="0" fill="#eab308" opacity="0.05"/>
+  <text x="587" y="337" fill="#4a9eff" font-family="monospace" font-size="8" font-weight="bold">Multi-agent Confusion</text>
+  <text x="587" y="350" fill="#8b9ab5" font-family="monospace" font-size="7">conflicting instructions</text>
+  <circle cx="688" cy="340" r="4" fill="#eab308"/>
+  <circle cx="700" cy="340" r="4" fill="#eab308"/>
+  <circle cx="712" cy="340" r="4" fill="#1e3a5f"/>
+  <circle cx="724" cy="340" r="4" fill="#1e3a5f"/>
+  <circle cx="736" cy="340" r="4" fill="#1e3a5f"/>
+  <rect x="745" y="332" width="26" height="14" rx="3" fill="#eab308"/>
+  <text x="758" y="342" text-anchor="middle" fill="#fff" font-family="monospace" font-size="7" font-weight="bold">MED</text>
+
+  <!-- Row 8: Scope Creep - MED -->
+  <rect x="572" y="358" width="208" height="34" rx="0" fill="#eab308" opacity="0.03"/>
+  <text x="587" y="371" fill="#eab308" font-family="monospace" font-size="8" font-weight="bold">Scope Creep</text>
+  <text x="587" y="384" fill="#8b9ab5" font-family="monospace" font-size="7">permission escalation</text>
+  <circle cx="688" cy="374" r="4" fill="#eab308"/>
+  <circle cx="700" cy="374" r="4" fill="#eab308"/>
+  <circle cx="712" cy="374" r="4" fill="#1e3a5f"/>
+  <circle cx="724" cy="374" r="4" fill="#1e3a5f"/>
+  <circle cx="736" cy="374" r="4" fill="#1e3a5f"/>
+  <rect x="745" y="366" width="26" height="14" rx="3" fill="#eab308"/>
+  <text x="758" y="376" text-anchor="middle" fill="#fff" font-family="monospace" font-size="7" font-weight="bold">MED</text>
+
+  <!-- Row 9: Resource Exhaustion - LOW -->
+  <rect x="572" y="392" width="208" height="34" rx="0" fill="#22c55e" opacity="0.05"/>
+  <text x="587" y="405" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold">Resource Exhaustion</text>
+  <text x="587" y="418" fill="#8b9ab5" font-family="monospace" font-size="7">infinite loops / cost overrun</text>
+  <circle cx="688" cy="408" r="4" fill="#22c55e"/>
+  <circle cx="700" cy="408" r="4" fill="#1e3a5f"/>
+  <circle cx="712" cy="408" r="4" fill="#1e3a5f"/>
+  <circle cx="724" cy="408" r="4" fill="#1e3a5f"/>
+  <circle cx="736" cy="408" r="4" fill="#1e3a5f"/>
+  <rect x="745" y="400" width="26" height="14" rx="3" fill="#22c55e"/>
+  <text x="758" y="410" text-anchor="middle" fill="#fff" font-family="monospace" font-size="7" font-weight="bold">LOW</text>
+
+  <!-- Legend row for dots -->
+  <line x1="572" y1="432" x2="770" y2="432" stroke="#1e3a5f" stroke-width="0.5"/>
+  <text x="587" y="446" fill="#8b9ab5" font-family="monospace" font-size="7">Likelihood: </text>
+  <circle cx="644" cy="443" r="3" fill="#ef4444"/>
+  <circle cx="652" cy="443" r="3" fill="#ef4444"/>
+  <circle cx="660" cy="443" r="3" fill="#ef4444"/>
+  <circle cx="668" cy="443" r="3" fill="#ef4444"/>
+  <circle cx="676" cy="443" r="3" fill="#ef4444"/>
+  <text x="682" y="446" fill="#8b9ab5" font-family="monospace" font-size="7">= High</text>
+  <text x="587" y="458" fill="#8b9ab5" font-family="monospace" font-size="7">Filled = active risk</text>
+  <text x="670" y="458" fill="#8b9ab5" font-family="monospace" font-size="7">Empty = lower</text>
+
+  <!-- ===================== BOTTOM PANEL: Defense Controls ===================== -->
+  <rect x="30" y="490" width="522" height="95" rx="8" fill="#0a1020" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="291" y="508" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="10" font-weight="bold" letter-spacing="1">DEFENSE CONTROLS</text>
+  <line x1="40" y1="513" x2="542" y2="513" stroke="#1e3a5f" stroke-width="0.5"/>
+
+  <!-- Control 1 -->
+  <rect x="42" y="520" width="110" height="28" rx="4" fill="#001a0a" stroke="#22c55e" stroke-width="1"/>
+  <text x="97" y="531" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="7" font-weight="bold">KILL SWITCH</text>
+  <text x="97" y="542" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="6">Interrupt / halt agent</text>
+
+  <!-- Control 2 -->
+  <rect x="162" y="520" width="110" height="28" rx="4" fill="#0a1020" stroke="#4a9eff" stroke-width="1"/>
+  <text x="217" y="531" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="7" font-weight="bold">SANDBOXING</text>
+  <text x="217" y="542" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="6">Isolated execution env</text>
+
+  <!-- Control 3 -->
+  <rect x="282" y="520" width="110" height="28" rx="4" fill="#1a0d00" stroke="#f97316" stroke-width="1"/>
+  <text x="337" y="531" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="7" font-weight="bold">LEAST PRIVILEGE</text>
+  <text x="337" y="542" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="6">Minimal tool permissions</text>
+
+  <!-- Control 4 -->
+  <rect x="402" y="520" width="128" height="28" rx="4" fill="#0d0a1a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="466" y="531" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="7" font-weight="bold">HUMAN-IN-THE-LOOP</text>
+  <text x="466" y="542" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="6">Approval for critical actions</text>
+
+  <!-- Second row controls -->
+  <rect x="42" y="554" width="145" height="24" rx="4" fill="#1a1500" stroke="#eab308" stroke-width="1"/>
+  <text x="114" y="564" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="7" font-weight="bold">BEHAVIORAL MONITORING</text>
+  <text x="114" y="574" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="6">Real-time agent observation</text>
+
+  <rect x="197" y="554" width="145" height="24" rx="4" fill="#001a0a" stroke="#22c55e" stroke-width="1"/>
+  <text x="269" y="564" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="7" font-weight="bold">TRUST HIERARCHY</text>
+  <text x="269" y="574" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="6">Multi-agent verification</text>
+
+  <rect x="352" y="554" width="178" height="24" rx="4" fill="#0a1020" stroke="#4a9eff" stroke-width="1"/>
+  <text x="441" y="564" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="7" font-weight="bold">MEMORY INTEGRITY CHECKS</text>
+  <text x="441" y="574" text-anchor="middle" fill="#8b9ab5" font-family="monospace" font-size="6">Validate persistent context</text>
+
+  <!-- ===================== CONNECTING LINES BETWEEN SEVERITY PANEL AND BOTTOM ===================== -->
+
+  <!-- Footer bar -->
+  <rect x="562" y="490" width="218" height="95" rx="8" fill="#0a1020" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="671" y="510" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="9" font-weight="bold">ATTACK SURFACE</text>
+  <line x1="572" y1="515" x2="770" y2="515" stroke="#1e3a5f" stroke-width="0.5"/>
+
+  <!-- Attack surface items -->
+  <text x="577" y="530" fill="#ef4444" font-family="monospace" font-size="8">• Web content / browsed pages</text>
+  <text x="577" y="544" fill="#ef4444" font-family="monospace" font-size="8">• Email / document ingestion</text>
+  <text x="577" y="558" fill="#f97316" font-family="monospace" font-size="8">• Tool outputs / API responses</text>
+  <text x="577" y="572" fill="#f97316" font-family="monospace" font-size="8">• Sub-agent communications</text>
+
+</svg>

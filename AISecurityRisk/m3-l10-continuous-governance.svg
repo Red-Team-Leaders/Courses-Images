@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8b5cf6"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glowCyan" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowGold" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradients -->
+    <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a2744"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </radialGradient>
+    <linearGradient id="cycleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Subtle outer glow ring -->
+  <circle cx="400" cy="310" r="195" fill="none" stroke="#00d4ff" stroke-width="0.5" stroke-opacity="0.2"/>
+  <circle cx="400" cy="310" r="230" fill="none" stroke="#8b5cf6" stroke-width="0.5" stroke-opacity="0.15"/>
+
+  <!-- Title -->
+  <text x="400" y="32" font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Continuous AI Governance Cycle</text>
+  <text x="400" y="52" font-family="'Courier New', monospace" font-size="11" fill="#00d4ff" text-anchor="middle">Ongoing Oversight, Monitoring &amp; Adaptive Control</text>
+  <line x1="80" y1="60" x2="720" y2="60" stroke="#00d4ff" stroke-width="0.5" stroke-opacity="0.4"/>
+
+  <!-- ===== CENTRAL GOVERNANCE ENGINE ===== -->
+  <rect x="318" y="258" width="164" height="104" rx="8" fill="url(#centerGrad)" stroke="#00d4ff" stroke-width="2"/>
+  <rect x="318" y="258" width="164" height="104" rx="8" fill="url(#cycleGrad)"/>
+  <text x="400" y="280" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">GOVERNANCE</text>
+  <text x="400" y="294" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#00d4ff" text-anchor="middle">ENGINE</text>
+  <line x1="326" y1="301" x2="474" y2="301" stroke="#00d4ff" stroke-width="0.5" stroke-opacity="0.5"/>
+  <text x="400" y="315" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">Policy Enforcement</text>
+  <text x="400" y="328" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">Risk Aggregation</text>
+  <text x="400" y="341" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">Compliance Tracking</text>
+  <text x="400" y="354" font-family="'Courier New', monospace" font-size="8" fill="#22c55e" text-anchor="middle">● CONTINUOUS</text>
+
+  <!-- ===== CYCLE NODES (7 nodes around center) ===== -->
+  <!-- Node positions: evenly spaced around a circle of radius ~165, centered at 400,310 -->
+  <!-- 0: top (90deg offset), going clockwise -->
+  <!-- Node 1: Policy Review - top (270deg = top) -->
+  <!-- angles: 270, 321, 13, 64, 116, 167, 219 (degrees) => 7 nodes, 51.4deg apart -->
+  <!-- In radians, centered at (400,310), r=165 -->
+  <!-- top = 270deg: (400, 145) -->
+  <!-- 270+51.4=321.4deg: (400+165*cos(321.4*pi/180), 310+165*sin(321.4*pi/180)) = (400+129, 310-103) = (529, 207) -->
+  <!-- 321.4+51.4=372.9=12.9deg: (400+160, 310+37) = (560, 347) -- adjusted -->
+
+  <!-- Node 1: Policy Review - TOP CENTER -->
+  <rect x="340" y="76" width="120" height="44" rx="6" fill="#0d2235" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="400" y="95" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#00d4ff" text-anchor="middle">1. POLICY REVIEW</text>
+  <text x="400" y="110" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">Quarterly / Event-driven</text>
+
+  <!-- Node 2: Model Audit - TOP RIGHT -->
+  <rect x="590" y="138" width="120" height="44" rx="6" fill="#0d2235" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="650" y="157" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#4a9eff" text-anchor="middle">2. MODEL AUDIT</text>
+  <text x="650" y="172" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">Bias / Drift / Accuracy</text>
+
+  <!-- Node 3: Risk Assessment - RIGHT -->
+  <rect x="618" y="282" width="126" height="44" rx="6" fill="#0d2235" stroke="#f97316" stroke-width="1.5"/>
+  <text x="681" y="301" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#f97316" text-anchor="middle">3. RISK ASSESS.</text>
+  <text x="681" y="316" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">Threat &amp; Vuln Review</text>
+
+  <!-- Node 4: Performance Review - BOTTOM RIGHT -->
+  <rect x="566" y="430" width="140" height="44" rx="6" fill="#0d2235" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="636" y="449" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#22c55e" text-anchor="middle">4. PERF. REVIEW</text>
+  <text x="636" y="464" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">KPIs / KRIs / SLAs</text>
+
+  <!-- Node 5: Incident Review - BOTTOM LEFT -->
+  <rect x="92" y="430" width="138" height="44" rx="6" fill="#0d2235" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="161" y="449" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ef4444" text-anchor="middle">5. INCIDENT REVIEW</text>
+  <text x="161" y="464" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">Root Cause / Lessons</text>
+
+  <!-- Node 6: Governance Committee - LEFT -->
+  <rect x="56" y="282" width="140" height="44" rx="6" fill="#0d2235" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="126" y="301" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#8b5cf6" text-anchor="middle">6. GOV. COMMITTEE</text>
+  <text x="126" y="316" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">Monthly Meetings</text>
+
+  <!-- Node 7: Policy Update - TOP LEFT -->
+  <rect x="90" y="138" width="126" height="44" rx="6" fill="#0d2235" stroke="#eab308" stroke-width="1.5"/>
+  <text x="153" y="157" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#eab308" text-anchor="middle">7. POLICY UPDATE</text>
+  <text x="153" y="172" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">Version &amp; Publish</text>
+
+  <!-- ===== CYCLE ARROWS (clockwise) ===== -->
+  <!-- 1->2: Policy Review to Model Audit (top to top-right) -->
+  <path d="M460,98 Q530,90 590,155" fill="none" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrowCyan)" stroke-dasharray="5,3"/>
+
+  <!-- 2->3: Model Audit to Risk Assessment (top-right to right) -->
+  <path d="M706,182 Q730,230 744,282" fill="none" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrowCyan)" stroke-dasharray="5,3"/>
+
+  <!-- 3->4: Risk Assessment to Performance Review (right to bottom-right) -->
+  <path d="M742,326 Q750,378 706,430" fill="none" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrowOrange)" stroke-dasharray="5,3"/>
+
+  <!-- 4->5: Performance Review to Incident Review (bottom-right to bottom-left) -->
+  <path d="M566,452 Q400,490 230,452" fill="none" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)" stroke-dasharray="5,3"/>
+
+  <!-- 5->6: Incident Review to Gov Committee (bottom-left to left) -->
+  <path d="M92,448 Q56,400 56,326" fill="none" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrowCyan)" stroke-dasharray="5,3"/>
+
+  <!-- 6->7: Gov Committee to Policy Update (left to top-left) -->
+  <path d="M56,282 Q56,220 90,182" fill="none" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrowPurple)" stroke-dasharray="5,3"/>
+
+  <!-- 7->1: Policy Update back to Policy Review (top-left to top) -->
+  <path d="M216,155 Q280,90 340,98" fill="none" stroke="#eab308" stroke-width="1.5" marker-end="url(#arrowCyan)" stroke-dasharray="5,3"/>
+
+  <!-- Spokes from center to each node (subtle) -->
+  <line x1="400" y1="258" x2="400" y2="120" stroke="#00d4ff" stroke-width="0.5" stroke-opacity="0.3" stroke-dasharray="3,5"/>
+  <line x1="474" y1="278" x2="590" y2="165" stroke="#4a9eff" stroke-width="0.5" stroke-opacity="0.3" stroke-dasharray="3,5"/>
+  <line x1="482" y1="310" x2="618" y2="304" stroke="#f97316" stroke-width="0.5" stroke-opacity="0.3" stroke-dasharray="3,5"/>
+  <line x1="456" y1="362" x2="566" y2="445" stroke="#22c55e" stroke-width="0.5" stroke-opacity="0.3" stroke-dasharray="3,5"/>
+  <line x1="344" y1="362" x2="230" y2="445" stroke="#ef4444" stroke-width="0.5" stroke-opacity="0.3" stroke-dasharray="3,5"/>
+  <line x1="318" y1="310" x2="196" y2="304" stroke="#8b5cf6" stroke-width="0.5" stroke-opacity="0.3" stroke-dasharray="3,5"/>
+  <line x1="344" y1="278" x2="216" y2="165" stroke="#eab308" stroke-width="0.5" stroke-opacity="0.3" stroke-dasharray="3,5"/>
+
+  <!-- ===== TRIGGER EVENTS (right side inputs) ===== -->
+  <rect x="648" y="74" width="140" height="18" rx="3" fill="#1a1a2e" stroke="#ef4444" stroke-width="1"/>
+  <text x="718" y="87" font-family="'Courier New', monospace" font-size="8" fill="#ef4444" text-anchor="middle">⚡ Model Drift Alert</text>
+
+  <rect x="648" y="98" width="140" height="18" rx="3" fill="#1a1a2e" stroke="#f97316" stroke-width="1"/>
+  <text x="718" y="111" font-family="'Courier New', monospace" font-size="8" fill="#f97316" text-anchor="middle">⚡ Regulatory Change</text>
+
+  <rect x="648" y="122" width="140" height="18" rx="3" fill="#1a1a2e" stroke="#ef4444" stroke-width="1"/>
+  <text x="718" y="135" font-family="'Courier New', monospace" font-size="8" fill="#ef4444" text-anchor="middle">⚡ Security Incident</text>
+
+  <rect x="648" y="50" width="140" height="18" rx="3" fill="#1a1a2e" stroke="#22c55e" stroke-width="1"/>
+  <text x="718" y="63" font-family="'Courier New', monospace" font-size="8" fill="#22c55e" text-anchor="middle">⚡ New Use Case</text>
+
+  <!-- Trigger label -->
+  <text x="718" y="42" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#e2e8f0" text-anchor="middle">GOVERNANCE TRIGGERS</text>
+  <line x1="648" y1="145" x2="720" y2="145" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.3"/>
+  <rect x="648" y="147" width="140" height="18" rx="3" fill="#1a1a2e" stroke="#4a9eff" stroke-width="1"/>
+  <text x="718" y="160" font-family="'Courier New', monospace" font-size="8" fill="#4a9eff" text-anchor="middle">⚡ Technology Change</text>
+
+  <!-- Arrow from triggers into the cycle -->
+  <line x1="648" y1="109" x2="620" y2="175" stroke="#f97316" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowOrange)" stroke-opacity="0.7"/>
+
+  <!-- ===== HUMAN OVERSIGHT CHECKPOINTS (gold stars) ===== -->
+  <!-- Star at Policy Review -->
+  <text x="456" y="86" font-family="serif" font-size="14" fill="#eab308" text-anchor="middle" filter="url(#glowGold)">★</text>
+  <!-- Star at Gov Committee -->
+  <text x="192" y="292" font-family="serif" font-size="14" fill="#eab308" text-anchor="middle" filter="url(#glowGold)">★</text>
+  <!-- Star at Incident Review -->
+  <text x="224" y="448" font-family="serif" font-size="14" fill="#eab308" text-anchor="middle" filter="url(#glowGold)">★</text>
+  <!-- Human Oversight Legend -->
+  <text x="16" y="78" font-family="'Courier New', monospace" font-size="7" fill="#eab308">★ Human</text>
+  <text x="16" y="90" font-family="'Courier New', monospace" font-size="7" fill="#eab308">  Oversight</text>
+  <text x="16" y="102" font-family="'Courier New', monospace" font-size="7" fill="#eab308">  Required</text>
+
+  <!-- ===== KPI DASHBOARD (bottom section) ===== -->
+  <rect x="10" y="510" width="780" height="84" rx="6" fill="#0a1628" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="400" y="527" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#00d4ff" text-anchor="middle">GOVERNANCE KPI DASHBOARD</text>
+
+  <!-- KPI 1: Policy Compliance -->
+  <rect x="20" y="533" width="115" height="56" rx="4" fill="#0d1f35" stroke="#22c55e" stroke-width="1"/>
+  <text x="77" y="548" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">Policy Compliance</text>
+  <text x="77" y="568" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#22c55e" text-anchor="middle">94%</text>
+  <text x="77" y="582" font-family="'Courier New', monospace" font-size="7" fill="#22c55e" text-anchor="middle">▲ +2% MoM</text>
+
+  <!-- KPI 2: Model Risk Score -->
+  <rect x="142" y="533" width="115" height="56" rx="4" fill="#0d1f35" stroke="#f97316" stroke-width="1"/>
+  <text x="199" y="548" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">Model Risk Score</text>
+  <text x="199" y="568" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#f97316" text-anchor="middle">2.3</text>
+  <text x="199" y="582" font-family="'Courier New', monospace" font-size="7" fill="#22c55e" text-anchor="middle">▼ Low Risk</text>
+
+  <!-- KPI 3: Audit Findings Open -->
+  <rect x="264" y="533" width="115" height="56" rx="4" fill="#0d1f35" stroke="#ef4444" stroke-width="1"/>
+  <text x="321" y="548" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">Open Audit Findings</text>
+  <text x="321" y="568" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#ef4444" text-anchor="middle">7</text>
+  <text x="321" y="582" font-family="'Courier New', monospace" font-size="7" fill="#f97316" text-anchor="middle">3 Critical</text>
+
+  <!-- KPI 4: Drift Detections -->
+  <rect x="386" y="533" width="115" height="56" rx="4" fill="#0d1f35" stroke="#4a9eff" stroke-width="1"/>
+  <text x="443" y="548" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">Drift Detections</text>
+  <text x="443" y="568" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#4a9eff" text-anchor="middle">12</text>
+  <text x="443" y="582" font-family="'Courier New', monospace" font-size="7" fill="#4a9eff" text-anchor="middle">MTD / 30 models</text>
+
+  <!-- KPI 5: Regulatory Coverage -->
+  <rect x="508" y="533" width="115" height="56" rx="4" fill="#0d1f35" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="565" y="548" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">Reg. Coverage</text>
+  <text x="565" y="568" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#8b5cf6" text-anchor="middle">87%</text>
+  <text x="565" y="582" font-family="'Courier New', monospace" font-size="7" fill="#eab308" text-anchor="middle">EU AI Act Gap</text>
+
+  <!-- KPI 6: MTTR Incidents -->
+  <rect x="630" y="533" width="115" height="56" rx="4" fill="#0d1f35" stroke="#eab308" stroke-width="1"/>
+  <text x="687" y="548" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">MTTR AI Incidents</text>
+  <text x="687" y="568" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#eab308" text-anchor="middle">4.2h</text>
+  <text x="687" y="582" font-family="'Courier New', monospace" font-size="7" fill="#22c55e" text-anchor="middle">▼ -1.1h QoQ</text>
+
+  <!-- ===== AUTOMATION TOOLS STRIP (between cycle and KPIs) ===== -->
+  <rect x="10" y="487" width="780" height="18" rx="3" fill="#111827" stroke="#4a9eff" stroke-width="0.5" stroke-opacity="0.5"/>
+  <text x="400" y="500" font-family="'Courier New', monospace" font-size="7.5" fill="#4a9eff" text-anchor="middle">
+    AUTOMATION TOOLS: GRC Platforms (ServiceNow GRC · Archer · MetricStream) | AI Monitoring (Fiddler · Evidently · Arize) | Policy-as-Code (OPA · Rego) | MLOps (MLflow · Weights &amp; Biases)
+  </text>
+
+  <!-- ===== CADENCE LABEL on cycle arrows ===== -->
+  <!-- Frequency label next to cycle direction indicator -->
+  <text x="400" y="500" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle"/>
+
+  <!-- Cycle direction indicator in center (small curved arrow text) -->
+  <text x="400" y="378" font-family="'Courier New', monospace" font-size="7.5" fill="#00d4ff" text-anchor="middle" stroke="none">↻ PERPETUAL</text>
+
+  <!-- ===== LEGEND (top-left corner) ===== -->
+  <rect x="10" y="110" width="74" height="84" rx="4" fill="#0a1628" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.3"/>
+  <text x="47" y="124" font-family="'Courier New', monospace" font-size="7" fill="#ffffff" text-anchor="middle">CADENCE</text>
+  <line x1="14" y1="128" x2="80" y2="128" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.4"/>
+  <rect x="14" y="132" width="8" height="5" rx="1" fill="#00d4ff" fill-opacity="0.6"/>
+  <text x="26" y="138" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Real-time</text>
+  <rect x="14" y="142" width="8" height="5" rx="1" fill="#4a9eff" fill-opacity="0.6"/>
+  <text x="26" y="148" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Weekly</text>
+  <rect x="14" y="152" width="8" height="5" rx="1" fill="#22c55e" fill-opacity="0.6"/>
+  <text x="26" y="158" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Monthly</text>
+  <rect x="14" y="162" width="8" height="5" rx="1" fill="#f97316" fill-opacity="0.6"/>
+  <text x="26" y="168" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Quarterly</text>
+  <rect x="14" y="172" width="8" height="5" rx="1" fill="#8b5cf6" fill-opacity="0.6"/>
+  <text x="26" y="178" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Annual</text>
+  <rect x="14" y="182" width="8" height="5" rx="1" fill="#eab308" fill-opacity="0.6"/>
+  <text x="26" y="188" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Ad hoc</text>
+
+</svg>

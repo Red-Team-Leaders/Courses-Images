@@ -1,0 +1,296 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4a9eff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowCyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowGold" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#eab308"/>
+    </marker>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0d1f3c;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14532d;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#052e16;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b1f6b;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1e0a40;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="18" font-weight="bold">ISO/IEC 42001 &amp; ISO/IEC 23894 — AI Standards Framework</text>
+  <line x1="80" y1="42" x2="720" y2="42" stroke="#00d4ff" stroke-width="1" opacity="0.4"/>
+
+  <!-- ===== LEFT COLUMN: ISO 42001 ===== -->
+  <!-- Main container -->
+  <rect x="20" y="52" width="310" height="340" rx="8" fill="url(#blueGrad)" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="20" y="52" width="310" height="30" rx="8" fill="#4a9eff" opacity="0.25"/>
+  <text x="175" y="72" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="13" font-weight="bold">ISO/IEC 42001:2023</text>
+  <text x="175" y="85" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="9">AI Management System (AIMS)</text>
+
+  <!-- Clause boxes left column -->
+  <!-- Clause 4: Context -->
+  <rect x="32" y="96" width="134" height="36" rx="5" fill="#0d1f3c" stroke="#4a9eff" stroke-width="1"/>
+  <rect x="32" y="96" width="24" height="36" rx="5" fill="#4a9eff" opacity="0.5"/>
+  <text x="44" y="119" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="11" font-weight="bold">4</text>
+  <text x="105" y="110" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="10" font-weight="bold">Context of the</text>
+  <text x="105" y="124" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="9">Organization</text>
+
+  <!-- Clause 5: Leadership -->
+  <rect x="174" y="96" width="134" height="36" rx="5" fill="#0d1f3c" stroke="#4a9eff" stroke-width="1"/>
+  <rect x="174" y="96" width="24" height="36" rx="5" fill="#4a9eff" opacity="0.5"/>
+  <text x="186" y="119" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="11" font-weight="bold">5</text>
+  <text x="247" y="110" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="10" font-weight="bold">Leadership &amp;</text>
+  <text x="247" y="124" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="9">Commitment</text>
+
+  <!-- Clause 6: Planning -->
+  <rect x="32" y="140" width="134" height="36" rx="5" fill="#0d1f3c" stroke="#4a9eff" stroke-width="1"/>
+  <rect x="32" y="140" width="24" height="36" rx="5" fill="#8b5cf6" opacity="0.5"/>
+  <text x="44" y="163" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="11" font-weight="bold">6</text>
+  <text x="105" y="154" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="10" font-weight="bold">Planning</text>
+  <text x="105" y="168" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="9">AI Risk Treatment</text>
+
+  <!-- Clause 7: Support -->
+  <rect x="174" y="140" width="134" height="36" rx="5" fill="#0d1f3c" stroke="#4a9eff" stroke-width="1"/>
+  <rect x="174" y="140" width="24" height="36" rx="5" fill="#f97316" opacity="0.5"/>
+  <text x="186" y="163" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="11" font-weight="bold">7</text>
+  <text x="247" y="154" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="10" font-weight="bold">Support</text>
+  <text x="247" y="168" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="9">Resources &amp; Competence</text>
+
+  <!-- Clause 8: Operation -->
+  <rect x="32" y="184" width="134" height="36" rx="5" fill="#0d1f3c" stroke="#4a9eff" stroke-width="1"/>
+  <rect x="32" y="184" width="24" height="36" rx="5" fill="#22c55e" opacity="0.5"/>
+  <text x="44" y="207" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="11" font-weight="bold">8</text>
+  <text x="105" y="198" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="10" font-weight="bold">Operation</text>
+  <text x="105" y="212" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9">AI System Lifecycle</text>
+
+  <!-- Clause 9: Performance -->
+  <rect x="174" y="184" width="134" height="36" rx="5" fill="#0d1f3c" stroke="#4a9eff" stroke-width="1"/>
+  <rect x="174" y="184" width="24" height="36" rx="5" fill="#eab308" opacity="0.5"/>
+  <text x="186" y="207" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="11" font-weight="bold">9</text>
+  <text x="247" y="198" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="10" font-weight="bold">Performance</text>
+  <text x="247" y="212" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="9">Evaluation &amp; Audit</text>
+
+  <!-- Clause 10: Improvement -->
+  <rect x="103" y="228" width="134" height="36" rx="5" fill="#0d1f3c" stroke="#4a9eff" stroke-width="1"/>
+  <rect x="103" y="228" width="24" height="36" rx="5" fill="#ef4444" opacity="0.5"/>
+  <text x="115" y="251" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="11" font-weight="bold">10</text>
+  <text x="176" y="242" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="10" font-weight="bold">Improvement</text>
+  <text x="176" y="256" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9">Continual Improvement</text>
+
+  <!-- Annex boxes -->
+  <rect x="32" y="276" width="134" height="28" rx="4" fill="#1a2a1a" stroke="#22c55e" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="99" y="291" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9">Annex A: Controls</text>
+  <text x="99" y="302" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">(AI-specific objectives)</text>
+
+  <rect x="174" y="276" width="134" height="28" rx="4" fill="#1a2a1a" stroke="#22c55e" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="241" y="291" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9">Annex B: Guidance</text>
+  <text x="241" y="302" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">(Implementation notes)</text>
+
+  <!-- Certification badge -->
+  <rect x="70" y="316" width="190" height="64" rx="6" fill="#0a1628" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="165" y="333" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="10" font-weight="bold">CERTIFICATION PATHWAY</text>
+  <text x="165" y="349" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Gap Analysis → Implementation</text>
+  <text x="165" y="362" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">→ Internal Audit → Stage 1</text>
+  <text x="165" y="375" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">→ Stage 2 → Certification</text>
+
+  <!-- ===== RIGHT COLUMN: ISO 23894 ===== -->
+  <rect x="470" y="52" width="310" height="340" rx="8" fill="url(#greenGrad)" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="470" y="52" width="310" height="30" rx="8" fill="#22c55e" opacity="0.2"/>
+  <text x="625" y="72" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="13" font-weight="bold">ISO/IEC 23894:2023</text>
+  <text x="625" y="85" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="9">AI Risk Management Guidance</text>
+
+  <!-- Risk Process Steps -->
+  <!-- Step 1: Establish Context -->
+  <rect x="482" y="96" width="134" height="36" rx="5" fill="#052e16" stroke="#22c55e" stroke-width="1"/>
+  <rect x="482" y="96" width="24" height="36" rx="5" fill="#22c55e" opacity="0.5"/>
+  <text x="494" y="119" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="9" font-weight="bold">01</text>
+  <text x="555" y="110" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="9" font-weight="bold">Establish Context</text>
+  <text x="555" y="124" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8">Scope &amp; Criteria</text>
+
+  <!-- Arrow down -->
+  <line x1="549" y1="132" x2="549" y2="140" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Step 2: Risk Assessment -->
+  <rect x="482" y="140" width="134" height="36" rx="5" fill="#052e16" stroke="#22c55e" stroke-width="1"/>
+  <rect x="482" y="140" width="24" height="36" rx="5" fill="#00d4ff" opacity="0.4"/>
+  <text x="494" y="163" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="9" font-weight="bold">02</text>
+  <text x="555" y="154" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="9" font-weight="bold">Risk Assessment</text>
+  <text x="555" y="168" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="8">ID → Analyze → Evaluate</text>
+
+  <line x1="549" y1="176" x2="549" y2="184" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Step 3: Risk Treatment -->
+  <rect x="482" y="184" width="134" height="36" rx="5" fill="#052e16" stroke="#22c55e" stroke-width="1"/>
+  <rect x="482" y="184" width="24" height="36" rx="5" fill="#f97316" opacity="0.4"/>
+  <text x="494" y="207" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="9" font-weight="bold">03</text>
+  <text x="555" y="198" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="9" font-weight="bold">Risk Treatment</text>
+  <text x="555" y="212" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="8">Modify / Avoid / Accept</text>
+
+  <line x1="549" y1="220" x2="549" y2="228" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Step 4: Monitor & Review -->
+  <rect x="482" y="228" width="134" height="36" rx="5" fill="#052e16" stroke="#22c55e" stroke-width="1"/>
+  <rect x="482" y="228" width="24" height="36" rx="5" fill="#eab308" opacity="0.4"/>
+  <text x="494" y="251" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="9" font-weight="bold">04</text>
+  <text x="555" y="242" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="9" font-weight="bold">Monitor &amp; Review</text>
+  <text x="555" y="256" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="8">KRIs &amp; Metrics</text>
+
+  <!-- AI-Specific Risk Categories -->
+  <rect x="624" y="96" width="144" height="168" rx="5" fill="#052e16" stroke="#22c55e" stroke-width="1"/>
+  <text x="696" y="113" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">AI Risk Categories</text>
+  <text x="696" y="128" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8">• Bias &amp; Fairness</text>
+  <text x="696" y="142" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="8">• Explainability</text>
+  <text x="696" y="156" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="8">• Data Quality</text>
+  <text x="696" y="170" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="8">• Security Threats</text>
+  <text x="696" y="184" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="8">• Privacy</text>
+  <text x="696" y="198" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="8">• Reliability</text>
+  <text x="696" y="212" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8">• Human Oversight</text>
+  <text x="696" y="226" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8">• Accountability</text>
+  <text x="696" y="240" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="8">• Misuse Potential</text>
+  <text x="696" y="254" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="8">• Third-party Deps</text>
+
+  <!-- ISO 31000 link -->
+  <rect x="482" y="276" width="134" height="28" rx="4" fill="#1a1a0a" stroke="#eab308" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="549" y="291" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="9">Based on ISO 31000</text>
+  <text x="549" y="302" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Risk Management Principles</text>
+
+  <rect x="624" y="276" width="144" height="28" rx="4" fill="#1a1a0a" stroke="#eab308" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="696" y="291" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="9">AI Lifecycle Coverage</text>
+  <text x="696" y="302" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Design → Deploy → Retire</text>
+
+  <!-- Comms/Consult column for 23894 -->
+  <rect x="482" y="316" width="286" height="64" rx="6" fill="#0a1628" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="625" y="333" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="10" font-weight="bold">COMMUNICATION &amp; CONSULTATION</text>
+  <text x="625" y="349" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Stakeholder engagement throughout all risk process steps</text>
+  <text x="625" y="362" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Transparency • Accountability • Responsible AI Principles</text>
+  <text x="625" y="375" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="8">Recording &amp; Reporting obligations (Annex guidance)</text>
+
+  <!-- ===== CENTER: INTEGRATION / OVERLAP ZONE ===== -->
+  <rect x="340" y="52" width="120" height="340" rx="8" fill="url(#purpleGrad)" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="400" y="80" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="9" font-weight="bold">INTEGRATION</text>
+
+  <!-- PDCA Cycle -->
+  <circle cx="400" cy="135" r="42" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+  <!-- PDCA quarters -->
+  <path d="M400,93 A42,42 0 0,1 442,135" fill="#1e0a40" stroke="#4a9eff" stroke-width="0.5"/>
+  <text x="425" y="118" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="10" font-weight="bold">P</text>
+  <path d="M442,135 A42,42 0 0,1 400,177" fill="#1e0a40" stroke="#22c55e" stroke-width="0.5"/>
+  <text x="425" y="158" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="10" font-weight="bold">D</text>
+  <path d="M400,177 A42,42 0 0,1 358,135" fill="#1e0a40" stroke="#f97316" stroke-width="0.5"/>
+  <text x="374" y="158" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="10" font-weight="bold">C</text>
+  <path d="M358,135 A42,42 0 0,1 400,93" fill="#1e0a40" stroke="#ef4444" stroke-width="0.5"/>
+  <text x="374" y="118" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">A</text>
+  <text x="400" y="139" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">PDCA</text>
+  <text x="400" y="150" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Cycle</text>
+
+  <!-- Shared elements list -->
+  <text x="400" y="195" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="8" font-weight="bold">Shared Elements</text>
+  <text x="400" y="209" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Risk Register</text>
+  <text x="400" y="221" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">AI Policy</text>
+  <text x="400" y="233" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Objectives</text>
+  <text x="400" y="245" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Roles &amp; Resp.</text>
+  <text x="400" y="257" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Audit Findings</text>
+  <text x="400" y="269" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Doc. Control</text>
+
+  <!-- Integration arrows left-right -->
+  <line x1="330" y1="200" x2="342" y2="200" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arrowCyan)"/>
+  <line x1="458" y1="200" x2="470" y2="200" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arrowCyan)"/>
+  <line x1="342" y1="220" x2="330" y2="220" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arrowCyan)"/>
+  <line x1="470" y1="220" x2="458" y2="220" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arrowCyan)"/>
+
+  <!-- ===== BOTTOM: Related Standards ===== -->
+  <rect x="20" y="404" width="760" height="90" rx="8" fill="#0d1117" stroke="#eab308" stroke-width="1.5"/>
+  <text x="400" y="422" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="11" font-weight="bold">RELATED STANDARDS ECOSYSTEM</text>
+
+  <!-- ISO 27001 box -->
+  <rect x="36" y="432" width="168" height="52" rx="6" fill="#1a0a0a" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="120" y="449" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">ISO/IEC 27001</text>
+  <text x="120" y="463" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Information Security MGMT</text>
+  <text x="120" y="476" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">AI security controls integration</text>
+
+  <!-- Arrow -->
+  <line x1="204" y1="458" x2="232" y2="458" stroke="#ef4444" stroke-width="1.2" marker-end="url(#arrowGold)"/>
+
+  <!-- ISO 9001 box -->
+  <rect x="236" y="432" width="168" height="52" rx="6" fill="#0a1a0a" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="320" y="449" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="10" font-weight="bold">ISO 9001</text>
+  <text x="320" y="463" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Quality Management System</text>
+  <text x="320" y="476" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">HLS alignment with ISO 42001</text>
+
+  <!-- Arrow -->
+  <line x1="404" y1="458" x2="432" y2="458" stroke="#22c55e" stroke-width="1.2" marker-end="url(#arrowGold)"/>
+
+  <!-- ISO 31000 box -->
+  <rect x="436" y="432" width="168" height="52" rx="6" fill="#1a1500" stroke="#eab308" stroke-width="1.2"/>
+  <text x="520" y="449" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="10" font-weight="bold">ISO 31000</text>
+  <text x="520" y="463" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Risk Management Principles</text>
+  <text x="520" y="476" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Foundation for 23894 process</text>
+
+  <!-- Arrow -->
+  <line x1="604" y1="458" x2="632" y2="458" stroke="#eab308" stroke-width="1.2" marker-end="url(#arrowGold)"/>
+
+  <!-- EU AI Act box -->
+  <rect x="636" y="432" width="128" height="52" rx="6" fill="#0a0a1a" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="700" y="449" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="10" font-weight="bold">EU AI Act</text>
+  <text x="700" y="463" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Regulatory Alignment</text>
+  <text x="700" y="476" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Compliance synergy</text>
+
+  <!-- ===== BOTTOM: Audit Checklist overview ===== -->
+  <rect x="20" y="506" width="760" height="82" rx="8" fill="#0d1117" stroke="#00d4ff" stroke-width="1.2"/>
+  <text x="400" y="522" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="10" font-weight="bold">IMPLEMENTATION ROADMAP &amp; AUDIT FOCUS AREAS</text>
+
+  <!-- Phase boxes -->
+  <rect x="30" y="530" width="128" height="48" rx="4" fill="#0a1628" stroke="#4a9eff" stroke-width="1"/>
+  <text x="94" y="545" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="9" font-weight="bold">Phase 1</text>
+  <text x="94" y="558" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Gap Analysis</text>
+  <text x="94" y="570" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Scope &amp; Policy</text>
+
+  <line x1="158" y1="554" x2="168" y2="554" stroke="#4a9eff" stroke-width="1.2" marker-end="url(#arrowBlue)"/>
+
+  <rect x="172" y="530" width="128" height="48" rx="4" fill="#0a1628" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="236" y="545" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="9" font-weight="bold">Phase 2</text>
+  <text x="236" y="558" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Risk Assessment</text>
+  <text x="236" y="570" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">23894 Framework</text>
+
+  <line x1="300" y1="554" x2="310" y2="554" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arrowBlue)"/>
+
+  <rect x="314" y="530" width="128" height="48" rx="4" fill="#0a1628" stroke="#22c55e" stroke-width="1"/>
+  <text x="378" y="545" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">Phase 3</text>
+  <text x="378" y="558" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Controls &amp; SoA</text>
+  <text x="378" y="570" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Annex A mapping</text>
+
+  <line x1="442" y1="554" x2="452" y2="554" stroke="#22c55e" stroke-width="1.2" marker-end="url(#arrowBlue)"/>
+
+  <rect x="456" y="530" width="128" height="48" rx="4" fill="#0a1628" stroke="#f97316" stroke-width="1"/>
+  <text x="520" y="545" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="9" font-weight="bold">Phase 4</text>
+  <text x="520" y="558" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Internal Audit</text>
+  <text x="520" y="570" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Management Review</text>
+
+  <line x1="584" y1="554" x2="594" y2="554" stroke="#f97316" stroke-width="1.2" marker-end="url(#arrowBlue)"/>
+
+  <rect x="598" y="530" width="172" height="48" rx="4" fill="#0a1628" stroke="#eab308" stroke-width="1"/>
+  <text x="684" y="545" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="9" font-weight="bold">Phase 5</text>
+  <text x="684" y="558" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="8">Stage 1+2 Cert. Audit</text>
+  <text x="684" y="570" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Third-party certification body</text>
+
+  <!-- Footer -->
+  <text x="400" y="594" text-anchor="middle" fill="#4a4a6a" font-family="monospace" font-size="8">ISO/IEC 42001:2023 (AIMS Requirements) | ISO/IEC 23894:2023 (AI Risk Management Guidance) | AI Security Risk Course — Module 3</text>
+</svg>

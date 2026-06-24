@@ -1,0 +1,354 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+
+    <!-- Arrow markers -->
+    <marker id="arrowGold" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#eab308"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4a9eff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowWhite" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrowCyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+
+    <!-- Glow filters -->
+    <filter id="glowGold" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowBlue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowCyan" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Gradients -->
+    <linearGradient id="gradStrategic" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#92400e;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#78350f;stop-opacity:0.7"/>
+    </linearGradient>
+    <linearGradient id="gradTactical" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#172a4a;stop-opacity:0.7"/>
+    </linearGradient>
+    <linearGradient id="gradOperational" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#14532d;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#0f3d22;stop-opacity:0.7"/>
+    </linearGradient>
+    <linearGradient id="gradMaturity" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.8"/>
+      <stop offset="50%" style="stop-color:#4a9eff;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.8"/>
+    </linearGradient>
+    <linearGradient id="gradPillar1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.1"/>
+    </linearGradient>
+    <linearGradient id="gradPillar2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.1"/>
+    </linearGradient>
+    <linearGradient id="gradPillar3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.1"/>
+    </linearGradient>
+    <linearGradient id="gradPillar4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="18" font-weight="bold" letter-spacing="1">AI GOVERNANCE PROGRAM FRAMEWORK</text>
+  <line x1="80" y1="40" x2="720" y2="40" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+
+  <!-- =================== FOUR PILLARS (background columns) =================== -->
+  <!-- Pillar 1: Accountability -->
+  <rect x="72" y="52" width="115" height="400" rx="4" fill="url(#gradPillar1)" stroke="#8b5cf6" stroke-width="0.5" opacity="0.6"/>
+  <text x="129" y="70" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="9" font-weight="bold" letter-spacing="1">ACCOUNTABILITY</text>
+
+  <!-- Pillar 2: Transparency -->
+  <rect x="197" y="52" width="115" height="400" rx="4" fill="url(#gradPillar2)" stroke="#00d4ff" stroke-width="0.5" opacity="0.6"/>
+  <text x="254" y="70" text-anchor="middle" fill="#00d4ff" font-family="monospace" font-size="9" font-weight="bold" letter-spacing="1">TRANSPARENCY</text>
+
+  <!-- Pillar 3: Fairness -->
+  <rect x="322" y="52" width="115" height="400" rx="4" fill="url(#gradPillar3)" stroke="#f97316" stroke-width="0.5" opacity="0.6"/>
+  <text x="379" y="70" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="9" font-weight="bold" letter-spacing="1">FAIRNESS</text>
+
+  <!-- Pillar 4: Security -->
+  <rect x="447" y="52" width="115" height="400" rx="4" fill="url(#gradPillar4)" stroke="#ef4444" stroke-width="0.5" opacity="0.6"/>
+  <text x="504" y="70" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold" letter-spacing="1">SECURITY</text>
+
+  <!-- =================== STRATEGIC LAYER =================== -->
+  <rect x="68" y="78" width="498" height="98" rx="6" fill="url(#gradStrategic)" stroke="#eab308" stroke-width="2" filter="url(#glowGold)"/>
+  <!-- Layer label -->
+  <rect x="68" y="78" width="130" height="22" rx="4" fill="#eab308"/>
+  <text x="133" y="93" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="10" font-weight="bold">STRATEGIC LAYER</text>
+
+  <!-- Strategic boxes -->
+  <!-- Box 1: AI Strategy -->
+  <rect x="82" y="106" width="105" height="58" rx="5" fill="#1a1208" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="82" y="106" width="105" height="16" rx="4" fill="#eab308" opacity="0.3"/>
+  <text x="134" y="118" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="8" font-weight="bold">AI STRATEGY</text>
+  <text x="134" y="131" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Vision &amp; Mission</text>
+  <text x="134" y="142" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Strategic Goals</text>
+  <text x="134" y="153" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Value Alignment</text>
+
+  <!-- Box 2: Board Oversight -->
+  <rect x="207" y="106" width="105" height="58" rx="5" fill="#1a1208" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="207" y="106" width="105" height="16" rx="4" fill="#eab308" opacity="0.3"/>
+  <text x="259" y="118" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="8" font-weight="bold">BOARD OVERSIGHT</text>
+  <text x="259" y="131" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">C-Suite Sponsorship</text>
+  <text x="259" y="142" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Accountability</text>
+  <text x="259" y="153" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Reporting Lines</text>
+
+  <!-- Box 3: Risk Appetite -->
+  <rect x="332" y="106" width="105" height="58" rx="5" fill="#1a1208" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="332" y="106" width="105" height="16" rx="4" fill="#eab308" opacity="0.3"/>
+  <text x="384" y="118" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="8" font-weight="bold">RISK APPETITE</text>
+  <text x="384" y="131" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Tolerance Levels</text>
+  <text x="384" y="142" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Risk Thresholds</text>
+  <text x="384" y="153" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Acceptance Criteria</text>
+
+  <!-- Box 4: Ethical Principles -->
+  <rect x="457" y="106" width="102" height="58" rx="5" fill="#1a1208" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="457" y="106" width="102" height="16" rx="4" fill="#eab308" opacity="0.3"/>
+  <text x="508" y="118" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="8" font-weight="bold">ETHICS &amp; VALUES</text>
+  <text x="508" y="131" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Ethical Principles</text>
+  <text x="508" y="142" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">AI Charter</text>
+  <text x="508" y="153" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Value Statements</text>
+
+  <!-- Downward arrow: Strategic -> Tactical -->
+  <line x1="317" y1="178" x2="317" y2="198" stroke="#4a9eff" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowBlue)"/>
+  <text x="327" y="192" fill="#4a9eff" font-family="monospace" font-size="7">Directs</text>
+
+  <!-- =================== TACTICAL LAYER =================== -->
+  <rect x="68" y="200" width="498" height="108" rx="6" fill="url(#gradTactical)" stroke="#4a9eff" stroke-width="2" filter="url(#glowBlue)"/>
+  <rect x="68" y="200" width="130" height="22" rx="4" fill="#4a9eff"/>
+  <text x="133" y="215" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="10" font-weight="bold">TACTICAL LAYER</text>
+
+  <!-- Tactical boxes -->
+  <rect x="82" y="228" width="105" height="68" rx="5" fill="#0a1628" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="82" y="228" width="105" height="16" rx="4" fill="#4a9eff" opacity="0.3"/>
+  <text x="134" y="240" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="8" font-weight="bold">GOV COMMITTEE</text>
+  <text x="134" y="253" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">AI Review Board</text>
+  <text x="134" y="263" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Cross-Functional</text>
+  <text x="134" y="273" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Decision Authority</text>
+  <text x="134" y="283" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Escalation Paths</text>
+
+  <rect x="207" y="228" width="105" height="68" rx="5" fill="#0a1628" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="207" y="228" width="105" height="16" rx="4" fill="#4a9eff" opacity="0.3"/>
+  <text x="259" y="240" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="8" font-weight="bold">POLICIES</text>
+  <text x="259" y="253" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">AI Acceptable Use</text>
+  <text x="259" y="263" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Data Governance</text>
+  <text x="259" y="273" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Model Lifecycle</text>
+  <text x="259" y="283" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Vendor Mgmt</text>
+
+  <rect x="332" y="228" width="105" height="68" rx="5" fill="#0a1628" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="332" y="228" width="105" height="16" rx="4" fill="#4a9eff" opacity="0.3"/>
+  <text x="384" y="240" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="8" font-weight="bold">STANDARDS</text>
+  <text x="384" y="253" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">NIST AI RMF</text>
+  <text x="384" y="263" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">ISO/IEC 42001</text>
+  <text x="384" y="273" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">EU AI Act Compliance</text>
+  <text x="384" y="283" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Internal Benchmarks</text>
+
+  <rect x="457" y="228" width="102" height="68" rx="5" fill="#0a1628" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="457" y="228" width="102" height="16" rx="4" fill="#4a9eff" opacity="0.3"/>
+  <text x="508" y="240" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="8" font-weight="bold">PROCEDURES</text>
+  <text x="508" y="253" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Risk Assessments</text>
+  <text x="508" y="263" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Model Approval</text>
+  <text x="508" y="273" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Incident Response</text>
+  <text x="508" y="283" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Audit Protocols</text>
+
+  <!-- Downward arrow: Tactical -> Operational -->
+  <line x1="317" y1="310" x2="317" y2="330" stroke="#22c55e" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowGreen)"/>
+  <text x="327" y="324" fill="#22c55e" font-family="monospace" font-size="7">Implements</text>
+
+  <!-- =================== OPERATIONAL LAYER =================== -->
+  <rect x="68" y="332" width="498" height="110" rx="6" fill="url(#gradOperational)" stroke="#22c55e" stroke-width="2" filter="url(#glowBlue)"/>
+  <rect x="68" y="332" width="130" height="22" rx="4" fill="#22c55e"/>
+  <text x="133" y="347" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="10" font-weight="bold">OPERATIONAL LAYER</text>
+
+  <!-- Operational boxes -->
+  <rect x="82" y="360" width="105" height="70" rx="5" fill="#06160c" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="82" y="360" width="105" height="16" rx="4" fill="#22c55e" opacity="0.3"/>
+  <text x="134" y="372" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold">PROCESSES</text>
+  <text x="134" y="385" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Model Registry</text>
+  <text x="134" y="395" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Change Control</text>
+  <text x="134" y="405" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Training Pipelines</text>
+  <text x="134" y="415" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Review Workflows</text>
+
+  <rect x="207" y="360" width="105" height="70" rx="5" fill="#06160c" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="207" y="360" width="105" height="16" rx="4" fill="#22c55e" opacity="0.3"/>
+  <text x="259" y="372" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold">TOOLS</text>
+  <text x="259" y="385" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Bias Detectors</text>
+  <text x="259" y="395" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Explainability AI</text>
+  <text x="259" y="405" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">MLOps Platforms</text>
+  <text x="259" y="415" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Audit Logs</text>
+
+  <rect x="332" y="360" width="105" height="70" rx="5" fill="#06160c" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="332" y="360" width="105" height="16" rx="4" fill="#22c55e" opacity="0.3"/>
+  <text x="384" y="372" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold">CONTROLS</text>
+  <text x="384" y="385" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Access Controls</text>
+  <text x="384" y="395" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Data Validation</text>
+  <text x="384" y="405" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Model Testing</text>
+  <text x="384" y="415" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Red Team Exercises</text>
+
+  <rect x="457" y="360" width="102" height="70" rx="5" fill="#06160c" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="457" y="360" width="102" height="16" rx="4" fill="#22c55e" opacity="0.3"/>
+  <text x="508" y="372" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold">MONITORING</text>
+  <text x="508" y="385" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Model Drift KPIs</text>
+  <text x="508" y="395" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Performance Metrics</text>
+  <text x="508" y="405" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Compliance Dashboards</text>
+  <text x="508" y="415" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Alerting Systems</text>
+
+  <!-- Upward feedback arrow -->
+  <path d="M 578 390 Q 620 390 620 290 Q 620 190 578 190" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowWhite)"/>
+  <text x="634" y="295" fill="#94a3b8" font-family="monospace" font-size="7" text-anchor="middle">Feedback</text>
+  <text x="634" y="305" fill="#94a3b8" font-family="monospace" font-size="7" text-anchor="middle">&amp; Reports</text>
+
+  <!-- =================== MATURITY MODEL (right side) =================== -->
+  <rect x="580" y="78" width="200" height="364" rx="6" fill="#111827" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="580" y="78" width="200" height="24" rx="4" fill="#8b5cf6"/>
+  <text x="680" y="94" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="10" font-weight="bold">MATURITY MODEL</text>
+
+  <!-- Level 5 -->
+  <rect x="590" y="110" width="180" height="58" rx="4" fill="#0a1f0a" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="590" y="110" width="40" height="58" rx="4" fill="#22c55e" opacity="0.8"/>
+  <text x="610" y="136" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="14" font-weight="bold">5</text>
+  <text x="610" y="150" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="7" font-weight="bold">OPT</text>
+  <text x="643" y="126" fill="#22c55e" font-family="monospace" font-size="8" font-weight="bold">OPTIMIZING</text>
+  <text x="643" y="138" fill="#e2e8f0" font-family="monospace" font-size="7">Continuous improvement</text>
+  <text x="643" y="149" fill="#e2e8f0" font-family="monospace" font-size="7">AI-driven governance</text>
+  <text x="643" y="160" fill="#e2e8f0" font-family="monospace" font-size="7">Industry leadership</text>
+
+  <!-- Level 4 -->
+  <rect x="590" y="174" width="180" height="54" rx="4" fill="#0a1628" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="590" y="174" width="40" height="54" rx="4" fill="#4a9eff" opacity="0.8"/>
+  <text x="610" y="198" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="14" font-weight="bold">4</text>
+  <text x="610" y="212" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="7" font-weight="bold">MGD</text>
+  <text x="643" y="190" fill="#4a9eff" font-family="monospace" font-size="8" font-weight="bold">MANAGED</text>
+  <text x="643" y="202" fill="#e2e8f0" font-family="monospace" font-size="7">Quantitative metrics</text>
+  <text x="643" y="213" fill="#e2e8f0" font-family="monospace" font-size="7">Predictive controls</text>
+  <text x="643" y="224" fill="#e2e8f0" font-family="monospace" font-size="7">Cross-org integration</text>
+
+  <!-- Level 3 -->
+  <rect x="590" y="234" width="180" height="54" rx="4" fill="#1a1208" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="590" y="234" width="40" height="54" rx="4" fill="#eab308" opacity="0.8"/>
+  <text x="610" y="258" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="14" font-weight="bold">3</text>
+  <text x="610" y="272" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="7" font-weight="bold">DEF</text>
+  <text x="643" y="250" fill="#eab308" font-family="monospace" font-size="8" font-weight="bold">DEFINED</text>
+  <text x="643" y="262" fill="#e2e8f0" font-family="monospace" font-size="7">Standardized processes</text>
+  <text x="643" y="273" fill="#e2e8f0" font-family="monospace" font-size="7">Org-wide policies</text>
+  <text x="643" y="284" fill="#e2e8f0" font-family="monospace" font-size="7">Consistent practices</text>
+
+  <!-- Level 2 -->
+  <rect x="590" y="294" width="180" height="54" rx="4" fill="#1a0f00" stroke="#f97316" stroke-width="1.5"/>
+  <rect x="590" y="294" width="40" height="54" rx="4" fill="#f97316" opacity="0.8"/>
+  <text x="610" y="318" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="14" font-weight="bold">2</text>
+  <text x="610" y="332" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="7" font-weight="bold">RPT</text>
+  <text x="643" y="310" fill="#f97316" font-family="monospace" font-size="8" font-weight="bold">REPEATABLE</text>
+  <text x="643" y="322" fill="#e2e8f0" font-family="monospace" font-size="7">Project-level controls</text>
+  <text x="643" y="333" fill="#e2e8f0" font-family="monospace" font-size="7">Reactive management</text>
+  <text x="643" y="344" fill="#e2e8f0" font-family="monospace" font-size="7">Siloed practices</text>
+
+  <!-- Level 1 -->
+  <rect x="590" y="354" width="180" height="54" rx="4" fill="#1a0808" stroke="#ef4444" stroke-width="1.5"/>
+  <rect x="590" y="354" width="40" height="54" rx="4" fill="#ef4444" opacity="0.8"/>
+  <text x="610" y="378" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="14" font-weight="bold">1</text>
+  <text x="610" y="392" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="7" font-weight="bold">INI</text>
+  <text x="643" y="370" fill="#ef4444" font-family="monospace" font-size="8" font-weight="bold">INITIAL</text>
+  <text x="643" y="382" fill="#e2e8f0" font-family="monospace" font-size="7">Ad hoc, chaotic</text>
+  <text x="643" y="393" fill="#e2e8f0" font-family="monospace" font-size="7">No formal governance</text>
+  <text x="643" y="404" fill="#e2e8f0" font-family="monospace" font-size="7">Hero-dependent</text>
+
+  <!-- Maturity arrow progression -->
+  <line x1="580" y1="410" x2="580" y2="108" stroke="url(#gradMaturity)" stroke-width="3" marker-end="url(#arrowGreen)"/>
+
+  <!-- =================== DOCUMENTATION HIERARCHY =================== -->
+  <rect x="68" y="458" width="712" height="86" rx="6" fill="#111827" stroke="#00d4ff" stroke-width="1.5" filter="url(#glowCyan)"/>
+  <rect x="68" y="458" width="200" height="22" rx="4" fill="#00d4ff" opacity="0.8"/>
+  <text x="168" y="473" text-anchor="middle" fill="#0d1117" font-family="monospace" font-size="10" font-weight="bold">DOCUMENTATION HIERARCHY</text>
+
+  <!-- Doc hierarchy boxes -->
+  <!-- Policy -->
+  <rect x="82" y="486" width="148" height="50" rx="4" fill="#1a0f28" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="82" y="486" width="148" height="16" rx="3" fill="#8b5cf6" opacity="0.5"/>
+  <text x="156" y="498" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="9" font-weight="bold">POLICY</text>
+  <text x="156" y="511" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">High-level intent</text>
+  <text x="156" y="522" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Board-approved mandates</text>
+  <text x="156" y="531" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6">WHAT &amp; WHY</text>
+
+  <!-- Arrow -->
+  <line x1="232" y1="511" x2="248" y2="511" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+
+  <!-- Standard -->
+  <rect x="250" y="486" width="148" height="50" rx="4" fill="#0a1628" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="250" y="486" width="148" height="16" rx="3" fill="#4a9eff" opacity="0.5"/>
+  <text x="324" y="498" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="9" font-weight="bold">STANDARD</text>
+  <text x="324" y="511" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Mandatory requirements</text>
+  <text x="324" y="522" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Measurable controls</text>
+  <text x="324" y="531" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6">WHAT (specifics)</text>
+
+  <!-- Arrow -->
+  <line x1="400" y1="511" x2="416" y2="511" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+
+  <!-- Guideline -->
+  <rect x="418" y="486" width="148" height="50" rx="4" fill="#1a1208" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="418" y="486" width="148" height="16" rx="3" fill="#eab308" opacity="0.5"/>
+  <text x="492" y="498" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="9" font-weight="bold">GUIDELINE</text>
+  <text x="492" y="511" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Recommended practices</text>
+  <text x="492" y="522" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Flexible implementation</text>
+  <text x="492" y="531" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6">HOW (recommended)</text>
+
+  <!-- Arrow -->
+  <line x1="568" y1="511" x2="584" y2="511" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+
+  <!-- Procedure -->
+  <rect x="586" y="486" width="182" height="50" rx="4" fill="#06160c" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="586" y="486" width="182" height="16" rx="3" fill="#22c55e" opacity="0.5"/>
+  <text x="677" y="498" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">PROCEDURE</text>
+  <text x="677" y="511" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Step-by-step instructions</text>
+  <text x="677" y="522" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="7">Operational playbooks</text>
+  <text x="677" y="531" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="6">HOW (specific steps)</text>
+
+  <!-- =================== FOOTER =================== -->
+  <line x1="80" y1="556" x2="720" y2="556" stroke="#00d4ff" stroke-width="0.5" opacity="0.4"/>
+  <text x="140" y="572" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="8">NIST AI RMF</text>
+  <text x="240" y="572" text-anchor="middle" fill="#4a9eff" font-family="monospace" font-size="8">ISO/IEC 42001</text>
+  <text x="340" y="572" text-anchor="middle" fill="#eab308" font-family="monospace" font-size="8">EU AI Act</text>
+  <text x="440" y="572" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="8">OECD AI Principles</text>
+  <text x="555" y="572" text-anchor="middle" fill="#22c55e" font-family="monospace" font-size="8">IEEE Ethically Aligned Design</text>
+  <text x="690" y="572" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="8">GDPR/CCPA</text>
+
+  <!-- Separator dots between standards -->
+  <circle cx="174" cy="569" r="1.5" fill="#374151"/>
+  <circle cx="274" cy="569" r="1.5" fill="#374151"/>
+  <circle cx="374" cy="569" r="1.5" fill="#374151"/>
+  <circle cx="481" cy="569" r="1.5" fill="#374151"/>
+  <circle cx="618" cy="569" r="1.5" fill="#374151"/>
+
+  <!-- Top-right indicator badge -->
+  <rect x="630" y="10" width="150" height="22" rx="11" fill="#1e293b" stroke="#00d4ff" stroke-width="1"/>
+  <circle cx="644" cy="21" r="5" fill="#00d4ff"/>
+  <text x="652" y="25" fill="#e2e8f0" font-family="monospace" font-size="8">MODULE 3 | LESSON 1</text>
+</svg>

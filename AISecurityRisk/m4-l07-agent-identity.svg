@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8b5cf6"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glowCyan" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowOrange" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradient backgrounds for boxes -->
+    <linearGradient id="gradBlueprint" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#4a9eff;stop-opacity:0.08"/>
+    </linearGradient>
+    <linearGradient id="gradProvision" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.08"/>
+    </linearGradient>
+    <linearGradient id="gradRuntime" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.08"/>
+    </linearGradient>
+    <linearGradient id="gradAuth" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eab308;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#eab308;stop-opacity:0.08"/>
+    </linearGradient>
+    <linearGradient id="gradAudit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.08"/>
+    </linearGradient>
+    <linearGradient id="gradTerminate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.08"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Subtle top glow -->
+  <ellipse cx="400" cy="0" rx="350" ry="80" fill="#00d4ff" opacity="0.04"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#ffffff" filter="url(#glowCyan)">Agent Identity — Autonomous Actors &amp; Their Permissions</text>
+  <text x="400" y="50" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" fill="#00d4ff" opacity="0.8">MODULE 4 · LESSON 7</text>
+
+  <!-- ===== SECTION LABEL: Lifecycle ===== -->
+  <text x="14" y="100" font-family="'Courier New', monospace" font-size="10" fill="#00d4ff" opacity="0.7">▶ AGENT IDENTITY LIFECYCLE</text>
+  <line x1="14" y1="104" x2="786" y2="104" stroke="#00d4ff" stroke-width="0.4" opacity="0.3"/>
+
+  <!-- ===== LIFECYCLE BOXES (horizontal strip, y=112 to 205) ===== -->
+
+  <!-- 1. Agent Blueprint -->
+  <rect x="8" y="112" width="118" height="88" rx="6" fill="url(#gradBlueprint)" stroke="#4a9eff" stroke-width="1.2"/>
+  <text x="67" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#4a9eff">① BLUEPRINT</text>
+  <rect x="20" y="136" width="94" height="1" fill="#4a9eff" opacity="0.3"/>
+  <!-- Blueprint icon: document shape -->
+  <rect x="52" y="142" width="22" height="26" rx="2" fill="none" stroke="#4a9eff" stroke-width="1.2" opacity="0.8"/>
+  <line x1="57" y1="149" x2="69" y2="149" stroke="#4a9eff" stroke-width="0.9" opacity="0.8"/>
+  <line x1="57" y1="153" x2="69" y2="153" stroke="#4a9eff" stroke-width="0.9" opacity="0.8"/>
+  <line x1="57" y1="157" x2="65" y2="157" stroke="#4a9eff" stroke-width="0.9" opacity="0.8"/>
+  <text x="67" y="182" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Permitted Tools</text>
+  <text x="67" y="192" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Scope · Policies</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="126" y1="156" x2="141" y2="156" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- 2. Identity Provisioning -->
+  <rect x="142" y="112" width="118" height="88" rx="6" fill="url(#gradProvision)" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="201" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#8b5cf6">② PROVISION</text>
+  <rect x="154" y="136" width="94" height="1" fill="#8b5cf6" opacity="0.3"/>
+  <!-- Key icon -->
+  <circle cx="197" cy="153" r="7" fill="none" stroke="#8b5cf6" stroke-width="1.3" opacity="0.85"/>
+  <line x1="204" y1="153" x2="215" y2="153" stroke="#8b5cf6" stroke-width="1.3" opacity="0.85"/>
+  <line x1="212" y1="153" x2="212" y2="157" stroke="#8b5cf6" stroke-width="1.3" opacity="0.85"/>
+  <line x1="208" y1="153" x2="208" y2="156" stroke="#8b5cf6" stroke-width="1.3" opacity="0.85"/>
+  <text x="201" y="175" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Unique ID · Creds</text>
+  <text x="201" y="185" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Signing Keys</text>
+  <text x="201" y="195" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Cert / JWKS</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="260" y1="156" x2="275" y2="156" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- 3. Runtime Identity -->
+  <rect x="276" y="112" width="118" height="88" rx="6" fill="url(#gradRuntime)" stroke="#00d4ff" stroke-width="1.2"/>
+  <text x="335" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#00d4ff">③ RUNTIME</text>
+  <rect x="288" y="136" width="94" height="1" fill="#00d4ff" opacity="0.3"/>
+  <!-- Token chip icon -->
+  <rect x="320" y="141" width="28" height="22" rx="3" fill="none" stroke="#00d4ff" stroke-width="1.3" opacity="0.85"/>
+  <rect x="325" y="146" width="18" height="12" rx="1" fill="#00d4ff" opacity="0.15"/>
+  <line x1="325" y1="141" x2="325" y2="139" stroke="#00d4ff" stroke-width="1.2" opacity="0.7"/>
+  <line x1="330" y1="141" x2="330" y2="139" stroke="#00d4ff" stroke-width="1.2" opacity="0.7"/>
+  <line x1="335" y1="141" x2="335" y2="139" stroke="#00d4ff" stroke-width="1.2" opacity="0.7"/>
+  <text x="335" y="175" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Session Token</text>
+  <text x="335" y="185" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Context · TTL</text>
+  <text x="335" y="195" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Attestation Proof</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="394" y1="156" x2="409" y2="156" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- 4. Authorization Check -->
+  <rect x="410" y="112" width="118" height="88" rx="6" fill="url(#gradAuth)" stroke="#eab308" stroke-width="1.2"/>
+  <text x="469" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#eab308">④ AUTHZ CHECK</text>
+  <rect x="422" y="136" width="94" height="1" fill="#eab308" opacity="0.3"/>
+  <!-- Shield icon -->
+  <path d="M465,141 L475,145 L475,157 Q475,163 465,167 Q455,163 455,157 L455,145 Z" fill="none" stroke="#eab308" stroke-width="1.3" opacity="0.85"/>
+  <text x="465" y="160" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#eab308" opacity="0.9">✓</text>
+  <text x="469" y="178" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Policy Engine</text>
+  <text x="469" y="188" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Per-Action Validation</text>
+  <text x="469" y="198" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Allow / Deny / Escalate</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="528" y1="156" x2="543" y2="156" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- 5. Audit Event -->
+  <rect x="544" y="112" width="118" height="88" rx="6" fill="url(#gradAudit)" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="603" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#22c55e">⑤ AUDIT LOG</text>
+  <rect x="556" y="136" width="94" height="1" fill="#22c55e" opacity="0.3"/>
+  <!-- Log lines icon -->
+  <rect x="586" y="141" width="30" height="22" rx="2" fill="none" stroke="#22c55e" stroke-width="1.2" opacity="0.8"/>
+  <line x1="591" y1="147" x2="611" y2="147" stroke="#22c55e" stroke-width="0.9" opacity="0.7"/>
+  <line x1="591" y1="151" x2="611" y2="151" stroke="#22c55e" stroke-width="0.9" opacity="0.7"/>
+  <line x1="591" y1="155" x2="605" y2="155" stroke="#22c55e" stroke-width="0.9" opacity="0.7"/>
+  <line x1="591" y1="159" x2="608" y2="159" stroke="#22c55e" stroke-width="0.9" opacity="0.7"/>
+  <text x="603" y="178" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Action + Agent ID</text>
+  <text x="603" y="188" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Timestamp · Sig</text>
+  <text x="603" y="198" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Immutable Log</text>
+
+  <!-- Arrow 5→6 -->
+  <line x1="662" y1="156" x2="677" y2="156" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- 6. Termination -->
+  <rect x="678" y="112" width="114" height="88" rx="6" fill="url(#gradTerminate)" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="735" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ef4444">⑥ TERMINATE</text>
+  <rect x="690" y="136" width="90" height="1" fill="#ef4444" opacity="0.3"/>
+  <!-- X/revoke icon -->
+  <circle cx="735" cy="153" r="10" fill="none" stroke="#ef4444" stroke-width="1.3" opacity="0.85"/>
+  <line x1="729" y1="147" x2="741" y2="159" stroke="#ef4444" stroke-width="1.5" opacity="0.85"/>
+  <line x1="741" y1="147" x2="729" y2="159" stroke="#ef4444" stroke-width="1.5" opacity="0.85"/>
+  <text x="735" y="178" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Revoke Creds</text>
+  <text x="735" y="188" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Session Cleanup</text>
+  <text x="735" y="198" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Token Invalidated</text>
+
+  <!-- ===== SECTION DIVIDER ===== -->
+  <line x1="14" y1="215" x2="786" y2="215" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- ===== LEFT PANEL: TRUST HIERARCHY ===== -->
+  <text x="14" y="232" font-family="'Courier New', monospace" font-size="10" fill="#8b5cf6" opacity="0.85">▶ TRUST HIERARCHY</text>
+
+  <!-- Pyramid base -->
+  <!-- Level 1: Human Operator (top/apex) -->
+  <polygon points="170,248 210,248 230,290 150,290" fill="#eab308" fill-opacity="0.18" stroke="#eab308" stroke-width="1.3"/>
+  <text x="190" y="274" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#eab308">HUMAN</text>
+  <text x="190" y="284" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#eab308">OPERATOR</text>
+
+  <!-- Level 2: Orchestrator -->
+  <polygon points="150,292 230,292 255,334 125,334" fill="#f97316" fill-opacity="0.15" stroke="#f97316" stroke-width="1.2"/>
+  <text x="190" y="318" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f97316">ORCHESTRATOR</text>
+  <text x="190" y="328" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#f97316">AGENT</text>
+
+  <!-- Level 3: Worker Agents -->
+  <polygon points="125,336 255,336 285,378 95,378" fill="#4a9eff" fill-opacity="0.12" stroke="#4a9eff" stroke-width="1.2"/>
+  <text x="190" y="362" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#4a9eff">WORKER</text>
+  <text x="190" y="372" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#4a9eff">AGENTS</text>
+
+  <!-- Level 4: Tool Execution -->
+  <polygon points="95,380 285,380 320,422 60,422" fill="#22c55e" fill-opacity="0.10" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="190" y="406" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#22c55e">TOOL EXECUTION</text>
+  <text x="190" y="416" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">ENVIRONMENTS</text>
+
+  <!-- Trust propagation arrow down left side -->
+  <text x="62" y="335" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" opacity="0.5" transform="rotate(-90, 62, 335)">TRUST DELEGATED ↓</text>
+
+  <!-- Privilege labels on right of pyramid -->
+  <text x="332" y="272" font-family="'Courier New', monospace" font-size="7" fill="#eab308" opacity="0.75">Highest Privilege</text>
+  <text x="332" y="316" font-family="'Courier New', monospace" font-size="7" fill="#f97316" opacity="0.75">Delegated Authority</text>
+  <text x="332" y="360" font-family="'Courier New', monospace" font-size="7" fill="#4a9eff" opacity="0.75">Scoped Permissions</text>
+  <text x="332" y="403" font-family="'Courier New', monospace" font-size="7" fill="#22c55e" opacity="0.75">Minimal Privilege</text>
+  <line x1="328" y1="260" x2="328" y2="420" stroke="#1e2a3a" stroke-width="1" opacity="0.7"/>
+
+  <!-- ===== CENTER PANEL: ATTESTATION ===== -->
+  <text x="418" y="232" font-family="'Courier New', monospace" font-size="10" fill="#00d4ff" opacity="0.85">▶ IDENTITY ATTESTATION</text>
+
+  <!-- Attestation flow box -->
+  <rect x="380" y="242" width="190" height="190" rx="8" fill="#0d1117" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.7"/>
+
+  <!-- Agent box -->
+  <rect x="395" y="256" width="72" height="38" rx="5" fill="#4a9eff" fill-opacity="0.15" stroke="#4a9eff" stroke-width="1.1"/>
+  <text x="431" y="270" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#4a9eff">AGENT</text>
+  <text x="431" y="281" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">ID: agt-7f3a</text>
+  <text x="431" y="290" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">signs claim</text>
+
+  <!-- Signature icon (pen nib) -->
+  <text x="431" y="306" text-anchor="middle" font-family="monospace" font-size="14" fill="#8b5cf6" opacity="0.85">✍</text>
+
+  <!-- JWT/Claim block -->
+  <rect x="395" y="316" width="72" height="50" rx="4" fill="#8b5cf6" fill-opacity="0.12" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="431" y="330" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="bold" fill="#8b5cf6">SIGNED CLAIM</text>
+  <text x="431" y="341" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">iss: orchestrator</text>
+  <text x="431" y="350" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">sub: agt-7f3a</text>
+  <text x="431" y="359" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">sig: RS256</text>
+
+  <!-- Arrow to verifier -->
+  <line x1="467" y1="341" x2="484" y2="341" stroke="#8b5cf6" stroke-width="1.3" marker-end="url(#arrowPurple)"/>
+
+  <!-- Verifier box -->
+  <rect x="485" y="316" width="72" height="50" rx="4" fill="#22c55e" fill-opacity="0.12" stroke="#22c55e" stroke-width="1"/>
+  <text x="521" y="330" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="bold" fill="#22c55e">VERIFIER</text>
+  <text x="521" y="341" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Policy Engine</text>
+  <text x="521" y="350" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#22c55e">✓ VALID</text>
+  <text x="521" y="359" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Allow action</text>
+
+  <!-- Verify check arrow back -->
+  <line x1="521" y1="366" x2="521" y2="392" stroke="#22c55e" stroke-width="1.1" stroke-dasharray="3,2"/>
+  <line x1="521" y1="392" x2="431" y2="392" stroke="#22c55e" stroke-width="1.1" stroke-dasharray="3,2" marker-end="url(#arrowGreen)"/>
+  <text x="476" y="402" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">Grant scope token</text>
+
+  <!-- Chain label -->
+  <text x="475" y="423" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0" opacity="0.6">SPIFFE/SPIRE · mTLS · JWT-SVID</text>
+
+  <!-- ===== RIGHT PANEL: IMPERSONATION ATTACK ===== -->
+  <text x="588" y="232" font-family="'Courier New', monospace" font-size="10" fill="#ef4444" opacity="0.85">▶ IMPERSONATION ATTACK</text>
+
+  <!-- Warning box -->
+  <rect x="582" y="242" width="204" height="190" rx="8" fill="#ef4444" fill-opacity="0.06" stroke="#ef4444" stroke-width="1" stroke-dasharray="5,3"/>
+
+  <!-- Attacker -->
+  <rect x="598" y="258" width="66" height="34" rx="5" fill="#ef4444" fill-opacity="0.2" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="631" y="271" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ef4444">ATTACKER</text>
+  <text x="631" y="282" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">rogue agent</text>
+
+  <!-- Fake ID badge -->
+  <rect x="598" y="302" width="66" height="38" rx="4" fill="#1e2a3a" stroke="#ef4444" stroke-width="0.9" stroke-dasharray="3,2"/>
+  <text x="631" y="316" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#ef4444">FAKE ID</text>
+  <text x="631" y="326" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">agt-7f3a (stolen)</text>
+  <text x="631" y="335" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#ef4444">sig: FORGED</text>
+
+  <!-- Arrow to target -->
+  <line x1="664" y1="321" x2="680" y2="321" stroke="#ef4444" stroke-width="1.3" marker-end="url(#arrowRed)"/>
+
+  <!-- Target system -->
+  <rect x="681" y="302" width="92" height="38" rx="4" fill="#1e2a3a" stroke="#f97316" stroke-width="1"/>
+  <text x="727" y="316" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#f97316">TARGET SYSTEM</text>
+  <text x="727" y="326" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">No attestation</text>
+  <text x="727" y="335" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#ef4444">COMPROMISED</text>
+
+  <!-- Mitigations -->
+  <rect x="598" y="354" width="175" height="68" rx="5" fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="685" y="367" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#22c55e">MITIGATIONS</text>
+  <text x="605" y="379" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">▸ Cryptographic attestation</text>
+  <text x="605" y="390" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">▸ Short-lived credentials (TTL)</text>
+  <text x="605" y="401" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">▸ Per-action policy enforcement</text>
+  <text x="605" y="412" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">▸ Anomaly detection on agent ID</text>
+
+  <!-- ===== BOTTOM PANEL: HUMAN APPROVAL GATES ===== -->
+  <line x1="14" y1="445" x2="786" y2="445" stroke="#1e2a3a" stroke-width="1"/>
+  <text x="14" y="460" font-family="'Courier New', monospace" font-size="10" fill="#f97316" opacity="0.85">▶ HUMAN APPROVAL GATES — HIGH-RISK AGENT ACTIONS</text>
+
+  <!-- Gate flow -->
+  <!-- Box 1: Agent requests action -->
+  <rect x="14" y="468" width="110" height="50" rx="5" fill="#4a9eff" fill-opacity="0.12" stroke="#4a9eff" stroke-width="1"/>
+  <text x="69" y="487" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#4a9eff">AGENT</text>
+  <text x="69" y="498" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">requests action</text>
+  <text x="69" y="508" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">(high-risk op)</text>
+
+  <line x1="124" y1="493" x2="144" y2="493" stroke="#f97316" stroke-width="1.4" marker-end="url(#arrowOrange)"/>
+
+  <!-- Box 2: Risk Classifier -->
+  <rect x="145" y="468" width="110" height="50" rx="5" fill="#eab308" fill-opacity="0.12" stroke="#eab308" stroke-width="1"/>
+  <text x="200" y="487" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#eab308">RISK CLASSIFIER</text>
+  <text x="200" y="498" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Policy evaluation</text>
+  <text x="200" y="508" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#eab308">HIGH RISK → HOLD</text>
+
+  <line x1="255" y1="493" x2="275" y2="493" stroke="#f97316" stroke-width="1.4" marker-end="url(#arrowOrange)"/>
+
+  <!-- Box 3: Human Review Queue -->
+  <rect x="276" y="468" width="110" height="50" rx="5" fill="#f97316" fill-opacity="0.12" stroke="#f97316" stroke-width="1"/>
+  <text x="331" y="483" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f97316">HUMAN REVIEW</text>
+  <text x="331" y="494" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Operator notified</text>
+  <text x="331" y="504" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Reviews context</text>
+  <text x="331" y="514" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Approve / Deny</text>
+
+  <!-- Approve branch -->
+  <line x1="386" y1="485" x2="410" y2="485" stroke="#22c55e" stroke-width="1.4" marker-end="url(#arrowGreen)"/>
+  <text x="398" y="480" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">APPROVE</text>
+
+  <!-- Deny branch -->
+  <line x1="386" y1="505" x2="410" y2="520" stroke="#ef4444" stroke-width="1.4" marker-end="url(#arrowRed)"/>
+  <text x="398" y="520" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#ef4444">DENY</text>
+
+  <!-- Box 4a: Approved execution -->
+  <rect x="411" y="468" width="105" height="38" rx="5" fill="#22c55e" fill-opacity="0.12" stroke="#22c55e" stroke-width="1"/>
+  <text x="463" y="482" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#22c55e">EXECUTE</text>
+  <text x="463" y="493" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Approved scope only</text>
+  <text x="463" y="502" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Logged + attested</text>
+
+  <!-- Box 4b: Denied -->
+  <rect x="411" y="513" width="105" height="28" rx="5" fill="#ef4444" fill-opacity="0.12" stroke="#ef4444" stroke-width="1"/>
+  <text x="463" y="527" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ef4444">BLOCKED</text>
+  <text x="463" y="537" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Audit + alert</text>
+
+  <!-- Arrow to audit -->
+  <line x1="516" y1="487" x2="536" y2="487" stroke="#22c55e" stroke-width="1.3" marker-end="url(#arrowGreen)"/>
+
+  <!-- Box 5: Audit Trail -->
+  <rect x="537" y="468" width="110" height="80" rx="5" fill="#8b5cf6" fill-opacity="0.12" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="592" y="484" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#8b5cf6">AUDIT TRAIL</text>
+  <text x="592" y="495" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Agent ID logged</text>
+  <text x="592" y="505" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Human decision</text>
+  <text x="592" y="515" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Action result</text>
+  <text x="592" y="525" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Timestamp + sig</text>
+  <text x="592" y="540" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8b5cf6">Non-repudiable</text>
+
+  <!-- Ephemeral vs Persistent note -->
+  <rect x="660" y="468" width="130" height="80" rx="5" fill="#0d1117" stroke="#1e2a3a" stroke-width="1"/>
+  <text x="725" y="484" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#e2e8f0">AGENT LIFESPAN</text>
+  <line x1="668" y1="489" x2="782" y2="489" stroke="#1e2a3a" stroke-width="0.8"/>
+  <text x="668" y="501" font-family="'Courier New', monospace" font-size="7" fill="#00d4ff">EPHEMERAL</text>
+  <text x="668" y="511" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Short TTL creds</text>
+  <text x="668" y="520" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Auto-revoke on exit</text>
+  <line x1="668" y1="527" x2="782" y2="527" stroke="#1e2a3a" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="668" y="537" font-family="'Courier New', monospace" font-size="7" fill="#f97316">PERSISTENT</text>
+  <text x="668" y="547" font-family="'Courier New', monospace" font-size="6.5" fill="#e2e8f0">Rotation policy</text>
+
+  <!-- Footer -->
+  <line x1="14" y1="558" x2="786" y2="558" stroke="#1e2a3a" stroke-width="0.8"/>
+  <text x="400" y="572" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#e2e8f0" opacity="0.35">AI Security Risk · Module 4 · Lesson 7 · Agent Identity — Autonomous Actors and Their Permissions</text>
+  <text x="400" y="584" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#00d4ff" opacity="0.25">SPIFFE/SPIRE · OIDC · mTLS · JWT-SVID · Policy-as-Code · Zero Trust Agent Architecture</text>
+</svg>

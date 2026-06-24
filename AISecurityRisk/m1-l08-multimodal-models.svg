@@ -1,0 +1,338 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Cyan glow filter for central model -->
+    <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Soft glow for icons -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Arrow marker cyan -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff" opacity="0.8"/>
+    </marker>
+    <!-- Arrow marker green -->
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e" opacity="0.8"/>
+    </marker>
+    <!-- Arrow marker orange -->
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316" opacity="0.8"/>
+    </marker>
+    <!-- Radial gradient for embedding space -->
+    <radialGradient id="embeddingGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.15"/>
+      <stop offset="60%" stop-color="#8b5cf6" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0d1117" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Central box gradient -->
+    <linearGradient id="centralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f2035"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <!-- Input modality gradient -->
+    <linearGradient id="inputGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1f2e"/>
+      <stop offset="100%" stop-color="#0a1525"/>
+    </linearGradient>
+    <!-- Output modality gradient -->
+    <linearGradient id="outputGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1f1a"/>
+      <stop offset="100%" stop-color="#0a1518"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Embedding space radial glow (centered on model) -->
+  <ellipse cx="400" cy="300" rx="200" ry="180" fill="url(#embeddingGrad)"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#ffffff">Multimodal AI Architecture</text>
+  <text x="400" y="52" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" fill="#8b9ab0">Unified Embedding Space  |  Cross-Modal Attention  |  General-Purpose AI</text>
+
+  <!-- Separator line -->
+  <line x1="60" y1="62" x2="740" y2="62" stroke="#1e3a5a" stroke-width="1"/>
+
+  <!-- ============================================================ -->
+  <!-- INPUT MODALITIES (LEFT COLUMN) -->
+  <!-- ============================================================ -->
+
+  <!-- Section label: Inputs -->
+  <text x="95" y="90" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#4a9eff" letter-spacing="2">INPUTS</text>
+  <line x1="30" y1="94" x2="160" y2="94" stroke="#4a9eff" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- INPUT 1: Text -->
+  <rect x="20" y="100" width="150" height="54" rx="6" fill="url(#inputGrad)" stroke="#4a9eff" stroke-width="1.2" opacity="0.9"/>
+  <!-- Document icon -->
+  <rect x="32" y="112" width="18" height="22" rx="2" fill="none" stroke="#4a9eff" stroke-width="1.2"/>
+  <line x1="36" y1="119" x2="46" y2="119" stroke="#4a9eff" stroke-width="1"/>
+  <line x1="36" y1="123" x2="46" y2="123" stroke="#4a9eff" stroke-width="1"/>
+  <line x1="36" y1="127" x2="44" y2="127" stroke="#4a9eff" stroke-width="1"/>
+  <polygon points="42,112 50,112 50,118 42,118" fill="#4a9eff" opacity="0.4"/>
+  <text x="90" y="124" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Text / NLP</text>
+  <text x="90" y="140" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">Tokens · Embeddings</text>
+
+  <!-- INPUT 2: Image -->
+  <rect x="20" y="162" width="150" height="54" rx="6" fill="url(#inputGrad)" stroke="#00d4ff" stroke-width="1.2" opacity="0.9"/>
+  <!-- Camera icon -->
+  <rect x="32" y="173" width="20" height="15" rx="2" fill="none" stroke="#00d4ff" stroke-width="1.2"/>
+  <circle cx="42" cy="180" r="4" fill="none" stroke="#00d4ff" stroke-width="1"/>
+  <rect x="39" y="171" width="6" height="4" rx="1" fill="#00d4ff" opacity="0.6"/>
+  <text x="90" y="186" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Image / Vision</text>
+  <text x="90" y="202" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">ViT Patches · CLIP</text>
+
+  <!-- INPUT 3: Audio -->
+  <rect x="20" y="224" width="150" height="54" rx="6" fill="url(#inputGrad)" stroke="#8b5cf6" stroke-width="1.2" opacity="0.9"/>
+  <!-- Waveform icon -->
+  <line x1="30" y1="252" x2="30" y2="252" stroke="#8b5cf6" stroke-width="1.5"/>
+  <polyline points="30,252 34,244 37,258 40,240 43,260 46,248 49,252" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="90" y="248" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Audio / Speech</text>
+  <text x="90" y="264" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">Spectrograms · Whisper</text>
+
+  <!-- INPUT 4: Video -->
+  <rect x="20" y="286" width="150" height="54" rx="6" fill="url(#inputGrad)" stroke="#f97316" stroke-width="1.2" opacity="0.9"/>
+  <!-- Film strip icon -->
+  <rect x="30" y="297" width="22" height="16" rx="1" fill="none" stroke="#f97316" stroke-width="1.2"/>
+  <rect x="30" y="297" width="4" height="5" rx="0.5" fill="#f97316" opacity="0.5"/>
+  <rect x="30" y="308" width="4" height="5" rx="0.5" fill="#f97316" opacity="0.5"/>
+  <rect x="48" y="297" width="4" height="5" rx="0.5" fill="#f97316" opacity="0.5"/>
+  <rect x="48" y="308" width="4" height="5" rx="0.5" fill="#f97316" opacity="0.5"/>
+  <line x1="36" y1="297" x2="36" y2="313" stroke="#f97316" stroke-width="0.5" opacity="0.5"/>
+  <line x1="42" y1="297" x2="42" y2="313" stroke="#f97316" stroke-width="0.5" opacity="0.5"/>
+  <text x="90" y="310" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Video</text>
+  <text x="90" y="326" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">Frames · Temporal Attn</text>
+
+  <!-- INPUT 5: Code -->
+  <rect x="20" y="348" width="150" height="54" rx="6" fill="url(#inputGrad)" stroke="#22c55e" stroke-width="1.2" opacity="0.9"/>
+  <!-- Terminal icon -->
+  <rect x="30" y="358" width="22" height="16" rx="2" fill="none" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="37" y="369" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">&gt;_</text>
+  <text x="90" y="372" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Code</text>
+  <text x="90" y="388" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">AST · Codex · Copilot</text>
+
+  <!-- INPUT 6: Structured Data -->
+  <rect x="20" y="410" width="150" height="54" rx="6" fill="url(#inputGrad)" stroke="#eab308" stroke-width="1.2" opacity="0.9"/>
+  <!-- Table icon -->
+  <rect x="30" y="420" width="22" height="16" rx="1" fill="none" stroke="#eab308" stroke-width="1.2"/>
+  <line x1="30" y1="426" x2="52" y2="426" stroke="#eab308" stroke-width="0.8"/>
+  <line x1="30" y1="432" x2="52" y2="432" stroke="#eab308" stroke-width="0.8"/>
+  <line x1="41" y1="420" x2="41" y2="436" stroke="#eab308" stroke-width="0.8"/>
+  <text x="90" y="434" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Struct. Data</text>
+  <text x="90" y="450" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">Tables · JSON · CSV</text>
+
+  <!-- ============================================================ -->
+  <!-- CENTRAL MODEL BOX -->
+  <!-- ============================================================ -->
+
+  <!-- Outer glow rect -->
+  <rect x="276" y="140" width="248" height="320" rx="14" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0.3" filter="url(#cyanGlow)"/>
+  <!-- Main central box -->
+  <rect x="280" y="144" width="240" height="312" rx="12" fill="url(#centralGrad)" stroke="#00d4ff" stroke-width="2" filter="url(#cyanGlow)"/>
+
+  <!-- Model title -->
+  <text x="400" y="172" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#00d4ff">MULTIMODAL LLM</text>
+  <line x1="300" y1="180" x2="500" y2="180" stroke="#00d4ff" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Unified Embedding Space label -->
+  <rect x="296" y="188" width="208" height="26" rx="4" fill="#00d4ff" fill-opacity="0.08" stroke="#00d4ff" stroke-width="0.5" stroke-opacity="0.3"/>
+  <text x="400" y="205" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#00d4ff">Unified Embedding Space</text>
+
+  <!-- Transformer blocks visual -->
+  <text x="400" y="232" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">Cross-Modal Attention</text>
+  <!-- Attention grid visual -->
+  <g opacity="0.7">
+    <rect x="310" y="238" width="24" height="20" rx="2" fill="#4a9eff" fill-opacity="0.15" stroke="#4a9eff" stroke-width="0.6"/>
+    <rect x="338" y="238" width="24" height="20" rx="2" fill="#8b5cf6" fill-opacity="0.15" stroke="#8b5cf6" stroke-width="0.6"/>
+    <rect x="366" y="238" width="24" height="20" rx="2" fill="#00d4ff" fill-opacity="0.25" stroke="#00d4ff" stroke-width="0.8"/>
+    <rect x="394" y="238" width="24" height="20" rx="2" fill="#8b5cf6" fill-opacity="0.15" stroke="#8b5cf6" stroke-width="0.6"/>
+    <rect x="422" y="238" width="24" height="20" rx="2" fill="#22c55e" fill-opacity="0.15" stroke="#22c55e" stroke-width="0.6"/>
+    <rect x="450" y="238" width="24" height="20" rx="2" fill="#f97316" fill-opacity="0.15" stroke="#f97316" stroke-width="0.6"/>
+    <text x="322" y="252" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#4a9eff">TXT</text>
+    <text x="350" y="252" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8b5cf6">IMG</text>
+    <text x="378" y="252" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#00d4ff">ATT</text>
+    <text x="406" y="252" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8b5cf6">FFN</text>
+    <text x="434" y="252" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">COD</text>
+    <text x="462" y="252" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#f97316">VID</text>
+  </g>
+
+  <!-- Transformer stack layers -->
+  <g opacity="0.85">
+    <rect x="300" y="268" width="200" height="10" rx="2" fill="#4a9eff" fill-opacity="0.12" stroke="#4a9eff" stroke-width="0.5"/>
+    <text x="400" y="277" text-anchor="middle" font-family="monospace" font-size="7" fill="#4a9eff">Transformer Block N</text>
+    <rect x="300" y="282" width="200" height="10" rx="2" fill="#4a9eff" fill-opacity="0.1" stroke="#4a9eff" stroke-width="0.4"/>
+    <text x="400" y="291" text-anchor="middle" font-family="monospace" font-size="7" fill="#4a9eff">Transformer Block N-1</text>
+    <rect x="300" y="296" width="200" height="10" rx="2" fill="#4a9eff" fill-opacity="0.08" stroke="#4a9eff" stroke-width="0.4"/>
+    <text x="400" y="305" text-anchor="middle" font-family="monospace" font-size="7" fill="#4a9eff">Transformer Block ...</text>
+    <rect x="300" y="310" width="200" height="10" rx="2" fill="#4a9eff" fill-opacity="0.06" stroke="#4a9eff" stroke-width="0.3"/>
+    <text x="400" y="319" text-anchor="middle" font-family="monospace" font-size="7" fill="#4a9eff">Transformer Block 1</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="296" y1="328" x2="504" y2="328" stroke="#1e3a5a" stroke-width="1"/>
+
+  <!-- Model logos / names section -->
+  <text x="400" y="345" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">Known Implementations</text>
+
+  <rect x="296" y="352" width="96" height="24" rx="4" fill="#4a9eff" fill-opacity="0.12" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="344" y="368" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#4a9eff">GPT-4V / GPT-4o</text>
+
+  <rect x="400" y="352" width="96" height="24" rx="4" fill="#8b5cf6" fill-opacity="0.12" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="448" y="368" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b5cf6">Claude 3 / Opus</text>
+
+  <rect x="296" y="382" width="96" height="24" rx="4" fill="#22c55e" fill-opacity="0.12" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="344" y="398" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#22c55e">Gemini Ultra</text>
+
+  <rect x="400" y="382" width="96" height="24" rx="4" fill="#f97316" fill-opacity="0.12" stroke="#f97316" stroke-width="0.8"/>
+  <text x="448" y="398" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#f97316">LLaVA / Phi-3V</text>
+
+  <!-- Divider -->
+  <line x1="296" y1="412" x2="504" y2="412" stroke="#1e3a5a" stroke-width="1"/>
+
+  <!-- Tool use row -->
+  <text x="400" y="428" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#eab308">Tool Use &amp; Function Calling</text>
+  <g opacity="0.8">
+    <rect x="298" y="434" width="44" height="16" rx="3" fill="#eab308" fill-opacity="0.12" stroke="#eab308" stroke-width="0.6"/>
+    <text x="320" y="446" text-anchor="middle" font-family="monospace" font-size="7" fill="#eab308">Search</text>
+    <rect x="348" y="434" width="44" height="16" rx="3" fill="#eab308" fill-opacity="0.12" stroke="#eab308" stroke-width="0.6"/>
+    <text x="370" y="446" text-anchor="middle" font-family="monospace" font-size="7" fill="#eab308">Browser</text>
+    <rect x="398" y="434" width="44" height="16" rx="3" fill="#eab308" fill-opacity="0.12" stroke="#eab308" stroke-width="0.6"/>
+    <text x="420" y="446" text-anchor="middle" font-family="monospace" font-size="7" fill="#eab308">APIs</text>
+    <rect x="448" y="434" width="48" height="16" rx="3" fill="#eab308" fill-opacity="0.12" stroke="#eab308" stroke-width="0.6"/>
+    <text x="472" y="446" text-anchor="middle" font-family="monospace" font-size="7" fill="#eab308">Plugins</text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- OUTPUT MODALITIES (RIGHT COLUMN) -->
+  <!-- ============================================================ -->
+
+  <!-- Section label: Outputs -->
+  <text x="705" y="90" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#22c55e" letter-spacing="2">OUTPUTS</text>
+  <line x1="640" y1="94" x2="770" y2="94" stroke="#22c55e" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- OUTPUT 1: Text Response -->
+  <rect x="630" y="100" width="150" height="54" rx="6" fill="url(#outputGrad)" stroke="#4a9eff" stroke-width="1.2" opacity="0.9"/>
+  <text x="705" y="124" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Text Response</text>
+  <text x="705" y="140" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">NL Generation · RAG</text>
+
+  <!-- OUTPUT 2: Image Generation -->
+  <rect x="630" y="162" width="150" height="54" rx="6" fill="url(#outputGrad)" stroke="#00d4ff" stroke-width="1.2" opacity="0.9"/>
+  <!-- Image gen icon: simple palette -->
+  <circle cx="648" cy="180" r="8" fill="none" stroke="#00d4ff" stroke-width="1.2"/>
+  <circle cx="648" cy="176" r="2" fill="#00d4ff" opacity="0.7"/>
+  <circle cx="652" cy="182" r="2" fill="#8b5cf6" opacity="0.7"/>
+  <circle cx="644" cy="182" r="2" fill="#f97316" opacity="0.7"/>
+  <text x="705" y="186" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Image Gen</text>
+  <text x="705" y="202" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">DALL-E 3 · SD · MJ</text>
+
+  <!-- OUTPUT 3: Speech / Audio -->
+  <rect x="630" y="224" width="150" height="54" rx="6" fill="url(#outputGrad)" stroke="#8b5cf6" stroke-width="1.2" opacity="0.9"/>
+  <polyline points="636,252 640,244 643,258 646,240 649,260 652,248 655,252" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="705" y="248" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Speech / TTS</text>
+  <text x="705" y="264" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">Neural TTS · Voice</text>
+
+  <!-- OUTPUT 4: Code Generation -->
+  <rect x="630" y="286" width="150" height="54" rx="6" fill="url(#outputGrad)" stroke="#22c55e" stroke-width="1.2" opacity="0.9"/>
+  <text x="640" y="307" font-family="'Courier New', monospace" font-size="8" fill="#22c55e">&lt;/&gt;</text>
+  <text x="705" y="310" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Code Gen</text>
+  <text x="705" y="326" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">Copilot · Codex · Cody</text>
+
+  <!-- OUTPUT 5: Reasoning / Analysis -->
+  <rect x="630" y="348" width="150" height="54" rx="6" fill="url(#outputGrad)" stroke="#ef4444" stroke-width="1.2" opacity="0.9"/>
+  <!-- Brain-like icon -->
+  <circle cx="648" cy="375" r="8" fill="none" stroke="#ef4444" stroke-width="1.2"/>
+  <line cx="648" y1="367" x2="648" y2="375" stroke="#ef4444" stroke-width="0.8" x1="648"/>
+  <text x="705" y="372" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Reasoning</text>
+  <text x="705" y="388" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">Chain-of-Thought · CoT</text>
+
+  <!-- OUTPUT 6: Structured Output -->
+  <rect x="630" y="410" width="150" height="54" rx="6" fill="url(#outputGrad)" stroke="#eab308" stroke-width="1.2" opacity="0.9"/>
+  <text x="705" y="434" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Struct. Output</text>
+  <text x="705" y="450" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">JSON · XML · Tables</text>
+
+  <!-- ============================================================ -->
+  <!-- ARROWS: INPUTS to CENTRAL MODEL -->
+  <!-- ============================================================ -->
+
+  <!-- Text -> Model -->
+  <line x1="170" y1="127" x2="278" y2="220" stroke="#4a9eff" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowCyan)"/>
+  <!-- Image -> Model -->
+  <line x1="170" y1="189" x2="278" y2="248" stroke="#00d4ff" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowCyan)"/>
+  <!-- Audio -> Model -->
+  <line x1="170" y1="251" x2="278" y2="280" stroke="#8b5cf6" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowCyan)"/>
+  <!-- Video -> Model -->
+  <line x1="170" y1="313" x2="278" y2="312" stroke="#f97316" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowCyan)"/>
+  <!-- Code -> Model -->
+  <line x1="170" y1="375" x2="278" y2="348" stroke="#22c55e" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowCyan)"/>
+  <!-- Data -> Model -->
+  <line x1="170" y1="437" x2="278" y2="390" stroke="#eab308" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowCyan)"/>
+
+  <!-- ============================================================ -->
+  <!-- ARROWS: CENTRAL MODEL to OUTPUTS -->
+  <!-- ============================================================ -->
+
+  <!-- Model -> Text -->
+  <line x1="522" y1="220" x2="628" y2="127" stroke="#4a9eff" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <!-- Model -> Image Gen -->
+  <line x1="522" y1="248" x2="628" y2="189" stroke="#00d4ff" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <!-- Model -> Speech -->
+  <line x1="522" y1="280" x2="628" y2="251" stroke="#8b5cf6" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <!-- Model -> Code -->
+  <line x1="522" y1="312" x2="628" y2="313" stroke="#22c55e" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <!-- Model -> Reasoning -->
+  <line x1="522" y1="348" x2="628" y2="375" stroke="#ef4444" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <!-- Model -> Struct Output -->
+  <line x1="522" y1="390" x2="628" y2="437" stroke="#eab308" stroke-width="1.2" stroke-opacity="0.7" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+
+  <!-- ============================================================ -->
+  <!-- BOTTOM: Architecture note + legend -->
+  <!-- ============================================================ -->
+  <line x1="60" y1="475" x2="740" y2="475" stroke="#1e3a5a" stroke-width="1"/>
+
+  <!-- Legend row -->
+  <text x="400" y="492" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b9ab0">Architecture Layers</text>
+
+  <!-- Legend items -->
+  <rect x="60" y="500" width="100" height="20" rx="3" fill="#4a9eff" fill-opacity="0.12" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="110" y="514" text-anchor="middle" font-family="monospace" font-size="8" fill="#4a9eff">Encoder (ViT/BERT)</text>
+
+  <rect x="170" y="500" width="100" height="20" rx="3" fill="#8b5cf6" fill-opacity="0.12" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="220" y="514" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6">Projection Layer</text>
+
+  <rect x="280" y="500" width="120" height="20" rx="3" fill="#00d4ff" fill-opacity="0.12" stroke="#00d4ff" stroke-width="0.8"/>
+  <text x="340" y="514" text-anchor="middle" font-family="monospace" font-size="8" fill="#00d4ff">Transformer (Attention)</text>
+
+  <rect x="410" y="500" width="100" height="20" rx="3" fill="#22c55e" fill-opacity="0.12" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="460" y="514" text-anchor="middle" font-family="monospace" font-size="8" fill="#22c55e">Decoder Head</text>
+
+  <rect x="520" y="500" width="100" height="20" rx="3" fill="#f97316" fill-opacity="0.12" stroke="#f97316" stroke-width="0.8"/>
+  <text x="570" y="514" text-anchor="middle" font-family="monospace" font-size="8" fill="#f97316">RLHF Alignment</text>
+
+  <rect x="630" y="500" width="110" height="20" rx="3" fill="#eab308" fill-opacity="0.12" stroke="#eab308" stroke-width="0.8"/>
+  <text x="685" y="514" text-anchor="middle" font-family="monospace" font-size="8" fill="#eab308">Tool Orchestration</text>
+
+  <!-- Bottom tagline -->
+  <text x="400" y="545" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#3a4a5a">AI Security Risk  |  Module 1 Lesson 8  |  Multimodal Models and General-Purpose AI</text>
+
+  <!-- Corner accents -->
+  <polyline points="10,10 10,30 30,30" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.4"/>
+  <polyline points="790,10 790,30 770,30" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.4"/>
+  <polyline points="10,590 10,570 30,570" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.4"/>
+  <polyline points="790,590 790,570 770,570" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.4"/>
+</svg>

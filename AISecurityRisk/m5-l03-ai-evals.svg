@@ -1,0 +1,219 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filters -->
+    <filter id="cyan-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-white" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#e2e8f0"/>
+    </marker>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.4"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="800" height="48" fill="#111827" opacity="0.95"/>
+  <line x1="0" y1="48" x2="800" y2="48" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="400" y="30" font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">AI Evaluation Frameworks &amp; Benchmarks</text>
+  <text x="400" y="44" font-family="'Courier New', monospace" font-size="9" fill="#00d4ff" text-anchor="middle">MODULE 5 · LESSON 3 · AI SECURITY RISK</text>
+
+  <!-- ═══════════════════════════════════════════════════
+       CENTRAL EVAL HUB
+  ═══════════════════════════════════════════════════ -->
+  <!-- Hub outer ring -->
+  <circle cx="400" cy="300" r="62" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.5"/>
+  <!-- Hub inner -->
+  <circle cx="400" cy="300" r="52" fill="#0f1f2e" stroke="#00d4ff" stroke-width="2" filter="url(#cyan-glow)"/>
+  <text x="400" y="292" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#00d4ff" text-anchor="middle">EVAL</text>
+  <text x="400" y="306" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#00d4ff" text-anchor="middle">HUB</text>
+  <text x="400" y="320" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0" text-anchor="middle">Continuous</text>
+
+  <!-- ═══════════════════════════════════════════════════
+       SIX EVALUATION DIMENSIONS — arranged in hexagon
+  ═══════════════════════════════════════════════════ -->
+
+  <!-- 1. CAPABILITY EVALS — top-left -->
+  <!-- Connector line -->
+  <line x1="320" y1="242" x2="258" y2="195" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrow-cyan)" opacity="0.7"/>
+  <rect x="118" y="138" width="148" height="100" rx="8" fill="#0f1f2e" stroke="#4a9eff" stroke-width="1.5"/>
+  <rect x="118" y="138" width="148" height="22" rx="8" fill="#4a9eff" opacity="0.25"/>
+  <rect x="118" y="148" width="148" height="12" fill="#4a9eff" opacity="0.25"/>
+  <text x="192" y="153" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#4a9eff" text-anchor="middle">CAPABILITY EVALS</text>
+  <text x="128" y="171" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ MMLU (57 subjects)</text>
+  <text x="128" y="184" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ HumanEval (code pass@k)</text>
+  <text x="128" y="197" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ GSM8K (math reasoning)</text>
+  <text x="128" y="210" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ HellaSwag (commonsense)</text>
+  <text x="128" y="223" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ MBPP, MATH, ARC</text>
+
+  <!-- 2. SAFETY EVALS — top-right -->
+  <line x1="480" y1="242" x2="542" y2="195" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)" opacity="0.7"/>
+  <rect x="534" y="138" width="148" height="100" rx="8" fill="#0f1f2e" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="534" y="138" width="148" height="22" rx="8" fill="#22c55e" opacity="0.2"/>
+  <rect x="534" y="148" width="148" height="12" fill="#22c55e" opacity="0.2"/>
+  <text x="608" y="153" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#22c55e" text-anchor="middle">SAFETY EVALS</text>
+  <text x="544" y="171" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ ToxiGen (toxicity)</text>
+  <text x="544" y="184" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ TruthfulQA (hallucination)</text>
+  <text x="544" y="197" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ BBQ (bias benchmarks)</text>
+  <text x="544" y="210" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ BOLD (fairness)</text>
+  <text x="544" y="223" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ WinoBias, StereoSet</text>
+
+  <!-- 3. SECURITY EVALS — right -->
+  <line x1="452" y1="310" x2="534" y2="310" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-cyan)" opacity="0.7"/>
+  <rect x="534" y="260" width="148" height="100" rx="8" fill="#0f1f2e" stroke="#ef4444" stroke-width="1.5"/>
+  <rect x="534" y="260" width="148" height="22" rx="8" fill="#ef4444" opacity="0.2"/>
+  <rect x="534" y="270" width="148" height="12" fill="#ef4444" opacity="0.2"/>
+  <text x="608" y="275" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">SECURITY EVALS</text>
+  <text x="544" y="293" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Prompt injection suites</text>
+  <text x="544" y="306" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Jailbreak benchmarks</text>
+  <text x="544" y="319" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Adversarial robustness</text>
+  <text x="544" y="332" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Refusal consistency</text>
+  <text x="544" y="345" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Red-team datasets</text>
+
+  <!-- 4. ALIGNMENT EVALS — bottom-right -->
+  <line x1="452" y1="358" x2="534" y2="395" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrow-cyan)" opacity="0.7"/>
+  <rect x="534" y="384" width="148" height="100" rx="8" fill="#0f1f2e" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="534" y="384" width="148" height="22" rx="8" fill="#8b5cf6" opacity="0.2"/>
+  <rect x="534" y="394" width="148" height="12" fill="#8b5cf6" opacity="0.2"/>
+  <text x="608" y="399" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#8b5cf6" text-anchor="middle">ALIGNMENT EVALS</text>
+  <text x="544" y="417" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Helpfulness ratings</text>
+  <text x="544" y="430" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Harmlessness scores</text>
+  <text x="544" y="443" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Honesty / factuality</text>
+  <text x="544" y="456" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Constitutional AI tests</text>
+  <text x="544" y="469" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ RLHF preference evals</text>
+
+  <!-- 5. PRIVACY EVALS — bottom-left -->
+  <line x1="348" y1="358" x2="266" y2="395" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow-orange)" opacity="0.7"/>
+  <rect x="118" y="384" width="148" height="100" rx="8" fill="#0f1f2e" stroke="#f97316" stroke-width="1.5"/>
+  <rect x="118" y="384" width="148" height="22" rx="8" fill="#f97316" opacity="0.2"/>
+  <rect x="118" y="394" width="148" height="12" fill="#f97316" opacity="0.2"/>
+  <text x="192" y="399" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#f97316" text-anchor="middle">PRIVACY EVALS</text>
+  <text x="128" y="417" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Memorization tests</text>
+  <text x="128" y="430" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ PII extraction probes</text>
+  <text x="128" y="443" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Training data leakage</text>
+  <text x="128" y="456" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Canary token detection</text>
+  <text x="128" y="469" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Differential privacy</text>
+
+  <!-- 6. BUSINESS EVALS — left -->
+  <line x1="348" y1="310" x2="266" y2="310" stroke="#eab308" stroke-width="1.5" marker-end="url(#arrow-white)" opacity="0.7"/>
+  <rect x="118" y="260" width="148" height="100" rx="8" fill="#0f1f2e" stroke="#eab308" stroke-width="1.5"/>
+  <rect x="118" y="260" width="148" height="22" rx="8" fill="#eab308" opacity="0.2"/>
+  <rect x="118" y="270" width="148" height="12" fill="#eab308" opacity="0.2"/>
+  <text x="192" y="275" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#eab308" text-anchor="middle">BUSINESS EVALS</text>
+  <text x="128" y="293" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Task accuracy (F1/EM)</text>
+  <text x="128" y="306" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ RAG retrieval quality</text>
+  <text x="128" y="319" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Latency &amp; throughput</text>
+  <text x="128" y="332" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ Cost per token/request</text>
+  <text x="128" y="345" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ RAGAS: faithfulness</text>
+
+  <!-- ═══════════════════════════════════════════════════
+       EVAL PIPELINE — bottom strip
+  ═══════════════════════════════════════════════════ -->
+  <rect x="40" y="508" width="720" height="72" rx="6" fill="#111827" stroke="#1e3a5a" stroke-width="1"/>
+  <text x="400" y="522" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#00d4ff" text-anchor="middle">EVAL PIPELINE — CI/CD CONTINUOUS EVALUATION</text>
+
+  <!-- Pipeline steps -->
+  <!-- Step 1: Test Set -->
+  <rect x="55" y="530" width="90" height="38" rx="5" fill="#0f2a3a" stroke="#4a9eff" stroke-width="1.2"/>
+  <text x="100" y="545" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#4a9eff" text-anchor="middle">TEST SET</text>
+  <text x="100" y="558" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">prompts + labels</text>
+  <text x="100" y="568" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">golden answers</text>
+
+  <!-- Arrow -->
+  <line x1="145" y1="549" x2="162" y2="549" stroke="#e2e8f0" stroke-width="1.2" marker-end="url(#arrow-white)"/>
+
+  <!-- Step 2: Model -->
+  <rect x="163" y="530" width="90" height="38" rx="5" fill="#0f2a1a" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="208" y="545" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#22c55e" text-anchor="middle">MODEL</text>
+  <text x="208" y="558" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">inference run</text>
+  <text x="208" y="568" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">LLM-as-Judge</text>
+
+  <!-- Arrow -->
+  <line x1="253" y1="549" x2="270" y2="549" stroke="#e2e8f0" stroke-width="1.2" marker-end="url(#arrow-white)"/>
+
+  <!-- Step 3: Predictions -->
+  <rect x="271" y="530" width="90" height="38" rx="5" fill="#2a1a0f" stroke="#f97316" stroke-width="1.2"/>
+  <text x="316" y="545" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#f97316" text-anchor="middle">PREDICTIONS</text>
+  <text x="316" y="558" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">raw outputs</text>
+  <text x="316" y="568" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">structured results</text>
+
+  <!-- Arrow -->
+  <line x1="361" y1="549" x2="378" y2="549" stroke="#e2e8f0" stroke-width="1.2" marker-end="url(#arrow-white)"/>
+
+  <!-- Step 4: Metrics -->
+  <rect x="379" y="530" width="90" height="38" rx="5" fill="#1a1a2a" stroke="#8b5cf6" stroke-width="1.2"/>
+  <text x="424" y="545" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#8b5cf6" text-anchor="middle">METRICS</text>
+  <text x="424" y="558" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">F1, BLEU, ROUGE</text>
+  <text x="424" y="568" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">BERTScore, pass@k</text>
+
+  <!-- Arrow -->
+  <line x1="469" y1="549" x2="486" y2="549" stroke="#e2e8f0" stroke-width="1.2" marker-end="url(#arrow-white)"/>
+
+  <!-- Step 5: Dashboard -->
+  <rect x="487" y="530" width="90" height="38" rx="5" fill="#2a1a0a" stroke="#eab308" stroke-width="1.2"/>
+  <text x="532" y="545" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#eab308" text-anchor="middle">DASHBOARD</text>
+  <text x="532" y="558" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">trend tracking</text>
+  <text x="532" y="568" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">regression alerts</text>
+
+  <!-- Arrow -->
+  <line x1="577" y1="549" x2="594" y2="549" stroke="#e2e8f0" stroke-width="1.2" marker-end="url(#arrow-white)"/>
+
+  <!-- Step 6: Gate -->
+  <rect x="595" y="530" width="90" height="38" rx="5" fill="#2a0f0f" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="640" y="545" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#ef4444" text-anchor="middle">GATE / BLOCK</text>
+  <text x="640" y="558" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">pass/fail threshold</text>
+  <text x="640" y="568" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0" text-anchor="middle">deploy or rollback</text>
+
+  <!-- Feedback arrow from Gate back under pipeline -->
+  <path d="M 690 549 L 705 549 L 705 595 L 100 595 L 100 571" stroke="#00d4ff" stroke-width="1" fill="none" stroke-dasharray="4,3" marker-end="url(#arrow-cyan)" opacity="0.6"/>
+  <text x="400" y="592" font-family="'Courier New', monospace" font-size="7.5" fill="#00d4ff" text-anchor="middle">continuous feedback loop — automated regression testing</text>
+
+  <!-- ═══════════════════════════════════════════════════
+       LEGEND / KEY BADGES (upper right area)
+  ═══════════════════════════════════════════════════ -->
+  <!-- LLM Judge badge -->
+  <rect x="318" y="64" width="164" height="60" rx="6" fill="#111827" stroke="#00d4ff" stroke-width="1" opacity="0.9"/>
+  <text x="400" y="79" font-family="'Courier New', monospace" font-size="8.5" font-weight="bold" fill="#00d4ff" text-anchor="middle">EVAL METHODS</text>
+  <text x="328" y="93" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">◆ LLM-as-Judge (auto-grading)</text>
+  <text x="328" y="104" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">◆ Human eval (gold standard)</text>
+  <text x="328" y="115" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">◆ Reference-free metrics</text>
+
+  <!-- Frameworks badge -->
+  <rect x="494" y="64" width="164" height="60" rx="6" fill="#111827" stroke="#8b5cf6" stroke-width="1" opacity="0.9"/>
+  <text x="576" y="79" font-family="'Courier New', monospace" font-size="8.5" font-weight="bold" fill="#8b5cf6" text-anchor="middle">FRAMEWORKS</text>
+  <text x="504" y="93" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">◆ OpenAI Evals</text>
+  <text x="504" y="104" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">◆ EleutherAI LM Harness</text>
+  <text x="504" y="115" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">◆ RAGAS (RAG evaluation)</text>
+
+  <!-- Subtle decorative dots -->
+  <circle cx="400" cy="300" r="4" fill="#00d4ff" opacity="0.8"/>
+  <circle cx="400" cy="300" r="8" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Benchmark contamination warning strip -->
+  <rect x="140" y="64" width="165" height="60" rx="6" fill="#111827" stroke="#ef4444" stroke-width="1" opacity="0.9"/>
+  <text x="222" y="79" font-family="'Courier New', monospace" font-size="8.5" font-weight="bold" fill="#ef4444" text-anchor="middle">BENCHMARK RISKS</text>
+  <text x="150" y="93" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">⚠ Data contamination</text>
+  <text x="150" y="104" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">⚠ Benchmark overfitting</text>
+  <text x="150" y="115" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">⚠ Leaderboard gaming</text>
+</svg>

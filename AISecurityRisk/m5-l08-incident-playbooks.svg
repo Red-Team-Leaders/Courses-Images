@@ -1,0 +1,481 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#4a9eff"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8b5cf6"/>
+    </marker>
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <!-- Glow filters -->
+    <filter id="glow-red">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-blue">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradients -->
+    <linearGradient id="grad-red" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#7f1d1d;stop-opacity:0.15"/>
+    </linearGradient>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#1e3a5f;stop-opacity:0.15"/>
+    </linearGradient>
+    <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#7c2d12;stop-opacity:0.15"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#3b0764;stop-opacity:0.15"/>
+    </linearGradient>
+    <linearGradient id="grad-header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0d1117;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#1a2332;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0d1117;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="grad-timeline" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0f1f2e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1a2a3a;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid overlay -->
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Header bar -->
+  <rect x="0" y="0" width="800" height="52" fill="url(#grad-header)"/>
+  <rect x="0" y="50" width="800" height="1" fill="#00d4ff" opacity="0.4"/>
+
+  <!-- Shield icon -->
+  <polygon points="28,12 44,12 44,30 36,38 28,30" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.8"/>
+  <text x="36" y="29" text-anchor="middle" font-family="monospace" font-size="10" fill="#00d4ff">AI</text>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">AI Incident Response Playbooks</text>
+  <text x="400" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#00d4ff" letter-spacing="3">MODULE 5 — LESSON 8 — DETECT • CONTAIN • REMEDIATE • VALIDATE</text>
+
+  <!-- ===== PLAYBOOK CARD 1: PROMPT INJECTION ===== -->
+  <rect x="14" y="60" width="183" height="210" rx="6" fill="url(#grad-red)" stroke="#ef4444" stroke-width="1.5" filter="url(#shadow)"/>
+  <!-- Card corner fold -->
+  <polygon points="175,60 197,60 197,78" fill="#ef4444" opacity="0.3"/>
+  <line x1="175" y1="60" x2="197" y2="78" stroke="#ef4444" stroke-width="1" opacity="0.5"/>
+
+  <!-- Card header -->
+  <rect x="14" y="60" width="183" height="28" rx="6" fill="#ef4444" opacity="0.4"/>
+  <rect x="14" y="78" width="183" height="10" fill="#ef4444" opacity="0.4"/>
+  <!-- Playbook icon -->
+  <rect x="20" y="64" width="14" height="18" rx="2" fill="none" stroke="#ef4444" stroke-width="1.2"/>
+  <line x1="23" y1="69" x2="30" y2="69" stroke="#ef4444" stroke-width="0.8"/>
+  <line x1="23" y1="72" x2="30" y2="72" stroke="#ef4444" stroke-width="0.8"/>
+  <line x1="23" y1="75" x2="28" y2="75" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="38" y="72" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#ef4444">PB-01</text>
+  <text x="105" y="72" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="700" fill="#ffffff">PROMPT INJECTION</text>
+  <text x="105" y="83" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#fca5a5">Incident Response Playbook</text>
+
+  <!-- Steps flow -->
+  <!-- Step 1: Detect -->
+  <rect x="24" y="96" width="163" height="22" rx="3" fill="#ef4444" opacity="0.3"/>
+  <rect x="24" y="96" width="4" height="22" rx="1" fill="#ef4444"/>
+  <text x="34" y="105" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#ef4444">1  DETECT</text>
+  <text x="34" y="115" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Anomalous output patterns, policy bypass</text>
+  <!-- Arrow -->
+  <line x1="105" y1="118" x2="105" y2="126" stroke="#ef4444" stroke-width="1.2" marker-end="url(#arrow-red)"/>
+  <!-- Step 2: Isolate -->
+  <rect x="24" y="127" width="163" height="22" rx="3" fill="#ef4444" opacity="0.2"/>
+  <rect x="24" y="127" width="4" height="22" rx="1" fill="#ef4444" opacity="0.7"/>
+  <text x="34" y="136" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#ef4444">2  ISOLATE</text>
+  <text x="34" y="146" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Suspend session / block affected user</text>
+  <!-- Arrow -->
+  <line x1="105" y1="149" x2="105" y2="157" stroke="#ef4444" stroke-width="1.2" marker-end="url(#arrow-red)"/>
+  <!-- Step 3: Investigate -->
+  <rect x="24" y="158" width="163" height="22" rx="3" fill="#ef4444" opacity="0.2"/>
+  <rect x="24" y="158" width="4" height="22" rx="1" fill="#ef4444" opacity="0.5"/>
+  <text x="34" y="167" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#ef4444">3  INVESTIGATE</text>
+  <text x="34" y="177" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Prompt logs, exfil data, attack chain</text>
+  <!-- Arrow -->
+  <line x1="105" y1="180" x2="105" y2="188" stroke="#ef4444" stroke-width="1.2" marker-end="url(#arrow-red)"/>
+  <!-- Step 4: Fix -->
+  <rect x="24" y="189" width="163" height="22" rx="3" fill="#ef4444" opacity="0.2"/>
+  <rect x="24" y="189" width="4" height="22" rx="1" fill="#ef4444" opacity="0.35"/>
+  <text x="34" y="198" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#ef4444">4  FIX</text>
+  <text x="34" y="208" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Update guardrails, patch system prompts</text>
+  <!-- Arrow -->
+  <line x1="105" y1="211" x2="105" y2="219" stroke="#ef4444" stroke-width="1.2" marker-end="url(#arrow-red)"/>
+  <!-- Step 5: Validate -->
+  <rect x="24" y="220" width="163" height="22" rx="3" fill="#22c55e" opacity="0.2"/>
+  <rect x="24" y="220" width="4" height="22" rx="1" fill="#22c55e"/>
+  <text x="34" y="229" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#22c55e">5  VALIDATE</text>
+  <text x="34" y="239" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Red-team re-test, document findings</text>
+
+  <!-- Severity badge -->
+  <rect x="144" y="64" width="45" height="13" rx="3" fill="#ef4444" opacity="0.8"/>
+  <text x="166" y="73" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#ffffff">P1 CRIT</text>
+
+  <!-- ===== PLAYBOOK CARD 2: DATA LEAKAGE ===== -->
+  <rect x="207" y="60" width="183" height="210" rx="6" fill="url(#grad-blue)" stroke="#4a9eff" stroke-width="1.5" filter="url(#shadow)"/>
+  <polygon points="368,60 390,60 390,78" fill="#4a9eff" opacity="0.3"/>
+  <line x1="368" y1="60" x2="390" y2="78" stroke="#4a9eff" stroke-width="1" opacity="0.5"/>
+
+  <rect x="207" y="60" width="183" height="28" rx="6" fill="#4a9eff" opacity="0.3"/>
+  <rect x="207" y="78" width="183" height="10" fill="#4a9eff" opacity="0.3"/>
+  <rect x="213" y="64" width="14" height="18" rx="2" fill="none" stroke="#4a9eff" stroke-width="1.2"/>
+  <line x1="216" y1="69" x2="223" y2="69" stroke="#4a9eff" stroke-width="0.8"/>
+  <line x1="216" y1="72" x2="223" y2="72" stroke="#4a9eff" stroke-width="0.8"/>
+  <line x1="216" y1="75" x2="221" y2="75" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="231" y="72" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#4a9eff">PB-02</text>
+  <text x="298" y="72" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="700" fill="#ffffff">DATA LEAKAGE VIA AI</text>
+  <text x="298" y="83" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#93c5fd">Incident Response Playbook</text>
+
+  <rect x="217" y="96" width="163" height="22" rx="3" fill="#4a9eff" opacity="0.25"/>
+  <rect x="217" y="96" width="4" height="22" rx="1" fill="#4a9eff"/>
+  <text x="227" y="105" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#4a9eff">1  DETECT</text>
+  <text x="227" y="115" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">DLP alerts, PII in model outputs</text>
+  <line x1="298" y1="118" x2="298" y2="126" stroke="#4a9eff" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+
+  <rect x="217" y="127" width="163" height="22" rx="3" fill="#4a9eff" opacity="0.18"/>
+  <rect x="217" y="127" width="4" height="22" rx="1" fill="#4a9eff" opacity="0.7"/>
+  <text x="227" y="136" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#4a9eff">2  SCOPE</text>
+  <text x="227" y="146" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Identify data types, user scope, timeline</text>
+  <line x1="298" y1="149" x2="298" y2="157" stroke="#4a9eff" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+
+  <rect x="217" y="158" width="163" height="22" rx="3" fill="#4a9eff" opacity="0.18"/>
+  <rect x="217" y="158" width="4" height="22" rx="1" fill="#4a9eff" opacity="0.5"/>
+  <text x="227" y="167" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#4a9eff">3  NOTIFY</text>
+  <text x="227" y="177" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">DPO, legal, GDPR 72h notification</text>
+  <line x1="298" y1="180" x2="298" y2="188" stroke="#4a9eff" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+
+  <rect x="217" y="189" width="163" height="22" rx="3" fill="#4a9eff" opacity="0.18"/>
+  <rect x="217" y="189" width="4" height="22" rx="1" fill="#4a9eff" opacity="0.35"/>
+  <text x="227" y="198" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#4a9eff">4  CONTAIN</text>
+  <text x="227" y="208" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Revoke tokens, disable model endpoint</text>
+  <line x1="298" y1="211" x2="298" y2="219" stroke="#4a9eff" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+
+  <rect x="217" y="220" width="163" height="22" rx="3" fill="#22c55e" opacity="0.2"/>
+  <rect x="217" y="220" width="4" height="22" rx="1" fill="#22c55e"/>
+  <text x="227" y="229" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#22c55e">5  REMEDIATE</text>
+  <text x="227" y="239" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Apply output filters, privacy guardrails</text>
+
+  <rect x="337" y="64" width="45" height="13" rx="3" fill="#f97316" opacity="0.9"/>
+  <text x="359" y="73" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#ffffff">P2 HIGH</text>
+
+  <!-- ===== PLAYBOOK CARD 3: HALLUCINATION ===== -->
+  <rect x="400" y="60" width="183" height="210" rx="6" fill="url(#grad-orange)" stroke="#f97316" stroke-width="1.5" filter="url(#shadow)"/>
+  <polygon points="561,60 583,60 583,78" fill="#f97316" opacity="0.3"/>
+  <line x1="561" y1="60" x2="583" y2="78" stroke="#f97316" stroke-width="1" opacity="0.5"/>
+
+  <rect x="400" y="60" width="183" height="28" rx="6" fill="#f97316" opacity="0.3"/>
+  <rect x="400" y="78" width="183" height="10" fill="#f97316" opacity="0.3"/>
+  <rect x="406" y="64" width="14" height="18" rx="2" fill="none" stroke="#f97316" stroke-width="1.2"/>
+  <line x1="409" y1="69" x2="416" y2="69" stroke="#f97316" stroke-width="0.8"/>
+  <line x1="409" y1="72" x2="416" y2="72" stroke="#f97316" stroke-width="0.8"/>
+  <line x1="409" y1="75" x2="414" y2="75" stroke="#f97316" stroke-width="0.8"/>
+  <text x="424" y="72" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#f97316">PB-03</text>
+  <text x="491" y="72" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="700" fill="#ffffff">HALLUCINATION IN PROD</text>
+  <text x="491" y="83" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#fdba74">Incident Response Playbook</text>
+
+  <rect x="410" y="96" width="163" height="22" rx="3" fill="#f97316" opacity="0.25"/>
+  <rect x="410" y="96" width="4" height="22" rx="1" fill="#f97316"/>
+  <text x="420" y="105" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#f97316">1  DETECT</text>
+  <text x="420" y="115" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Factual error rate, user reports, evals</text>
+  <line x1="491" y1="118" x2="491" y2="126" stroke="#f97316" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+
+  <rect x="410" y="127" width="163" height="22" rx="3" fill="#f97316" opacity="0.18"/>
+  <rect x="410" y="127" width="4" height="22" rx="1" fill="#f97316" opacity="0.7"/>
+  <text x="420" y="136" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#f97316">2  ASSESS IMPACT</text>
+  <text x="420" y="146" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Affected users, decisions, liability risk</text>
+  <line x1="491" y1="149" x2="491" y2="157" stroke="#f97316" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+
+  <rect x="410" y="158" width="163" height="22" rx="3" fill="#f97316" opacity="0.18"/>
+  <rect x="410" y="158" width="4" height="22" rx="1" fill="#f97316" opacity="0.5"/>
+  <text x="420" y="167" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#f97316">3  SUPPRESS</text>
+  <text x="420" y="177" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Feature flag off, fallback to safe model</text>
+  <line x1="491" y1="180" x2="491" y2="188" stroke="#f97316" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+
+  <rect x="410" y="189" width="163" height="22" rx="3" fill="#f97316" opacity="0.18"/>
+  <rect x="410" y="189" width="4" height="22" rx="1" fill="#f97316" opacity="0.35"/>
+  <text x="420" y="198" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#f97316">4  COMMUNICATE</text>
+  <text x="420" y="208" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">User notifications, corrective statement</text>
+  <line x1="491" y1="211" x2="491" y2="219" stroke="#f97316" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+
+  <rect x="410" y="220" width="163" height="22" rx="3" fill="#22c55e" opacity="0.2"/>
+  <rect x="410" y="220" width="4" height="22" rx="1" fill="#22c55e"/>
+  <text x="420" y="229" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#22c55e">5  FIX</text>
+  <text x="420" y="239" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Fine-tune, add RAG grounding, re-eval</text>
+
+  <rect x="530" y="64" width="45" height="13" rx="3" fill="#eab308" opacity="0.9"/>
+  <text x="552" y="73" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#0d1117">P2 HIGH</text>
+
+  <!-- ===== PLAYBOOK CARD 4: MODEL POISONING ===== -->
+  <rect x="593" y="60" width="193" height="210" rx="6" fill="url(#grad-purple)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow)"/>
+  <polygon points="762,60 786,60 786,78" fill="#8b5cf6" opacity="0.3"/>
+  <line x1="762" y1="60" x2="786" y2="78" stroke="#8b5cf6" stroke-width="1" opacity="0.5"/>
+
+  <rect x="593" y="60" width="193" height="28" rx="6" fill="#8b5cf6" opacity="0.3"/>
+  <rect x="593" y="78" width="193" height="10" fill="#8b5cf6" opacity="0.3"/>
+  <rect x="599" y="64" width="14" height="18" rx="2" fill="none" stroke="#8b5cf6" stroke-width="1.2"/>
+  <line x1="602" y1="69" x2="609" y2="69" stroke="#8b5cf6" stroke-width="0.8"/>
+  <line x1="602" y1="72" x2="609" y2="72" stroke="#8b5cf6" stroke-width="0.8"/>
+  <line x1="602" y1="75" x2="607" y2="75" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="617" y="72" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#8b5cf6">PB-04</text>
+  <text x="689" y="72" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="700" fill="#ffffff">MODEL POISONING</text>
+  <text x="689" y="83" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#c4b5fd">Incident Response Playbook</text>
+
+  <rect x="603" y="96" width="173" height="22" rx="3" fill="#8b5cf6" opacity="0.25"/>
+  <rect x="603" y="96" width="4" height="22" rx="1" fill="#8b5cf6"/>
+  <text x="613" y="105" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#8b5cf6">1  DETECT</text>
+  <text x="613" y="115" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Behavior drift, backdoor triggers found</text>
+  <line x1="689" y1="118" x2="689" y2="126" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arrow-purple)"/>
+
+  <rect x="603" y="127" width="173" height="22" rx="3" fill="#8b5cf6" opacity="0.18"/>
+  <rect x="603" y="127" width="4" height="22" rx="1" fill="#8b5cf6" opacity="0.7"/>
+  <text x="613" y="136" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#8b5cf6">2  ROLLBACK</text>
+  <text x="613" y="146" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Revert to last clean checkpoint/version</text>
+  <line x1="689" y1="149" x2="689" y2="157" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arrow-purple)"/>
+
+  <rect x="603" y="158" width="173" height="22" rx="3" fill="#8b5cf6" opacity="0.18"/>
+  <rect x="603" y="158" width="4" height="22" rx="1" fill="#8b5cf6" opacity="0.5"/>
+  <text x="613" y="167" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#8b5cf6">3  FORENSICS</text>
+  <text x="613" y="177" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Training data audit, supply chain review</text>
+  <line x1="689" y1="180" x2="689" y2="188" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arrow-purple)"/>
+
+  <rect x="603" y="189" width="173" height="22" rx="3" fill="#8b5cf6" opacity="0.18"/>
+  <rect x="603" y="189" width="4" height="22" rx="1" fill="#8b5cf6" opacity="0.35"/>
+  <text x="613" y="198" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#8b5cf6">4  RETRAIN</text>
+  <text x="613" y="208" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Clean dataset, verified pipeline controls</text>
+  <line x1="689" y1="211" x2="689" y2="219" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arrow-purple)"/>
+
+  <rect x="603" y="220" width="173" height="22" rx="3" fill="#22c55e" opacity="0.2"/>
+  <rect x="603" y="220" width="4" height="22" rx="1" fill="#22c55e"/>
+  <text x="613" y="229" font-family="'Segoe UI', Arial, sans-serif" font-size="8" font-weight="700" fill="#22c55e">5  VALIDATE</text>
+  <text x="613" y="239" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Full eval suite, independent audit sign-off</text>
+
+  <rect x="723" y="64" width="55" height="13" rx="3" fill="#ef4444" opacity="0.9"/>
+  <text x="750" y="73" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#ffffff">P1 CRIT</text>
+
+  <!-- ===== INCIDENT TIMELINE ===== -->
+  <rect x="14" y="278" width="580" height="110" rx="6" fill="url(#grad-timeline)" stroke="#00d4ff" stroke-width="1" opacity="0.8"/>
+  <text x="22" y="295" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="700" fill="#00d4ff" letter-spacing="2">INCIDENT TIMELINE</text>
+
+  <!-- Timeline axis -->
+  <line x1="30" y1="350" x2="580" y2="350" stroke="#2a3a4a" stroke-width="2"/>
+  <!-- Tick marks -->
+  <line x1="30" y1="345" x2="30" y2="355" stroke="#4a9eff" stroke-width="1.5"/>
+  <line x1="140" y1="345" x2="140" y2="355" stroke="#4a9eff" stroke-width="1.5"/>
+  <line x1="280" y1="345" x2="280" y2="355" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="430" y1="345" x2="430" y2="355" stroke="#eab308" stroke-width="1.5"/>
+  <line x1="580" y1="345" x2="580" y2="355" stroke="#ef4444" stroke-width="1.5"/>
+
+  <text x="30" y="363" text-anchor="middle" font-family="monospace" font-size="7" fill="#93c5fd">T+0</text>
+  <text x="140" y="363" text-anchor="middle" font-family="monospace" font-size="7" fill="#93c5fd">T+15m</text>
+  <text x="280" y="363" text-anchor="middle" font-family="monospace" font-size="7" fill="#93c5fd">T+1h</text>
+  <text x="430" y="363" text-anchor="middle" font-family="monospace" font-size="7" fill="#93c5fd">T+4h</text>
+  <text x="580" y="363" text-anchor="middle" font-family="monospace" font-size="7" fill="#93c5fd">T+24h</text>
+
+  <!-- Phase bars -->
+  <!-- Detection phase -->
+  <rect x="30" y="325" width="110" height="18" rx="3" fill="#ef4444" opacity="0.7"/>
+  <text x="85" y="337" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#ffffff">DETECTION</text>
+  <!-- Containment phase -->
+  <rect x="140" y="325" width="140" height="18" rx="3" fill="#f97316" opacity="0.7"/>
+  <text x="210" y="337" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#ffffff">CONTAINMENT</text>
+  <!-- Investigation phase -->
+  <rect x="280" y="325" width="150" height="18" rx="3" fill="#4a9eff" opacity="0.7"/>
+  <text x="355" y="337" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#ffffff">INVESTIGATION</text>
+  <!-- Remediation phase -->
+  <rect x="430" y="325" width="150" height="18" rx="3" fill="#22c55e" opacity="0.7"/>
+  <text x="505" y="337" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" font-weight="700" fill="#ffffff">REMEDIATION</text>
+
+  <!-- MTTD/MTTR metrics -->
+  <!-- MTTD bracket -->
+  <line x1="30" y1="308" x2="140" y2="308" stroke="#00d4ff" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="30" y1="305" x2="30" y2="311" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="140" y1="305" x2="140" y2="311" stroke="#00d4ff" stroke-width="1"/>
+  <text x="85" y="304" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#00d4ff">MTTD: ~15 min</text>
+
+  <!-- MTTR bracket -->
+  <line x1="30" y1="375" x2="430" y2="375" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="30" y1="372" x2="30" y2="378" stroke="#22c55e" stroke-width="1"/>
+  <line x1="430" y1="372" x2="430" y2="378" stroke="#22c55e" stroke-width="1"/>
+  <text x="230" y="385" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#22c55e">MTTR: ~4 hours (P1 target)</text>
+
+  <!-- Closed bracket -->
+  <line x1="30" y1="382" x2="580" y2="382" stroke="#eab308" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <text x="580" y="384" font-family="monospace" font-size="7" fill="#eab308">PIR</text>
+
+  <!-- ===== RACI CHART ===== -->
+  <rect x="602" y="278" width="184" height="110" rx="6" fill="#0f1f2e" stroke="#8b5cf6" stroke-width="1" opacity="0.9"/>
+  <text x="694" y="294" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="700" fill="#8b5cf6" letter-spacing="2">RACI — IR ROLES</text>
+
+  <!-- RACI header row -->
+  <rect x="602" y="298" width="184" height="14" fill="#8b5cf6" opacity="0.2"/>
+  <text x="640" y="308" text-anchor="middle" font-family="monospace" font-size="7" fill="#c4b5fd">ROLE</text>
+  <text x="700" y="308" text-anchor="middle" font-family="monospace" font-size="7" fill="#c4b5fd">DETECT</text>
+  <text x="730" y="308" text-anchor="middle" font-family="monospace" font-size="7" fill="#c4b5fd">CONTAIN</text>
+  <text x="762" y="308" text-anchor="middle" font-family="monospace" font-size="7" fill="#c4b5fd">FIX</text>
+
+  <!-- RACI rows -->
+  <!-- AI Sec Team -->
+  <text x="610" y="323" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">AI Sec Team</text>
+  <rect x="692" y="315" width="16" height="12" rx="2" fill="#ef4444" opacity="0.7"/>
+  <text x="700" y="324" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">R</text>
+  <rect x="722" y="315" width="16" height="12" rx="2" fill="#22c55e" opacity="0.6"/>
+  <text x="730" y="324" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">A</text>
+  <rect x="754" y="315" width="16" height="12" rx="2" fill="#ef4444" opacity="0.7"/>
+  <text x="762" y="324" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">R</text>
+
+  <!-- Engineering -->
+  <text x="610" y="338" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Engineering</text>
+  <rect x="692" y="330" width="16" height="12" rx="2" fill="#4a9eff" opacity="0.6"/>
+  <text x="700" y="339" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">C</text>
+  <rect x="722" y="330" width="16" height="12" rx="2" fill="#ef4444" opacity="0.7"/>
+  <text x="730" y="339" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">R</text>
+  <rect x="754" y="330" width="16" height="12" rx="2" fill="#22c55e" opacity="0.6"/>
+  <text x="762" y="339" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">A</text>
+
+  <!-- Legal/DPO -->
+  <text x="610" y="353" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Legal / DPO</text>
+  <rect x="692" y="345" width="16" height="12" rx="2" fill="#eab308" opacity="0.6"/>
+  <text x="700" y="354" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">I</text>
+  <rect x="722" y="345" width="16" height="12" rx="2" fill="#4a9eff" opacity="0.6"/>
+  <text x="730" y="354" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">C</text>
+  <rect x="754" y="345" width="16" height="12" rx="2" fill="#4a9eff" opacity="0.6"/>
+  <text x="762" y="354" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">C</text>
+
+  <!-- Exec -->
+  <text x="610" y="368" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Exec / CISO</text>
+  <rect x="692" y="360" width="16" height="12" rx="2" fill="#eab308" opacity="0.6"/>
+  <text x="700" y="369" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">I</text>
+  <rect x="722" y="360" width="16" height="12" rx="2" fill="#22c55e" opacity="0.6"/>
+  <text x="730" y="369" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">A</text>
+  <rect x="754" y="360" width="16" height="12" rx="2" fill="#eab308" opacity="0.6"/>
+  <text x="762" y="369" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#fff">I</text>
+
+  <!-- RACI legend -->
+  <text x="610" y="382" font-family="monospace" font-size="6.5" fill="#ef4444">R=Responsible</text>
+  <text x="675" y="382" font-family="monospace" font-size="6.5" fill="#22c55e">A=Accountable</text>
+  <text x="610" y="390" font-family="monospace" font-size="6.5" fill="#4a9eff">C=Consulted</text>
+  <text x="675" y="390" font-family="monospace" font-size="6.5" fill="#eab308">I=Informed</text>
+
+  <!-- ===== SEVERITY FRAMEWORK ===== -->
+  <rect x="14" y="395" width="580" height="75" rx="6" fill="#0f1f2e" stroke="#eab308" stroke-width="1"/>
+  <text x="22" y="411" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="700" fill="#eab308" letter-spacing="2">AI INCIDENT SEVERITY FRAMEWORK</text>
+
+  <!-- P1 -->
+  <rect x="22" y="418" width="130" height="43" rx="4" fill="#ef4444" opacity="0.15" stroke="#ef4444" stroke-width="1"/>
+  <rect x="22" y="418" width="130" height="16" rx="4" fill="#ef4444" opacity="0.4"/>
+  <text x="87" y="430" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="700" fill="#ef4444">P1 — CRITICAL</text>
+  <text x="87" y="443" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Data breach / poisoning</text>
+  <text x="87" y="454" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">MTTR target: 4 hours</text>
+
+  <!-- P2 -->
+  <rect x="162" y="418" width="130" height="43" rx="4" fill="#f97316" opacity="0.15" stroke="#f97316" stroke-width="1"/>
+  <rect x="162" y="418" width="130" height="16" rx="4" fill="#f97316" opacity="0.35"/>
+  <text x="227" y="430" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="700" fill="#f97316">P2 — HIGH</text>
+  <text x="227" y="443" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">PII leak / safety failure</text>
+  <text x="227" y="454" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">MTTR target: 24 hours</text>
+
+  <!-- P3 -->
+  <rect x="302" y="418" width="130" height="43" rx="4" fill="#eab308" opacity="0.15" stroke="#eab308" stroke-width="1"/>
+  <rect x="302" y="418" width="130" height="16" rx="4" fill="#eab308" opacity="0.3"/>
+  <text x="367" y="430" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="700" fill="#eab308">P3 — MEDIUM</text>
+  <text x="367" y="443" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Performance degradation</text>
+  <text x="367" y="454" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">MTTR target: 72 hours</text>
+
+  <!-- P4 -->
+  <rect x="442" y="418" width="140" height="43" rx="4" fill="#22c55e" opacity="0.12" stroke="#22c55e" stroke-width="1"/>
+  <rect x="442" y="418" width="140" height="16" rx="4" fill="#22c55e" opacity="0.25"/>
+  <text x="512" y="430" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="700" fill="#22c55e">P4 — LOW</text>
+  <text x="512" y="443" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">Minor hallucination / bias</text>
+  <text x="512" y="454" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#e2e8f0">MTTR target: 2 weeks</text>
+
+  <!-- ===== KEY METRICS PANEL ===== -->
+  <rect x="602" y="395" width="184" height="75" rx="6" fill="#0f1f2e" stroke="#22c55e" stroke-width="1"/>
+  <text x="694" y="411" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="700" fill="#22c55e" letter-spacing="1">KEY IR METRICS</text>
+
+  <text x="612" y="427" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#00d4ff">MTTD</text>
+  <text x="786" y="427" text-anchor="end" font-family="monospace" font-size="7.5" fill="#ffffff">Mean Time to Detect</text>
+
+  <text x="612" y="441" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#22c55e">MTTR</text>
+  <text x="786" y="441" text-anchor="end" font-family="monospace" font-size="7.5" fill="#ffffff">Mean Time to Remediate</text>
+
+  <text x="612" y="455" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#f97316">RRR</text>
+  <text x="786" y="455" text-anchor="end" font-family="monospace" font-size="7.5" fill="#ffffff">Recurrence Rate</text>
+
+  <text x="612" y="462" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#eab308">FAR</text>
+  <text x="786" y="462" text-anchor="end" font-family="monospace" font-size="7.5" fill="#ffffff">False Alert Rate</text>
+
+  <!-- ===== POST-INCIDENT REVIEW FLOW ===== -->
+  <rect x="14" y="477" width="772" height="50" rx="6" fill="#111827" stroke="#00d4ff" stroke-width="1" opacity="0.9"/>
+  <text x="22" y="493" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="700" fill="#00d4ff" letter-spacing="2">POST-INCIDENT REVIEW (PIR) PIPELINE</text>
+
+  <!-- PIR Steps -->
+  <rect x="22" y="498" width="95" height="20" rx="3" fill="#1e2a3a" stroke="#00d4ff" stroke-width="0.8"/>
+  <text x="69" y="511" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#00d4ff">Timeline Reconstruction</text>
+
+  <line x1="117" y1="508" x2="125" y2="508" stroke="#00d4ff" stroke-width="1" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="125" y="498" width="95" height="20" rx="3" fill="#1e2a3a" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="172" y="511" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#4a9eff">Root Cause Analysis</text>
+
+  <line x1="220" y1="508" x2="228" y2="508" stroke="#00d4ff" stroke-width="1" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="228" y="498" width="95" height="20" rx="3" fill="#1e2a3a" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="275" y="511" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#8b5cf6">Gap Identification</text>
+
+  <line x1="323" y1="508" x2="331" y2="508" stroke="#00d4ff" stroke-width="1" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="331" y="498" width="95" height="20" rx="3" fill="#1e2a3a" stroke="#f97316" stroke-width="0.8"/>
+  <text x="378" y="511" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#f97316">Action Items / JIRA</text>
+
+  <line x1="426" y1="508" x2="434" y2="508" stroke="#00d4ff" stroke-width="1" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="434" y="498" width="95" height="20" rx="3" fill="#1e2a3a" stroke="#eab308" stroke-width="0.8"/>
+  <text x="481" y="511" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#eab308">Playbook Update</text>
+
+  <line x1="529" y1="508" x2="537" y2="508" stroke="#00d4ff" stroke-width="1" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="537" y="498" width="95" height="20" rx="3" fill="#1e2a3a" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="584" y="511" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#22c55e">Lessons Learned DB</text>
+
+  <line x1="632" y1="508" x2="640" y2="508" stroke="#00d4ff" stroke-width="1" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="640" y="498" width="140" height="20" rx="3" fill="#1e2a3a" stroke="#00d4ff" stroke-width="0.8"/>
+  <text x="710" y="511" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#00d4ff">Tabletop Exercise Update</text>
+
+  <!-- Footer -->
+  <text x="400" y="592" text-anchor="middle" font-family="monospace" font-size="7" fill="#374151">AI INCIDENT RESPONSE  |  MEAN-TIME METRICS  |  RACI FRAMEWORK  |  POST-INCIDENT REVIEW</text>
+
+  <!-- Corner decorations -->
+  <line x1="0" y1="0" x2="30" y2="0" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="0" y1="0" x2="0" y2="30" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="800" y1="0" x2="770" y2="0" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="800" y1="0" x2="800" y2="30" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="0" y1="600" x2="30" y2="600" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="0" y1="600" x2="0" y2="570" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="800" y1="600" x2="770" y2="600" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="800" y1="600" x2="800" y2="570" stroke="#00d4ff" stroke-width="2"/>
+</svg>

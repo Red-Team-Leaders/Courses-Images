@@ -1,0 +1,292 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8b5cf6"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glowCyan">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowRed">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Gradients -->
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a0a0a;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#1f0f0f;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1a0a0a;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="boxGradRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d1414;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1a0d0d;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="boxGradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1f2d;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0a1520;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="boxGradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d2d18;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0a1f10;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="boxGradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1228;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#120d1e;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Header band -->
+  <rect x="0" y="0" width="800" height="52" fill="url(#headerGrad)" opacity="0.95"/>
+  <rect x="0" y="50" width="800" height="2" fill="#ef4444" opacity="0.8"/>
+
+  <!-- Title -->
+  <text x="400" y="21" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" fill="#ef4444" opacity="0.8" letter-spacing="4">MODULE 5 · LESSON 4</text>
+  <text x="400" y="40" text-anchor="middle" font-family="'Courier New', monospace" font-size="20" fill="#ffffff" font-weight="bold" letter-spacing="1">RED TEAMING AI SYSTEMS</text>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- LEFT COLUMN: RED TEAM CYCLE (Process)  -->
+  <!-- ═══════════════════════════════════════ -->
+
+  <!-- Section label -->
+  <text x="10" y="74" font-family="'Courier New', monospace" font-size="9" fill="#ef4444" letter-spacing="3" opacity="0.9">RED TEAM METHODOLOGY CYCLE</text>
+  <line x1="10" y1="77" x2="390" y2="77" stroke="#ef4444" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- CYCLE NODES — positioned in a loop, 7 steps -->
+  <!-- Center of cycle area: x=200, y=310 -->
+
+  <!-- Step 1: Planning (top) -->
+  <rect x="150" y="88" width="100" height="46" rx="6" fill="url(#boxGradBlue)" stroke="#4a9eff" stroke-width="1.5" filter="url(#softGlow)"/>
+  <text x="200" y="107" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#4a9eff" font-weight="bold">① PLANNING</text>
+  <text x="200" y="120" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#a0b4cc">Scope · Objectives</text>
+  <text x="200" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#a0b4cc">Threat Model</text>
+
+  <!-- Arrow 1→2 -->
+  <path d="M200,134 L200,150" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#arrowCyan)" opacity="0.8"/>
+
+  <!-- Step 2: Reconnaissance -->
+  <rect x="120" y="152" width="160" height="46" rx="6" fill="url(#boxGradBlue)" stroke="#00d4ff" stroke-width="1.5" filter="url(#softGlow)"/>
+  <text x="200" y="171" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#00d4ff" font-weight="bold">② RECONNAISSANCE</text>
+  <text x="200" y="184" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#a0b4cc">Capabilities · Architecture</text>
+  <text x="200" y="194" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#a0b4cc">System Context · Data Flows</text>
+
+  <!-- Arrow 2→3 -->
+  <path d="M200,198 L200,214" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrowCyan)" opacity="0.8"/>
+
+  <!-- Step 3: Attack Development -->
+  <rect x="105" y="216" width="190" height="46" rx="6" fill="url(#boxGradRed)" stroke="#ef4444" stroke-width="1.5" filter="url(#glowRed)"/>
+  <text x="200" y="235" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#ef4444" font-weight="bold">③ ATTACK DEVELOPMENT</text>
+  <text x="200" y="248" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2c4c4">Jailbreaks · Injections</text>
+  <text x="200" y="258" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2c4c4">Adversarial Inputs · Exploits</text>
+
+  <!-- Arrow 3→4 -->
+  <path d="M200,262 L200,278" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrowCyan)" opacity="0.8"/>
+
+  <!-- Step 4: Execution -->
+  <rect x="115" y="280" width="170" height="46" rx="6" fill="url(#boxGradRed)" stroke="#f97316" stroke-width="1.5" filter="url(#softGlow)"/>
+  <text x="200" y="299" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#f97316" font-weight="bold">④ EXECUTION</text>
+  <text x="200" y="312" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2d0b8">Automated + Manual Testing</text>
+  <text x="200" y="322" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2d0b8">Garak · PyRIT · ARTPROMPT</text>
+
+  <!-- Arrow 4→5 -->
+  <path d="M200,326 L200,342" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrowOrange)" opacity="0.8"/>
+
+  <!-- Step 5: Documentation -->
+  <rect x="120" y="344" width="160" height="46" rx="6" fill="url(#boxGradPurple)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#softGlow)"/>
+  <text x="200" y="363" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#8b5cf6" font-weight="bold">⑤ DOCUMENTATION</text>
+  <text x="200" y="376" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#c8b8e2">Findings · Severity Ratings</text>
+  <text x="200" y="386" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#c8b8e2">Reproduction Steps · PoCs</text>
+
+  <!-- Arrow 5→6 -->
+  <path d="M200,390 L200,406" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrowPurple)" opacity="0.8"/>
+
+  <!-- Step 6: Reporting -->
+  <rect x="125" y="408" width="150" height="46" rx="6" fill="url(#boxGradPurple)" stroke="#eab308" stroke-width="1.5" filter="url(#softGlow)"/>
+  <text x="200" y="427" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#eab308" font-weight="bold">⑥ REPORTING</text>
+  <text x="200" y="440" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2dab8">Risk Rating · Recommendations</text>
+  <text x="200" y="450" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2dab8">OWASP LLM · MITRE ATLAS</text>
+
+  <!-- Arrow 6→7 -->
+  <path d="M200,454 L200,470" stroke="#eab308" stroke-width="1.5" marker-end="url(#arrowGreen)" opacity="0.8"/>
+
+  <!-- Step 7: Remediation Validation -->
+  <rect x="105" y="472" width="190" height="46" rx="6" fill="url(#boxGradGreen)" stroke="#22c55e" stroke-width="1.5" filter="url(#softGlow)"/>
+  <text x="200" y="491" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#22c55e" font-weight="bold">⑦ REMEDIATION VALIDATION</text>
+  <text x="200" y="504" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#b8e2c8">Retest Findings · Verify Fixes</text>
+  <text x="200" y="514" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#b8e2c8">Continuous Program → Loop Back</text>
+
+  <!-- Loop-back arrow from step 7 back to step 1 -->
+  <path d="M105,495 Q55,495 55,310 Q55,134 150,111" stroke="#22c55e" stroke-width="1.5" fill="none" stroke-dasharray="5,3" opacity="0.5" marker-end="url(#arrowGreen)"/>
+  <text x="42" y="315" font-family="'Courier New', monospace" font-size="8" fill="#22c55e" text-anchor="middle" opacity="0.7">CYCLE</text>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- DIVIDER                                 -->
+  <!-- ═══════════════════════════════════════ -->
+  <line x1="408" y1="60" x2="408" y2="540" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- RIGHT COLUMN TOP: ATTACK CATEGORIES    -->
+  <!-- ═══════════════════════════════════════ -->
+
+  <text x="418" y="74" font-family="'Courier New', monospace" font-size="9" fill="#ef4444" letter-spacing="3" opacity="0.9">ATTACK CATEGORY TAXONOMY</text>
+  <line x1="418" y1="77" x2="792" y2="77" stroke="#ef4444" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Attack category nodes: 2 columns, 3 rows -->
+  <!-- Row 1 -->
+  <rect x="418" y="86" width="178" height="54" rx="6" fill="#1a0d0d" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="428" y="102" font-family="'Courier New', monospace" font-size="9" fill="#ef4444" font-weight="bold">JAILBREAKS</text>
+  <text x="428" y="115" font-family="'Courier New', monospace" font-size="7.5" fill="#c8a0a0">Role-play · DAN · Hypotheticals</text>
+  <text x="428" y="127" font-family="'Courier New', monospace" font-size="7.5" fill="#c8a0a0">Many-shot · Encoding tricks</text>
+  <circle cx="586" cy="99" r="4" fill="#ef4444" opacity="0.6"/>
+
+  <rect x="604" y="86" width="188" height="54" rx="6" fill="#1a0f08" stroke="#f97316" stroke-width="1.5"/>
+  <text x="614" y="102" font-family="'Courier New', monospace" font-size="9" fill="#f97316" font-weight="bold">PROMPT INJECTION</text>
+  <text x="614" y="115" font-family="'Courier New', monospace" font-size="7.5" fill="#c8b090">Direct · Indirect · Stored</text>
+  <text x="614" y="127" font-family="'Courier New', monospace" font-size="7.5" fill="#c8b090">Cross-context · Agentic chains</text>
+  <circle cx="782" cy="99" r="4" fill="#f97316" opacity="0.6"/>
+
+  <!-- Row 2 -->
+  <rect x="418" y="148" width="178" height="54" rx="6" fill="#0d1a14" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="428" y="164" font-family="'Courier New', monospace" font-size="9" fill="#22c55e" font-weight="bold">DATA EXTRACTION</text>
+  <text x="428" y="177" font-family="'Courier New', monospace" font-size="7.5" fill="#a0c8b0">Training data leakage</text>
+  <text x="428" y="189" font-family="'Courier New', monospace" font-size="7.5" fill="#a0c8b0">PII · Secrets · Model weights</text>
+  <circle cx="586" cy="161" r="4" fill="#22c55e" opacity="0.6"/>
+
+  <rect x="604" y="148" width="188" height="54" rx="6" fill="#1a0d0d" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="614" y="164" font-family="'Courier New', monospace" font-size="9" fill="#ef4444" font-weight="bold">HARMFUL CONTENT</text>
+  <text x="614" y="177" font-family="'Courier New', monospace" font-size="7.5" fill="#c8a0a0">CSAM · Weapons · Violence</text>
+  <text x="614" y="189" font-family="'Courier New', monospace" font-size="7.5" fill="#c8a0a0">Self-harm · Radicalization</text>
+  <circle cx="782" cy="161" r="4" fill="#ef4444" opacity="0.6"/>
+
+  <!-- Row 3 -->
+  <rect x="418" y="210" width="178" height="54" rx="6" fill="#0f0d1a" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="428" y="226" font-family="'Courier New', monospace" font-size="9" fill="#8b5cf6" font-weight="bold">BIAS ELICITATION</text>
+  <text x="428" y="239" font-family="'Courier New', monospace" font-size="7.5" fill="#b8a0c8">Demographic bias testing</text>
+  <text x="428" y="251" font-family="'Courier New', monospace" font-size="7.5" fill="#b8a0c8">Fairness · Discrimination</text>
+  <circle cx="586" cy="223" r="4" fill="#8b5cf6" opacity="0.6"/>
+
+  <rect x="604" y="210" width="188" height="54" rx="6" fill="#0d1520" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="614" y="226" font-family="'Courier New', monospace" font-size="9" fill="#4a9eff" font-weight="bold">CAPABILITY ABUSE</text>
+  <text x="614" y="239" font-family="'Courier New', monospace" font-size="7.5" fill="#a0b8d0">Code execution · Tool misuse</text>
+  <text x="614" y="251" font-family="'Courier New', monospace" font-size="7.5" fill="#a0b8d0">Agentic escalation · SSRF</text>
+  <circle cx="782" cy="223" r="4" fill="#4a9eff" opacity="0.6"/>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- RIGHT COLUMN BOTTOM: COMPARISON MATRIX -->
+  <!-- ═══════════════════════════════════════ -->
+
+  <text x="418" y="286" font-family="'Courier New', monospace" font-size="9" fill="#00d4ff" letter-spacing="3" opacity="0.9">AUTOMATED vs MANUAL RED TEAMING</text>
+  <line x1="418" y1="289" x2="792" y2="289" stroke="#00d4ff" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Matrix header row -->
+  <rect x="418" y="293" width="185" height="22" rx="3" fill="#0d1f2d" stroke="#4a9eff" stroke-width="1"/>
+  <text x="510" y="308" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#4a9eff" font-weight="bold">AUTOMATED</text>
+
+  <rect x="607" y="293" width="185" height="22" rx="3" fill="#1a0f08" stroke="#f97316" stroke-width="1"/>
+  <text x="699" y="308" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#f97316" font-weight="bold">MANUAL</text>
+
+  <!-- Row labels column -->
+  <!-- Row: Scale -->
+  <rect x="418" y="317" width="374" height="20" rx="2" fill="#ffffff" fill-opacity="0.02"/>
+  <text x="422" y="331" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cbf">SCALE</text>
+  <text x="510" y="331" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#22c55e">Millions of probes</text>
+  <text x="699" y="331" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#f97316">Hundreds of probes</text>
+
+  <!-- Row: Creativity -->
+  <rect x="418" y="339" width="374" height="20" rx="2" fill="#ffffff" fill-opacity="0.02"/>
+  <text x="422" y="353" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cbf">CREATIVITY</text>
+  <text x="510" y="353" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#f97316">Low — template-based</text>
+  <text x="699" y="353" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#22c55e">High — adaptive, novel</text>
+
+  <!-- Row: Coverage -->
+  <rect x="418" y="361" width="374" height="20" rx="2" fill="#ffffff" fill-opacity="0.02"/>
+  <text x="422" y="375" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cbf">COVERAGE</text>
+  <text x="510" y="375" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#22c55e">Broad systematic</text>
+  <text x="699" y="375" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cbf">Deep targeted areas</text>
+
+  <!-- Row: Cost -->
+  <rect x="418" y="383" width="374" height="20" rx="2" fill="#ffffff" fill-opacity="0.02"/>
+  <text x="422" y="397" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cbf">COST</text>
+  <text x="510" y="397" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#22c55e">Low per probe</text>
+  <text x="699" y="397" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#f97316">High — expert hours</text>
+
+  <!-- Row: Tools -->
+  <rect x="418" y="405" width="374" height="20" rx="2" fill="#ffffff" fill-opacity="0.02"/>
+  <text x="422" y="419" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cbf">TOOLS</text>
+  <text x="510" y="419" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#00d4ff">Garak · PyRIT · ARTPROMPT</text>
+  <text x="699" y="419" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#00d4ff">Domain experts · Researchers</text>
+
+  <!-- Row: Use Case -->
+  <rect x="418" y="427" width="374" height="20" rx="2" fill="#ffffff" fill-opacity="0.02"/>
+  <text x="422" y="441" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cbf">BEST FOR</text>
+  <text x="510" y="441" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cbf">Regression · CI/CD gates</text>
+  <text x="699" y="441" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#8b9cbf">New attack surfaces</text>
+
+  <!-- divider lines for matrix -->
+  <line x1="605" y1="293" x2="605" y2="449" stroke="#2a3a4a" stroke-width="1"/>
+  <line x1="418" y1="315" x2="792" y2="315" stroke="#2a3a4a" stroke-width="0.5"/>
+  <line x1="418" y1="337" x2="792" y2="337" stroke="#2a3a4a" stroke-width="0.5"/>
+  <line x1="418" y1="359" x2="792" y2="359" stroke="#2a3a4a" stroke-width="0.5"/>
+  <line x1="418" y1="381" x2="792" y2="381" stroke="#2a3a4a" stroke-width="0.5"/>
+  <line x1="418" y1="403" x2="792" y2="403" stroke="#2a3a4a" stroke-width="0.5"/>
+  <line x1="418" y1="425" x2="792" y2="425" stroke="#2a3a4a" stroke-width="0.5"/>
+
+  <!-- Matrix border -->
+  <rect x="418" y="293" width="374" height="156" rx="4" fill="none" stroke="#2a3a4a" stroke-width="1"/>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- BOTTOM STRIP: FRAMEWORKS              -->
+  <!-- ═══════════════════════════════════════ -->
+
+  <line x1="0" y1="540" x2="800" y2="540" stroke="#1e3a5f" stroke-width="1" opacity="0.6"/>
+
+  <!-- Framework pills -->
+  <text x="14" y="555" font-family="'Courier New', monospace" font-size="8" fill="#8b9cbf" letter-spacing="1">FRAMEWORKS:</text>
+
+  <rect x="98" y="543" width="95" height="18" rx="9" fill="#0d1f2d" stroke="#4a9eff" stroke-width="1"/>
+  <text x="145" y="555" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#4a9eff">MITRE ATLAS</text>
+
+  <rect x="200" y="543" width="105" height="18" rx="9" fill="#1a1228" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="252" y="555" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#8b5cf6">NIST AI RMF</text>
+
+  <rect x="312" y="543" width="115" height="18" rx="9" fill="#0d2d18" stroke="#22c55e" stroke-width="1"/>
+  <text x="369" y="555" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#22c55e">OWASP LLM TOP 10</text>
+
+  <rect x="434" y="543" width="110" height="18" rx="9" fill="#1a0f08" stroke="#f97316" stroke-width="1"/>
+  <text x="489" y="555" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#f97316">STRIDE FOR AI</text>
+
+  <rect x="551" y="543" width="108" height="18" rx="9" fill="#1a0d0d" stroke="#ef4444" stroke-width="1"/>
+  <text x="605" y="555" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ef4444">ISO/IEC 42001</text>
+
+  <rect x="666" y="543" width="120" height="18" rx="9" fill="#1a1208" stroke="#eab308" stroke-width="1"/>
+  <text x="726" y="555" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#eab308">EU AI ACT ART.9</text>
+
+  <!-- Bottom label -->
+  <text x="400" y="588" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#3a4a5a">AI SECURITY RISK COURSE · MODULE 5 · RED TEAMING AI SYSTEMS</text>
+
+  <!-- Decorative corner brackets -->
+  <path d="M10,565 L10,590 L35,590" stroke="#ef4444" stroke-width="1.5" fill="none" opacity="0.4"/>
+  <path d="M790,565 L790,590 L765,590" stroke="#ef4444" stroke-width="1.5" fill="none" opacity="0.4"/>
+</svg>

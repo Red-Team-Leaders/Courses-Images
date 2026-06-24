@@ -1,0 +1,280 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#161b22" stroke-width="0.8"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arr-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#4a9eff"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arr-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arr-teal" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#14b8a6"/>
+    </marker>
+    <marker id="arr-gold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#eab308"/>
+    </marker>
+    <!-- Glow filters -->
+    <filter id="glow-cyan" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-blue" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Header band -->
+  <rect x="0" y="0" width="800" height="48" fill="#161b22" opacity="0.9"/>
+  <line x1="0" y1="48" x2="800" y2="48" stroke="#00d4ff" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Title -->
+  <text x="400" y="20" text-anchor="middle" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#ffffff">Prompting Strategies Taxonomy</text>
+  <text x="400" y="38" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#8b949e">AI Security Risk — Module 1, Lesson 5  |  Zero-Shot · Few-Shot · CoT · ToT · ReAct · Chaining</text>
+
+  <!-- ==============================
+       CENTRAL NODE
+       ============================== -->
+  <ellipse cx="400" cy="155" rx="78" ry="36" fill="#0d1117" stroke="#00d4ff" stroke-width="2.5" filter="url(#glow-cyan)"/>
+  <text x="400" y="149" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#00d4ff">Prompting</text>
+  <text x="400" y="165" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#00d4ff">Strategies</text>
+
+  <!-- ==============================
+       BRANCH CONNECTORS from center
+       ============================== -->
+  <!-- To Zero-Shot (far left) -->
+  <path d="M 325 143 Q 230 120 185 108" fill="none" stroke="#4a9eff" stroke-width="1.8" marker-end="url(#arr-blue)" opacity="0.9"/>
+  <!-- To Few-Shot (center-left) -->
+  <path d="M 340 122 Q 300 90 285 80" fill="none" stroke="#22c55e" stroke-width="1.8" marker-end="url(#arr-green)" opacity="0.9"/>
+  <!-- To CoT (top center) -->
+  <line x1="400" y1="119" x2="400" y2="82" stroke="#f97316" stroke-width="1.8" marker-end="url(#arr-orange)" opacity="0.9"/>
+  <!-- To Tree of Thoughts (center-right) -->
+  <path d="M 460 122 Q 500 90 515 80" fill="none" stroke="#8b5cf6" stroke-width="1.8" marker-end="url(#arr-purple)" opacity="0.9"/>
+  <!-- To ReAct (far right) -->
+  <path d="M 475 143 Q 565 120 612 108" fill="none" stroke="#ef4444" stroke-width="1.8" marker-end="url(#arr-red)" opacity="0.9"/>
+  <!-- To Prompt Chaining (below) -->
+  <line x1="400" y1="191" x2="400" y2="218" stroke="#14b8a6" stroke-width="1.8" marker-end="url(#arr-teal)" opacity="0.9"/>
+
+  <!-- ==============================
+       ZERO-SHOT NODE  (left)
+       ============================== -->
+  <rect x="60" y="72" width="120" height="36" rx="7" fill="#0f1923" stroke="#4a9eff" stroke-width="2"/>
+  <text x="120" y="86" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#4a9eff">Zero-Shot</text>
+  <text x="120" y="101" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">No examples needed</text>
+  <!-- snippet box -->
+  <rect x="30" y="118" width="188" height="68" rx="5" fill="#0a0f14" stroke="#4a9eff" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="40" y="133" font-family="'Courier New', monospace" font-size="8" fill="#8b949e">▸ prompt</text>
+  <text x="40" y="146" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">  "Classify: 'Product broke</text>
+  <text x="40" y="158" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">   after one day.'"</text>
+  <text x="40" y="171" font-family="'Courier New', monospace" font-size="8" fill="#22c55e">▸ output: Negative</text>
+  <text x="40" y="183" font-family="'Courier New', monospace" font-size="7.5" fill="#4a9eff">  ↳ relies on pre-trained knowledge</text>
+
+  <!-- ==============================
+       FEW-SHOT NODE  (center-left)
+       ============================== -->
+  <rect x="218" y="52" width="120" height="36" rx="7" fill="#0f1923" stroke="#22c55e" stroke-width="2"/>
+  <text x="278" y="66" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#22c55e">Few-Shot</text>
+  <text x="278" y="81" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">1–3 demonstrations</text>
+  <!-- snippet box -->
+  <rect x="196" y="0" width="162" height="48" rx="5" fill="#0a0f14" stroke="#22c55e" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="204" y="13" font-family="'Courier New', monospace" font-size="7.5" fill="#8b949e">▸ examples</text>
+  <text x="204" y="25" font-family="'Courier New', monospace" font-size="7.5" fill="#22c55e">  "great!" → Positive</text>
+  <text x="204" y="37" font-family="'Courier New', monospace" font-size="7.5" fill="#22c55e">  "awful"  → Negative</text>
+  <text x="204" y="47" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">  "okay?"  → ?</text>
+
+  <!-- ==============================
+       CHAIN-OF-THOUGHT NODE  (top center)
+       ============================== -->
+  <rect x="334" y="52" width="132" height="36" rx="7" fill="#0f1923" stroke="#f97316" stroke-width="2"/>
+  <text x="400" y="66" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#f97316">Chain-of-Thought</text>
+  <text x="400" y="81" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">Step-by-step reasoning</text>
+  <!-- snippet box -->
+  <rect x="334" y="0" width="132" height="48" rx="5" fill="#0a0f14" stroke="#f97316" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="342" y="13" font-family="'Courier New', monospace" font-size="7.5" fill="#f97316">"Let's think step by step:</text>
+  <text x="342" y="25" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">  Step 1: identify scope</text>
+  <text x="342" y="37" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">  Step 2: check conditions</text>
+  <text x="342" y="48" font-family="'Courier New', monospace" font-size="7.5" fill="#22c55e">  → Answer: ..."</text>
+
+  <!-- ==============================
+       TREE OF THOUGHTS NODE  (center-right)
+       ============================== -->
+  <rect x="465" y="52" width="120" height="36" rx="7" fill="#0f1923" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="525" y="66" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#8b5cf6">Tree of Thoughts</text>
+  <text x="525" y="81" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">Branching exploration</text>
+  <!-- mini tree -->
+  <rect x="470" y="0" width="115" height="48" rx="5" fill="#0a0f14" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="527" y="12" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#8b5cf6">Root</text>
+  <line x1="505" y1="15" x2="490" y2="28" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="515" y1="15" x2="515" y2="28" stroke="#8b5cf6" stroke-width="1"/>
+  <line x1="527" y1="15" x2="542" y2="28" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="482" y="37" font-family="'Courier New', monospace" font-size="7" fill="#8b949e">[A]</text>
+  <text x="507" y="37" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">[B]✓</text>
+  <text x="532" y="37" font-family="'Courier New', monospace" font-size="7" fill="#8b949e">[C]</text>
+  <text x="507" y="47" font-family="'Courier New', monospace" font-size="7" fill="#22c55e">best path</text>
+
+  <!-- ==============================
+       REACT NODE  (right)
+       ============================== -->
+  <rect x="617" y="72" width="120" height="36" rx="7" fill="#0f1923" stroke="#ef4444" stroke-width="2"/>
+  <text x="677" y="86" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#ef4444">ReAct</text>
+  <text x="677" y="101" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">Reason + Act loop</text>
+  <!-- snippet box -->
+  <rect x="597" y="118" width="190" height="68" rx="5" fill="#0a0f14" stroke="#ef4444" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="607" y="132" font-family="'Courier New', monospace" font-size="8" fill="#ef4444">Thought: need CVE data</text>
+  <text x="607" y="145" font-family="'Courier New', monospace" font-size="8" fill="#f97316">Action:  search("CVE-2024")</text>
+  <text x="607" y="158" font-family="'Courier New', monospace" font-size="8" fill="#4a9eff">Obs:     CVSS 9.8 found</text>
+  <text x="607" y="171" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Thought: patch required</text>
+  <text x="607" y="183" font-family="'Courier New', monospace" font-size="7.5" fill="#8b949e">  ↳ loops until answer</text>
+
+  <!-- ==============================
+       PROMPT CHAINING (below center)
+       ============================== -->
+  <rect x="308" y="218" width="184" height="36" rx="7" fill="#0f1923" stroke="#14b8a6" stroke-width="2"/>
+  <text x="400" y="232" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#14b8a6">Prompt Chaining</text>
+  <text x="400" y="247" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">Sequential composition</text>
+  <!-- Flow boxes -->
+  <rect x="230" y="265" width="340" height="42" rx="5" fill="#0a0f14" stroke="#14b8a6" stroke-width="1" stroke-dasharray="5,3"/>
+  <rect x="240" y="273" width="52" height="22" rx="4" fill="#14b8a6" fill-opacity="0.18" stroke="#14b8a6" stroke-width="1.2"/>
+  <text x="266" y="287" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#14b8a6">Extract</text>
+  <line x1="293" y1="284" x2="306" y2="284" stroke="#14b8a6" stroke-width="1.5" marker-end="url(#arr-teal)"/>
+  <rect x="308" y="273" width="52" height="22" rx="4" fill="#14b8a6" fill-opacity="0.18" stroke="#14b8a6" stroke-width="1.2"/>
+  <text x="334" y="287" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#14b8a6">Analyze</text>
+  <line x1="361" y1="284" x2="374" y2="284" stroke="#14b8a6" stroke-width="1.5" marker-end="url(#arr-teal)"/>
+  <rect x="376" y="273" width="52" height="22" rx="4" fill="#14b8a6" fill-opacity="0.18" stroke="#14b8a6" stroke-width="1.2"/>
+  <text x="402" y="287" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#14b8a6">Summarize</text>
+  <line x1="429" y1="284" x2="442" y2="284" stroke="#14b8a6" stroke-width="1.5" marker-end="url(#arr-teal)"/>
+  <rect x="444" y="273" width="52" height="22" rx="4" fill="#ef4444" fill-opacity="0.18" stroke="#ef4444" stroke-width="1.2"/>
+  <text x="470" y="287" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ef4444">Output⚠</text>
+  <text x="520" y="279" font-family="'Courier New', monospace" font-size="7" fill="#8b949e">inject</text>
+  <text x="520" y="289" font-family="'Courier New', monospace" font-size="7" fill="#ef4444">risk→</text>
+
+  <!-- ==============================
+       MIDDLE ROW: Role, Structured, Injection
+       ============================== -->
+  <!-- Role Prompting -->
+  <rect x="22" y="198" width="148" height="60" rx="7" fill="#0f1923" stroke="#eab308" stroke-width="1.8"/>
+  <text x="96" y="214" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#eab308">Role Prompting</text>
+  <rect x="32" y="222" width="128" height="30" rx="4" fill="#0a0f14" stroke="#eab308" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="42" y="233" font-family="'Courier New', monospace" font-size="7.5" fill="#eab308">"You are a senior red team</text>
+  <text x="42" y="244" font-family="'Courier New', monospace" font-size="7.5" fill="#eab308"> operator with 15 yrs exp."</text>
+  <text x="42" y="253" font-family="'Courier New', monospace" font-size="7" fill="#8b949e">▸ system-level persona</text>
+
+  <!-- Structured Output -->
+  <rect x="630" y="198" width="148" height="60" rx="7" fill="#0f1923" stroke="#eab308" stroke-width="1.8"/>
+  <text x="704" y="214" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#eab308">Structured Output</text>
+  <rect x="640" y="222" width="128" height="30" rx="4" fill="#0a0f14" stroke="#eab308" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="650" y="233" font-family="'Courier New', monospace" font-size="7.5" fill="#eab308">"Respond ONLY as JSON:</text>
+  <text x="650" y="244" font-family="'Courier New', monospace" font-size="7.5" fill="#eab308"> {sev, score, action}"</text>
+  <text x="650" y="253" font-family="'Courier New', monospace" font-size="7" fill="#8b949e">▸ machine-parseable output</text>
+
+  <!-- Prompt Injection Warning banner -->
+  <rect x="176" y="316" width="448" height="36" rx="7" fill="#180d0d" stroke="#ef4444" stroke-width="2"/>
+  <text x="280" y="330" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#ef4444">Prompt Injection Risk</text>
+  <text x="280" y="344" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">Every strategy = unique attack surface — full coverage in Module 2</text>
+  <text x="596" y="330" font-family="'Courier New', monospace" font-size="10" fill="#ef4444">⚠ SEC</text>
+  <text x="190" y="330" font-family="'Courier New', monospace" font-size="12" fill="#ef4444">⚠</text>
+
+  <!-- ==============================
+       PERFORMANCE BAR CHART (bottom)
+       ============================== -->
+  <rect x="22" y="362" width="756" height="228" rx="8" fill="#10151c" stroke="#21262d" stroke-width="1.5"/>
+  <text x="400" y="382" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Relative Performance — Complex Reasoning Tasks</text>
+  <text x="400" y="396" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">(GSM8K + BIG-Bench Hard, approximate — varies by model and task domain)</text>
+
+  <!-- Y axis -->
+  <line x1="72" y1="405" x2="72" y2="558" stroke="#30363d" stroke-width="1.2"/>
+  <!-- Y ticks + labels -->
+  <line x1="68" y1="558" x2="72" y2="558" stroke="#8b949e" stroke-width="1"/>
+  <text x="62" y="561" text-anchor="end" font-family="'Courier New', monospace" font-size="8" fill="#8b949e">0</text>
+  <line x1="68" y1="527" x2="72" y2="527" stroke="#8b949e" stroke-width="1"/>
+  <text x="62" y="530" text-anchor="end" font-family="'Courier New', monospace" font-size="8" fill="#8b949e">20</text>
+  <line x1="68" y1="496" x2="72" y2="496" stroke="#8b949e" stroke-width="1"/>
+  <text x="62" y="499" text-anchor="end" font-family="'Courier New', monospace" font-size="8" fill="#8b949e">40</text>
+  <line x1="68" y1="465" x2="72" y2="465" stroke="#8b949e" stroke-width="1"/>
+  <text x="62" y="468" text-anchor="end" font-family="'Courier New', monospace" font-size="8" fill="#8b949e">60</text>
+  <line x1="68" y1="434" x2="72" y2="434" stroke="#8b949e" stroke-width="1"/>
+  <text x="62" y="437" text-anchor="end" font-family="'Courier New', monospace" font-size="8" fill="#8b949e">80</text>
+  <line x1="68" y1="403" x2="72" y2="403" stroke="#8b949e" stroke-width="1"/>
+  <text x="62" y="406" text-anchor="end" font-family="'Courier New', monospace" font-size="8" fill="#8b949e">100</text>
+  <!-- Y axis label (rotated) -->
+  <text x="20" y="488" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#8b949e" transform="rotate(-90 20 488)">Accuracy %</text>
+
+  <!-- Grid lines -->
+  <line x1="72" y1="527" x2="770" y2="527" stroke="#1c2128" stroke-width="1"/>
+  <line x1="72" y1="496" x2="770" y2="496" stroke="#1c2128" stroke-width="1"/>
+  <line x1="72" y1="465" x2="770" y2="465" stroke="#1c2128" stroke-width="1"/>
+  <line x1="72" y1="434" x2="770" y2="434" stroke="#1c2128" stroke-width="1"/>
+  <line x1="72" y1="403" x2="770" y2="403" stroke="#1c2128" stroke-width="1"/>
+
+  <!-- BARS  baseline=558, 1%=1.55px
+       Zero-Shot 48% → 74px  → y=484
+       Few-Shot  64% → 99px  → y=459
+       CoT       82% → 127px → y=431
+       ToT       89% → 138px → y=420
+       ReAct     78% → 121px → y=437
+       Chaining  74% → 115px → y=443
+       Role      70% → 109px → y=449
+  -->
+  <!-- bar width 70, gap 8, start x=85 -->
+  <!-- Zero-Shot -->
+  <rect x="85"  y="484" width="70" height="74"  rx="4" fill="#4a9eff" fill-opacity="0.85"/>
+  <text x="120" y="480" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#4a9eff">48%</text>
+  <text x="120" y="572" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">Zero-Shot</text>
+
+  <!-- Few-Shot -->
+  <rect x="186" y="459" width="70" height="99"  rx="4" fill="#22c55e" fill-opacity="0.85"/>
+  <text x="221" y="455" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#22c55e">64%</text>
+  <text x="221" y="572" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">Few-Shot</text>
+
+  <!-- CoT -->
+  <rect x="287" y="431" width="70" height="127" rx="4" fill="#f97316" fill-opacity="0.85"/>
+  <text x="322" y="427" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#f97316">82%</text>
+  <text x="322" y="572" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">CoT</text>
+
+  <!-- Tree of Thoughts -->
+  <rect x="388" y="420" width="70" height="138" rx="4" fill="#8b5cf6" fill-opacity="0.85"/>
+  <text x="423" y="416" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#8b5cf6">89%</text>
+  <text x="423" y="572" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">ToT</text>
+
+  <!-- ReAct -->
+  <rect x="489" y="437" width="70" height="121" rx="4" fill="#ef4444" fill-opacity="0.85"/>
+  <text x="524" y="433" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#ef4444">78%</text>
+  <text x="524" y="572" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">ReAct</text>
+
+  <!-- Prompt Chaining -->
+  <rect x="590" y="443" width="70" height="115" rx="4" fill="#14b8a6" fill-opacity="0.85"/>
+  <text x="625" y="439" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#14b8a6">74%</text>
+  <text x="625" y="572" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">Chaining</text>
+
+  <!-- Role Prompting -->
+  <rect x="691" y="449" width="70" height="109" rx="4" fill="#eab308" fill-opacity="0.85"/>
+  <text x="726" y="445" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#eab308">70%</text>
+  <text x="726" y="572" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#8b949e">Role</text>
+
+  <!-- "Best" callout on ToT bar -->
+  <rect x="380" y="408" width="40" height="12" rx="3" fill="#8b5cf6" fill-opacity="0.3" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="400" y="418" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8b5cf6">BEST</text>
+
+  <!-- Footer note -->
+  <text x="400" y="588" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#6e7681">* Approximate benchmark values — actual results vary significantly by model size, task type, and prompt quality</text>
+</svg>

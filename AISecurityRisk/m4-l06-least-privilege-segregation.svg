@@ -1,0 +1,291 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Arrow markers -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowWhite" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#e2e8f0"/>
+    </marker>
+    <!-- Gradient for privilege spectrum -->
+    <linearGradient id="privGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="40%" stop-color="#f97316"/>
+      <stop offset="70%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+    <!-- Glow filters -->
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <!-- Grid pattern overlay -->
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.5"/>
+
+  <!-- Top title bar -->
+  <rect x="0" y="0" width="800" height="54" fill="#161b22" opacity="0.9"/>
+  <line x1="0" y1="54" x2="800" y2="54" stroke="#00d4ff" stroke-width="1.5"/>
+
+  <!-- Title -->
+  <text x="400" y="22" text-anchor="middle" font-family="'Courier New', monospace" font-size="17" font-weight="bold" fill="#00d4ff" filter="url(#glowCyan)">AI SECURITY RISK</text>
+  <text x="400" y="43" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" fill="#e2e8f0">Least Privilege &amp; Segregation of Duties for AI Systems</text>
+
+  <!-- ======== LEFT PANEL: Privilege Spectrum ======== -->
+  <rect x="12" y="64" width="368" height="520" rx="6" fill="#161b22" stroke="#1e2a3a" stroke-width="1"/>
+  <text x="196" y="86" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#00d4ff">PRIVILEGE SPECTRUM</text>
+  <line x1="30" y1="92" x2="362" y2="92" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- Privilege bar (gradient vertical) -->
+  <rect x="38" y="105" width="28" height="300" rx="4" fill="url(#privGrad)"/>
+
+  <!-- Level labels on bar -->
+  <!-- Full Admin Zone label -->
+  <rect x="72" y="100" width="118" height="22" rx="3" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="0.5"/>
+  <text x="131" y="115" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" fill="#ef4444" font-weight="bold">FULL ADMIN</text>
+
+  <!-- Elevated Zone -->
+  <rect x="72" y="127" width="118" height="22" rx="3" fill="#f97316" opacity="0.15" stroke="#f97316" stroke-width="0.5"/>
+  <text x="131" y="142" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" fill="#f97316">ELEVATED</text>
+
+  <!-- Standard Zone -->
+  <rect x="72" y="154" width="118" height="22" rx="3" fill="#eab308" opacity="0.15" stroke="#eab308" stroke-width="0.5"/>
+  <text x="131" y="169" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" fill="#eab308">STANDARD</text>
+
+  <!-- Restricted Zone -->
+  <rect x="72" y="181" width="118" height="22" rx="3" fill="#4a9eff" opacity="0.15" stroke="#4a9eff" stroke-width="0.5"/>
+  <text x="131" y="196" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" fill="#4a9eff">RESTRICTED</text>
+
+  <!-- Minimal Zone -->
+  <rect x="72" y="208" width="118" height="22" rx="3" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="0.5"/>
+  <text x="131" y="223" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" fill="#22c55e">MINIMAL</text>
+
+  <!-- Read-Only Zone -->
+  <rect x="72" y="235" width="118" height="22" rx="3" fill="#22c55e" opacity="0.25" stroke="#22c55e" stroke-width="1"/>
+  <text x="131" y="250" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" fill="#22c55e">READ-ONLY</text>
+
+  <!-- None Zone -->
+  <rect x="72" y="262" width="118" height="22" rx="3" fill="#22c55e" opacity="0.35" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="131" y="277" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" fill="#22c55e" font-weight="bold">NONE / DENY-ALL</text>
+
+  <!-- Connector lines from bar to labels -->
+  <line x1="66" y1="111" x2="72" y2="111" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="66" y1="138" x2="72" y2="138" stroke="#f97316" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="66" y1="165" x2="72" y2="165" stroke="#eab308" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="66" y1="192" x2="72" y2="192" stroke="#4a9eff" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="66" y1="219" x2="72" y2="219" stroke="#22c55e" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="66" y1="246" x2="72" y2="246" stroke="#22c55e" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="66" y1="273" x2="72" y2="273" stroke="#22c55e" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- Green zone highlight bracket -->
+  <rect x="35" y="233" width="34" height="54" rx="3" fill="none" stroke="#22c55e" stroke-width="2" stroke-dasharray="3,2"/>
+  <text x="52" y="295" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#22c55e">AI HERE</text>
+  <!-- Arrow pointing to green zone -->
+  <path d="M 52 302 L 52 290" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- "AI Target Zone" label -->
+  <rect x="198" y="230" width="170" height="32" rx="4" fill="#22c55e" opacity="0.12" stroke="#22c55e" stroke-width="1"/>
+  <text x="283" y="244" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#22c55e" font-weight="bold">AI TARGET ZONE</text>
+  <text x="283" y="257" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">Minimum Required Permissions</text>
+  <line x1="198" y1="246" x2="192" y2="246" stroke="#22c55e" stroke-width="1" marker-end="url(#arrowGreen)"/>
+
+  <!-- Excessive Privilege Examples (RED boxes) -->
+  <text x="196" y="318" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#ef4444">EXCESSIVE PRIVILEGE — VIOLATIONS</text>
+
+  <!-- Violation 1: FS Access -->
+  <rect x="24" y="326" width="352" height="42" rx="4" fill="#ef4444" opacity="0.08" stroke="#ef4444" stroke-width="1"/>
+  <rect x="24" y="326" width="5" height="42" rx="2" fill="#ef4444"/>
+  <text x="39" y="341" font-family="'Courier New', monospace" font-size="9.5" fill="#ef4444" font-weight="bold">VIOLATION: Unrestricted File System Access</text>
+  <text x="39" y="356" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">Agent reads /etc/passwd, /root/.ssh — path traversal risk</text>
+
+  <!-- Violation 2: DB Write -->
+  <rect x="24" y="374" width="352" height="42" rx="4" fill="#f97316" opacity="0.08" stroke="#f97316" stroke-width="1"/>
+  <rect x="24" y="374" width="5" height="42" rx="2" fill="#f97316"/>
+  <text x="39" y="389" font-family="'Courier New', monospace" font-size="9.5" fill="#f97316" font-weight="bold">VIOLATION: Database Write (all tables)</text>
+  <text x="39" y="404" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">Agent should have SELECT on specific schema only</text>
+
+  <!-- Violation 3: Network -->
+  <rect x="24" y="422" width="352" height="42" rx="4" fill="#f97316" opacity="0.08" stroke="#f97316" stroke-width="1"/>
+  <rect x="24" y="422" width="5" height="42" rx="2" fill="#f97316"/>
+  <text x="39" y="437" font-family="'Courier New', monospace" font-size="9.5" fill="#f97316" font-weight="bold">VIOLATION: Unrestricted Outbound Network</text>
+  <text x="39" y="452" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">Agent can exfiltrate data to arbitrary endpoints</text>
+
+  <!-- JIT Privilege Box -->
+  <rect x="24" y="472" width="352" height="52" rx="4" fill="#8b5cf6" opacity="0.1" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="200" y="490" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#8b5cf6">JUST-IN-TIME PRIVILEGE ESCALATION</text>
+  <text x="200" y="505" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">Request elevated access → Approve → Time-bounded token</text>
+  <text x="200" y="518" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">Auto-revoke after task completion or TTL expiry</text>
+
+  <!-- ======== RIGHT PANEL: Segregation of Duties ======== -->
+  <rect x="388" y="64" width="400" height="520" rx="6" fill="#161b22" stroke="#1e2a3a" stroke-width="1"/>
+  <text x="588" y="86" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#00d4ff">SEGREGATION OF DUTIES (SoD)</text>
+  <line x1="404" y1="92" x2="780" y2="92" stroke="#1e2a3a" stroke-width="1"/>
+
+  <!-- SoD Matrix header -->
+  <text x="588" y="110" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#e2e8f0">Role Conflict Matrix for AI Development</text>
+
+  <!-- Matrix table header -->
+  <rect x="400" y="116" width="376" height="20" rx="2" fill="#1e2a3a"/>
+  <text x="490" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#00d4ff">ROLE</text>
+  <text x="576" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#00d4ff">CANNOT ALSO BE</text>
+  <text x="714" y="130" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#00d4ff">REASON</text>
+
+  <!-- Row 1 -->
+  <rect x="400" y="136" width="376" height="24" rx="0" fill="#1a2332" opacity="0.6"/>
+  <text x="461" y="152" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#4a9eff">Model Developer</text>
+  <!-- Conflict icon -->
+  <circle cx="540" cy="148" r="6" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="1"/>
+  <text x="540" y="152" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">✕</text>
+  <text x="620" y="152" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ef4444">Model Approver</text>
+  <text x="726" y="152" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Self-approval risk</text>
+
+  <!-- Row 2 -->
+  <rect x="400" y="160" width="376" height="24" rx="0" fill="#0d1117" opacity="0.6"/>
+  <text x="461" y="176" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#4a9eff">Data Engineer</text>
+  <circle cx="540" cy="172" r="6" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="1"/>
+  <text x="540" y="176" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">✕</text>
+  <text x="620" y="176" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ef4444">Data Auditor</text>
+  <text x="726" y="176" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Audit independence</text>
+
+  <!-- Row 3 -->
+  <rect x="400" y="184" width="376" height="24" rx="0" fill="#1a2332" opacity="0.6"/>
+  <text x="461" y="200" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#4a9eff">Prompt Engineer</text>
+  <circle cx="540" cy="196" r="6" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="1"/>
+  <text x="540" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">✕</text>
+  <text x="620" y="200" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ef4444">Prod Deployer</text>
+  <text x="726" y="200" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Injection risk</text>
+
+  <!-- Row 4 -->
+  <rect x="400" y="208" width="376" height="24" rx="0" fill="#0d1117" opacity="0.6"/>
+  <text x="461" y="224" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#4a9eff">Security Reviewer</text>
+  <circle cx="540" cy="220" r="6" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="1"/>
+  <text x="540" y="224" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">✕</text>
+  <text x="620" y="224" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ef4444">Model Owner</text>
+  <text x="726" y="224" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Conflict of interest</text>
+
+  <!-- Row 5 -->
+  <rect x="400" y="232" width="376" height="24" rx="0" fill="#1a2332" opacity="0.6"/>
+  <text x="461" y="248" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#4a9eff">Training Data Access</text>
+  <circle cx="540" cy="244" r="6" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="1"/>
+  <text x="540" y="248" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">✕</text>
+  <text x="620" y="248" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ef4444">Prod Inference</text>
+  <text x="726" y="248" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Data leakage path</text>
+
+  <!-- Four-Eyes Principle Diagram -->
+  <text x="588" y="276" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#eab308">FOUR-EYES PRINCIPLE — AI SENSITIVE OPS</text>
+
+  <!-- Operation flow boxes -->
+  <!-- Initiator -->
+  <rect x="404" y="284" width="92" height="52" rx="5" fill="#4a9eff" opacity="0.12" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="450" y="305" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#4a9eff" font-weight="bold">INITIATOR</text>
+  <text x="450" y="319" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Requests</text>
+  <text x="450" y="330" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">operation</text>
+
+  <!-- Arrow 1 -->
+  <line x1="496" y1="310" x2="514" y2="310" stroke="#e2e8f0" stroke-width="1.2" marker-end="url(#arrowWhite)"/>
+
+  <!-- Review queue -->
+  <rect x="514" y="284" width="92" height="52" rx="5" fill="#eab308" opacity="0.12" stroke="#eab308" stroke-width="1.5"/>
+  <text x="560" y="303" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#eab308" font-weight="bold">REVIEW</text>
+  <text x="560" y="316" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Peer reviews</text>
+  <text x="560" y="328" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">&amp; validates</text>
+
+  <!-- Arrow 2 -->
+  <line x1="606" y1="310" x2="624" y2="310" stroke="#e2e8f0" stroke-width="1.2" marker-end="url(#arrowWhite)"/>
+
+  <!-- Approver -->
+  <rect x="624" y="284" width="92" height="52" rx="5" fill="#22c55e" opacity="0.12" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="670" y="303" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#22c55e" font-weight="bold">APPROVER</text>
+  <text x="670" y="316" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Independent</text>
+  <text x="670" y="328" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">sign-off</text>
+
+  <!-- Arrow 3 -->
+  <line x1="716" y1="310" x2="734" y2="310" stroke="#e2e8f0" stroke-width="1.2" marker-end="url(#arrowWhite)"/>
+
+  <!-- Execute -->
+  <rect x="734" y="284" width="50" height="52" rx="5" fill="#8b5cf6" opacity="0.12" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="759" y="305" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#8b5cf6" font-weight="bold">EXEC</text>
+  <text x="759" y="320" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">Deploy</text>
+  <text x="759" y="332" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#e2e8f0">runs</text>
+
+  <!-- Applies to label -->
+  <text x="588" y="356" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">Applies to: Model deployment · Prompt changes · Data access grants</text>
+
+  <!-- GitOps SoD Flow -->
+  <text x="588" y="380" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#00d4ff">GitOps-ENFORCED SoD PIPELINE</text>
+
+  <!-- GitOps boxes row -->
+  <!-- Dev -->
+  <rect x="404" y="388" width="64" height="46" rx="4" fill="#4a9eff" opacity="0.1" stroke="#4a9eff" stroke-width="1"/>
+  <text x="436" y="406" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#4a9eff" font-weight="bold">DEVELOP</text>
+  <text x="436" y="419" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">PR raised</text>
+  <text x="436" y="430" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">by author</text>
+  <line x1="468" y1="411" x2="480" y2="411" stroke="#e2e8f0" stroke-width="1" marker-end="url(#arrowWhite)"/>
+
+  <!-- Review -->
+  <rect x="480" y="388" width="64" height="46" rx="4" fill="#eab308" opacity="0.1" stroke="#eab308" stroke-width="1"/>
+  <text x="512" y="406" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#eab308" font-weight="bold">REVIEW</text>
+  <text x="512" y="419" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Security</text>
+  <text x="512" y="430" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">gate</text>
+  <line x1="544" y1="411" x2="556" y2="411" stroke="#e2e8f0" stroke-width="1" marker-end="url(#arrowWhite)"/>
+
+  <!-- Scan -->
+  <rect x="556" y="388" width="64" height="46" rx="4" fill="#8b5cf6" opacity="0.1" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="588" y="404" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#8b5cf6" font-weight="bold">SCAN</text>
+  <text x="588" y="416" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Automated</text>
+  <text x="588" y="427" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">SoD check</text>
+  <text x="588" y="430" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#8b5cf6"></text>
+  <line x1="620" y1="411" x2="632" y2="411" stroke="#e2e8f0" stroke-width="1" marker-end="url(#arrowWhite)"/>
+
+  <!-- Approve -->
+  <rect x="632" y="388" width="64" height="46" rx="4" fill="#22c55e" opacity="0.1" stroke="#22c55e" stroke-width="1"/>
+  <text x="664" y="406" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#22c55e" font-weight="bold">APPROVE</text>
+  <text x="664" y="419" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Non-author</text>
+  <text x="664" y="430" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">sign-off</text>
+  <line x1="696" y1="411" x2="708" y2="411" stroke="#e2e8f0" stroke-width="1" marker-end="url(#arrowWhite)"/>
+
+  <!-- Deploy -->
+  <rect x="708" y="388" width="64" height="46" rx="4" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="740" y="406" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#22c55e" font-weight="bold">DEPLOY</text>
+  <text x="740" y="419" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">Automated</text>
+  <text x="740" y="430" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#e2e8f0">CD only</text>
+
+  <!-- Compensating controls box -->
+  <rect x="400" y="445" width="376" height="60" rx="4" fill="#eab308" opacity="0.07" stroke="#eab308" stroke-width="1"/>
+  <text x="588" y="463" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#eab308">COMPENSATING CONTROLS (Small Teams)</text>
+  <text x="588" y="477" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">When SoD impractical: mandatory audit log review · time delay</text>
+  <text x="588" y="490" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">between write &amp; deploy · external auditor · automated policy engines</text>
+  <text x="588" y="503" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Document as exception with CISO sign-off + annual review</text>
+
+  <!-- Audit trail box -->
+  <rect x="400" y="514" width="376" height="58" rx="4" fill="#8b5cf6" opacity="0.08" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="588" y="530" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#8b5cf6">AUDIT REQUIREMENTS FOR SoD EXCEPTIONS</text>
+  <text x="588" y="544" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Immutable audit log · Exception registry · Periodic access review</text>
+  <text x="588" y="558" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Automated conflict detection via IAM policy analysis · SIEM alerts</text>
+  <text x="588" y="572" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#e2e8f0">Quarterly SoD certification sweep for all AI roles</text>
+
+  <!-- Center divider -->
+  <line x1="384" y1="64" x2="384" y2="584" stroke="#1e2a3a" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="584" width="800" height="16" fill="#161b22" opacity="0.9"/>
+  <line x1="0" y1="584" x2="800" y2="584" stroke="#00d4ff" stroke-width="0.8"/>
+  <text x="400" y="595" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#4a9eff">Module 4 · Lesson 6 — AI Security Risk Course</text>
+</svg>

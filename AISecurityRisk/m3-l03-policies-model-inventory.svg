@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filters -->
+    <filter id="cyan-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="red-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#ef4444" flood-opacity="0.4" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feComposite in="SourceGraphic" in2="glow" operator="over"/>
+    </filter>
+    <filter id="drop-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <!-- Arrow markers -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Top gradient banner -->
+  <rect x="0" y="0" width="800" height="56" fill="#0d1117" opacity="0.95"/>
+  <line x1="0" y1="56" x2="800" y2="56" stroke="#00d4ff" stroke-width="1" opacity="0.4"/>
+
+  <!-- Title -->
+  <text x="400" y="22" fill="#ffffff" font-size="18" font-weight="bold" text-anchor="middle" font-family="monospace">Corporate AI Use Policies &amp; Model Inventory</text>
+  <text x="400" y="43" fill="#00d4ff" font-size="11" text-anchor="middle" font-family="monospace">Governance Framework | Shadow AI Detection | Policy Enforcement Controls</text>
+
+  <!-- ===== LEFT PANEL: Policy Hierarchy Pyramid ===== -->
+  <!-- Panel background -->
+  <rect x="14" y="64" width="275" height="378" rx="6" fill="#0f1923" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="152" y="82" fill="#00d4ff" font-size="11" font-weight="bold" text-anchor="middle" font-family="monospace">POLICY HIERARCHY</text>
+
+  <!-- Pyramid base trapezoid layers (bottom to top = wide to narrow) -->
+  <!-- Layer 5 (bottom, widest): AI Ethics Policy -->
+  <polygon points="42,406 262,406 248,376 56,376" fill="#8b5cf6" opacity="0.85" filter="url(#drop-shadow)"/>
+  <text x="152" y="396" fill="#ffffff" font-size="9.5" font-weight="bold" text-anchor="middle" font-family="monospace">AI Ethics Policy</text>
+
+  <!-- Layer 4: AI Security Policy -->
+  <polygon points="56,376 248,376 234,346 70,346" fill="#ef4444" opacity="0.85" filter="url(#drop-shadow)"/>
+  <text x="152" y="366" fill="#ffffff" font-size="9.5" font-weight="bold" text-anchor="middle" font-family="monospace">AI Security Policy</text>
+
+  <!-- Layer 3: Data Governance Policy -->
+  <polygon points="70,346 234,346 220,316 84,316" fill="#f97316" opacity="0.85" filter="url(#drop-shadow)"/>
+  <text x="152" y="336" fill="#ffffff" font-size="9.5" font-weight="bold" text-anchor="middle" font-family="monospace">Data Governance Policy</text>
+
+  <!-- Layer 2: AI Development Policy -->
+  <polygon points="84,316 220,316 206,286 98,286" fill="#4a9eff" opacity="0.85" filter="url(#drop-shadow)"/>
+  <text x="152" y="306" fill="#ffffff" font-size="9.5" font-weight="bold" text-anchor="middle" font-family="monospace">AI Development Policy</text>
+
+  <!-- Layer 1 (top, narrowest): Acceptable Use Policy -->
+  <polygon points="98,286 206,286 192,256 112,256" fill="#22c55e" opacity="0.9" filter="url(#drop-shadow)"/>
+  <text x="152" y="276" fill="#ffffff" font-size="9.5" font-weight="bold" text-anchor="middle" font-family="monospace">Acceptable Use Policy</text>
+
+  <!-- Apex triangle -->
+  <polygon points="112,256 192,256 152,224" fill="#eab308" opacity="0.95" filter="url(#drop-shadow)"/>
+  <text x="152" y="247" fill="#0d1117" font-size="8" font-weight="bold" text-anchor="middle" font-family="monospace">CORP</text>
+  <text x="152" y="257" fill="#0d1117" font-size="7" font-weight="bold" text-anchor="middle" font-family="monospace">MANDATE</text>
+
+  <!-- Labels right side -->
+  <line x1="262" y1="391" x2="278" y2="391" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="280" y="387" fill="#8b5cf6" font-size="8" font-family="monospace">Scope: All</text>
+  <text x="280" y="397" fill="#8b5cf6" font-size="8" font-family="monospace">Employees</text>
+  <line x1="248" y1="361" x2="278" y2="361" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="280" y="357" fill="#ef4444" font-size="8" font-family="monospace">Scope: IT &amp;</text>
+  <text x="280" y="367" fill="#ef4444" font-size="8" font-family="monospace">Security</text>
+  <line x1="234" y1="331" x2="278" y2="331" stroke="#f97316" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="280" y="327" fill="#f97316" font-size="8" font-family="monospace">Scope:</text>
+  <text x="280" y="337" fill="#f97316" font-size="8" font-family="monospace">Data Teams</text>
+  <line x1="220" y1="301" x2="278" y2="301" stroke="#4a9eff" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="280" y="297" fill="#4a9eff" font-size="8" font-family="monospace">Scope: Dev</text>
+  <text x="280" y="307" fill="#4a9eff" font-size="8" font-family="monospace">Teams</text>
+  <line x1="206" y1="271" x2="278" y2="271" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="280" y="267" fill="#22c55e" font-size="8" font-family="monospace">Scope: All</text>
+  <text x="280" y="277" fill="#22c55e" font-size="8" font-family="monospace">AI Users</text>
+
+  <!-- Policy Enforcement Controls (below pyramid) -->
+  <text x="152" y="428" fill="#e2e8f0" font-size="10" font-weight="bold" text-anchor="middle" font-family="monospace">ENFORCEMENT LAYERS</text>
+  <!-- Technical Controls -->
+  <rect x="22" y="433" width="78" height="36" rx="4" fill="#1a2a1a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="61" y="447" fill="#22c55e" font-size="8" font-weight="bold" text-anchor="middle" font-family="monospace">TECHNICAL</text>
+  <text x="61" y="460" fill="#a0a0a0" font-size="7" text-anchor="middle" font-family="monospace">Blocklist · DLP</text>
+  <!-- HR Controls -->
+  <rect x="112" y="433" width="78" height="36" rx="4" fill="#1a1a2a" stroke="#4a9eff" stroke-width="1.5"/>
+  <text x="151" y="447" fill="#4a9eff" font-size="8" font-weight="bold" text-anchor="middle" font-family="monospace">HR / LEGAL</text>
+  <text x="151" y="460" fill="#a0a0a0" font-size="7" text-anchor="middle" font-family="monospace">Policy · Training</text>
+  <!-- Audit Controls -->
+  <rect x="202" y="433" width="78" height="36" rx="4" fill="#2a1a1a" stroke="#f97316" stroke-width="1.5"/>
+  <text x="241" y="447" fill="#f97316" font-size="8" font-weight="bold" text-anchor="middle" font-family="monospace">AUDIT / LOG</text>
+  <text x="241" y="460" fill="#a0a0a0" font-size="7" text-anchor="middle" font-family="monospace">SIEM · Reports</text>
+
+  <!-- Review cycle indicator -->
+  <rect x="22" y="478" width="258" height="22" rx="4" fill="#12283a" stroke="#00d4ff" stroke-width="1"/>
+  <text x="151" y="494" fill="#00d4ff" font-size="9" text-anchor="middle" font-family="monospace">Review Cycle: Annual | Exception Process: CISO</text>
+
+  <!-- ===== CENTER: Shadow AI Zone ===== -->
+  <!-- Shadow AI Red Zone panel -->
+  <rect x="300" y="64" width="188" height="210" rx="6" fill="#1a0808" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <!-- Flashing red label -->
+  <rect x="315" y="72" width="158" height="18" rx="3" fill="#ef4444" opacity="0.85"/>
+  <text x="394" y="85" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle" font-family="monospace">SHADOW AI ZONE</text>
+
+  <!-- Policy boundary line -->
+  <line x1="300" y1="120" x2="488" y2="120" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+  <text x="394" y="116" fill="#ef4444" font-size="8" text-anchor="middle" font-family="monospace">─── POLICY BOUNDARY ───</text>
+
+  <!-- Unauthorized tools (employee icons + tool names) -->
+  <!-- Employee icon 1 -->
+  <circle cx="335" cy="148" r="8" fill="#f97316" opacity="0.8"/>
+  <text x="335" y="152" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle" font-family="monospace">E</text>
+  <rect x="318" y="160" width="60" height="14" rx="3" fill="#2a1010" stroke="#ef4444" stroke-width="1"/>
+  <text x="348" y="171" fill="#ef4444" font-size="7.5" text-anchor="middle" font-family="monospace">ChatGPT Free</text>
+
+  <!-- Employee icon 2 -->
+  <circle cx="430" cy="148" r="8" fill="#f97316" opacity="0.8"/>
+  <text x="430" y="152" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle" font-family="monospace">E</text>
+  <rect x="413" y="160" width="60" height="14" rx="3" fill="#2a1010" stroke="#ef4444" stroke-width="1"/>
+  <text x="443" y="171" fill="#ef4444" font-size="7.5" text-anchor="middle" font-family="monospace">Copilot Free</text>
+
+  <!-- Employee icon 3 -->
+  <circle cx="335" cy="200" r="8" fill="#f97316" opacity="0.8"/>
+  <text x="335" y="204" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle" font-family="monospace">E</text>
+  <rect x="318" y="212" width="60" height="14" rx="3" fill="#2a1010" stroke="#ef4444" stroke-width="1"/>
+  <text x="348" y="223" fill="#ef4444" font-size="7.5" text-anchor="middle" font-family="monospace">Gemini Free</text>
+
+  <!-- Employee icon 4 -->
+  <circle cx="430" cy="200" r="8" fill="#f97316" opacity="0.8"/>
+  <text x="430" y="204" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle" font-family="monospace">E</text>
+  <rect x="413" y="212" width="60" height="14" rx="3" fill="#2a1010" stroke="#ef4444" stroke-width="1"/>
+  <text x="443" y="223" fill="#ef4444" font-size="7.5" text-anchor="middle" font-family="monospace">Claude.ai</text>
+
+  <!-- Arrows from employees going OUT past the boundary -->
+  <line x1="348" y1="148" x2="413" y2="148" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- Data leakage arrow -->
+  <path d="M 394 136 L 394 110" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow-red)" opacity="0.9"/>
+  <text x="394" y="145" fill="#ef4444" font-size="7.5" font-weight="bold" text-anchor="middle" font-family="monospace">DATA LEAK RISK</text>
+
+  <!-- Unapproved label below -->
+  <rect x="316" y="235" width="156" height="30" rx="4" fill="#1a0808" stroke="#ef4444" stroke-width="1"/>
+  <text x="394" y="249" fill="#f97316" font-size="8.5" font-weight="bold" text-anchor="middle" font-family="monospace">Unauthorized · Unmonitored</text>
+  <text x="394" y="261" fill="#a0a0a0" font-size="7.5" text-anchor="middle" font-family="monospace">No DLP · No Audit Trail</text>
+
+  <!-- ===== CENTER BOTTOM: Approval Gate ===== -->
+  <rect x="300" y="284" width="188" height="158" rx="6" fill="#0f1923" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="394" y="300" fill="#22c55e" font-size="10" font-weight="bold" text-anchor="middle" font-family="monospace">MODEL APPROVAL GATE</text>
+
+  <!-- Gate stages -->
+  <rect x="314" y="307" width="160" height="20" rx="3" fill="#0a1f0a" stroke="#22c55e" stroke-width="1"/>
+  <text x="394" y="321" fill="#22c55e" font-size="8.5" text-anchor="middle" font-family="monospace">1. Use Case Submission</text>
+
+  <line x1="394" y1="327" x2="394" y2="335" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="314" y="336" width="160" height="20" rx="3" fill="#0a1a2a" stroke="#4a9eff" stroke-width="1"/>
+  <text x="394" y="350" fill="#4a9eff" font-size="8.5" text-anchor="middle" font-family="monospace">2. Risk Assessment (Tier)</text>
+
+  <line x1="394" y1="356" x2="394" y2="364" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="314" y="365" width="160" height="20" rx="3" fill="#2a1a0a" stroke="#f97316" stroke-width="1"/>
+  <text x="394" y="379" fill="#f97316" font-size="8.5" text-anchor="middle" font-family="monospace">3. Security &amp; Privacy Review</text>
+
+  <line x1="394" y1="385" x2="394" y2="393" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="314" y="394" width="160" height="20" rx="3" fill="#2a2a0a" stroke="#eab308" stroke-width="1"/>
+  <text x="394" y="408" fill="#eab308" font-size="8.5" text-anchor="middle" font-family="monospace">4. CISO / Legal Approval</text>
+
+  <line x1="394" y1="414" x2="394" y2="422" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <rect x="314" y="423" width="160" height="14" rx="3" fill="#0a2a0a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="394" y="434" fill="#22c55e" font-size="8.5" font-weight="bold" text-anchor="middle" font-family="monospace">REGISTERED IN INVENTORY</text>
+
+  <!-- ===== RIGHT PANEL: Model Inventory Table ===== -->
+  <rect x="498" y="64" width="292" height="378" rx="6" fill="#0f1923" stroke="#1e3a5f" stroke-width="1"/>
+  <rect x="498" y="64" width="292" height="22" rx="6" fill="#0a1929"/>
+  <rect x="498" y="75" width="292" height="11" rx="0" fill="#0a1929"/>
+  <text x="644" y="80" fill="#00d4ff" font-size="11" font-weight="bold" text-anchor="middle" font-family="monospace">MODEL INVENTORY REGISTER</text>
+
+  <!-- Table header row -->
+  <rect x="502" y="90" width="284" height="16" rx="2" fill="#0d2137"/>
+  <!-- Column headers -->
+  <text x="520" y="102" fill="#00d4ff" font-size="7" font-weight="bold" font-family="monospace">MODEL ID</text>
+  <text x="561" y="102" fill="#00d4ff" font-size="7" font-weight="bold" font-family="monospace">NAME</text>
+  <text x="610" y="102" fill="#00d4ff" font-size="7" font-weight="bold" font-family="monospace">TYPE</text>
+  <text x="648" y="102" fill="#00d4ff" font-size="7" font-weight="bold" font-family="monospace">VER</text>
+  <text x="665" y="102" fill="#00d4ff" font-size="7" font-weight="bold" font-family="monospace">OWNER</text>
+  <text x="697" y="102" fill="#00d4ff" font-size="7" font-weight="bold" font-family="monospace">RISK</text>
+  <text x="718" y="102" fill="#00d4ff" font-size="7" font-weight="bold" font-family="monospace">STATUS</text>
+  <text x="750" y="102" fill="#00d4ff" font-size="7" font-weight="bold" font-family="monospace">AUDIT</text>
+
+  <!-- Divider -->
+  <line x1="502" y1="106" x2="786" y2="106" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- Row 1 - GREEN (approved) -->
+  <rect x="502" y="107" width="284" height="15" rx="0" fill="#0d1f10" opacity="0.7"/>
+  <text x="520" y="118" fill="#e2e8f0" font-size="7" font-family="monospace">ML-001</text>
+  <text x="561" y="118" fill="#e2e8f0" font-size="7" font-family="monospace">GPT-4o</text>
+  <text x="610" y="118" fill="#e2e8f0" font-size="7" font-family="monospace">LLM</text>
+  <text x="648" y="118" fill="#e2e8f0" font-size="7" font-family="monospace">v1.2</text>
+  <text x="665" y="118" fill="#e2e8f0" font-size="7" font-family="monospace">Prod Eng</text>
+  <rect x="697" y="109" width="18" height="11" rx="2" fill="#f97316" opacity="0.8"/>
+  <text x="706" y="118" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">HIGH</text>
+  <rect x="718" y="109" width="26" height="11" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="731" y="118" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">ACTIVE</text>
+  <text x="758" y="118" fill="#e2e8f0" font-size="7" font-family="monospace">2025-03</text>
+
+  <!-- Row 2 -->
+  <rect x="502" y="122" width="284" height="15" rx="0" fill="#0f1923" opacity="0.7"/>
+  <text x="520" y="133" fill="#e2e8f0" font-size="7" font-family="monospace">ML-002</text>
+  <text x="561" y="133" fill="#e2e8f0" font-size="7" font-family="monospace">Claude 3.5</text>
+  <text x="610" y="133" fill="#e2e8f0" font-size="7" font-family="monospace">LLM</text>
+  <text x="648" y="133" fill="#e2e8f0" font-size="7" font-family="monospace">v2.0</text>
+  <text x="665" y="133" fill="#e2e8f0" font-size="7" font-family="monospace">Legal</text>
+  <rect x="697" y="124" width="18" height="11" rx="2" fill="#f97316" opacity="0.8"/>
+  <text x="706" y="133" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">HIGH</text>
+  <rect x="718" y="124" width="26" height="11" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="731" y="133" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">ACTIVE</text>
+  <text x="758" y="133" fill="#e2e8f0" font-size="7" font-family="monospace">2025-04</text>
+
+  <!-- Row 3 -->
+  <rect x="502" y="137" width="284" height="15" rx="0" fill="#0d1f10" opacity="0.7"/>
+  <text x="520" y="148" fill="#e2e8f0" font-size="7" font-family="monospace">ML-003</text>
+  <text x="561" y="148" fill="#e2e8f0" font-size="7" font-family="monospace">Llama-3</text>
+  <text x="610" y="148" fill="#e2e8f0" font-size="7" font-family="monospace">OSS LLM</text>
+  <text x="648" y="148" fill="#e2e8f0" font-size="7" font-family="monospace">v3.1</text>
+  <text x="665" y="148" fill="#e2e8f0" font-size="7" font-family="monospace">MLOps</text>
+  <rect x="697" y="139" width="22" height="11" rx="2" fill="#eab308" opacity="0.8"/>
+  <text x="708" y="148" fill="#0d1117" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">MED</text>
+  <rect x="718" y="139" width="26" height="11" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="731" y="148" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">ACTIVE</text>
+  <text x="758" y="148" fill="#e2e8f0" font-size="7" font-family="monospace">2025-01</text>
+
+  <!-- Row 4 -->
+  <rect x="502" y="152" width="284" height="15" rx="0" fill="#0f1923" opacity="0.7"/>
+  <text x="520" y="163" fill="#e2e8f0" font-size="7" font-family="monospace">ML-004</text>
+  <text x="561" y="163" fill="#e2e8f0" font-size="7" font-family="monospace">Copilot</text>
+  <text x="610" y="163" fill="#e2e8f0" font-size="7" font-family="monospace">Code Gen</text>
+  <text x="648" y="163" fill="#e2e8f0" font-size="7" font-family="monospace">v1.0</text>
+  <text x="665" y="163" fill="#e2e8f0" font-size="7" font-family="monospace">Dev Team</text>
+  <rect x="697" y="154" width="18" height="11" rx="2" fill="#f97316" opacity="0.8"/>
+  <text x="706" y="163" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">HIGH</text>
+  <rect x="718" y="154" width="37" height="11" rx="2" fill="#4a9eff" opacity="0.8"/>
+  <text x="736" y="163" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">REVIEW</text>
+  <text x="758" y="163" fill="#e2e8f0" font-size="7" font-family="monospace">2024-12</text>
+
+  <!-- Row 5 -->
+  <rect x="502" y="167" width="284" height="15" rx="0" fill="#0d1f10" opacity="0.7"/>
+  <text x="520" y="178" fill="#e2e8f0" font-size="7" font-family="monospace">ML-005</text>
+  <text x="561" y="178" fill="#e2e8f0" font-size="7" font-family="monospace">BERT-fin</text>
+  <text x="610" y="178" fill="#e2e8f0" font-size="7" font-family="monospace">Classifier</text>
+  <text x="648" y="178" fill="#e2e8f0" font-size="7" font-family="monospace">v4.2</text>
+  <text x="665" y="178" fill="#e2e8f0" font-size="7" font-family="monospace">Finance</text>
+  <rect x="697" y="169" width="22" height="11" rx="2" fill="#eab308" opacity="0.8"/>
+  <text x="708" y="178" fill="#0d1117" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">MED</text>
+  <rect x="718" y="169" width="26" height="11" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="731" y="178" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">ACTIVE</text>
+  <text x="758" y="178" fill="#e2e8f0" font-size="7" font-family="monospace">2025-05</text>
+
+  <!-- Row 6 -->
+  <rect x="502" y="182" width="284" height="15" rx="0" fill="#0f1923" opacity="0.7"/>
+  <text x="520" y="193" fill="#e2e8f0" font-size="7" font-family="monospace">ML-006</text>
+  <text x="561" y="193" fill="#e2e8f0" font-size="7" font-family="monospace">WhisperX</text>
+  <text x="610" y="193" fill="#e2e8f0" font-size="7" font-family="monospace">STT</text>
+  <text x="648" y="193" fill="#e2e8f0" font-size="7" font-family="monospace">v2.3</text>
+  <text x="665" y="193" fill="#e2e8f0" font-size="7" font-family="monospace">HR Ops</text>
+  <rect x="697" y="184" width="18" height="11" rx="2" fill="#f97316" opacity="0.8"/>
+  <text x="706" y="193" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">HIGH</text>
+  <rect x="718" y="184" width="26" height="11" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="731" y="193" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">ACTIVE</text>
+  <text x="758" y="193" fill="#e2e8f0" font-size="7" font-family="monospace">2025-02</text>
+
+  <!-- Row 7 - RED (deprecated/blocked) -->
+  <rect x="502" y="197" width="284" height="15" rx="0" fill="#1a0808" opacity="0.7"/>
+  <text x="520" y="208" fill="#e2e8f0" font-size="7" font-family="monospace">ML-007</text>
+  <text x="561" y="208" fill="#e2e8f0" font-size="7" font-family="monospace">FaceRec-v1</text>
+  <text x="610" y="208" fill="#e2e8f0" font-size="7" font-family="monospace">Vision</text>
+  <text x="648" y="208" fill="#e2e8f0" font-size="7" font-family="monospace">v1.0</text>
+  <text x="665" y="208" fill="#e2e8f0" font-size="7" font-family="monospace">Security</text>
+  <rect x="697" y="199" width="18" height="11" rx="2" fill="#ef4444" opacity="0.9"/>
+  <text x="706" y="208" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">CRIT</text>
+  <rect x="718" y="199" width="40" height="11" rx="2" fill="#ef4444" opacity="0.9"/>
+  <text x="738" y="208" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">BLOCKED</text>
+  <text x="758" y="208" fill="#ef4444" font-size="7" font-family="monospace">OVERD</text>
+
+  <!-- Row 8 -->
+  <rect x="502" y="212" width="284" height="15" rx="0" fill="#0f1923" opacity="0.7"/>
+  <text x="520" y="223" fill="#e2e8f0" font-size="7" font-family="monospace">ML-008</text>
+  <text x="561" y="223" fill="#e2e8f0" font-size="7" font-family="monospace">Stable Diff</text>
+  <text x="610" y="223" fill="#e2e8f0" font-size="7" font-family="monospace">Image Gen</text>
+  <text x="648" y="223" fill="#e2e8f0" font-size="7" font-family="monospace">XL</text>
+  <text x="665" y="223" fill="#e2e8f0" font-size="7" font-family="monospace">Marketing</text>
+  <rect x="697" y="214" width="22" height="11" rx="2" fill="#eab308" opacity="0.8"/>
+  <text x="708" y="223" fill="#0d1117" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">MED</text>
+  <rect x="718" y="214" width="37" height="11" rx="2" fill="#4a9eff" opacity="0.8"/>
+  <text x="736" y="223" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">REVIEW</text>
+  <text x="758" y="223" fill="#e2e8f0" font-size="7" font-family="monospace">2025-06</text>
+
+  <!-- Row 9 -->
+  <rect x="502" y="227" width="284" height="15" rx="0" fill="#0d1f10" opacity="0.7"/>
+  <text x="520" y="238" fill="#e2e8f0" font-size="7" font-family="monospace">ML-009</text>
+  <text x="561" y="238" fill="#e2e8f0" font-size="7" font-family="monospace">AnomalyDet</text>
+  <text x="610" y="238" fill="#e2e8f0" font-size="7" font-family="monospace">Anomaly</text>
+  <text x="648" y="238" fill="#e2e8f0" font-size="7" font-family="monospace">v2.1</text>
+  <text x="665" y="238" fill="#e2e8f0" font-size="7" font-family="monospace">SOC</text>
+  <rect x="697" y="229" width="18" height="11" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="706" y="238" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">LOW</text>
+  <rect x="718" y="229" width="26" height="11" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="731" y="238" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">ACTIVE</text>
+  <text x="758" y="238" fill="#e2e8f0" font-size="7" font-family="monospace">2025-06</text>
+
+  <!-- Divider line -->
+  <line x1="502" y1="242" x2="786" y2="242" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- Legend for risk colors in inventory -->
+  <text x="510" y="255" fill="#a0a0a0" font-size="8" font-family="monospace">RISK:</text>
+  <rect x="536" y="247" width="22" height="10" rx="2" fill="#ef4444" opacity="0.9"/>
+  <text x="547" y="256" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">CRIT</text>
+  <rect x="562" y="247" width="18" height="10" rx="2" fill="#f97316" opacity="0.8"/>
+  <text x="571" y="256" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">HIGH</text>
+  <rect x="584" y="247" width="22" height="10" rx="2" fill="#eab308" opacity="0.8"/>
+  <text x="595" y="256" fill="#0d1117" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">MED</text>
+  <rect x="610" y="247" width="18" height="10" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="619" y="256" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">LOW</text>
+
+  <text x="648" y="255" fill="#a0a0a0" font-size="8" font-family="monospace">STATUS:</text>
+  <rect x="690" y="247" width="26" height="10" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="703" y="256" fill="#fff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">ACTIVE</text>
+  <rect x="719" y="247" width="37" height="10" rx="2" fill="#4a9eff" opacity="0.8"/>
+  <text x="737" y="256" fill="#fff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">REVIEW</text>
+  <rect x="759" y="247" width="24" height="10" rx="2" fill="#ef4444" opacity="0.9"/>
+  <text x="771" y="256" fill="#fff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">BLKD</text>
+
+  <!-- Model inventory additional info rows -->
+  <line x1="502" y1="262" x2="786" y2="262" stroke="#1e3a5f" stroke-width="0.5"/>
+
+  <!-- Summary stats panel -->
+  <text x="510" y="276" fill="#e2e8f0" font-size="8.5" font-weight="bold" font-family="monospace">INVENTORY SUMMARY</text>
+
+  <!-- Stats boxes -->
+  <rect x="502" y="280" width="56" height="36" rx="3" fill="#0a1929" stroke="#22c55e" stroke-width="1"/>
+  <text x="530" y="296" fill="#22c55e" font-size="16" font-weight="bold" text-anchor="middle" font-family="monospace">6</text>
+  <text x="530" y="312" fill="#a0a0a0" font-size="7" text-anchor="middle" font-family="monospace">Active</text>
+
+  <rect x="562" y="280" width="56" height="36" rx="3" fill="#0a1929" stroke="#4a9eff" stroke-width="1"/>
+  <text x="590" y="296" fill="#4a9eff" font-size="16" font-weight="bold" text-anchor="middle" font-family="monospace">2</text>
+  <text x="590" y="312" fill="#a0a0a0" font-size="7" text-anchor="middle" font-family="monospace">In Review</text>
+
+  <rect x="622" y="280" width="56" height="36" rx="3" fill="#0a1929" stroke="#ef4444" stroke-width="1"/>
+  <text x="650" y="296" fill="#ef4444" font-size="16" font-weight="bold" text-anchor="middle" font-family="monospace">1</text>
+  <text x="650" y="312" fill="#a0a0a0" font-size="7" text-anchor="middle" font-family="monospace">Blocked</text>
+
+  <rect x="682" y="280" width="56" height="36" rx="3" fill="#0a1929" stroke="#eab308" stroke-width="1"/>
+  <text x="710" y="296" fill="#eab308" font-size="16" font-weight="bold" text-anchor="middle" font-family="monospace">3</text>
+  <text x="710" y="312" fill="#a0a0a0" font-size="7" text-anchor="middle" font-family="monospace">High Risk</text>
+
+  <rect x="742" y="280" width="44" height="36" rx="3" fill="#0a1929" stroke="#f97316" stroke-width="1"/>
+  <text x="764" y="296" fill="#f97316" font-size="16" font-weight="bold" text-anchor="middle" font-family="monospace">1</text>
+  <text x="764" y="312" fill="#a0a0a0" font-size="7" text-anchor="middle" font-family="monospace">Overdue</text>
+
+  <!-- Regulatory requirements panel (right, below stats) -->
+  <rect x="502" y="322" width="284" height="116" rx="4" fill="#0a1525" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="644" y="336" fill="#8b5cf6" font-size="9.5" font-weight="bold" text-anchor="middle" font-family="monospace">REGULATORY REQUIREMENTS</text>
+  <line x1="510" y1="340" x2="778" y2="340" stroke="#8b5cf6" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Regs list -->
+  <circle cx="520" cy="352" r="3" fill="#4a9eff"/>
+  <text x="530" y="356" fill="#e2e8f0" font-size="8" font-family="monospace">EU AI Act — Art.9: Risk Mgmt System required</text>
+
+  <circle cx="520" cy="366" r="3" fill="#22c55e"/>
+  <text x="530" y="370" fill="#e2e8f0" font-size="8" font-family="monospace">NIST AI RMF — MAP/MEASURE: model inventory</text>
+
+  <circle cx="520" cy="380" r="3" fill="#f97316"/>
+  <text x="530" y="384" fill="#e2e8f0" font-size="8" font-family="monospace">ISO/IEC 42001 — §6.1: AI risk treatment plans</text>
+
+  <circle cx="520" cy="394" r="3" fill="#eab308"/>
+  <text x="530" y="398" fill="#e2e8f0" font-size="8" font-family="monospace">SR 11-7 (OCC) — Model risk governance, finance</text>
+
+  <circle cx="520" cy="408" r="3" fill="#ef4444"/>
+  <text x="530" y="412" fill="#e2e8f0" font-size="8" font-family="monospace">GDPR Art.22 — Automated decision-making limits</text>
+
+  <circle cx="520" cy="422" r="3" fill="#8b5cf6"/>
+  <text x="530" y="426" fill="#e2e8f0" font-size="8" font-family="monospace">CCPA / CPRA — AI-driven profiling disclosures</text>
+
+  <!-- ===== BOTTOM BAR ===== -->
+  <rect x="0" y="452" width="800" height="148" rx="0" fill="#0a1118"/>
+  <line x1="0" y1="452" x2="800" y2="452" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- Bottom left: Use Case Inventory -->
+  <rect x="14" y="460" width="235" height="130" rx="4" fill="#0f1923" stroke="#4a9eff" stroke-width="1"/>
+  <text x="131" y="474" fill="#4a9eff" font-size="9.5" font-weight="bold" text-anchor="middle" font-family="monospace">USE CASE INVENTORY</text>
+  <!-- Use cases -->
+  <text x="24" y="488" fill="#00d4ff" font-size="8" font-family="monospace">UC-01</text>
+  <text x="60" y="488" fill="#e2e8f0" font-size="8" font-family="monospace">Contract Review (Legal)</text>
+  <rect x="188" y="481" width="50" height="10" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="213" y="489" fill="#fff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">APPROVED</text>
+
+  <text x="24" y="502" fill="#00d4ff" font-size="8" font-family="monospace">UC-02</text>
+  <text x="60" y="502" fill="#e2e8f0" font-size="8" font-family="monospace">Code Assist (Engineering)</text>
+  <rect x="188" y="495" width="50" height="10" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="213" y="503" fill="#fff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">APPROVED</text>
+
+  <text x="24" y="516" fill="#00d4ff" font-size="8" font-family="monospace">UC-03</text>
+  <text x="60" y="516" fill="#e2e8f0" font-size="8" font-family="monospace">HR Candidate Screening</text>
+  <rect x="188" y="509" width="50" height="10" rx="2" fill="#eab308" opacity="0.8"/>
+  <text x="213" y="517" fill="#0d1117" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">REVIEW</text>
+
+  <text x="24" y="530" fill="#00d4ff" font-size="8" font-family="monospace">UC-04</text>
+  <text x="60" y="530" fill="#e2e8f0" font-size="8" font-family="monospace">Facial Auth (Building)</text>
+  <rect x="188" y="523" width="50" height="10" rx="2" fill="#ef4444" opacity="0.9"/>
+  <text x="213" y="531" fill="#fff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">DENIED</text>
+
+  <text x="24" y="544" fill="#00d4ff" font-size="8" font-family="monospace">UC-05</text>
+  <text x="60" y="544" fill="#e2e8f0" font-size="8" font-family="monospace">Customer Support Bot</text>
+  <rect x="188" y="537" width="50" height="10" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="213" y="545" fill="#fff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">APPROVED</text>
+
+  <text x="24" y="558" fill="#00d4ff" font-size="8" font-family="monospace">UC-06</text>
+  <text x="60" y="558" fill="#e2e8f0" font-size="8" font-family="monospace">Trading Signal Gen</text>
+  <rect x="188" y="551" width="50" height="10" rx="2" fill="#4a9eff" opacity="0.8"/>
+  <text x="213" y="559" fill="#fff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">PENDING</text>
+
+  <text x="24" y="572" fill="#00d4ff" font-size="8" font-family="monospace">UC-07</text>
+  <text x="60" y="572" fill="#e2e8f0" font-size="8" font-family="monospace">Supply Chain Forecast</text>
+  <rect x="188" y="565" width="50" height="10" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="213" y="573" fill="#fff" font-size="6.5" font-weight="bold" text-anchor="middle" font-family="monospace">APPROVED</text>
+
+  <!-- Bottom center: Policy Components -->
+  <rect x="260" y="460" width="236" height="130" rx="4" fill="#0f1923" stroke="#22c55e" stroke-width="1"/>
+  <text x="378" y="474" fill="#22c55e" font-size="9.5" font-weight="bold" text-anchor="middle" font-family="monospace">POLICY COMPONENTS</text>
+  <!-- Components as tags -->
+  <rect x="268" y="480" width="80" height="12" rx="3" fill="#0a1929" stroke="#00d4ff" stroke-width="1"/>
+  <text x="308" y="489" fill="#00d4ff" font-size="7" text-anchor="middle" font-family="monospace">Approved Tools</text>
+  <rect x="356" y="480" width="86" height="12" rx="3" fill="#0a1929" stroke="#00d4ff" stroke-width="1"/>
+  <text x="399" y="489" fill="#00d4ff" font-size="7" text-anchor="middle" font-family="monospace">Prohibited Uses</text>
+  <rect x="268" y="496" width="92" height="12" rx="3" fill="#0a1929" stroke="#f97316" stroke-width="1"/>
+  <text x="314" y="505" fill="#f97316" font-size="7" text-anchor="middle" font-family="monospace">Data Handling Rules</text>
+  <rect x="368" y="496" width="80" height="12" rx="3" fill="#0a1929" stroke="#f97316" stroke-width="1"/>
+  <text x="408" y="505" fill="#f97316" font-size="7" text-anchor="middle" font-family="monospace">Disclosure Req.</text>
+  <rect x="268" y="512" width="96" height="12" rx="3" fill="#0a1929" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="316" y="521" fill="#8b5cf6" font-size="7" text-anchor="middle" font-family="monospace">Retention Periods</text>
+  <rect x="372" y="512" width="74" height="12" rx="3" fill="#0a1929" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="409" y="521" fill="#8b5cf6" font-size="7" text-anchor="middle" font-family="monospace">Exception Process</text>
+  <rect x="268" y="528" width="84" height="12" rx="3" fill="#0a1929" stroke="#22c55e" stroke-width="1"/>
+  <text x="310" y="537" fill="#22c55e" font-size="7" text-anchor="middle" font-family="monospace">Training Mandate</text>
+  <rect x="360" y="528" width="82" height="12" rx="3" fill="#0a1929" stroke="#22c55e" stroke-width="1"/>
+  <text x="401" y="537" fill="#22c55e" font-size="7" text-anchor="middle" font-family="monospace">Violation Penalties</text>
+  <rect x="268" y="544" width="90" height="12" rx="3" fill="#0a1929" stroke="#eab308" stroke-width="1"/>
+  <text x="313" y="553" fill="#eab308" font-size="7" text-anchor="middle" font-family="monospace">Procurement Rules</text>
+  <rect x="366" y="544" width="78" height="12" rx="3" fill="#0a1929" stroke="#eab308" stroke-width="1"/>
+  <text x="405" y="553" fill="#eab308" font-size="7" text-anchor="middle" font-family="monospace">Output Validation</text>
+  <rect x="268" y="560" width="78" height="12" rx="3" fill="#0a1929" stroke="#4a9eff" stroke-width="1"/>
+  <text x="307" y="569" fill="#4a9eff" font-size="7" text-anchor="middle" font-family="monospace">Vendor Assessment</text>
+  <rect x="354" y="560" width="78" height="12" rx="3" fill="#0a1929" stroke="#4a9eff" stroke-width="1"/>
+  <text x="393" y="569" fill="#4a9eff" font-size="7" text-anchor="middle" font-family="monospace">Review Cycle (12mo)</text>
+
+  <!-- Bottom right: Consequences -->
+  <rect x="508" y="460" width="280" height="130" rx="4" fill="#0f1923" stroke="#ef4444" stroke-width="1"/>
+  <text x="648" y="474" fill="#ef4444" font-size="9.5" font-weight="bold" text-anchor="middle" font-family="monospace">VIOLATION CONSEQUENCES</text>
+
+  <!-- Severity scale -->
+  <rect x="516" y="480" width="264" height="14" rx="0" fill="#0a1929"/>
+  <text x="518" y="491" fill="#eab308" font-size="8" font-weight="bold" font-family="monospace">LOW:</text>
+  <text x="542" y="491" fill="#e2e8f0" font-size="8" font-family="monospace">Mandatory retraining + written warning</text>
+  <rect x="516" y="494" width="264" height="14" rx="0" fill="#0f1923"/>
+  <text x="518" y="505" fill="#f97316" font-size="8" font-weight="bold" font-family="monospace">MED:</text>
+  <text x="542" y="505" fill="#e2e8f0" font-size="8" font-family="monospace">Access revocation + HR formal review</text>
+  <rect x="516" y="508" width="264" height="14" rx="0" fill="#0a1929"/>
+  <text x="518" y="519" fill="#ef4444" font-size="8" font-weight="bold" font-family="monospace">HIGH:</text>
+  <text x="542" y="519" fill="#e2e8f0" font-size="8" font-family="monospace">Termination + legal action + breach report</text>
+  <rect x="516" y="522" width="264" height="14" rx="0" fill="#0f1923"/>
+  <text x="518" y="533" fill="#8b5cf6" font-size="8" font-weight="bold" font-family="monospace">ORG:</text>
+  <text x="542" y="533" fill="#e2e8f0" font-size="8" font-family="monospace">Regulatory fines + reputational damage</text>
+
+  <!-- Reporting path -->
+  <line x1="516" y1="538" x2="780" y2="538" stroke="#1e3a5f" stroke-width="0.5"/>
+  <text x="520" y="550" fill="#a0a0a0" font-size="7.5" font-family="monospace">Reporting path:</text>
+  <text x="592" y="550" fill="#00d4ff" font-size="7.5" font-family="monospace">Employee → Manager → CISO → Legal → Board</text>
+  <text x="520" y="562" fill="#a0a0a0" font-size="7.5" font-family="monospace">Detection:</text>
+  <text x="560" y="562" fill="#22c55e" font-size="7.5" font-family="monospace">DLP · Proxy logs · SIEM alerts · Self-report</text>
+  <text x="520" y="574" fill="#a0a0a0" font-size="7.5" font-family="monospace">Safe Harbor:</text>
+  <text x="567" y="574" fill="#eab308" font-size="7.5" font-family="monospace">Self-disclosed shadow AI → policy training only</text>
+  <text x="520" y="586" fill="#a0a0a0" font-size="7.5" font-family="monospace">Review Cycle:</text>
+  <text x="575" y="586" fill="#4a9eff" font-size="7.5" font-family="monospace">Annual or post-incident (major AI event trigger)</text>
+</svg>

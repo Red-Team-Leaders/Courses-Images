@@ -1,0 +1,367 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#161b22;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Core model glow gradient -->
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:0.35" />
+      <stop offset="60%" style="stop-color:#8b5cf6;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#0d1117;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Policy engine gradient -->
+    <linearGradient id="policyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#a78bfa;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+    </linearGradient>
+
+    <!-- Input guardrail gradient -->
+    <linearGradient id="inputGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.05" />
+    </linearGradient>
+
+    <!-- Output guardrail gradient -->
+    <linearGradient id="outputGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.05" />
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.15" />
+    </linearGradient>
+
+    <!-- Arrow marker cyan -->
+    <marker id="arrowCyan" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff" />
+    </marker>
+
+    <!-- Arrow marker green -->
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e" />
+    </marker>
+
+    <!-- Arrow marker orange -->
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316" />
+    </marker>
+
+    <!-- Arrow marker red -->
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ef4444" />
+    </marker>
+
+    <!-- Arrow marker purple -->
+    <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6" />
+    </marker>
+
+    <!-- Arrow marker gold -->
+    <marker id="arrowGold" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#eab308" />
+    </marker>
+
+    <!-- Glow filter for core -->
+    <filter id="glowBlue" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow filter subtle -->
+    <filter id="glowSoft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Red glow for bypass -->
+    <filter id="glowRed" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle drop shadow -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- ======================== BACKGROUND ======================== -->
+  <rect width="800" height="600" fill="url(#bgGrad)" />
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.06" stroke="#4a9eff" stroke-width="0.5">
+    <!-- Vertical lines -->
+    <line x1="80" y1="0" x2="80" y2="600"/>
+    <line x1="160" y1="0" x2="160" y2="600"/>
+    <line x1="240" y1="0" x2="240" y2="600"/>
+    <line x1="320" y1="0" x2="320" y2="600"/>
+    <line x1="400" y1="0" x2="400" y2="600"/>
+    <line x1="480" y1="0" x2="480" y2="600"/>
+    <line x1="560" y1="0" x2="560" y2="600"/>
+    <line x1="640" y1="0" x2="640" y2="600"/>
+    <line x1="720" y1="0" x2="720" y2="600"/>
+    <!-- Horizontal lines -->
+    <line x1="0" y1="60" x2="800" y2="60"/>
+    <line x1="0" y1="120" x2="800" y2="120"/>
+    <line x1="0" y1="180" x2="800" y2="180"/>
+    <line x1="0" y1="240" x2="800" y2="240"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="360" x2="800" y2="360"/>
+    <line x1="0" y1="420" x2="800" y2="420"/>
+    <line x1="0" y1="480" x2="800" y2="480"/>
+    <line x1="0" y1="540" x2="800" y2="540"/>
+  </g>
+
+  <!-- ======================== TITLE ======================== -->
+  <text x="400" y="30" text-anchor="middle" font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#ffffff" filter="url(#glowSoft)">AI SYSTEM GUARDRAILS ARCHITECTURE</text>
+  <text x="400" y="48" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" fill="#8b9aad">Policy Enforcement &amp; Multi-Layer Safety Stack</text>
+
+  <!-- Thin horizontal rule under title -->
+  <line x1="50" y1="56" x2="750" y2="56" stroke="#1e2d3d" stroke-width="1"/>
+
+  <!-- ======================== POLICY ENGINE (TOP) ======================== -->
+  <rect x="200" y="65" width="400" height="48" rx="6" ry="6" fill="url(#policyGrad)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="83" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#c4b5fd">POLICY ENGINE</text>
+  <text x="400" y="100" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#a78bfa">Orchestrates | Audits | Enforces | Coordinates Both Guardrail Layers</text>
+
+  <!-- Policy engine corner decorations -->
+  <rect x="200" y="65" width="8" height="8" fill="#8b5cf6" rx="1"/>
+  <rect x="592" y="65" width="8" height="8" fill="#8b5cf6" rx="1"/>
+  <rect x="200" y="105" width="8" height="8" fill="#8b5cf6" rx="1"/>
+  <rect x="592" y="105" width="8" height="8" fill="#8b5cf6" rx="1"/>
+
+  <!-- Policy engine down arrows to input and output panels -->
+  <line x1="280" y1="113" x2="235" y2="130" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrowPurple)"/>
+  <line x1="520" y1="113" x2="565" y2="130" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrowPurple)"/>
+
+  <!-- ======================== INPUT GUARDRAILS (LEFT PANEL) ======================== -->
+  <rect x="15" y="128" width="215" height="330" rx="8" ry="8" fill="url(#inputGrad)" stroke="#22c55e" stroke-width="1.5" opacity="0.9"/>
+  <text x="122" y="148" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#22c55e">INPUT GUARDRAILS</text>
+  <line x1="30" y1="154" x2="215" y2="154" stroke="#22c55e" stroke-width="0.7" opacity="0.5"/>
+
+  <!-- Input guardrail items -->
+  <!-- Item 1: Prompt Injection Detection -->
+  <rect x="28" y="162" width="189" height="44" rx="4" ry="4" fill="#0f1f0f" stroke="#22c55e" stroke-width="1" opacity="0.85"/>
+  <rect x="28" y="162" width="5" height="44" rx="2" ry="2" fill="#22c55e"/>
+  <text x="130" y="179" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#22c55e">Prompt Injection Detection</text>
+  <text x="130" y="193" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#86efac">Pattern match | Semantic analysis</text>
+  <!-- status dot -->
+  <circle cx="204" cy="174" r="4" fill="#22c55e" opacity="0.8"/>
+
+  <!-- Item 2: PII Detection -->
+  <rect x="28" y="212" width="189" height="44" rx="4" ry="4" fill="#0f1f0f" stroke="#22c55e" stroke-width="1" opacity="0.85"/>
+  <rect x="28" y="212" width="5" height="44" rx="2" ry="2" fill="#00d4ff"/>
+  <text x="130" y="229" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#00d4ff">PII Detection</text>
+  <text x="130" y="243" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#7dd3fc">NER | Regex | ML classifier</text>
+  <circle cx="204" cy="224" r="4" fill="#00d4ff" opacity="0.8"/>
+
+  <!-- Item 3: Harmful Content Filter -->
+  <rect x="28" y="262" width="189" height="44" rx="4" ry="4" fill="#0f1f0f" stroke="#ef4444" stroke-width="1" opacity="0.85"/>
+  <rect x="28" y="262" width="5" height="44" rx="2" ry="2" fill="#ef4444"/>
+  <text x="130" y="279" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#ef4444">Harmful Content Filter</text>
+  <text x="130" y="293" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fca5a5">Toxicity | Violence | CSAM</text>
+  <circle cx="204" cy="274" r="4" fill="#ef4444" opacity="0.8"/>
+
+  <!-- Item 4: Token Length Limit -->
+  <rect x="28" y="312" width="189" height="44" rx="4" ry="4" fill="#0f1f0f" stroke="#eab308" stroke-width="1" opacity="0.85"/>
+  <rect x="28" y="312" width="5" height="44" rx="2" ry="2" fill="#eab308"/>
+  <text x="130" y="329" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#eab308">Token Length Limit</text>
+  <text x="130" y="343" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fde047">Max tokens | Cost control</text>
+  <circle cx="204" cy="324" r="4" fill="#eab308" opacity="0.8"/>
+
+  <!-- Item 5: Policy Compliance Check -->
+  <rect x="28" y="362" width="189" height="44" rx="4" ry="4" fill="#0f1f0f" stroke="#f97316" stroke-width="1" opacity="0.85"/>
+  <rect x="28" y="362" width="5" height="44" rx="2" ry="2" fill="#f97316"/>
+  <text x="130" y="379" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#f97316">Policy Compliance Check</text>
+  <text x="130" y="393" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fdba74">Topic restriction | Use-case rules</text>
+  <circle cx="204" cy="374" r="4" fill="#f97316" opacity="0.8"/>
+
+  <!-- Rate Limiting -->
+  <rect x="28" y="412" width="189" height="36" rx="4" ry="4" fill="#0f1f0f" stroke="#8b5cf6" stroke-width="1" opacity="0.85"/>
+  <rect x="28" y="412" width="5" height="36" rx="2" ry="2" fill="#8b5cf6"/>
+  <text x="130" y="428" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#8b5cf6">Rate Limiting</text>
+  <text x="130" y="441" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#c4b5fd">RPM / RPD / user throttle</text>
+  <circle cx="204" cy="422" r="4" fill="#8b5cf6" opacity="0.8"/>
+
+  <!-- ======================== AI MODEL CORE (CENTER) ======================== -->
+  <!-- Outer glow circle -->
+  <circle cx="400" cy="320" r="100" fill="url(#coreGlow)" filter="url(#glowBlue)"/>
+
+  <!-- Core hexagon shape approximated with polygon -->
+  <polygon points="400,230 468,268 468,344 400,382 332,344 332,268" fill="#0a1628" stroke="#4a9eff" stroke-width="2" filter="url(#glowBlue)"/>
+
+  <!-- Inner details -->
+  <text x="400" y="285" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#4a9eff">AI MODEL</text>
+  <text x="400" y="300" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#93c5fd">CORE</text>
+
+  <!-- Divider inside core -->
+  <line x1="352" y1="308" x2="448" y2="308" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- RLHF label -->
+  <rect x="352" y="314" width="96" height="20" rx="3" fill="#0c1e3a" stroke="#4a9eff" stroke-width="0.8"/>
+  <text x="400" y="328" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#7dd3fc">RLHF Safety</text>
+
+  <!-- Constitutional AI label -->
+  <rect x="352" y="338" width="96" height="20" rx="3" fill="#0c1e3a" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="400" y="352" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#c4b5fd">Constitutional AI</text>
+
+  <!-- Safety fine-tuning label -->
+  <rect x="352" y="358" width="96" height="20" rx="3" fill="#0c1e3a" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="400" y="372" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" fill="#86efac">Safety Fine-Tuning</text>
+
+  <!-- Core corner node dots -->
+  <circle cx="400" cy="230" r="4" fill="#4a9eff" filter="url(#glowSoft)"/>
+  <circle cx="468" cy="268" r="4" fill="#4a9eff" filter="url(#glowSoft)"/>
+  <circle cx="468" cy="344" r="4" fill="#4a9eff" filter="url(#glowSoft)"/>
+  <circle cx="400" cy="382" r="4" fill="#4a9eff" filter="url(#glowSoft)"/>
+  <circle cx="332" cy="344" r="4" fill="#4a9eff" filter="url(#glowSoft)"/>
+  <circle cx="332" cy="268" r="4" fill="#4a9eff" filter="url(#glowSoft)"/>
+
+  <!-- Pulse ring animation effect (static) -->
+  <circle cx="400" cy="320" r="112" fill="none" stroke="#4a9eff" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="400" cy="320" r="125" fill="none" stroke="#4a9eff" stroke-width="0.3" opacity="0.1"/>
+
+  <!-- ======================== OUTPUT GUARDRAILS (RIGHT PANEL) ======================== -->
+  <rect x="570" y="128" width="215" height="330" rx="8" ry="8" fill="url(#outputGrad)" stroke="#f97316" stroke-width="1.5" opacity="0.9"/>
+  <text x="677" y="148" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#f97316">OUTPUT GUARDRAILS</text>
+  <line x1="585" y1="154" x2="770" y2="154" stroke="#f97316" stroke-width="0.7" opacity="0.5"/>
+
+  <!-- Output guardrail items -->
+  <!-- Item 1: Factuality Check -->
+  <rect x="583" y="162" width="189" height="44" rx="4" ry="4" fill="#1a0f00" stroke="#f97316" stroke-width="1" opacity="0.85"/>
+  <rect x="767" y="162" width="5" height="44" rx="2" ry="2" fill="#f97316"/>
+  <text x="675" y="179" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#f97316">Factuality Check</text>
+  <text x="675" y="193" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fdba74">Grounding | RAG verification</text>
+  <circle cx="596" cy="174" r="4" fill="#f97316" opacity="0.8"/>
+
+  <!-- Item 2: Harmful Content Filter (Output) -->
+  <rect x="583" y="212" width="189" height="44" rx="4" ry="4" fill="#1a0f00" stroke="#ef4444" stroke-width="1" opacity="0.85"/>
+  <rect x="767" y="212" width="5" height="44" rx="2" ry="2" fill="#ef4444"/>
+  <text x="675" y="229" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#ef4444">Harmful Content Filter</text>
+  <text x="675" y="243" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fca5a5">Post-gen safety | Jailbreak catch</text>
+  <circle cx="596" cy="224" r="4" fill="#ef4444" opacity="0.8"/>
+
+  <!-- Item 3: PII Redaction -->
+  <rect x="583" y="262" width="189" height="44" rx="4" ry="4" fill="#1a0f00" stroke="#00d4ff" stroke-width="1" opacity="0.85"/>
+  <rect x="767" y="262" width="5" height="44" rx="2" ry="2" fill="#00d4ff"/>
+  <text x="675" y="279" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#00d4ff">PII Redaction</text>
+  <text x="675" y="293" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#7dd3fc">Mask | Substitute | Remove</text>
+  <circle cx="596" cy="274" r="4" fill="#00d4ff" opacity="0.8"/>
+
+  <!-- Item 4: Policy Compliance (Output) -->
+  <rect x="583" y="312" width="189" height="44" rx="4" ry="4" fill="#1a0f00" stroke="#22c55e" stroke-width="1" opacity="0.85"/>
+  <rect x="767" y="312" width="5" height="44" rx="2" ry="2" fill="#22c55e"/>
+  <text x="675" y="329" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#22c55e">Policy Compliance</text>
+  <text x="675" y="343" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#86efac">Brand | Legal | Regulatory</text>
+  <circle cx="596" cy="324" r="4" fill="#22c55e" opacity="0.8"/>
+
+  <!-- Item 5: Format Validation -->
+  <rect x="583" y="362" width="189" height="44" rx="4" ry="4" fill="#1a0f00" stroke="#eab308" stroke-width="1" opacity="0.85"/>
+  <rect x="767" y="362" width="5" height="44" rx="2" ry="2" fill="#eab308"/>
+  <text x="675" y="379" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#eab308">Format Validation</text>
+  <text x="675" y="393" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fde047">JSON schema | Length | Structure</text>
+  <circle cx="596" cy="374" r="4" fill="#eab308" opacity="0.8"/>
+
+  <!-- Audit Logging -->
+  <rect x="583" y="412" width="189" height="36" rx="4" ry="4" fill="#1a0f00" stroke="#8b5cf6" stroke-width="1" opacity="0.85"/>
+  <rect x="767" y="412" width="5" height="36" rx="2" ry="2" fill="#8b5cf6"/>
+  <text x="675" y="428" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#8b5cf6">Audit Logging</text>
+  <text x="675" y="441" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#c4b5fd">SIEM | Compliance trail</text>
+  <circle cx="596" cy="422" r="4" fill="#8b5cf6" opacity="0.8"/>
+
+  <!-- ======================== FLOW ARROWS ======================== -->
+  <!-- User request arrow into input guardrails -->
+  <!-- Main flow: Input panel → Core (green arrow right) -->
+  <line x1="230" y1="290" x2="325" y2="290" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="277" y="283" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#22c55e">PASS</text>
+
+  <!-- Main flow: Core → Output panel (orange arrow right) -->
+  <line x1="475" y1="320" x2="575" y2="320" stroke="#f97316" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <text x="525" y="313" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#f97316">RESPONSE</text>
+
+  <!-- ======================== USER REQUEST / RESPONSE FLOW ======================== -->
+  <!-- User icon left -->
+  <circle cx="400" cy="528" r="14" fill="none" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="400" y="532" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#00d4ff">USER</text>
+
+  <!-- Arrow: User up to input guardrails -->
+  <line x1="370" y1="524" x2="180" y2="470" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowCyan)"/>
+  <text x="258" y="503" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#00d4ff" transform="rotate(-18,258,503)">REQUEST</text>
+
+  <!-- Arrow: Output guardrails down to user -->
+  <line x1="620" y1="470" x2="430" y2="526" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowOrange)"/>
+  <text x="540" y="495" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#f97316" transform="rotate(-18,540,495)">SAFE RESPONSE</text>
+
+  <!-- ======================== BYPASS ATTEMPT (RED) ======================== -->
+  <!-- Bypass label box -->
+  <rect x="295" y="490" width="155" height="30" rx="4" ry="4" fill="#2d0000" stroke="#ef4444" stroke-width="1.5" filter="url(#glowRed)"/>
+  <text x="372" y="504" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#ef4444">BYPASS ATTEMPT</text>
+  <text x="372" y="516" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#fca5a5">Jailbreak | Injection | Evasion</text>
+
+  <!-- Red dashed arrow from bypass box toward input panel (blocked) -->
+  <line x1="295" y1="505" x2="230" y2="390" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowRed)" opacity="0.8"/>
+
+  <!-- BLOCKED indicator -->
+  <rect x="212" y="450" width="68" height="22" rx="3" fill="#ef4444" opacity="0.9"/>
+  <text x="246" y="465" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#ffffff">BLOCKED</text>
+
+  <!-- X mark near blocked indicator -->
+  <text x="188" y="465" text-anchor="middle" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#ef4444" filter="url(#glowRed)">✕</text>
+
+  <!-- ======================== GUARDRAIL TOOLS LEGEND (BOTTOM) ======================== -->
+  <rect x="15" y="468" width="155" height="120" rx="6" ry="6" fill="#0d1b2a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="92" y="484" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#4a9eff">GUARDRAIL PLATFORMS</text>
+  <line x1="25" y1="488" x2="160" y2="488" stroke="#1e3a5f" stroke-width="0.8"/>
+
+  <text x="30" y="503" font-family="'Courier New', monospace" font-size="8.5" fill="#22c55e">▸ Guardrails AI</text>
+  <text x="30" y="518" font-family="'Courier New', monospace" font-size="8.5" fill="#00d4ff">▸ NeMo Guardrails</text>
+  <text x="30" y="533" font-family="'Courier New', monospace" font-size="8.5" fill="#f97316">▸ Llama Guard</text>
+  <text x="30" y="548" font-family="'Courier New', monospace" font-size="8.5" fill="#8b5cf6">▸ Azure Content Safety</text>
+  <text x="30" y="563" font-family="'Courier New', monospace" font-size="8.5" fill="#eab308">▸ AWS Bedrock Guards</text>
+  <text x="30" y="578" font-family="'Courier New', monospace" font-size="8.5" fill="#e2e8f0">▸ OpenAI Moderation API</text>
+
+  <!-- ======================== DECISION OUTCOMES LEGEND (BOTTOM RIGHT) ======================== -->
+  <rect x="630" y="468" width="155" height="120" rx="6" ry="6" fill="#0d1b2a" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="707" y="484" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="#4a9eff">GUARDRAIL ACTIONS</text>
+  <line x1="640" y1="488" x2="775" y2="488" stroke="#1e3a5f" stroke-width="0.8"/>
+
+  <circle cx="648" cy="502" r="4" fill="#22c55e"/>
+  <text x="660" y="506" font-family="'Courier New', monospace" font-size="8.5" fill="#22c55e">PASS — Forward request</text>
+  <circle cx="648" cy="518" r="4" fill="#ef4444"/>
+  <text x="660" y="522" font-family="'Courier New', monospace" font-size="8.5" fill="#ef4444">BLOCK — Reject request</text>
+  <circle cx="648" cy="534" r="4" fill="#eab308"/>
+  <text x="660" y="538" font-family="'Courier New', monospace" font-size="8.5" fill="#eab308">WARN — Flag and log</text>
+  <circle cx="648" cy="550" r="4" fill="#00d4ff"/>
+  <text x="660" y="554" font-family="'Courier New', monospace" font-size="8.5" fill="#00d4ff">REDACT — Sanitize data</text>
+  <circle cx="648" cy="566" r="4" fill="#f97316"/>
+  <text x="660" y="570" font-family="'Courier New', monospace" font-size="8.5" fill="#f97316">REPHRASE — Rewrite</text>
+  <circle cx="648" cy="582" r="4" fill="#8b5cf6"/>
+  <text x="660" y="586" font-family="'Courier New', monospace" font-size="8.5" fill="#8b5cf6">AUDIT — Record &amp; alert</text>
+
+  <!-- ======================== DECORATIVE SCAN LINES ON CORE ======================== -->
+  <line x1="340" y1="260" x2="460" y2="260" stroke="#4a9eff" stroke-width="0.4" opacity="0.3"/>
+  <line x1="332" y1="275" x2="468" y2="275" stroke="#4a9eff" stroke-width="0.3" opacity="0.2"/>
+
+  <!-- ======================== MODULE BADGE ======================== -->
+  <rect x="680" y="7" width="115" height="44" rx="4" ry="4" fill="#0d1b2a" stroke="#4a9eff" stroke-width="1"/>
+  <text x="737" y="23" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#4a9eff">MODULE 5 — LESSON 1</text>
+  <text x="737" y="38" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#64748b">AI Security Risk</text>
+  <text x="737" y="50" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#334155">m5-l01-guardrails</text>
+
+  <!-- ======================== INPUT LABEL ======================== -->
+  <text x="122" y="470" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#22c55e" opacity="0.7">← PRE-PROCESSING LAYER</text>
+
+  <!-- ======================== OUTPUT LABEL ======================== -->
+  <text x="677" y="470" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#f97316" opacity="0.7">POST-PROCESSING LAYER →</text>
+
+</svg>

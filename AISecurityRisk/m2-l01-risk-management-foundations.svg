@@ -1,0 +1,256 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2a3a" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filters -->
+    <filter id="glow-cyan">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-soft">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Arrow markers -->
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-gold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#eab308"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00d4ff"/>
+    </marker>
+    <!-- Radial gradients for center -->
+    <radialGradient id="center-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a2744"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </radialGradient>
+    <!-- Arc gradients -->
+    <linearGradient id="grad-step1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#ef444499"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.5"/>
+
+  <!-- Outer decorative ring -->
+  <circle cx="400" cy="320" r="245" fill="none" stroke="#1e2a3a" stroke-width="1.5" stroke-dasharray="4,6"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" filter="url(#glow-soft)">AI Risk Management Lifecycle</text>
+  <text x="400" y="58" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#8b9ab0">ISO 31000 Framework Applied to Artificial Intelligence Systems</text>
+
+  <!-- ISO 31000 badge -->
+  <rect x="10" y="10" width="110" height="28" rx="4" fill="#1e2a3a" stroke="#4a9eff" stroke-width="1"/>
+  <text x="65" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4a9eff" font-weight="bold">ISO 31000:2018</text>
+
+  <!-- ============================================================
+       CIRCULAR PROCESS FLOW — 5 arcs at radius ~185, center (400,320)
+       Steps at 54° apart starting from top (270°):
+         1. Identify   270° → 342°   color red
+         2. Analyze    342° → 54°    color orange
+         3. Evaluate   54°  → 126°   color gold
+         4. Treat      126° → 198°   color green
+         5. Monitor    198° → 270°   color teal
+  ============================================================ -->
+
+  <!-- Helper: arc path at r=185, stroke-width=40, gap 8° -->
+  <!-- Step 1: Identify Risks  (270° to 340°) -->
+  <path d="M 400,135 A 185,185 0 0,1 551.8,194.7"
+        fill="none" stroke="#ef4444" stroke-width="38" stroke-linecap="round" opacity="0.85"/>
+  <!-- Step 2: Analyze & Assess  (342° to 54°) -->
+  <path d="M 557.5,202.5 A 185,185 0 0,1 557.5,437.5"
+        fill="none" stroke="#f97316" stroke-width="38" stroke-linecap="round" opacity="0.85"/>
+  <!-- Step 3: Evaluate & Prioritize  (54° to 126°) -->
+  <path d="M 551.8,445.3 A 185,185 0 0,1 248.2,445.3"
+        fill="none" stroke="#eab308" stroke-width="38" stroke-linecap="round" opacity="0.85"/>
+  <!-- Step 4: Treat & Control  (126° to 198°) -->
+  <path d="M 242.5,437.5 A 185,185 0 0,1 242.5,202.5"
+        fill="none" stroke="#22c55e" stroke-width="38" stroke-linecap="round" opacity="0.85"/>
+  <!-- Step 5: Monitor & Review  (198° to 270°) -->
+  <path d="M 248.2,194.7 A 185,185 0 0,1 400,135"
+        fill="none" stroke="#00d4ff" stroke-width="38" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Inner ring shadow/separator -->
+  <circle cx="400" cy="320" r="165" fill="#0d1117"/>
+  <circle cx="400" cy="320" r="165" fill="none" stroke="#1e2a3a" stroke-width="2"/>
+
+  <!-- ============================================================
+       Step Labels (outside the arc ring, at r=235)
+  ============================================================ -->
+  <!-- Step 1: top-right — Identify Risks -->
+  <text x="510" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ef4444">1. IDENTIFY</text>
+  <text x="510" y="183" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">Risks</text>
+
+  <!-- Step 2: right — Analyze -->
+  <text x="633" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f97316">2. ANALYZE</text>
+  <text x="633" y="333" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">&amp; Assess</text>
+
+  <!-- Step 3: bottom — Evaluate -->
+  <text x="400" y="534" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#eab308">3. EVALUATE</text>
+  <text x="400" y="549" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">&amp; Prioritize</text>
+
+  <!-- Step 4: left — Treat -->
+  <text x="168" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#22c55e">4. TREAT</text>
+  <text x="168" y="333" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">&amp; Control</text>
+
+  <!-- Step 5: top-left — Monitor -->
+  <text x="293" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#00d4ff">5. MONITOR</text>
+  <text x="293" y="183" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e2e8f0">&amp; Review</text>
+
+  <!-- ============================================================
+       CENTER CIRCLE — "AI Risk Management"
+  ============================================================ -->
+  <circle cx="400" cy="320" r="118" fill="url(#center-grad)" stroke="#00d4ff" stroke-width="1.5" filter="url(#glow-cyan)" opacity="0.9"/>
+  <circle cx="400" cy="320" r="114" fill="none" stroke="#4a9eff" stroke-width="0.5" stroke-dasharray="3,5"/>
+
+  <!-- AI brain icon simplified -->
+  <text x="400" y="296" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="#00d4ff" opacity="0.7">⬡</text>
+  <text x="400" y="298" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" opacity="0.9">AI</text>
+
+  <text x="400" y="320" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Risk</text>
+  <text x="400" y="337" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Management</text>
+
+  <!-- Divider line in center -->
+  <line x1="340" y1="347" x2="460" y2="347" stroke="#4a9eff" stroke-width="0.8" opacity="0.6"/>
+
+  <text x="400" y="362" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#8b9ab0">Continuous &amp; Iterative</text>
+
+  <!-- ============================================================
+       RISK CATEGORIES — 6 small icons in the corners/outer areas
+  ============================================================ -->
+
+  <!-- Technical Risk (top-right corner) -->
+  <g transform="translate(670,80)">
+    <rect x="-38" y="-20" width="76" height="52" rx="6" fill="#1a2133" stroke="#4a9eff" stroke-width="1.2"/>
+    <text x="0" y="-3" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#4a9eff">⚙</text>
+    <text x="0" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#e2e8f0">Technical</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Risk</text>
+  </g>
+
+  <!-- Legal / Compliance Risk (right side) -->
+  <g transform="translate(755,230)">
+    <rect x="-33" y="-20" width="66" height="52" rx="6" fill="#1a2133" stroke="#8b5cf6" stroke-width="1.2"/>
+    <text x="0" y="-3" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#8b5cf6">⚖</text>
+    <text x="0" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#e2e8f0">Legal</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Risk</text>
+  </g>
+
+  <!-- Ethical Risk (bottom-right) -->
+  <g transform="translate(700,490)">
+    <rect x="-36" y="-20" width="72" height="52" rx="6" fill="#1a2133" stroke="#f97316" stroke-width="1.2"/>
+    <text x="0" y="-3" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#f97316">◈</text>
+    <text x="0" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#e2e8f0">Ethical</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Risk</text>
+  </g>
+
+  <!-- Operational Risk (bottom-left) -->
+  <g transform="translate(100,490)">
+    <rect x="-38" y="-20" width="76" height="52" rx="6" fill="#1a2133" stroke="#22c55e" stroke-width="1.2"/>
+    <text x="0" y="-3" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#22c55e">⊞</text>
+    <text x="0" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#e2e8f0">Operational</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Risk</text>
+  </g>
+
+  <!-- Reputational Risk (left side) -->
+  <g transform="translate(45,230)">
+    <rect x="-33" y="-20" width="66" height="52" rx="6" fill="#1a2133" stroke="#eab308" stroke-width="1.2"/>
+    <text x="0" y="-3" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#eab308">★</text>
+    <text x="0" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#e2e8f0">Reputational</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Risk</text>
+  </g>
+
+  <!-- Business Risk (top-left corner) -->
+  <g transform="translate(130,80)">
+    <rect x="-38" y="-20" width="76" height="52" rx="6" fill="#1a2133" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="0" y="-3" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#ef4444">▲</text>
+    <text x="0" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#e2e8f0">Business</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Risk</text>
+  </g>
+
+  <!-- ============================================================
+       RISK APPETITE DIAL — bottom center
+  ============================================================ -->
+  <g transform="translate(400,578)">
+    <!-- Dial background -->
+    <rect x="-145" y="-52" width="290" height="48" rx="8" fill="#111827" stroke="#2d3748" stroke-width="1"/>
+    <text x="0" y="-37" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#8b9ab0">RISK APPETITE DIAL</text>
+    <!-- Zones -->
+    <rect x="-138" y="-30" width="60" height="20" rx="3" fill="#22c55e" opacity="0.8"/>
+    <text x="-108" y="-16" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff" font-weight="bold">AVERSE</text>
+    <rect x="-72" y="-30" width="60" height="20" rx="3" fill="#eab308" opacity="0.8"/>
+    <text x="-42" y="-16" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff" font-weight="bold">MINIMAL</text>
+    <rect x="-6" y="-30" width="60" height="20" rx="3" fill="#f97316" opacity="0.8"/>
+    <text x="24" y="-16" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff" font-weight="bold">CAUTIOUS</text>
+    <rect x="60" y="-30" width="60" height="20" rx="3" fill="#ef4444" opacity="0.8"/>
+    <text x="90" y="-16" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#fff" font-weight="bold">OPEN</text>
+    <!-- Pointer -->
+    <polygon points="24,-30 20,-10 28,-10" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- ============================================================
+       STAKEHOLDER ICONS — around the outer ring
+  ============================================================ -->
+  <!-- Risk Owner label top-center -->
+  <g transform="translate(400,88)">
+    <circle r="12" fill="#1a2133" stroke="#00d4ff" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#00d4ff">👤</text>
+    <text x="0" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#8b9ab0">Risk Owner</text>
+  </g>
+
+  <!-- Stakeholders connector lines (faint) to categories -->
+  <line x1="400" y1="100" x2="400" y2="136" stroke="#00d4ff" stroke-width="0.6" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- ============================================================
+       INHERENT vs RESIDUAL labels inside ring gaps
+  ============================================================ -->
+  <!-- Small info panels -->
+  <g transform="translate(400,205)">
+    <rect x="-55" y="-13" width="110" height="22" rx="4" fill="#0d2137" stroke="#4a9eff" stroke-width="0.8"/>
+    <text x="0" y="3" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#4a9eff">Inherent → Residual Risk</text>
+  </g>
+
+  <!-- Step detail bullets inside ring -->
+  <!-- These are too small inside ring, place them outside near each step label -->
+
+  <!-- Step 1 detail -->
+  <text x="510" y="199" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Threat modeling · Asset inventory</text>
+  <text x="510" y="211" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">AI-specific attack surfaces</text>
+
+  <!-- Step 2 detail -->
+  <text x="633" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Likelihood × Impact</text>
+  <text x="633" y="362" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Qualitative &amp; Quantitative</text>
+
+  <!-- Step 3 detail -->
+  <text x="400" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Risk matrix · Prioritization</text>
+
+  <!-- Step 4 detail -->
+  <text x="168" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Avoid · Reduce</text>
+  <text x="168" y="362" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Transfer · Accept</text>
+
+  <!-- Step 5 detail -->
+  <text x="293" y="199" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">KRIs · Dashboards</text>
+  <text x="293" y="211" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b9ab0">Continuous feedback</text>
+
+  <!-- ============================================================
+       COMMUNICATION & CONSULTATION band (inner small ring note)
+  ============================================================ -->
+  <text x="400" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#4a9eff" opacity="0.85">Communication &amp; Consultation</text>
+  <text x="400" y="393" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#8b5cf6" opacity="0.85">Recording &amp; Reporting</text>
+
+  <!-- Bottom border line -->
+  <line x1="20" y1="590" x2="780" y2="590" stroke="#1e2a3a" stroke-width="1"/>
+  <text x="400" y="598" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#3d4f62">AI Security Risk Course · Module 2 · Lesson 1</text>
+</svg>

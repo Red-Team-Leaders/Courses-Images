@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" font-family="'Courier New',Consolas,monospace">
+  <defs>
+    <linearGradient id="bg7q" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#0a0d12"/>
+    </linearGradient>
+    <linearGradient id="trace7" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#132a1c"/><stop offset="1" stop-color="#0f2236"/>
+    </linearGradient>
+    <marker id="q7" markerWidth="11" markerHeight="11" refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,3.5 L0,7 Z" fill="#e11d2a"/>
+    </marker>
+    <marker id="q7g" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#6e7681"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg7q)"/>
+  <rect x="0" y="0" width="1600" height="6" fill="#e11d2a"/>
+  <text x="40" y="52" fill="#f0f6fc" font-size="30" font-weight="bold">Time Travel Debugging — record once, query forever</text>
+  <text x="40" y="80" fill="#8b949e" font-size="17">A .run recording becomes a queryable database: dx LINQ over Calls / Memory returns position-stamped hits you can travel to.</text>
+
+  <!-- Stage 1: record -->
+  <rect x="40" y="120" width="360" height="150" rx="12" fill="#1e0d14" stroke="#e11d2a" stroke-width="2"/>
+  <text x="60" y="156" fill="#ff7b72" font-size="20" font-weight="bold">1. Record</text>
+  <text x="60" y="192" fill="#c9d1d9" font-size="15">TTD.exe -out c:\t\ck.run \</text>
+  <text x="60" y="216" fill="#c9d1d9" font-size="15">  rustcrackme.exe R3dT-eamL-...</text>
+  <text x="60" y="248" fill="#8b949e" font-size="14">&#8594; ck.run + ck.idx (indexed trace)</text>
+
+  <!-- Stage 2: query -->
+  <rect x="440" y="120" width="700" height="150" rx="12" fill="url(#trace7)" stroke="#2f81f7" stroke-width="2"/>
+  <text x="460" y="156" fill="#79c0ff" font-size="20" font-weight="bold">2. Query with dx (LINQ)</text>
+  <text x="460" y="192" fill="#7ee787" font-size="15">dx @$cursession.TTD.Calls("rustcrackme!*check_serial")</text>
+  <text x="460" y="218" fill="#e3b341" font-size="15">  .Where(c =&gt; c.Parameters[0] != 0)</text>
+  <text x="460" y="244" fill="#bc8cff" font-size="15">  .Select(c =&gt; new { c.TimeStart, c.ReturnValue })</text>
+
+  <!-- Stage 3: hits timeline -->
+  <rect x="1180" y="120" width="380" height="150" rx="12" fill="#0f2a17" stroke="#3fb950" stroke-width="2"/>
+  <text x="1200" y="156" fill="#7ee787" font-size="20" font-weight="bold">3. Hits</text>
+  <text x="1200" y="192" fill="#c9d1d9" font-size="15">Count() = 1 call</text>
+  <text x="1200" y="216" fill="#c9d1d9" font-size="15">ReturnValue = 0x1 (accepted)</text>
+  <text x="1200" y="248" fill="#8b949e" font-size="14">!tt &lt;pos&gt; travels to any hit</text>
+
+  <path d="M400,195 L440,195" stroke="#e11d2a" stroke-width="2.5" marker-end="url(#q7)"/>
+  <path d="M1140,195 L1180,195" stroke="#e11d2a" stroke-width="2.5" marker-end="url(#q7)"/>
+
+  <!-- Timeline axis -->
+  <text x="40" y="330" fill="#f0f6fc" font-size="20" font-weight="bold">Execution timeline (position = Sequence:Step)</text>
+  <line x1="80" y1="420" x2="1540" y2="420" stroke="#30363d" stroke-width="3"/>
+  <text x="80" y="460" fill="#6e7681" font-size="14">start</text>
+  <text x="1500" y="460" fill="#6e7681" font-size="14">end</text>
+
+  <!-- call markers -->
+  <g font-size="14">
+    <circle cx="300" cy="420" r="12" fill="#2f81f7"/><text x="300" y="392" fill="#79c0ff" text-anchor="middle">normalize</text>
+    <text x="300" y="480" fill="#8b949e" text-anchor="middle">1F:3A2</text>
+    <circle cx="560" cy="420" r="12" fill="#e11d2a"/><text x="560" y="392" fill="#ff7b72" text-anchor="middle">check_serial</text>
+    <text x="560" y="480" fill="#8b949e" text-anchor="middle">2C:110</text>
+
+    <circle cx="700" cy="420" r="9" fill="#d29922"/><text x="700" y="398" fill="#e3b341" text-anchor="middle">rol_byte[0]</text>
+    <circle cx="760" cy="420" r="9" fill="#d29922"/>
+    <circle cx="820" cy="420" r="9" fill="#d29922"/>
+    <circle cx="880" cy="420" r="9" fill="#d29922"/>
+    <text x="820" y="480" fill="#8b949e" text-anchor="middle">16x rol_byte loop (i=0..15)</text>
+    <circle cx="940" cy="420" r="9" fill="#d29922"/>
+    <circle cx="1000" cy="420" r="9" fill="#d29922"/>
+
+    <circle cx="1200" cy="420" r="12" fill="#3fb950"/><text x="1200" y="392" fill="#7ee787" text-anchor="middle">st.passed=1</text>
+    <text x="1200" y="480" fill="#8b949e" text-anchor="middle">2C:9F0</text>
+    <path d="M1200,432 L1200,470" stroke="#3fb950" stroke-width="1.5" marker-end="url(#q7g)"/>
+  </g>
+
+  <!-- Memory write query panel -->
+  <rect x="80" y="540" width="700" height="300" rx="12" fill="#0b1017" stroke="#30363d" stroke-width="1.5"/>
+  <text x="104" y="576" fill="#f0f6fc" font-size="19" font-weight="bold">"Where was this value written?" — TTD.Memory</text>
+  <g font-size="15" fill="#c9d1d9">
+    <text x="104" y="612" fill="#7ee787">dx @$cursession.TTD.Memory(</text>
+    <text x="124" y="638" fill="#e3b341">  &amp;st.passed, &amp;st.passed+4, "w")</text>
+    <text x="104" y="678" fill="#c9d1d9">&#8594; returns each write access with a</text>
+    <text x="104" y="704" fill="#c9d1d9">  TimeStart position + the value stored.</text>
+    <text x="104" y="742" fill="#bc8cff">.Where(a =&gt; a.Value == 1).First().TimeStart</text>
+    <text x="104" y="782" fill="#8b949e">Travel there: !tt 2C:9F0 — inspect the exact</text>
+    <text x="104" y="808" fill="#8b949e">instant the accept flag flipped. Backward RE.</text>
+  </g>
+
+  <!-- Calls query panel -->
+  <rect x="820" y="540" width="700" height="300" rx="12" fill="#0b1017" stroke="#30363d" stroke-width="1.5"/>
+  <text x="844" y="576" fill="#f0f6fc" font-size="19" font-weight="bold">Calls() object fields (per hit)</text>
+  <g font-size="15" fill="#c9d1d9">
+    <text x="844" y="612" fill="#79c0ff">.TimeStart / .TimeEnd</text><text x="1150" y="612" fill="#8b949e">position stamps</text>
+    <text x="844" y="644" fill="#79c0ff">.Parameters[n]</text><text x="1150" y="644" fill="#8b949e">args as read at entry</text>
+    <text x="844" y="676" fill="#79c0ff">.ReturnValue</text><text x="1150" y="676" fill="#8b949e">rax at return</text>
+    <text x="844" y="708" fill="#79c0ff">.Function / .FunctionAddress</text><text x="1150" y="708" fill="#8b949e">resolved symbol</text>
+    <text x="844" y="740" fill="#79c0ff">.ThreadId</text><text x="1150" y="740" fill="#8b949e">owning thread</text>
+    <text x="844" y="778" fill="#8b949e">Chain: .Calls(..).Where(..).Select(..).OrderBy(c =&gt; c.TimeStart)</text>
+    <text x="844" y="810" fill="#8b949e">Aggregate: .Count(), .Sum(..), .GroupBy(..) all work.</text>
+  </g>
+</svg>

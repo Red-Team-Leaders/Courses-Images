@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" font-family="'Courier New',Consolas,monospace">
+  <defs>
+    <linearGradient id="bgttd" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#0a0d12"/>
+    </linearGradient>
+    <linearGradient id="nodettd" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#161b22"/><stop offset="1" stop-color="#10151c"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#6e7681"/>
+    </marker>
+    <marker id="arrR" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#e11d2a"/>
+    </marker>
+    <marker id="arrB" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#bc8cff"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bgttd)"/>
+  <rect x="0" y="0" width="1600" height="6" fill="#e11d2a"/>
+  <text x="40" y="52" fill="#f0f6fc" font-size="30" font-weight="bold">Time Travel Debugging — Record Once, Replay Deterministically</text>
+  <text x="40" y="80" fill="#8b949e" font-size="17">TTD instruments a USER-MODE process, journals every instruction to a .run trace, then replays it forwards AND backwards.</text>
+
+  <!-- PHASE 1: RECORD -->
+  <rect x="40" y="110" width="720" height="330" rx="12" fill="#12070a" stroke="#e11d2a" stroke-width="1.6"/>
+  <text x="64" y="146" fill="#ff7b72" font-size="22" font-weight="bold">1 · RECORD  (once, online)</text>
+  <text x="64" y="172" fill="#8b949e" font-size="15">TTD.exe -out C:\traces target.exe   |   WinDbgX "Start debugging and record"</text>
+
+  <rect x="64" y="196" width="300" height="60" rx="8" fill="url(#nodettd)" stroke="#2f81f7"/>
+  <text x="214" y="222" fill="#79c0ff" font-size="16" text-anchor="middle">target.exe runs live</text>
+  <text x="214" y="244" fill="#8b949e" font-size="13" text-anchor="middle">10x–50x slower under capture</text>
+
+  <rect x="64" y="280" width="300" height="60" rx="8" fill="url(#nodettd)" stroke="#d29922"/>
+  <text x="214" y="306" fill="#e3b341" font-size="16" text-anchor="middle">TTDRecordCPU.dll journals</text>
+  <text x="214" y="328" fill="#8b949e" font-size="13" text-anchor="middle">every executed instruction + reads</text>
+
+  <path d="M214,256 L214,280" stroke="#6e7681" stroke-width="1.6" marker-end="url(#arr)"/>
+
+  <!-- files -->
+  <rect x="430" y="200" width="290" height="66" rx="8" fill="#0f1b2a" stroke="#3fb950"/>
+  <text x="575" y="228" fill="#7ee787" font-size="17" text-anchor="middle">target01.run</text>
+  <text x="575" y="250" fill="#8b949e" font-size="13" text-anchor="middle">the trace (can be GBs)</text>
+  <rect x="430" y="284" width="290" height="66" rx="8" fill="#0f1b2a" stroke="#a371f7"/>
+  <text x="575" y="312" fill="#bc8cff" font-size="17" text-anchor="middle">target01.idx</text>
+  <text x="575" y="334" fill="#8b949e" font-size="13" text-anchor="middle">keyframe index (built on first open)</text>
+
+  <path d="M364,226 L430,230" stroke="#6e7681" stroke-width="1.6" marker-end="url(#arr)"/>
+  <path d="M364,310 L430,314" stroke="#6e7681" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="64" y="392" fill="#8b949e" font-size="14">Requires admin the first time (TTD driver/registry registration). User-mode only — never the kernel.</text>
+  <text x="64" y="416" fill="#8b949e" font-size="14">Files land in -out &lt;dir&gt;; default is the working directory. Copy the .run offline to replay anywhere.</text>
+
+  <!-- big arrow record->replay -->
+  <path d="M760,275 L840,275" stroke="#6e7681" stroke-width="2.4" marker-end="url(#arr)"/>
+  <text x="800" y="262" fill="#8b949e" font-size="13" text-anchor="middle">open</text>
+
+  <!-- PHASE 2: REPLAY -->
+  <rect x="840" y="110" width="720" height="330" rx="12" fill="#0b1017" stroke="#a371f7" stroke-width="1.6"/>
+  <text x="864" y="146" fill="#bc8cff" font-size="22" font-weight="bold">2 · REPLAY  (many times, offline, deterministic)</text>
+  <text x="864" y="172" fill="#8b949e" font-size="15">windbgx -o target01.run    |    cdb -z target01.run    (opens like a dump)</text>
+
+  <rect x="864" y="196" width="330" height="54" rx="8" fill="url(#nodettd)" stroke="#2f81f7"/>
+  <text x="1029" y="228" fill="#79c0ff" font-size="16" text-anchor="middle">Same execution every replay</text>
+  <rect x="864" y="264" width="330" height="54" rx="8" fill="url(#nodettd)" stroke="#3fb950"/>
+  <text x="1029" y="296" fill="#7ee787" font-size="16" text-anchor="middle">Positions locate any moment</text>
+  <rect x="864" y="332" width="330" height="54" rx="8" fill="url(#nodettd)" stroke="#d29922"/>
+  <text x="1029" y="364" fill="#e3b341" font-size="15" text-anchor="middle">dx @$cursession.TTD.Calls(...)</text>
+
+  <path d="M1194,223 L1240,223" stroke="#6e7681" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="1400" y="212" fill="#c9d1d9" font-size="14" text-anchor="middle">g / p / t   forward</text>
+  <path d="M1240,232 L1544,232" stroke="#6e7681" stroke-width="2" marker-end="url(#arr)"/>
+
+  <path d="M1194,291 L1240,291" stroke="#6e7681" stroke-width="1.4" marker-end="url(#arrB)"/>
+  <text x="1400" y="322" fill="#bc8cff" font-size="14" text-anchor="middle">g- / p- / t-   backward</text>
+  <path d="M1544,302 L1240,302" stroke="#bc8cff" stroke-width="2" marker-end="url(#arrB)"/>
+
+  <text x="864" y="416" fill="#8b949e" font-size="14">!tt &lt;pos&gt; travels to a position · !positions lists thread cursors · !tt 0 = start, !tt 100 = end.</text>
+
+  <!-- TIMELINE -->
+  <rect x="40" y="470" width="1520" height="180" rx="12" fill="#0b1017" stroke="#30363d" stroke-width="1.5"/>
+  <text x="64" y="506" fill="#f0f6fc" font-size="20" font-weight="bold">The trace timeline — a position is Major:Minor (hex)</text>
+
+  <line x1="90" y1="580" x2="1500" y2="580" stroke="#6e7681" stroke-width="3"/>
+  <!-- start -->
+  <circle cx="90" cy="580" r="9" fill="#3fb950"/>
+  <text x="90" y="614" fill="#7ee787" font-size="14" text-anchor="middle">!tt 0</text>
+  <text x="90" y="632" fill="#8b949e" font-size="12" text-anchor="middle">0:0  (start)</text>
+  <!-- a call -->
+  <circle cx="470" cy="580" r="9" fill="#79c0ff"/>
+  <text x="470" y="548" fill="#79c0ff" font-size="14" text-anchor="middle">alloc() returns</text>
+  <text x="470" y="614" fill="#c9d1d9" font-size="14" text-anchor="middle">7F2A:0</text>
+  <!-- free -->
+  <circle cx="820" cy="580" r="9" fill="#e3b341"/>
+  <text x="820" y="548" fill="#e3b341" font-size="14" text-anchor="middle">free()</text>
+  <text x="820" y="614" fill="#c9d1d9" font-size="14" text-anchor="middle">A1B2:0</text>
+  <!-- fault -->
+  <circle cx="1180" cy="580" r="11" fill="#e11d2a"/>
+  <text x="1180" y="548" fill="#ff7b72" font-size="14" text-anchor="middle" font-weight="bold">use-after-free fault</text>
+  <text x="1180" y="614" fill="#ff7b72" font-size="14" text-anchor="middle">C4D5:1E</text>
+  <!-- end -->
+  <circle cx="1500" cy="580" r="9" fill="#3fb950"/>
+  <text x="1500" y="614" fill="#7ee787" font-size="14" text-anchor="middle">!tt 100</text>
+  <text x="1500" y="632" fill="#8b949e" font-size="12" text-anchor="middle">(end)</text>
+
+  <!-- backward travel arc from fault to free -->
+  <path d="M1170,566 Q1000,510 838,566" stroke="#bc8cff" stroke-width="2.2" fill="none" marker-end="url(#arrB)"/>
+  <text x="1000" y="500" fill="#bc8cff" font-size="14" text-anchor="middle">!tt A1B2:0  — travel back to the free() to see who freed it</text>
+
+  <!-- footer legend -->
+  <rect x="40" y="680" width="1520" height="180" rx="12" fill="#0b1017" stroke="#30363d" stroke-width="1.5"/>
+  <text x="64" y="716" fill="#f0f6fc" font-size="20" font-weight="bold">Core replay workflow (your positions WILL differ — derive them, never copy)</text>
+  <g font-family="'Courier New',monospace" font-size="16" fill="#c9d1d9">
+    <text x="64" y="752" fill="#7ee787">dx -g @$cursession.TTD.Calls("target!target::free_buf")   // grid of every call</text>
+    <text x="64" y="782" fill="#79c0ff">ba r1 &lt;addr&gt;                     // memory-access bp; then g- to find the writer, backward</text>
+    <text x="64" y="812" fill="#bc8cff">!tt A1B2:0                       // jump the cursor to a position; state is exact</text>
+    <text x="64" y="842" fill="#e3b341">dx @$cursession.TTD.Memory(addr, addr+8, "rw")   // every read/write of a range across time</text>
+  </g>
+</svg>

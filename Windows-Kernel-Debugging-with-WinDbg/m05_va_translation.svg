@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" font-family="'Courier New', Consolas, monospace">
+  <defs>
+    <linearGradient id="vaBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#12161d"/>
+    </linearGradient>
+    <linearGradient id="tblGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2330"/>
+      <stop offset="1" stop-color="#141a24"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L9,4 L0,8 Z" fill="#e11d2a"/>
+    </marker>
+    <marker id="arrowg" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L9,4 L0,8 Z" fill="#3fb950"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#vaBg)"/>
+  <rect x="0" y="0" width="1600" height="64" fill="#161b22"/>
+  <rect x="0" y="64" width="1600" height="3" fill="#e11d2a"/>
+  <text x="40" y="42" font-size="30" fill="#e6edf3" font-weight="bold">x64 4-Level Address Translation</text>
+  <text x="1300" y="42" font-size="18" fill="#8b949e">m05 · RTL</text>
+
+  <!-- VA bit decomposition -->
+  <text x="40" y="112" font-size="20" fill="#8b949e">48-bit canonical Virtual Address  (bits 63:48 = sign-extension of bit 47)</text>
+  <g>
+    <rect x="40"  y="130" width="150" height="56" fill="#2d1116" stroke="#e11d2a" stroke-width="1.5"/>
+    <rect x="190" y="130" width="150" height="56" fill="url(#tblGrad)" stroke="#30363d"/>
+    <rect x="340" y="130" width="150" height="56" fill="url(#tblGrad)" stroke="#30363d"/>
+    <rect x="490" y="130" width="150" height="56" fill="url(#tblGrad)" stroke="#30363d"/>
+    <rect x="640" y="130" width="150" height="56" fill="url(#tblGrad)" stroke="#30363d"/>
+    <rect x="790" y="130" width="200" height="56" fill="#122019" stroke="#3fb950"/>
+    <text x="115" y="153" font-size="14" fill="#f0a3ab" text-anchor="middle">63:48</text>
+    <text x="115" y="173" font-size="13" fill="#8b949e" text-anchor="middle">sign-ext</text>
+    <text x="265" y="153" font-size="14" fill="#e6edf3" text-anchor="middle">47:39</text>
+    <text x="265" y="173" font-size="13" fill="#58a6ff" text-anchor="middle">PML4E idx</text>
+    <text x="415" y="153" font-size="14" fill="#e6edf3" text-anchor="middle">38:30</text>
+    <text x="415" y="173" font-size="13" fill="#58a6ff" text-anchor="middle">PDPTE idx</text>
+    <text x="565" y="153" font-size="14" fill="#e6edf3" text-anchor="middle">29:21</text>
+    <text x="565" y="173" font-size="13" fill="#58a6ff" text-anchor="middle">PDE idx</text>
+    <text x="715" y="153" font-size="14" fill="#e6edf3" text-anchor="middle">20:12</text>
+    <text x="715" y="173" font-size="13" fill="#58a6ff" text-anchor="middle">PTE idx</text>
+    <text x="890" y="153" font-size="14" fill="#7ee2a8" text-anchor="middle">11:0</text>
+    <text x="890" y="173" font-size="13" fill="#7ee2a8" text-anchor="middle">page offset (12b)</text>
+  </g>
+  <text x="1030" y="165" font-size="15" fill="#8b949e">9 + 9 + 9 + 9 + 12 = 48 bits</text>
+
+  <!-- CR3 -->
+  <rect x="40" y="250" width="220" height="90" rx="8" fill="#2d1116" stroke="#e11d2a" stroke-width="2"/>
+  <text x="150" y="285" font-size="22" fill="#e11d2a" text-anchor="middle" font-weight="bold">CR3</text>
+  <text x="150" y="312" font-size="14" fill="#e6edf3" text-anchor="middle">DirBase / PML4 base</text>
+  <text x="150" y="331" font-size="12" fill="#8b949e" text-anchor="middle">!process 0 0 → DirBase</text>
+
+  <!-- Four tables -->
+  <g>
+    <!-- PML4 -->
+    <rect x="330" y="240" width="200" height="150" rx="6" fill="url(#tblGrad)" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="430" y="268" font-size="18" fill="#58a6ff" text-anchor="middle" font-weight="bold">PML4</text>
+    <text x="430" y="288" font-size="12" fill="#8b949e" text-anchor="middle">512 × PML4E</text>
+    <line x1="340" y1="300" x2="520" y2="300" stroke="#30363d"/>
+    <rect x="345" y="330" width="170" height="26" fill="#1b2330" stroke="#e11d2a"/>
+    <text x="430" y="348" font-size="12" fill="#e6edf3" text-anchor="middle">[PML4E idx] → PFN</text>
+
+    <!-- PDPT -->
+    <rect x="600" y="240" width="200" height="150" rx="6" fill="url(#tblGrad)" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="700" y="268" font-size="18" fill="#58a6ff" text-anchor="middle" font-weight="bold">PDPT</text>
+    <text x="700" y="288" font-size="12" fill="#8b949e" text-anchor="middle">512 × PDPTE</text>
+    <line x1="610" y1="300" x2="790" y2="300" stroke="#30363d"/>
+    <rect x="615" y="330" width="170" height="26" fill="#1b2330" stroke="#e11d2a"/>
+    <text x="700" y="348" font-size="12" fill="#e6edf3" text-anchor="middle">[PDPTE idx] → PFN</text>
+    <text x="700" y="378" font-size="11" fill="#d29922" text-anchor="middle">1GB page if PS=1</text>
+
+    <!-- PD -->
+    <rect x="870" y="240" width="200" height="150" rx="6" fill="url(#tblGrad)" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="970" y="268" font-size="18" fill="#58a6ff" text-anchor="middle" font-weight="bold">PD</text>
+    <text x="970" y="288" font-size="12" fill="#8b949e" text-anchor="middle">512 × PDE</text>
+    <line x1="880" y1="300" x2="1060" y2="300" stroke="#30363d"/>
+    <rect x="885" y="330" width="170" height="26" fill="#1b2330" stroke="#e11d2a"/>
+    <text x="970" y="348" font-size="12" fill="#e6edf3" text-anchor="middle">[PDE idx] → PFN</text>
+    <text x="970" y="378" font-size="11" fill="#d29922" text-anchor="middle">2MB page if PS=1</text>
+
+    <!-- PT -->
+    <rect x="1140" y="240" width="200" height="150" rx="6" fill="url(#tblGrad)" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="1240" y="268" font-size="18" fill="#58a6ff" text-anchor="middle" font-weight="bold">PT</text>
+    <text x="1240" y="288" font-size="12" fill="#8b949e" text-anchor="middle">512 × PTE</text>
+    <line x1="1150" y1="300" x2="1330" y2="300" stroke="#30363d"/>
+    <rect x="1155" y="330" width="170" height="26" fill="#1b2330" stroke="#e11d2a"/>
+    <text x="1240" y="348" font-size="12" fill="#e6edf3" text-anchor="middle">[PTE idx] → PFN</text>
+  </g>
+
+  <!-- Physical page frame -->
+  <rect x="1150" y="470" width="360" height="120" rx="8" fill="#122019" stroke="#3fb950" stroke-width="2"/>
+  <text x="1330" y="502" font-size="20" fill="#3fb950" text-anchor="middle" font-weight="bold">4 KiB Physical Page</text>
+  <text x="1330" y="530" font-size="14" fill="#e6edf3" text-anchor="middle">Physical Addr = (PFN &lt;&lt; 12) | offset</text>
+  <text x="1330" y="556" font-size="13" fill="#8b949e" text-anchor="middle">confirm with !vtop &lt;cr3&gt; &lt;va&gt;</text>
+  <text x="1330" y="578" font-size="13" fill="#8b949e" text-anchor="middle">read bytes with !db / !dc (physical)</text>
+
+  <!-- arrows CR3 -> PML4 -->
+  <path d="M260,295 L326,300" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M530,315 L596,315" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M800,315 L866,315" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M1070,315 L1136,315" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M1240,390 L1240,466" stroke="#3fb950" stroke-width="2.5" fill="none" marker-end="url(#arrowg)"/>
+
+  <!-- index feed arrows from VA fields -->
+  <path d="M265,190 C265,215 430,215 430,236" stroke="#58a6ff" stroke-width="1.5" fill="none" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <path d="M415,190 C415,220 700,218 700,236" stroke="#58a6ff" stroke-width="1.5" fill="none" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <path d="M565,190 C565,222 970,220 970,236" stroke="#58a6ff" stroke-width="1.5" fill="none" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <path d="M715,190 C715,224 1240,222 1240,236" stroke="#58a6ff" stroke-width="1.5" fill="none" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <path d="M890,190 C890,420 1240,420 1290,468" stroke="#7ee2a8" stroke-width="1.5" fill="none" stroke-dasharray="4 3" marker-end="url(#arrowg)"/>
+
+  <!-- Address space split panel -->
+  <rect x="40" y="470" width="1050" height="360" rx="8" fill="#12161d" stroke="#30363d"/>
+  <text x="60" y="502" font-size="20" fill="#e6edf3" font-weight="bold">Canonical 48-bit Address Space (two halves, non-canonical hole between)</text>
+
+  <rect x="60" y="520" width="1010" height="46" fill="#122019" stroke="#3fb950"/>
+  <text x="72" y="549" font-size="15" fill="#7ee2a8">0x0000_0000_0000_0000 – 0x0000_7FFF_FFFF_FFFF   USER space (per-process, low half)</text>
+
+  <rect x="60" y="574" width="1010" height="46" fill="#241a10" stroke="#d29922"/>
+  <text x="72" y="603" font-size="15" fill="#e3b341">0x0000_8000_0000_0000 – 0xFFFF_7FFF_FFFF_FFFF   NON-CANONICAL  (bits 63:48 ≠ bit 47 → #GP)</text>
+
+  <rect x="60" y="628" width="1010" height="46" fill="#2d1116" stroke="#e11d2a"/>
+  <text x="72" y="657" font-size="15" fill="#f0a3ab">0xFFFF_8000_0000_0000 – 0xFFFF_FFFF_FFFF_FFFF   KERNEL space (shared, high half)</text>
+
+  <text x="60" y="706" font-size="15" fill="#8b949e">Self-map / recursive PT: a reserved PML4E maps the page tables into VA, so nt reads a PTE</text>
+  <text x="60" y="728" font-size="15" fill="#8b949e">as ordinary memory. The PFN database (nt!MmPfnDatabase) describes every physical frame.</text>
+  <text x="60" y="758" font-size="15" fill="#58a6ff">Derive at runtime — your CR3, PFNs, and bases WILL differ:</text>
+  <text x="60" y="784" font-size="14" fill="#e6edf3">  kd&gt; r cr3        kd&gt; !process 0 0     kd&gt; !pte &lt;va&gt;     kd&gt; !vtop &lt;cr3&gt; &lt;va&gt;</text>
+  <text x="60" y="810" font-size="14" fill="#e6edf3">  kd&gt; ? nt!MmPfnDatabase        kd&gt; dt nt!_MMPTE &lt;pte-addr&gt;</text>
+
+  <text x="1150" y="706" font-size="15" fill="#8b949e">A TLB caches VA→PA to skip</text>
+  <text x="1150" y="728" font-size="15" fill="#8b949e">the 4 memory reads per walk.</text>
+  <text x="1150" y="758" font-size="15" fill="#8b949e">Large pages stop the walk</text>
+  <text x="1150" y="780" font-size="15" fill="#8b949e">early (PS=1 at PDPTE/PDE).</text>
+</svg>

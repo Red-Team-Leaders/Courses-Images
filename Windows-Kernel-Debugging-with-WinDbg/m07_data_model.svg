@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" font-family="'Courier New',Consolas,monospace">
+  <defs>
+    <linearGradient id="bg7d" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#0a0d12"/>
+    </linearGradient>
+    <linearGradient id="node7" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#161b22"/><stop offset="1" stop-color="#10151c"/>
+    </linearGradient>
+    <marker id="d7" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#6e7681"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg7d)"/>
+  <rect x="0" y="0" width="1600" height="6" fill="#e11d2a"/>
+  <text x="40" y="52" fill="#f0f6fc" font-size="30" font-weight="bold">The Debugger Data Model — dx object tree</text>
+  <text x="40" y="80" fill="#8b949e" font-size="17">Navigate with dot syntax; filter with .Where()/.Select()/.OrderBy(). Anchor with @$curprocess, @$cursession, @$curthread.</text>
+
+  <!-- root -->
+  <rect x="40" y="120" width="200" height="54" rx="8" fill="#1e0d14" stroke="#e11d2a" stroke-width="2"/>
+  <text x="140" y="154" fill="#ff7b72" font-size="19" text-anchor="middle">Debugger</text>
+
+  <!-- level 1 -->
+  <g font-size="17">
+    <rect x="320" y="120" width="230" height="50" rx="7" fill="url(#node7)" stroke="#2f81f7"/>
+    <text x="435" y="152" fill="#79c0ff" text-anchor="middle">.Sessions</text>
+    <rect x="320" y="196" width="230" height="50" rx="7" fill="url(#node7)" stroke="#2f81f7"/>
+    <text x="435" y="228" fill="#79c0ff" text-anchor="middle">.State</text>
+    <rect x="320" y="272" width="230" height="50" rx="7" fill="url(#node7)" stroke="#2f81f7"/>
+    <text x="435" y="304" fill="#79c0ff" text-anchor="middle">.Settings</text>
+    <rect x="320" y="348" width="230" height="50" rx="7" fill="url(#node7)" stroke="#2f81f7"/>
+    <text x="435" y="380" fill="#79c0ff" text-anchor="middle">.Utility</text>
+  </g>
+  <path d="M240,147 L320,145" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+  <path d="M240,150 L320,221" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+  <path d="M240,153 L320,297" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+  <path d="M240,156 L320,373" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+
+  <!-- level 2 under Sessions -->
+  <rect x="640" y="120" width="250" height="50" rx="7" fill="url(#node7)" stroke="#3fb950"/>
+  <text x="765" y="152" fill="#7ee787" font-size="17" text-anchor="middle">[0].Processes</text>
+  <rect x="640" y="196" width="250" height="50" rx="7" fill="url(#node7)" stroke="#3fb950"/>
+  <text x="765" y="228" fill="#7ee787" font-size="17" text-anchor="middle">[0].Devices</text>
+  <rect x="640" y="272" width="250" height="50" rx="7" fill="url(#node7)" stroke="#3fb950"/>
+  <text x="765" y="304" fill="#7ee787" font-size="17" text-anchor="middle">[0].TTD</text>
+  <path d="M550,145 L640,145" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+  <path d="M550,150 L640,221" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+  <path d="M550,155 L640,297" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+
+  <!-- level 3 under Processes -->
+  <g font-size="16">
+    <rect x="980" y="96" width="270" height="46" rx="7" fill="url(#node7)" stroke="#d29922"/>
+    <text x="1115" y="125" fill="#e3b341" text-anchor="middle">.Threads</text>
+    <rect x="980" y="152" width="270" height="46" rx="7" fill="url(#node7)" stroke="#d29922"/>
+    <text x="1115" y="181" fill="#e3b341" text-anchor="middle">.Modules</text>
+    <rect x="980" y="208" width="270" height="46" rx="7" fill="url(#node7)" stroke="#d29922"/>
+    <text x="1115" y="237" fill="#e3b341" text-anchor="middle">.Handles</text>
+    <rect x="980" y="264" width="270" height="46" rx="7" fill="url(#node7)" stroke="#d29922"/>
+    <text x="1115" y="293" fill="#e3b341" text-anchor="middle">.Environment</text>
+    <rect x="980" y="320" width="270" height="46" rx="7" fill="url(#node7)" stroke="#d29922"/>
+    <text x="1115" y="349" fill="#e3b341" text-anchor="middle">.Io</text>
+  </g>
+  <path d="M890,140 L980,119" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+  <path d="M890,144 L980,175" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+  <path d="M890,148 L980,231" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+  <path d="M890,152 L980,287" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+  <path d="M890,156 L980,343" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+
+  <!-- level 4 leaf under Threads -->
+  <g font-size="15">
+    <rect x="1320" y="80" width="240" height="42" rx="6" fill="#0f1b2a" stroke="#8b949e"/>
+    <text x="1440" y="107" fill="#c9d1d9" text-anchor="middle">.Stack.Frames</text>
+    <rect x="1320" y="130" width="240" height="42" rx="6" fill="#0f1b2a" stroke="#8b949e"/>
+    <text x="1440" y="157" fill="#c9d1d9" text-anchor="middle">.Registers.User</text>
+    <rect x="1320" y="180" width="240" height="42" rx="6" fill="#0f1b2a" stroke="#8b949e"/>
+    <text x="1440" y="207" fill="#c9d1d9" text-anchor="middle">.Id / .Environment</text>
+  </g>
+  <path d="M1250,119 L1320,101" stroke="#6e7681" stroke-width="1.4" marker-end="url(#d7)"/>
+  <path d="M1250,121 L1320,151" stroke="#6e7681" stroke-width="1.4" marker-end="url(#d7)"/>
+  <path d="M1250,123 L1320,201" stroke="#6e7681" stroke-width="1.4" marker-end="url(#d7)"/>
+
+  <!-- TTD leaf -->
+  <rect x="980" y="420" width="270" height="46" rx="7" fill="url(#node7)" stroke="#a371f7"/>
+  <text x="1115" y="449" fill="#bc8cff" font-size="16" text-anchor="middle">.TTD.Calls("mod!fn")</text>
+  <rect x="980" y="476" width="270" height="46" rx="7" fill="url(#node7)" stroke="#a371f7"/>
+  <text x="1115" y="505" fill="#bc8cff" font-size="16" text-anchor="middle">.TTD.Memory(a,b)</text>
+  <path d="M890,297 L980,443" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+  <path d="M890,300 L980,499" stroke="#6e7681" stroke-width="1.6" marker-end="url(#d7)"/>
+
+  <!-- query examples panel -->
+  <rect x="40" y="560" width="1520" height="300" rx="12" fill="#0b1017" stroke="#30363d" stroke-width="1.5"/>
+  <text x="64" y="596" fill="#f0f6fc" font-size="20" font-weight="bold">Worked queries (your PIDs/addresses will differ)</text>
+  <g font-family="'Courier New',monospace" font-size="16" fill="#c9d1d9">
+    <text x="64" y="632" fill="#7ee787">dx @$cursession.Processes.Where(p =&gt; p.Name == "rustcrackme.exe")</text>
+    <text x="64" y="662" fill="#79c0ff">dx @$curprocess.Threads.Count()</text>
+    <text x="64" y="692" fill="#e3b341">dx @$curprocess.Modules.Select(m =&gt; new { m.Name, m.BaseAddress })</text>
+    <text x="64" y="722" fill="#bc8cff">dx @$curprocess.Handles.Where(h =&gt; h.Type == "File").OrderBy(h =&gt; h.Handle)</text>
+    <text x="64" y="752" fill="#ff7b72">dx @$cursession.TTD.Calls("rustcrackme!rustcrackme::check_serial").Count()</text>
+    <text x="64" y="782" fill="#c9d1d9">dx -r2 @$curthread.Stack.Frames             // expand two levels deep</text>
+    <text x="64" y="812" fill="#c9d1d9">dx @$curthread.Registers.User.rax,x         // format rax as hex</text>
+    <text x="64" y="842" fill="#8b949e">Tip: append ,x / ,d / ,c to format; use -g for a grid, -r&lt;n&gt; for recursion depth.</text>
+  </g>
+</svg>

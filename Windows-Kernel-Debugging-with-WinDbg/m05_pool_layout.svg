@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" font-family="'Courier New', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#12161d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg3)"/>
+  <rect x="0" y="0" width="1600" height="64" fill="#161b22"/>
+  <rect x="0" y="64" width="1600" height="3" fill="#e11d2a"/>
+  <text x="40" y="42" font-size="30" fill="#e6edf3" font-weight="bold">Kernel Pool Page Layout — POOL_HEADER + Tagged Chunks</text>
+  <text x="1300" y="42" font-size="18" fill="#8b949e">m05 · RTL</text>
+
+  <text x="40" y="108" font-size="17" fill="#8b949e">A pool page is carved into chunks. Each chunk starts with a 16-byte _POOL_HEADER, then caller data. Sizes are in 16-byte blocks (x64 granularity).</text>
+
+  <!-- POOL_HEADER anatomy -->
+  <text x="40" y="150" font-size="20" fill="#e6edf3" font-weight="bold">_POOL_HEADER (16 bytes on x64)</text>
+  <g>
+    <rect x="40"  y="164" width="200" height="70" fill="#1b2330" stroke="#58a6ff"/>
+    <text x="140" y="200" font-size="14" fill="#58a6ff" text-anchor="middle">PreviousSize</text>
+    <text x="140" y="220" font-size="12" fill="#8b949e" text-anchor="middle">blocks, prev chunk</text>
+
+    <rect x="240" y="164" width="160" height="70" fill="#1b2330" stroke="#58a6ff"/>
+    <text x="320" y="200" font-size="14" fill="#58a6ff" text-anchor="middle">PoolIndex</text>
+
+    <rect x="400" y="164" width="200" height="70" fill="#1b2330" stroke="#58a6ff"/>
+    <text x="500" y="200" font-size="14" fill="#58a6ff" text-anchor="middle">BlockSize</text>
+    <text x="500" y="220" font-size="12" fill="#8b949e" text-anchor="middle">this chunk, blocks</text>
+
+    <rect x="600" y="164" width="200" height="70" fill="#241a10" stroke="#d29922"/>
+    <text x="700" y="200" font-size="14" fill="#e3b341" text-anchor="middle">PoolType</text>
+    <text x="700" y="220" font-size="12" fill="#8b949e" text-anchor="middle">NonPaged/Paged +1</text>
+
+    <rect x="800" y="164" width="260" height="70" fill="#2d1116" stroke="#e11d2a" stroke-width="2"/>
+    <text x="930" y="200" font-size="16" fill="#f0a3ab" text-anchor="middle" font-weight="bold">PoolTag (4 ASCII)</text>
+    <text x="930" y="220" font-size="12" fill="#8b949e" text-anchor="middle">e.g. 'Cont' 'Even' 'File'</text>
+  </g>
+  <text x="1080" y="185" font-size="14" fill="#8b949e">dt nt!_POOL_HEADER &lt;addr&gt;</text>
+  <text x="1080" y="207" font-size="14" fill="#8b949e">Tag high bit set → protected</text>
+  <text x="1080" y="229" font-size="14" fill="#8b949e">alloc size = BlockSize*16 − hdr</text>
+
+  <!-- NONPAGED pool page -->
+  <text x="40" y="290" font-size="20" fill="#3fb950" font-weight="bold">NonPaged Pool page — always resident, safe at high IRQL (ISR/DPC)</text>
+  <g>
+    <rect x="40" y="304" width="1520" height="90" fill="#0f1620" stroke="#3fb950" stroke-width="2"/>
+    <!-- chunk 1 allocated -->
+    <rect x="48" y="312" width="60" height="74" fill="#122019" stroke="#3fb950"/>
+    <text x="78" y="352" font-size="12" fill="#7ee2a8" text-anchor="middle" transform="rotate(-90 78 352)">HDR</text>
+    <rect x="108" y="312" width="300" height="74" fill="#153427" stroke="#3fb950"/>
+    <text x="258" y="346" font-size="15" fill="#7ee2a8" text-anchor="middle">ALLOC 'Cont'</text>
+    <text x="258" y="368" font-size="12" fill="#8b949e" text-anchor="middle">Allocated · 0x120 bytes</text>
+    <!-- chunk 2 free -->
+    <rect x="408" y="312" width="60" height="74" fill="#1b2330" stroke="#58a6ff"/>
+    <text x="438" y="352" font-size="12" fill="#58a6ff" text-anchor="middle" transform="rotate(-90 438 352)">HDR</text>
+    <rect x="468" y="312" width="220" height="74" fill="#161b22" stroke="#58a6ff" stroke-dasharray="6 4"/>
+    <text x="578" y="346" font-size="15" fill="#58a6ff" text-anchor="middle">FREE</text>
+    <text x="578" y="368" font-size="12" fill="#8b949e" text-anchor="middle">on free list / coalescable</text>
+    <!-- chunk 3 allocated -->
+    <rect x="688" y="312" width="60" height="74" fill="#122019" stroke="#3fb950"/>
+    <text x="718" y="352" font-size="12" fill="#7ee2a8" text-anchor="middle" transform="rotate(-90 718 352)">HDR</text>
+    <rect x="748" y="312" width="360" height="74" fill="#153427" stroke="#3fb950"/>
+    <text x="928" y="346" font-size="15" fill="#7ee2a8" text-anchor="middle">ALLOC 'Even'</text>
+    <text x="928" y="368" font-size="12" fill="#8b949e" text-anchor="middle">Allocated · 0x150 bytes</text>
+    <!-- chunk 4 allocated -->
+    <rect x="1108" y="312" width="60" height="74" fill="#122019" stroke="#3fb950"/>
+    <text x="1138" y="352" font-size="12" fill="#7ee2a8" text-anchor="middle" transform="rotate(-90 1138 352)">HDR</text>
+    <rect x="1168" y="312" width="384" height="74" fill="#153427" stroke="#3fb950"/>
+    <text x="1360" y="346" font-size="15" fill="#7ee2a8" text-anchor="middle">ALLOC 'File'</text>
+    <text x="1360" y="368" font-size="12" fill="#8b949e" text-anchor="middle">Allocated · 0x1A0 bytes</text>
+  </g>
+  <text x="40" y="416" font-size="14" fill="#8b949e">PreviousSize links each chunk back to its neighbor so !pool can walk the whole page: !pool &lt;addr&gt; · detail with !pool &lt;addr&gt; 2</text>
+
+  <!-- PAGED pool page -->
+  <text x="40" y="470" font-size="20" fill="#d29922" font-weight="bold">Paged Pool page — pageable; only usable at IRQL &lt; DISPATCH_LEVEL (touching a paged-out page faults)</text>
+  <g>
+    <rect x="40" y="484" width="1520" height="90" fill="#1a140a" stroke="#d29922" stroke-width="2"/>
+    <rect x="48" y="492" width="60" height="74" fill="#241a10" stroke="#d29922"/>
+    <text x="78" y="532" font-size="12" fill="#e3b341" text-anchor="middle" transform="rotate(-90 78 532)">HDR</text>
+    <rect x="108" y="492" width="420" height="74" fill="#2a2010" stroke="#d29922"/>
+    <text x="318" y="526" font-size="15" fill="#e3b341" text-anchor="middle">ALLOC 'Ntff' (registry/NTFS)</text>
+    <text x="318" y="548" font-size="12" fill="#8b949e" text-anchor="middle">may be paged to disk</text>
+    <rect x="528" y="492" width="60" height="74" fill="#241a10" stroke="#d29922"/>
+    <text x="558" y="532" font-size="12" fill="#e3b341" text-anchor="middle" transform="rotate(-90 558 532)">HDR</text>
+    <rect x="588" y="492" width="500" height="74" fill="#2a2010" stroke="#d29922"/>
+    <text x="838" y="526" font-size="15" fill="#e3b341" text-anchor="middle">ALLOC 'Toke' (SeTokenObject)</text>
+    <rect x="1088" y="492" width="60" height="74" fill="#241a10" stroke="#d29922"/>
+    <text x="1118" y="532" font-size="12" fill="#e3b341" text-anchor="middle" transform="rotate(-90 1118 532)">HDR</text>
+    <rect x="1148" y="492" width="404" height="74" fill="#2a2010" stroke="#d29922"/>
+    <text x="1350" y="526" font-size="15" fill="#e3b341" text-anchor="middle">ALLOC 'MmSt' (section)</text>
+  </g>
+
+  <!-- Bottom info panels -->
+  <rect x="40" y="608" width="740" height="252" rx="8" fill="#12161d" stroke="#30363d"/>
+  <text x="60" y="640" font-size="19" fill="#e6edf3" font-weight="bold">Pool types</text>
+  <text x="60" y="672" font-size="15" fill="#7ee2a8">NonPagedPool — resident, high-IRQL safe, scarce</text>
+  <text x="60" y="700" font-size="15" fill="#e3b341">PagedPool — pageable, larger, low-IRQL only</text>
+  <text x="60" y="728" font-size="15" fill="#58a6ff">Session Pool — per-session (win32k/GUI)</text>
+  <text x="60" y="762" font-size="14" fill="#8b949e">Modern Win10+: many allocations route through the</text>
+  <text x="60" y="784" font-size="14" fill="#8b949e">kernel Segment Heap; !pool still decodes classic pool.</text>
+  <text x="60" y="812" font-size="14" fill="#8b949e">Tags come from ExAllocatePoolWithTag / ExAllocatePool2.</text>
+  <text x="60" y="840" font-size="14" fill="#8b949e">Resolve a tag via pooltag.txt (Debugging Tools).</text>
+
+  <rect x="800" y="608" width="760" height="252" rx="8" fill="#12161d" stroke="#30363d"/>
+  <text x="820" y="640" font-size="19" fill="#e6edf3" font-weight="bold">Investigator workflow</text>
+  <text x="820" y="672" font-size="15" fill="#e6edf3">1. !pool &lt;addr&gt;         → decode the page, find the chunk</text>
+  <text x="820" y="700" font-size="15" fill="#e6edf3">2. dt nt!_POOL_HEADER   → PreviousSize/BlockSize/Tag</text>
+  <text x="820" y="728" font-size="15" fill="#e6edf3">3. !poolfind Tag        → every allocation of a tag</text>
+  <text x="820" y="756" font-size="15" fill="#e6edf3">4. !poolused 2 / 4      → rank tags by NonPaged/Paged</text>
+  <text x="820" y="784" font-size="15" fill="#e6edf3">5. diff two snapshots   → the tag that keeps growing = leak</text>
+  <text x="820" y="820" font-size="14" fill="#7ee2a8">Your addresses/tags/sizes WILL differ — decode live, never</text>
+  <text x="820" y="842" font-size="14" fill="#7ee2a8">assume a literal. Enable pool tagging with gflags if needed.</text>
+</svg>

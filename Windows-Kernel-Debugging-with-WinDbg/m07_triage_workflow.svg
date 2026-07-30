@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" font-family="'Courier New',Consolas,monospace">
+  <defs>
+    <linearGradient id="bg7t" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#0a0d12"/>
+    </linearGradient>
+    <linearGradient id="stat7" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#15304a"/><stop offset="1" stop-color="#0f2236"/>
+    </linearGradient>
+    <linearGradient id="dyn7" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a1220"/><stop offset="1" stop-color="#2a0d18"/>
+    </linearGradient>
+    <marker id="ar7" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#8b949e"/>
+    </marker>
+    <marker id="ar7r" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#e11d2a"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg7t)"/>
+  <rect x="0" y="0" width="1600" height="6" fill="#e11d2a"/>
+  <text x="40" y="52" fill="#f0f6fc" font-size="30" font-weight="bold">Module 07 — WinDbg RE Triage Workflow</text>
+  <text x="40" y="80" fill="#8b949e" font-size="17">Static recon feeds dynamic confirmation; loop until the algorithm is understood.</text>
+
+  <!-- entry -->
+  <rect x="640" y="110" width="320" height="60" rx="8" fill="#161b22" stroke="#e11d2a" stroke-width="2"/>
+  <text x="800" y="147" fill="#f0f6fc" font-size="20" text-anchor="middle">Unknown target: rustcrackme.exe</text>
+
+  <!-- STATIC column -->
+  <rect x="60" y="210" width="680" height="470" rx="12" fill="url(#stat7)" stroke="#2f81f7" stroke-width="1.5"/>
+  <text x="90" y="250" fill="#79c0ff" font-size="24" font-weight="bold">STATIC recon (no execution)</text>
+
+  <g font-size="17" fill="#c9d1d9">
+    <rect x="90" y="272" width="620" height="52" rx="6" fill="#0f1b2a" stroke="#2f81f7"/>
+    <text x="106" y="304" fill="#79c0ff">lm / lmv</text><text x="230" y="304">modules, image base, PDB match</text>
+    <rect x="90" y="336" width="620" height="52" rx="6" fill="#0f1b2a" stroke="#2f81f7"/>
+    <text x="106" y="368" fill="#79c0ff">!dh -s</text><text x="230" y="368">section table &#8594; find custom .rtlkey</text>
+    <rect x="90" y="400" width="620" height="52" rx="6" fill="#0f1b2a" stroke="#2f81f7"/>
+    <text x="106" y="432" fill="#79c0ff">x mod!*</text><text x="230" y="432">symbol map: normalize / check_serial</text>
+    <rect x="90" y="464" width="620" height="52" rx="6" fill="#0f1b2a" stroke="#2f81f7"/>
+    <text x="106" y="496" fill="#79c0ff">uf</text><text x="230" y="496">disassemble control flow, find the loop</text>
+    <rect x="90" y="528" width="620" height="52" rx="6" fill="#0f1b2a" stroke="#2f81f7"/>
+    <text x="106" y="560" fill="#79c0ff">s / db / dps</text><text x="230" y="560">carve constants: KEY_TABLE, EXPECTED</text>
+    <rect x="90" y="592" width="620" height="52" rx="6" fill="#0f1b2a" stroke="#2f81f7"/>
+    <text x="106" y="624" fill="#79c0ff">dt / dx</text><text x="230" y="624">reconstruct KeyState struct layout</text>
+  </g>
+
+  <!-- DYNAMIC column -->
+  <rect x="860" y="210" width="680" height="470" rx="12" fill="url(#dyn7)" stroke="#e11d2a" stroke-width="1.5"/>
+  <text x="890" y="250" fill="#ff7b72" font-size="24" font-weight="bold">DYNAMIC confirmation (run it)</text>
+
+  <g font-size="17" fill="#c9d1d9">
+    <rect x="890" y="272" width="620" height="52" rx="6" fill="#1e0d14" stroke="#e11d2a"/>
+    <text x="906" y="304" fill="#ff7b72">bp .. "cmd"</text><text x="1050" y="304">scripted/conditional loop breakpoints</text>
+    <rect x="890" y="336" width="620" height="52" rx="6" fill="#1e0d14" stroke="#e11d2a"/>
+    <text x="906" y="368" fill="#ff7b72">r / p / t</text><text x="1050" y="368">watch registers across the transform</text>
+    <rect x="890" y="400" width="620" height="52" rx="6" fill="#1e0d14" stroke="#e11d2a"/>
+    <text x="906" y="432" fill="#ff7b72">.foreach</text><text x="1050" y="432">script per-byte logging, auto-continue</text>
+    <rect x="890" y="464" width="620" height="52" rx="6" fill="#1e0d14" stroke="#e11d2a"/>
+    <text x="906" y="496" fill="#ff7b72">dx model</text><text x="1050" y="496">LINQ over processes/threads/state</text>
+    <rect x="890" y="528" width="620" height="52" rx="6" fill="#1e0d14" stroke="#e11d2a"/>
+    <text x="906" y="560" fill="#ff7b72">TTD.Calls</text><text x="1050" y="560">record once, query every invocation</text>
+    <rect x="890" y="592" width="620" height="52" rx="6" fill="#1e0d14" stroke="#e11d2a"/>
+    <text x="906" y="624" fill="#ff7b72">.writemem</text><text x="1050" y="624">dump/patch to prove the solution</text>
+  </g>
+
+  <!-- arrows entry to columns -->
+  <path d="M720,170 L400,205" stroke="#8b949e" stroke-width="2" fill="none" marker-end="url(#ar7)"/>
+  <path d="M880,170 L1200,205" stroke="#8b949e" stroke-width="2" fill="none" marker-end="url(#ar7)"/>
+
+  <!-- feedback loop between columns -->
+  <path d="M740,450 L860,450" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#ar7r)"/>
+  <text x="748" y="440" fill="#ff7b72" font-size="14">hypothesis</text>
+  <path d="M860,520 L740,520" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#ar7r)"/>
+  <text x="748" y="512" fill="#ff7b72" font-size="14">confirm/refute</text>
+
+  <!-- outcome -->
+  <rect x="560" y="720" width="480" height="120" rx="12" fill="#0f2a17" stroke="#3fb950" stroke-width="2"/>
+  <text x="800" y="762" fill="#7ee787" font-size="22" font-weight="bold" text-anchor="middle">Algorithm understood</text>
+  <text x="800" y="792" fill="#c9d1d9" font-size="17" text-anchor="middle">k[i] = ror8(EXPECTED[i] ^ KEY_TABLE[i], i&amp;7)</text>
+  <text x="800" y="820" fill="#7ee787" font-size="17" text-anchor="middle">serial: R3dT-eamL-ead3-rsRT &#8594; RTL{sha256(serial)}</text>
+  <path d="M400,680 L560,730" stroke="#8b949e" stroke-width="2" fill="none" marker-end="url(#ar7)"/>
+  <path d="M1200,680 L1040,730" stroke="#8b949e" stroke-width="2" fill="none" marker-end="url(#ar7)"/>
+
+  <text x="40" y="880" fill="#6e7681" font-size="14">WinDbg sits between IDA/Ghidra (deep static) and x64dbg (live UM) — it is the only tool that does live+static+time-travel in one session. Your addresses WILL differ.</text>
+</svg>

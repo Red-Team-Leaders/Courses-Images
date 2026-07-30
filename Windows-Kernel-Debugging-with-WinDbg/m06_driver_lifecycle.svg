@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" font-family="'Consolas','Menlo','DejaVu Sans Mono',monospace">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#010409"/>
+    </linearGradient>
+    <linearGradient id="stageGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#161b22"/>
+      <stop offset="1" stop-color="#0d1117"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e11d2a"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="12" markerHeight="12" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b949e"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bgGrad)"/>
+
+  <!-- title -->
+  <text x="60" y="64" fill="#e6edf3" font-size="34" font-weight="bold">Kernel Driver Lifecycle</text>
+  <text x="60" y="96" fill="#8b949e" font-size="19">SCM registration &#8594; image load &#8594; DriverEntry &#8594; AddDevice &#8594; dispatch &#8594; DriverUnload</text>
+  <rect x="60" y="110" width="150" height="5" fill="#e11d2a"/>
+
+  <!-- lane labels -->
+  <text x="60" y="180" fill="#e11d2a" font-size="16" font-weight="bold">USER / SCM</text>
+  <text x="60" y="360" fill="#e11d2a" font-size="16" font-weight="bold">I/O MANAGER</text>
+  <text x="60" y="560" fill="#e11d2a" font-size="16" font-weight="bold">DRIVER CODE</text>
+  <line x1="60" y1="200" x2="1540" y2="200" stroke="#21262d" stroke-width="1"/>
+  <line x1="60" y1="400" x2="1540" y2="400" stroke="#21262d" stroke-width="1"/>
+  <line x1="60" y1="640" x2="1540" y2="640" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Stage 1: sc create -->
+  <rect x="80" y="220" width="220" height="90" rx="10" fill="url(#stageGrad)" stroke="#e11d2a" stroke-width="2"/>
+  <text x="190" y="255" fill="#e6edf3" font-size="18" font-weight="bold" text-anchor="middle">sc create</text>
+  <text x="190" y="280" fill="#8b949e" font-size="14" text-anchor="middle">Services registry key</text>
+  <text x="190" y="300" fill="#8b949e" font-size="13" text-anchor="middle">Type=1 Start=3 ImagePath</text>
+
+  <!-- Stage 2: sc start -->
+  <rect x="360" y="220" width="220" height="90" rx="10" fill="url(#stageGrad)" stroke="#e11d2a" stroke-width="2"/>
+  <text x="470" y="255" fill="#e6edf3" font-size="18" font-weight="bold" text-anchor="middle">sc start</text>
+  <text x="470" y="280" fill="#8b949e" font-size="14" text-anchor="middle">NtLoadDriver</text>
+  <text x="470" y="300" fill="#58a6ff" font-size="13" text-anchor="middle">sxe ld:drv.sys</text>
+
+  <!-- Stage 3: image load / MmLoadSystemImage -->
+  <rect x="360" y="420" width="240" height="100" rx="10" fill="url(#stageGrad)" stroke="#3fb950" stroke-width="2"/>
+  <text x="480" y="455" fill="#e6edf3" font-size="17" font-weight="bold" text-anchor="middle">Image mapped</text>
+  <text x="480" y="480" fill="#8b949e" font-size="14" text-anchor="middle">MmLoadSystemImage</text>
+  <text x="480" y="502" fill="#8b949e" font-size="13" text-anchor="middle">DRIVER_OBJECT created</text>
+
+  <!-- Stage 4: DriverEntry -->
+  <rect x="660" y="660" width="250" height="120" rx="10" fill="url(#stageGrad)" stroke="#e11d2a" stroke-width="2.5"/>
+  <text x="785" y="695" fill="#e6edf3" font-size="18" font-weight="bold" text-anchor="middle">DriverEntry()</text>
+  <text x="785" y="720" fill="#8b949e" font-size="13" text-anchor="middle">set MajorFunction[]</text>
+  <text x="785" y="740" fill="#8b949e" font-size="13" text-anchor="middle">set DriverUnload</text>
+  <text x="785" y="762" fill="#58a6ff" font-size="13" text-anchor="middle">bu drv!DriverEntry</text>
+
+  <!-- Stage 5: AddDevice / IoCreateDevice -->
+  <rect x="960" y="660" width="250" height="120" rx="10" fill="url(#stageGrad)" stroke="#e11d2a" stroke-width="2.5"/>
+  <text x="1085" y="695" fill="#e6edf3" font-size="17" font-weight="bold" text-anchor="middle">AddDevice /</text>
+  <text x="1085" y="717" fill="#e6edf3" font-size="17" font-weight="bold" text-anchor="middle">EvtDeviceAdd</text>
+  <text x="1085" y="742" fill="#8b949e" font-size="13" text-anchor="middle">IoCreateDevice</text>
+  <text x="1085" y="762" fill="#8b949e" font-size="13" text-anchor="middle">symbolic link</text>
+
+  <!-- Stage 6: Dispatch loop -->
+  <rect x="1260" y="420" width="260" height="360" rx="10" fill="url(#stageGrad)" stroke="#58a6ff" stroke-width="2.5"/>
+  <text x="1390" y="455" fill="#e6edf3" font-size="18" font-weight="bold" text-anchor="middle">Dispatch loop</text>
+  <text x="1390" y="485" fill="#8b949e" font-size="13" text-anchor="middle">IRP_MJ_CREATE</text>
+  <text x="1390" y="510" fill="#8b949e" font-size="13" text-anchor="middle">IRP_MJ_DEVICE_CONTROL</text>
+  <text x="1390" y="535" fill="#8b949e" font-size="13" text-anchor="middle">IRP_MJ_READ / WRITE</text>
+  <text x="1390" y="560" fill="#8b949e" font-size="13" text-anchor="middle">IRP_MJ_CLOSE</text>
+  <line x1="1290" y1="585" x2="1490" y2="585" stroke="#21262d" stroke-width="1"/>
+  <text x="1390" y="612" fill="#e6edf3" font-size="13" text-anchor="middle">IoCallDriver &#8595;</text>
+  <text x="1390" y="636" fill="#e6edf3" font-size="13" text-anchor="middle">IoCompleteRequest &#8593;</text>
+  <text x="1390" y="672" fill="#58a6ff" font-size="12" text-anchor="middle">bp drv!DispatchIoctl</text>
+  <text x="1390" y="694" fill="#58a6ff" font-size="12" text-anchor="middle">!irp / !drvobj 7</text>
+  <text x="1390" y="730" fill="#8b949e" font-size="12" text-anchor="middle">(runs for the life</text>
+  <text x="1390" y="750" fill="#8b949e" font-size="12" text-anchor="middle">of the device)</text>
+
+  <!-- Stage 7: sc stop / unload -->
+  <rect x="1080" y="220" width="220" height="90" rx="10" fill="url(#stageGrad)" stroke="#f0883e" stroke-width="2"/>
+  <text x="1190" y="255" fill="#e6edf3" font-size="18" font-weight="bold" text-anchor="middle">sc stop</text>
+  <text x="1190" y="280" fill="#8b949e" font-size="13" text-anchor="middle">NtUnloadDriver</text>
+  <text x="1190" y="300" fill="#8b949e" font-size="13" text-anchor="middle">(refcount must be 0)</text>
+
+  <!-- Stage 8: DriverUnload -->
+  <rect x="660" y="420" width="240" height="100" rx="10" fill="url(#stageGrad)" stroke="#f0883e" stroke-width="2.5"/>
+  <text x="780" y="455" fill="#e6edf3" font-size="18" font-weight="bold" text-anchor="middle">DriverUnload()</text>
+  <text x="780" y="480" fill="#8b949e" font-size="13" text-anchor="middle">IoDeleteSymbolicLink</text>
+  <text x="780" y="502" fill="#8b949e" font-size="13" text-anchor="middle">IoDeleteDevice</text>
+
+  <!-- flow arrows -->
+  <!-- sc create -> sc start -->
+  <line x1="300" y1="265" x2="352" y2="265" stroke="#e11d2a" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <!-- sc start -> image mapped (down) -->
+  <path d="M470,310 L470,414" stroke="#3fb950" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <!-- image mapped -> DriverEntry (down) -->
+  <path d="M540,520 C560,600 640,640 690,654" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <!-- DriverEntry -> AddDevice -->
+  <line x1="910" y1="720" x2="954" y2="720" stroke="#e11d2a" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <!-- AddDevice -> Dispatch loop (up-right) -->
+  <path d="M1210,700 C1300,680 1340,700 1360,784" stroke="#58a6ff" stroke-width="2.5" fill="none" marker-end="url(#arrowGray)"/>
+  <path d="M1310,640 L1360,600" stroke="#58a6ff" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <!-- dispatch loop -> sc stop (up) -->
+  <path d="M1390,420 C1390,360 1300,320 1280,314" stroke="#f0883e" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <!-- sc stop -> DriverUnload (down-left) -->
+  <path d="M1080,290 C980,340 900,400 880,414" stroke="#f0883e" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <!-- DriverUnload -> image unmapped (implied) -->
+  <path d="M660,470 L604,470" stroke="#f0883e" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- legend -->
+  <rect x="80" y="820" width="1440" height="56" rx="8" fill="#161b22" stroke="#21262d"/>
+  <circle cx="110" cy="848" r="7" fill="#e11d2a"/><text x="126" y="853" fill="#8b949e" font-size="14">load path</text>
+  <circle cx="270" cy="848" r="7" fill="#3fb950"/><text x="286" y="853" fill="#8b949e" font-size="14">image mapping</text>
+  <circle cx="470" cy="848" r="7" fill="#58a6ff"/><text x="486" y="853" fill="#8b949e" font-size="14">runtime dispatch + WinDbg commands</text>
+  <circle cx="880" cy="848" r="7" fill="#f0883e"/><text x="896" y="853" fill="#8b949e" font-size="14">unload path</text>
+  <text x="1120" y="853" fill="#6e7681" font-size="13">Concrete addresses differ per run &#8212; derive with dt / x / !drvobj.</text>
+</svg>

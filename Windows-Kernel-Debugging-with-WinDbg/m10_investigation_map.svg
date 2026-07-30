@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" font-family="'Courier New',Consolas,monospace">
+  <defs>
+    <linearGradient id="mapbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#090c11"/>
+    </linearGradient>
+    <linearGradient id="nRed" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a1218"/><stop offset="1" stop-color="#2a0d12"/>
+    </linearGradient>
+    <linearGradient id="nBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#122a44"/><stop offset="1" stop-color="#0e2034"/>
+    </linearGradient>
+    <linearGradient id="nOrange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2610"/><stop offset="1" stop-color="#2a1c0b"/>
+    </linearGradient>
+    <linearGradient id="nPurple" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a1640"/><stop offset="1" stop-color="#1f1030"/>
+    </linearGradient>
+    <linearGradient id="nTeal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f3030"/><stop offset="1" stop-color="#0b2424"/>
+    </linearGradient>
+    <linearGradient id="nGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f331c" /><stop offset="1" stop-color="#0b2615"/>
+    </linearGradient>
+    <marker id="mArr" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4 L0,8 Z" fill="#e11d2a"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#mapbg)"/>
+  <rect x="0" y="0" width="1600" height="6" fill="#e11d2a"/>
+  <text x="40" y="48" fill="#f0f6fc" font-size="30" font-weight="bold">Module 10 Capstone — Operation NIGHTJACKAL: End-to-End Investigation Map</text>
+  <text x="40" y="76" fill="#8b949e" font-size="16">WORKSTN-07 · Win11 x64 build 22631.3737 · dump MEMORY-NIGHTJACKAL.DMP + live KDNET. Each node shows the lesson and its key WinDbg command. Your addresses/PIDs WILL differ — derive them at runtime.</text>
+
+  <!-- ================= NODES ================= -->
+  <!-- Row 1 (left to right): n1 intake, n2 setup, n3 analyze, n4 process/thread -->
+  <!-- n1 -->
+  <g>
+    <rect x="50" y="140" width="320" height="110" rx="10" fill="url(#nRed)" stroke="#e11d2a" stroke-width="2"/>
+    <text x="66" y="167" fill="#ff7b72" font-size="14" font-weight="bold">INCIDENT INTAKE</text>
+    <text x="66" y="192" fill="#f0f6fc" font-size="18" font-weight="bold">0xD1 bugcheck + EDR alert</text>
+    <text x="66" y="216" fill="#c9d1d9" font-size="13">DRIVER_IRQL_NOT_LESS_OR_EQUAL</text>
+    <text x="66" y="238" fill="#7ee787" font-size="13">EDR: hidden proc + unsigned drv</text>
+  </g>
+  <!-- n2 -->
+  <g>
+    <rect x="445" y="140" width="320" height="110" rx="10" fill="url(#nBlue)" stroke="#2f81f7" stroke-width="2"/>
+    <text x="461" y="167" fill="#79c0ff" font-size="14" font-weight="bold">M1 · M2  Symbols &amp; Dump</text>
+    <text x="461" y="192" fill="#f0f6fc" font-size="18" font-weight="bold">Setup &amp; pin symbols</text>
+    <text x="461" y="216" fill="#c9d1d9" font-size="13">complete kernel dump + KDNET</text>
+    <text x="461" y="238" fill="#7ee787" font-size="13">.sympath  .reload /f  !sym noisy</text>
+  </g>
+  <!-- n3 -->
+  <g>
+    <rect x="840" y="140" width="320" height="110" rx="10" fill="url(#nOrange)" stroke="#d29922" stroke-width="2"/>
+    <text x="856" y="167" fill="#e3b341" font-size="14" font-weight="bold">M9  Crash Analysis</text>
+    <text x="856" y="192" fill="#f0f6fc" font-size="18" font-weight="bold">Bugcheck triage</text>
+    <text x="856" y="216" fill="#c9d1d9" font-size="13">0xD1 args → nightjackal.sys+512c</text>
+    <text x="856" y="238" fill="#7ee787" font-size="13">!analyze -v   .bugcheck</text>
+  </g>
+  <!-- n4 -->
+  <g>
+    <rect x="1235" y="140" width="320" height="110" rx="10" fill="url(#nPurple)" stroke="#a371f7" stroke-width="2"/>
+    <text x="1251" y="167" fill="#c297ff" font-size="14" font-weight="bold">M4 · L2  Kernel Core</text>
+    <text x="1251" y="192" fill="#f0f6fc" font-size="18" font-weight="bold">Process / thread triage</text>
+    <text x="1251" y="216" fill="#c9d1d9" font-size="13">EPROCESS/ETHREAD  updtsvc 4712</text>
+    <text x="1251" y="238" fill="#7ee787" font-size="13">!process 0 0   !thread</text>
+  </g>
+
+  <!-- Row 2 (right to left): n5 dispatcher, n6 memory, n7 io, n8 object -->
+  <!-- n5 -->
+  <g>
+    <rect x="1235" y="370" width="320" height="110" rx="10" fill="url(#nPurple)" stroke="#a371f7" stroke-width="2"/>
+    <text x="1251" y="397" fill="#c297ff" font-size="14" font-weight="bold">M4 · L3  Dispatcher</text>
+    <text x="1251" y="422" fill="#f0f6fc" font-size="18" font-weight="bold">Per-CPU dispatcher</text>
+    <text x="1251" y="446" fill="#c9d1d9" font-size="13">KPCR/KPRCB · what ran the hook</text>
+    <text x="1251" y="468" fill="#7ee787" font-size="13">!pcr  !prcb  !running  !idt</text>
+  </g>
+  <!-- n6 -->
+  <g>
+    <rect x="840" y="370" width="320" height="110" rx="10" fill="url(#nTeal)" stroke="#39c5cf" stroke-width="2"/>
+    <text x="856" y="397" fill="#56d4dd" font-size="14" font-weight="bold">M5 · L4  Memory Manager</text>
+    <text x="856" y="422" fill="#f0f6fc" font-size="18" font-weight="bold">Pool forensics</text>
+    <text x="856" y="446" fill="#c9d1d9" font-size="13">exec NonPaged tag Njkl @31a40000</text>
+    <text x="856" y="468" fill="#7ee787" font-size="13">!pool  !poolused  !vad  !pte</text>
+  </g>
+  <!-- n7 -->
+  <g>
+    <rect x="445" y="370" width="320" height="110" rx="10" fill="url(#nBlue)" stroke="#2f81f7" stroke-width="2"/>
+    <text x="461" y="397" fill="#79c0ff" font-size="14" font-weight="bold">M6 · L5  I/O Manager</text>
+    <text x="461" y="422" fill="#f0f6fc" font-size="18" font-weight="bold">IRP &amp; device stack</text>
+    <text x="461" y="446" fill="#c9d1d9" font-size="13">rogue disk filter @2c1d7e40</text>
+    <text x="461" y="468" fill="#7ee787" font-size="13">!drvobj  !devstack  !irp</text>
+  </g>
+  <!-- n8 -->
+  <g>
+    <rect x="50" y="370" width="320" height="110" rx="10" fill="url(#nPurple)" stroke="#a371f7" stroke-width="2"/>
+    <text x="66" y="397" fill="#c297ff" font-size="14" font-weight="bold">L6  Object Manager</text>
+    <text x="66" y="422" fill="#f0f6fc" font-size="18" font-weight="bold">Object / handle forensics</text>
+    <text x="66" y="446" fill="#c9d1d9" font-size="13">unlinked ETHREAD 2b3d5040</text>
+    <text x="66" y="468" fill="#7ee787" font-size="13">!object  !handle  !obtrace</text>
+  </g>
+
+  <!-- Row 3 (left to right): n9 SSDT, n10 patchguard, n11 root cause -->
+  <!-- n9 -->
+  <g>
+    <rect x="50" y="600" width="320" height="110" rx="10" fill="url(#nRed)" stroke="#e11d2a" stroke-width="2"/>
+    <text x="66" y="627" fill="#ff7b72" font-size="14" font-weight="bold">L7  Hook Detection</text>
+    <text x="66" y="652" fill="#f0f6fc" font-size="18" font-weight="bold">SSDT / IDT hooks</text>
+    <text x="66" y="676" fill="#c9d1d9" font-size="13">NtQuerySystemInformation @0x36</text>
+    <text x="66" y="698" fill="#7ee787" font-size="12">dps nt!KeServiceDescriptorTable</text>
+  </g>
+  <!-- n10 -->
+  <g>
+    <rect x="445" y="600" width="320" height="110" rx="10" fill="url(#nOrange)" stroke="#d29922" stroke-width="2"/>
+    <text x="461" y="627" fill="#e3b341" font-size="14" font-weight="bold">L8  Kernel Integrity</text>
+    <text x="461" y="652" fill="#f0f6fc" font-size="18" font-weight="bold">PatchGuard awareness</text>
+    <text x="461" y="676" fill="#c9d1d9" font-size="13">why the hook survives / evades PG</text>
+    <text x="461" y="698" fill="#7ee787" font-size="13">verify KiSystemServiceStart</text>
+  </g>
+  <!-- n11 -->
+  <g>
+    <rect x="840" y="600" width="320" height="110" rx="10" fill="url(#nGreen)" stroke="#3fb950" stroke-width="2.5"/>
+    <text x="856" y="627" fill="#7ee787" font-size="14" font-weight="bold">L9  Root Cause</text>
+    <text x="856" y="652" fill="#f0f6fc" font-size="18" font-weight="bold">Writeup &amp; remediation</text>
+    <text x="856" y="676" fill="#c9d1d9" font-size="13">BYOVD via vulndrv64.sys</text>
+    <text x="856" y="698" fill="#7ee787" font-size="13">timeline · IOCs · eradication</text>
+  </g>
+
+  <!-- IOC panel (row3 col4) -->
+  <g>
+    <rect x="1235" y="600" width="320" height="200" rx="10" fill="#161b22" stroke="#e11d2a" stroke-width="1.5"/>
+    <text x="1251" y="627" fill="#ff7b72" font-size="15" font-weight="bold">CASE IOCs (values differ)</text>
+    <line x1="1251" y1="638" x2="1539" y2="638" stroke="#30363d" stroke-width="1"/>
+    <text x="1251" y="662" fill="#c9d1d9" font-size="12">drv  nightjackal.sys</text>
+    <text x="1251" y="682" fill="#8b949e" font-size="12">base fffff803`7a200000</text>
+    <text x="1251" y="704" fill="#c9d1d9" font-size="12">proc updtsvc.exe PID 4712</text>
+    <text x="1251" y="724" fill="#8b949e" font-size="12">EPROCESS ffffb90e`2a1c9080</text>
+    <text x="1251" y="746" fill="#c9d1d9" font-size="12">pool tag  Njkl (0x6c6b6a4e)</text>
+    <text x="1251" y="766" fill="#c9d1d9" font-size="12">svc  UpdSvcHelper</text>
+    <text x="1251" y="788" fill="#8b949e" font-size="12">0xD1 arg1 ffffb90e`2b400000</text>
+  </g>
+
+  <!-- ================= ARROWS ================= -->
+  <!-- row1 L->R -->
+  <path d="M370,195 L440,195" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#mArr)"/>
+  <path d="M765,195 L835,195" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#mArr)"/>
+  <path d="M1160,195 L1230,195" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#mArr)"/>
+  <!-- n4 down to n5 -->
+  <path d="M1395,250 L1395,365" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#mArr)"/>
+  <!-- row2 R->L -->
+  <path d="M1235,425 L1165,425" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#mArr)"/>
+  <path d="M840,425 L770,425" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#mArr)"/>
+  <path d="M445,425 L375,425" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#mArr)"/>
+  <!-- n8 down to n9 -->
+  <path d="M210,480 L210,595" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#mArr)"/>
+  <!-- row3 L->R -->
+  <path d="M370,655 L440,655" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#mArr)"/>
+  <path d="M765,655 L835,655" stroke="#e11d2a" stroke-width="2.5" fill="none" marker-end="url(#mArr)"/>
+
+  <!-- flow phase labels on turns -->
+  <text x="1410" y="312" fill="#8b949e" font-size="12" text-anchor="middle">confirm on</text>
+  <text x="1410" y="328" fill="#8b949e" font-size="12" text-anchor="middle">live target</text>
+  <text x="225" y="542" fill="#8b949e" font-size="12" text-anchor="middle">pivot to</text>
+  <text x="225" y="558" fill="#8b949e" font-size="12" text-anchor="middle">hook hunt</text>
+
+  <!-- ================= LEGEND ================= -->
+  <g>
+    <rect x="50" y="750" width="1130" height="118" rx="10" fill="#0f141b" stroke="#30363d" stroke-width="1.5"/>
+    <text x="66" y="776" fill="#f0f6fc" font-size="15" font-weight="bold">LEGEND — investigation phase colour key</text>
+    <line x1="66" y1="786" x2="1164" y2="786" stroke="#30363d" stroke-width="1"/>
+
+    <rect x="66" y="800" width="22" height="16" rx="3" fill="url(#nRed)" stroke="#e11d2a"/>
+    <text x="96" y="813" fill="#c9d1d9" font-size="13">intake / hook detection</text>
+    <rect x="330" y="800" width="22" height="16" rx="3" fill="url(#nBlue)" stroke="#2f81f7"/>
+    <text x="360" y="813" fill="#c9d1d9" font-size="13">setup &amp; I/O (M1/M2/M6)</text>
+    <rect x="620" y="800" width="22" height="16" rx="3" fill="url(#nOrange)" stroke="#d29922"/>
+    <text x="650" y="813" fill="#c9d1d9" font-size="13">crash / integrity (M9/L8)</text>
+    <rect x="920" y="800" width="22" height="16" rx="3" fill="url(#nPurple)" stroke="#a371f7"/>
+    <text x="950" y="813" fill="#c9d1d9" font-size="13">kernel core (M4/L6)</text>
+
+    <rect x="66" y="836" width="22" height="16" rx="3" fill="url(#nTeal)" stroke="#39c5cf"/>
+    <text x="96" y="849" fill="#c9d1d9" font-size="13">memory (M5)</text>
+    <rect x="330" y="836" width="22" height="16" rx="3" fill="url(#nGreen)" stroke="#3fb950"/>
+    <text x="360" y="849" fill="#c9d1d9" font-size="13">resolved root cause (L9)</text>
+    <line x1="620" y1="844" x2="662" y2="844" stroke="#e11d2a" stroke-width="2.5" marker-end="url(#mArr)"/>
+    <text x="672" y="849" fill="#c9d1d9" font-size="13">investigation flow / pivot</text>
+  </g>
+
+  <text x="40" y="890" fill="#6e7681" font-size="13">Static dump triage drives every hop; the live KDNET target confirms dynamic state. One artefact set, one thread of evidence — from 0xD1 to full attribution of nightjackal.sys (BYOVD).</text>
+</svg>

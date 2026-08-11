@@ -1,0 +1,11 @@
+flowchart LR
+  subgraph Cloud["CourseStack / AWS VPC — 10.0.0.0/24"]
+    DC["DC01.adescrtl.lab<br/>10.0.0.5<br/>Domain Controller + Enterprise Root CA<br/>ADESC-Root-CA"]
+  end
+  subgraph Attacker["Attacker over VPN"]
+    K["Kali / Certipy<br/>lowpriv@adescrtl.lab"]
+  end
+  K -->|"LDAP 389 / Kerberos 88"| DC
+  K -->|"RPC 135 + dynamic (MS-ICPR)"| DC
+  K -->|"HTTP 80 /certsrv (ESC8)"| DC
+  DC -.->|"issues certificates"| K

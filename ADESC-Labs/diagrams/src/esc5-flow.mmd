@@ -1,0 +1,8 @@
+flowchart TD
+  O["CA AD object<br/>CN=ADESC-Root-CA,CN=Enrollment Services"]:::f
+  P["LabUsers hold GenericAll<br/>over the pKIEnrollmentService object"]:::f
+  M["Attacker edits CA object:<br/>publish vulnerable template, alter flags"]:::f
+  E["Chain into ESC1-style enrollment"]:::win
+  O --> P --> M --> E
+  classDef f fill:#8957e5,color:#fff,stroke:#0d1117
+  classDef win fill:#238636,color:#fff,stroke:#0d1117

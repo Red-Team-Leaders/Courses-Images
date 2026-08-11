@@ -1,0 +1,15 @@
+flowchart LR
+  subgraph Hardened["Patched KDC (KB5014754, default 2025)"]
+    H1["CA stamps szOID_NTDS_CA_SECURITY_EXT<br/>1.3.6.1.4.1.311.25.2 = requester real SID"]:::h
+    H2["KDC Full Enforcement compares<br/>cert SID vs account SID"]:::h
+    H3["Spoofed SAN/UPN then SID mismatch<br/>then PKINIT DENIED"]:::h
+    H1 --> H2 --> H3
+  end
+  subgraph Lab["ESC16 — SID extension disabled (this lab)"]
+    L1["certutil -setreg policy DisableExtensionList<br/>+1.3.6.1.4.1.311.25.2"]:::l
+    L2["Issued certs carry NO SID"]:::l
+    L3["KDC falls back to SAN/UPN mapping<br/>then ESC1/2/3/6/9 work"]:::l
+    L1 --> L2 --> L3
+  end
+  classDef h fill:#b62324,color:#fff,stroke:#0d1117
+  classDef l fill:#238636,color:#fff,stroke:#0d1117

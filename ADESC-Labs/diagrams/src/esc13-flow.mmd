@@ -1,0 +1,11 @@
+sequenceDiagram
+  autonumber
+  participant A as lowpriv
+  participant CA as ADESC-Root-CA
+  participant DC as KDC
+  Note over CA: Template ESC13 carries an issuance policy OID<br/>OID linked to group ESC13-Privileged (msDS-OIDToGroupLink)
+  A->>CA: req -template ESC13 (enroll AS lowpriv, no spoofing)
+  CA-->>A: Cert containing the issuance policy OID
+  A->>DC: PKINIT with certificate
+  DC->>DC: OID-to-group link injects ESC13-Privileged SID into PAC
+  DC-->>A: TGT where lowpriv is member of ESC13-Privileged

@@ -1,0 +1,9 @@
+flowchart TD
+  R["lowpriv granted ManageCA + ManageCertificates<br/>(CA Security DACL)"]:::f
+  F["Enable EDITF_ATTRIBUTESUBJECTALTNAME2 remotely (ESC6)"]:::f
+  A["OR approve own pending request as Officer"]:::f
+  T["Issue admin certificate then Domain Admin"]:::win
+  R --> F --> T
+  R --> A --> T
+  classDef f fill:#8957e5,color:#fff,stroke:#0d1117
+  classDef win fill:#238636,color:#fff,stroke:#0d1117

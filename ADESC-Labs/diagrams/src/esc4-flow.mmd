@@ -1,0 +1,9 @@
+flowchart TD
+  S["Template ESC4<br/>benign client-auth template"]:::f
+  P["LabUsers hold GenericAll<br/>over the template object (ACL flaw)"]:::f
+  W["certipy template -write-default-configuration<br/>flip to ENROLLEE_SUPPLIES_SUBJECT"]:::f
+  E["Enroll ESC4 -upn administrator -sid SID<br/>(now behaves like ESC1)"]:::f
+  T["PKINIT then TGT as administrator"]:::win
+  S --> P --> W --> E --> T
+  classDef f fill:#1f6feb,color:#fff,stroke:#0d1117
+  classDef win fill:#238636,color:#fff,stroke:#0d1117

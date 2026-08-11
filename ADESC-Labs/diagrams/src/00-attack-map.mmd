@@ -1,0 +1,22 @@
+flowchart TD
+  L["ADESCRTL.LAB\\LabUsers<br/>(lowpriv, victim, agentusr)"]
+  L --> T1["Template ESC1"]:::t
+  L --> T2["Template ESC2"]:::t
+  L --> T3["Templates ESC3-CRA / ESC3-Enroll"]:::t
+  L --> T4["Template ESC4 (weak ACL)"]:::t
+  L --> T9["Template ESC9"]:::t
+  L --> T13["Template ESC13"]:::t
+  L --> CA["CA ADESC-Root-CA"]:::c
+  T1 --> DA["Domain Admin"]:::win
+  T2 --> DA
+  T3 --> DA
+  T4 --> DA
+  T9 --> DA
+  T13 --> PRIV["ESC13-Privileged group"]:::win
+  CA --> E6["ESC6 (EDITF SAN)"] --> DA
+  CA --> E7["ESC7 (ManageCA)"] --> DA
+  CA --> E8["ESC8 (Web Enroll relay)"] --> DA
+  CA --> E11["ESC11 (ICPR relay)"] --> DA
+  classDef t fill:#1f6feb,color:#fff,stroke:#0d1117;
+  classDef c fill:#8957e5,color:#fff,stroke:#0d1117;
+  classDef win fill:#238636,color:#fff,stroke:#0d1117;

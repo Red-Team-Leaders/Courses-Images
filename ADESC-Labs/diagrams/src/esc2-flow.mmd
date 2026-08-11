@@ -1,0 +1,10 @@
+sequenceDiagram
+  autonumber
+  participant A as lowpriv
+  participant CA as ADESC-Root-CA
+  participant DC as KDC
+  Note over A,CA: Template ESC2 = Any Purpose EKU (2.5.29.37.0) + ESS
+  A->>CA: req -template ESC2 -upn administrator -sid <SID>
+  CA-->>A: Cert usable for ANY purpose (incl. client auth)
+  A->>DC: PKINIT
+  DC-->>A: TGT as administrator

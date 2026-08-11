@@ -1,0 +1,11 @@
+sequenceDiagram
+  autonumber
+  participant Coerce as PetitPotam/PrinterBug
+  participant DC as DC01 (victim, machine acct)
+  participant R as ntlmrelayx (attacker, same subnet)
+  participant CA as http://DC01/certsrv (Web Enrollment)
+  R->>DC: Coerce authentication
+  DC->>R: NTLM auth (DC01$ machine account)
+  R->>CA: Relay NTLM to Web Enrollment, request DomainController template
+  CA-->>R: Certificate for DC01$
+  Note over R: Authenticate as DC01$ -> DCSync -> domain compromise

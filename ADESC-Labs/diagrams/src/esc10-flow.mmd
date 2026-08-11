@@ -1,0 +1,10 @@
+flowchart TD
+  K["Weak cert mapping registry:<br/>StrongCertificateBindingEnforcement=0<br/>or SCHANNEL CertificateMappingMethods=0x4"]:::f
+  G["lowpriv holds GenericWrite over victim"]:::f
+  U["Set victim UPN = administrator (or altSecID)"]:::f
+  E["Enroll any client-auth cert as victim"]:::f
+  A["Auth maps weakly to administrator then TGT"]:::win
+  K --> E
+  G --> U --> E --> A
+  classDef f fill:#1f6feb,color:#fff,stroke:#0d1117
+  classDef win fill:#238636,color:#fff,stroke:#0d1117

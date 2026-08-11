@@ -1,0 +1,14 @@
+sequenceDiagram
+  autonumber
+  participant A as lowpriv
+  participant V as victim account
+  participant CA as ADESC-Root-CA
+  participant DC as KDC
+  Note over A,V: lowpriv holds GenericWrite over victim
+  A->>V: account update -upn administrator@adescrtl.lab
+  Note over A,CA: Template ESC9 = CT_FLAG_NO_SECURITY_EXTENSION (no SID stamped)
+  A->>CA: req -template ESC9 (as victim, who now has admin UPN)
+  CA-->>A: Cert with UPN=administrator, no SID binding
+  A->>V: restore victim UPN (cleanup)
+  A->>DC: PKINIT with cert -> weak binding maps UPN to administrator
+  DC-->>A: TGT as administrator

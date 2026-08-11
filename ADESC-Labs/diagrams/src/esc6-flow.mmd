@@ -1,0 +1,10 @@
+sequenceDiagram
+  autonumber
+  participant A as lowpriv
+  participant CA as ADESC-Root-CA
+  participant DC as KDC
+  Note over CA: CA flag EDITF_ATTRIBUTESUBJECTALTNAME2 = ON<br/>SAN accepted in ANY request
+  A->>CA: req -template User -upn administrator -sid <SID>
+  CA->>CA: Even a benign template now honors attacker SAN
+  CA-->>A: Certificate with SAN = administrator
+  A->>DC: PKINIT -> TGT as administrator

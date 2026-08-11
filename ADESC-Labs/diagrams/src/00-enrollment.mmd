@@ -1,0 +1,13 @@
+sequenceDiagram
+  autonumber
+  participant U as Enrollee (user/computer)
+  participant DC as Domain Controller (LDAP)
+  participant CA as Enterprise CA (Policy Module)
+  U->>DC: Read published templates (pKIEnrollmentService)
+  DC-->>U: Template list + ACLs
+  U->>CA: MS-ICPR request (CSR + template name)
+  CA->>CA: Policy check: enroll rights, subject source, EKU
+  CA->>CA: Build subject (from AD or from request)
+  CA-->>U: Signed certificate
+  U->>DC: PKINIT / Schannel auth with certificate
+  DC-->>U: TGT (identity = subject/SAN in cert)

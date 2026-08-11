@@ -1,0 +1,11 @@
+sequenceDiagram
+  autonumber
+  participant A as lowpriv (attacker)
+  participant CA as ADESC-Root-CA
+  participant DC as KDC
+  Note over A,CA: Template ESC1 = ENROLLEE_SUPPLIES_SUBJECT + Client Auth EKU + low-priv enroll
+  A->>CA: req -template ESC1 -upn administrator@adescrtl.lab -sid <admin SID>
+  CA->>CA: Subject taken from REQUEST (attacker-controlled)
+  CA-->>A: Certificate with SAN = administrator
+  A->>DC: PKINIT with certificate
+  DC-->>A: TGT as administrator -> NT hash

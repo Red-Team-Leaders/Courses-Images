@@ -1,0 +1,13 @@
+sequenceDiagram
+  autonumber
+  participant A as lowpriv
+  participant CA as ADESC-Root-CA
+  participant DC as KDC
+  Note over A,CA: Step 1 — get an Enrollment Agent certificate
+  A->>CA: req -template ESC3-CRA (EKU = Certificate Request Agent)
+  CA-->>A: Agent certificate (agent.pfx)
+  Note over A,CA: Step 2 — use the agent cert to enroll ON BEHALF OF admin
+  A->>CA: req -template ESC3-Enroll -on-behalf-of ADESCRTL\administrator -pfx agent.pfx
+  CA->>CA: Validates RA signature (agent EKU) then builds subject from admin AD account
+  CA-->>A: Client-auth certificate for administrator
+  A->>DC: PKINIT -> TGT as administrator

@@ -1,0 +1,10 @@
+sequenceDiagram
+  autonumber
+  participant R as ntlmrelayx (same subnet)
+  participant DC as DC01 (coerced)
+  participant CA as CA RPC (MS-ICPR)
+  Note over CA: IF_ENFORCEENCRYPTICERTREQUEST = OFF<br/>ICertPassage accepts unencrypted RPC
+  R->>DC: Coerce NTLM
+  DC->>R: NTLM (DC01$)
+  R->>CA: Relay over RPC (no packet privacy required)
+  CA-->>R: Certificate for DC01$

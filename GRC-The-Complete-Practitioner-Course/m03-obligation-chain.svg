@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 480" width="980" height="480" role="img" aria-label="From legal text to derived status">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8B97A8"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E11D2A"/></marker></defs>
+  <rect width="980" height="480" fill="#0E1117"/>
+  <rect x="28" y="148" width="164" height="116" rx="8" fill="#141923" stroke="#E11D2A77" stroke-width="1"/>
+  <text x="42" y="172" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#E11D2A" text-anchor="start" letter-spacing="0.9">OBLIGATION</text>
+  <text x="42" y="196.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">LGPD art. 46</text>
+  <text x="42" y="240" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#5B6676" text-anchor="start">The legal text</text>
+  <line x1="192" y1="206" x2="218" y2="206" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="218" y="148" width="164" height="116" rx="8" fill="#141923" stroke="#F5B94D77" stroke-width="1"/>
+  <text x="232" y="172" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#F5B94D" text-anchor="start" letter-spacing="0.9">REQUIREMENT</text>
+  <text x="232" y="196.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Six testable</text>
+  <text x="232" y="212.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">statements</text>
+  <text x="232" y="240" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#5B6676" text-anchor="start">Your decomposition</text>
+  <line x1="382" y1="206" x2="408" y2="206" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="408" y="148" width="164" height="116" rx="8" fill="#141923" stroke="#4D9DF577" stroke-width="1"/>
+  <text x="422" y="172" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#4D9DF5" text-anchor="start" letter-spacing="0.9">CONTROL</text>
+  <text x="422" y="196.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">A.8.24, A.5.18,</text>
+  <text x="422" y="212.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">A.8.13…</text>
+  <text x="422" y="240" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#5B6676" text-anchor="start">What makes it true</text>
+  <line x1="572" y1="206" x2="598" y2="206" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="598" y="148" width="164" height="116" rx="8" fill="#141923" stroke="#36D39977" stroke-width="1"/>
+  <text x="612" y="172" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#36D399" text-anchor="start" letter-spacing="0.9">EVIDENCE</text>
+  <text x="612" y="196.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Records of operation</text>
+  <text x="612" y="240" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#5B6676" text-anchor="start">What proves it ran</text>
+  <line x1="762" y1="206" x2="788" y2="206" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="788" y="148" width="164" height="116" rx="8" fill="#141923" stroke="#FF3B4877" stroke-width="1"/>
+  <text x="802" y="172" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#FF3B48" text-anchor="start" letter-spacing="0.9">STATUS</text>
+  <text x="802" y="196.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">met / partial / gap</text>
+  <text x="802" y="240" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#5B6676" text-anchor="start">Derived, never typed</text>
+  <rect x="28" y="294" width="924" height="90" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1"/>
+  <text x="46" y="318" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="700" fill="#8B97A8" text-anchor="start">THE DERIVATION RULE — four lines, and the false positive cannot occur</text>
+  <text x="46" y="342" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="500" fill="#8B97A8" text-anchor="start">IF   any mapped control is not-implemented          → gap</text>
+  <text x="46" y="359" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="500" fill="#8B97A8" text-anchor="start">ELIF any mapped control is partial or planned       → partial</text>
+  <text x="46" y="376" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="500" fill="#8B97A8" text-anchor="start">ELIF any mapped control has no current evidence     → partial</text>
+  <text x="46" y="393" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="500" fill="#E6EDF3" text-anchor="start">ELSE                                                → met</text>
+  <rect x="28" y="404" width="924" height="62" rx="8" fill="#141923" stroke="#E11D2A55" stroke-width="1"/>
+  <text x="46" y="428" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#E11D2A" text-anchor="start" letter-spacing="1.1">THE FALSE POSITIVE</text>
+  <text x="46" y="451" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="400" fill="#8B97A8" text-anchor="start">A requirement reported met while a control beneath it is partial or unevidenced. Asserted status drifts one way only — toward met.</text>
+  <text x="28" y="40" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="1.8">RED TEAM LEADERS</text>
+  <text x="28" y="74" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="20" font-weight="800" fill="#E6EDF3" text-anchor="start">From legal text to derived status</text>
+  <text x="28" y="97.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">Status must be derived, not asserted. Compute a requirement&#x27;s status from its controls and their evidence, and the compliance</text>
+  <text x="28" y="114.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">false positive becomes structurally impossible.</text>
+</svg>

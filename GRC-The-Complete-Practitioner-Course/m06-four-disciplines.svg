@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 520" width="980" height="520" role="img" aria-label="Four disciplines, four questions">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8B97A8"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E11D2A"/></marker></defs>
+  <rect width="980" height="520" fill="#0E1117"/>
+  <rect x="28" y="150" width="224" height="190" rx="8" fill="#141923" stroke="#4D9DF577" stroke-width="1"/>
+  <text x="42" y="176.0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#4D9DF5" text-anchor="start">INCIDENT RESPONSE</text>
+  <text x="42" y="214.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">What is happening, and how do</text>
+  <text x="42" y="230.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">we stop it?</text>
+  <text x="42" y="286" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8.5" font-weight="700" fill="#5B6676" text-anchor="start" letter-spacing="0.9">UNIT</text>
+  <text x="42" y="304" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">the incident</text>
+  <rect x="28" y="352" width="224" height="34" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1"/>
+  <text x="42" y="374" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="600" fill="#4D9DF5" text-anchor="start">Fails on authority</text>
+  <rect x="260" y="150" width="224" height="190" rx="8" fill="#141923" stroke="#F5B94D77" stroke-width="1"/>
+  <text x="274" y="176.0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#F5B94D" text-anchor="start">DISASTER RECOVERY</text>
+  <text x="274" y="214.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">How do we restore this</text>
+  <text x="274" y="230.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">technology?</text>
+  <text x="274" y="286" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8.5" font-weight="700" fill="#5B6676" text-anchor="start" letter-spacing="0.9">UNIT</text>
+  <text x="274" y="304" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">the system</text>
+  <rect x="260" y="352" width="224" height="34" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1"/>
+  <text x="274" y="374" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="600" fill="#F5B94D" text-anchor="start">Fails on assumption</text>
+  <rect x="492" y="150" width="224" height="190" rx="8" fill="#141923" stroke="#36D39977" stroke-width="1"/>
+  <text x="506" y="176.0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#36D399" text-anchor="start">BUSINESS CONTINUITY</text>
+  <text x="506" y="214.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">How does the business operate</text>
+  <text x="506" y="230.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">meanwhile?</text>
+  <text x="506" y="286" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8.5" font-weight="700" fill="#5B6676" text-anchor="start" letter-spacing="0.9">UNIT</text>
+  <text x="506" y="304" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">the business process</text>
+  <rect x="492" y="352" width="224" height="34" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1"/>
+  <text x="506" y="374" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="600" fill="#36D399" text-anchor="start">Fails on realism</text>
+  <rect x="724" y="150" width="224" height="190" rx="8" fill="#141923" stroke="#E11D2A77" stroke-width="1"/>
+  <text x="738" y="176.0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#E11D2A" text-anchor="start">OPERATIONAL RESILIENCE</text>
+  <text x="738" y="214.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">How much disruption can we</text>
+  <text x="738" y="230.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">tolerate?</text>
+  <text x="738" y="286" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8.5" font-weight="700" fill="#5B6676" text-anchor="start" letter-spacing="0.9">UNIT</text>
+  <text x="738" y="304" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">the business service</text>
+  <rect x="724" y="352" width="224" height="34" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1"/>
+  <text x="738" y="374" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="600" fill="#E11D2A" text-anchor="start">Fails on scope</text>
+  <text x="490" y="412" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" font-weight="500" fill="#5B6676" text-anchor="middle">minutes → days                    hours → days                    hours → weeks                    continuous</text>
+  <rect x="28" y="434" width="920" height="62" rx="8" fill="#141923" stroke="#E11D2A55" stroke-width="1"/>
+  <text x="46" y="458" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#E11D2A" text-anchor="start" letter-spacing="1.1">THE COST OF CONFLATING THEM</text>
+  <text x="46" y="481.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="400" fill="#8B97A8" text-anchor="start">A firm with a disaster recovery plan has covered one failure mode: technology unavailable, data intact. Not corruption, and not a</text>
+  <text x="46" y="497.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="400" fill="#8B97A8" text-anchor="start">business that cannot use what was recovered.</text>
+  <text x="28" y="40" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="1.8">RED TEAM LEADERS</text>
+  <text x="28" y="74" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="20" font-weight="800" fill="#E6EDF3" text-anchor="start">Four disciplines, four questions</text>
+  <text x="28" y="97.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">Organisations use these terms interchangeably. Regulators do not, and each answers a genuinely different question about a</text>
+  <text x="28" y="114.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">different unit.</text>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 500" width="980" height="500" role="img" aria-label="The learning loop, and the four places it dies">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8B97A8"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E11D2A"/></marker></defs>
+  <rect width="980" height="500" fill="#0E1117"/>
+  <rect x="28" y="156" width="222" height="82" rx="8" fill="#141923" stroke="#4D9DF577" stroke-width="1"/>
+  <text x="42" y="182" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#4D9DF5" text-anchor="start" letter-spacing="0.7">EXERCISE / INCIDENT</text>
+  <text x="42" y="206.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">capability tested, or failed</text>
+  <line x1="250" y1="197" x2="286" y2="197" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="262" y="156" width="222" height="82" rx="8" fill="#141923" stroke="#F5B94D77" stroke-width="1"/>
+  <text x="276" y="182" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#F5B94D" text-anchor="start" letter-spacing="0.7">FINDINGS CAPTURED</text>
+  <text x="276" y="206.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">in the room, owners named</text>
+  <line x1="484" y1="197" x2="520" y2="197" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="496" y="156" width="222" height="82" rx="8" fill="#141923" stroke="#36D39977" stroke-width="1"/>
+  <text x="510" y="182" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#36D399" text-anchor="start" letter-spacing="0.7">ONE REGISTER</text>
+  <text x="510" y="206.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">the same one as audit findings</text>
+  <line x1="718" y1="197" x2="754" y2="197" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="730" y="156" width="222" height="82" rx="8" fill="#141923" stroke="#E11D2A77" stroke-width="1"/>
+  <text x="744" y="182" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="0.7">VERIFIED CLOSURE</text>
+  <text x="744" y="206.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">the cause is gone, and retested</text>
+  <path d="M841 238 L841 274 L139 274 L139 238" fill="none" stroke="#36D399" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 4" marker-end="url(#a)"/>
+  <text x="490" y="268" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" font-weight="600" fill="#36D399" text-anchor="middle">the next exercise targets a previous finding</text>
+  <text x="139" y="306" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="#E11D2A" text-anchor="middle">✕</text>
+  <text x="139" y="328" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="600" fill="#E11D2A" text-anchor="middle">not captured</text>
+  <text x="373" y="306" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="#E11D2A" text-anchor="middle">✕</text>
+  <text x="373" y="328" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="600" fill="#E11D2A" text-anchor="middle">no owner or date</text>
+  <text x="607" y="306" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="#E11D2A" text-anchor="middle">✕</text>
+  <text x="607" y="328" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="600" fill="#E11D2A" text-anchor="middle">a separate &#x27;lessons log&#x27;</text>
+  <text x="841" y="306" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="#E11D2A" text-anchor="middle">✕</text>
+  <text x="841" y="328" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="600" fill="#E11D2A" text-anchor="middle">closed on paper</text>
+  <rect x="28" y="348" width="920" height="56" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1"/>
+  <text x="46" y="372" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="700" fill="#E6EDF3" text-anchor="start">RECURRENCE RATE — findings that had appeared before</text>
+  <text x="46" y="394" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="400" fill="#8B97A8" text-anchor="start">Closure rate measures activity. Recurrence measures outcome. Above roughly 20%, the programme is documenting rather than learning.</text>
+  <rect x="28" y="420" width="920" height="62" rx="8" fill="#141923" stroke="#E11D2A55" stroke-width="1"/>
+  <text x="46" y="444" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#E11D2A" text-anchor="start" letter-spacing="1.1">THE THREE METRICS FOR A BOARD</text>
+  <text x="46" y="467" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="400" fill="#8B97A8" text-anchor="start">Recovery gap · obligations met within deadline · recurrence rate. Can we recover, do we meet our obligations, do we improve.</text>
+  <text x="28" y="40" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="1.8">RED TEAM LEADERS</text>
+  <text x="28" y="74" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="20" font-weight="800" fill="#E6EDF3" text-anchor="start">The learning loop, and the four places it dies</text>
+  <text x="28" y="97.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">An exercise or review that produces no tracked actions with owners and dates has produced nothing. Recurrence rate is the</text>
+  <text x="28" y="114.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">honest measure of whether the loop closes.</text>
+</svg>

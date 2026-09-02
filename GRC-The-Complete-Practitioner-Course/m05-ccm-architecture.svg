@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 480" width="980" height="480" role="img" aria-label="Continuous control monitoring">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8B97A8"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E11D2A"/></marker></defs>
+  <rect width="980" height="480" fill="#0E1117"/>
+  <rect x="28" y="154" width="222" height="104" rx="8" fill="#141923" stroke="#4D9DF577" stroke-width="1"/>
+  <text x="42" y="178" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#4D9DF5" text-anchor="start" letter-spacing="0.8">COLLECTOR</text>
+  <text x="42" y="202" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">Queries the source system&#x27;s API</text>
+  <text x="42" y="217" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">on a cadence and returns observed</text>
+  <text x="42" y="232" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">state.</text>
+  <line x1="250" y1="206" x2="286" y2="206" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="262" y="154" width="222" height="104" rx="8" fill="#141923" stroke="#F5B94D77" stroke-width="1"/>
+  <text x="276" y="178" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#F5B94D" text-anchor="start" letter-spacing="0.8">STORE</text>
+  <text x="276" y="202" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">Retains the observation with a</text>
+  <text x="276" y="217" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">timestamp. History is what makes</text>
+  <text x="276" y="232" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">it period evidence.</text>
+  <line x1="484" y1="206" x2="520" y2="206" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="496" y="154" width="222" height="104" rx="8" fill="#141923" stroke="#36D39977" stroke-width="1"/>
+  <text x="510" y="178" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#36D399" text-anchor="start" letter-spacing="0.8">EVALUATOR</text>
+  <text x="510" y="202" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">Compares observed state against</text>
+  <text x="510" y="217" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">the control&#x27;s specification,</text>
+  <text x="510" y="232" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">expressed as a rule.</text>
+  <line x1="718" y1="206" x2="754" y2="206" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="730" y="154" width="222" height="104" rx="8" fill="#141923" stroke="#E11D2A77" stroke-width="1"/>
+  <text x="744" y="178" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="0.8">ALERTING</text>
+  <text x="744" y="202" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">On exception — and on collection</text>
+  <text x="744" y="217" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">failure, which is the omitted</text>
+  <text x="744" y="232" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="400" fill="#8B97A8" text-anchor="start">one.</text>
+  <path d="M841 258 L841 292 L100 292 L100 258" fill="none" stroke="#E11D2A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 4" marker-end="url(#a)"/>
+  <text x="470" y="286" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" font-weight="600" fill="#E11D2A" text-anchor="middle">collection failure alert — absence of data must be visible</text>
+  <rect x="28" y="322" width="292" height="62" rx="8" fill="#1A2130" stroke="#36D39944" stroke-width="1"/>
+  <text x="44" y="346" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="700" fill="#E6EDF3" text-anchor="start">Evidence</text>
+  <text x="44" y="366" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" font-weight="400" fill="#5B6676" text-anchor="start">period-covering, automatic</text>
+  <line x1="174" y1="306" x2="174" y2="322" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="338" y="322" width="292" height="62" rx="8" fill="#1A2130" stroke="#4D9DF544" stroke-width="1"/>
+  <text x="354" y="346" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="700" fill="#E6EDF3" text-anchor="start">Metrics</text>
+  <text x="354" y="366" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" font-weight="400" fill="#5B6676" text-anchor="start">derived, not typed</text>
+  <line x1="484" y1="306" x2="484" y2="322" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="648" y="322" width="292" height="62" rx="8" fill="#1A2130" stroke="#F5B94D44" stroke-width="1"/>
+  <text x="664" y="346" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="700" fill="#E6EDF3" text-anchor="start">Exceptions</text>
+  <text x="664" y="366" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" font-weight="400" fill="#5B6676" text-anchor="start">a list, not an audit finding</text>
+  <line x1="794" y1="306" x2="794" y2="322" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <line x1="607" y1="258" x2="607" y2="306" stroke="#2B3444" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 3"/>
+  <rect x="28" y="410" width="924" height="56" rx="8" fill="#141923" stroke="#36D39955" stroke-width="1"/>
+  <text x="46" y="434" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#36D399" text-anchor="start" letter-spacing="1.1">WHAT IT BUYS BEYOND EFFORT</text>
+  <text x="46" y="456" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="400" fill="#8B97A8" text-anchor="start">A higher evidence band (and so a legitimately lower residual), silent failures made visible, and one collection serving many frameworks.</text>
+  <text x="28" y="40" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="1.8">RED TEAM LEADERS</text>
+  <text x="28" y="74" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="20" font-weight="800" fill="#E6EDF3" text-anchor="start">Continuous control monitoring</text>
+  <text x="28" y="97.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">Four components, and the fourth is the one most often omitted — a collector that stops produces silence, and silence reads as</text>
+  <text x="28" y="114.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">conformance.</text>
+</svg>

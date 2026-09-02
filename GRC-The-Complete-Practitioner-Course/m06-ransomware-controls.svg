@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 560" width="980" height="560" role="img" aria-label="Ransomware controls, ranked by effect">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8B97A8"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E11D2A"/></marker></defs>
+  <rect width="980" height="560" fill="#0E1117"/>
+  <text x="700" y="143" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9" font-weight="600" fill="#5B6676" text-anchor="start">relative risk removed</text>
+  <rect x="28" y="150" width="920" height="32" rx="8" fill="#141923" stroke="none" stroke-width="1"/>
+  <text x="44" y="171" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="800" fill="#36D399" text-anchor="start">1</text>
+  <text x="72" y="171" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Immutable, credential-separated backups (retention &gt; dwell)</text>
+  <text x="470" y="171" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="9.5" font-weight="400" fill="#5B6676" text-anchor="start">defeats encryption entirely</text>
+  <rect x="700" y="158" width="228" height="16" rx="4" fill="#36D39933" stroke="#36D39977" stroke-width="1"/>
+  <rect x="28" y="188" width="920" height="32" rx="8" fill="#1A2130" stroke="none" stroke-width="1"/>
+  <text x="44" y="209" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="800" fill="#36D399" text-anchor="start">2</text>
+  <text x="72" y="209" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Phishing-resistant MFA on every remote and admin path</text>
+  <text x="470" y="209" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="9.5" font-weight="400" fill="#5B6676" text-anchor="start">closes the commonest access vector</text>
+  <rect x="700" y="196" width="208" height="16" rx="4" fill="#36D39933" stroke="#36D39977" stroke-width="1"/>
+  <rect x="28" y="226" width="920" height="32" rx="8" fill="#141923" stroke="none" stroke-width="1"/>
+  <text x="44" y="247" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="800" fill="#36D399" text-anchor="start">3</text>
+  <text x="72" y="247" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Rapid patching of internet-facing appliances</text>
+  <text x="470" y="247" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="9.5" font-weight="400" fill="#5B6676" text-anchor="start">the vector behind the largest campaigns</text>
+  <rect x="700" y="234" width="188" height="16" rx="4" fill="#36D39933" stroke="#36D39977" stroke-width="1"/>
+  <rect x="28" y="264" width="920" height="32" rx="8" fill="#1A2130" stroke="none" stroke-width="1"/>
+  <text x="44" y="285" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="800" fill="#36D399" text-anchor="start">4</text>
+  <text x="72" y="285" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Privileged access separation and tiered administration</text>
+  <text x="470" y="285" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="9.5" font-weight="400" fill="#5B6676" text-anchor="start">breaks the decisive escalation phase</text>
+  <rect x="700" y="272" width="168" height="16" rx="4" fill="#36D39933" stroke="#36D39977" stroke-width="1"/>
+  <rect x="28" y="302" width="920" height="32" rx="8" fill="#141923" stroke="none" stroke-width="1"/>
+  <text x="44" y="323" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="800" fill="#F5B94D" text-anchor="start">5</text>
+  <text x="72" y="323" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">EDR with 24/7 monitoring AND response</text>
+  <text x="470" y="323" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="9.5" font-weight="400" fill="#5B6676" text-anchor="start">detection during weeks of dwell time</text>
+  <rect x="700" y="310" width="142" height="16" rx="4" fill="#F5B94D33" stroke="#F5B94D77" stroke-width="1"/>
+  <rect x="28" y="340" width="920" height="32" rx="8" fill="#1A2130" stroke="none" stroke-width="1"/>
+  <text x="44" y="361" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="800" fill="#F5B94D" text-anchor="start">6</text>
+  <text x="72" y="361" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Network segmentation limiting lateral movement</text>
+  <text x="470" y="361" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="9.5" font-weight="400" fill="#5B6676" text-anchor="start">contains blast radius; expensive</text>
+  <rect x="700" y="348" width="122" height="16" rx="4" fill="#F5B94D33" stroke="#F5B94D77" stroke-width="1"/>
+  <rect x="28" y="378" width="920" height="32" rx="8" fill="#141923" stroke="none" stroke-width="1"/>
+  <text x="44" y="399" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="800" fill="#4D9DF5" text-anchor="start">7</text>
+  <text x="72" y="399" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Egress monitoring and data loss detection</text>
+  <text x="470" y="399" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="9.5" font-weight="400" fill="#5B6676" text-anchor="start">detects exfiltration before publication</text>
+  <rect x="700" y="386" width="102" height="16" rx="4" fill="#4D9DF533" stroke="#4D9DF577" stroke-width="1"/>
+  <rect x="28" y="416" width="920" height="32" rx="8" fill="#1A2130" stroke="none" stroke-width="1"/>
+  <text x="44" y="437" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="800" fill="#4D9DF5" text-anchor="start">8</text>
+  <text x="72" y="437" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Tested recovery including clean-room rebuild</text>
+  <text x="470" y="437" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="9.5" font-weight="400" fill="#5B6676" text-anchor="start">decides whether recovery is real</text>
+  <rect x="700" y="424" width="86" height="16" rx="4" fill="#4D9DF533" stroke="#4D9DF577" stroke-width="1"/>
+  <rect x="28" y="454" width="920" height="32" rx="8" fill="#141923" stroke="none" stroke-width="1"/>
+  <text x="44" y="475" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="800" fill="#FF3B48" text-anchor="start">9</text>
+  <text x="72" y="475" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Exercised response, including the payment decision path</text>
+  <text x="470" y="475" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="9.5" font-weight="400" fill="#5B6676" text-anchor="start">the governance half nobody funds</text>
+  <rect x="700" y="462" width="70" height="16" rx="4" fill="#FF3B4833" stroke="#FF3B4877" stroke-width="1"/>
+  <rect x="28" y="492" width="920" height="32" rx="8" fill="#1A2130" stroke="none" stroke-width="1"/>
+  <text x="44" y="513" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" font-weight="800" fill="#FF3B48" text-anchor="start">10</text>
+  <text x="72" y="513" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#E6EDF3" text-anchor="start">Third-party and managed service provider control</text>
+  <text x="470" y="513" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="9.5" font-weight="400" fill="#5B6676" text-anchor="start">an access path you do not control</text>
+  <rect x="700" y="500" width="56" height="16" rx="4" fill="#FF3B4833" stroke="#FF3B4877" stroke-width="1"/>
+  <rect x="28" y="536" width="920" height="0" rx="8" fill="#141923" stroke="#2B3444" stroke-width="1"/>
+  <text x="28" y="548.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="600" fill="#F5B94D" text-anchor="start">Items 1-4 cost far less than 5 and 6, and remove more risk. Present the ranking with costs attached.</text>
+  <text x="28" y="40" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="1.8">RED TEAM LEADERS</text>
+  <text x="28" y="74" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="20" font-weight="800" fill="#E6EDF3" text-anchor="start">Ransomware controls, ranked by effect</text>
+  <text x="28" y="97.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">The four cheapest controls remove more risk than the two expensive ones that usually get the budget. That ranking is the</text>
+  <text x="28" y="114.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">strongest funding argument available in security.</text>
+</svg>

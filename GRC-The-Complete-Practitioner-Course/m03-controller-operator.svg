@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 520" width="980" height="520" role="img" aria-label="Controller and operator — the dual role">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8B97A8"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E11D2A"/></marker></defs>
+  <rect width="980" height="520" fill="#0E1117"/>
+  <rect x="28" y="146" width="452" height="118" rx="8" fill="#141923" stroke="#2B3444" stroke-width="1"/>
+  <path d="M29 155 a8,8 0 0 1 8,-8 h3 v116 h-3 a8,8 0 0 1 -8,-8 z" fill="#E11D2A"/>
+  <text x="46" y="170" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#E11D2A" text-anchor="start" letter-spacing="1.1">YOU DECIDE THE PURPOSE</text>
+  <text x="46" y="190" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="13" font-weight="700" fill="#E6EDF3" text-anchor="start">AS CONTROLLER</text>
+  <text x="46" y="210" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">You decide the purposes and the essential means. Merchant</text>
+  <text x="46" y="226" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">relationships, employees, fraud prevention, regulatory reporting.</text>
+  <rect x="500" y="146" width="452" height="118" rx="8" fill="#141923" stroke="#2B3444" stroke-width="1"/>
+  <path d="M501 155 a8,8 0 0 1 8,-8 h3 v116 h-3 a8,8 0 0 1 -8,-8 z" fill="#4D9DF5"/>
+  <text x="518" y="170" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#4D9DF5" text-anchor="start" letter-spacing="1.1">THEY DECIDE THE PURPOSE</text>
+  <text x="518" y="190" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="13" font-weight="700" fill="#E6EDF3" text-anchor="start">AS OPERATOR</text>
+  <text x="518" y="210" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">You process on another controller&#x27;s instruction. End-customer</text>
+  <text x="518" y="226" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">data handled on behalf of the merchants you serve.</text>
+  <rect x="28" y="288" width="924" height="206" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1"/>
+  <text x="46" y="316" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="600" fill="#E6EDF3" text-anchor="start">Legal basis</text>
+  <text x="212" y="316" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">You determine and document it</text>
+  <text x="596" y="316" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">The controller does; you follow instruction</text>
+  <text x="46" y="346" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="600" fill="#E6EDF3" text-anchor="start">Privacy notice</text>
+  <text x="212" y="346" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">You provide it</text>
+  <text x="596" y="346" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">The controller provides it</text>
+  <line x1="46" y1="326" x2="934" y2="326" stroke="#2B3444" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+  <text x="46" y="376" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="600" fill="#E6EDF3" text-anchor="start">Rights request</text>
+  <text x="212" y="376" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">You respond, within 15 days</text>
+  <text x="596" y="376" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">You forward within 2 days and assist</text>
+  <line x1="46" y1="356" x2="934" y2="356" stroke="#2B3444" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+  <text x="46" y="406" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="600" fill="#E6EDF3" text-anchor="start">Breach</text>
+  <text x="212" y="406" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">You assess art. 48 risk and notify the ANPD</text>
+  <text x="596" y="406" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">You notify the controller within 24h</text>
+  <line x1="46" y1="386" x2="934" y2="386" stroke="#2B3444" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+  <text x="46" y="436" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="600" fill="#E6EDF3" text-anchor="start">Retention</text>
+  <text x="212" y="436" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">You set it</text>
+  <text x="596" y="436" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">The controller&#x27;s instruction governs</text>
+  <line x1="46" y1="416" x2="934" y2="416" stroke="#2B3444" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+  <text x="46" y="466" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="600" fill="#E6EDF3" text-anchor="start">Sub-processing</text>
+  <text x="212" y="466" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">You engage processors</text>
+  <text x="596" y="466" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">You need the controller&#x27;s authorisation</text>
+  <line x1="46" y1="446" x2="934" y2="446" stroke="#2B3444" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+  <rect x="28" y="470" width="924" height="44" rx="8" fill="#141923" stroke="#F5B94D55" stroke-width="1"/>
+  <text x="46" y="497" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="400" fill="#F5B94D" text-anchor="start">Processing operator-held data for your own purposes makes you controller for a new purpose — with no basis established.</text>
+  <text x="28" y="40" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="1.8">RED TEAM LEADERS</text>
+  <text x="28" y="74" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="20" font-weight="800" fill="#E6EDF3" text-anchor="start">Controller and operator — the dual role</text>
+  <text x="28" y="97.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">Most B2B providers are both, for different activities. The determination is factual, not contractual, and it changes who</text>
+  <text x="28" y="114.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">answers a rights request and who starts a regulatory clock.</text>
+</svg>

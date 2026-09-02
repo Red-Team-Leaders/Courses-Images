@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 500" width="980" height="500" role="img" aria-label="Correction is not corrective action">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8B97A8"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E11D2A"/></marker></defs>
+  <rect width="980" height="500" fill="#0E1117"/>
+  <rect x="28" y="148" width="292" height="96" rx="8" fill="#141923" stroke="#2B3444" stroke-width="1"/>
+  <path d="M29 157 a8,8 0 0 1 8,-8 h3 v94 h-3 a8,8 0 0 1 -8,-8 z" fill="#E11D2A"/>
+  <text x="46" y="172" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#E11D2A" text-anchor="start" letter-spacing="1.1">OBSERVED</text>
+  <text x="46" y="192" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="13" font-weight="700" fill="#E6EDF3" text-anchor="start">FINDING</text>
+  <text x="46" y="212" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">A statement of fact: counts, dates,</text>
+  <text x="46" y="228" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">systems. Facts cannot be argued;</text>
+  <text x="46" y="244" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">conclusions can.</text>
+  <rect x="344" y="148" width="292" height="96" rx="8" fill="#141923" stroke="#2B3444" stroke-width="1"/>
+  <path d="M345 157 a8,8 0 0 1 8,-8 h3 v94 h-3 a8,8 0 0 1 -8,-8 z" fill="#F5B94D"/>
+  <text x="362" y="172" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#F5B94D" text-anchor="start" letter-spacing="1.1">ANALYSED</text>
+  <text x="362" y="192" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="13" font-weight="700" fill="#E6EDF3" text-anchor="start">ROOT CAUSE</text>
+  <text x="362" y="212" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">Reached by a method. Never &#x27;human error&#x27;</text>
+  <text x="362" y="228" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">— ask what made it likely, undetectable</text>
+  <text x="362" y="244" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">and consequential.</text>
+  <rect x="660" y="148" width="292" height="96" rx="8" fill="#141923" stroke="#2B3444" stroke-width="1"/>
+  <path d="M661 157 a8,8 0 0 1 8,-8 h3 v94 h-3 a8,8 0 0 1 -8,-8 z" fill="#4D9DF5"/>
+  <text x="678" y="172" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#4D9DF5" text-anchor="start" letter-spacing="1.1">EXTENDED</text>
+  <text x="678" y="192" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="13" font-weight="700" fill="#E6EDF3" text-anchor="start">SYSTEMIC CHECK</text>
+  <text x="678" y="212" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">Where else does this cause exist?</text>
+  <text x="678" y="228" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">Frequently finds more than the original</text>
+  <text x="678" y="244" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#8B97A8" text-anchor="start">finding.</text>
+  <line x1="320" y1="196" x2="344" y2="196" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <line x1="636" y1="196" x2="660" y2="196" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="28" y="274" width="452" height="96" rx="8" fill="#141923" stroke="#5B667655" stroke-width="1"/>
+  <text x="46" y="298" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#5B6676" text-anchor="start" letter-spacing="1.1">CORRECTION</text>
+  <text x="46" y="322" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12" font-weight="600" fill="#E6EDF3" text-anchor="start">Fixes this instance</text>
+  <text x="46" y="344.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">Remove the four accounts from the exclusion group and rotate the</text>
+  <text x="46" y="359.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">shared credential.</text>
+  <rect x="500" y="274" width="452" height="96" rx="8" fill="#141923" stroke="#36D39977" stroke-width="1"/>
+  <text x="518" y="298" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#36D399" text-anchor="start" letter-spacing="1.1">CORRECTIVE ACTION</text>
+  <text x="518" y="322" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12" font-weight="600" fill="#E6EDF3" text-anchor="start">Eliminates the cause</text>
+  <text x="518" y="344.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">Register every exception to a mandatory control, with an owner, an</text>
+  <text x="518" y="359.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">expiry and a quarterly attestation.</text>
+  <line x1="254" y1="244" x2="254" y2="274" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <line x1="726" y1="244" x2="726" y2="274" stroke="#2B3444" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <rect x="28" y="396" width="924" height="56" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1"/>
+  <text x="46" y="420" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="700" fill="#E6EDF3" text-anchor="start">VERIFICATION — the step that decides whether it is closed</text>
+  <text x="46" y="442" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="400" fill="#8B97A8" text-anchor="start">Sample after one or more cycles and confirm the cause is gone. A finding closed on completion is not closed under ISO 27001 clause 10.2.</text>
+  <path d="M480 452 L480 470 L14 470 L14 196 L28 196" fill="none" stroke="#36D399" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 4" marker-end="url(#a)"/>
+  <text x="28" y="40" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="1.8">RED TEAM LEADERS</text>
+  <text x="28" y="74" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="20" font-weight="800" fill="#E6EDF3" text-anchor="start">Correction is not corrective action</text>
+  <text x="28" y="97.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">The correction fixes this instance. The corrective action removes the cause. Closing on completion rather than on verified</text>
+  <text x="28" y="114.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">effectiveness is why findings recur.</text>
+</svg>

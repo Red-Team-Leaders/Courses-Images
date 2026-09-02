@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 470" width="980" height="470" role="img" aria-label="Where the transfer chain breaks">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8B97A8"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E11D2A"/></marker></defs>
+  <rect width="980" height="470" fill="#0E1117"/>
+  <rect x="28" y="156" width="200" height="92" rx="8" fill="#141923" stroke="#36D39977" stroke-width="1"/>
+  <text x="48" y="182" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#36D399" text-anchor="start" letter-spacing="0.9">CONTROLLER</text>
+  <text x="48" y="206.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">You. Brazil. RoPA records</text>
+  <text x="48" y="221.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">the activity and its</text>
+  <text x="48" y="237.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">safeguard.</text>
+  <rect x="300" y="156" width="200" height="92" rx="8" fill="#141923" stroke="#4D9DF577" stroke-width="1"/>
+  <text x="320" y="182" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#4D9DF5" text-anchor="start" letter-spacing="0.9">PROCESSOR</text>
+  <text x="320" y="206.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">Assessed, contracted, SCCs</text>
+  <text x="320" y="221.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">in place. Transfer</text>
+  <text x="320" y="237.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">mechanism recorded.</text>
+  <rect x="572" y="156" width="200" height="92" rx="8" fill="#141923" stroke="#E11D2A" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="592" y="182" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#E11D2A" text-anchor="start" letter-spacing="0.9">SUB-PROCESSOR</text>
+  <text x="592" y="206.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">Offshore OCR vendor. Never</text>
+  <text x="592" y="221.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">disclosed, never assessed,</text>
+  <text x="592" y="237.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">no mechanism.</text>
+  <rect x="844" y="156" width="108" height="92" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="898" y="200" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="30" font-weight="700" fill="#5B6676" text-anchor="middle">?</text>
+  <text x="898" y="226" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9" font-weight="500" fill="#5B6676" text-anchor="middle">fourth party</text>
+  <line x1="228" y1="202" x2="300" y2="202" stroke="#36D399" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <text x="264.0" y="194.0" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="500" fill="#8B97A8" text-anchor="middle">SCC</text>
+  <line x1="500" y1="202" x2="572" y2="202" stroke="#E11D2A" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 4" marker-end="url(#a)"/>
+  <text x="536" y="186" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" font-weight="600" fill="#E11D2A" text-anchor="middle">no mechanism</text>
+  <line x1="772" y1="202" x2="844" y2="202" stroke="#5B6676" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="4 4" marker-end="url(#a)"/>
+  <line x1="572" y1="262" x2="572" y2="282" stroke="#E11D2A" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="3 3"/>
+  <text x="572" y="300" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="700" fill="#E11D2A" text-anchor="middle">the chain breaks here</text>
+  <rect x="28" y="322" width="452" height="82" rx="8" fill="#141923" stroke="#2B3444" stroke-width="1"/>
+  <text x="46" y="346" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#8B97A8" text-anchor="start" letter-spacing="1.1">WHAT THE ROPA SAYS</text>
+  <text x="46" y="368.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">Processor: VeriScan Global. Transfer safeguard: standard contractual</text>
+  <text x="46" y="383.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">clauses. Complete.</text>
+  <rect x="500" y="322" width="452" height="82" rx="8" fill="#141923" stroke="#E11D2A55" stroke-width="1"/>
+  <text x="518" y="346" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#E11D2A" text-anchor="start" letter-spacing="1.1">WHAT IS ACTUALLY TRUE</text>
+  <text x="518" y="368.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">Document images reach an offshore OCR provider. The recipient list</text>
+  <text x="518" y="383.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">under art. 18, VII is wrong.</text>
+  <rect x="28" y="424" width="924" height="40" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1"/>
+  <text x="480" y="449" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="500" fill="#F5B94D" text-anchor="middle">Find them by enumerating who can access production data, by identity and location — not by asking where it is stored.</text>
+  <text x="28" y="40" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="1.8">RED TEAM LEADERS</text>
+  <text x="28" y="74" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="20" font-weight="800" fill="#E6EDF3" text-anchor="start">Where the transfer chain breaks</text>
+  <text x="28" y="97.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">Transfer is determined by who can access the data, not by where it is stored — and the break is almost always a sub-processor</text>
+  <text x="28" y="114.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">nobody enumerated.</text>
+</svg>

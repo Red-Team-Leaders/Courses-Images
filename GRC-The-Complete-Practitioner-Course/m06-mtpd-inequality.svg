@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 470" width="980" height="470" role="img" aria-label="MTPD, RTO and the calculation nobody performs">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8B97A8"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E11D2A"/></marker></defs>
+  <rect width="980" height="470" fill="#0E1117"/>
+  <line x1="60" y1="250" x2="920" y2="250" stroke="#2B3444" stroke-width="2" stroke-linecap="round"/>
+  <rect x="60" y="224" width="130" height="26" rx="8" fill="#4D9DF522" stroke="#4D9DF566" stroke-width="1"/>
+  <text x="125.0" y="242" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="700" fill="#4D9DF5" text-anchor="middle">detection</text>
+  <line x1="190" y1="224" x2="190" y2="260" stroke="#2B3444" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 3"/>
+  <rect x="190" y="224" width="100" height="26" rx="8" fill="#F5B94D22" stroke="#F5B94D66" stroke-width="1"/>
+  <text x="240.0" y="242" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="700" fill="#F5B94D" text-anchor="middle">decision</text>
+  <line x1="290" y1="224" x2="290" y2="260" stroke="#2B3444" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 3"/>
+  <rect x="290" y="224" width="330" height="26" rx="8" fill="#36D39922" stroke="#36D39966" stroke-width="1"/>
+  <text x="455.0" y="242" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="700" fill="#36D399" text-anchor="middle">RTO</text>
+  <line x1="620" y1="224" x2="620" y2="260" stroke="#2B3444" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 3"/>
+  <rect x="620" y="224" width="140" height="26" rx="8" fill="#FF3B4822" stroke="#FF3B4866" stroke-width="1"/>
+  <text x="690.0" y="242" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" font-weight="700" fill="#FF3B48" text-anchor="middle">WRT</text>
+  <line x1="760" y1="224" x2="760" y2="260" stroke="#2B3444" stroke-width="1" stroke-linecap="round" stroke-dasharray="3 3"/>
+  <circle cx="60" cy="250" r="7" fill="#E11D2A" stroke="none" stroke-width="1"/>
+  <text x="60" y="282" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="600" fill="#8B97A8" text-anchor="middle">disruption starts</text>
+  <text x="620" y="282" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="600" fill="#8B97A8" text-anchor="middle">system restored</text>
+  <text x="760" y="282" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="600" fill="#8B97A8" text-anchor="middle">service usable</text>
+  <line x1="60" y1="312" x2="860" y2="312" stroke="#E11D2A" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+  <text x="460" y="334" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="700" fill="#E11D2A" text-anchor="middle">MTPD — the point at which harm becomes intolerable</text>
+  <rect x="28" y="146" width="920" height="56" rx="8" fill="#1A2130" stroke="#2B3444" stroke-width="1"/>
+  <text x="490" y="170" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" font-weight="700" fill="#E6EDF3" text-anchor="middle">detection  +  decision  +  RTO  +  WRT   &lt;   MTPD</text>
+  <text x="490" y="192" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="500" fill="#5B6676" text-anchor="middle">if the inequality fails, the design breaches tolerance on every successful recovery</text>
+  <rect x="28" y="396" width="920" height="58" rx="8" fill="#141923" stroke="#F5B94D55" stroke-width="1"/>
+  <text x="46" y="420" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#F5B94D" text-anchor="start" letter-spacing="0.9">MTPD COMES FROM HARM.  RTO IS A TARGET.  RTA IS WHAT YOU HAVE DEMONSTRATED.</text>
+  <text x="46" y="443" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="400" fill="#8B97A8" text-anchor="start">Setting the tolerance from current capability produces a gap of zero and measures nothing.</text>
+  <text x="28" y="40" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="1.8">RED TEAM LEADERS</text>
+  <text x="28" y="74" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="20" font-weight="800" fill="#E6EDF3" text-anchor="start">MTPD, RTO and the calculation nobody performs</text>
+  <text x="28" y="97.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">Tolerance runs from the user&#x27;s first moment of disruption, not from the start of recovery — so the RTO must sit inside it with</text>
+  <text x="28" y="114.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">margin for three other terms.</text>
+</svg>

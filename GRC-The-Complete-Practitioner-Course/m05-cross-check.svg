@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 540" width="980" height="540" role="img" aria-label="The cross-check">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8B97A8"/></marker><marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E11D2A"/></marker></defs>
+  <rect width="980" height="540" fill="#0E1117"/>
+  <text x="46" y="166" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#5B6676" text-anchor="start" letter-spacing="1">SOURCE A</text>
+  <text x="392" y="166" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#5B6676" text-anchor="start" letter-spacing="1">SOURCE B</text>
+  <text x="700" y="166" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" font-weight="700" fill="#E11D2A" text-anchor="start" letter-spacing="1">WHAT A DISAGREEMENT MEANS</text>
+  <rect x="28" y="190" width="924" height="34" rx="8" fill="#141923" stroke="none" stroke-width="1"/>
+  <text x="46" y="212" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Conditional access exclusions</text>
+  <text x="360" y="212" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="700" fill="#E11D2A" text-anchor="middle">≟</text>
+  <text x="392" y="212" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Exception register</text>
+  <text x="700" y="212" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">An unregistered exception</text>
+  <rect x="28" y="230" width="924" height="34" rx="8" fill="#1A2130" stroke="none" stroke-width="1"/>
+  <text x="46" y="252" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">HR terminations</text>
+  <text x="360" y="252" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="700" fill="#E11D2A" text-anchor="middle">≟</text>
+  <text x="392" y="252" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Identity deprovisioning</text>
+  <text x="700" y="252" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">Revocation SLA breach</text>
+  <rect x="28" y="270" width="924" height="34" rx="8" fill="#141923" stroke="none" stroke-width="1"/>
+  <text x="46" y="292" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Asset inventory</text>
+  <text x="360" y="292" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="700" fill="#E11D2A" text-anchor="middle">≟</text>
+  <text x="392" y="292" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Cloud resource inventory</text>
+  <text x="700" y="292" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">Unmanaged assets</text>
+  <rect x="28" y="310" width="924" height="34" rx="8" fill="#1A2130" stroke="none" stroke-width="1"/>
+  <text x="46" y="332" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">SoA implemented controls</text>
+  <text x="360" y="332" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="700" fill="#E11D2A" text-anchor="middle">≟</text>
+  <text x="392" y="332" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Evidence with current validity</text>
+  <text x="700" y="332" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">Unsupported assertions</text>
+  <rect x="28" y="350" width="924" height="34" rx="8" fill="#141923" stroke="none" stroke-width="1"/>
+  <text x="46" y="372" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Requirements marked met</text>
+  <text x="360" y="372" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="700" fill="#E11D2A" text-anchor="middle">≟</text>
+  <text x="392" y="372" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Control status</text>
+  <text x="700" y="372" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">The compliance false positive</text>
+  <rect x="28" y="390" width="924" height="34" rx="8" fill="#1A2130" stroke="none" stroke-width="1"/>
+  <text x="46" y="412" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">RoPA processors</text>
+  <text x="360" y="412" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="700" fill="#E11D2A" text-anchor="middle">≟</text>
+  <text x="392" y="412" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Vendor sub-processors</text>
+  <text x="700" y="412" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">A broken transfer chain</text>
+  <rect x="28" y="430" width="924" height="34" rx="8" fill="#141923" stroke="none" stroke-width="1"/>
+  <text x="46" y="452" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Tier-1 vendors</text>
+  <text x="360" y="452" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="700" fill="#E11D2A" text-anchor="middle">≟</text>
+  <text x="392" y="452" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="400" fill="#E6EDF3" text-anchor="start">Attestation expiry dates</text>
+  <text x="700" y="452" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10.5" font-weight="400" fill="#8B97A8" text-anchor="start">An expired critical attestation</text>
+  <rect x="28" y="480" width="924" height="48" rx="8" fill="#141923" stroke="#E11D2A55" stroke-width="1"/>
+  <text x="480" y="509" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11.5" font-weight="500" fill="#F5B94D" text-anchor="middle">Every row is a lab challenge, an audit finding, or both — and each is a join a scheduled query performs in seconds.</text>
+  <text x="28" y="40" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="800" fill="#E11D2A" text-anchor="start" letter-spacing="1.8">RED TEAM LEADERS</text>
+  <text x="28" y="74" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="20" font-weight="800" fill="#E6EDF3" text-anchor="start">The cross-check</text>
+  <text x="28" y="97.0" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">The highest-value automation available: join two sources that should agree and list where they do not. It finds the defect</text>
+  <text x="28" y="114.5" font-family="Inter,system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12.5" font-weight="400" fill="#8B97A8" text-anchor="start">class manual review consistently misses.</text>
+</svg>

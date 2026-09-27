@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2d3d" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#00d4ff"/></marker>
+    <marker id="arrow-green" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22c55e"/></marker>
+    <marker id="arrow-orange" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#f97316"/></marker>
+    <marker id="arrow-purple" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#8b5cf6"/></marker>
+    <marker id="arrow-gold" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#eab308"/></marker>
+    <marker id="arrow-red" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#e11d2a"/></marker>
+    <marker id="arrow-white" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#94a3b8"/></marker>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <!-- background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+  <!-- title -->
+  <text x="400" y="38" text-anchor="middle" fill="#e2e8f0" font-size="22" font-weight="700">RLHF vs RLCD</text>
+  <line x1="60" y1="52" x2="740" y2="52" stroke="#e11d2a" stroke-width="2"/>
+
+  <!-- ===== BODY ===== -->
+  <!-- LEFT column: RLHF (orange) -->
+  <rect x="45" y="70" width="330" height="470" rx="12" fill="none" stroke="#f97316" stroke-width="1" stroke-dasharray="5 4" opacity="0.6"/>
+  <text x="210" y="92" text-anchor="middle" fill="#f97316" font-size="15" font-weight="700">RLHF</text>
+  <text x="210" y="110" text-anchor="middle" fill="#8ea3b8" font-size="11">human feedback</text>
+
+  <rect x="90" y="120" width="240" height="55" rx="10" fill="#0f1b2d" stroke="#f97316" stroke-width="1.6"/>
+  <text x="210" y="143" text-anchor="middle" fill="#f97316" font-size="13" font-weight="600">SFT</text>
+  <text x="210" y="161" text-anchor="middle" fill="#8ea3b8" font-size="11">supervised fine-tune base</text>
+
+  <rect x="90" y="205" width="240" height="55" rx="10" fill="#0f1b2d" stroke="#f97316" stroke-width="1.6"/>
+  <text x="210" y="228" text-anchor="middle" fill="#f97316" font-size="13" font-weight="600">Human preference pairs</text>
+  <text x="210" y="246" text-anchor="middle" fill="#8ea3b8" font-size="11">annotators rank A vs B</text>
+
+  <rect x="90" y="290" width="240" height="55" rx="10" fill="#0f1b2d" stroke="#f97316" stroke-width="1.6"/>
+  <text x="210" y="313" text-anchor="middle" fill="#f97316" font-size="13" font-weight="600">Train reward model</text>
+  <text x="210" y="331" text-anchor="middle" fill="#8ea3b8" font-size="11">learns human proxy</text>
+
+  <rect x="90" y="375" width="240" height="55" rx="10" fill="#0f1b2d" stroke="#f97316" stroke-width="1.6"/>
+  <text x="210" y="398" text-anchor="middle" fill="#f97316" font-size="13" font-weight="600">PPO optimize policy</text>
+  <text x="210" y="416" text-anchor="middle" fill="#8ea3b8" font-size="11">RL against reward model</text>
+
+  <line x1="210" y1="175" x2="210" y2="203" stroke="#f97316" stroke-width="1.8" marker-end="url(#arrow-orange)"/>
+  <line x1="210" y1="260" x2="210" y2="288" stroke="#f97316" stroke-width="1.8" marker-end="url(#arrow-orange)"/>
+  <line x1="210" y1="345" x2="210" y2="373" stroke="#f97316" stroke-width="1.8" marker-end="url(#arrow-orange)"/>
+  <text x="210" y="470" text-anchor="middle" fill="#8ea3b8" font-size="11">many human labels · reward often uncalibrated</text>
+
+  <!-- RIGHT column: RLCD (green) -->
+  <rect x="425" y="70" width="330" height="470" rx="12" fill="none" stroke="#22c55e" stroke-width="1" stroke-dasharray="5 4" opacity="0.6"/>
+  <text x="590" y="92" text-anchor="middle" fill="#22c55e" font-size="15" font-weight="700">RLCD</text>
+  <text x="590" y="110" text-anchor="middle" fill="#8ea3b8" font-size="11">contrastive distillation</text>
+
+  <rect x="470" y="120" width="240" height="55" rx="10" fill="#0f1b2d" stroke="#22c55e" stroke-width="1.6"/>
+  <text x="590" y="143" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="600">Opposing prompts</text>
+  <text x="590" y="161" text-anchor="middle" fill="#8ea3b8" font-size="11">positive vs negative framing</text>
+
+  <rect x="470" y="205" width="240" height="55" rx="10" fill="#0f1b2d" stroke="#22c55e" stroke-width="1.6"/>
+  <text x="590" y="228" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="600">Generate contrastive pairs</text>
+  <text x="590" y="246" text-anchor="middle" fill="#8ea3b8" font-size="11">model self-produces A / B</text>
+
+  <rect x="470" y="290" width="240" height="55" rx="10" fill="#0f1b2d" stroke="#22c55e" stroke-width="1.6"/>
+  <text x="590" y="311" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="600">Distill preference / score</text>
+  <text x="590" y="329" text-anchor="middle" fill="#8ea3b8" font-size="11">strictly proper scoring rule</text>
+
+  <rect x="470" y="375" width="240" height="55" rx="10" fill="#0f1b2d" stroke="#22c55e" stroke-width="1.6"/>
+  <text x="590" y="398" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="600">Calibrated model</text>
+  <text x="590" y="416" text-anchor="middle" fill="#8ea3b8" font-size="11">probabilities mean what they say</text>
+
+  <line x1="590" y1="175" x2="590" y2="203" stroke="#22c55e" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+  <line x1="590" y1="260" x2="590" y2="288" stroke="#22c55e" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+  <line x1="590" y1="345" x2="590" y2="373" stroke="#22c55e" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+
+  <!-- note under RLCD -->
+  <rect x="440" y="455" width="300" height="55" rx="8" fill="#0f1b2d" stroke="#eab308" stroke-width="1.6" filter="url(#glow)"/>
+  <text x="590" y="477" text-anchor="middle" fill="#eab308" font-size="11" font-weight="600">fewer / no human labels</text>
+  <text x="590" y="495" text-anchor="middle" fill="#8ea3b8" font-size="11">calibrated probabilities &#8594; Laya</text>
+  <!-- ===== END BODY ===== -->
+
+  <!-- footer -->
+  <text x="400" y="585" text-anchor="middle" fill="#3d4c5e" font-size="11">System One Security — JEV &amp; Laya · Red Team Leaders</text>
+</svg>

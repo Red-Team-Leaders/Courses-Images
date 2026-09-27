@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2d3d" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#00d4ff"/></marker>
+    <marker id="arrow-green" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22c55e"/></marker>
+    <marker id="arrow-orange" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#f97316"/></marker>
+    <marker id="arrow-purple" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#8b5cf6"/></marker>
+    <marker id="arrow-gold" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#eab308"/></marker>
+    <marker id="arrow-red" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#e11d2a"/></marker>
+    <marker id="arrow-white" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#94a3b8"/></marker>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <!-- background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+  <!-- title -->
+  <text x="400" y="38" text-anchor="middle" fill="#e2e8f0" font-size="22" font-weight="700">Recommendation vs Authorization</text>
+  <line x1="60" y1="52" x2="740" y2="52" stroke="#e11d2a" stroke-width="2"/>
+
+  <!-- ===== BODY ===== -->
+  <!-- LANE 1 container -->
+  <rect x="50" y="68" width="700" height="130" rx="12" fill="#0d2233" fill-opacity="0.35" stroke="#00d4ff" stroke-width="1.4" stroke-dasharray="6 4"/>
+  <text x="66" y="88" fill="#00d4ff" font-size="13" font-weight="700">Lane 1 · Decision layer  (recommends)</text>
+
+  <rect x="80" y="104" width="160" height="70" rx="10" fill="#0f1b2d" stroke="#00d4ff" stroke-width="1.6"/>
+  <text x="160" y="136" text-anchor="middle" fill="#00d4ff" font-size="14" font-weight="600">State</text>
+  <text x="160" y="156" text-anchor="middle" fill="#8ea3b8" font-size="11">engagement context</text>
+  <line x1="240" y1="139" x2="316" y2="139" stroke="#00d4ff" stroke-width="1.8" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="320" y="104" width="160" height="70" rx="10" fill="#0f1b2d" stroke="#00d4ff" stroke-width="1.6"/>
+  <text x="400" y="136" text-anchor="middle" fill="#00d4ff" font-size="14" font-weight="600">JEV / Laya</text>
+  <text x="400" y="156" text-anchor="middle" fill="#8ea3b8" font-size="11">typed model</text>
+  <line x1="480" y1="139" x2="556" y2="139" stroke="#00d4ff" stroke-width="1.8" marker-end="url(#arrow-cyan)"/>
+
+  <rect x="560" y="104" width="170" height="70" rx="10" fill="#0f1b2d" stroke="#00d4ff" stroke-width="1.6"/>
+  <text x="645" y="132" text-anchor="middle" fill="#00d4ff" font-size="13" font-weight="600">Recommended</text>
+  <text x="645" y="149" text-anchor="middle" fill="#00d4ff" font-size="13" font-weight="600">next step</text>
+  <text x="645" y="166" text-anchor="middle" fill="#8ea3b8" font-size="11">+ confidence</text>
+
+  <!-- cross-lane connector -->
+  <path d="M 645 174 L 645 224 L 150 224 L 150 302" fill="none" stroke="#8b5cf6" stroke-width="1.8" marker-end="url(#arrow-purple)"/>
+  <text x="400" y="218" text-anchor="middle" fill="#8b5cf6" font-size="11" font-weight="600">handed over as ActionRequest</text>
+
+  <!-- LANE 2 container -->
+  <rect x="50" y="248" width="700" height="288" rx="12" fill="#0f2416" fill-opacity="0.35" stroke="#22c55e" stroke-width="1.4" stroke-dasharray="6 4"/>
+  <text x="66" y="268" fill="#22c55e" font-size="13" font-weight="700">Lane 2 · Policy engine  (authorizes)</text>
+
+  <rect x="80" y="302" width="150" height="60" rx="10" fill="#0f1b2d" stroke="#8b5cf6" stroke-width="1.6"/>
+  <text x="155" y="330" text-anchor="middle" fill="#8b5cf6" font-size="13" font-weight="600">ActionRequest</text>
+  <text x="155" y="349" text-anchor="middle" fill="#8ea3b8" font-size="11">target · method · conf</text>
+  <line x1="230" y1="332" x2="286" y2="332" stroke="#22c55e" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+
+  <rect x="290" y="302" width="150" height="60" rx="10" fill="#0f1b2d" stroke="#eab308" stroke-width="1.6"/>
+  <text x="365" y="330" text-anchor="middle" fill="#eab308" font-size="13" font-weight="600">Scope check</text>
+  <text x="365" y="349" text-anchor="middle" fill="#8ea3b8" font-size="11">allowlist · window</text>
+  <line x1="440" y1="332" x2="496" y2="332" stroke="#22c55e" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+
+  <rect x="500" y="294" width="230" height="80" rx="10" fill="#0f1b2d" stroke="#f97316" stroke-width="1.6"/>
+  <text x="615" y="316" text-anchor="middle" fill="#f97316" font-size="13" font-weight="600">Rules</text>
+  <text x="615" y="335" text-anchor="middle" fill="#8ea3b8" font-size="11">deny high-risk</text>
+  <text x="615" y="351" text-anchor="middle" fill="#8ea3b8" font-size="11">approval for medium</text>
+  <text x="615" y="367" text-anchor="middle" fill="#8ea3b8" font-size="11">approval if low confidence</text>
+
+  <!-- Rules to effects -->
+  <line x1="615" y1="374" x2="615" y2="412" stroke="#f97316" stroke-width="1.8" marker-end="url(#arrow-orange)"/>
+  <text x="628" y="398" fill="#8ea3b8" font-size="11">Effect</text>
+
+  <rect x="80" y="446" width="200" height="66" rx="10" fill="#0f1b2d" stroke="#22c55e" stroke-width="1.6"/>
+  <text x="180" y="474" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700">ALLOW + token</text>
+  <text x="180" y="494" text-anchor="middle" fill="#8ea3b8" font-size="11">mint capability token</text>
+
+  <rect x="300" y="446" width="200" height="66" rx="10" fill="#0f1b2d" stroke="#eab308" stroke-width="1.6"/>
+  <text x="400" y="474" text-anchor="middle" fill="#eab308" font-size="13" font-weight="700">REQUIRE_APPROVAL</text>
+  <text x="400" y="494" text-anchor="middle" fill="#8ea3b8" font-size="11">human in the loop</text>
+
+  <rect x="520" y="446" width="200" height="66" rx="10" fill="#0f1b2d" stroke="#e11d2a" stroke-width="1.6"/>
+  <text x="620" y="474" text-anchor="middle" fill="#e11d2a" font-size="13" font-weight="700">DENY</text>
+  <text x="620" y="494" text-anchor="middle" fill="#8ea3b8" font-size="11">blocked, logged</text>
+
+  <path d="M 600 414 L 180 414 L 180 442" fill="none" stroke="#22c55e" stroke-width="1.6" marker-end="url(#arrow-green)"/>
+  <line x1="615" y1="414" x2="400" y2="442" stroke="#eab308" stroke-width="1.6" marker-end="url(#arrow-gold)"/>
+  <path d="M 630 414 L 620 442" fill="none" stroke="#e11d2a" stroke-width="1.6" marker-end="url(#arrow-red)"/>
+
+  <!-- caption -->
+  <rect x="270" y="548" width="260" height="30" rx="10" fill="#0f1b2d" stroke="#e11d2a" stroke-width="1.4"/>
+  <text x="400" y="568" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="700">model recommends, policy authorizes</text>
+  <!-- ===== END BODY ===== -->
+
+  <!-- footer -->
+  <text x="400" y="592" text-anchor="middle" fill="#3d4c5e" font-size="11">System One Security — JEV &amp; Laya · Red Team Leaders</text>
+</svg>

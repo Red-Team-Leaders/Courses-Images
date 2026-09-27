@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2d3d" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#00d4ff"/></marker>
+    <marker id="arrow-green" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#22c55e"/></marker>
+    <marker id="arrow-orange" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#f97316"/></marker>
+    <marker id="arrow-purple" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#8b5cf6"/></marker>
+    <marker id="arrow-gold" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#eab308"/></marker>
+    <marker id="arrow-red" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#e11d2a"/></marker>
+    <marker id="arrow-white" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#94a3b8"/></marker>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <!-- background -->
+  <rect width="800" height="600" fill="#0d1117"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+  <!-- title -->
+  <text x="400" y="38" text-anchor="middle" fill="#e2e8f0" font-size="22" font-weight="700">Scope &amp; Capability Tokens</text>
+  <line x1="60" y1="52" x2="740" y2="52" stroke="#e11d2a" stroke-width="2"/>
+
+  <!-- ===== BODY ===== -->
+  <!-- A: Model recommendation -->
+  <rect x="300" y="78" width="200" height="56" rx="10" fill="#0f1b2d" stroke="#00d4ff" stroke-width="1.6"/>
+  <text x="400" y="102" text-anchor="middle" fill="#00d4ff" font-size="14" font-weight="600">Model recommendation</text>
+  <text x="400" y="121" text-anchor="middle" fill="#8ea3b8" font-size="11">{ target, method }</text>
+  <line x1="400" y1="134" x2="400" y2="174" stroke="#00d4ff" stroke-width="1.8" marker-end="url(#arrow-cyan)"/>
+
+  <!-- B: Scope check -->
+  <rect x="250" y="176" width="300" height="90" rx="10" fill="#0f1b2d" stroke="#eab308" stroke-width="1.6"/>
+  <text x="400" y="200" text-anchor="middle" fill="#eab308" font-size="14" font-weight="600">Scope check</text>
+  <text x="400" y="220" text-anchor="middle" fill="#8ea3b8" font-size="11">target allowlist</text>
+  <text x="400" y="237" text-anchor="middle" fill="#8ea3b8" font-size="11">method allowlist</text>
+  <text x="400" y="254" text-anchor="middle" fill="#8ea3b8" font-size="11">time window</text>
+
+  <!-- in-scope path down -->
+  <line x1="400" y1="266" x2="400" y2="306" stroke="#22c55e" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+  <text x="418" y="290" fill="#22c55e" font-size="11">in scope</text>
+
+  <!-- out-of-scope path to DENY -->
+  <line x1="550" y1="212" x2="596" y2="212" stroke="#e11d2a" stroke-width="1.8" marker-end="url(#arrow-red)"/>
+  <text x="560" y="203" fill="#e11d2a" font-size="10">out of scope</text>
+  <rect x="600" y="182" width="160" height="62" rx="10" fill="#0f1b2d" stroke="#e11d2a" stroke-width="1.6"/>
+  <text x="680" y="210" text-anchor="middle" fill="#e11d2a" font-size="15" font-weight="700">DENY</text>
+  <text x="680" y="229" text-anchor="middle" fill="#8ea3b8" font-size="11">no token minted</text>
+
+  <!-- C: Mint token -->
+  <rect x="300" y="308" width="200" height="60" rx="10" fill="#0f1b2d" stroke="#22c55e" stroke-width="1.6"/>
+  <text x="400" y="332" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="600">Mint HMAC capability token</text>
+  <text x="400" y="351" text-anchor="middle" fill="#8ea3b8" font-size="11">signed · scope-bound · ttl</text>
+  <line x1="400" y1="368" x2="400" y2="406" stroke="#8b5cf6" stroke-width="1.8" marker-end="url(#arrow-purple)"/>
+
+  <!-- D: Harness verify -->
+  <rect x="300" y="408" width="200" height="60" rx="10" fill="#0f1b2d" stroke="#8b5cf6" stroke-width="1.6"/>
+  <text x="400" y="432" text-anchor="middle" fill="#8b5cf6" font-size="13" font-weight="600">Harness: verify token</text>
+  <text x="400" y="451" text-anchor="middle" fill="#8ea3b8" font-size="11">signature + ttl + scope</text>
+  <line x1="400" y1="468" x2="400" y2="504" stroke="#00d4ff" stroke-width="1.8" marker-end="url(#arrow-cyan)"/>
+
+  <!-- E: Action runs -->
+  <rect x="320" y="506" width="160" height="50" rx="10" fill="#0f1b2d" stroke="#00d4ff" stroke-width="1.6"/>
+  <text x="400" y="536" text-anchor="middle" fill="#00d4ff" font-size="14" font-weight="600">Action runs</text>
+
+  <!-- note -->
+  <text x="690" y="300" text-anchor="middle" fill="#8ea3b8" font-size="11">The model only recommends.</text>
+  <text x="690" y="318" text-anchor="middle" fill="#8ea3b8" font-size="11">Scope + token are enforced</text>
+  <text x="690" y="336" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">by the harness — not the model.</text>
+  <text x="690" y="360" text-anchor="middle" fill="#e11d2a" font-size="11" font-weight="600">Model can't bypass scope.</text>
+  <!-- ===== END BODY ===== -->
+
+  <!-- footer -->
+  <text x="400" y="585" text-anchor="middle" fill="#3d4c5e" font-size="11">System One Security — JEV &amp; Laya · Red Team Leaders</text>
+</svg>

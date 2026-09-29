@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="Segoe UI, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bgC" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0f0f23"/><stop offset="100%" stop-color="#1a1a3e"/></linearGradient>
+    <marker id="arG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#00d4aa"/></marker>
+    <marker id="arR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#ff6b6b"/></marker>
+  </defs>
+
+  <rect width="900" height="560" fill="url(#bgC)" rx="12"/>
+
+  <text x="450" y="32" text-anchor="middle" fill="#00d4aa" font-size="18" font-weight="700">Callback-Based Execution Techniques</text>
+  <text x="450" y="50" text-anchor="middle" fill="#636e72" font-size="11">Windows calls your shellcode — no CreateThread needed</text>
+
+  <!-- Traditional vs Callback comparison -->
+  <rect x="30" y="68" width="400" height="75" rx="8" fill="#1e1e3a" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="230" y="88" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="700">Traditional Execution</text>
+  <text x="50" y="108" fill="#ff6b6b" font-size="10" font-family="Consolas, monospace">CreateThread(NULL, 0, shellcode, NULL, 0, NULL);</text>
+  <text x="50" y="128" fill="#636e72" font-size="9">EDR: Thread creation to non-module memory = SUSPICIOUS</text>
+
+  <rect x="460" y="68" width="410" height="75" rx="8" fill="#1e1e3a" stroke="#00d4aa" stroke-width="1"/>
+  <text x="665" y="88" text-anchor="middle" fill="#00d4aa" font-size="11" font-weight="700">Callback Execution</text>
+  <text x="480" y="108" fill="#00d4aa" font-size="10" font-family="Consolas, monospace">EnumWindows((WNDENUMPROC)shellcode, 0);</text>
+  <text x="480" y="128" fill="#636e72" font-size="9">EDR: EnumWindows with callback = normal API usage</text>
+
+  <!-- Callback Categories -->
+  <text x="450" y="175" text-anchor="middle" fill="#a29bfe" font-size="14" font-weight="700">Callback Categories &amp; Stealth Rating</text>
+
+  <!-- Category 1: Enumeration -->
+  <rect x="30" y="195" width="260" height="155" rx="8" fill="#1e1e3a" stroke="#74b9ff" stroke-width="1"/>
+  <rect x="30" y="195" width="260" height="28" rx="8" fill="#74b9ff" opacity="0.12"/>
+  <text x="160" y="214" text-anchor="middle" fill="#74b9ff" font-size="11" font-weight="700">Enumeration Callbacks</text>
+
+  <text x="45" y="240" fill="#dfe6e9" font-size="10">EnumWindows</text>
+  <rect x="220" y="228" width="55" height="16" rx="4" fill="#ffeaa7" opacity="0.3"/><text x="247" y="240" text-anchor="middle" fill="#ffeaa7" font-size="9">Medium</text>
+
+  <text x="45" y="260" fill="#dfe6e9" font-size="10">EnumChildWindows</text>
+  <rect x="220" y="248" width="55" height="16" rx="4" fill="#ffeaa7" opacity="0.3"/><text x="247" y="260" text-anchor="middle" fill="#ffeaa7" font-size="9">Medium</text>
+
+  <text x="45" y="280" fill="#dfe6e9" font-size="10">EnumDesktopWindows</text>
+  <rect x="220" y="268" width="55" height="16" rx="4" fill="#00d4aa" opacity="0.3"/><text x="247" y="280" text-anchor="middle" fill="#00d4aa" font-size="9">Low</text>
+
+  <text x="45" y="300" fill="#dfe6e9" font-size="10">EnumResourceTypesW</text>
+  <rect x="220" y="288" width="55" height="16" rx="4" fill="#00d4aa" opacity="0.3"/><text x="247" y="300" text-anchor="middle" fill="#00d4aa" font-size="9">Low</text>
+
+  <text x="45" y="335" fill="#636e72" font-size="8">Sync — callback fires for each object</text>
+
+  <!-- Category 2: Timer -->
+  <rect x="310" y="195" width="270" height="155" rx="8" fill="#1e1e3a" stroke="#ffeaa7" stroke-width="1"/>
+  <rect x="310" y="195" width="270" height="28" rx="8" fill="#ffeaa7" opacity="0.12"/>
+  <text x="445" y="214" text-anchor="middle" fill="#ffeaa7" font-size="11" font-weight="700">Timer &amp; Pool Callbacks</text>
+
+  <text x="325" y="240" fill="#dfe6e9" font-size="10">CreateTimerQueueTimer</text>
+  <rect x="510" y="228" width="55" height="16" rx="4" fill="#00d4aa" opacity="0.3"/><text x="537" y="240" text-anchor="middle" fill="#00d4aa" font-size="9">Low</text>
+
+  <text x="325" y="260" fill="#dfe6e9" font-size="10">SetWaitableTimer</text>
+  <rect x="510" y="248" width="55" height="16" rx="4" fill="#00d4aa" opacity="0.3"/><text x="537" y="260" text-anchor="middle" fill="#00d4aa" font-size="9">Low</text>
+
+  <text x="325" y="280" fill="#dfe6e9" font-size="10">CreateThreadpoolWork</text>
+  <rect x="510" y="268" width="55" height="16" rx="4" fill="#ffeaa7" opacity="0.3"/><text x="537" y="280" text-anchor="middle" fill="#ffeaa7" font-size="9">Medium</text>
+
+  <text x="325" y="300" fill="#dfe6e9" font-size="10">QueueUserWorkItem</text>
+  <rect x="510" y="288" width="55" height="16" rx="4" fill="#ffeaa7" opacity="0.3"/><text x="537" y="300" text-anchor="middle" fill="#ffeaa7" font-size="9">Medium</text>
+
+  <text x="325" y="335" fill="#636e72" font-size="8">Async — runs in existing pool thread</text>
+
+  <!-- Category 3: Crypto/Special -->
+  <rect x="600" y="195" width="270" height="155" rx="8" fill="#1e1e3a" stroke="#00d4aa" stroke-width="1"/>
+  <rect x="600" y="195" width="270" height="28" rx="8" fill="#00d4aa" opacity="0.12"/>
+  <text x="735" y="214" text-anchor="middle" fill="#00d4aa" font-size="11" font-weight="700">Crypto &amp; Special Callbacks</text>
+
+  <text x="615" y="240" fill="#dfe6e9" font-size="10">CertEnumSystemStore</text>
+  <rect x="800" y="228" width="55" height="16" rx="4" fill="#00d4aa" opacity="0.5"/><text x="827" y="240" text-anchor="middle" fill="#00d4aa" font-size="9" font-weight="700">V.Low</text>
+
+  <text x="615" y="260" fill="#dfe6e9" font-size="10">CryptEnumOIDInfo</text>
+  <rect x="800" y="248" width="55" height="16" rx="4" fill="#00d4aa" opacity="0.5"/><text x="827" y="260" text-anchor="middle" fill="#00d4aa" font-size="9" font-weight="700">V.Low</text>
+
+  <text x="615" y="280" fill="#dfe6e9" font-size="10">LdrRegisterDllNotification</text>
+  <rect x="800" y="268" width="55" height="16" rx="4" fill="#00d4aa" opacity="0.5"/><text x="827" y="280" text-anchor="middle" fill="#00d4aa" font-size="9" font-weight="700">V.Low</text>
+
+  <text x="615" y="300" fill="#dfe6e9" font-size="10">CertEnumStoreLocation</text>
+  <rect x="800" y="288" width="55" height="16" rx="4" fill="#00d4aa" opacity="0.5"/><text x="827" y="300" text-anchor="middle" fill="#00d4aa" font-size="9" font-weight="700">V.Low</text>
+
+  <text x="615" y="335" fill="#636e72" font-size="8">Rarely hooked — crypt32.dll / ntdll</text>
+
+  <!-- Fallback Chain Flow -->
+  <text x="450" y="380" text-anchor="middle" fill="#00d4aa" font-size="14" font-weight="700">Multi-Callback Fallback Chain</text>
+
+  <rect x="50" y="400" width="160" height="50" rx="8" fill="#00d4aa" opacity="0.15" stroke="#00d4aa" stroke-width="1.5"/>
+  <text x="130" y="422" text-anchor="middle" fill="#00d4aa" font-size="10" font-weight="600">CertEnumSystemStore</text>
+  <text x="130" y="438" text-anchor="middle" fill="#636e72" font-size="8">Try first (least monitored)</text>
+
+  <line x1="210" y1="425" x2="240" y2="425" stroke="#ff6b6b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="225" y="418" fill="#ff6b6b" font-size="8">fail</text>
+
+  <rect x="240" y="400" width="160" height="50" rx="8" fill="#ffeaa7" opacity="0.15" stroke="#ffeaa7" stroke-width="1.5"/>
+  <text x="320" y="422" text-anchor="middle" fill="#ffeaa7" font-size="10" font-weight="600">TimerQueueTimer</text>
+  <text x="320" y="438" text-anchor="middle" fill="#636e72" font-size="8">Async pool thread</text>
+
+  <line x1="400" y1="425" x2="430" y2="425" stroke="#ff6b6b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="415" y="418" fill="#ff6b6b" font-size="8">fail</text>
+
+  <rect x="430" y="400" width="160" height="50" rx="8" fill="#a29bfe" opacity="0.15" stroke="#a29bfe" stroke-width="1.5"/>
+  <text x="510" y="422" text-anchor="middle" fill="#a29bfe" font-size="10" font-weight="600">ThreadPoolWork</text>
+  <text x="510" y="438" text-anchor="middle" fill="#636e72" font-size="8">Documented pool API</text>
+
+  <line x1="590" y1="425" x2="620" y2="425" stroke="#ff6b6b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="605" y="418" fill="#ff6b6b" font-size="8">fail</text>
+
+  <rect x="620" y="400" width="160" height="50" rx="8" fill="#74b9ff" opacity="0.15" stroke="#74b9ff" stroke-width="1.5"/>
+  <text x="700" y="422" text-anchor="middle" fill="#74b9ff" font-size="10" font-weight="600">EnumWindows</text>
+  <text x="700" y="438" text-anchor="middle" fill="#636e72" font-size="8">Last resort (most monitored)</text>
+
+  <!-- Success arrows -->
+  <line x1="130" y1="450" x2="130" y2="480" stroke="#00d4aa" stroke-width="1.5" marker-end="url(#arG)"/>
+  <line x1="320" y1="450" x2="320" y2="480" stroke="#00d4aa" stroke-width="1.5" marker-end="url(#arG)"/>
+  <line x1="510" y1="450" x2="510" y2="480" stroke="#00d4aa" stroke-width="1.5" marker-end="url(#arG)"/>
+  <line x1="700" y1="450" x2="700" y2="480" stroke="#00d4aa" stroke-width="1.5" marker-end="url(#arG)"/>
+
+  <text x="130" y="495" text-anchor="middle" fill="#00d4aa" font-size="9">Shellcode runs</text>
+  <text x="320" y="495" text-anchor="middle" fill="#00d4aa" font-size="9">Shellcode runs</text>
+  <text x="510" y="495" text-anchor="middle" fill="#00d4aa" font-size="9">Shellcode runs</text>
+  <text x="700" y="495" text-anchor="middle" fill="#00d4aa" font-size="9">Shellcode runs</text>
+
+  <!-- Detection rating legend -->
+  <rect x="180" y="520" width="12" height="12" rx="3" fill="#ff6b6b" opacity="0.5"/>
+  <text x="197" y="530" fill="#b2bec3" font-size="9">High detection</text>
+  <rect x="330" y="520" width="12" height="12" rx="3" fill="#ffeaa7" opacity="0.5"/>
+  <text x="347" y="530" fill="#b2bec3" font-size="9">Medium detection</text>
+  <rect x="480" y="520" width="12" height="12" rx="3" fill="#00d4aa" opacity="0.5"/>
+  <text x="497" y="530" fill="#b2bec3" font-size="9">Low detection</text>
+  <rect x="620" y="520" width="12" height="12" rx="3" fill="#00d4aa" opacity="0.8"/>
+  <text x="637" y="530" fill="#b2bec3" font-size="9">Very low detection (recommended)</text>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="900" height="560" fill="url(#bg)"/>
+  <text x="450" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">EDR Detection Layers — Defense in Depth</text>
+  <!-- Ring labels -->
+  <text x="55" y="115" text-anchor="middle" fill="#8b949e" font-size="11" transform="rotate(-90,55,115)">Ring 3 (User)</text>
+  <rect x="70" y="55" width="4" height="160" rx="2" fill="#3fb950" opacity="0.5"/>
+  <text x="55" y="305" text-anchor="middle" fill="#8b949e" font-size="11" transform="rotate(-90,55,305)">Ring 0 (Kernel)</text>
+  <rect x="70" y="225" width="4" height="200" rx="2" fill="#f85149" opacity="0.5"/>
+  <text x="55" y="475" text-anchor="middle" fill="#8b949e" font-size="11" transform="rotate(-90,55,475)">Cloud</text>
+  <rect x="70" y="435" width="4" height="80" rx="2" fill="#d2a8ff" opacity="0.5"/>
+  <!-- Layer 1: Userland Hooks -->
+  <rect x="90" y="55" width="780" height="70" rx="8" fill="#0a2e0a" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="110" y="82" fill="#3fb950" font-size="14" font-weight="bold">Layer 1: Userland Hooks (ntdll)</text>
+  <text x="110" y="102" fill="#7ee787" font-size="11">Inline hooks on NtAllocateVirtualMemory, NtWriteVirtualMemory, NtCreateThreadEx...</text>
+  <text x="750" y="92" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">BYPASSABLE</text>
+  <text x="750" y="108" text-anchor="middle" fill="#7ee787" font-size="9">Direct syscalls</text>
+  <!-- Layer 2: ETW -->
+  <rect x="90" y="135" width="780" height="70" rx="8" fill="#0a2e0a" stroke="#3fb950" stroke-width="1.5" opacity="0.8"/>
+  <text x="110" y="162" fill="#3fb950" font-size="14" font-weight="bold">Layer 2: ETW Userland Events</text>
+  <text x="110" y="182" fill="#7ee787" font-size="11">EtwEventWrite, Microsoft-Windows-DotNETRuntime, Script-Block-Logging</text>
+  <text x="750" y="172" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">BYPASSABLE</text>
+  <text x="750" y="188" text-anchor="middle" fill="#7ee787" font-size="9">ETW patching / HW BP</text>
+  <!-- Layer 3: Kernel Callbacks -->
+  <rect x="90" y="225" width="780" height="70" rx="8" fill="#2d1010" stroke="#f85149" stroke-width="1.5"/>
+  <text x="110" y="252" fill="#f85149" font-size="14" font-weight="bold">Layer 3: Kernel Callbacks</text>
+  <text x="110" y="272" fill="#ff7b72" font-size="11">ObRegisterCallbacks, PsSetCreateProcessNotifyRoutineEx, PsSetLoadImageNotifyRoutine</text>
+  <text x="750" y="262" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">NOT BYPASSABLE</text>
+  <text x="750" y="278" text-anchor="middle" fill="#ff7b72" font-size="9">from userland</text>
+  <!-- Layer 4: ETW-Ti -->
+  <rect x="90" y="305" width="780" height="70" rx="8" fill="#2d1010" stroke="#f85149" stroke-width="1.5" opacity="0.85"/>
+  <text x="110" y="332" fill="#f85149" font-size="14" font-weight="bold">Layer 4: ETW-Ti (Threat Intelligence)</text>
+  <text x="110" y="352" fill="#ff7b72" font-size="11">Microsoft-Windows-Threat-Intelligence kernel provider — requires PPL consumer</text>
+  <text x="750" y="342" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">NOT BYPASSABLE</text>
+  <text x="750" y="358" text-anchor="middle" fill="#ff7b72" font-size="9">from userland</text>
+  <!-- Layer 5: Minifilter -->
+  <rect x="90" y="385" width="780" height="40" rx="8" fill="#2d1010" stroke="#f85149" stroke-width="1" opacity="0.7"/>
+  <text x="110" y="410" fill="#f85149" font-size="13" font-weight="bold">Layer 5: Minifilter Drivers</text>
+  <text x="750" y="410" text-anchor="middle" fill="#f85149" font-size="10">NOT BYPASSABLE</text>
+  <!-- Layer 6: Cloud -->
+  <rect x="90" y="435" width="780" height="70" rx="8" fill="#1a1030" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="110" y="462" fill="#d2a8ff" font-size="14" font-weight="bold">Layer 6: Cloud / ML Analysis</text>
+  <text x="110" y="482" fill="#b392d6" font-size="11">Cloud verdicts, behavioral ML models, IOC correlation, reputation scoring</text>
+  <text x="750" y="472" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">LATENCY GAP</text>
+  <text x="750" y="488" text-anchor="middle" fill="#b392d6" font-size="9">seconds to minutes</text>
+  <!-- Bottom note -->
+  <rect x="90" y="520" width="780" height="30" rx="6" fill="#161b22" stroke="#30363d"/>
+  <text x="480" y="540" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Bypassing Layers 1+2 still exposes you to Layers 3-6</text>
+</svg>

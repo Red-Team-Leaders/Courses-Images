@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="520" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Standard API vs. Direct Syscall — Hook Bypass</text>
+  <!-- Left path: Standard API (CAUGHT) -->
+  <text x="250" y="65" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Standard API Path</text>
+  <rect x="150" y="80" width="200" height="40" rx="6" fill="#1a1a2e" stroke="#f85149" stroke-width="1.5"/>
+  <text x="250" y="105" text-anchor="middle" fill="#c9d1d9" font-size="12">Your Code</text>
+  <line x1="250" y1="120" x2="250" y2="145" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="150" y="148" width="200" height="35" rx="6" fill="#1a1a2e" stroke="#8b949e" stroke-width="1"/>
+  <text x="250" y="170" text-anchor="middle" fill="#8b949e" font-size="11">kernel32.dll</text>
+  <line x1="250" y1="183" x2="250" y2="205" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="130" y="208" width="240" height="45" rx="6" fill="#21262d" stroke="#f85149" stroke-width="2"/>
+  <text x="250" y="228" text-anchor="middle" fill="#ff7b72" font-size="12" font-weight="bold">ntdll.dll (HOOKED)</text>
+  <text x="250" y="245" text-anchor="middle" fill="#f85149" font-size="10">jmp EDR_Detour</text>
+  <line x1="250" y1="253" x2="250" y2="278" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="140" y="281" width="220" height="40" rx="6" fill="#1a1a2e" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="250" y="305" text-anchor="middle" fill="#58a6ff" font-size="11">EDR Detour: Log + Analyze</text>
+  <line x1="250" y1="321" x2="250" y2="346" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="160" y="349" width="180" height="50" rx="8" fill="#3d1010" stroke="#f85149" stroke-width="2"/>
+  <text x="250" y="372" text-anchor="middle" fill="#f85149" font-size="16" font-weight="bold">CAUGHT</text>
+  <text x="250" y="390" text-anchor="middle" fill="#ff7b72" font-size="10">Every call intercepted</text>
+  <!-- Right path: Direct Syscall (BYPASS) -->
+  <text x="750" y="65" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Direct Syscall Path</text>
+  <rect x="650" y="80" width="200" height="40" rx="6" fill="#1a1a2e" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="750" y="105" text-anchor="middle" fill="#c9d1d9" font-size="12">Your Code</text>
+  <line x1="750" y1="120" x2="750" y2="205" stroke="#3fb950" stroke-width="2" marker-end="url(#ag)"/>
+  <text x="760" y="165" fill="#3fb950" font-size="10">mov r10, rcx</text>
+  <text x="760" y="180" fill="#3fb950" font-size="10">mov eax, SSN</text>
+  <text x="760" y="195" fill="#3fb950" font-size="10">syscall</text>
+  <!-- Skipped ntdll box (ghosted) -->
+  <rect x="630" y="208" width="240" height="45" rx="6" fill="none" stroke="#30363d" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="750" y="228" text-anchor="middle" fill="#484f58" font-size="12">ntdll.dll (SKIPPED)</text>
+  <text x="750" y="245" text-anchor="middle" fill="#484f58" font-size="10">hooks never execute</text>
+  <line x1="750" y1="253" x2="750" y2="280" stroke="#3fb950" stroke-width="2" marker-end="url(#ag)"/>
+  <rect x="650" y="283" width="200" height="40" rx="6" fill="#1a1a2e" stroke="#8b949e" stroke-width="1"/>
+  <text x="750" y="307" text-anchor="middle" fill="#c9d1d9" font-size="12">Kernel (Ring 0)</text>
+  <line x1="750" y1="323" x2="750" y2="346" stroke="#3fb950" stroke-width="2" marker-end="url(#ag)"/>
+  <rect x="660" y="349" width="180" height="50" rx="8" fill="#0a2e0a" stroke="#3fb950" stroke-width="2"/>
+  <text x="750" y="372" text-anchor="middle" fill="#3fb950" font-size="16" font-weight="bold">BYPASSED</text>
+  <text x="750" y="390" text-anchor="middle" fill="#7ee787" font-size="10">Hooks never fire</text>
+  <!-- Divider -->
+  <line x1="500" y1="55" x2="500" y2="410" stroke="#30363d" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="500" y="430" text-anchor="middle" fill="#8b949e" font-size="10">VS</text>
+  <!-- Bottom note -->
+  <rect x="100" y="445" width="800" height="60" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="500" y="472" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Userland hooks ONLY see calls that flow through ntdll</text>
+  <text x="500" y="494" text-anchor="middle" fill="#8b949e" font-size="11">Direct syscalls create a parallel path that bypasses the hooked layer entirely</text>
+</svg>

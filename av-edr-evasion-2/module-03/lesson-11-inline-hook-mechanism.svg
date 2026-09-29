@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#d2a8ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Inline Hook Mechanism — How EDRs Intercept ntdll Functions</text>
+  <!-- Clean -->
+  <rect x="30" y="55" width="280" height="170" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="170" y="78" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Clean ntdll (Before)</text>
+  <text x="50" y="102" fill="#8b949e" font-size="11">NtAllocateVirtualMemory:</text>
+  <text x="55" y="122" fill="#7ee787" font-size="10">4C 8B D1         mov r10, rcx</text>
+  <text x="55" y="140" fill="#7ee787" font-size="10">B8 18 00 00 00   mov eax, 0x18</text>
+  <text x="55" y="158" fill="#7ee787" font-size="10">0F 05            syscall</text>
+  <text x="55" y="176" fill="#7ee787" font-size="10">C3               ret</text>
+  <text x="55" y="210" fill="#3fb950" font-size="10">All bytes original</text>
+  <!-- Arrow -->
+  <line x1="320" y1="140" x2="385" y2="140" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="352" y="130" text-anchor="middle" fill="#f0883e" font-size="9">Hook</text>
+  <text x="352" y="157" text-anchor="middle" fill="#f0883e" font-size="9">Install</text>
+  <!-- Hooked -->
+  <rect x="395" y="55" width="280" height="170" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="535" y="78" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Hooked ntdll (After)</text>
+  <text x="415" y="102" fill="#8b949e" font-size="11">NtAllocateVirtualMemory:</text>
+  <text x="420" y="122" fill="#ff7b72" font-size="10">E9 XX XX XX XX   jmp EDR_Detour</text>
+  <text x="420" y="140" fill="#6e7681" font-size="10">00 00 00         (overwritten)</text>
+  <text x="420" y="158" fill="#7ee787" font-size="10">0F 05            syscall</text>
+  <text x="420" y="176" fill="#7ee787" font-size="10">C3               ret</text>
+  <text x="420" y="210" fill="#f85149" font-size="10">First 5 bytes replaced with JMP</text>
+  <!-- EDR Detour -->
+  <rect x="700" y="55" width="280" height="170" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="840" y="78" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">EDR Detour Handler</text>
+  <text x="720" y="105" fill="#c9d1d9" font-size="11">1. Log parameters + call stack</text>
+  <text x="720" y="130" fill="#c9d1d9" font-size="11">2. Check detection rules</text>
+  <text x="720" y="155" fill="#c9d1d9" font-size="11">3. Decision: Allow / Block</text>
+  <text x="720" y="180" fill="#c9d1d9" font-size="11">4. Call trampoline (if allow)</text>
+  <!-- Trampoline -->
+  <rect x="395" y="270" width="280" height="110" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="535" y="293" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Trampoline</text>
+  <text x="415" y="315" fill="#7ee787" font-size="10">4C 8B D1         mov r10, rcx (saved)</text>
+  <text x="415" y="333" fill="#7ee787" font-size="10">B8 18 00 00 00   mov eax, 0x18 (saved)</text>
+  <text x="415" y="351" fill="#f0883e" font-size="10">E9 XX XX XX XX   jmp NtAlloc+5</text>
+  <text x="415" y="370" fill="#8b949e" font-size="9">Runs saved bytes, jumps back past hook</text>
+  <!-- Detour to Trampoline -->
+  <path d="M700 220 Q690 250,680 275" stroke="#d2a8ff" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
+  <text x="692" y="248" fill="#d2a8ff" font-size="9">if allowed</text>
+  <!-- Legend -->
+  <rect x="30" y="410" width="950" height="155" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="438" fill="#58a6ff" font-size="13" font-weight="bold">Key Concepts</text>
+  <text x="50" y="462" fill="#c9d1d9" font-size="11">1. EDR replaces first bytes of ntdll function with JMP to its detour handler</text>
+  <text x="50" y="482" fill="#c9d1d9" font-size="11">2. Every call through ntdll routes through EDR: parameters, call stack, everything visible</text>
+  <text x="50" y="502" fill="#c9d1d9" font-size="11">3. If allowed, trampoline executes saved original bytes and returns to function body</text>
+  <text x="50" y="528" fill="#f0883e" font-size="12" font-weight="bold">Direct syscalls bypass this entirely: they never touch ntdll</text>
+  <rect x="50" y="545" width="12" height="12" fill="#3fb950"/><text x="70" y="556" fill="#8b949e" font-size="10">Original</text>
+  <rect x="150" y="545" width="12" height="12" fill="#f85149"/><text x="170" y="556" fill="#8b949e" font-size="10">Hooked</text>
+  <rect x="250" y="545" width="12" height="12" fill="#58a6ff"/><text x="270" y="556" fill="#8b949e" font-size="10">EDR Handler</text>
+  <rect x="380" y="545" width="12" height="12" fill="#d2a8ff"/><text x="400" y="556" fill="#8b949e" font-size="10">Trampoline</text>
+</svg>

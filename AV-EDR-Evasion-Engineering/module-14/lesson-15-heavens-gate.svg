@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="a3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#d2a8ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Heaven's Gate — WoW64 Layer Exploitation (32→64-bit Transition)</text>
+
+  <!-- WoW64 Architecture -->
+  <rect x="30" y="52" width="940" height="200" rx="8" fill="none" stroke="#30363d" stroke-width="1"/>
+  <text x="50" y="75" fill="#58a6ff" font-size="14" font-weight="bold">WoW64 Architecture — Normal 32-bit Process on 64-bit Windows</text>
+
+  <!-- 32-bit process -->
+  <rect x="50" y="90" width="200" height="70" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="150" y="115" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">32-bit Process</text>
+  <text x="150" y="135" text-anchor="middle" fill="#c9d1d9" font-size="9">x86 code, 32-bit regs</text>
+  <text x="150" y="150" text-anchor="middle" fill="#8b949e" font-size="8">fs:[0x30] = PEB32</text>
+
+  <line x1="255" y1="125" x2="295" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- ntdll32 -->
+  <rect x="300" y="90" width="150" height="70" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="375" y="115" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">ntdll.dll (32)</text>
+  <text x="375" y="135" text-anchor="middle" fill="#ff7b72" font-size="9">HOOKED by EDR</text>
+  <text x="375" y="150" text-anchor="middle" fill="#8b949e" font-size="8">EDR monitors this</text>
+
+  <line x1="455" y1="125" x2="495" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- wow64cpu -->
+  <rect x="500" y="90" width="150" height="70" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="575" y="115" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">wow64cpu.dll</text>
+  <text x="575" y="135" text-anchor="middle" fill="#c9d1d9" font-size="9">32→64 transition</text>
+  <text x="575" y="150" text-anchor="middle" fill="#8b949e" font-size="8">far jmp to 64-bit CS</text>
+
+  <line x1="655" y1="125" x2="695" y2="125" stroke="#d2a8ff" stroke-width="2" marker-end="url(#a3)"/>
+
+  <!-- ntdll64 -->
+  <rect x="700" y="90" width="140" height="70" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="770" y="115" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">ntdll.dll (64)</text>
+  <text x="770" y="135" text-anchor="middle" fill="#3fb950" font-size="9">Often UNHOOKED</text>
+  <text x="770" y="150" text-anchor="middle" fill="#8b949e" font-size="8">Native x64 syscalls</text>
+
+  <line x1="845" y1="125" x2="885" y2="125" stroke="#3fb950" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="890" y="90" width="65" height="70" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="922" y="120" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Kernel</text>
+  <text x="922" y="140" text-anchor="middle" fill="#8b949e" font-size="8">Ring 0</text>
+
+  <text x="50" y="185" fill="#8b949e" font-size="10">Normal path: 32-bit API → ntdll32 (hooked) → wow64cpu → ntdll64 → kernel</text>
+  <text x="50" y="205" fill="#f85149" font-size="10">EDR hooks ntdll32 but often NOT ntdll64 — the WoW64 layer is a blind spot</text>
+
+  <!-- Heaven's Gate bypass -->
+  <rect x="30" y="265" width="940" height="140" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="50" y="290" fill="#3fb950" font-size="14" font-weight="bold">Heaven's Gate — Direct 32→64 Transition (Bypass WoW64)</text>
+
+  <rect x="50" y="305" width="200" height="55" rx="6" fill="#1a1a2e" stroke="#f0883e"/>
+  <text x="150" y="328" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">32-bit Shellcode</text>
+  <text x="150" y="348" text-anchor="middle" fill="#8b949e" font-size="8">Prepares params</text>
+
+  <path d="M255 332 Q350 290 445 332" stroke="#3fb950" stroke-width="3" fill="none" marker-end="url(#a2)" stroke-dasharray="8,4"/>
+  <text x="350" y="305" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">far jmp 0x33:addr64</text>
+
+  <rect x="450" y="305" width="200" height="55" rx="6" fill="#1a1a2e" stroke="#3fb950"/>
+  <text x="550" y="328" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">64-bit Code Segment</text>
+  <text x="550" y="348" text-anchor="middle" fill="#3fb950" font-size="8">Native x64 syscall</text>
+
+  <line x1="655" y1="332" x2="695" y2="332" stroke="#3fb950" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="700" y="305" width="110" height="55" rx="6" fill="#1a1a2e" stroke="#58a6ff"/>
+  <text x="755" y="332" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Kernel</text>
+
+  <!-- Crossed out -->
+  <rect x="310" y="330" width="120" height="30" rx="4" fill="none" stroke="#f85149" stroke-width="1" opacity="0.6"/>
+  <text x="370" y="350" text-anchor="middle" fill="#6e7681" font-size="8">ntdll32 + wow64cpu</text>
+  <line x1="310" y1="330" x2="430" y2="360" stroke="#f85149" stroke-width="1.5" opacity="0.5"/>
+  <line x1="430" y1="330" x2="310" y2="360" stroke="#f85149" stroke-width="1.5" opacity="0.5"/>
+
+  <text x="50" y="385" fill="#c9d1d9" font-size="10">The far jmp with selector 0x33 switches CPU to 64-bit code segment, bypassing ALL 32-bit hooks</text>
+  <text x="50" y="398" fill="#8b949e" font-size="9">Selector 0x23 returns to 32-bit. This is the SAME mechanism wow64cpu.dll uses internally.</text>
+
+  <!-- Implementation -->
+  <rect x="30" y="415" width="450" height="150" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="255" y="438" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">x86 ASM Implementation</text>
+  <text x="50" y="463" fill="#7ee787" font-size="9">; Switch to 64-bit mode</text>
+  <text x="50" y="479" fill="#7ee787" font-size="9">push  0x33              ; 64-bit CS selector</text>
+  <text x="50" y="495" fill="#7ee787" font-size="9">call  $+5               ; push EIP</text>
+  <text x="50" y="511" fill="#7ee787" font-size="9">add   dword [esp], 5    ; adjust to next instr</text>
+  <text x="50" y="527" fill="#7ee787" font-size="9">retf                    ; far return → 64-bit!</text>
+  <text x="50" y="547" fill="#7ee787" font-size="9">; Now executing in 64-bit mode</text>
+  <text x="50" y="560" fill="#8b949e" font-size="8">Use 64-bit registers, call native syscall</text>
+
+  <!-- Detection -->
+  <rect x="520" y="415" width="450" height="150" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="745" y="438" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Detection &amp; Limitations</text>
+  <text x="540" y="463" fill="#f85149" font-size="10">✗ Only works from 32-bit processes</text>
+  <text x="540" y="483" fill="#f85149" font-size="10">✗ Modern EDRs hook ntdll64 too now</text>
+  <text x="540" y="503" fill="#f85149" font-size="10">✗ Some EDRs detect CS selector change</text>
+  <text x="540" y="523" fill="#3fb950" font-size="10">✓ Still effective against many products</text>
+  <text x="540" y="543" fill="#3fb950" font-size="10">✓ Useful for 32-bit implant on 64-bit OS</text>
+  <text x="540" y="558" fill="#8b949e" font-size="9">Named "Heaven's Gate" by community (2012+)</text>
+</svg>

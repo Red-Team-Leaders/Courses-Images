@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Process Stacking Injection — Image Overlay in Memory</text>
+  <text x="500" y="52" text-anchor="middle" fill="#8b949e" font-size="10">github.com/JoasASantos/Process-Stacking-Injection</text>
+
+  <!-- Concept -->
+  <rect x="30" y="65" width="450" height="130" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="90" fill="#58a6ff" font-size="13" font-weight="bold">Core Concept</text>
+  <text x="50" y="112" fill="#c9d1d9" font-size="11">Process Stacking creates a legitimate process, then overlays</text>
+  <text x="50" y="130" fill="#c9d1d9" font-size="11">a malicious image on top of it using section manipulation.</text>
+  <text x="50" y="148" fill="#c9d1d9" font-size="11">Unlike hollowing, it does NOT unmap the original image —</text>
+  <text x="50" y="166" fill="#c9d1d9" font-size="11">both images coexist, with execution redirected to the payload.</text>
+  <text x="50" y="185" fill="#f0883e" font-size="10" font-weight="bold">The legitimate image remains intact for EDR inspection.</text>
+
+  <!-- Flow -->
+  <rect x="510" y="65" width="460" height="130" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="740" y="88" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">How It Differs</text>
+  <text x="530" y="110" fill="#f85149" font-size="10">Hollowing:</text><text x="650" y="110" fill="#c9d1d9" font-size="10">Unmap → Write → Resume</text>
+  <text x="530" y="130" fill="#f0883e" font-size="10">Ghosting:</text><text x="650" y="130" fill="#c9d1d9" font-size="10">Delete → Section → Create</text>
+  <text x="530" y="150" fill="#3fb950" font-size="10">Stacking:</text><text x="650" y="150" fill="#3fb950" font-size="10">Keep original + Overlay new</text>
+  <text x="530" y="175" fill="#8b949e" font-size="9">Original image stays mapped — passes integrity checks</text>
+  <text x="530" y="190" fill="#8b949e" font-size="9">Payload section mapped at different VA — dual images</text>
+
+  <!-- Step-by-step -->
+  <rect x="30" y="215" width="175" height="90" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="117" y="238" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">1. Create Process</text>
+  <text x="45" y="258" fill="#c9d1d9" font-size="9">CreateProcess(</text>
+  <text x="50" y="273" fill="#c9d1d9" font-size="9">  svchost.exe,</text>
+  <text x="50" y="288" fill="#c9d1d9" font-size="9">  SUSPENDED)</text>
+
+  <line x1="205" y1="260" x2="230" y2="260" stroke="#3fb950" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="240" y="215" width="175" height="90" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="327" y="238" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">2. Create Section</text>
+  <text x="255" y="258" fill="#c9d1d9" font-size="9">NtCreateSection(</text>
+  <text x="260" y="273" fill="#c9d1d9" font-size="9">  malicious PE,</text>
+  <text x="260" y="288" fill="#c9d1d9" font-size="9">  SEC_IMAGE)</text>
+
+  <line x1="415" y1="260" x2="440" y2="260" stroke="#3fb950" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="450" y="215" width="175" height="90" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="537" y="238" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">3. Map Section</text>
+  <text x="465" y="258" fill="#c9d1d9" font-size="9">NtMapViewOfSection(</text>
+  <text x="470" y="273" fill="#c9d1d9" font-size="9">  hSection,</text>
+  <text x="470" y="288" fill="#c9d1d9" font-size="9">  hProcess)</text>
+
+  <line x1="625" y1="260" x2="650" y2="260" stroke="#3fb950" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="660" y="215" width="155" height="90" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="737" y="238" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="bold">4. Redirect EP</text>
+  <text x="675" y="258" fill="#c9d1d9" font-size="9">SetThreadContext(</text>
+  <text x="680" y="273" fill="#c9d1d9" font-size="9">  RIP=payload EP)</text>
+
+  <line x1="815" y1="260" x2="840" y2="260" stroke="#3fb950" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="850" y="215" width="120" height="90" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="910" y="238" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">5. Resume</text>
+  <text x="865" y="258" fill="#c9d1d9" font-size="9">ResumeThread()</text>
+  <text x="865" y="273" fill="#f85149" font-size="9">Payload runs</text>
+
+  <!-- Memory layout -->
+  <rect x="30" y="325" width="940" height="115" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="350" fill="#58a6ff" font-size="13" font-weight="bold">Target Process Memory Layout (After Stacking)</text>
+
+  <rect x="60" y="365" width="200" height="55" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="160" y="385" text-anchor="middle" fill="#3fb950" font-size="10">svchost.exe image</text>
+  <text x="160" y="405" text-anchor="middle" fill="#8b949e" font-size="8">0x00400000 (original)</text>
+
+  <rect x="300" y="365" width="200" height="55" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="400" y="385" text-anchor="middle" fill="#f85149" font-size="10">PAYLOAD image</text>
+  <text x="400" y="405" text-anchor="middle" fill="#8b949e" font-size="8">0x10000000 (stacked)</text>
+
+  <rect x="540" y="365" width="150" height="55" rx="4" fill="#0d1117" stroke="#d2a8ff" stroke-width="1"/>
+  <text x="615" y="385" text-anchor="middle" fill="#c9d1d9" font-size="10">ntdll.dll</text>
+  <text x="615" y="405" text-anchor="middle" fill="#8b949e" font-size="8">0x7FF80000...</text>
+
+  <rect x="730" y="365" width="150" height="55" rx="4" fill="#0d1117" stroke="#d2a8ff" stroke-width="1"/>
+  <text x="805" y="385" text-anchor="middle" fill="#c9d1d9" font-size="10">kernel32.dll</text>
+  <text x="805" y="405" text-anchor="middle" fill="#8b949e" font-size="8">0x7FF70000...</text>
+
+  <text x="60" y="430" fill="#3fb950" font-size="9">INTACT — passes VAD check</text>
+  <text x="300" y="430" fill="#f85149" font-size="9">Executing — RIP points here</text>
+
+  <!-- Advantages vs detection -->
+  <rect x="30" y="455" width="450" height="110" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="50" y="478" fill="#3fb950" font-size="12" font-weight="bold">Evasion Advantages</text>
+  <text x="50" y="498" fill="#c9d1d9" font-size="10">• No NtUnmapViewOfSection — original image intact</text>
+  <text x="50" y="516" fill="#c9d1d9" font-size="10">• Memory-vs-disk check passes for original image</text>
+  <text x="50" y="534" fill="#c9d1d9" font-size="10">• VAD tree shows legitimate backed mapping</text>
+  <text x="50" y="552" fill="#c9d1d9" font-size="10">• Process appears as svchost in all standard tools</text>
+
+  <rect x="520" y="455" width="450" height="110" rx="8" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="540" y="478" fill="#f85149" font-size="12" font-weight="bold">Detection Surface</text>
+  <text x="540" y="498" fill="#c9d1d9" font-size="10">• Extra mapped section (unusual module count)</text>
+  <text x="540" y="516" fill="#c9d1d9" font-size="10">• RIP in non-primary-image region</text>
+  <text x="540" y="534" fill="#c9d1d9" font-size="10">• Unknown module in VAD at unusual base</text>
+  <text x="540" y="552" fill="#c9d1d9" font-size="10">• SetThreadContext on suspended process</text>
+</svg>

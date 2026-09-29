@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Anti-Debugging — Multi-Layer Detection Checks</text>
+
+  <!-- Layer 1: PEB Checks -->
+  <rect x="30" y="55" width="300" height="155" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="180" y="78" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Layer 1: PEB Flags</text>
+  <text x="50" y="100" fill="#7ee787" font-size="10">// BeingDebugged flag</text>
+  <text x="50" y="118" fill="#7ee787" font-size="10">PPEB peb = __readgsqword(0x60);</text>
+  <text x="50" y="136" fill="#7ee787" font-size="10">if (peb-&gt;BeingDebugged) exit();</text>
+  <text x="50" y="160" fill="#7ee787" font-size="10">// NtGlobalFlag (offset 0xBC)</text>
+  <text x="50" y="178" fill="#7ee787" font-size="10">if (peb-&gt;NtGlobalFlag &amp; 0x70)</text>
+  <text x="50" y="196" fill="#7ee787" font-size="10">    exit(); // debugger heap flags</text>
+  <rect x="35" y="85" width="50" height="16" rx="3" fill="#f85149"/>
+  <text x="60" y="97" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">EASY</text>
+
+  <!-- Layer 2: API Checks -->
+  <rect x="350" y="55" width="300" height="155" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="78" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Layer 2: System Queries</text>
+  <text x="370" y="100" fill="#7ee787" font-size="10">// NtQueryInformationProcess</text>
+  <text x="370" y="118" fill="#7ee787" font-size="10">DWORD port;</text>
+  <text x="370" y="136" fill="#7ee787" font-size="10">NtQueryInformationProcess(</text>
+  <text x="370" y="154" fill="#7ee787" font-size="10">  -1, ProcessDebugPort,</text>
+  <text x="370" y="172" fill="#7ee787" font-size="10">  &amp;port, sizeof(port), NULL);</text>
+  <text x="370" y="196" fill="#7ee787" font-size="10">if (port != 0) exit();</text>
+  <rect x="355" y="85" width="60" height="16" rx="3" fill="#f0883e"/>
+  <text x="385" y="97" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">MEDIUM</text>
+
+  <!-- Layer 3: Timing -->
+  <rect x="670" y="55" width="300" height="155" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="820" y="78" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Layer 3: Timing Checks</text>
+  <text x="690" y="100" fill="#7ee787" font-size="10">LARGE_INTEGER t1, t2;</text>
+  <text x="690" y="118" fill="#7ee787" font-size="10">NtQueryPerformanceCounter(&amp;t1,0);</text>
+  <text x="690" y="136" fill="#7ee787" font-size="10">// ... sensitive operations ...</text>
+  <text x="690" y="154" fill="#7ee787" font-size="10">NtQueryPerformanceCounter(&amp;t2,0);</text>
+  <text x="690" y="178" fill="#7ee787" font-size="10">if (t2.QuadPart - t1.QuadPart</text>
+  <text x="690" y="196" fill="#7ee787" font-size="10">    &gt; threshold) exit();</text>
+  <rect x="675" y="85" width="50" height="16" rx="3" fill="#d2a8ff"/>
+  <text x="700" y="97" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">HARD</text>
+
+  <!-- Layer 4: Hardware -->
+  <rect x="30" y="230" width="300" height="155" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="253" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Layer 4: Debug Registers</text>
+  <text x="50" y="275" fill="#7ee787" font-size="10">CONTEXT ctx = {0};</text>
+  <text x="50" y="293" fill="#7ee787" font-size="10">ctx.ContextFlags = CONTEXT_DEBUG;</text>
+  <text x="50" y="311" fill="#7ee787" font-size="10">NtGetContextThread(-1, &amp;ctx);</text>
+  <text x="50" y="335" fill="#7ee787" font-size="10">if (ctx.Dr0 || ctx.Dr1 ||</text>
+  <text x="50" y="353" fill="#7ee787" font-size="10">    ctx.Dr2 || ctx.Dr3)</text>
+  <text x="50" y="371" fill="#7ee787" font-size="10">    exit(); // HW breakpoints</text>
+  <rect x="35" y="260" width="65" height="16" rx="3" fill="#3fb950"/>
+  <text x="67" y="272" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">STRONG</text>
+
+  <!-- Layer 5: Process Checks -->
+  <rect x="350" y="230" width="300" height="155" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="500" y="253" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Layer 5: Process Scanning</text>
+  <text x="370" y="278" fill="#c9d1d9" font-size="10">Enumerate running processes for:</text>
+  <text x="370" y="300" fill="#ff7b72" font-size="10">x64dbg.exe, x32dbg.exe</text>
+  <text x="370" y="318" fill="#ff7b72" font-size="10">ollydbg.exe, windbg.exe</text>
+  <text x="370" y="336" fill="#ff7b72" font-size="10">ida64.exe, ida.exe</text>
+  <text x="370" y="354" fill="#ff7b72" font-size="10">dnSpy.exe, ProcessHacker.exe</text>
+  <text x="370" y="375" fill="#8b949e" font-size="9">Hash process names to avoid string detection</text>
+
+  <!-- Layer 6: Trap Flag -->
+  <rect x="670" y="230" width="300" height="155" rx="8" fill="#0d1117" stroke="#ff7b72" stroke-width="2"/>
+  <text x="820" y="253" text-anchor="middle" fill="#ff7b72" font-size="13" font-weight="bold">Layer 6: Trap Flag (TF)</text>
+  <text x="690" y="278" fill="#c9d1d9" font-size="10">Set TF bit in EFLAGS register:</text>
+  <text x="690" y="300" fill="#7ee787" font-size="10">pushfq</text>
+  <text x="690" y="318" fill="#7ee787" font-size="10">or qword [rsp], 0x100</text>
+  <text x="690" y="336" fill="#7ee787" font-size="10">popfq</text>
+  <text x="690" y="358" fill="#c9d1d9" font-size="10">Single-step exception generated</text>
+  <text x="690" y="375" fill="#8b949e" font-size="9">Debugger eats it; VEH expects it</text>
+
+  <!-- Decision flow -->
+  <rect x="30" y="405" width="940" height="160" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="500" y="430" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Multi-Layer Decision Flow</text>
+
+  <rect x="50" y="445" width="100" height="30" rx="5" fill="#f85149" fill-opacity="0.2" stroke="#f85149"/>
+  <text x="100" y="465" text-anchor="middle" fill="#f85149" font-size="9">PEB Check</text>
+  <line x1="150" y1="460" x2="180" y2="460" stroke="#3fb950" stroke-width="1" marker-end="url(#ar)"/>
+  <text x="165" y="453" fill="#3fb950" font-size="7">PASS</text>
+
+  <rect x="185" y="445" width="100" height="30" rx="5" fill="#f0883e" fill-opacity="0.2" stroke="#f0883e"/>
+  <text x="235" y="465" text-anchor="middle" fill="#f0883e" font-size="9">API Query</text>
+  <line x1="285" y1="460" x2="315" y2="460" stroke="#3fb950" stroke-width="1" marker-end="url(#ar)"/>
+  <text x="300" y="453" fill="#3fb950" font-size="7">PASS</text>
+
+  <rect x="320" y="445" width="100" height="30" rx="5" fill="#d2a8ff" fill-opacity="0.2" stroke="#d2a8ff"/>
+  <text x="370" y="465" text-anchor="middle" fill="#d2a8ff" font-size="9">Timing</text>
+  <line x1="420" y1="460" x2="450" y2="460" stroke="#3fb950" stroke-width="1" marker-end="url(#ar)"/>
+  <text x="435" y="453" fill="#3fb950" font-size="7">PASS</text>
+
+  <rect x="455" y="445" width="100" height="30" rx="5" fill="#3fb950" fill-opacity="0.2" stroke="#3fb950"/>
+  <text x="505" y="465" text-anchor="middle" fill="#3fb950" font-size="9">DR Regs</text>
+  <line x1="555" y1="460" x2="585" y2="460" stroke="#3fb950" stroke-width="1" marker-end="url(#ar)"/>
+  <text x="570" y="453" fill="#3fb950" font-size="7">PASS</text>
+
+  <rect x="590" y="445" width="100" height="30" rx="5" fill="#58a6ff" fill-opacity="0.2" stroke="#58a6ff"/>
+  <text x="640" y="465" text-anchor="middle" fill="#58a6ff" font-size="9">Proc Scan</text>
+  <line x1="690" y1="460" x2="720" y2="460" stroke="#3fb950" stroke-width="1" marker-end="url(#ar)"/>
+  <text x="705" y="453" fill="#3fb950" font-size="7">PASS</text>
+
+  <rect x="725" y="445" width="100" height="30" rx="5" fill="#ff7b72" fill-opacity="0.2" stroke="#ff7b72"/>
+  <text x="775" y="465" text-anchor="middle" fill="#ff7b72" font-size="9">Trap Flag</text>
+  <line x1="825" y1="460" x2="855" y2="460" stroke="#3fb950" stroke-width="1" marker-end="url(#ar)"/>
+
+  <rect x="860" y="440" width="100" height="40" rx="5" fill="#3fb950" fill-opacity="0.2" stroke="#3fb950" stroke-width="2"/>
+  <text x="910" y="465" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">EXECUTE</text>
+
+  <text x="500" y="510" text-anchor="middle" fill="#f85149" font-size="11">Any layer FAIL = terminate / corrupt payload / infinite sleep</text>
+  <text x="500" y="535" text-anchor="middle" fill="#8b949e" font-size="10">Randomize check order per run to resist pattern analysis</text>
+  <text x="500" y="555" text-anchor="middle" fill="#8b949e" font-size="10">Scatter checks across execution timeline (not all at startup)</text>
+</svg>

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Adaptive Unhooking Engine Architecture</text>
+
+  <!-- Phase 1: Detect -->
+  <rect x="30" y="55" width="290" height="200" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="175" y="78" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Phase 1: Detect</text>
+  <text x="50" y="100" fill="#c9d1d9" font-size="10">Scan ntdll.dll exports:</text>
+  <text x="55" y="120" fill="#7ee787" font-size="10">for each Nt* function:</text>
+  <text x="60" y="138" fill="#7ee787" font-size="10">read prologue bytes</text>
+  <text x="60" y="156" fill="#7ee787" font-size="10">check 4C 8B D1 B8 pattern</text>
+  <text x="60" y="174" fill="#7ee787" font-size="10">if mismatch: HOOKED</text>
+  <text x="55" y="198" fill="#8b949e" font-size="10">Build hook inventory:</text>
+  <text x="55" y="216" fill="#f85149" font-size="10">NtAllocVM: HOOKED (JMP)</text>
+  <text x="55" y="232" fill="#3fb950" font-size="10">NtClose:   CLEAN</text>
+  <text x="55" y="248" fill="#f85149" font-size="10">NtWriteVM: HOOKED (JMP)</text>
+
+  <line x1="325" y1="155" x2="355" y2="155" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Phase 2: Classify -->
+  <rect x="360" y="55" width="280" height="200" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="78" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Phase 2: Classify</text>
+  <text x="380" y="100" fill="#c9d1d9" font-size="10">Identify hook type:</text>
+  <text x="385" y="120" fill="#f85149" font-size="10">0xE9: 5-byte JMP rel32</text>
+  <text x="385" y="138" fill="#f85149" font-size="10">0xFF25: 6-byte JMP [rip]</text>
+  <text x="385" y="156" fill="#f85149" font-size="10">0x48B8: MOV RAX + JMP RAX</text>
+  <text x="380" y="180" fill="#c9d1d9" font-size="10">Identify EDR vendor:</text>
+  <text x="385" y="198" fill="#d2a8ff" font-size="10">JMP target in CrowdStrike?</text>
+  <text x="385" y="216" fill="#d2a8ff" font-size="10">JMP target in Defender?</text>
+  <text x="385" y="234" fill="#d2a8ff" font-size="10">JMP target in SentinelOne?</text>
+
+  <line x1="645" y1="155" x2="675" y2="155" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Phase 3: Select -->
+  <rect x="680" y="55" width="295" height="200" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="827" y="78" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Phase 3: Select Strategy</text>
+  <text x="700" y="100" fill="#c9d1d9" font-size="10">Decision tree:</text>
+  <text x="705" y="120" fill="#7ee787" font-size="10">if (few hooks):</text>
+  <text x="715" y="138" fill="#7ee787" font-size="10">selective per-func unhook</text>
+  <text x="705" y="158" fill="#7ee787" font-size="10">if (many hooks):</text>
+  <text x="715" y="176" fill="#7ee787" font-size="10">full .text replacement</text>
+  <text x="705" y="196" fill="#7ee787" font-size="10">if (KnownDlls available):</text>
+  <text x="715" y="214" fill="#7ee787" font-size="10">prefer section object</text>
+  <text x="705" y="234" fill="#7ee787" font-size="10">else: suspended process</text>
+
+  <!-- Execution flow -->
+  <rect x="30" y="280" width="940" height="130" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="305" fill="#58a6ff" font-size="13" font-weight="bold">Adaptive Execution Flow</text>
+
+  <rect x="50" y="320" width="120" height="35" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="110" y="342" text-anchor="middle" fill="#58a6ff" font-size="9">Enumerate hooks</text>
+  <line x1="175" y1="337" x2="195" y2="337" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="200" y="320" width="120" height="35" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="260" y="342" text-anchor="middle" fill="#f0883e" font-size="9">Classify EDR</text>
+  <line x1="325" y1="337" x2="345" y2="337" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="350" y="320" width="120" height="35" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="410" y="342" text-anchor="middle" fill="#d2a8ff" font-size="9">Score risk</text>
+  <line x1="475" y1="337" x2="495" y2="337" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="500" y="320" width="120" height="35" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="560" y="342" text-anchor="middle" fill="#3fb950" font-size="9">Pick strategy</text>
+  <line x1="625" y1="337" x2="645" y2="337" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="650" y="320" width="120" height="35" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="710" y="342" text-anchor="middle" fill="#f85149" font-size="9">Execute unhook</text>
+  <line x1="775" y1="337" x2="795" y2="337" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ag)"/>
+
+  <rect x="800" y="320" width="120" height="35" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="860" y="342" text-anchor="middle" fill="#3fb950" font-size="9">Verify clean</text>
+
+  <text x="50" y="392" fill="#8b949e" font-size="10">Engine adapts strategy based on detected EDR, number of hooks, and available clean sources</text>
+
+  <!-- Strategy matrix -->
+  <rect x="30" y="425" width="940" height="140" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <text x="50" y="450" fill="#58a6ff" font-size="12" font-weight="bold">Strategy Selection Matrix</text>
+  <text x="50" y="475" fill="#8b949e" font-size="10">EDR</text>
+  <text x="250" y="475" fill="#8b949e" font-size="10">Hook Count</text>
+  <text x="430" y="475" fill="#8b949e" font-size="10">Strategy</text>
+  <text x="680" y="475" fill="#8b949e" font-size="10">Source</text>
+  <line x1="50" y1="483" x2="950" y2="483" stroke="#30363d"/>
+  <text x="50" y="503" fill="#c9d1d9" font-size="10">CrowdStrike</text>
+  <text x="250" y="503" fill="#c9d1d9" font-size="10">8-15 functions</text>
+  <text x="430" y="503" fill="#3fb950" font-size="10">Full .text replace</text>
+  <text x="680" y="503" fill="#c9d1d9" font-size="10">KnownDlls (via syscall)</text>
+  <text x="50" y="523" fill="#c9d1d9" font-size="10">Defender</text>
+  <text x="250" y="523" fill="#c9d1d9" font-size="10">3-6 functions</text>
+  <text x="430" y="523" fill="#3fb950" font-size="10">Selective unhook</text>
+  <text x="680" y="523" fill="#c9d1d9" font-size="10">Direct disk read OK</text>
+  <text x="50" y="543" fill="#c9d1d9" font-size="10">SentinelOne</text>
+  <text x="250" y="543" fill="#c9d1d9" font-size="10">10-20 functions</text>
+  <text x="430" y="543" fill="#3fb950" font-size="10">Full replace + ETW patch</text>
+  <text x="680" y="543" fill="#c9d1d9" font-size="10">Suspended process</text>
+</svg>

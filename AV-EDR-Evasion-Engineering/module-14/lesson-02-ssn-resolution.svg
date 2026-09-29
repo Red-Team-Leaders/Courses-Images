@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">NTDLL Syscall Stub Anatomy &amp; SSN Extraction</text>
+
+  <!-- Stub anatomy -->
+  <rect x="30" y="55" width="450" height="230" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="255" y="78" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Clean Syscall Stub — NtAllocateVirtualMemory</text>
+  <text x="50" y="108" fill="#8b949e" font-size="11">Offset    Bytes              Instruction</text>
+  <line x1="50" y1="115" x2="460" y2="115" stroke="#30363d"/>
+  <text x="50" y="135" fill="#7ee787" font-size="11">+0x00     4C 8B D1           mov r10, rcx</text>
+  <text x="50" y="157" fill="#ff7b72" font-size="11" font-weight="bold">+0x03     B8 18 00 00 00     mov eax, 0x18   ← SSN</text>
+  <text x="50" y="179" fill="#7ee787" font-size="11">+0x08     F6 04 25 08 03 FE  test [SharedUserData], 1</text>
+  <text x="50" y="197" fill="#7ee787" font-size="11">+0x0F     75 03              jne +3 (int 2E path)</text>
+  <text x="50" y="217" fill="#d2a8ff" font-size="11" font-weight="bold">+0x11     0F 05              syscall</text>
+  <text x="50" y="237" fill="#7ee787" font-size="11">+0x13     C3                 ret</text>
+  <text x="50" y="259" fill="#7ee787" font-size="11">+0x14     CD 2E              int 2Eh (legacy path)</text>
+  <text x="50" y="275" fill="#7ee787" font-size="11">+0x16     C3                 ret</text>
+
+  <!-- SSN highlight box -->
+  <rect x="290" y="143" width="180" height="22" rx="4" fill="none" stroke="#ff7b72" stroke-width="2" stroke-dasharray="4"/>
+
+  <!-- Extraction method -->
+  <rect x="520" y="55" width="460" height="230" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="750" y="78" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">SSN Extraction Methods</text>
+
+  <text x="540" y="108" fill="#f0883e" font-size="12" font-weight="bold">Method 1: Byte Pattern Match</text>
+  <text x="540" y="130" fill="#7ee787" font-size="10">if (stub[0]==0x4C &amp;&amp; stub[1]==0x8B &amp;&amp;</text>
+  <text x="540" y="146" fill="#7ee787" font-size="10">    stub[2]==0xD1 &amp;&amp; stub[3]==0xB8)</text>
+  <text x="540" y="162" fill="#7ee787" font-size="10">  SSN = *(WORD*)(stub + 4);</text>
+
+  <text x="540" y="190" fill="#f0883e" font-size="12" font-weight="bold">Method 2: Address Sorting</text>
+  <text x="540" y="210" fill="#c9d1d9" font-size="10">1. Enumerate all Zw* exports</text>
+  <text x="540" y="226" fill="#c9d1d9" font-size="10">2. Sort by address (ascending)</text>
+  <text x="540" y="242" fill="#c9d1d9" font-size="10">3. Position in sorted list = SSN</text>
+  <text x="540" y="262" fill="#3fb950" font-size="10">Works even when stubs are hooked!</text>
+
+  <!-- SSN Table -->
+  <rect x="30" y="300" width="450" height="170" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="255" y="323" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">SSN Table (Win 10 21H2 / Win 11)</text>
+  <text x="50" y="348" fill="#8b949e" font-size="10">Function                        SSN (x64)</text>
+  <line x1="50" y1="355" x2="460" y2="355" stroke="#30363d"/>
+  <text x="50" y="372" fill="#c9d1d9" font-size="10">NtClose                         0x000F</text>
+  <text x="50" y="390" fill="#c9d1d9" font-size="10">NtAllocateVirtualMemory         0x0018</text>
+  <text x="50" y="408" fill="#c9d1d9" font-size="10">NtProtectVirtualMemory          0x0050</text>
+  <text x="50" y="426" fill="#c9d1d9" font-size="10">NtWriteVirtualMemory            0x003A</text>
+  <text x="50" y="444" fill="#c9d1d9" font-size="10">NtCreateThreadEx                0x00C7</text>
+  <text x="50" y="462" fill="#f85149" font-size="9">⚠ SSNs change between Windows versions!</text>
+
+  <!-- Version Problem -->
+  <rect x="520" y="300" width="460" height="170" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="750" y="323" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">The Version Problem</text>
+  <text x="540" y="350" fill="#c9d1d9" font-size="11">SSNs are NOT stable across Windows builds.</text>
+  <text x="540" y="372" fill="#c9d1d9" font-size="11">New syscalls get inserted, shifting all</text>
+  <text x="540" y="392" fill="#c9d1d9" font-size="11">subsequent numbers.</text>
+  <text x="540" y="420" fill="#3fb950" font-size="11" font-weight="bold">Solutions:</text>
+  <text x="540" y="440" fill="#c9d1d9" font-size="10">• Runtime extraction (byte pattern)</text>
+  <text x="540" y="456" fill="#c9d1d9" font-size="10">• Address sorting (Zw* export order)</text>
+  <text x="540" y="472" fill="#c9d1d9" font-size="10">• Gate techniques (neighbor walking)</text>
+
+  <!-- Bottom legend -->
+  <rect x="30" y="485" width="940" height="80" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="510" fill="#58a6ff" font-size="13" font-weight="bold">Key Insight</text>
+  <text x="50" y="530" fill="#c9d1d9" font-size="11">The 4-byte signature 4C 8B D1 B8 is the universal marker for a clean syscall stub on x64 Windows.</text>
+  <text x="50" y="550" fill="#f0883e" font-size="11">If those bytes are missing, the stub is hooked — use address sorting or Gate techniques instead.</text>
+</svg>

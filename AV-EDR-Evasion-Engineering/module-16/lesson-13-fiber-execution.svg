@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#d2a8ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Fiber-Based Shellcode Execution</text>
+
+  <!-- What are fibers -->
+  <rect x="30" y="55" width="440" height="100" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="80" fill="#58a6ff" font-size="13" font-weight="bold">What Are Fibers?</text>
+  <text x="50" y="102" fill="#c9d1d9" font-size="11">Fibers are user-mode scheduled execution units within a thread.</text>
+  <text x="50" y="120" fill="#c9d1d9" font-size="11">Unlike threads, fibers are invisible to the kernel — no thread</text>
+  <text x="50" y="138" fill="#c9d1d9" font-size="11">creation events, no kernel callbacks, no ETW thread telemetry.</text>
+
+  <!-- Execution flow -->
+  <rect x="30" y="175" width="160" height="80" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="110" y="200" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">1. Convert</text>
+  <text x="110" y="220" text-anchor="middle" fill="#7ee787" font-size="9">ConvertThread</text>
+  <text x="110" y="235" text-anchor="middle" fill="#7ee787" font-size="9">ToFiber(NULL)</text>
+
+  <line x1="190" y1="215" x2="225" y2="215" stroke="#d2a8ff" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="235" y="175" width="160" height="80" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="315" y="200" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">2. Alloc + Write</text>
+  <text x="315" y="220" text-anchor="middle" fill="#7ee787" font-size="9">VirtualAlloc(RW)</text>
+  <text x="315" y="235" text-anchor="middle" fill="#7ee787" font-size="9">memcpy(shellcode)</text>
+
+  <line x1="395" y1="215" x2="430" y2="215" stroke="#d2a8ff" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="440" y="175" width="160" height="80" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="520" y="200" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">3. Create Fiber</text>
+  <text x="520" y="220" text-anchor="middle" fill="#7ee787" font-size="9">CreateFiber(0,</text>
+  <text x="520" y="235" text-anchor="middle" fill="#7ee787" font-size="9">  shellcodeAddr, 0)</text>
+
+  <line x1="600" y1="215" x2="635" y2="215" stroke="#d2a8ff" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="645" y="175" width="160" height="80" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="725" y="200" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">4. Switch</text>
+  <text x="725" y="220" text-anchor="middle" fill="#7ee787" font-size="9">VirtualProtect(RX)</text>
+  <text x="725" y="235" text-anchor="middle" fill="#7ee787" font-size="9">SwitchToFiber(fib)</text>
+
+  <line x1="805" y1="215" x2="840" y2="215" stroke="#d2a8ff" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="850" y="175" width="120" height="80" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="910" y="200" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">5. Cleanup</text>
+  <text x="910" y="220" text-anchor="middle" fill="#7ee787" font-size="9">DeleteFiber()</text>
+  <text x="910" y="235" text-anchor="middle" fill="#7ee787" font-size="9">VirtualFree()</text>
+
+  <!-- Thread vs Fiber comparison -->
+  <rect x="30" y="280" width="940" height="140" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="500" y="305" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Thread vs Fiber: Why Fibers Evade</text>
+
+  <text x="60" y="332" fill="#8b949e" font-size="10">Property</text>
+  <text x="300" y="332" text-anchor="middle" fill="#f85149" font-size="10">CreateRemoteThread</text>
+  <text x="550" y="332" text-anchor="middle" fill="#f0883e" font-size="10">QueueUserAPC</text>
+  <text x="800" y="332" text-anchor="middle" fill="#3fb950" font-size="10">CreateFiber</text>
+  <line x1="60" y1="338" x2="940" y2="338" stroke="#30363d"/>
+
+  <text x="60" y="358" fill="#c9d1d9" font-size="10">Kernel notification</text>
+  <text x="300" y="358" text-anchor="middle" fill="#f85149" font-size="10">PsSetCreateThreadNotify</text>
+  <text x="550" y="358" text-anchor="middle" fill="#f0883e" font-size="10">APC queue visible</text>
+  <text x="800" y="358" text-anchor="middle" fill="#3fb950" font-size="10">NONE</text>
+
+  <text x="60" y="378" fill="#c9d1d9" font-size="10">ETW event</text>
+  <text x="300" y="378" text-anchor="middle" fill="#f85149" font-size="10">Thread create event</text>
+  <text x="550" y="378" text-anchor="middle" fill="#f0883e" font-size="10">APC queue event</text>
+  <text x="800" y="378" text-anchor="middle" fill="#3fb950" font-size="10">NONE</text>
+
+  <text x="60" y="398" fill="#c9d1d9" font-size="10">Cross-process</text>
+  <text x="300" y="398" text-anchor="middle" fill="#c9d1d9" font-size="10">Yes (handle req)</text>
+  <text x="550" y="398" text-anchor="middle" fill="#c9d1d9" font-size="10">Yes (handle req)</text>
+  <text x="800" y="398" text-anchor="middle" fill="#c9d1d9" font-size="10">Same process only</text>
+
+  <!-- Code example -->
+  <rect x="30" y="440" width="460" height="125" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="50" y="465" fill="#3fb950" font-size="12" font-weight="bold">Complete Example</text>
+  <text x="50" y="488" fill="#7ee787" font-size="10">PVOID mainFiber = ConvertThreadToFiber(NULL);</text>
+  <text x="50" y="506" fill="#7ee787" font-size="10">PVOID mem = VirtualAlloc(0, sz, ...PAGE_RW);</text>
+  <text x="50" y="524" fill="#7ee787" font-size="10">memcpy(mem, shellcode, sz);</text>
+  <text x="50" y="542" fill="#7ee787" font-size="10">VirtualProtect(mem, sz, PAGE_EXECUTE_READ,&amp;old);</text>
+  <text x="50" y="558" fill="#f0883e" font-size="10">PVOID fib = CreateFiber(0, mem, NULL);</text>
+
+  <rect x="510" y="440" width="460" height="125" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="530" y="465" fill="#f0883e" font-size="12" font-weight="bold">OPSEC Enhancements</text>
+  <text x="530" y="488" fill="#c9d1d9" font-size="11">• Use indirect syscalls for VirtualAlloc/Protect</text>
+  <text x="530" y="508" fill="#c9d1d9" font-size="11">• Module stomp instead of private alloc</text>
+  <text x="530" y="528" fill="#c9d1d9" font-size="11">• Encrypt shellcode, decrypt just before switch</text>
+  <text x="530" y="548" fill="#c9d1d9" font-size="11">• Switch back to main fiber for cleanup</text>
+</svg>

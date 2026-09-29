@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Callback-Based Execution Techniques</text>
+
+  <!-- Technique 1 -->
+  <rect x="30" y="55" width="300" height="155" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="78" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">EnumWindows</text>
+  <text x="50" y="100" fill="#7ee787" font-size="10">EnumWindows(</text>
+  <text x="60" y="116" fill="#c9d1d9" font-size="10">(WNDENUMPROC)shellcode,</text>
+  <text x="60" y="132" fill="#c9d1d9" font-size="10">0);</text>
+  <text x="50" y="155" fill="#8b949e" font-size="9">Callback invoked for each top-level window</text>
+  <text x="50" y="170" fill="#8b949e" font-size="9">Shellcode runs per window — return FALSE</text>
+  <text x="50" y="185" fill="#8b949e" font-size="9">to stop after first execution</text>
+  <text x="50" y="200" fill="#3fb950" font-size="9">Detection: LOW — common API</text>
+
+  <!-- Technique 2 -->
+  <rect x="350" y="55" width="300" height="155" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="500" y="78" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">CreateTimerQueueTimer</text>
+  <text x="370" y="100" fill="#7ee787" font-size="10">CreateTimerQueueTimer(</text>
+  <text x="380" y="116" fill="#c9d1d9" font-size="10">&amp;hTimer, NULL,</text>
+  <text x="380" y="132" fill="#c9d1d9" font-size="10">(WAITORTIMERCALLBACK)sc,</text>
+  <text x="380" y="148" fill="#c9d1d9" font-size="10">NULL, 0, 0, 0);</text>
+  <text x="370" y="170" fill="#8b949e" font-size="9">Timer fires immediately (dueTime=0)</text>
+  <text x="370" y="185" fill="#8b949e" font-size="9">Runs in thread pool thread</text>
+  <text x="370" y="200" fill="#d2a8ff" font-size="9">Detection: MEDIUM — timer patterns</text>
+
+  <!-- Technique 3 -->
+  <rect x="670" y="55" width="310" height="155" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="825" y="78" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">TLS Callbacks</text>
+  <text x="690" y="100" fill="#7ee787" font-size="10">// PE .tls section</text>
+  <text x="690" y="116" fill="#7ee787" font-size="10">void NTAPI TlsCallback(</text>
+  <text x="700" y="132" fill="#c9d1d9" font-size="10">PVOID DllHandle,</text>
+  <text x="700" y="148" fill="#c9d1d9" font-size="10">DWORD Reason, PVOID) {</text>
+  <text x="700" y="164" fill="#f0883e" font-size="10">  ExecuteShellcode();</text>
+  <text x="690" y="180" fill="#7ee787" font-size="10">}</text>
+  <text x="690" y="200" fill="#f0883e" font-size="9">Runs BEFORE main() — pre-EP execution</text>
+
+  <!-- More techniques -->
+  <rect x="30" y="230" width="300" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="180" y="253" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">EnumChildWindows</text>
+  <text x="50" y="278" fill="#7ee787" font-size="10">EnumChildWindows(</text>
+  <text x="60" y="294" fill="#c9d1d9" font-size="10">GetDesktopWindow(),</text>
+  <text x="60" y="310" fill="#c9d1d9" font-size="10">(WNDENUMPROC)shellcode, 0);</text>
+  <text x="50" y="335" fill="#8b949e" font-size="9">Variant — enumerates child windows</text>
+
+  <rect x="350" y="230" width="300" height="120" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="500" y="253" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">EnumDesktops</text>
+  <text x="370" y="278" fill="#7ee787" font-size="10">EnumDesktopsW(</text>
+  <text x="380" y="294" fill="#c9d1d9" font-size="10">GetProcessWindowStation(),</text>
+  <text x="380" y="310" fill="#c9d1d9" font-size="10">(DESKTOPENUMPROCW)sc, 0);</text>
+  <text x="370" y="335" fill="#8b949e" font-size="9">Rarely monitored by EDRs</text>
+
+  <rect x="670" y="230" width="310" height="120" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="825" y="253" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">CertEnumSystemStore</text>
+  <text x="690" y="278" fill="#7ee787" font-size="10">CertEnumSystemStore(</text>
+  <text x="700" y="294" fill="#c9d1d9" font-size="10">CERT_SYSTEM_STORE...,</text>
+  <text x="700" y="310" fill="#c9d1d9" font-size="10">NULL, NULL, (PFN)sc);</text>
+  <text x="690" y="335" fill="#8b949e" font-size="9">Obscure — very low EDR coverage</text>
+
+  <!-- Detection matrix -->
+  <rect x="30" y="370" width="940" height="195" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="398" fill="#58a6ff" font-size="14" font-weight="bold">Callback Execution — Detection Matrix</text>
+
+  <text x="50" y="425" fill="#8b949e" font-size="10">Callback API</text>
+  <text x="300" y="425" fill="#8b949e" font-size="10">Thread Creation</text>
+  <text x="500" y="425" fill="#8b949e" font-size="10">Kernel Event</text>
+  <text x="700" y="425" fill="#8b949e" font-size="10">EDR Coverage</text>
+  <line x1="50" y1="432" x2="950" y2="432" stroke="#30363d"/>
+
+  <text x="50" y="455" fill="#c9d1d9" font-size="10">EnumWindows</text>
+  <text x="300" y="455" fill="#3fb950" font-size="10">No (same thread)</text>
+  <text x="500" y="455" fill="#3fb950" font-size="10">None</text>
+  <text x="700" y="455" fill="#f0883e" font-size="10">Medium (well-known)</text>
+
+  <text x="50" y="478" fill="#c9d1d9" font-size="10">CreateTimerQueueTimer</text>
+  <text x="300" y="478" fill="#f0883e" font-size="10">Pool thread (existing)</text>
+  <text x="500" y="478" fill="#3fb950" font-size="10">None</text>
+  <text x="700" y="478" fill="#f0883e" font-size="10">Medium</text>
+
+  <text x="50" y="501" fill="#c9d1d9" font-size="10">TLS Callback</text>
+  <text x="300" y="501" fill="#3fb950" font-size="10">No (main thread)</text>
+  <text x="500" y="501" fill="#3fb950" font-size="10">None</text>
+  <text x="700" y="501" fill="#f85149" font-size="10">High (static analysis)</text>
+
+  <text x="50" y="524" fill="#c9d1d9" font-size="10">CertEnumSystemStore</text>
+  <text x="300" y="524" fill="#3fb950" font-size="10">No (same thread)</text>
+  <text x="500" y="524" fill="#3fb950" font-size="10">None</text>
+  <text x="700" y="524" fill="#3fb950" font-size="10">Very low</text>
+
+  <text x="50" y="550" fill="#f0883e" font-size="11" font-weight="bold">Key insight: callback execution avoids thread creation events entirely — the shellcode runs in an existing thread</text>
+</svg>

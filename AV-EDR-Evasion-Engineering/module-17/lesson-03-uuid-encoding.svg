@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">UUID Shellcode Encoding — Hiding Payload as UUID Strings</text>
+
+  <!-- Raw Shellcode -->
+  <rect x="30" y="55" width="280" height="130" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="170" y="78" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Raw Shellcode (Detected)</text>
+  <text x="50" y="105" fill="#ff7b72" font-size="10">FC 48 83 E4 F0 E8 C0 00</text>
+  <text x="50" y="123" fill="#ff7b72" font-size="10">00 00 41 51 41 50 52 51</text>
+  <text x="50" y="141" fill="#ff7b72" font-size="10">56 48 31 D2 65 48 8B 52</text>
+  <text x="50" y="165" fill="#8b949e" font-size="9">Binary blob — trivial for AV signatures</text>
+
+  <!-- Arrow -->
+  <line x1="320" y1="120" x2="385" y2="120" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="352" y="110" text-anchor="middle" fill="#f0883e" font-size="10">Encode</text>
+  <text x="352" y="140" text-anchor="middle" fill="#f0883e" font-size="9">16 bytes</text>
+  <text x="352" y="152" text-anchor="middle" fill="#f0883e" font-size="9">per UUID</text>
+
+  <!-- UUID Strings -->
+  <rect x="395" y="55" width="350" height="130" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="570" y="78" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">UUID-Encoded Payload</text>
+  <text x="415" y="105" fill="#7ee787" font-size="10">"e48348fc-e8f0-00c0-0000-415141505251"</text>
+  <text x="415" y="125" fill="#7ee787" font-size="10">"d2314856-4865-528b-6048-8b5218488b52"</text>
+  <text x="415" y="145" fill="#7ee787" font-size="10">"728b4820-b70f-4a4a-4d31-c94831c0ac3c"</text>
+  <text x="415" y="168" fill="#8b949e" font-size="9">Looks like legitimate GUID data to scanners</text>
+
+  <!-- Decode Flow -->
+  <text x="500" y="215" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Runtime Decode &amp; Execute Flow</text>
+
+  <rect x="30" y="235" width="190" height="80" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="125" y="258" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">1. Allocate Memory</text>
+  <text x="45" y="280" fill="#c9d1d9" font-size="9">HeapAlloc or VirtualAlloc</text>
+  <text x="45" y="295" fill="#c9d1d9" font-size="9">PAGE_READWRITE first</text>
+
+  <line x1="225" y1="275" x2="265" y2="275" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="270" y="235" width="210" height="80" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="375" y="258" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">2. Decode UUIDs</text>
+  <text x="285" y="280" fill="#7ee787" font-size="9">UuidFromStringA(uuid, &amp;buf)</text>
+  <text x="285" y="295" fill="#c9d1d9" font-size="9">Loop: each UUID = 16 bytes</text>
+
+  <line x1="485" y1="275" x2="525" y2="275" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="530" y="235" width="210" height="80" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="635" y="258" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">3. Set Executable</text>
+  <text x="545" y="280" fill="#7ee787" font-size="9">VirtualProtect(RX)</text>
+  <text x="545" y="295" fill="#c9d1d9" font-size="9">RW to RX flip after decode</text>
+
+  <line x1="745" y1="275" x2="785" y2="275" stroke="#3fb950" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="790" y="235" width="190" height="80" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="885" y="258" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">4. Execute</text>
+  <text x="805" y="280" fill="#7ee787" font-size="9">EnumSystemLocalesA(buf,0)</text>
+  <text x="805" y="295" fill="#c9d1d9" font-size="9">or callback / cast-to-fn</text>
+
+  <!-- Byte Layout -->
+  <rect x="30" y="340" width="940" height="100" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="363" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">UUID Byte Order (IMPORTANT — Not Sequential!)</text>
+  <text x="50" y="388" fill="#c9d1d9" font-size="10">UUID: "e48348fc-e8f0-00c0-0000-415141505251"</text>
+  <text x="50" y="408" fill="#f0883e" font-size="10">Data1 (LE):  FC 48 83 E4    Data2 (LE): F0 E8    Data3 (LE): C0 00    Data4 (BE): 00 00 41 51 41 50 52 51</text>
+  <text x="50" y="428" fill="#8b949e" font-size="9">First 3 groups are little-endian, last 2 groups are big-endian — must account for byte swap during encoding</text>
+
+  <!-- Legend -->
+  <rect x="30" y="455" width="940" height="110" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="478" fill="#58a6ff" font-size="13" font-weight="bold">Evasion Analysis</text>
+  <text x="50" y="500" fill="#c9d1d9" font-size="11">1. UUID strings bypass static signature scanning — no raw shellcode bytes in binary</text>
+  <text x="50" y="520" fill="#c9d1d9" font-size="11">2. UuidFromStringA is a legitimate RPCRT4 API — not suspicious in isolation</text>
+  <text x="50" y="540" fill="#c9d1d9" font-size="11">3. Detection: behavioral — HeapAlloc + UuidFromString loop + VirtualProtect + callback execution</text>
+  <rect x="50" y="552" width="12" height="12" fill="#f85149"/><text x="70" y="563" fill="#8b949e" font-size="10">Raw Bytes</text>
+  <rect x="180" y="552" width="12" height="12" fill="#3fb950"/><text x="200" y="563" fill="#8b949e" font-size="10">UUID Encoded</text>
+  <rect x="330" y="552" width="12" height="12" fill="#f0883e"/><text x="350" y="563" fill="#8b949e" font-size="10">Decode Step</text>
+</svg>

@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Full Multi-DLL Unhooking Orchestration</text>
+
+  <!-- Phase 1 -->
+  <rect x="20" y="55" width="190" height="140" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="115" y="75" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">Phase 1: Bootstrap</text>
+  <text x="35" y="95" fill="#c9d1d9" font-size="9">Resolve SSNs via</text>
+  <text x="35" y="110" fill="#c9d1d9" font-size="9">address sorting</text>
+  <text x="35" y="130" fill="#7ee787" font-size="9">NtProtectVirtualMemory</text>
+  <text x="35" y="145" fill="#7ee787" font-size="9">NtOpenSection</text>
+  <text x="35" y="160" fill="#7ee787" font-size="9">NtMapViewOfSection</text>
+  <text x="35" y="180" fill="#d2a8ff" font-size="8">Direct syscalls only</text>
+
+  <line x1="215" y1="125" x2="235" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Phase 2 -->
+  <rect x="240" y="55" width="150" height="140" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="315" y="75" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Phase 2: ntdll</text>
+  <text x="255" y="95" fill="#c9d1d9" font-size="9">Open KnownDlls</text>
+  <text x="255" y="110" fill="#c9d1d9" font-size="9">\KnownDlls\ntdll</text>
+  <text x="255" y="130" fill="#c9d1d9" font-size="9">Map clean view</text>
+  <text x="255" y="150" fill="#c9d1d9" font-size="9">Replace .text</text>
+  <text x="255" y="170" fill="#3fb950" font-size="8">✓ All Nt* clean</text>
+  <text x="255" y="185" fill="#8b949e" font-size="8">Priority: HIGHEST</text>
+
+  <line x1="395" y1="125" x2="415" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Phase 3 -->
+  <rect x="420" y="55" width="150" height="140" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="495" y="75" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Phase 3: kernelbase</text>
+  <text x="435" y="95" fill="#c9d1d9" font-size="9">Use clean ntdll</text>
+  <text x="435" y="110" fill="#c9d1d9" font-size="9">NtProtectVirtualMem</text>
+  <text x="435" y="130" fill="#c9d1d9" font-size="9">Read from KnownDlls</text>
+  <text x="435" y="150" fill="#c9d1d9" font-size="9">Replace .text</text>
+  <text x="435" y="170" fill="#f0883e" font-size="8">Real Win32 logic</text>
+  <text x="435" y="185" fill="#8b949e" font-size="8">Priority: HIGH</text>
+
+  <line x1="575" y1="125" x2="595" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Phase 4 -->
+  <rect x="600" y="55" width="130" height="140" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="665" y="75" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Phase 4: kernel32</text>
+  <text x="615" y="95" fill="#c9d1d9" font-size="9">Wrapper DLL</text>
+  <text x="615" y="110" fill="#c9d1d9" font-size="9">Mostly forwards</text>
+  <text x="615" y="130" fill="#c9d1d9" font-size="9">Replace .text</text>
+  <text x="615" y="150" fill="#58a6ff" font-size="8">Low priority</text>
+  <text x="615" y="165" fill="#8b949e" font-size="8">Often optional</text>
+
+  <line x1="735" y1="125" x2="755" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Phase 5 -->
+  <rect x="760" y="55" width="220" height="140" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="870" y="75" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Phase 5: user32 + others</text>
+  <text x="775" y="95" fill="#c9d1d9" font-size="9">user32.dll — selective</text>
+  <text x="775" y="110" fill="#c9d1d9" font-size="9">advapi32.dll — if needed</text>
+  <text x="775" y="130" fill="#c9d1d9" font-size="9">sechost.dll — if needed</text>
+  <text x="775" y="150" fill="#c9d1d9" font-size="9">ws2_32.dll — networking</text>
+  <text x="775" y="170" fill="#f85149" font-size="8">Only if required by ops</text>
+  <text x="775" y="185" fill="#8b949e" font-size="8">Priority: SELECTIVE</text>
+
+  <!-- DLL dependency map -->
+  <rect x="20" y="215" width="960" height="175" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="240" fill="#58a6ff" font-size="13" font-weight="bold">DLL Dependency Map — Unhooking Order</text>
+
+  <!-- Dependency visualization -->
+  <rect x="420" y="260" width="160" height="35" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="500" y="282" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">ntdll.dll</text>
+
+  <line x1="420" y1="295" x2="220" y2="320" stroke="#f0883e" stroke-width="1.5"/>
+  <line x1="500" y1="295" x2="500" y2="320" stroke="#f0883e" stroke-width="1.5"/>
+  <line x1="580" y1="295" x2="780" y2="320" stroke="#f0883e" stroke-width="1.5"/>
+
+  <rect x="130" y="320" width="160" height="30" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="210" y="340" text-anchor="middle" fill="#f0883e" font-size="10">kernelbase.dll</text>
+
+  <rect x="420" y="320" width="160" height="30" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="340" text-anchor="middle" fill="#58a6ff" font-size="10">kernel32.dll</text>
+
+  <rect x="700" y="320" width="160" height="30" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="780" y="340" text-anchor="middle" fill="#d2a8ff" font-size="10">user32.dll</text>
+
+  <line x1="130" y1="350" x2="70" y2="370" stroke="#8b949e" stroke-width="1"/>
+  <line x1="210" y1="350" x2="210" y2="370" stroke="#8b949e" stroke-width="1"/>
+  <line x1="290" y1="350" x2="350" y2="370" stroke="#8b949e" stroke-width="1"/>
+
+  <rect x="30" y="370" width="110" height="25" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="85" y="387" text-anchor="middle" fill="#8b949e" font-size="9">advapi32.dll</text>
+
+  <rect x="160" y="370" width="110" height="25" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="215" y="387" text-anchor="middle" fill="#8b949e" font-size="9">sechost.dll</text>
+
+  <rect x="300" y="370" width="110" height="25" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="355" y="387" text-anchor="middle" fill="#8b949e" font-size="9">ws2_32.dll</text>
+
+  <!-- Risk matrix -->
+  <rect x="20" y="410" width="960" height="155" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <text x="50" y="435" fill="#58a6ff" font-size="12" font-weight="bold">Multi-DLL Unhooking Risk Matrix</text>
+  <text x="50" y="460" fill="#8b949e" font-size="10">DLL</text>
+  <text x="200" y="460" fill="#8b949e" font-size="10">In KnownDlls?</text>
+  <text x="380" y="460" fill="#8b949e" font-size="10">Risk of crash</text>
+  <text x="550" y="460" fill="#8b949e" font-size="10">Full vs Selective</text>
+  <text x="750" y="460" fill="#8b949e" font-size="10">Noise level</text>
+  <line x1="50" y1="468" x2="960" y2="468" stroke="#30363d"/>
+  <text x="50" y="488" fill="#3fb950" font-size="10">ntdll.dll</text>
+  <text x="200" y="488" fill="#3fb950" font-size="10">Yes (always)</text>
+  <text x="380" y="488" fill="#3fb950" font-size="10">Low</text>
+  <text x="550" y="488" fill="#c9d1d9" font-size="10">Full .text safe</text>
+  <text x="750" y="488" fill="#f0883e" font-size="10">Medium</text>
+  <text x="50" y="508" fill="#f0883e" font-size="10">kernelbase.dll</text>
+  <text x="200" y="508" fill="#3fb950" font-size="10">Yes (Win10+)</text>
+  <text x="380" y="508" fill="#f0883e" font-size="10">Medium</text>
+  <text x="550" y="508" fill="#c9d1d9" font-size="10">Selective preferred</text>
+  <text x="750" y="508" fill="#f0883e" font-size="10">Medium-High</text>
+  <text x="50" y="528" fill="#58a6ff" font-size="10">kernel32.dll</text>
+  <text x="200" y="528" fill="#3fb950" font-size="10">Yes</text>
+  <text x="380" y="528" fill="#3fb950" font-size="10">Low (wrappers)</text>
+  <text x="550" y="528" fill="#c9d1d9" font-size="10">Usually unnecessary</text>
+  <text x="750" y="528" fill="#f0883e" font-size="10">Medium</text>
+  <text x="50" y="548" fill="#f85149" font-size="10">user32.dll</text>
+  <text x="200" y="548" fill="#f85149" font-size="10">Varies by build</text>
+  <text x="380" y="548" fill="#f85149" font-size="10">High (callbacks)</text>
+  <text x="550" y="548" fill="#c9d1d9" font-size="10">Selective ONLY</text>
+  <text x="750" y="548" fill="#f85149" font-size="10">High</text>
+</svg>

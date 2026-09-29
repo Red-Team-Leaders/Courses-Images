@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#d2a8ff"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">SysWhispers 4 — Next-Generation Dynamic Syscall Framework</text>
+  <text x="500" y="50" text-anchor="middle" fill="#8b949e" font-size="10">github.com/JoasASantos/SysWhispers4</text>
+
+  <!-- Architecture -->
+  <rect x="30" y="62" width="450" height="205" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="255" y="85" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">SW4 Architecture</text>
+  <text x="50" y="110" fill="#3fb950" font-size="10" font-weight="bold">Dynamic SSN Resolution Engine</text>
+  <text x="50" y="130" fill="#c9d1d9" font-size="9">• Multi-strategy SSN resolver (sort + gate + pattern)</text>
+  <text x="50" y="148" fill="#c9d1d9" font-size="9">• Automatic fallback chain if primary method fails</text>
+  <text x="50" y="166" fill="#c9d1d9" font-size="9">• No hardcoded SSNs or version tables</text>
+  <text x="50" y="190" fill="#3fb950" font-size="10" font-weight="bold">Advanced Indirect Syscalls</text>
+  <text x="50" y="210" fill="#c9d1d9" font-size="9">• No egg-hunter memory writes (cleaner than SW3)</text>
+  <text x="50" y="228" fill="#c9d1d9" font-size="9">• Dynamic gadget selection from multiple DLLs</text>
+  <text x="50" y="246" fill="#c9d1d9" font-size="9">• Per-call randomization of execution path</text>
+
+  <!-- Improvements -->
+  <rect x="520" y="62" width="450" height="205" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="745" y="85" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Improvements Over SW3</text>
+  <text x="540" y="112" fill="#3fb950" font-size="10">✓ No ntdll memory modification</text>
+  <text x="550" y="130" fill="#c9d1d9" font-size="9">SW3 writes egg markers; SW4 reads only</text>
+  <text x="540" y="152" fill="#3fb950" font-size="10">✓ Call-stack aware execution</text>
+  <text x="550" y="170" fill="#c9d1d9" font-size="9">Integrates synthetic stack frame construction</text>
+  <text x="540" y="192" fill="#3fb950" font-size="10">✓ Anti-signature stub polymorphism</text>
+  <text x="550" y="210" fill="#c9d1d9" font-size="9">Each stub instance looks different in memory</text>
+  <text x="540" y="232" fill="#3fb950" font-size="10">✓ Modern EDR countermeasures built-in</text>
+  <text x="550" y="250" fill="#c9d1d9" font-size="9">ETW-Ti awareness, instrumentation callback detection</text>
+
+  <!-- Flow diagram -->
+  <rect x="30" y="282" width="940" height="130" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="305" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">SW4 Execution Flow</text>
+
+  <rect x="50" y="320" width="140" height="55" rx="4" fill="#1a1a2e" stroke="#d2a8ff"/>
+  <text x="120" y="342" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="bold">Init Resolver</text>
+  <text x="120" y="363" text-anchor="middle" fill="#8b949e" font-size="8">Multi-strategy SSN</text>
+  <line x1="195" y1="347" x2="215" y2="347" stroke="#d2a8ff" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="220" y="320" width="140" height="55" rx="4" fill="#1a1a2e" stroke="#f0883e"/>
+  <text x="290" y="342" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">Select Gadget</text>
+  <text x="290" y="363" text-anchor="middle" fill="#8b949e" font-size="8">Random DLL source</text>
+  <line x1="365" y1="347" x2="385" y2="347" stroke="#d2a8ff" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="390" y="320" width="140" height="55" rx="4" fill="#1a1a2e" stroke="#58a6ff"/>
+  <text x="460" y="342" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="bold">Build Stack</text>
+  <text x="460" y="363" text-anchor="middle" fill="#8b949e" font-size="8">Synthetic frames</text>
+  <line x1="535" y1="347" x2="555" y2="347" stroke="#d2a8ff" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="560" y="320" width="140" height="55" rx="4" fill="#1a1a2e" stroke="#3fb950"/>
+  <text x="630" y="342" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">Polymorphic Stub</text>
+  <text x="630" y="363" text-anchor="middle" fill="#8b949e" font-size="8">Unique per call</text>
+  <line x1="705" y1="347" x2="725" y2="347" stroke="#3fb950" stroke-width="1.5" marker-end="url(#a2)"/>
+
+  <rect x="730" y="320" width="110" height="55" rx="4" fill="#1a1a2e" stroke="#3fb950"/>
+  <text x="785" y="342" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">syscall;ret</text>
+  <text x="785" y="363" text-anchor="middle" fill="#3fb950" font-size="8">Indirect</text>
+  <line x1="845" y1="347" x2="865" y2="347" stroke="#3fb950" stroke-width="1.5" marker-end="url(#a2)"/>
+
+  <rect x="870" y="320" width="85" height="55" rx="4" fill="#1a1a2e" stroke="#58a6ff"/>
+  <text x="912" y="347" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="bold">Kernel</text>
+
+  <!-- Comparison table -->
+  <rect x="30" y="428" width="940" height="137" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="453" fill="#58a6ff" font-size="13" font-weight="bold">SysWhispers Family Comparison</text>
+  <text x="50" y="478" fill="#8b949e" font-size="9">Feature              SW1         SW2         SW3             SW4</text>
+  <line x1="50" y1="485" x2="950" y2="485" stroke="#30363d"/>
+  <text x="50" y="500" fill="#c9d1d9" font-size="9">SSN Resolution       Hardcoded   Zw* sort    Zw* sort        Multi-strategy</text>
+  <text x="50" y="515" fill="#c9d1d9" font-size="9">Syscall Type         Direct      Random jmp  Egg-hunter      Polymorphic indirect</text>
+  <text x="50" y="530" fill="#c9d1d9" font-size="9">ntdll Modification   None        None        Egg write       None (read-only)</text>
+  <text x="50" y="545" fill="#c9d1d9" font-size="9">Stack Spoofing       No          No          No              Yes (built-in)</text>
+  <text x="50" y="558" fill="#c9d1d9" font-size="9">Stub Polymorphism    No          No          No              Yes (per-call)</text>
+</svg>

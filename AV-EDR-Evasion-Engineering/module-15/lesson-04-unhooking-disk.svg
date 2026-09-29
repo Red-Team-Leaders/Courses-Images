@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Manual Unhooking from Disk — Clean ntdll.dll Restoration</text>
+
+  <!-- Step 1: Read from disk -->
+  <rect x="30" y="60" width="200" height="130" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="130" y="83" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">1. Read from Disk</text>
+  <text x="45" y="105" fill="#c9d1d9" font-size="10">CreateFileW(</text>
+  <text x="50" y="120" fill="#7ee787" font-size="9">"C:\Windows\System32\</text>
+  <text x="50" y="135" fill="#7ee787" font-size="9"> ntdll.dll")</text>
+  <text x="45" y="155" fill="#8b949e" font-size="9">ReadFile into buffer</text>
+  <text x="45" y="175" fill="#f85149" font-size="8">⚠ Minifilter sees this</text>
+
+  <!-- Arrow -->
+  <line x1="235" y1="125" x2="270" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 2: Parse PE -->
+  <rect x="275" y="60" width="200" height="130" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="375" y="83" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">2. Parse PE Headers</text>
+  <text x="290" y="105" fill="#c9d1d9" font-size="10">DOS Header → e_lfanew</text>
+  <text x="290" y="123" fill="#c9d1d9" font-size="10">NT Headers → Optional</text>
+  <text x="290" y="141" fill="#c9d1d9" font-size="10">Section Headers[]</text>
+  <text x="290" y="163" fill="#7ee787" font-size="10">Find .text section</text>
+  <text x="290" y="178" fill="#8b949e" font-size="9">VirtualAddress + SizeOfRawData</text>
+
+  <!-- Arrow -->
+  <line x1="480" y1="125" x2="515" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 3: Extract .text -->
+  <rect x="520" y="60" width="200" height="130" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="620" y="83" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">3. Extract .text</text>
+  <text x="535" y="105" fill="#c9d1d9" font-size="10">PointerToRawData →</text>
+  <text x="535" y="123" fill="#c9d1d9" font-size="10">file offset of .text</text>
+  <text x="535" y="148" fill="#7ee787" font-size="10">Copy raw bytes to</text>
+  <text x="535" y="163" fill="#7ee787" font-size="10">clean_text buffer</text>
+  <text x="535" y="178" fill="#8b949e" font-size="9">~1MB of clean code</text>
+
+  <!-- Arrow -->
+  <line x1="725" y1="125" x2="760" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 4: Overwrite -->
+  <rect x="765" y="60" width="210" height="130" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="870" y="83" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">4. Overwrite Hooks</text>
+  <text x="780" y="105" fill="#c9d1d9" font-size="10">VirtualProtect → RWX</text>
+  <text x="780" y="123" fill="#c9d1d9" font-size="10">memcpy(ntdll_text,</text>
+  <text x="780" y="138" fill="#c9d1d9" font-size="10">  clean_text, size)</text>
+  <text x="780" y="158" fill="#c9d1d9" font-size="10">VirtualProtect → RX</text>
+  <text x="780" y="178" fill="#3fb950" font-size="9">✓ Hooks removed</text>
+
+  <!-- Memory comparison -->
+  <rect x="30" y="220" width="450" height="170" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="255" y="243" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Before: Hooked ntdll in Memory</text>
+  <text x="50" y="268" fill="#ff7b72" font-size="10">NtAllocateVirtualMemory: E9 XX XX XX XX jmp EDR</text>
+  <text x="50" y="288" fill="#ff7b72" font-size="10">NtProtectVirtualMemory: E9 XX XX XX XX jmp EDR</text>
+  <text x="50" y="308" fill="#ff7b72" font-size="10">NtWriteVirtualMemory:   E9 XX XX XX XX jmp EDR</text>
+  <text x="50" y="328" fill="#ff7b72" font-size="10">NtCreateThreadEx:       E9 XX XX XX XX jmp EDR</text>
+  <text x="50" y="355" fill="#8b949e" font-size="10">All Nt* functions redirected through EDR detour</text>
+  <text x="50" y="375" fill="#f85149" font-size="9">EDR has full visibility into every API call</text>
+
+  <!-- Arrow between -->
+  <line x1="485" y1="305" x2="525" y2="305" stroke="#3fb950" stroke-width="3" marker-end="url(#ar)"/>
+  <text x="505" y="295" text-anchor="middle" fill="#3fb950" font-size="10">memcpy</text>
+
+  <rect x="530" y="220" width="450" height="170" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="755" y="243" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">After: Clean ntdll Restored</text>
+  <text x="550" y="268" fill="#7ee787" font-size="10">NtAllocateVirtualMemory: 4C 8B D1 B8 18 00 syscall</text>
+  <text x="550" y="288" fill="#7ee787" font-size="10">NtProtectVirtualMemory: 4C 8B D1 B8 50 00 syscall</text>
+  <text x="550" y="308" fill="#7ee787" font-size="10">NtWriteVirtualMemory:   4C 8B D1 B8 3A 00 syscall</text>
+  <text x="550" y="328" fill="#7ee787" font-size="10">NtCreateThreadEx:       4C 8B D1 B8 C7 00 syscall</text>
+  <text x="550" y="355" fill="#8b949e" font-size="10">All stubs restored to original Microsoft bytes</text>
+  <text x="550" y="375" fill="#3fb950" font-size="9">Syscalls execute directly — EDR bypassed</text>
+
+  <!-- OPSEC note -->
+  <rect x="30" y="415" width="940" height="150" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="440" fill="#58a6ff" font-size="13" font-weight="bold">OPSEC Considerations</text>
+  <text x="50" y="465" fill="#f85149" font-size="10">⚠ Disk read of ntdll.dll visible to minifilter drivers</text>
+  <text x="50" y="485" fill="#f85149" font-size="10">⚠ VirtualProtect on ntdll .text section is high-signal indicator</text>
+  <text x="50" y="505" fill="#f85149" font-size="10">⚠ CrowdStrike correlates ntdll disk read + VirtualProtect = unhooking alert</text>
+  <text x="50" y="530" fill="#3fb950" font-size="10">✓ Preferred: Use KnownDlls section object (no minifilter traversal)</text>
+  <text x="50" y="550" fill="#3fb950" font-size="10">✓ Preferred: Use direct syscalls for the VirtualProtect call itself</text>
+</svg>

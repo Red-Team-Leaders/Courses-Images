@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Multi-Layer Encryption — Nested Cipher Staged Decryption</text>
+
+  <!-- Encryption Layers (onion) -->
+  <text x="500" y="65" text-anchor="middle" fill="#d2a8ff" font-size="14" font-weight="bold">Encryption Onion — Build Time</text>
+
+  <!-- Outer Layer -->
+  <rect x="100" y="80" width="800" height="200" rx="12" fill="none" stroke="#f85149" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="120" y="100" fill="#f85149" font-size="11" font-weight="bold">Layer 3: XOR (key derived from hostname)</text>
+
+  <!-- Middle Layer -->
+  <rect x="160" y="108" width="680" height="155" rx="10" fill="none" stroke="#f0883e" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="180" y="128" fill="#f0883e" font-size="11" font-weight="bold">Layer 2: AES-256-CTR (key from PBKDF2 + machine GUID)</text>
+
+  <!-- Inner Layer -->
+  <rect x="220" y="136" width="560" height="110" rx="8" fill="none" stroke="#3fb950" stroke-width="2"/>
+  <text x="240" y="156" fill="#3fb950" font-size="11" font-weight="bold">Layer 1: RC4 (key from domain SID hash)</text>
+
+  <!-- Core -->
+  <rect x="300" y="165" width="400" height="65" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="500" y="190" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Shellcode (Plaintext)</text>
+  <text x="500" y="215" text-anchor="middle" fill="#8b949e" font-size="10">FC 48 83 E4 F0 E8 C0 00 00 00 41 51 ...</text>
+
+  <!-- Decryption Flow -->
+  <text x="500" y="310" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Staged Decryption — Runtime (Reverse Order)</text>
+
+  <rect x="30" y="330" width="180" height="90" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="120" y="353" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Stage 1: XOR Decrypt</text>
+  <text x="45" y="375" fill="#c9d1d9" font-size="9">Derive key: hash(hostname)</text>
+  <text x="45" y="390" fill="#c9d1d9" font-size="9">XOR with rolling key</text>
+  <text x="45" y="405" fill="#8b949e" font-size="8">Strips outer layer</text>
+
+  <line x1="215" y1="375" x2="255" y2="375" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="260" y="330" width="200" height="90" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="360" y="353" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Stage 2: AES Decrypt</text>
+  <text x="275" y="375" fill="#c9d1d9" font-size="9">Derive key: PBKDF2(machineGUID)</text>
+  <text x="275" y="390" fill="#c9d1d9" font-size="9">BCryptDecrypt AES-256-CTR</text>
+  <text x="275" y="405" fill="#8b949e" font-size="8">Wrong machine = garbage out</text>
+
+  <line x1="465" y1="375" x2="505" y2="375" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="510" y="330" width="200" height="90" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="610" y="353" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Stage 3: RC4 Decrypt</text>
+  <text x="525" y="375" fill="#c9d1d9" font-size="9">Derive key: SHA256(domainSID)</text>
+  <text x="525" y="390" fill="#c9d1d9" font-size="9">RC4 PRGA stream decrypt</text>
+  <text x="525" y="405" fill="#8b949e" font-size="8">Wrong domain = crash</text>
+
+  <line x1="715" y1="375" x2="755" y2="375" stroke="#3fb950" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="760" y="330" width="210" height="90" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="865" y="353" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">Execute Shellcode</text>
+  <text x="775" y="375" fill="#7ee787" font-size="9">VirtualProtect(RX)</text>
+  <text x="775" y="390" fill="#7ee787" font-size="9">Execute via callback</text>
+  <text x="775" y="405" fill="#8b949e" font-size="8">All layers peeled</text>
+
+  <!-- Anti-Forensics -->
+  <rect x="30" y="440" width="450" height="125" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="255" y="463" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">Anti-Memory-Forensics</text>
+  <text x="50" y="488" fill="#c9d1d9" font-size="10">1. Zero each layer buffer after decryption</text>
+  <text x="50" y="508" fill="#c9d1d9" font-size="10">2. SecureZeroMemory — prevent compiler optimization</text>
+  <text x="50" y="528" fill="#c9d1d9" font-size="10">3. Only final plaintext exists momentarily</text>
+  <text x="50" y="548" fill="#f0883e" font-size="10">Memory dump captures at most one layer decrypted</text>
+
+  <!-- Legend -->
+  <rect x="510" y="440" width="460" height="125" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="530" y="463" fill="#58a6ff" font-size="13" font-weight="bold">Why Multi-Layer</text>
+  <text x="530" y="488" fill="#c9d1d9" font-size="10">1. Each layer requires different environmental key</text>
+  <text x="530" y="508" fill="#c9d1d9" font-size="10">2. Sandbox cannot derive all keys = cannot decrypt</text>
+  <text x="530" y="528" fill="#c9d1d9" font-size="10">3. Different cipher types defeat universal decryption</text>
+  <text x="530" y="548" fill="#c9d1d9" font-size="10">4. Staged: partial decrypt reveals nothing useful</text>
+</svg>

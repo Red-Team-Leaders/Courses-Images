@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">EAT (Export Address Table) Manipulation — DLL Export Internals</text>
+
+  <!-- Export Directory -->
+  <rect x="30" y="55" width="250" height="200" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="155" y="78" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">IMAGE_EXPORT_DIRECTORY</text>
+  <text x="45" y="100" fill="#c9d1d9" font-size="10">Name:              "ntdll.dll"</text>
+  <text x="45" y="118" fill="#c9d1d9" font-size="10">Base:              1</text>
+  <text x="45" y="136" fill="#3fb950" font-size="10">NumberOfFunctions: 2048</text>
+  <text x="45" y="154" fill="#f0883e" font-size="10">NumberOfNames:     1856</text>
+  <text x="45" y="175" fill="#d2a8ff" font-size="10">AddressOfFunctions  (RVA)</text>
+  <text x="45" y="193" fill="#f85149" font-size="10">AddressOfNames      (RVA)</text>
+  <text x="45" y="211" fill="#7ee787" font-size="10">AddressOfNameOrdinals(RVA)</text>
+  <text x="45" y="240" fill="#8b949e" font-size="9">Data Directory[0] in PE header</text>
+
+  <!-- Three Arrays -->
+  <rect x="320" y="55" width="200" height="150" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="420" y="78" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">AddressOfNames[]</text>
+  <text x="335" y="100" fill="#c9d1d9" font-size="9">[0] "NtAcceptConnectPort"</text>
+  <text x="335" y="116" fill="#c9d1d9" font-size="9">[1] "NtAccessCheck"</text>
+  <text x="335" y="132" fill="#f0883e" font-size="9">[2] "NtAllocateVirtualMemory"</text>
+  <text x="335" y="148" fill="#c9d1d9" font-size="9">[3] "NtClose"</text>
+  <text x="335" y="164" fill="#c9d1d9" font-size="9">...</text>
+  <text x="335" y="196" fill="#8b949e" font-size="8">Sorted alphabetically for binary search</text>
+
+  <rect x="550" y="55" width="150" height="150" rx="8" fill="#0d1117" stroke="#7ee787" stroke-width="2"/>
+  <text x="625" y="78" text-anchor="middle" fill="#7ee787" font-size="11" font-weight="bold">NameOrdinals[]</text>
+  <text x="565" y="100" fill="#c9d1d9" font-size="9">[0] = 5</text>
+  <text x="565" y="116" fill="#c9d1d9" font-size="9">[1] = 8</text>
+  <text x="565" y="132" fill="#f0883e" font-size="9">[2] = 24</text>
+  <text x="565" y="148" fill="#c9d1d9" font-size="9">[3] = 12</text>
+  <text x="565" y="164" fill="#c9d1d9" font-size="9">...</text>
+  <text x="565" y="196" fill="#8b949e" font-size="8">Index into Functions[]</text>
+
+  <rect x="730" y="55" width="250" height="150" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="855" y="78" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">AddressOfFunctions[]</text>
+  <text x="745" y="100" fill="#c9d1d9" font-size="9">[5]  = 0x000A1230</text>
+  <text x="745" y="116" fill="#c9d1d9" font-size="9">[8]  = 0x000A14B0</text>
+  <text x="745" y="132" fill="#f0883e" font-size="9">[24] = 0x000A2340 (NtAllocVM)</text>
+  <text x="745" y="148" fill="#c9d1d9" font-size="9">[12] = 0x000A1890</text>
+  <text x="745" y="164" fill="#c9d1d9" font-size="9">...</text>
+  <text x="745" y="196" fill="#8b949e" font-size="8">RVAs to actual function code</text>
+
+  <!-- Arrows between arrays -->
+  <line x1="520" y1="130" x2="545" y2="130" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+  <line x1="700" y1="130" x2="725" y2="130" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <!-- Resolution Flow -->
+  <rect x="30" y="225" width="940" height="85" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="500" y="248" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Export Resolution: GetProcAddress Flow</text>
+  <text x="50" y="272" fill="#c9d1d9" font-size="10">1. Binary search AddressOfNames[] for target name</text>
+  <text x="400" y="272" fill="#c9d1d9" font-size="10">2. Use index i to read NameOrdinals[i]</text>
+  <text x="700" y="272" fill="#c9d1d9" font-size="10">3. Read AddressOfFunctions[ordinal]</text>
+  <text x="50" y="298" fill="#f0883e" font-size="10">If RVA falls within export directory range = FORWARDER string (e.g., "NTDLL.RtlAllocateHeap")</text>
+
+  <!-- EAT Hook -->
+  <rect x="30" y="325" width="450" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="255" y="348" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">EAT Hooking</text>
+  <text x="50" y="373" fill="#c9d1d9" font-size="10">1. VirtualProtect EAT page to RW</text>
+  <text x="50" y="393" fill="#c9d1d9" font-size="10">2. Replace AddressOfFunctions[ordinal] with hook RVA</text>
+  <text x="50" y="413" fill="#c9d1d9" font-size="10">3. Restore EAT page to R</text>
+  <text x="50" y="433" fill="#f85149" font-size="10">Any GetProcAddress call now returns hook address</text>
+
+  <!-- EAT for Evasion -->
+  <rect x="510" y="325" width="470" height="120" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="745" y="348" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">EAT Manipulation for Evasion</text>
+  <text x="530" y="373" fill="#c9d1d9" font-size="10">1. Redirect EDR's GetProcAddress to dummy function</text>
+  <text x="530" y="393" fill="#c9d1d9" font-size="10">2. Export forwarding abuse: point to unmonitored DLL</text>
+  <text x="530" y="413" fill="#c9d1d9" font-size="10">3. Poison EAT to confuse EDR module scanning</text>
+  <text x="530" y="433" fill="#3fb950" font-size="10">EAT hooks affect ALL callers of GetProcAddress</text>
+
+  <!-- Legend -->
+  <rect x="30" y="460" width="940" height="105" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="483" fill="#58a6ff" font-size="13" font-weight="bold">EAT vs IAT Hooking</text>
+  <text x="50" y="505" fill="#c9d1d9" font-size="11">IAT hook: per-module, only affects one importing binary's calls</text>
+  <text x="50" y="525" fill="#c9d1d9" font-size="11">EAT hook: per-DLL export, affects ALL future GetProcAddress lookups globally</text>
+  <text x="50" y="545" fill="#f0883e" font-size="11">EAT hooks are more powerful but easier to detect (single point to check)</text>
+  <rect x="50" y="554" width="12" height="12" fill="#f85149"/><text x="70" y="565" fill="#8b949e" font-size="10">Names</text>
+  <rect x="150" y="554" width="12" height="12" fill="#7ee787"/><text x="170" y="565" fill="#8b949e" font-size="10">Ordinals</text>
+  <rect x="270" y="554" width="12" height="12" fill="#d2a8ff"/><text x="290" y="565" fill="#8b949e" font-size="10">Functions</text>
+  <rect x="400" y="554" width="12" height="12" fill="#58a6ff"/><text x="420" y="565" fill="#8b949e" font-size="10">Export Dir</text>
+</svg>

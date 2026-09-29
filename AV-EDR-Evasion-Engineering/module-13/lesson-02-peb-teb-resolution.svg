@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">PEB / TEB Dynamic Module Resolution Chain</text>
+
+  <!-- GS Register -->
+  <rect x="30" y="60" width="160" height="70" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="110" y="85" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">GS Segment</text>
+  <text x="110" y="105" text-anchor="middle" fill="#c9d1d9" font-size="10">gs:[0x30] = Self</text>
+  <text x="110" y="120" text-anchor="middle" fill="#c9d1d9" font-size="10">gs:[0x60] = PEB*</text>
+
+  <line x1="190" y1="95" x2="240" y2="95" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- TEB -->
+  <rect x="245" y="50" width="180" height="130" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="335" y="73" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">TEB (Thread Env Block)</text>
+  <text x="265" y="95" fill="#8b949e" font-size="10">+0x000 ExceptionList</text>
+  <text x="265" y="113" fill="#8b949e" font-size="10">+0x008 StackBase</text>
+  <text x="265" y="131" fill="#8b949e" font-size="10">+0x030 Self (linear)</text>
+  <text x="265" y="149" fill="#7ee787" font-size="10" font-weight="bold">+0x060 PEB*</text>
+  <text x="265" y="167" fill="#8b949e" font-size="10">+0x1748 InstrCallback</text>
+
+  <line x1="425" y1="148" x2="480" y2="148" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- PEB -->
+  <rect x="485" y="50" width="200" height="130" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="585" y="73" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">PEB (Process Env Block)</text>
+  <text x="505" y="95" fill="#8b949e" font-size="10">+0x002 BeingDebugged</text>
+  <text x="505" y="113" fill="#8b949e" font-size="10">+0x008 ImageBaseAddress</text>
+  <text x="505" y="131" fill="#7ee787" font-size="10" font-weight="bold">+0x018 Ldr (PEB_LDR_DATA*)</text>
+  <text x="505" y="149" fill="#8b949e" font-size="10">+0x020 ProcessParameters</text>
+  <text x="505" y="167" fill="#8b949e" font-size="10">+0x0BC NtGlobalFlag</text>
+
+  <line x1="685" y1="130" x2="740" y2="130" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- PEB_LDR_DATA -->
+  <rect x="745" y="55" width="230" height="120" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="860" y="78" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">PEB_LDR_DATA</text>
+  <text x="765" y="100" fill="#8b949e" font-size="10">+0x010 InLoadOrderList</text>
+  <text x="765" y="118" fill="#7ee787" font-size="10" font-weight="bold">+0x020 InMemoryOrderList</text>
+  <text x="765" y="136" fill="#8b949e" font-size="10">+0x030 InInitOrderList</text>
+  <text x="765" y="154" fill="#8b949e" font-size="10">(Doubly-linked LIST_ENTRY)</text>
+
+  <!-- Arrow down to module list -->
+  <line x1="860" y1="175" x2="860" y2="215" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Module List -->
+  <rect x="30" y="220" width="940" height="210" rx="10" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="245" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">InMemoryOrderModuleList — Loaded Module Chain</text>
+
+  <!-- Module entries -->
+  <rect x="50" y="265" width="200" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="150" y="288" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">LDR_DATA_TABLE_ENTRY</text>
+  <text x="70" y="308" fill="#7ee787" font-size="10">DllBase: 0x7FF8...</text>
+  <text x="70" y="326" fill="#c9d1d9" font-size="10">BaseDllName: ntdll.dll</text>
+  <text x="70" y="340" fill="#8b949e" font-size="9">Flink / Blink</text>
+
+  <line x1="250" y1="305" x2="290" y2="305" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="295" y="265" width="200" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="395" y="288" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">LDR_DATA_TABLE_ENTRY</text>
+  <text x="315" y="308" fill="#7ee787" font-size="10">DllBase: 0x7FF7...</text>
+  <text x="315" y="326" fill="#c9d1d9" font-size="10">BaseDllName: kernel32.dll</text>
+  <text x="315" y="340" fill="#8b949e" font-size="9">Flink / Blink</text>
+
+  <line x1="495" y1="305" x2="535" y2="305" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="540" y="265" width="200" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="640" y="288" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">LDR_DATA_TABLE_ENTRY</text>
+  <text x="560" y="308" fill="#7ee787" font-size="10">DllBase: 0x00400000</text>
+  <text x="560" y="326" fill="#c9d1d9" font-size="10">BaseDllName: target.exe</text>
+  <text x="560" y="340" fill="#8b949e" font-size="9">Flink / Blink</text>
+
+  <line x1="740" y1="305" x2="780" y2="305" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <text x="830" y="305" fill="#8b949e" font-size="24">...</text>
+
+  <!-- Circular arrow back -->
+  <path d="M860 310 Q900 370 500 400 Q100 370 50 345" stroke="#d2a8ff" stroke-width="1" fill="none" stroke-dasharray="4,3"/>
+  <text x="500" y="415" text-anchor="middle" fill="#d2a8ff" font-size="10">Circular doubly-linked list (Blink wraps back to head)</text>
+
+  <!-- Code box -->
+  <rect x="30" y="440" width="480" height="125" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="465" fill="#58a6ff" font-size="12" font-weight="bold">PEB Walk — No API Calls</text>
+  <text x="50" y="487" fill="#7ee787" font-size="10">PPEB pPeb = (PPEB)__readgsqword(0x60);</text>
+  <text x="50" y="505" fill="#7ee787" font-size="10">PPEB_LDR_DATA pLdr = pPeb-&gt;Ldr;</text>
+  <text x="50" y="523" fill="#7ee787" font-size="10">PLIST_ENTRY head = &amp;pLdr-&gt;InMemoryOrderModuleList;</text>
+  <text x="50" y="541" fill="#7ee787" font-size="10">PLIST_ENTRY curr = head-&gt;Flink; // first module</text>
+  <text x="50" y="559" fill="#8b949e" font-size="9">// Walk until curr == head (circular list)</text>
+
+  <!-- Key points -->
+  <rect x="530" y="440" width="440" height="125" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="550" y="465" fill="#f0883e" font-size="12" font-weight="bold">Why PEB Walking Matters</text>
+  <text x="550" y="490" fill="#c9d1d9" font-size="11">No call to GetModuleHandle / GetProcAddress</text>
+  <text x="550" y="510" fill="#c9d1d9" font-size="11">Zero entries in Import Address Table</text>
+  <text x="550" y="530" fill="#c9d1d9" font-size="11">EDR hooks on Ldr* functions bypassed entirely</text>
+  <text x="550" y="550" fill="#c9d1d9" font-size="11">CPU-level memory read — unhookable from Ring 3</text>
+</svg>

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#d2a8ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Syscall Proxying via ROP Gadgets</text>
+
+  <!-- Concept -->
+  <rect x="30" y="52" width="940" height="65" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="50" y="75" fill="#c9d1d9" font-size="11">Instead of calling syscall directly (direct) or jumping to ntdll's gadget (indirect), build a ROP chain</text>
+  <text x="50" y="95" fill="#c9d1d9" font-size="11">that sets up registers and pivots through legitimate code gadgets, ending at a syscall;ret in ntdll.</text>
+
+  <!-- ROP Chain visual -->
+  <text x="50" y="142" fill="#f0883e" font-size="13" font-weight="bold">ROP Chain Construction</text>
+
+  <!-- Gadget 1 -->
+  <rect x="30" y="155" width="175" height="90" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="117" y="175" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="bold">Gadget 1</text>
+  <text x="45" y="195" fill="#7ee787" font-size="9">pop r10</text>
+  <text x="45" y="210" fill="#7ee787" font-size="9">ret</text>
+  <text x="45" y="235" fill="#8b949e" font-size="8">r10 = rcx (1st param)</text>
+
+  <line x1="210" y1="200" x2="235" y2="200" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Gadget 2 -->
+  <rect x="240" y="155" width="175" height="90" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="327" y="175" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="bold">Gadget 2</text>
+  <text x="255" y="195" fill="#7ee787" font-size="9">pop rax</text>
+  <text x="255" y="210" fill="#7ee787" font-size="9">ret</text>
+  <text x="255" y="235" fill="#8b949e" font-size="8">rax = SSN</text>
+
+  <line x1="420" y1="200" x2="445" y2="200" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Gadget 3 -->
+  <rect x="450" y="155" width="175" height="90" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="537" y="175" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="bold">Gadget 3</text>
+  <text x="465" y="195" fill="#7ee787" font-size="9">pop rdx; pop r8</text>
+  <text x="465" y="210" fill="#7ee787" font-size="9">ret</text>
+  <text x="465" y="235" fill="#8b949e" font-size="8">params 2 &amp; 3</text>
+
+  <line x1="630" y1="200" x2="655" y2="200" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Final gadget -->
+  <rect x="660" y="155" width="175" height="90" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="747" y="175" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Syscall Gadget</text>
+  <text x="675" y="195" fill="#f0883e" font-size="9" font-weight="bold">syscall</text>
+  <text x="675" y="210" fill="#f0883e" font-size="9" font-weight="bold">ret</text>
+  <text x="675" y="235" fill="#3fb950" font-size="8">In ntdll .text range</text>
+
+  <line x1="840" y1="200" x2="865" y2="200" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Kernel -->
+  <rect x="870" y="155" width="100" height="90" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="920" y="195" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Kernel</text>
+  <text x="920" y="215" text-anchor="middle" fill="#8b949e" font-size="8">Ring 0</text>
+
+  <!-- Stack layout -->
+  <rect x="30" y="270" width="450" height="200" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="255" y="293" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Stack Layout for ROP Chain</text>
+  <text x="50" y="318" fill="#8b949e" font-size="10">RSP+0x00  →  addr_of_gadget_1 (pop r10; ret)</text>
+  <text x="50" y="338" fill="#c9d1d9" font-size="10">RSP+0x08  →  hProcess value     (goes into r10)</text>
+  <text x="50" y="358" fill="#8b949e" font-size="10">RSP+0x10  →  addr_of_gadget_2 (pop rax; ret)</text>
+  <text x="50" y="378" fill="#c9d1d9" font-size="10">RSP+0x18  →  0x0018             (SSN into rax)</text>
+  <text x="50" y="398" fill="#8b949e" font-size="10">RSP+0x20  →  addr_of_gadget_3 (pop rdx,r8; ret)</text>
+  <text x="50" y="418" fill="#c9d1d9" font-size="10">RSP+0x28  →  params 2,3         (into rdx, r8)</text>
+  <text x="50" y="438" fill="#3fb950" font-size="10">RSP+0x38  →  ntdll_syscall_ret  (final gadget)</text>
+  <text x="50" y="458" fill="#8b949e" font-size="9">Each ret pops next addr, chains execution</text>
+
+  <!-- Advantages -->
+  <rect x="520" y="270" width="450" height="200" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="745" y="293" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Advantages &amp; Considerations</text>
+  <text x="540" y="320" fill="#3fb950" font-size="11" font-weight="bold">Advantages:</text>
+  <text x="540" y="340" fill="#c9d1d9" font-size="10">• No direct syscall instruction in your code</text>
+  <text x="540" y="358" fill="#c9d1d9" font-size="10">• No jmp to ntdll (unlike indirect)</text>
+  <text x="540" y="376" fill="#c9d1d9" font-size="10">• Full stack frame looks legitimate</text>
+  <text x="540" y="394" fill="#c9d1d9" font-size="10">• Gadgets sourced from any loaded DLL</text>
+  <text x="540" y="418" fill="#f85149" font-size="11" font-weight="bold">Challenges:</text>
+  <text x="540" y="438" fill="#c9d1d9" font-size="10">• Complex setup, fragile across versions</text>
+  <text x="540" y="456" fill="#c9d1d9" font-size="10">• Gadget availability varies per module</text>
+
+  <!-- Bottom -->
+  <rect x="30" y="485" width="940" height="80" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="510" fill="#58a6ff" font-size="13" font-weight="bold">Key Insight</text>
+  <text x="50" y="530" fill="#c9d1d9" font-size="11">ROP-based syscall proxying gives the deepest stack-trace disguise: every return address can point to a legitimate DLL.</text>
+  <text x="50" y="550" fill="#f0883e" font-size="11">Gadgets are found by scanning .text sections for byte patterns like 5A C3 (pop rdx; ret) or 58 C3 (pop rax; ret).</text>
+</svg>

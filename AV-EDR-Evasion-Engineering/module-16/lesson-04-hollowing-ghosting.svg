@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Process Hollowing vs Ghosting vs Herpaderping</text>
+
+  <!-- Hollowing -->
+  <rect x="20" y="50" width="300" height="250" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="170" y="75" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Process Hollowing</text>
+  <text x="170" y="95" text-anchor="middle" fill="#8b949e" font-size="10">(RunPE, 2004)</text>
+  <text x="40" y="120" fill="#c9d1d9" font-size="10">1. CreateProcess(SUSPENDED)</text>
+  <text x="40" y="140" fill="#c9d1d9" font-size="10">2. NtUnmapViewOfSection()</text>
+  <text x="40" y="160" fill="#f85149" font-size="10">3. Write malicious PE image</text>
+  <text x="40" y="180" fill="#c9d1d9" font-size="10">4. SetThreadContext(new EP)</text>
+  <text x="40" y="200" fill="#c9d1d9" font-size="10">5. ResumeThread()</text>
+  <rect x="40" y="215" width="260" height="35" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="170" y="237" text-anchor="middle" fill="#f85149" font-size="10">File on disk ≠ image in memory</text>
+  <text x="40" y="270" fill="#8b949e" font-size="9">Detected: memory vs disk mismatch</text>
+  <text x="40" y="285" fill="#8b949e" font-size="9">NtUnmapViewOfSection is suspicious</text>
+
+  <!-- Ghosting -->
+  <rect x="350" y="50" width="300" height="250" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="500" y="75" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Process Ghosting</text>
+  <text x="500" y="95" text-anchor="middle" fill="#8b949e" font-size="10">(Elastic, 2021)</text>
+  <text x="370" y="120" fill="#c9d1d9" font-size="10">1. Create temp file (payload PE)</text>
+  <text x="370" y="140" fill="#3fb950" font-size="10">2. NtSetInformationFile(DELETE)</text>
+  <text x="370" y="160" fill="#c9d1d9" font-size="10">3. NtCreateSection(FILE_BACKED)</text>
+  <text x="370" y="180" fill="#3fb950" font-size="10">4. Close file handle → deleted!</text>
+  <text x="370" y="200" fill="#c9d1d9" font-size="10">5. NtCreateProcessEx(section)</text>
+  <rect x="370" y="215" width="260" height="35" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="500" y="237" text-anchor="middle" fill="#3fb950" font-size="10">File deleted before process starts</text>
+  <text x="370" y="270" fill="#8b949e" font-size="9">EDR can't scan file — already gone</text>
+  <text x="370" y="285" fill="#8b949e" font-size="9">DELETE_PENDING state is key</text>
+
+  <!-- Herpaderping -->
+  <rect x="680" y="50" width="300" height="250" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="830" y="75" text-anchor="middle" fill="#d2a8ff" font-size="14" font-weight="bold">Process Herpaderping</text>
+  <text x="830" y="95" text-anchor="middle" fill="#8b949e" font-size="10">(jxy-s, 2020)</text>
+  <text x="700" y="120" fill="#c9d1d9" font-size="10">1. Create file (payload PE)</text>
+  <text x="700" y="140" fill="#c9d1d9" font-size="10">2. NtCreateSection(FILE_BACKED)</text>
+  <text x="700" y="160" fill="#d2a8ff" font-size="10">3. Overwrite file with decoy PE</text>
+  <text x="700" y="180" fill="#c9d1d9" font-size="10">4. NtCreateProcessEx(section)</text>
+  <text x="700" y="200" fill="#c9d1d9" font-size="10">5. Close handle (decoy persists)</text>
+  <rect x="700" y="215" width="260" height="35" rx="4" fill="#161b22" stroke="#d2a8ff" stroke-width="1"/>
+  <text x="830" y="237" text-anchor="middle" fill="#d2a8ff" font-size="10">File on disk = decoy, not payload</text>
+  <text x="700" y="270" fill="#8b949e" font-size="9">EDR scans decoy, not real payload</text>
+  <text x="700" y="285" fill="#8b949e" font-size="9">Section cached before overwrite</text>
+
+  <!-- Comparison Table -->
+  <rect x="20" y="320" width="960" height="245" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="500" y="348" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Comparison Matrix</text>
+
+  <text x="40" y="378" fill="#8b949e" font-size="11">Property</text>
+  <text x="300" y="378" text-anchor="middle" fill="#f85149" font-size="11">Hollowing</text>
+  <text x="530" y="378" text-anchor="middle" fill="#3fb950" font-size="11">Ghosting</text>
+  <text x="780" y="378" text-anchor="middle" fill="#d2a8ff" font-size="11">Herpaderping</text>
+  <line x1="40" y1="385" x2="960" y2="385" stroke="#30363d"/>
+
+  <text x="40" y="408" fill="#c9d1d9" font-size="10">File on disk after</text>
+  <text x="300" y="408" text-anchor="middle" fill="#c9d1d9" font-size="10">Legit (untouched)</text>
+  <text x="530" y="408" text-anchor="middle" fill="#c9d1d9" font-size="10">Deleted</text>
+  <text x="780" y="408" text-anchor="middle" fill="#c9d1d9" font-size="10">Decoy (benign)</text>
+
+  <text x="40" y="433" fill="#c9d1d9" font-size="10">Creates new process</text>
+  <text x="300" y="433" text-anchor="middle" fill="#c9d1d9" font-size="10">Yes (suspended)</text>
+  <text x="530" y="433" text-anchor="middle" fill="#c9d1d9" font-size="10">Yes</text>
+  <text x="780" y="433" text-anchor="middle" fill="#c9d1d9" font-size="10">Yes</text>
+
+  <text x="40" y="458" fill="#c9d1d9" font-size="10">Memory vs Disk match</text>
+  <text x="300" y="458" text-anchor="middle" fill="#f85149" font-size="10">NO (detectable)</text>
+  <text x="530" y="458" text-anchor="middle" fill="#3fb950" font-size="10">N/A (no file)</text>
+  <text x="780" y="458" text-anchor="middle" fill="#3fb950" font-size="10">NO (but decoy)</text>
+
+  <text x="40" y="483" fill="#c9d1d9" font-size="10">NtUnmapViewOfSection</text>
+  <text x="300" y="483" text-anchor="middle" fill="#f85149" font-size="10">Required</text>
+  <text x="530" y="483" text-anchor="middle" fill="#3fb950" font-size="10">Not needed</text>
+  <text x="780" y="483" text-anchor="middle" fill="#3fb950" font-size="10">Not needed</text>
+
+  <text x="40" y="508" fill="#c9d1d9" font-size="10">Detection difficulty</text>
+  <rect x="260" y="496" width="80" height="16" rx="3" fill="#f85149"/><text x="300" y="508" text-anchor="middle" fill="#fff" font-size="9">EASY</text>
+  <rect x="490" y="496" width="80" height="16" rx="3" fill="#3fb950"/><text x="530" y="508" text-anchor="middle" fill="#fff" font-size="9">HARD</text>
+  <rect x="740" y="496" width="80" height="16" rx="3" fill="#3fb950"/><text x="780" y="508" text-anchor="middle" fill="#fff" font-size="9">HARD</text>
+
+  <text x="40" y="548" fill="#f0883e" font-size="11" font-weight="bold">Key insight: Ghosting and Herpaderping exploit the timing gap between section creation and EDR file scan</text>
+</svg>

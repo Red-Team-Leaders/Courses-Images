@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ared" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">kernel32 → kernelbase → ntdll Call Chain &amp; Hook Points</text>
+
+  <!-- Call chain visualization -->
+  <text x="50" y="60" fill="#8b949e" font-size="12">Application calls VirtualAlloc — trace through the DLL chain:</text>
+
+  <!-- kernel32 -->
+  <rect x="30" y="80" width="280" height="140" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="170" y="103" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">kernel32.dll</text>
+  <text x="50" y="128" fill="#c9d1d9" font-size="10">VirtualAlloc() — exported API</text>
+  <text x="50" y="148" fill="#8b949e" font-size="10">Thin wrapper: validates params</text>
+  <text x="50" y="168" fill="#8b949e" font-size="10">Forwards to kernelbase.dll</text>
+  <text x="50" y="193" fill="#ff7b72" font-size="10">EDR hook point ①</text>
+  <text x="50" y="210" fill="#f85149" font-size="9">IAT or inline hook on export</text>
+
+  <line x1="315" y1="150" x2="355" y2="150" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="335" y="140" fill="#f0883e" font-size="9">call</text>
+
+  <!-- kernelbase -->
+  <rect x="360" y="80" width="280" height="140" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="103" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">kernelbase.dll</text>
+  <text x="380" y="128" fill="#c9d1d9" font-size="10">VirtualAlloc() — real logic</text>
+  <text x="380" y="148" fill="#8b949e" font-size="10">Parameter conversion</text>
+  <text x="380" y="168" fill="#8b949e" font-size="10">Calls NtAllocateVirtualMemory</text>
+  <text x="380" y="193" fill="#ff7b72" font-size="10">EDR hook point ②</text>
+  <text x="380" y="210" fill="#f0883e" font-size="9">Since Win7: actual implementation</text>
+
+  <line x1="645" y1="150" x2="685" y2="150" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="665" y="140" fill="#f0883e" font-size="9">call</text>
+
+  <!-- ntdll -->
+  <rect x="690" y="80" width="285" height="140" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="832" y="103" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">ntdll.dll</text>
+  <text x="710" y="128" fill="#c9d1d9" font-size="10">NtAllocateVirtualMemory</text>
+  <text x="710" y="148" fill="#8b949e" font-size="10">Syscall stub</text>
+  <text x="710" y="168" fill="#8b949e" font-size="10">mov r10,rcx; mov eax,SSN</text>
+  <text x="710" y="188" fill="#8b949e" font-size="10">syscall → Ring 0</text>
+  <text x="710" y="210" fill="#ff7b72" font-size="10">EDR hook point ③ (main target)</text>
+
+  <!-- Forwarded exports problem -->
+  <rect x="30" y="245" width="940" height="110" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="270" fill="#58a6ff" font-size="13" font-weight="bold">Forwarded Export Challenge</text>
+  <text x="50" y="295" fill="#c9d1d9" font-size="10">kernel32!VirtualAlloc is a FORWARDED export → points to kernelbase!VirtualAlloc</text>
+  <text x="50" y="315" fill="#c9d1d9" font-size="10">GetProcAddress("kernel32", "VirtualAlloc") actually returns a kernelbase address</text>
+  <text x="50" y="340" fill="#f85149" font-size="10">⚠ Unhooking kernel32 .text doesn't help if the hook is in kernelbase (where code actually runs)</text>
+
+  <!-- Unhooking strategy -->
+  <rect x="30" y="375" width="450" height="185" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="255" y="398" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Correct Unhooking Strategy</text>
+  <text x="50" y="420" fill="#3fb950" font-size="10">1. Unhook ntdll.dll FIRST (syscall stubs)</text>
+  <text x="50" y="440" fill="#3fb950" font-size="10">2. Unhook kernelbase.dll SECOND (real logic)</text>
+  <text x="50" y="460" fill="#3fb950" font-size="10">3. Unhook kernel32.dll LAST (wrappers)</text>
+  <text x="50" y="485" fill="#8b949e" font-size="10">Order matters: ntdll first ensures</text>
+  <text x="50" y="500" fill="#8b949e" font-size="10">unhooking operations themselves</text>
+  <text x="50" y="515" fill="#8b949e" font-size="10">use clean syscalls</text>
+  <text x="50" y="540" fill="#f0883e" font-size="9">Use direct syscalls for VirtualProtect</text>
+  <text x="50" y="555" fill="#f0883e" font-size="9">during kernelbase/kernel32 unhooking</text>
+
+  <!-- What NOT to do -->
+  <rect x="500" y="375" width="475" height="185" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="737" y="398" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Common Mistakes</text>
+  <text x="520" y="420" fill="#f85149" font-size="10">✗ Only unhooking kernel32 (code is in kernelbase)</text>
+  <text x="520" y="440" fill="#f85149" font-size="10">✗ Unhooking kernel32 before ntdll</text>
+  <text x="520" y="460" fill="#f85149" font-size="10">✗ Not handling forwarded exports</text>
+  <text x="520" y="480" fill="#f85149" font-size="10">✗ Using VirtualProtect (hooked) to unhook</text>
+  <text x="520" y="505" fill="#8b949e" font-size="10">kernelbase not always in KnownDlls —</text>
+  <text x="520" y="520" fill="#8b949e" font-size="10">may need disk read as fallback</text>
+  <text x="520" y="545" fill="#d2a8ff" font-size="10">Since Win10 1903: kernelbase IS in</text>
+  <text x="520" y="558" fill="#d2a8ff" font-size="10">KnownDlls on most builds</text>
+</svg>

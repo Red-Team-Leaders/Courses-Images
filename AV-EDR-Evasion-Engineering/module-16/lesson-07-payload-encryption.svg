@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Payload Encryption Pipeline — Build to Runtime Decryption</text>
+
+  <!-- Build Time -->
+  <rect x="20" y="55" width="470" height="230" rx="8" fill="#161b22" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="255" y="78" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Build Time (Operator Machine)</text>
+
+  <rect x="40" y="95" width="120" height="50" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="100" y="118" text-anchor="middle" fill="#58a6ff" font-size="10">Raw Shellcode</text>
+  <text x="100" y="135" text-anchor="middle" fill="#8b949e" font-size="8">msfvenom / custom</text>
+
+  <line x1="160" y1="120" x2="190" y2="120" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="200" y="95" width="130" height="50" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="265" y="118" text-anchor="middle" fill="#f0883e" font-size="10">Encrypt</text>
+  <text x="265" y="135" text-anchor="middle" fill="#8b949e" font-size="8">AES-256-CBC</text>
+
+  <line x1="330" y1="120" x2="360" y2="120" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="370" y="95" width="100" height="50" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="420" y="118" text-anchor="middle" fill="#3fb950" font-size="10">Embed</text>
+  <text x="420" y="135" text-anchor="middle" fill="#8b949e" font-size="8">.rdata / resource</text>
+
+  <!-- Key generation -->
+  <rect x="40" y="165" width="430" height="55" rx="6" fill="#0d1117" stroke="#30363d"/>
+  <text x="60" y="188" fill="#7ee787" font-size="10">Key derivation: PBKDF2(password, salt, 100000, 32)</text>
+  <text x="60" y="208" fill="#8b949e" font-size="9">Key embedded as environment variable / registry / computed at runtime</text>
+
+  <text x="40" y="248" fill="#c9d1d9" font-size="10">Encrypted blob: [IV:16B][ciphertext:NB][HMAC:32B]</text>
+  <text x="40" y="268" fill="#8b949e" font-size="9">Static analysis sees only random-looking bytes — no shellcode signatures</text>
+
+  <!-- Runtime -->
+  <rect x="510" y="55" width="470" height="230" rx="8" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="745" y="78" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Runtime (Target Machine)</text>
+
+  <rect x="530" y="95" width="110" height="50" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="585" y="118" text-anchor="middle" fill="#58a6ff" font-size="10">Derive Key</text>
+  <text x="585" y="135" text-anchor="middle" fill="#8b949e" font-size="8">env / hostname</text>
+
+  <line x1="640" y1="120" x2="660" y2="120" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="670" y="95" width="110" height="50" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="725" y="118" text-anchor="middle" fill="#f0883e" font-size="10">Decrypt</text>
+  <text x="725" y="135" text-anchor="middle" fill="#8b949e" font-size="8">AES decrypt</text>
+
+  <line x1="780" y1="120" x2="800" y2="120" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="810" y="95" width="110" height="50" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="865" y="118" text-anchor="middle" fill="#3fb950" font-size="10">Execute</text>
+  <text x="865" y="135" text-anchor="middle" fill="#8b949e" font-size="8">func pointer</text>
+
+  <text x="530" y="175" fill="#c9d1d9" font-size="10">Runtime steps:</text>
+  <text x="530" y="195" fill="#c9d1d9" font-size="10">1. Read encrypted blob from .rdata</text>
+  <text x="530" y="215" fill="#c9d1d9" font-size="10">2. Derive key (PBKDF2 with env seed)</text>
+  <text x="530" y="235" fill="#c9d1d9" font-size="10">3. Verify HMAC → decrypt AES-256-CBC</text>
+  <text x="530" y="255" fill="#c9d1d9" font-size="10">4. Alloc RW → copy → protect RX → call</text>
+
+  <!-- Cipher comparison -->
+  <rect x="20" y="300" width="960" height="265" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="500" y="328" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Cipher Comparison for Payload Encryption</text>
+
+  <text x="40" y="355" fill="#8b949e" font-size="11">Cipher</text>
+  <text x="200" y="355" fill="#8b949e" font-size="11">Speed</text>
+  <text x="340" y="355" fill="#8b949e" font-size="11">Key Size</text>
+  <text x="470" y="355" fill="#8b949e" font-size="11">Entropy</text>
+  <text x="600" y="355" fill="#8b949e" font-size="11">Dependencies</text>
+  <text x="800" y="355" fill="#8b949e" font-size="11">Best For</text>
+  <line x1="40" y1="362" x2="960" y2="362" stroke="#30363d"/>
+
+  <text x="40" y="385" fill="#c9d1d9" font-size="11">XOR</text>
+  <text x="200" y="385" fill="#3fb950" font-size="11">Fastest</text>
+  <text x="340" y="385" fill="#c9d1d9" font-size="11">Variable</text>
+  <text x="470" y="385" fill="#f85149" font-size="11">Low</text>
+  <text x="600" y="385" fill="#3fb950" font-size="11">None</text>
+  <text x="800" y="385" fill="#c9d1d9" font-size="11">Quick obfuscation</text>
+
+  <text x="40" y="415" fill="#c9d1d9" font-size="11">RC4</text>
+  <text x="200" y="415" fill="#3fb950" font-size="11">Very fast</text>
+  <text x="340" y="415" fill="#c9d1d9" font-size="11">40-2048 bit</text>
+  <text x="470" y="415" fill="#f0883e" font-size="11">Medium</text>
+  <text x="600" y="415" fill="#3fb950" font-size="11">None (custom)</text>
+  <text x="800" y="415" fill="#c9d1d9" font-size="11">Shellcode loaders</text>
+
+  <text x="40" y="445" fill="#c9d1d9" font-size="11">AES-256-CBC</text>
+  <text x="200" y="445" fill="#f0883e" font-size="11">Fast</text>
+  <text x="340" y="445" fill="#c9d1d9" font-size="11">256 bit</text>
+  <text x="470" y="445" fill="#3fb950" font-size="11">High</text>
+  <text x="600" y="445" fill="#f0883e" font-size="11">BCrypt / OpenSSL</text>
+  <text x="800" y="445" fill="#c9d1d9" font-size="11">PE-level encryption</text>
+
+  <text x="40" y="475" fill="#c9d1d9" font-size="11">AES-256-GCM</text>
+  <text x="200" y="475" fill="#f0883e" font-size="11">Fast</text>
+  <text x="340" y="475" fill="#c9d1d9" font-size="11">256 bit</text>
+  <text x="470" y="475" fill="#3fb950" font-size="11">High + Auth</text>
+  <text x="600" y="475" fill="#f0883e" font-size="11">BCrypt / CNG</text>
+  <text x="800" y="475" fill="#c9d1d9" font-size="11">Integrity-checked</text>
+
+  <text x="40" y="505" fill="#c9d1d9" font-size="11">ChaCha20</text>
+  <text x="200" y="505" fill="#3fb950" font-size="11">Very fast</text>
+  <text x="340" y="505" fill="#c9d1d9" font-size="11">256 bit</text>
+  <text x="470" y="505" fill="#3fb950" font-size="11">High</text>
+  <text x="600" y="505" fill="#f0883e" font-size="11">Custom / WolfSSL</text>
+  <text x="800" y="505" fill="#c9d1d9" font-size="11">ARM targets</text>
+
+  <text x="40" y="548" fill="#f0883e" font-size="11" font-weight="bold">Recommendation: RC4 for shellcode (zero deps), AES-256-CBC for PE payloads (CNG available on all Windows 10+)</text>
+</svg>

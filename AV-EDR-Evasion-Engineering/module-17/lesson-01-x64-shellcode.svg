@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">x64 Windows Calling Convention &amp; Shellcode Stack Layout</text>
+
+  <!-- Register Parameters -->
+  <rect x="30" y="55" width="300" height="200" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="78" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Register Parameters (fastcall)</text>
+  <text x="50" y="105" fill="#7ee787" font-size="12">RCX  ── 1st parameter</text>
+  <text x="50" y="130" fill="#7ee787" font-size="12">RDX  ── 2nd parameter</text>
+  <text x="50" y="155" fill="#7ee787" font-size="12">R8   ── 3rd parameter</text>
+  <text x="50" y="180" fill="#7ee787" font-size="12">R9   ── 4th parameter</text>
+  <text x="50" y="210" fill="#8b949e" font-size="10">Float: XMM0, XMM1, XMM2, XMM3</text>
+  <text x="50" y="230" fill="#8b949e" font-size="10">Return value: RAX (or XMM0)</text>
+  <text x="50" y="245" fill="#f0883e" font-size="10">5th+ params go on stack</text>
+
+  <!-- Stack Layout -->
+  <rect x="380" y="55" width="280" height="360" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="520" y="78" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Stack Frame Layout</text>
+
+  <rect x="400" y="92" width="240" height="28" rx="4" fill="#1a2332" stroke="#d2a8ff"/>
+  <text x="520" y="111" text-anchor="middle" fill="#d2a8ff" font-size="11">Return Address (8 bytes)</text>
+
+  <rect x="400" y="128" width="240" height="28" rx="4" fill="#1a2332" stroke="#f0883e"/>
+  <text x="520" y="147" text-anchor="middle" fill="#f0883e" font-size="11">Shadow Space — RCX (8 bytes)</text>
+  <rect x="400" y="160" width="240" height="28" rx="4" fill="#1a2332" stroke="#f0883e"/>
+  <text x="520" y="179" text-anchor="middle" fill="#f0883e" font-size="11">Shadow Space — RDX (8 bytes)</text>
+  <rect x="400" y="192" width="240" height="28" rx="4" fill="#1a2332" stroke="#f0883e"/>
+  <text x="520" y="211" text-anchor="middle" fill="#f0883e" font-size="11">Shadow Space — R8 (8 bytes)</text>
+  <rect x="400" y="224" width="240" height="28" rx="4" fill="#1a2332" stroke="#f0883e"/>
+  <text x="520" y="243" text-anchor="middle" fill="#f0883e" font-size="11">Shadow Space — R9 (8 bytes)</text>
+
+  <rect x="400" y="262" width="240" height="28" rx="4" fill="#1a2332" stroke="#8b949e"/>
+  <text x="520" y="281" text-anchor="middle" fill="#8b949e" font-size="11">5th param (8 bytes)</text>
+  <rect x="400" y="294" width="240" height="28" rx="4" fill="#1a2332" stroke="#8b949e"/>
+  <text x="520" y="313" text-anchor="middle" fill="#8b949e" font-size="11">6th param (8 bytes)</text>
+
+  <rect x="400" y="340" width="240" height="28" rx="4" fill="#1a2332" stroke="#3fb950"/>
+  <text x="520" y="359" text-anchor="middle" fill="#3fb950" font-size="11">Local Variables</text>
+  <rect x="400" y="372" width="240" height="28" rx="4" fill="#1a2332" stroke="#f85149"/>
+  <text x="520" y="391" text-anchor="middle" fill="#f85149" font-size="11">Saved Non-Volatile Regs</text>
+
+  <text x="390" y="100" text-anchor="end" fill="#8b949e" font-size="9">RSP+0</text>
+  <text x="390" y="136" text-anchor="end" fill="#8b949e" font-size="9">RSP+8</text>
+  <text x="390" y="168" text-anchor="end" fill="#8b949e" font-size="9">RSP+16</text>
+  <text x="390" y="200" text-anchor="end" fill="#8b949e" font-size="9">RSP+24</text>
+  <text x="390" y="232" text-anchor="end" fill="#8b949e" font-size="9">RSP+32</text>
+
+  <!-- Alignment -->
+  <rect x="700" y="55" width="280" height="155" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="840" y="78" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Stack Alignment Rule</text>
+  <text x="720" y="105" fill="#c9d1d9" font-size="11">RSP must be 16-byte aligned</text>
+  <text x="720" y="125" fill="#c9d1d9" font-size="11">BEFORE the CALL instruction</text>
+  <text x="720" y="155" fill="#7ee787" font-size="11">sub rsp, 0x28  ; 40 bytes</text>
+  <text x="720" y="175" fill="#8b949e" font-size="10">= 32 shadow + 8 alignment</text>
+  <text x="720" y="200" fill="#f0883e" font-size="10">Misalignment = crash in SSE ops</text>
+
+  <!-- Volatile Regs -->
+  <rect x="700" y="225" width="280" height="190" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="840" y="248" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Register Preservation</text>
+  <text x="720" y="275" fill="#f85149" font-size="11">Volatile (caller-saved):</text>
+  <text x="720" y="295" fill="#c9d1d9" font-size="10">RAX RCX RDX R8 R9 R10 R11</text>
+  <text x="720" y="315" fill="#c9d1d9" font-size="10">XMM0-XMM5</text>
+  <text x="720" y="345" fill="#3fb950" font-size="11">Non-Volatile (callee-saved):</text>
+  <text x="720" y="365" fill="#c9d1d9" font-size="10">RBX RBP RDI RSI R12-R15</text>
+  <text x="720" y="385" fill="#c9d1d9" font-size="10">XMM6-XMM15</text>
+  <text x="720" y="407" fill="#8b949e" font-size="9">Shellcode must save these if used</text>
+
+  <!-- Legend -->
+  <rect x="30" y="430" width="950" height="135" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="455" fill="#58a6ff" font-size="13" font-weight="bold">Shellcode Implications</text>
+  <text x="50" y="478" fill="#c9d1d9" font-size="11">1. Always reserve 32-byte shadow space before any API call (even if &lt;4 params)</text>
+  <text x="50" y="498" fill="#c9d1d9" font-size="11">2. Align RSP to 16 bytes — use AND RSP, -16 or track push/sub parity</text>
+  <text x="50" y="518" fill="#c9d1d9" font-size="11">3. Null-byte avoidance: use XOR reg, reg instead of MOV reg, 0</text>
+  <text x="50" y="538" fill="#c9d1d9" font-size="11">4. Position-independent: no absolute addresses, use RIP-relative or delta trick</text>
+  <rect x="50" y="552" width="12" height="12" fill="#f0883e"/><text x="70" y="563" fill="#8b949e" font-size="10">Shadow Space</text>
+  <rect x="200" y="552" width="12" height="12" fill="#d2a8ff"/><text x="220" y="563" fill="#8b949e" font-size="10">Return Addr</text>
+  <rect x="350" y="552" width="12" height="12" fill="#3fb950"/><text x="370" y="563" fill="#8b949e" font-size="10">Locals</text>
+  <rect x="460" y="552" width="12" height="12" fill="#f85149"/><text x="480" y="563" fill="#8b949e" font-size="10">Saved Regs</text>
+</svg>

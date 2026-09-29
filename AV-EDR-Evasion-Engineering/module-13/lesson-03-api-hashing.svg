@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">API Hashing — Runtime Function Resolution Without Strings</text>
+
+  <!-- Why hash? -->
+  <rect x="30" y="50" width="940" height="55" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="72" fill="#f0883e" font-size="12" font-weight="bold">Problem:</text>
+  <text x="130" y="72" fill="#c9d1d9" font-size="11">Strings like "VirtualAlloc", "CreateThread" in binary = instant static detection signature</text>
+  <text x="50" y="92" fill="#3fb950" font-size="12" font-weight="bold">Solution:</text>
+  <text x="130" y="92" fill="#c9d1d9" font-size="11">Replace API name strings with pre-computed hash values, resolve at runtime by walking exports</text>
+
+  <!-- djb2 algorithm -->
+  <rect x="30" y="120" width="460" height="200" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="260" y="145" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">djb2 Hash Algorithm</text>
+  <text x="50" y="170" fill="#7ee787" font-size="10">DWORD djb2(const char* str) {</text>
+  <text x="50" y="188" fill="#7ee787" font-size="10">    DWORD hash = 5381;</text>
+  <text x="50" y="206" fill="#7ee787" font-size="10">    int c;</text>
+  <text x="50" y="224" fill="#7ee787" font-size="10">    while ((c = *str++))</text>
+  <text x="50" y="242" fill="#7ee787" font-size="10">        hash = ((hash &lt;&lt; 5) + hash) + c;</text>
+  <text x="50" y="260" fill="#7ee787" font-size="10">    return hash;</text>
+  <text x="50" y="278" fill="#7ee787" font-size="10">}</text>
+  <text x="50" y="305" fill="#8b949e" font-size="10">hash * 33 + char — fast, few collisions</text>
+
+  <!-- CRC32 algorithm -->
+  <rect x="510" y="120" width="460" height="200" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="740" y="145" text-anchor="middle" fill="#d2a8ff" font-size="14" font-weight="bold">CRC32 Hash (Hardware)</text>
+  <text x="530" y="170" fill="#d2a8ff" font-size="10">DWORD crc32_hash(const char* str) {</text>
+  <text x="530" y="188" fill="#d2a8ff" font-size="10">    DWORD crc = 0xFFFFFFFF;</text>
+  <text x="530" y="206" fill="#d2a8ff" font-size="10">    while (*str) {</text>
+  <text x="530" y="224" fill="#d2a8ff" font-size="10">        crc = _mm_crc32_u8(crc, *str++);</text>
+  <text x="530" y="242" fill="#d2a8ff" font-size="10">    }</text>
+  <text x="530" y="260" fill="#d2a8ff" font-size="10">    return ~crc;</text>
+  <text x="530" y="278" fill="#d2a8ff" font-size="10">}</text>
+  <text x="530" y="305" fill="#8b949e" font-size="10">SSE4.2 intrinsic — near-zero collisions</text>
+
+  <!-- Flow diagram -->
+  <text x="500" y="345" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Runtime Resolution Flow</text>
+
+  <rect x="30" y="360" width="150" height="50" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="105" y="382" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Compile-time</text>
+  <text x="105" y="400" text-anchor="middle" fill="#c9d1d9" font-size="10">Hash = 0x7C0DFCAA</text>
+
+  <line x1="180" y1="385" x2="220" y2="385" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="225" y="360" width="155" height="50" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="302" y="382" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Walk PEB.Ldr</text>
+  <text x="302" y="400" text-anchor="middle" fill="#c9d1d9" font-size="10">Find DLL base</text>
+
+  <line x1="380" y1="385" x2="420" y2="385" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="425" y="360" width="180" height="50" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="515" y="382" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Parse PE Exports</text>
+  <text x="515" y="400" text-anchor="middle" fill="#c9d1d9" font-size="10">AddressOfNames[]</text>
+
+  <line x1="605" y1="385" x2="645" y2="385" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="650" y="360" width="155" height="50" rx="6" fill="#161b22" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="727" y="382" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">Hash Each Name</text>
+  <text x="727" y="400" text-anchor="middle" fill="#c9d1d9" font-size="10">Compare to target</text>
+
+  <line x1="805" y1="385" x2="845" y2="385" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="850" y="360" width="120" height="50" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="910" y="382" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Match!</text>
+  <text x="910" y="400" text-anchor="middle" fill="#c9d1d9" font-size="10">Return addr</text>
+
+  <!-- Example hashes -->
+  <rect x="30" y="430" width="940" height="135" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="455" fill="#58a6ff" font-size="12" font-weight="bold">Example Hash Values (djb2)</text>
+  <text x="50" y="480" fill="#c9d1d9" font-size="11">"VirtualAlloc"        = 0x91AFCA54</text>
+  <text x="50" y="500" fill="#c9d1d9" font-size="11">"VirtualProtect"      = 0x7946C61B</text>
+  <text x="50" y="520" fill="#c9d1d9" font-size="11">"CreateThread"        = 0x7C0DFCAA</text>
+  <text x="50" y="540" fill="#c9d1d9" font-size="11">"LoadLibraryA"        = 0x0726774C</text>
+
+  <text x="500" y="480" fill="#f0883e" font-size="12" font-weight="bold">Detection Countermeasures</text>
+  <text x="500" y="500" fill="#c9d1d9" font-size="11">AV vendors build hash databases of known API hashes</text>
+  <text x="500" y="520" fill="#c9d1d9" font-size="11">Mitigation: add salt, use custom hash, compile-time constexpr</text>
+  <text x="500" y="540" fill="#c9d1d9" font-size="11">Rotate hash algorithm per build to defeat static matching</text>
+</svg>

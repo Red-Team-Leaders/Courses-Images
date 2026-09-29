@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Windowless &amp; Console-less Execution</text>
+
+  <!-- Problem -->
+  <rect x="30" y="55" width="440" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="250" y="78" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Problem: Visible Window = User Awareness</text>
+  <text x="50" y="105" fill="#c9d1d9" font-size="11">Console application: black cmd.exe window flashes</text>
+  <text x="50" y="125" fill="#c9d1d9" font-size="11">GUI application: window manager creates visible frame</text>
+  <text x="50" y="145" fill="#c9d1d9" font-size="11">User notices unexpected window = investigation starts</text>
+  <text x="50" y="165" fill="#8b949e" font-size="10">Any visible artifact breaks operational stealth</text>
+
+  <!-- Solution -->
+  <rect x="530" y="55" width="440" height="120" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="750" y="78" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Solution: Subsystem Manipulation</text>
+  <text x="550" y="105" fill="#c9d1d9" font-size="11">Set PE subsystem to WINDOWS (GUI)</text>
+  <text x="550" y="125" fill="#c9d1d9" font-size="11">Use WinMain instead of main()</text>
+  <text x="550" y="145" fill="#c9d1d9" font-size="11">Never call CreateWindow / ShowWindow</text>
+  <text x="550" y="165" fill="#3fb950" font-size="10">Process runs silently — no visible window</text>
+
+  <!-- PE Header Detail -->
+  <rect x="30" y="195" width="460" height="180" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="260" y="220" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">PE Optional Header — Subsystem Field</text>
+
+  <text x="50" y="248" fill="#8b949e" font-size="11">Offset 0x5C in Optional Header:</text>
+
+  <rect x="50" y="260" width="200" height="35" rx="4" fill="#f85149" fill-opacity="0.15" stroke="#f85149"/>
+  <text x="150" y="283" text-anchor="middle" fill="#f85149" font-size="10">IMAGE_SUBSYSTEM_CONSOLE (3)</text>
+  <text x="270" y="283" fill="#f85149" font-size="10">= Black window appears</text>
+
+  <rect x="50" y="305" width="200" height="35" rx="4" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950"/>
+  <text x="150" y="328" text-anchor="middle" fill="#3fb950" font-size="10">IMAGE_SUBSYSTEM_WINDOWS (2)</text>
+  <text x="270" y="328" fill="#3fb950" font-size="10">= No window allocated</text>
+
+  <text x="50" y="365" fill="#7ee787" font-size="10">/SUBSYSTEM:WINDOWS  (MSVC linker flag)</text>
+
+  <!-- CreateProcess flags -->
+  <rect x="530" y="195" width="440" height="180" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="750" y="220" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">CreateProcess Stealth Flags</text>
+
+  <text x="550" y="248" fill="#7ee787" font-size="10">CreateProcessW(</text>
+  <text x="550" y="266" fill="#7ee787" font-size="10">    ...,</text>
+  <text x="550" y="284" fill="#d2a8ff" font-size="10">    CREATE_NO_WINDOW |</text>
+  <text x="550" y="302" fill="#d2a8ff" font-size="10">    DETACHED_PROCESS,</text>
+  <text x="550" y="320" fill="#7ee787" font-size="10">    ...);</text>
+
+  <text x="550" y="350" fill="#8b949e" font-size="10">CREATE_NO_WINDOW: no console for child</text>
+  <text x="550" y="368" fill="#8b949e" font-size="10">DETACHED_PROCESS: no inherited console</text>
+
+  <!-- Techniques grid -->
+  <rect x="30" y="395" width="300" height="170" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="180" y="420" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Technique 1: WinMain Entry</text>
+  <text x="50" y="445" fill="#7ee787" font-size="10">int WINAPI WinMain(</text>
+  <text x="50" y="463" fill="#7ee787" font-size="10">  HINSTANCE, HINSTANCE,</text>
+  <text x="50" y="481" fill="#7ee787" font-size="10">  LPSTR, int) {</text>
+  <text x="50" y="499" fill="#7ee787" font-size="10">    // payload runs here</text>
+  <text x="50" y="517" fill="#7ee787" font-size="10">    // no window creation</text>
+  <text x="50" y="535" fill="#7ee787" font-size="10">    return 0;</text>
+  <text x="50" y="553" fill="#7ee787" font-size="10">}</text>
+
+  <rect x="350" y="395" width="310" height="170" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="505" y="420" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Technique 2: FreeConsole</text>
+  <text x="370" y="445" fill="#c9d1d9" font-size="10">For console apps that must hide:</text>
+  <text x="370" y="470" fill="#7ee787" font-size="10">FreeConsole();</text>
+  <text x="370" y="488" fill="#8b949e" font-size="9">Releases console allocation</text>
+  <text x="370" y="510" fill="#c9d1d9" font-size="10">Or: ShowWindow(GetConsoleWindow(),</text>
+  <text x="370" y="528" fill="#c9d1d9" font-size="10">     SW_HIDE);</text>
+  <text x="370" y="553" fill="#f85149" font-size="9">Warning: brief flash before hide</text>
+
+  <rect x="680" y="395" width="290" height="170" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="825" y="420" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Technique 3: Service</text>
+  <text x="700" y="445" fill="#c9d1d9" font-size="10">Run as Windows Service:</text>
+  <text x="700" y="470" fill="#c9d1d9" font-size="10">Session 0, no desktop</text>
+  <text x="700" y="490" fill="#c9d1d9" font-size="10">No window station access</text>
+  <text x="700" y="510" fill="#c9d1d9" font-size="10">Cannot display GUI</text>
+  <text x="700" y="535" fill="#3fb950" font-size="10">Most stealthy — but needs</text>
+  <text x="700" y="553" fill="#3fb950" font-size="10">admin for service install</text>
+</svg>

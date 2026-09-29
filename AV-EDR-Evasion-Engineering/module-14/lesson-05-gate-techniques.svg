@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Gate Techniques — Hell's, Halo's &amp; Tartarus' Gate</text>
+
+  <!-- Hell's Gate -->
+  <rect x="30" y="52" width="300" height="210" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="180" y="75" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Hell's Gate (2020)</text>
+  <text x="50" y="100" fill="#c9d1d9" font-size="10">Read stub directly:</text>
+  <text x="50" y="118" fill="#7ee787" font-size="9">if (stub[0:4] == 4C 8B D1 B8)</text>
+  <text x="50" y="134" fill="#7ee787" font-size="9">  SSN = *(WORD*)(stub+4)</text>
+  <text x="50" y="156" fill="#3fb950" font-size="10">✓ Works on clean stubs</text>
+  <text x="50" y="176" fill="#f85149" font-size="10">✗ Fails if stub is hooked</text>
+  <text x="50" y="196" fill="#8b949e" font-size="9">Hooked stubs start with E9 (jmp)</text>
+  <text x="50" y="216" fill="#8b949e" font-size="9">instead of 4C 8B D1 B8</text>
+  <text x="50" y="248" fill="#f85149" font-size="10">Limitation: single-stub only</text>
+
+  <!-- Halo's Gate -->
+  <rect x="350" y="52" width="300" height="210" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="75" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Halo's Gate (2021)</text>
+  <text x="370" y="100" fill="#c9d1d9" font-size="10">Walk neighbors when hooked:</text>
+  <text x="370" y="118" fill="#7ee787" font-size="9">target hooked? walk UP/DOWN</text>
+  <text x="370" y="134" fill="#7ee787" font-size="9">neighbor SSN ± distance = target</text>
+  <text x="370" y="156" fill="#3fb950" font-size="10">✓ Handles single-stub hooks</text>
+  <text x="370" y="176" fill="#3fb950" font-size="10">✓ 0x20 byte stride between stubs</text>
+  <text x="370" y="196" fill="#f0883e" font-size="10">△ Assumes neighbor is clean</text>
+  <text x="370" y="216" fill="#8b949e" font-size="9">addr-0x20 = SSN-1, addr+0x20 = SSN+1</text>
+  <text x="370" y="248" fill="#f0883e" font-size="10">Relies on sequential SSN layout</text>
+
+  <!-- Tartarus' Gate -->
+  <rect x="670" y="52" width="300" height="210" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="820" y="75" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Tartarus' Gate (2021)</text>
+  <text x="690" y="100" fill="#c9d1d9" font-size="10">Handle partial hooks:</text>
+  <text x="690" y="118" fill="#7ee787" font-size="9">Check if B8 xx 00 survives</text>
+  <text x="690" y="134" fill="#7ee787" font-size="9">even when first bytes hooked</text>
+  <text x="690" y="156" fill="#3fb950" font-size="10">✓ Handles partial overwrites</text>
+  <text x="690" y="176" fill="#3fb950" font-size="10">✓ Handles neighbor hooks too</text>
+  <text x="690" y="196" fill="#d2a8ff" font-size="10">△ Walks further if needed</text>
+  <text x="690" y="216" fill="#8b949e" font-size="9">Some EDR hooks only overwrite</text>
+  <text x="690" y="236" fill="#8b949e" font-size="9">first 5 bytes, SSN may survive</text>
+  <text x="690" y="255" fill="#d2a8ff" font-size="10">Most resilient Gate variant</text>
+
+  <!-- Memory layout visualization -->
+  <rect x="30" y="280" width="940" height="175" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="500" y="303" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">ntdll Stub Memory Layout — Gate Resolution Visual</text>
+  <text x="50" y="328" fill="#8b949e" font-size="10">Address       SSN    Status     First Bytes                Gate Resolution</text>
+  <line x1="50" y1="335" x2="950" y2="335" stroke="#30363d"/>
+  <text x="50" y="355" fill="#3fb950" font-size="10">0x7FF00000    0x16   CLEAN      4C 8B D1 B8 16 00 ...     Hell's Gate: ✓ read directly</text>
+  <text x="50" y="375" fill="#3fb950" font-size="10">0x7FF00020    0x17   CLEAN      4C 8B D1 B8 17 00 ...     Hell's Gate: ✓ read directly</text>
+  <text x="50" y="395" fill="#f85149" font-size="10">0x7FF00040    0x18   HOOKED     E9 xx xx xx xx ...        Halo's Gate: 0x17+1=0x18 ✓</text>
+  <text x="50" y="415" fill="#f0883e" font-size="10">0x7FF00060    0x19   PARTIAL    E9 xx B8 19 00 ...        Tartarus: B8 19 survived ✓</text>
+  <text x="50" y="435" fill="#f85149" font-size="10">0x7FF00080    0x1A   HOOKED     E9 xx xx xx xx ...        Halo's: walk to 0x7FF000A0</text>
+  <text x="50" y="445" fill="#3fb950" font-size="10">0x7FF000A0    0x1B   CLEAN      4C 8B D1 B8 1B 00 ...     0x1B-1=0x1A ✓</text>
+
+  <!-- Legend -->
+  <rect x="30" y="470" width="940" height="95" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="495" fill="#58a6ff" font-size="13" font-weight="bold">Evolution Summary</text>
+  <text x="50" y="515" fill="#c9d1d9" font-size="11">Hell's Gate: first clean-stub SSN extraction (fails on hooks)</text>
+  <text x="50" y="535" fill="#c9d1d9" font-size="11">Halo's Gate: neighbor-walk fallback using 0x20 stride (fails if all neighbors hooked)</text>
+  <text x="50" y="555" fill="#f0883e" font-size="11" font-weight="bold">Address sorting supersedes all Gates for reliability — but Gates teach the stub internals deeply</text>
+</svg>

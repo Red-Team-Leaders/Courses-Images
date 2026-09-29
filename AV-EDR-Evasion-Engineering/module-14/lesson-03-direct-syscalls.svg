@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+    <marker id="a3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Direct Syscalls — Bypassing ntdll.dll Entirely</text>
+
+  <!-- Normal path (top) -->
+  <text x="50" y="65" fill="#f85149" font-size="13" font-weight="bold">Normal Path (Hooked by EDR)</text>
+  <rect x="50" y="78" width="160" height="55" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="130" y="103" text-anchor="middle" fill="#c9d1d9" font-size="11">User Code</text>
+  <text x="130" y="120" text-anchor="middle" fill="#8b949e" font-size="9">call NtAllocate...</text>
+  <line x1="215" y1="105" x2="270" y2="105" stroke="#f85149" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="275" y="78" width="200" height="55" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="375" y="103" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">ntdll.dll (HOOKED)</text>
+  <text x="375" y="120" text-anchor="middle" fill="#ff7b72" font-size="9">E9 xx jmp EDR</text>
+  <line x1="480" y1="105" x2="535" y2="105" stroke="#f85149" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="540" y="78" width="160" height="55" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="620" y="103" text-anchor="middle" fill="#f85149" font-size="11">EDR Inspector</text>
+  <text x="620" y="120" text-anchor="middle" fill="#8b949e" font-size="9">Log + Decide</text>
+  <line x1="705" y1="105" x2="760" y2="105" stroke="#f85149" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="765" y="78" width="200" height="55" rx="6" fill="#0d1117" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="865" y="103" text-anchor="middle" fill="#c9d1d9" font-size="11">Kernel (syscall)</text>
+  <text x="865" y="120" text-anchor="middle" fill="#8b949e" font-size="9">Ring 0 handler</text>
+
+  <!-- Direct syscall path (bottom) -->
+  <text x="50" y="175" fill="#3fb950" font-size="13" font-weight="bold">Direct Syscall Path (Bypasses EDR)</text>
+
+  <rect x="50" y="190" width="280" height="160" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="190" y="213" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">User Code + Inline ASM Stub</text>
+  <text x="70" y="240" fill="#7ee787" font-size="10">NtAllocateVirtualMemory PROC</text>
+  <text x="80" y="258" fill="#7ee787" font-size="10">  mov r10, rcx</text>
+  <text x="80" y="276" fill="#ff7b72" font-size="10" font-weight="bold">  mov eax, 18h      ; SSN</text>
+  <text x="80" y="294" fill="#d2a8ff" font-size="10" font-weight="bold">  syscall</text>
+  <text x="80" y="312" fill="#7ee787" font-size="10">  ret</text>
+  <text x="70" y="338" fill="#7ee787" font-size="10">NtAllocateVirtualMemory ENDP</text>
+
+  <!-- Big skip arrow -->
+  <path d="M335 270 Q500 200 755 270" stroke="#3fb950" stroke-width="3" fill="none" marker-end="url(#a1)" stroke-dasharray="8,4"/>
+  <text x="540" y="225" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">SKIP ntdll entirely</text>
+
+  <rect x="760" y="190" width="210" height="160" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="865" y="213" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Kernel</text>
+  <text x="780" y="240" fill="#c9d1d9" font-size="10">KiSystemCall64</text>
+  <text x="780" y="260" fill="#c9d1d9" font-size="10">SSDT[0x18]</text>
+  <text x="780" y="280" fill="#c9d1d9" font-size="10">NtAllocateVirtualMemory</text>
+  <text x="780" y="308" fill="#3fb950" font-size="10">Kernel doesn't care WHERE</text>
+  <text x="780" y="326" fill="#3fb950" font-size="10">the syscall came from!</text>
+
+  <!-- ntdll grayed out in middle -->
+  <rect x="400" y="255" width="280" height="80" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1" opacity="0.5"/>
+  <text x="540" y="285" text-anchor="middle" fill="#6e7681" font-size="13">ntdll.dll (UNUSED)</text>
+  <text x="540" y="305" text-anchor="middle" fill="#6e7681" font-size="10">EDR hooks have no effect</text>
+  <line x1="400" y1="255" x2="680" y2="335" stroke="#f85149" stroke-width="1.5" opacity="0.4"/>
+  <line x1="680" y1="255" x2="400" y2="335" stroke="#f85149" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Detection surface -->
+  <rect x="30" y="375" width="940" height="190" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="400" fill="#f85149" font-size="13" font-weight="bold">Detection Surface</text>
+  <text x="50" y="425" fill="#c9d1d9" font-size="11">1. Return address check: syscall return addr points to YOUR code, not ntdll .text section</text>
+  <text x="50" y="445" fill="#c9d1d9" font-size="11">2. Kernel callback (InstrumentationCallback): EDRs can see syscalls even without ntdll hooks</text>
+  <text x="50" y="465" fill="#c9d1d9" font-size="11">3. ETW-Ti (Threat Intelligence): kernel-level telemetry provider logs syscall metadata</text>
+  <text x="50" y="490" fill="#3fb950" font-size="13" font-weight="bold">Advantages</text>
+  <text x="50" y="510" fill="#c9d1d9" font-size="11">• Completely bypasses inline hooks in ntdll.dll — the most common EDR instrumentation point</text>
+  <text x="50" y="530" fill="#c9d1d9" font-size="11">• No file system access needed (unlike unhooking from disk)</text>
+  <text x="50" y="550" fill="#c9d1d9" font-size="11">• Portable across Windows versions when SSNs are resolved dynamically at runtime</text>
+</svg>

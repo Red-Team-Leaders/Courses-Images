@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Anti-Forensics — Memory Cleanup &amp; Trace Elimination</text>
+
+  <!-- Three pillars -->
+  <rect x="30" y="55" width="300" height="220" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="180" y="80" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Memory Cleanup</text>
+  <text x="50" y="108" fill="#c9d1d9" font-size="11">1. Zero shellcode after execution</text>
+  <text x="60" y="126" fill="#7ee787" font-size="9">RtlSecureZeroMemory(ptr, size)</text>
+  <text x="50" y="148" fill="#c9d1d9" font-size="11">2. Free allocated regions</text>
+  <text x="60" y="166" fill="#7ee787" font-size="9">VirtualFree(ptr, 0, MEM_RELEASE)</text>
+  <text x="50" y="188" fill="#c9d1d9" font-size="11">3. Decommit stack pages</text>
+  <text x="50" y="208" fill="#c9d1d9" font-size="11">4. Unmap section views</text>
+  <text x="50" y="228" fill="#c9d1d9" font-size="11">5. Overwrite key material</text>
+  <text x="50" y="255" fill="#f85149" font-size="9">Prevents: memory forensics, crash dumps</text>
+
+  <rect x="350" y="55" width="300" height="220" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="500" y="80" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Timestamp Manipulation</text>
+  <text x="370" y="108" fill="#c9d1d9" font-size="11">1. SetFileTime() on touched files</text>
+  <text x="380" y="126" fill="#7ee787" font-size="9">Match creation/modify/access</text>
+  <text x="370" y="148" fill="#c9d1d9" font-size="11">2. $STANDARD_INFORMATION</text>
+  <text x="380" y="166" fill="#8b949e" font-size="9">vs $FILE_NAME (NTFS)</text>
+  <text x="370" y="188" fill="#c9d1d9" font-size="11">3. Copy timestamps from legit</text>
+  <text x="370" y="208" fill="#c9d1d9" font-size="11">4. Randomize within range</text>
+  <text x="370" y="228" fill="#c9d1d9" font-size="11">5. USN Journal manipulation</text>
+  <text x="370" y="255" fill="#3fb950" font-size="9">Prevents: timeline analysis</text>
+
+  <rect x="670" y="55" width="310" height="220" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="825" y="80" text-anchor="middle" fill="#d2a8ff" font-size="14" font-weight="bold">Event Log Tampering</text>
+  <text x="690" y="108" fill="#c9d1d9" font-size="11">1. Clear specific event IDs</text>
+  <text x="700" y="126" fill="#7ee787" font-size="9">EvtClearLog() / wevtutil cl</text>
+  <text x="690" y="148" fill="#c9d1d9" font-size="11">2. Thread kill in EventLog svc</text>
+  <text x="700" y="166" fill="#8b949e" font-size="9">Phant0m technique</text>
+  <text x="690" y="188" fill="#c9d1d9" font-size="11">3. Patch ETW SessionGuid</text>
+  <text x="690" y="208" fill="#c9d1d9" font-size="11">4. Disable Sysmon driver</text>
+  <text x="690" y="228" fill="#c9d1d9" font-size="11">5. Remove specific records</text>
+  <text x="690" y="255" fill="#d2a8ff" font-size="9">Prevents: SIEM correlation, IR</text>
+
+  <!-- Cleanup timeline -->
+  <rect x="30" y="295" width="940" height="270" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="323" fill="#f0883e" font-size="14" font-weight="bold">Cleanup Order of Operations</text>
+
+  <!-- Timeline bar -->
+  <line x1="80" y1="355" x2="930" y2="355" stroke="#30363d" stroke-width="3"/>
+  <circle cx="130" cy="355" r="8" fill="#f85149"/>
+  <circle cx="290" cy="355" r="8" fill="#f0883e"/>
+  <circle cx="450" cy="355" r="8" fill="#d2a8ff"/>
+  <circle cx="610" cy="355" r="8" fill="#3fb950"/>
+  <circle cx="770" cy="355" r="8" fill="#58a6ff"/>
+  <circle cx="900" cy="355" r="8" fill="#8b949e"/>
+
+  <text x="130" y="340" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">1</text>
+  <text x="130" y="378" text-anchor="middle" fill="#c9d1d9" font-size="9">Kill child</text>
+  <text x="130" y="392" text-anchor="middle" fill="#c9d1d9" font-size="9">processes</text>
+
+  <text x="290" y="340" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">2</text>
+  <text x="290" y="378" text-anchor="middle" fill="#c9d1d9" font-size="9">Close network</text>
+  <text x="290" y="392" text-anchor="middle" fill="#c9d1d9" font-size="9">connections</text>
+
+  <text x="450" y="340" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="bold">3</text>
+  <text x="450" y="378" text-anchor="middle" fill="#c9d1d9" font-size="9">Zero + free</text>
+  <text x="450" y="392" text-anchor="middle" fill="#c9d1d9" font-size="9">memory regions</text>
+
+  <text x="610" y="340" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">4</text>
+  <text x="610" y="378" text-anchor="middle" fill="#c9d1d9" font-size="9">Remove dropped</text>
+  <text x="610" y="392" text-anchor="middle" fill="#c9d1d9" font-size="9">files + artifacts</text>
+
+  <text x="770" y="340" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">5</text>
+  <text x="770" y="378" text-anchor="middle" fill="#c9d1d9" font-size="9">Fixup timestamps</text>
+  <text x="770" y="392" text-anchor="middle" fill="#c9d1d9" font-size="9">and logs</text>
+
+  <text x="900" y="340" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="bold">6</text>
+  <text x="900" y="378" text-anchor="middle" fill="#c9d1d9" font-size="9">Self-delete</text>
+  <text x="900" y="392" text-anchor="middle" fill="#c9d1d9" font-size="9">implant binary</text>
+
+  <!-- Warnings -->
+  <text x="50" y="430" fill="#f85149" font-size="12" font-weight="bold">Critical Considerations</text>
+  <text x="50" y="453" fill="#c9d1d9" font-size="11">• RtlSecureZeroMemory prevents compiler optimization of zero-fill — memset may be removed</text>
+  <text x="50" y="475" fill="#c9d1d9" font-size="11">• $FILE_NAME timestamps cannot be modified via SetFileTime — requires raw NTFS manipulation</text>
+  <text x="50" y="497" fill="#c9d1d9" font-size="11">• Event log clearing generates Event ID 1102 (audit log cleared) — selective deletion is stealthier</text>
+  <text x="50" y="519" fill="#c9d1d9" font-size="11">• Prefetch files (.pf) in C:\Windows\Prefetch survive process cleanup — consider deletion</text>
+  <text x="50" y="545" fill="#f0883e" font-size="11" font-weight="bold">Best practice: build cleanup into the implant from the start, not as an afterthought</text>
+</svg>

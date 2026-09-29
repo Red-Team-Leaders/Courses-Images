@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ab" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">EDR Architecture — Full Detection Pipeline</text>
+
+  <!-- Target Process -->
+  <rect x="30" y="60" width="220" height="160" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="140" y="83" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Target Process</text>
+  <text x="50" y="108" fill="#c9d1d9" font-size="10">malware.exe / loader.exe</text>
+  <text x="50" y="130" fill="#8b949e" font-size="10">Calls NtAllocateVirtualMemory</text>
+  <text x="50" y="150" fill="#8b949e" font-size="10">Calls NtWriteVirtualMemory</text>
+  <text x="50" y="170" fill="#8b949e" font-size="10">Calls NtCreateThreadEx</text>
+  <text x="50" y="195" fill="#f85149" font-size="9">All calls route through ntdll.dll</text>
+
+  <!-- Userland Hooks -->
+  <rect x="290" y="60" width="220" height="160" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="400" y="83" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Userland Hooks</text>
+  <text x="310" y="108" fill="#c9d1d9" font-size="10">ntdll.dll inline hooks</text>
+  <text x="310" y="130" fill="#c9d1d9" font-size="10">IAT/EAT interception</text>
+  <text x="310" y="152" fill="#c9d1d9" font-size="10">Trampoline redirects</text>
+  <text x="310" y="174" fill="#8b949e" font-size="10">JMP to EDR DLL detour</text>
+  <text x="310" y="195" fill="#f0883e" font-size="9">Ring 3 — same privilege as target</text>
+
+  <!-- EDR Agent -->
+  <rect x="550" y="60" width="200" height="160" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="650" y="83" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">EDR Agent</text>
+  <text x="570" y="108" fill="#c9d1d9" font-size="10">edr_agent.exe</text>
+  <text x="570" y="130" fill="#c9d1d9" font-size="10">Collects telemetry</text>
+  <text x="570" y="152" fill="#c9d1d9" font-size="10">Local ML / heuristics</text>
+  <text x="570" y="174" fill="#c9d1d9" font-size="10">Sends events to cloud</text>
+  <text x="570" y="195" fill="#58a6ff" font-size="9">Always-on service process</text>
+
+  <!-- Cloud -->
+  <rect x="790" y="60" width="185" height="160" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="882" y="83" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Cloud Analysis</text>
+  <text x="810" y="108" fill="#c9d1d9" font-size="10">Global threat intel</text>
+  <text x="810" y="130" fill="#c9d1d9" font-size="10">Deep ML models</text>
+  <text x="810" y="152" fill="#c9d1d9" font-size="10">Reputation scoring</text>
+  <text x="810" y="174" fill="#c9d1d9" font-size="10">Verdict + response</text>
+  <text x="810" y="195" fill="#d2a8ff" font-size="9">Seconds to minutes latency</text>
+
+  <!-- Arrows top row -->
+  <line x1="255" y1="140" x2="285" y2="140" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="515" y1="140" x2="545" y2="140" stroke="#58a6ff" stroke-width="2" marker-end="url(#ab)"/>
+  <line x1="755" y1="140" x2="785" y2="140" stroke="#d2a8ff" stroke-width="2"/>
+
+  <!-- Kernel Layer -->
+  <rect x="30" y="270" width="940" height="30" rx="4" fill="#1a1e24" stroke="#30363d"/>
+  <text x="500" y="290" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">━━━ Ring 0 / Kernel Boundary ━━━</text>
+
+  <!-- Kernel Driver -->
+  <rect x="30" y="320" width="300" height="140" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="343" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">EDR Kernel Driver</text>
+  <text x="50" y="368" fill="#c9d1d9" font-size="10">PsSetCreateProcessNotifyRoutine</text>
+  <text x="50" y="388" fill="#c9d1d9" font-size="10">PsSetCreateThreadNotifyRoutine</text>
+  <text x="50" y="408" fill="#c9d1d9" font-size="10">PsSetLoadImageNotifyRoutine</text>
+  <text x="50" y="428" fill="#c9d1d9" font-size="10">ObRegisterCallbacks</text>
+  <text x="50" y="448" fill="#3fb950" font-size="9">Kernel callbacks — cannot be bypassed from Ring 3</text>
+
+  <!-- Minifilter -->
+  <rect x="370" y="320" width="280" height="140" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="510" y="343" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Minifilter Driver</text>
+  <text x="390" y="368" fill="#c9d1d9" font-size="10">IRP_MJ_CREATE monitoring</text>
+  <text x="390" y="388" fill="#c9d1d9" font-size="10">IRP_MJ_WRITE monitoring</text>
+  <text x="390" y="408" fill="#c9d1d9" font-size="10">File I/O interception</text>
+  <text x="390" y="428" fill="#c9d1d9" font-size="10">Altitude-based ordering</text>
+  <text x="390" y="448" fill="#d2a8ff" font-size="9">Sees every file read/write in system</text>
+
+  <!-- ETW -->
+  <rect x="690" y="320" width="280" height="140" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="830" y="343" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">ETW Providers</text>
+  <text x="710" y="368" fill="#c9d1d9" font-size="10">Microsoft-Windows-Threat-Intelligence</text>
+  <text x="710" y="388" fill="#c9d1d9" font-size="10">Microsoft-Windows-Kernel-Process</text>
+  <text x="710" y="408" fill="#c9d1d9" font-size="10">Kernel-mode event tracing</text>
+  <text x="710" y="428" fill="#c9d1d9" font-size="10">Protected process consumers</text>
+  <text x="710" y="448" fill="#f0883e" font-size="9">Hardware-level telemetry source</text>
+
+  <!-- Legend -->
+  <rect x="30" y="485" width="940" height="80" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="510" fill="#58a6ff" font-size="12" font-weight="bold">Detection Pipeline Flow</text>
+  <text x="50" y="530" fill="#c9d1d9" font-size="10">1. Target calls Nt* API  2. Userland hook intercepts  3. Telemetry sent to agent  4. Agent forwards to cloud  5. Verdict returned</text>
+  <rect x="50" y="545" width="12" height="12" fill="#f85149"/><text x="70" y="556" fill="#8b949e" font-size="10">Target</text>
+  <rect x="150" y="545" width="12" height="12" fill="#f0883e"/><text x="170" y="556" fill="#8b949e" font-size="10">Hooks/ETW</text>
+  <rect x="280" y="545" width="12" height="12" fill="#3fb950"/><text x="300" y="556" fill="#8b949e" font-size="10">Kernel Callbacks</text>
+  <rect x="440" y="545" width="12" height="12" fill="#58a6ff"/><text x="460" y="556" fill="#8b949e" font-size="10">Agent</text>
+  <rect x="540" y="545" width="12" height="12" fill="#d2a8ff"/><text x="560" y="556" fill="#8b949e" font-size="10">Cloud/Minifilter</text>
+</svg>

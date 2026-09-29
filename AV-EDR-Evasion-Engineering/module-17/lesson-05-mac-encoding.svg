@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">MAC Address Shellcode Encoding — Hardware-Disguised Payload</text>
+
+  <!-- Raw Shellcode -->
+  <rect x="30" y="55" width="220" height="105" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="140" y="78" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Raw Shellcode</text>
+  <text x="45" y="100" fill="#ff7b72" font-size="10">FC 48 83 E4 F0 E8</text>
+  <text x="45" y="118" fill="#ff7b72" font-size="10">C0 00 00 00 41 51</text>
+  <text x="45" y="140" fill="#8b949e" font-size="9">6 bytes per MAC address</text>
+
+  <line x1="260" y1="107" x2="310" y2="107" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- MAC Encoded -->
+  <rect x="320" y="55" width="350" height="105" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="495" y="78" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">MAC-Address Encoded Payload</text>
+  <text x="335" y="100" fill="#7ee787" font-size="10">"FC-48-83-E4-F0-E8"</text>
+  <text x="335" y="118" fill="#7ee787" font-size="10">"C0-00-00-00-41-51"</text>
+  <text x="335" y="140" fill="#8b949e" font-size="9">Looks like NIC hardware addresses</text>
+
+  <line x1="680" y1="107" x2="730" y2="107" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- API Decode -->
+  <rect x="740" y="55" width="240" height="105" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="860" y="78" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Decode API</text>
+  <text x="755" y="100" fill="#7ee787" font-size="9">RtlEthernetStringToAddressA(</text>
+  <text x="755" y="116" fill="#7ee787" font-size="9">  "FC-48-83-E4-F0-E8",</text>
+  <text x="755" y="132" fill="#7ee787" font-size="9">  &amp;terminator, &amp;addr)</text>
+  <text x="755" y="148" fill="#8b949e" font-size="9">ntdll — 6 bytes out per call</text>
+
+  <!-- Byte mapping detail -->
+  <rect x="30" y="185" width="940" height="95" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="500" y="208" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">MAC Encoding — 6 Bytes per Address (Sequential, No Byte Swap)</text>
+  <text x="50" y="233" fill="#c9d1d9" font-size="11">Shellcode:  FC   48   83   E4   F0   E8   |   C0   00   00   00   41   51</text>
+  <text x="50" y="258" fill="#3fb950" font-size="11">MAC Addr:  "FC-48-83-E4-F0-E8"          |  "C0-00-00-00-41-51"</text>
+  <text x="50" y="273" fill="#8b949e" font-size="9">Unlike UUID, MAC address encoding is strictly sequential — no endianness issues</text>
+
+  <!-- Loader flow -->
+  <text x="500" y="310" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">MAC Address Loader Pattern</text>
+
+  <rect x="30" y="330" width="180" height="80" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="120" y="353" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">1. Alloc Memory</text>
+  <text x="45" y="375" fill="#c9d1d9" font-size="9">VirtualAlloc(RW)</text>
+  <text x="45" y="390" fill="#c9d1d9" font-size="9">Size = N_MACs × 6</text>
+
+  <line x1="215" y1="370" x2="255" y2="370" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="260" y="330" width="200" height="80" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="360" y="353" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">2. Decode MACs</text>
+  <text x="275" y="375" fill="#7ee787" font-size="9">for (i=0; i&lt;count; i++)</text>
+  <text x="275" y="390" fill="#7ee787" font-size="9">  RtlEthernetStringToAddr</text>
+
+  <line x1="465" y1="370" x2="505" y2="370" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="510" y="330" width="200" height="80" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="610" y="353" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">3. Protect RX</text>
+  <text x="525" y="375" fill="#7ee787" font-size="9">VirtualProtect(</text>
+  <text x="525" y="390" fill="#7ee787" font-size="9">  PAGE_EXECUTE_READ)</text>
+
+  <line x1="715" y1="370" x2="755" y2="370" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="760" y="330" width="210" height="80" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="865" y="353" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">4. Execute</text>
+  <text x="775" y="375" fill="#7ee787" font-size="9">CreateThread(buf)</text>
+  <text x="775" y="390" fill="#c9d1d9" font-size="9">or callback execution</text>
+
+  <!-- Comparison Table -->
+  <rect x="30" y="430" width="940" height="135" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="455" fill="#58a6ff" font-size="13" font-weight="bold">Encoding Comparison</text>
+  <text x="50" y="478" fill="#8b949e" font-size="10">Method          Bytes/Unit   API                             Byte Order</text>
+  <text x="50" y="498" fill="#3fb950" font-size="10">UUID            16           UuidFromStringA (RPCRT4)        Mixed endian</text>
+  <text x="50" y="518" fill="#f0883e" font-size="10">IPv4            4            RtlIpv4StringToAddressA         Big-endian</text>
+  <text x="50" y="538" fill="#d2a8ff" font-size="10">MAC Address     6            RtlEthernetStringToAddressA     Sequential</text>
+  <text x="50" y="555" fill="#8b949e" font-size="9">MAC has fewer API calls than IPv4 (6 vs 4 bytes per call) but more than UUID (16 bytes per call)</text>
+</svg>

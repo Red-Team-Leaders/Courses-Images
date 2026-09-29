@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Thread Pool Injection — TP_WORK / TP_WAIT / TP_TIMER Abuse</text>
+
+  <!-- Windows Thread Pool architecture -->
+  <rect x="30" y="55" width="940" height="105" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="78" fill="#58a6ff" font-size="13" font-weight="bold">Windows Thread Pool Architecture</text>
+  <text x="50" y="100" fill="#c9d1d9" font-size="11">Windows maintains per-process thread pools with worker threads. Work items submitted to the pool</text>
+  <text x="50" y="118" fill="#c9d1d9" font-size="11">execute on existing threads — no new thread creation event. EDRs monitoring CreateThread /</text>
+  <text x="50" y="136" fill="#c9d1d9" font-size="11">CreateRemoteThread miss this entirely. Callback runs in pool worker context.</text>
+
+  <!-- TP_WORK -->
+  <rect x="30" y="175" width="290" height="180" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="175" y="198" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">TP_WORK</text>
+  <text x="50" y="222" fill="#7ee787" font-size="10">PTP_WORK work =</text>
+  <text x="60" y="238" fill="#7ee787" font-size="10">CreateThreadpoolWork(</text>
+  <text x="70" y="254" fill="#c9d1d9" font-size="9">(PTP_WORK_CALLBACK)shellcode,</text>
+  <text x="70" y="270" fill="#c9d1d9" font-size="9">NULL, NULL);</text>
+  <text x="50" y="292" fill="#7ee787" font-size="10">SubmitThreadpoolWork(work);</text>
+  <text x="50" y="310" fill="#7ee787" font-size="10">WaitForThreadpoolWork...</text>
+  <text x="50" y="340" fill="#8b949e" font-size="9">Immediate execution on pool thread</text>
+  <text x="50" y="352" fill="#3fb950" font-size="9">Simplest approach</text>
+
+  <!-- TP_WAIT -->
+  <rect x="355" y="175" width="290" height="180" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="500" y="198" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">TP_WAIT</text>
+  <text x="375" y="222" fill="#7ee787" font-size="10">PTP_WAIT wait =</text>
+  <text x="385" y="238" fill="#7ee787" font-size="10">CreateThreadpoolWait(</text>
+  <text x="395" y="254" fill="#c9d1d9" font-size="9">(PTP_WAIT_CALLBACK)shellcode,</text>
+  <text x="395" y="270" fill="#c9d1d9" font-size="9">NULL, NULL);</text>
+  <text x="375" y="292" fill="#7ee787" font-size="10">SetThreadpoolWait(wait,hEvent);</text>
+  <text x="375" y="310" fill="#7ee787" font-size="10">SetEvent(hEvent); // trigger</text>
+  <text x="375" y="340" fill="#8b949e" font-size="9">Fires when event is signaled</text>
+  <text x="375" y="352" fill="#d2a8ff" font-size="9">Good for timed execution</text>
+
+  <!-- TP_TIMER -->
+  <rect x="680" y="175" width="290" height="180" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="825" y="198" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">TP_TIMER</text>
+  <text x="700" y="222" fill="#7ee787" font-size="10">PTP_TIMER timer =</text>
+  <text x="710" y="238" fill="#7ee787" font-size="10">CreateThreadpoolTimer(</text>
+  <text x="720" y="254" fill="#c9d1d9" font-size="9">(PTP_TIMER_CALLBACK)shellcode,</text>
+  <text x="720" y="270" fill="#c9d1d9" font-size="9">NULL, NULL);</text>
+  <text x="700" y="292" fill="#7ee787" font-size="10">FILETIME ft = {0}; // now</text>
+  <text x="700" y="310" fill="#7ee787" font-size="10">SetThreadpoolTimer(timer,&amp;ft,0,0);</text>
+  <text x="700" y="340" fill="#8b949e" font-size="9">Timer-based delayed execution</text>
+  <text x="700" y="352" fill="#f0883e" font-size="9">Supports periodic re-execution</text>
+
+  <!-- Why this evades -->
+  <rect x="30" y="375" width="940" height="90" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="50" y="400" fill="#3fb950" font-size="13" font-weight="bold">Why Thread Pool Injection Evades EDR</text>
+  <text x="50" y="425" fill="#c9d1d9" font-size="11">1. No CreateThread / CreateRemoteThread — executes on existing pool worker threads</text>
+  <text x="50" y="445" fill="#c9d1d9" font-size="11">2. No PsSetCreateThreadNotifyRoutine trigger — kernel sees no new thread</text>
+  <text x="50" y="460" fill="#8b949e" font-size="10">   Worker threads are created at process startup, long before any injection occurs</text>
+
+  <!-- Advanced: NtSetInformationWorkerFactory -->
+  <rect x="30" y="480" width="940" height="85" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="50" y="505" fill="#f85149" font-size="13" font-weight="bold">Advanced: NtSetInformationWorkerFactory Manipulation</text>
+  <text x="50" y="528" fill="#c9d1d9" font-size="11">For remote injection: duplicate target's worker factory handle → NtSetInformationWorkerFactory</text>
+  <text x="50" y="548" fill="#c9d1d9" font-size="11">to change WorkerFactoryThreadMinimum — forces pool to create thread with shellcode start routine</text>
+  <text x="750" y="548" fill="#f85149" font-size="10" font-weight="bold">Cross-process, no CRT</text>
+</svg>

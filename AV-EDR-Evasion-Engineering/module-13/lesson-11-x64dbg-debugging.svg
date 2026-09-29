@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Debugging Evasive Loaders with x64dbg</text>
+
+  <!-- x64dbg Interface Layout -->
+  <rect x="30" y="50" width="600" height="370" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="330" y="70" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">x64dbg — Debugger Interface</text>
+
+  <!-- CPU View -->
+  <rect x="40" y="80" width="350" height="160" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="215" y="97" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Disassembly (CPU View)</text>
+  <text x="55" y="115" fill="#8b949e" font-size="9">7FFE0A561234</text><text x="165" y="115" fill="#7ee787" font-size="9">mov r10, rcx</text>
+  <text x="55" y="131" fill="#8b949e" font-size="9">7FFE0A561237</text><text x="165" y="131" fill="#7ee787" font-size="9">mov eax, 18</text>
+  <rect x="50" y="137" width="332" height="14" rx="2" fill="#f85149" fill-opacity="0.15"/>
+  <text x="55" y="147" fill="#f85149" font-size="9">7FFE0A56123C</text><text x="165" y="147" fill="#ff7b72" font-size="9">jmp 7FFE0C241000  ; EDR HOOK</text>
+  <text x="350" y="147" fill="#f85149" font-size="8">BP</text>
+  <text x="55" y="163" fill="#8b949e" font-size="9">7FFE0A561241</text><text x="165" y="163" fill="#7ee787" font-size="9">syscall</text>
+  <text x="55" y="179" fill="#8b949e" font-size="9">7FFE0A561243</text><text x="165" y="179" fill="#7ee787" font-size="9">ret</text>
+  <text x="55" y="200" fill="#d2a8ff" font-size="9">ntdll.NtAllocateVirtualMemory</text>
+  <text x="55" y="218" fill="#8b949e" font-size="8">F2: Toggle BP | F7: Step Into | F8: Step Over | F9: Run</text>
+  <text x="55" y="232" fill="#8b949e" font-size="8">Ctrl+G: Go to address | Space: Edit instruction</text>
+
+  <!-- Registers -->
+  <rect x="400" y="80" width="220" height="160" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="510" y="97" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Registers</text>
+  <text x="415" y="115" fill="#c9d1d9" font-size="9">RAX = 00000000 00000018</text>
+  <text x="415" y="131" fill="#c9d1d9" font-size="9">RCX = 00000000 FFFFFFFF</text>
+  <text x="415" y="147" fill="#ff7b72" font-size="9">R10 = 00000000 FFFFFFFF</text>
+  <text x="415" y="163" fill="#c9d1d9" font-size="9">RDX = 00007FFE 0A570000</text>
+  <text x="415" y="179" fill="#c9d1d9" font-size="9">RSP = 00000000 0014F6E0</text>
+  <text x="415" y="195" fill="#c9d1d9" font-size="9">RIP = 7FFE0A56 123C</text>
+  <text x="415" y="215" fill="#8b949e" font-size="8">DR0-DR3 = Hardware BPs</text>
+  <text x="415" y="230" fill="#d2a8ff" font-size="8">Check for anti-debug DR usage</text>
+
+  <!-- Memory Map -->
+  <rect x="40" y="248" width="350" height="160" rx="4" fill="#161b22" stroke="#d2a8ff" stroke-width="1"/>
+  <text x="215" y="265" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="bold">Memory Map</text>
+  <text x="55" y="285" fill="#8b949e" font-size="8">Address          Size     Protection   Module</text>
+  <line x1="55" y1="290" x2="375" y2="290" stroke="#30363d" stroke-width="0.5"/>
+  <text x="55" y="305" fill="#c9d1d9" font-size="8">00400000         00004000  ERW-         target.exe</text>
+  <text x="55" y="320" fill="#ff7b72" font-size="8">00410000         00001000  ERW-         [RWX Page!]</text>
+  <text x="55" y="335" fill="#c9d1d9" font-size="8">7FFE0A500000     001E0000  ER--         ntdll.dll</text>
+  <text x="55" y="350" fill="#c9d1d9" font-size="8">7FFE0C200000     00080000  ER--         edr_hook.dll</text>
+  <text x="55" y="370" fill="#f0883e" font-size="8">Look for: RWX pages, private executable, unmapped code</text>
+  <text x="55" y="388" fill="#8b949e" font-size="8">Alt+M: Memory Map | Double-click to dump region</text>
+  <text x="55" y="400" fill="#8b949e" font-size="8">Right-click region: Set breakpoint on access</text>
+
+  <!-- Stack -->
+  <rect x="400" y="248" width="220" height="160" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="510" y="265" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="bold">Stack</text>
+  <text x="415" y="285" fill="#c9d1d9" font-size="8">RSP+00  7FFE0A561248</text>
+  <text x="415" y="300" fill="#c9d1d9" font-size="8">RSP+08  00000000004012B0</text>
+  <text x="415" y="315" fill="#c9d1d9" font-size="8">RSP+10  0000000000000040</text>
+  <text x="415" y="335" fill="#f0883e" font-size="8">Check return addresses for</text>
+  <text x="415" y="350" fill="#f0883e" font-size="8">call stack spoofing</text>
+  <text x="415" y="370" fill="#8b949e" font-size="8">Spoofed frames: return addr</text>
+  <text x="415" y="385" fill="#8b949e" font-size="8">points to non-call site</text>
+
+  <!-- Key workflows -->
+  <rect x="650" y="50" width="320" height="370" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="810" y="75" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Key Analysis Workflows</text>
+
+  <text x="670" y="100" fill="#3fb950" font-size="11" font-weight="bold">1. Find Hooked Functions</text>
+  <text x="680" y="118" fill="#c9d1d9" font-size="9">Go to ntdll module in Memory Map</text>
+  <text x="680" y="133" fill="#c9d1d9" font-size="9">Search .text for E9 (jmp) at stub starts</text>
+  <text x="680" y="148" fill="#c9d1d9" font-size="9">Follow JMP to see EDR handler</text>
+
+  <text x="670" y="172" fill="#58a6ff" font-size="11" font-weight="bold">2. Trace Syscall Execution</text>
+  <text x="680" y="190" fill="#c9d1d9" font-size="9">BP on 0F 05 (syscall instruction)</text>
+  <text x="680" y="205" fill="#c9d1d9" font-size="9">Check EAX = SSN before syscall</text>
+  <text x="680" y="220" fill="#c9d1d9" font-size="9">Verify R10 = first arg (rcx saved)</text>
+
+  <text x="670" y="244" fill="#d2a8ff" font-size="11" font-weight="bold">3. Catch Unhooking</text>
+  <text x="680" y="262" fill="#c9d1d9" font-size="9">HW BP on ntdll .text section</text>
+  <text x="680" y="277" fill="#c9d1d9" font-size="9">Breaks when loader patches hooks</text>
+  <text x="680" y="292" fill="#c9d1d9" font-size="9">Compare before/after bytes</text>
+
+  <text x="670" y="316" fill="#ff7b72" font-size="11" font-weight="bold">4. Dump Decrypted Payload</text>
+  <text x="680" y="334" fill="#c9d1d9" font-size="9">BP on VirtualProtect (RW to RX)</text>
+  <text x="680" y="349" fill="#c9d1d9" font-size="9">When hit: payload is in memory</text>
+  <text x="680" y="364" fill="#c9d1d9" font-size="9">Dump: Debug &gt; Memory &gt; Save</text>
+
+  <text x="670" y="388" fill="#f0883e" font-size="11" font-weight="bold">5. Bypass Anti-Debug</text>
+  <text x="680" y="406" fill="#c9d1d9" font-size="9">ScyllaHide plugin: patches PEB</text>
+
+  <!-- Bottom tips -->
+  <rect x="30" y="435" width="940" height="130" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="460" fill="#58a6ff" font-size="12" font-weight="bold">Essential x64dbg Plugins for Evasion Analysis</text>
+  <text x="50" y="485" fill="#3fb950" font-size="10" font-weight="bold">ScyllaHide</text><text x="145" y="485" fill="#c9d1d9" font-size="10">Anti-anti-debug: patches PEB, hooks NtQueryInfo, hides debugger</text>
+  <text x="50" y="505" fill="#3fb950" font-size="10" font-weight="bold">Scylla</text><text x="115" y="505" fill="#c9d1d9" font-size="10">IAT reconstruction: rebuild imports after unpacking/decryption</text>
+  <text x="50" y="525" fill="#3fb950" font-size="10" font-weight="bold">SwissArmyKnife</text><text x="185" y="525" fill="#c9d1d9" font-size="10">Signature scanner: find crypto constants, known patterns</text>
+  <text x="50" y="545" fill="#3fb950" font-size="10" font-weight="bold">xAnalyzer</text><text x="140" y="545" fill="#c9d1d9" font-size="10">Extended analysis: auto-comments API params, structure offsets</text>
+</svg>

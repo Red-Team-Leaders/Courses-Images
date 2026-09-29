@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">AES-256 Encryption — Block Cipher for Payload Protection</text>
+
+  <!-- AES Round -->
+  <rect x="30" y="55" width="450" height="200" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="255" y="78" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">AES-256 Round Operations (14 rounds)</text>
+
+  <rect x="50" y="95" width="160" height="35" rx="6" fill="#1a2332" stroke="#f85149"/>
+  <text x="130" y="117" text-anchor="middle" fill="#f85149" font-size="11">SubBytes</text>
+  <line x1="215" y1="112" x2="235" y2="112" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="240" y="95" width="160" height="35" rx="6" fill="#1a2332" stroke="#f0883e"/>
+  <text x="320" y="117" text-anchor="middle" fill="#f0883e" font-size="11">ShiftRows</text>
+
+  <rect x="50" y="145" width="160" height="35" rx="6" fill="#1a2332" stroke="#3fb950"/>
+  <text x="130" y="167" text-anchor="middle" fill="#3fb950" font-size="11">MixColumns</text>
+  <line x1="215" y1="162" x2="235" y2="162" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="240" y="145" width="160" height="35" rx="6" fill="#1a2332" stroke="#58a6ff"/>
+  <text x="320" y="167" text-anchor="middle" fill="#58a6ff" font-size="11">AddRoundKey</text>
+
+  <text x="50" y="205" fill="#8b949e" font-size="9">256-bit key = 14 rounds</text>
+  <text x="50" y="220" fill="#8b949e" font-size="9">128-bit blocks (16 bytes)</text>
+  <text x="50" y="235" fill="#8b949e" font-size="9">Key expansion: 256 bits to 15 round keys</text>
+  <text x="50" y="248" fill="#d2a8ff" font-size="9">Last round skips MixColumns</text>
+
+  <!-- Modes -->
+  <rect x="510" y="55" width="470" height="200" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="745" y="78" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Block Cipher Modes for Loaders</text>
+
+  <rect x="530" y="95" width="200" height="55" rx="6" fill="#1a2332" stroke="#f0883e"/>
+  <text x="630" y="115" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">CBC Mode</text>
+  <text x="540" y="135" fill="#c9d1d9" font-size="9">IV + chain: each block XOR previous cipher</text>
+
+  <rect x="750" y="95" width="210" height="55" rx="6" fill="#1a2332" stroke="#3fb950"/>
+  <text x="855" y="115" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">CTR Mode</text>
+  <text x="760" y="135" fill="#c9d1d9" font-size="9">Nonce+counter: stream-like, parallelizable</text>
+
+  <rect x="530" y="165" width="200" height="55" rx="6" fill="#1a2332" stroke="#d2a8ff"/>
+  <text x="630" y="185" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">GCM Mode</text>
+  <text x="540" y="205" fill="#c9d1d9" font-size="9">CTR + authentication tag (integrity)</text>
+
+  <rect x="750" y="165" width="210" height="55" rx="6" fill="#1a2332" stroke="#f85149"/>
+  <text x="855" y="185" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">ChaCha20-Poly1305</text>
+  <text x="760" y="205" fill="#c9d1d9" font-size="9">Alternative: no AES-NI needed, fast in SW</text>
+
+  <!-- Windows CNG -->
+  <rect x="30" y="275" width="940" height="130" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="500" y="298" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Windows CNG (BCrypt) API Flow</text>
+
+  <rect x="50" y="315" width="150" height="40" rx="6" fill="#1a2332" stroke="#58a6ff"/>
+  <text x="125" y="340" text-anchor="middle" fill="#58a6ff" font-size="9">BCryptOpenAlgorithm</text>
+  <text x="125" y="352" text-anchor="middle" fill="#8b949e" font-size="8">AES provider</text>
+
+  <line x1="205" y1="335" x2="225" y2="335" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="230" y="315" width="140" height="40" rx="6" fill="#1a2332" stroke="#f0883e"/>
+  <text x="300" y="340" text-anchor="middle" fill="#f0883e" font-size="9">BCryptSetProperty</text>
+  <text x="300" y="352" text-anchor="middle" fill="#8b949e" font-size="8">CBC/GCM mode</text>
+
+  <line x1="375" y1="335" x2="395" y2="335" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="400" y="315" width="140" height="40" rx="6" fill="#1a2332" stroke="#d2a8ff"/>
+  <text x="470" y="340" text-anchor="middle" fill="#d2a8ff" font-size="9">BCryptGenerateSymKey</text>
+  <text x="470" y="352" text-anchor="middle" fill="#8b949e" font-size="8">Import AES key</text>
+
+  <line x1="545" y1="335" x2="565" y2="335" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="570" y="315" width="130" height="40" rx="6" fill="#1a2332" stroke="#3fb950"/>
+  <text x="635" y="340" text-anchor="middle" fill="#3fb950" font-size="9">BCryptDecrypt</text>
+  <text x="635" y="352" text-anchor="middle" fill="#8b949e" font-size="8">Decrypt payload</text>
+
+  <line x1="705" y1="335" x2="725" y2="335" stroke="#f0883e" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="730" y="315" width="150" height="40" rx="6" fill="#1a2332" stroke="#f85149"/>
+  <text x="805" y="340" text-anchor="middle" fill="#f85149" font-size="9">BCryptDestroyKey</text>
+  <text x="805" y="352" text-anchor="middle" fill="#8b949e" font-size="8">Cleanup + close</text>
+
+  <text x="50" y="388" fill="#7ee787" font-size="9">BCryptOpenAlgorithmProvider(&amp;hAlg, BCRYPT_AES_ALGORITHM, NULL, 0);</text>
+  <text x="50" y="400" fill="#8b949e" font-size="9">No external crypto libraries needed — uses built-in Windows CNG</text>
+
+  <!-- Key Derivation -->
+  <rect x="30" y="420" width="450" height="145" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="255" y="443" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Key Derivation for Loaders</text>
+  <text x="50" y="468" fill="#c9d1d9" font-size="10">PBKDF2: password + salt + iterations</text>
+  <text x="50" y="488" fill="#c9d1d9" font-size="10">HKDF:   extract + expand (modern, fast)</text>
+  <text x="50" y="508" fill="#c9d1d9" font-size="10">SHA-256: hash(hostname + machineGUID)</text>
+  <text x="50" y="535" fill="#f0883e" font-size="10">Never hardcode AES key in binary!</text>
+  <text x="50" y="552" fill="#8b949e" font-size="9">Derive at runtime from environment</text>
+
+  <!-- Legend -->
+  <rect x="510" y="420" width="460" height="145" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="530" y="443" fill="#58a6ff" font-size="13" font-weight="bold">AES vs RC4 vs ChaCha20</text>
+  <text x="530" y="468" fill="#c9d1d9" font-size="10">AES-256: strongest, CNG native, needs padding</text>
+  <text x="530" y="488" fill="#c9d1d9" font-size="10">RC4: simplest, no deps, but cryptographically weak</text>
+  <text x="530" y="508" fill="#c9d1d9" font-size="10">ChaCha20: fast in software, no AES-NI needed</text>
+  <text x="530" y="535" fill="#f0883e" font-size="10">Recommendation: AES-256-CTR with HKDF key derivation</text>
+  <text x="530" y="552" fill="#8b949e" font-size="9">Environmental keying ensures payload only decrypts on target</text>
+</svg>

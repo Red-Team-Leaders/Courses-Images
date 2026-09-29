@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Call Stack Spoofing — Synthetic Frame Manipulation</text>
+
+  <!-- Suspicious stack -->
+  <rect x="30" y="52" width="450" height="280" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="255" y="75" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Suspicious Call Stack (Direct Syscall)</text>
+  <text x="50" y="100" fill="#8b949e" font-size="10">Frame    Return Address        Module</text>
+  <line x1="50" y1="107" x2="460" y2="107" stroke="#30363d"/>
+  <text x="50" y="127" fill="#c9d1d9" font-size="10">#0       0x00007FF6A1234567   malware.exe</text>
+  <text x="50" y="147" fill="#ff7b72" font-size="10" font-weight="bold">#1       0x00007FF6A1234890   malware.exe  ← !</text>
+  <text x="50" y="167" fill="#c9d1d9" font-size="10">#2       0x00007FF6A1234ABC   malware.exe</text>
+  <text x="50" y="187" fill="#c9d1d9" font-size="10">#3       0x00007FFBA0001234   KERNEL32.dll</text>
+  <text x="50" y="207" fill="#c9d1d9" font-size="10">#4       0x00007FFBA2005678   ntdll.dll</text>
+  <text x="50" y="237" fill="#f85149" font-size="11" font-weight="bold">EDR Detection:</text>
+  <text x="50" y="257" fill="#c9d1d9" font-size="10">"Syscall originated from non-system module"</text>
+  <text x="50" y="277" fill="#c9d1d9" font-size="10">"Call stack has unknown .exe at top"</text>
+  <text x="50" y="297" fill="#f85149" font-size="10">Stack frames #1-#2 in untrusted module</text>
+  <text x="50" y="322" fill="#f85149" font-size="10" font-weight="bold">ALERT: Anomalous syscall origin detected</text>
+
+  <!-- Spoofed stack -->
+  <rect x="520" y="52" width="450" height="280" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="745" y="75" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Spoofed Call Stack (Clean)</text>
+  <text x="540" y="100" fill="#8b949e" font-size="10">Frame    Return Address        Module</text>
+  <line x1="540" y1="107" x2="950" y2="107" stroke="#30363d"/>
+  <text x="540" y="127" fill="#3fb950" font-size="10">#0       0x00007FFBA1AABB00   ntdll.dll</text>
+  <text x="540" y="147" fill="#3fb950" font-size="10">#1       0x00007FFBA0FF1234   KERNELBASE.dll</text>
+  <text x="540" y="167" fill="#3fb950" font-size="10">#2       0x00007FFBA0001234   KERNEL32.dll</text>
+  <text x="540" y="187" fill="#3fb950" font-size="10">#3       0x00007FFBA2005678   ntdll.dll</text>
+  <text x="540" y="207" fill="#3fb950" font-size="10">#4       0x00007FFBA2009ABC   ntdll.dll</text>
+  <text x="540" y="237" fill="#3fb950" font-size="11" font-weight="bold">EDR sees:</text>
+  <text x="540" y="257" fill="#c9d1d9" font-size="10">"Normal system call chain"</text>
+  <text x="540" y="277" fill="#c9d1d9" font-size="10">"All frames in trusted modules"</text>
+  <text x="540" y="297" fill="#3fb950" font-size="10">Every return address in system DLL range</text>
+  <text x="540" y="322" fill="#3fb950" font-size="10" font-weight="bold">PASS: Stack trace appears legitimate</text>
+
+  <!-- Technique details -->
+  <rect x="30" y="350" width="450" height="120" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="255" y="373" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Spoofing Technique</text>
+  <text x="50" y="398" fill="#c9d1d9" font-size="10">1. Save real RBP/RSP to thread-local storage</text>
+  <text x="50" y="416" fill="#c9d1d9" font-size="10">2. Build fake stack frames with legitimate return addrs</text>
+  <text x="50" y="434" fill="#c9d1d9" font-size="10">3. Pivot RSP to synthetic frame chain</text>
+  <text x="50" y="452" fill="#c9d1d9" font-size="10">4. Execute syscall, restore real stack after return</text>
+
+  <!-- Implementation -->
+  <rect x="520" y="350" width="450" height="120" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="745" y="373" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Implementation Pattern</text>
+  <text x="540" y="396" fill="#7ee787" font-size="9">; Save real stack context</text>
+  <text x="540" y="412" fill="#7ee787" font-size="9">mov  [rdi+TLS_RSP], rsp</text>
+  <text x="540" y="428" fill="#7ee787" font-size="9">; Pivot to synthetic frames</text>
+  <text x="540" y="444" fill="#7ee787" font-size="9">lea  rsp, [fake_frames]</text>
+  <text x="540" y="460" fill="#7ee787" font-size="9">; Syscall, then restore</text>
+
+  <!-- Bottom -->
+  <rect x="30" y="485" width="940" height="80" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="510" fill="#58a6ff" font-size="13" font-weight="bold">Detection &amp; Counter-Detection</text>
+  <text x="50" y="530" fill="#c9d1d9" font-size="11">EDRs use NtQueryInformationThread + RtlVirtualUnwind to walk and validate call stacks.</text>
+  <text x="50" y="550" fill="#f0883e" font-size="11">Advanced spoofing must produce frames that survive RtlVirtualUnwind's unwind info validation.</text>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#d2a8ff"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="a3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Indirect Syscalls — Trampolining Through ntdll</text>
+
+  <!-- Problem box -->
+  <rect x="30" y="52" width="450" height="80" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="50" y="75" fill="#f85149" font-size="12" font-weight="bold">Problem with Direct Syscalls</text>
+  <text x="50" y="95" fill="#c9d1d9" font-size="10">Syscall return address points to your module, not ntdll.dll.</text>
+  <text x="50" y="112" fill="#c9d1d9" font-size="10">EDRs check: "Did this syscall originate from ntdll .text?"</text>
+
+  <!-- Solution box -->
+  <rect x="520" y="52" width="450" height="80" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="540" y="75" fill="#3fb950" font-size="12" font-weight="bold">Indirect Syscall Solution</text>
+  <text x="540" y="95" fill="#c9d1d9" font-size="10">Jump into ntdll's own syscall;ret gadget so return</text>
+  <text x="540" y="112" fill="#c9d1d9" font-size="10">address falls within ntdll .text — looks legitimate.</text>
+
+  <!-- Flow diagram -->
+  <text x="50" y="160" fill="#d2a8ff" font-size="13" font-weight="bold">Indirect Syscall Execution Flow</text>
+
+  <!-- Step 1: User stub -->
+  <rect x="30" y="175" width="240" height="130" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="150" y="198" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">Your ASM Stub</text>
+  <text x="50" y="222" fill="#7ee787" font-size="10">mov r10, rcx</text>
+  <text x="50" y="240" fill="#7ee787" font-size="10">mov eax, SSN</text>
+  <text x="50" y="260" fill="#ff7b72" font-size="10" font-weight="bold">jmp [syscall_addr]</text>
+  <text x="50" y="280" fill="#8b949e" font-size="9">; NOT syscall here!</text>
+  <text x="50" y="295" fill="#8b949e" font-size="9">; Jump to ntdll gadget</text>
+
+  <!-- Arrow -->
+  <line x1="275" y1="245" x2="365" y2="245" stroke="#d2a8ff" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="320" y="238" text-anchor="middle" fill="#d2a8ff" font-size="9">jmp</text>
+
+  <!-- Step 2: ntdll gadget -->
+  <rect x="370" y="175" width="260" height="130" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="500" y="198" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">ntdll.dll — syscall;ret Gadget</text>
+  <text x="390" y="222" fill="#8b949e" font-size="10">; Landing point inside ntdll</text>
+  <text x="390" y="242" fill="#f0883e" font-size="11" font-weight="bold">0F 05    syscall</text>
+  <text x="390" y="262" fill="#f0883e" font-size="11" font-weight="bold">C3       ret</text>
+  <text x="390" y="288" fill="#3fb950" font-size="10">Return addr = ntdll range ✓</text>
+
+  <!-- Arrow to kernel -->
+  <line x1="635" y1="245" x2="725" y2="245" stroke="#3fb950" stroke-width="2" marker-end="url(#a2)"/>
+
+  <!-- Kernel -->
+  <rect x="730" y="175" width="240" height="130" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="850" y="198" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Kernel</text>
+  <text x="750" y="222" fill="#c9d1d9" font-size="10">KiSystemCall64</text>
+  <text x="750" y="242" fill="#c9d1d9" font-size="10">SSDT dispatch</text>
+  <text x="750" y="262" fill="#c9d1d9" font-size="10">Return to ntdll range</text>
+  <text x="750" y="288" fill="#3fb950" font-size="10">Stack trace looks clean</text>
+
+  <!-- Finding the gadget -->
+  <rect x="30" y="325" width="460" height="145" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="260" y="348" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Finding the syscall;ret Gadget</text>
+  <text x="50" y="373" fill="#7ee787" font-size="10">// Scan ntdll .text for 0F 05 C3 pattern</text>
+  <text x="50" y="391" fill="#7ee787" font-size="10">for (i = 0; i &lt; textSize - 2; i++) {</text>
+  <text x="50" y="409" fill="#7ee787" font-size="10">  if (text[i]==0x0F &amp;&amp; text[i+1]==0x05</text>
+  <text x="50" y="427" fill="#7ee787" font-size="10">      &amp;&amp; text[i+2]==0xC3)</text>
+  <text x="50" y="445" fill="#7ee787" font-size="10">    return textBase + i; // gadget addr</text>
+  <text x="50" y="463" fill="#7ee787" font-size="10">}</text>
+
+  <!-- Comparison table -->
+  <rect x="520" y="325" width="450" height="145" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="745" y="348" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Direct vs Indirect Comparison</text>
+  <text x="540" y="373" fill="#8b949e" font-size="10">Aspect              Direct       Indirect</text>
+  <line x1="540" y1="380" x2="950" y2="380" stroke="#30363d"/>
+  <text x="540" y="398" fill="#c9d1d9" font-size="10">Return address      Your .text   ntdll .text</text>
+  <text x="540" y="416" fill="#c9d1d9" font-size="10">Stack trace         Suspicious   Legitimate</text>
+  <text x="540" y="434" fill="#c9d1d9" font-size="10">Hook bypass         Yes          Yes</text>
+  <text x="540" y="452" fill="#c9d1d9" font-size="10">OPSEC               Lower        Higher</text>
+
+  <!-- Bottom key -->
+  <rect x="30" y="485" width="940" height="80" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="510" fill="#58a6ff" font-size="13" font-weight="bold">Why Indirect Syscalls Win</text>
+  <text x="50" y="530" fill="#c9d1d9" font-size="11">The kernel and EDR kernel callbacks see the return address on the stack. If it points outside ntdll,</text>
+  <text x="50" y="550" fill="#c9d1d9" font-size="11">that's an immediate red flag. Indirect syscalls ensure the return address is always within ntdll's .text section.</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Complete Stealth Loader Architecture</text>
+
+  <!-- Layer 1: Init -->
+  <rect x="30" y="55" width="940" height="70" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="60" y="78" fill="#58a6ff" font-size="12" font-weight="bold">Layer 1: Initialization</text>
+  <text x="60" y="98" fill="#c9d1d9" font-size="10">PEB walk → Hash-resolve APIs → Anti-debug checks → Environment validation → PPID spoof setup</text>
+  <text x="780" y="98" fill="#8b949e" font-size="9">No IAT entries</text>
+
+  <line x1="500" y1="125" x2="500" y2="140" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Layer 2: Evasion -->
+  <rect x="30" y="145" width="940" height="70" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="60" y="168" fill="#3fb950" font-size="12" font-weight="bold">Layer 2: Evasion Setup</text>
+  <text x="60" y="188" fill="#c9d1d9" font-size="10">ETW patch → AMSI bypass → Unhook ntdll (KnownDlls) → Disable instrumentation callbacks → Spoof call stack</text>
+  <text x="780" y="188" fill="#8b949e" font-size="9">Syscalls only</text>
+
+  <line x1="500" y1="215" x2="500" y2="230" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Layer 3: Decrypt -->
+  <rect x="30" y="235" width="940" height="70" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="60" y="258" fill="#f0883e" font-size="12" font-weight="bold">Layer 3: Payload Decryption</text>
+  <text x="60" y="278" fill="#c9d1d9" font-size="10">Environmental key derivation → AES-256 decrypt → HMAC verify → Decompress (if staged) → Validate PE/shellcode</text>
+  <text x="780" y="278" fill="#8b949e" font-size="9">Keys from env</text>
+
+  <line x1="500" y1="305" x2="500" y2="320" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Layer 4: Inject -->
+  <rect x="30" y="325" width="940" height="70" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="60" y="348" fill="#d2a8ff" font-size="12" font-weight="bold">Layer 4: Injection &amp; Execution</text>
+  <text x="60" y="368" fill="#c9d1d9" font-size="10">Module stomp (or section inject) → Copy decrypted payload → Protect RX → Execute via fiber/callback/APC</text>
+  <text x="780" y="368" fill="#8b949e" font-size="9">No CRT / RWX</text>
+
+  <line x1="500" y1="395" x2="500" y2="410" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Layer 5: Persist -->
+  <rect x="30" y="415" width="940" height="70" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="60" y="438" fill="#f85149" font-size="12" font-weight="bold">Layer 5: Post-Execution</text>
+  <text x="60" y="458" fill="#c9d1d9" font-size="10">Sleep obfuscation (Ekko) → Re-encrypt on sleep → Cleanup decrypted regions → Secure key wipe → Self-delete stub</text>
+  <text x="780" y="458" fill="#8b949e" font-size="9">Encrypted sleep</text>
+
+  <!-- Properties sidebar -->
+  <rect x="30" y="500" width="940" height="65" rx="8" fill="#161b22" stroke="#30363d"/>
+  <rect x="50" y="515" width="12" height="12" fill="#3fb950"/><text x="70" y="526" fill="#c9d1d9" font-size="10">Zero static imports</text>
+  <rect x="230" y="515" width="12" height="12" fill="#58a6ff"/><text x="250" y="526" fill="#c9d1d9" font-size="10">Syscall-only execution</text>
+  <rect x="430" y="515" width="12" height="12" fill="#f0883e"/><text x="450" y="526" fill="#c9d1d9" font-size="10">Encrypted at rest</text>
+  <rect x="610" y="515" width="12" height="12" fill="#d2a8ff"/><text x="630" y="526" fill="#c9d1d9" font-size="10">No RWX memory</text>
+  <rect x="780" y="515" width="12" height="12" fill="#f85149"/><text x="800" y="526" fill="#c9d1d9" font-size="10">Sleep encrypted</text>
+  <text x="50" y="550" fill="#f0883e" font-size="10" font-weight="bold">Each layer uses only indirect syscalls — no ntdll.dll API calls in the entire chain</text>
+</svg>

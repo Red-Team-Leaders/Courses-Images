@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Multi-Layer Encryption — Nested Staged Decryption</text>
+
+  <!-- Onion layers -->
+  <!-- Outer: XOR -->
+  <rect x="50" y="55" width="900" height="110" rx="12" fill="none" stroke="#f85149" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="80" y="78" fill="#f85149" font-size="12" font-weight="bold">Layer 3 (Outer): XOR — Key from environment</text>
+  <text x="80" y="98" fill="#8b949e" font-size="10">Key = HMAC-SHA256(hostname + username + machineGUID)[0:32]</text>
+  <text x="80" y="115" fill="#8b949e" font-size="10">First layer stripped at runtime — wrong machine = wrong key = garbage</text>
+
+  <!-- Middle: AES -->
+  <rect x="100" y="125" width="800" height="100" rx="10" fill="none" stroke="#d2a8ff" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="130" y="148" fill="#d2a8ff" font-size="12" font-weight="bold">Layer 2 (Middle): AES-256-CBC — Key from operator</text>
+  <text x="130" y="168" fill="#8b949e" font-size="10">IV prepended to ciphertext, PKCS7 padding, key in build config</text>
+  <text x="130" y="185" fill="#8b949e" font-size="10">Strong encryption — static analysis sees high-entropy blob</text>
+
+  <!-- Inner: RC4 -->
+  <rect x="150" y="195" width="700" height="55" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="218" fill="#3fb950" font-size="12" font-weight="bold">Layer 1 (Inner): RC4 — Key from time-gate</text>
+  <text x="180" y="238" fill="#8b949e" font-size="10">Key derived from day-of-week hash — payload only decrypts on correct day</text>
+
+  <!-- Core -->
+  <rect x="250" y="215" width="180" height="25" rx="4" fill="#f0883e" opacity="0.3"/>
+  <text x="340" y="233" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">[Raw Shellcode]</text>
+
+  <!-- Decryption flow -->
+  <text x="500" y="290" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Runtime Decryption Flow</text>
+
+  <!-- Step 1 -->
+  <rect x="30" y="310" width="200" height="80" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="130" y="335" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Stage 1: XOR Decrypt</text>
+  <text x="50" y="358" fill="#c9d1d9" font-size="9">Derive key from env</text>
+  <text x="50" y="373" fill="#c9d1d9" font-size="9">XOR decrypt in-place</text>
+  <text x="50" y="385" fill="#8b949e" font-size="8">Wrong env = silent fail</text>
+
+  <line x1="230" y1="350" x2="270" y2="350" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Step 2 -->
+  <rect x="280" y="310" width="200" height="80" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="380" y="335" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">Stage 2: AES Decrypt</text>
+  <text x="300" y="358" fill="#c9d1d9" font-size="9">Extract IV (first 16B)</text>
+  <text x="300" y="373" fill="#c9d1d9" font-size="9">BCryptDecrypt(AES-CBC)</text>
+  <text x="300" y="385" fill="#8b949e" font-size="8">Verify HMAC integrity</text>
+
+  <line x1="480" y1="350" x2="520" y2="350" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Step 3 -->
+  <rect x="530" y="310" width="200" height="80" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="630" y="335" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Stage 3: RC4 Decrypt</text>
+  <text x="550" y="358" fill="#c9d1d9" font-size="9">Derive time-gate key</text>
+  <text x="550" y="373" fill="#c9d1d9" font-size="9">RC4 stream decrypt</text>
+  <text x="550" y="385" fill="#8b949e" font-size="8">Day-of-week validation</text>
+
+  <line x1="730" y1="350" x2="770" y2="350" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Result -->
+  <rect x="780" y="310" width="190" height="80" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="875" y="335" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Shellcode Ready</text>
+  <text x="800" y="358" fill="#c9d1d9" font-size="9">VirtualProtect(RX)</text>
+  <text x="800" y="373" fill="#c9d1d9" font-size="9">Execute payload</text>
+  <text x="800" y="385" fill="#3fb950" font-size="8">All keys zeroed</text>
+
+  <!-- Benefits -->
+  <rect x="30" y="415" width="940" height="150" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="440" fill="#3fb950" font-size="13" font-weight="bold">Why Multi-Layer Encryption</text>
+
+  <text x="50" y="465" fill="#c9d1d9" font-size="11">1. Environmental keying (XOR layer) — payload useless on wrong machine, defeats sandbox analysis</text>
+  <text x="50" y="488" fill="#c9d1d9" font-size="11">2. Strong cryptography (AES layer) — defeats static signature scanning, high entropy blob</text>
+  <text x="50" y="511" fill="#c9d1d9" font-size="11">3. Time-gating (RC4 layer) — only decrypts during operation window, limits forensic analysis</text>
+  <text x="50" y="534" fill="#c9d1d9" font-size="11">4. Defense-in-depth — even if one layer key is extracted, remaining layers protect payload</text>
+
+  <text x="50" y="555" fill="#f85149" font-size="10" font-weight="bold">Detection: entropy analysis per-layer (encrypted data has ~8.0 bits/byte); decryption API sequences (BCryptDecrypt calls)</text>
+</svg>

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Complete Syscall-Only Loader Architecture</text>
+
+  <!-- Pipeline -->
+  <rect x="30" y="52" width="140" height="90" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="100" y="72" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="bold">PEB Walk</text>
+  <text x="40" y="92" fill="#7ee787" font-size="8">gs:[0x60]</text>
+  <text x="40" y="106" fill="#7ee787" font-size="8">LDR → ntdll base</text>
+  <text x="40" y="120" fill="#8b949e" font-size="7">No GetModuleHandle</text>
+  <line x1="175" y1="97" x2="195" y2="97" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="200" y="52" width="140" height="90" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="270" y="72" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">SSN Resolve</text>
+  <text x="210" y="92" fill="#7ee787" font-size="8">Sort Zw* exports</text>
+  <text x="210" y="106" fill="#7ee787" font-size="8">Position = SSN</text>
+  <text x="210" y="120" fill="#8b949e" font-size="7">No hardcoded SSNs</text>
+  <line x1="345" y1="97" x2="365" y2="97" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="370" y="52" width="140" height="90" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="440" y="72" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">NtAllocateVM</text>
+  <text x="380" y="92" fill="#7ee787" font-size="8">Indirect syscall</text>
+  <text x="380" y="106" fill="#7ee787" font-size="8">MEM_COMMIT|RES</text>
+  <text x="380" y="120" fill="#7ee787" font-size="8">PAGE_READWRITE</text>
+  <line x1="515" y1="97" x2="535" y2="97" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="540" y="52" width="140" height="90" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="610" y="72" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Decrypt + Copy</text>
+  <text x="550" y="92" fill="#7ee787" font-size="8">AES-256 decrypt</text>
+  <text x="550" y="106" fill="#7ee787" font-size="8">memcpy to RW buf</text>
+  <text x="550" y="120" fill="#8b949e" font-size="7">No NtWriteVM needed</text>
+  <line x1="685" y1="97" x2="705" y2="97" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="710" y="52" width="130" height="90" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="775" y="72" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">NtProtectVM</text>
+  <text x="720" y="92" fill="#7ee787" font-size="8">RW → RX</text>
+  <text x="720" y="106" fill="#7ee787" font-size="8">No RWX ever</text>
+  <text x="720" y="120" fill="#8b949e" font-size="7">Indirect syscall</text>
+  <line x1="845" y1="97" x2="865" y2="97" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="870" y="52" width="100" height="90" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="920" y="72" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="bold">Execute</text>
+  <text x="880" y="92" fill="#7ee787" font-size="8">Callback or</text>
+  <text x="880" y="106" fill="#7ee787" font-size="8">NtCreateThread</text>
+  <text x="880" y="120" fill="#8b949e" font-size="7">Indirect syscall</text>
+
+  <!-- Properties -->
+  <rect x="30" y="160" width="300" height="180" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="183" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Zero-Import Properties</text>
+  <text x="50" y="208" fill="#3fb950" font-size="10">✓ Empty IAT (no static imports)</text>
+  <text x="50" y="228" fill="#3fb950" font-size="10">✓ No Win32 API calls at all</text>
+  <text x="50" y="248" fill="#3fb950" font-size="10">✓ All APIs via PEB walk + hashing</text>
+  <text x="50" y="268" fill="#3fb950" font-size="10">✓ All kernel transitions via syscall</text>
+  <text x="50" y="288" fill="#3fb950" font-size="10">✓ No RWX memory pages</text>
+  <text x="50" y="308" fill="#3fb950" font-size="10">✓ Encrypted payload at rest</text>
+  <text x="50" y="328" fill="#3fb950" font-size="10">✓ Indirect syscalls (ntdll ret addr)</text>
+
+  <!-- Detection resistance -->
+  <rect x="350" y="160" width="310" height="180" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="505" y="183" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Detection Resistance</text>
+  <text x="370" y="208" fill="#c9d1d9" font-size="10">Static: empty IAT evades import analysis</text>
+  <text x="370" y="228" fill="#c9d1d9" font-size="10">Hooks: bypasses all ntdll inline hooks</text>
+  <text x="370" y="248" fill="#c9d1d9" font-size="10">Stack: return addrs in ntdll range</text>
+  <text x="370" y="268" fill="#c9d1d9" font-size="10">Memory: no RWX page anomalies</text>
+  <text x="370" y="288" fill="#c9d1d9" font-size="10">Entropy: encrypted payload = high</text>
+  <text x="370" y="308" fill="#f85149" font-size="10">Remaining: ETW-Ti, kernel callbacks</text>
+  <text x="370" y="328" fill="#f85149" font-size="10">InstrumentationCallback still sees</text>
+
+  <!-- Code structure -->
+  <rect x="680" y="160" width="290" height="180" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="825" y="183" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">File Structure</text>
+  <text x="700" y="208" fill="#c9d1d9" font-size="10">loader.cpp        main() entry</text>
+  <text x="700" y="228" fill="#c9d1d9" font-size="10">peb_walk.asm      module resolver</text>
+  <text x="700" y="248" fill="#c9d1d9" font-size="10">syscalls.asm      indirect stubs</text>
+  <text x="700" y="268" fill="#c9d1d9" font-size="10">ssn_resolve.cpp   Zw* sort logic</text>
+  <text x="700" y="288" fill="#c9d1d9" font-size="10">crypto.cpp        AES-256 decrypt</text>
+  <text x="700" y="308" fill="#c9d1d9" font-size="10">payload.bin       encrypted blob</text>
+  <text x="700" y="328" fill="#8b949e" font-size="9">Compile: MSVC /NODEFAULTLIB</text>
+
+  <!-- Bottom -->
+  <rect x="30" y="355" width="940" height="210" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="380" fill="#58a6ff" font-size="13" font-weight="bold">Execution Timeline</text>
+  <text x="50" y="405" fill="#c9d1d9" font-size="10">T=0ms     PEB walk: gs:[0x60] → ntdll base address</text>
+  <text x="50" y="425" fill="#c9d1d9" font-size="10">T=0.1ms   SSN resolve: sort 460+ Zw* exports, extract SSN table</text>
+  <text x="50" y="445" fill="#c9d1d9" font-size="10">T=0.2ms   NtAllocateVirtualMemory(PAGE_READWRITE) via indirect syscall</text>
+  <text x="50" y="465" fill="#c9d1d9" font-size="10">T=0.3ms   Decrypt AES-256-CBC payload into RW buffer</text>
+  <text x="50" y="485" fill="#c9d1d9" font-size="10">T=0.4ms   NtProtectVirtualMemory(PAGE_EXECUTE_READ) via indirect syscall</text>
+  <text x="50" y="505" fill="#c9d1d9" font-size="10">T=0.5ms   NtCreateThreadEx → execute shellcode in new thread</text>
+  <text x="50" y="530" fill="#f0883e" font-size="11" font-weight="bold">Total: ~0.5ms from entry to execution — all via indirect syscalls, zero IAT entries</text>
+  <text x="50" y="555" fill="#8b949e" font-size="10">Add timing jitter in production: Sleep between stages to avoid burst-pattern detection</text>
+</svg>

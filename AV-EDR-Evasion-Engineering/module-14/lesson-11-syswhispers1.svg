@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">SysWhispers 1 — Header-Only Syscall Stub Generation</text>
+
+  <!-- Architecture -->
+  <rect x="30" y="52" width="280" height="200" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="170" y="75" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Build-Time Generator</text>
+  <text x="50" y="100" fill="#c9d1d9" font-size="10">syswhispers.py</text>
+  <text x="50" y="125" fill="#7ee787" font-size="9">Input: function list</text>
+  <text x="50" y="143" fill="#7ee787" font-size="9">  NtAllocateVirtualMemory</text>
+  <text x="50" y="161" fill="#7ee787" font-size="9">  NtProtectVirtualMemory</text>
+  <text x="50" y="179" fill="#7ee787" font-size="9">  NtCreateThreadEx</text>
+  <text x="50" y="200" fill="#f0883e" font-size="10">Output:</text>
+  <text x="50" y="218" fill="#c9d1d9" font-size="9">syscalls.h + syscalls.asm</text>
+  <text x="50" y="238" fill="#8b949e" font-size="8">Python script runs offline</text>
+
+  <line x1="315" y1="150" x2="355" y2="150" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Generated files -->
+  <rect x="360" y="52" width="310" height="200" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="515" y="75" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Generated Output</text>
+  <text x="380" y="100" fill="#f0883e" font-size="10" font-weight="bold">syscalls.asm:</text>
+  <text x="380" y="118" fill="#7ee787" font-size="9">NtAllocateVirtualMemory PROC</text>
+  <text x="390" y="134" fill="#7ee787" font-size="9">mov r10, rcx</text>
+  <text x="390" y="150" fill="#ff7b72" font-size="9" font-weight="bold">mov eax, 18h   ; Win10 21H2</text>
+  <text x="390" y="166" fill="#7ee787" font-size="9">syscall</text>
+  <text x="390" y="182" fill="#7ee787" font-size="9">ret</text>
+  <text x="380" y="200" fill="#7ee787" font-size="9">NtAllocateVirtualMemory ENDP</text>
+  <text x="380" y="225" fill="#f85149" font-size="9">SSN hardcoded per target OS version</text>
+  <text x="380" y="242" fill="#8b949e" font-size="8">Must rebuild for each Windows build</text>
+
+  <!-- SSN Table -->
+  <rect x="700" y="52" width="270" height="200" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="835" y="75" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">SSN Version Table</text>
+  <text x="720" y="100" fill="#8b949e" font-size="9">Function           10-1809  10-21H2  11</text>
+  <line x1="720" y1="107" x2="950" y2="107" stroke="#30363d"/>
+  <text x="720" y="125" fill="#c9d1d9" font-size="9">NtAllocateVM        0x18     0x18    0x18</text>
+  <text x="720" y="143" fill="#c9d1d9" font-size="9">NtProtectVM         0x50     0x50    0x50</text>
+  <text x="720" y="161" fill="#c9d1d9" font-size="9">NtWriteVM           0x3A     0x3A    0x3A</text>
+  <text x="720" y="179" fill="#ff7b72" font-size="9">NtCreateThreadEx    0xBD     0xC7    0xC7</text>
+  <text x="720" y="200" fill="#f85149" font-size="9">⚠ SSNs can change between</text>
+  <text x="720" y="216" fill="#f85149" font-size="9">minor Windows versions!</text>
+  <text x="720" y="240" fill="#8b949e" font-size="8">SW1 embeds ALL version SSNs</text>
+
+  <!-- Limitations -->
+  <rect x="30" y="270" width="450" height="150" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="255" y="293" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">SysWhispers 1 Limitations</text>
+  <text x="50" y="318" fill="#f85149" font-size="10">✗ Direct syscalls only — return addr in your module</text>
+  <text x="50" y="338" fill="#f85149" font-size="10">✗ Hardcoded SSNs — breaks on new Windows builds</text>
+  <text x="50" y="358" fill="#f85149" font-size="10">✗ Distinct ASM signatures — easily signatured by AV</text>
+  <text x="50" y="378" fill="#f85149" font-size="10">✗ Static stub pattern — all functions use same template</text>
+  <text x="50" y="398" fill="#f85149" font-size="10">✗ No call-stack spoofing capability</text>
+
+  <!-- Impact -->
+  <rect x="520" y="270" width="450" height="150" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="745" y="293" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Historical Significance</text>
+  <text x="540" y="318" fill="#3fb950" font-size="10">✓ First widely-adopted syscall framework</text>
+  <text x="540" y="338" fill="#3fb950" font-size="10">✓ Democratized direct syscalls for red teams</text>
+  <text x="540" y="358" fill="#3fb950" font-size="10">✓ Header-only: no runtime dependencies</text>
+  <text x="540" y="378" fill="#3fb950" font-size="10">✓ Clean C API: NtAllocateVirtualMemory()</text>
+  <text x="540" y="398" fill="#3fb950" font-size="10">✓ Foundation for SW2, SW3, SW4 evolution</text>
+
+  <!-- Bottom -->
+  <rect x="30" y="435" width="940" height="130" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="460" fill="#58a6ff" font-size="13" font-weight="bold">Usage &amp; Detection</text>
+  <text x="50" y="485" fill="#c9d1d9" font-size="11">Build: python syswhispers.py -f NtAllocateVirtualMemory,NtProtectVirtualMemory -o syscalls</text>
+  <text x="50" y="505" fill="#c9d1d9" font-size="11">Compile: link syscalls.asm alongside your C/C++ project (MASM required)</text>
+  <text x="50" y="530" fill="#f0883e" font-size="11" font-weight="bold">AV signatures exist: "mov r10, rcx / mov eax, IMM32 / syscall" is well-known pattern</text>
+  <text x="50" y="550" fill="#8b949e" font-size="10">Modern tooling (Elastic, CrowdStrike) detects SysWhispers1 stubs via YARA and return-address validation</text>
+</svg>

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Memory Protection Toggling — RW / RX Cycle (No RWX)</text>
+
+  <!-- Bad: RWX -->
+  <rect x="30" y="55" width="440" height="130" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="250" y="80" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">BAD: PAGE_EXECUTE_READWRITE (RWX)</text>
+  <rect x="50" y="95" width="400" height="40" rx="6" fill="#f85149" fill-opacity="0.15" stroke="#f85149" stroke-width="1"/>
+  <text x="250" y="115" text-anchor="middle" fill="#ff7b72" font-size="12">R + W + X = Simultaneously writable AND executable</text>
+  <text x="250" y="140" text-anchor="middle" fill="#f85149" font-size="11">Instant red flag — no legitimate code uses RWX pages</text>
+  <text x="250" y="160" text-anchor="middle" fill="#8b949e" font-size="10">EDR kernel callback + ETW both flag RWX allocations</text>
+
+  <!-- Good: RW/RX cycle -->
+  <rect x="530" y="55" width="440" height="130" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="750" y="80" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">GOOD: RW then RX (Toggle)</text>
+  <rect x="550" y="95" width="185" height="40" rx="6" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="1"/>
+  <text x="642" y="120" text-anchor="middle" fill="#7ee787" font-size="12">Write phase: RW</text>
+  <rect x="770" y="95" width="185" height="40" rx="6" fill="#58a6ff" fill-opacity="0.1" stroke="#58a6ff" stroke-width="1"/>
+  <text x="862" y="120" text-anchor="middle" fill="#58a6ff" font-size="12">Execute phase: RX</text>
+  <text x="750" y="155" text-anchor="middle" fill="#3fb950" font-size="11">Never both at same time — mimics legitimate loaders</text>
+  <text x="750" y="175" text-anchor="middle" fill="#8b949e" font-size="10">Windows loader uses this pattern for DLL .text sections</text>
+
+  <!-- State machine -->
+  <text x="500" y="220" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Memory Page Lifecycle</text>
+
+  <!-- State 1: Allocate RW -->
+  <rect x="30" y="240" width="170" height="90" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="115" y="265" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">1. Allocate RW</text>
+  <text x="115" y="285" text-anchor="middle" fill="#7ee787" font-size="9">PAGE_READWRITE</text>
+  <text x="115" y="305" text-anchor="middle" fill="#8b949e" font-size="9">NtAllocateVirtualMemory</text>
+  <text x="115" y="320" text-anchor="middle" fill="#8b949e" font-size="9">or VirtualAlloc</text>
+
+  <line x1="200" y1="285" x2="245" y2="285" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- State 2: Write payload -->
+  <rect x="250" y="240" width="170" height="90" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="335" y="265" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">2. Write Payload</text>
+  <text x="335" y="285" text-anchor="middle" fill="#c9d1d9" font-size="9">memcpy(buf, shellcode)</text>
+  <text x="335" y="305" text-anchor="middle" fill="#8b949e" font-size="9">Page is writable</text>
+  <text x="335" y="320" text-anchor="middle" fill="#8b949e" font-size="9">Not executable yet</text>
+
+  <line x1="420" y1="285" x2="465" y2="285" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- State 3: Flip to RX -->
+  <rect x="470" y="240" width="170" height="90" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="555" y="265" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">3. Flip to RX</text>
+  <text x="555" y="285" text-anchor="middle" fill="#58a6ff" font-size="9">PAGE_EXECUTE_READ</text>
+  <text x="555" y="305" text-anchor="middle" fill="#8b949e" font-size="9">NtProtectVirtualMemory</text>
+  <text x="555" y="320" text-anchor="middle" fill="#8b949e" font-size="9">Now executable, not writable</text>
+
+  <line x1="640" y1="285" x2="685" y2="285" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- State 4: Execute -->
+  <rect x="690" y="240" width="140" height="90" rx="8" fill="#161b22" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="760" y="265" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">4. Execute</text>
+  <text x="760" y="285" text-anchor="middle" fill="#d2a8ff" font-size="9">Call shellcode</text>
+  <text x="760" y="305" text-anchor="middle" fill="#8b949e" font-size="9">Function pointer</text>
+  <text x="760" y="320" text-anchor="middle" fill="#8b949e" font-size="9">or APC / callback</text>
+
+  <line x1="830" y1="285" x2="860" y2="285" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- State 5: Cleanup -->
+  <rect x="865" y="240" width="110" height="90" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="2"/>
+  <text x="920" y="265" text-anchor="middle" fill="#8b949e" font-size="12" font-weight="bold">5. Cleanup</text>
+  <text x="920" y="285" text-anchor="middle" fill="#8b949e" font-size="9">VirtualFree</text>
+  <text x="920" y="305" text-anchor="middle" fill="#8b949e" font-size="9">or zero + flip</text>
+  <text x="920" y="320" text-anchor="middle" fill="#8b949e" font-size="9">back to RW</text>
+
+  <!-- Code example -->
+  <rect x="30" y="355" width="470" height="210" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="380" fill="#58a6ff" font-size="12" font-weight="bold">Implementation Pattern</text>
+  <text x="50" y="405" fill="#7ee787" font-size="10">LPVOID buf = VirtualAlloc(NULL, size,</text>
+  <text x="50" y="423" fill="#7ee787" font-size="10">    MEM_COMMIT|MEM_RESERVE, PAGE_READWRITE);</text>
+  <text x="50" y="448" fill="#7ee787" font-size="10">memcpy(buf, shellcode, size);</text>
+  <text x="50" y="473" fill="#7ee787" font-size="10">DWORD old;</text>
+  <text x="50" y="491" fill="#7ee787" font-size="10">VirtualProtect(buf, size,</text>
+  <text x="50" y="509" fill="#7ee787" font-size="10">    PAGE_EXECUTE_READ, &amp;old);</text>
+  <text x="50" y="534" fill="#7ee787" font-size="10">((void(*)())buf)();</text>
+  <text x="50" y="555" fill="#8b949e" font-size="9">// old == PAGE_READWRITE (saved for restore)</text>
+
+  <!-- Detection notes -->
+  <rect x="520" y="355" width="450" height="210" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="540" y="380" fill="#f0883e" font-size="12" font-weight="bold">Detection Surface &amp; Mitigations</text>
+  <text x="540" y="405" fill="#c9d1d9" font-size="10">VirtualProtect(RW to RX) is still monitored by some EDRs</text>
+  <text x="540" y="430" fill="#c9d1d9" font-size="10">Better: use NtProtectVirtualMemory via direct syscall</text>
+  <text x="540" y="455" fill="#c9d1d9" font-size="10">Best: use NtCreateSection + NtMapViewOfSection</text>
+  <text x="540" y="475" fill="#8b949e" font-size="9">  Map same section twice: one RW view, one RX view</text>
+  <text x="540" y="495" fill="#8b949e" font-size="9">  Write to RW view, execute from RX view</text>
+  <text x="540" y="515" fill="#8b949e" font-size="9">  No VirtualProtect call needed at all</text>
+  <text x="540" y="545" fill="#3fb950" font-size="11" font-weight="bold">Section dual-mapping = zero protection changes</text>
+</svg>

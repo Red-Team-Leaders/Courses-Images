@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">SysWhispers 2 — Runtime Resolution &amp; Random Jumps</text>
+
+  <!-- SW1 vs SW2 -->
+  <rect x="30" y="52" width="450" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="255" y="75" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">SysWhispers 1 (Before)</text>
+  <text x="50" y="100" fill="#7ee787" font-size="10">mov r10, rcx</text>
+  <text x="50" y="118" fill="#ff7b72" font-size="10">mov eax, 0x18       ; HARDCODED SSN</text>
+  <text x="50" y="136" fill="#7ee787" font-size="10">syscall              ; DIRECT - return addr in .exe</text>
+  <text x="50" y="156" fill="#f85149" font-size="9">Static, signatured, version-locked</text>
+
+  <rect x="520" y="52" width="450" height="120" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="745" y="75" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">SysWhispers 2 (After)</text>
+  <text x="540" y="100" fill="#7ee787" font-size="10">mov r10, rcx</text>
+  <text x="540" y="118" fill="#3fb950" font-size="10">mov eax, [ssn_table + idx] ; RUNTIME</text>
+  <text x="540" y="136" fill="#3fb950" font-size="10">jmp [random_gadget]       ; INDIRECT jump</text>
+  <text x="540" y="156" fill="#3fb950" font-size="9">Dynamic, polymorphic, version-independent</text>
+
+  <!-- Improvements -->
+  <rect x="30" y="190" width="300" height="200" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="213" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Key Improvements</text>
+  <text x="50" y="240" fill="#3fb950" font-size="10">1. Runtime SSN Resolution</text>
+  <text x="60" y="258" fill="#c9d1d9" font-size="9">Sort Zw* exports at startup</text>
+  <text x="60" y="273" fill="#c9d1d9" font-size="9">No version-specific SSNs</text>
+  <text x="50" y="295" fill="#3fb950" font-size="10">2. Random Syscall Jump</text>
+  <text x="60" y="313" fill="#c9d1d9" font-size="9">Pick random ntdll stub each call</text>
+  <text x="60" y="328" fill="#c9d1d9" font-size="9">Avoids fixed return address</text>
+  <text x="50" y="350" fill="#3fb950" font-size="10">3. Jitter Between Calls</text>
+  <text x="60" y="368" fill="#c9d1d9" font-size="9">Randomized stub selection</text>
+  <text x="60" y="383" fill="#c9d1d9" font-size="9">Harder to signature</text>
+
+  <!-- How it works -->
+  <rect x="350" y="190" width="320" height="200" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="510" y="213" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Runtime Resolution Flow</text>
+  <text x="370" y="240" fill="#c9d1d9" font-size="10">1. Enumerate ntdll exports at init</text>
+  <text x="370" y="260" fill="#c9d1d9" font-size="10">2. Filter Zw* functions only</text>
+  <text x="370" y="280" fill="#c9d1d9" font-size="10">3. Sort by function address (asc)</text>
+  <text x="370" y="300" fill="#c9d1d9" font-size="10">4. Position in sorted list = SSN</text>
+  <text x="370" y="325" fill="#f0883e" font-size="10" font-weight="bold">For each call:</text>
+  <text x="370" y="345" fill="#c9d1d9" font-size="10">5. Pick random clean stub address</text>
+  <text x="370" y="365" fill="#c9d1d9" font-size="10">6. Jump to its syscall;ret gadget</text>
+  <text x="370" y="385" fill="#3fb950" font-size="9">Return addr = random ntdll location</text>
+
+  <!-- Remaining signatures -->
+  <rect x="690" y="190" width="280" height="200" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="830" y="213" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Still Detectable</text>
+  <text x="710" y="240" fill="#f85149" font-size="10">✗ ASM stub pattern detectable</text>
+  <text x="710" y="260" fill="#c9d1d9" font-size="9">"mov r10,rcx / mov eax,X" still</text>
+  <text x="710" y="275" fill="#c9d1d9" font-size="9">appears in your binary's .text</text>
+  <text x="710" y="300" fill="#f85149" font-size="10">✗ Zw* sort artifact in memory</text>
+  <text x="710" y="318" fill="#c9d1d9" font-size="9">Sorted function pointer table</text>
+  <text x="710" y="333" fill="#c9d1d9" font-size="9">is a known SW2 indicator</text>
+  <text x="710" y="358" fill="#f85149" font-size="10">✗ No call-stack spoofing</text>
+  <text x="710" y="376" fill="#c9d1d9" font-size="9">Stack still shows your module</text>
+
+  <!-- Bottom -->
+  <rect x="30" y="405" width="940" height="160" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="430" fill="#58a6ff" font-size="13" font-weight="bold">SysWhispers Evolution Timeline</text>
+  <line x1="80" y1="460" x2="920" y2="460" stroke="#30363d" stroke-width="2"/>
+  <circle cx="150" cy="460" r="6" fill="#f85149"/><text x="150" y="490" text-anchor="middle" fill="#f85149" font-size="10">SW1 (2019)</text>
+  <text x="150" y="505" text-anchor="middle" fill="#8b949e" font-size="8">Hardcoded SSNs</text>
+  <circle cx="380" cy="460" r="6" fill="#f0883e"/><text x="380" y="490" text-anchor="middle" fill="#f0883e" font-size="10">SW2 (2021)</text>
+  <text x="380" y="505" text-anchor="middle" fill="#8b949e" font-size="8">Runtime + random</text>
+  <circle cx="610" cy="460" r="6" fill="#3fb950"/><text x="610" y="490" text-anchor="middle" fill="#3fb950" font-size="10">SW3 (2022)</text>
+  <text x="610" y="505" text-anchor="middle" fill="#8b949e" font-size="8">Egg-hunter indirect</text>
+  <circle cx="840" cy="460" r="6" fill="#d2a8ff"/><text x="840" y="490" text-anchor="middle" fill="#d2a8ff" font-size="10">SW4 (2024+)</text>
+  <text x="840" y="505" text-anchor="middle" fill="#8b949e" font-size="8">Next-gen dynamic</text>
+  <text x="50" y="545" fill="#f0883e" font-size="11" font-weight="bold">SW2 was the pivot point: proved runtime resolution is viable, leading to all subsequent innovations</text>
+</svg>

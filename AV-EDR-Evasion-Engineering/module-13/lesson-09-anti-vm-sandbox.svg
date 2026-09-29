@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ay" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="an" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Anti-VM &amp; Anti-Sandbox Decision Tree</text>
+
+  <!-- Root -->
+  <rect x="380" y="50" width="240" height="35" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="500" y="73" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Start Environment Checks</text>
+
+  <!-- CPUID Check -->
+  <line x1="500" y1="85" x2="500" y2="110" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="380" y="113" width="240" height="45" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="500" y="133" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">CPUID Leaf 0x1 (ECX bit 31)</text>
+  <text x="500" y="150" text-anchor="middle" fill="#8b949e" font-size="9">Hypervisor present bit</text>
+
+  <line x1="380" y1="135" x2="280" y2="135" stroke="#f85149" stroke-width="1" marker-end="url(#an)"/>
+  <text x="310" y="128" fill="#f85149" font-size="8">SET</text>
+  <rect x="160" y="120" width="115" height="30" rx="4" fill="#f85149" fill-opacity="0.15" stroke="#f85149"/>
+  <text x="217" y="140" text-anchor="middle" fill="#f85149" font-size="9">Possible VM</text>
+
+  <line x1="620" y1="135" x2="680" y2="135" stroke="#3fb950" stroke-width="1" marker-end="url(#ay)"/>
+  <text x="655" y="128" fill="#3fb950" font-size="8">CLEAR</text>
+
+  <!-- Registry Check -->
+  <line x1="500" y1="158" x2="500" y2="178" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="380" y="181" width="240" height="45" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="500" y="201" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">Registry Artifacts</text>
+  <text x="500" y="218" text-anchor="middle" fill="#8b949e" font-size="9">VMware, VBox, QEMU keys</text>
+
+  <line x1="380" y1="203" x2="280" y2="203" stroke="#f85149" stroke-width="1" marker-end="url(#an)"/>
+  <text x="310" y="196" fill="#f85149" font-size="8">FOUND</text>
+  <rect x="160" y="188" width="115" height="30" rx="4" fill="#f85149" fill-opacity="0.15" stroke="#f85149"/>
+  <text x="217" y="208" text-anchor="middle" fill="#f85149" font-size="9">Known VM</text>
+
+  <!-- WMI Check -->
+  <line x1="500" y1="226" x2="500" y2="246" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="380" y="249" width="240" height="45" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="500" y="269" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">WMI Queries</text>
+  <text x="500" y="286" text-anchor="middle" fill="#8b949e" font-size="9">Win32_BIOS, Win32_ComputerSystem</text>
+
+  <line x1="380" y1="271" x2="280" y2="271" stroke="#f85149" stroke-width="1" marker-end="url(#an)"/>
+  <text x="310" y="264" fill="#f85149" font-size="8">VIRTUAL</text>
+  <rect x="160" y="256" width="115" height="30" rx="4" fill="#f85149" fill-opacity="0.15" stroke="#f85149"/>
+  <text x="217" y="276" text-anchor="middle" fill="#f85149" font-size="9">VM Detected</text>
+
+  <!-- Hardware Check -->
+  <line x1="500" y1="294" x2="500" y2="314" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="380" y="317" width="240" height="45" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="337" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Hardware Heuristics</text>
+  <text x="500" y="354" text-anchor="middle" fill="#8b949e" font-size="9">CPU cores, RAM, disk size, USB devices</text>
+
+  <line x1="380" y1="339" x2="280" y2="339" stroke="#f85149" stroke-width="1" marker-end="url(#an)"/>
+  <text x="310" y="332" fill="#f85149" font-size="8">&lt;2 CPU</text>
+  <rect x="160" y="324" width="115" height="30" rx="4" fill="#f85149" fill-opacity="0.15" stroke="#f85149"/>
+  <text x="217" y="344" text-anchor="middle" fill="#f85149" font-size="9">Sandbox</text>
+
+  <!-- Behavioral Check -->
+  <line x1="500" y1="362" x2="500" y2="382" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="380" y="385" width="240" height="45" rx="6" fill="#0d1117" stroke="#ff7b72" stroke-width="1.5"/>
+  <text x="500" y="405" text-anchor="middle" fill="#ff7b72" font-size="11" font-weight="bold">Behavioral Checks</text>
+  <text x="500" y="422" text-anchor="middle" fill="#8b949e" font-size="9">User activity, uptime, file count, network</text>
+
+  <line x1="380" y1="407" x2="280" y2="407" stroke="#f85149" stroke-width="1" marker-end="url(#an)"/>
+  <text x="310" y="400" fill="#f85149" font-size="8">FAIL</text>
+  <rect x="160" y="392" width="115" height="30" rx="4" fill="#f85149" fill-opacity="0.15" stroke="#f85149"/>
+  <text x="217" y="412" text-anchor="middle" fill="#f85149" font-size="9">Automated</text>
+
+  <!-- All pass -->
+  <line x1="500" y1="430" x2="500" y2="455" stroke="#3fb950" stroke-width="2" marker-end="url(#ay)"/>
+  <rect x="400" y="458" width="200" height="40" rx="6" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="2"/>
+  <text x="500" y="483" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">EXECUTE PAYLOAD</text>
+
+  <!-- Right side: detail boxes -->
+  <rect x="700" y="110" width="280" height="170" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="840" y="135" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Key VM Artifacts</text>
+  <text x="720" y="158" fill="#ff7b72" font-size="10">HKLM\SOFTWARE\VMware, Inc.</text>
+  <text x="720" y="176" fill="#ff7b72" font-size="10">HKLM\SOFTWARE\Oracle\VirtualBox</text>
+  <text x="720" y="194" fill="#ff7b72" font-size="10">SMBIOS: "QEMU", "Bochs"</text>
+  <text x="720" y="212" fill="#ff7b72" font-size="10">MAC: 00:0C:29 (VMware)</text>
+  <text x="720" y="230" fill="#ff7b72" font-size="10">MAC: 08:00:27 (VirtualBox)</text>
+  <text x="720" y="252" fill="#8b949e" font-size="9">Drivers: vmtoolsd, VBoxService</text>
+  <text x="720" y="268" fill="#8b949e" font-size="9">Filenames: VBoxTray.exe</text>
+
+  <rect x="700" y="295" width="280" height="100" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="840" y="318" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Sandbox Heuristics</text>
+  <text x="720" y="340" fill="#c9d1d9" font-size="10">Recent files &lt; 20</text>
+  <text x="720" y="358" fill="#c9d1d9" font-size="10">No browser history / cookies</text>
+  <text x="720" y="376" fill="#c9d1d9" font-size="10">Uptime &lt; 10 minutes</text>
+
+  <!-- Warning -->
+  <rect x="700" y="410" width="280" height="90" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="840" y="435" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Sleep Acceleration</text>
+  <text x="720" y="458" fill="#c9d1d9" font-size="10">Sandboxes fast-forward Sleep()</text>
+  <text x="720" y="476" fill="#c9d1d9" font-size="10">Counter: use QueryPerformance</text>
+  <text x="720" y="492" fill="#c9d1d9" font-size="10">to verify real time elapsed</text>
+
+  <text x="500" y="530" text-anchor="middle" fill="#8b949e" font-size="11">Score-based approach: weight each check, threshold &gt; 5 = likely analysis environment</text>
+  <text x="500" y="555" text-anchor="middle" fill="#f0883e" font-size="10">Never rely on single check — combine 5+ independent signals for reliability</text>
+</svg>

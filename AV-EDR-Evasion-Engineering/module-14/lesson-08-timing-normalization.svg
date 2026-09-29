@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Timing &amp; Behavioral Normalization for Syscall Patterns</text>
+
+  <!-- Suspicious pattern -->
+  <rect x="30" y="52" width="940" height="150" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="50" y="75" fill="#f85149" font-size="13" font-weight="bold">Suspicious Pattern — Rapid Burst Allocation</text>
+  <text x="50" y="100" fill="#8b949e" font-size="10">Timeline (ms)</text>
+  <!-- Timeline axis -->
+  <line x1="50" y1="120" x2="950" y2="120" stroke="#30363d" stroke-width="1"/>
+  <!-- Burst markers -->
+  <rect x="80" y="110" width="4" height="20" fill="#f85149"/><text x="82" y="145" fill="#8b949e" font-size="7">Alloc</text>
+  <rect x="90" y="110" width="4" height="20" fill="#f85149"/><text x="92" y="155" fill="#8b949e" font-size="7">Prot</text>
+  <rect x="100" y="110" width="4" height="20" fill="#f85149"/><text x="102" y="145" fill="#8b949e" font-size="7">Write</text>
+  <rect x="110" y="110" width="4" height="20" fill="#f85149"/><text x="112" y="155" fill="#8b949e" font-size="7">Thread</text>
+  <!-- Long gap then nothing -->
+  <text x="200" y="118" fill="#f85149" font-size="10">← 4 syscalls in &lt;1ms = injection pattern</text>
+  <text x="200" y="190" fill="#f85149" font-size="11" font-weight="bold">EDR Rule: VirtualAlloc + VirtualProtect(RWX) + WriteProcessMemory + CreateThread within 50ms = ALERT</text>
+
+  <!-- Normalized pattern -->
+  <rect x="30" y="215" width="940" height="155" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="50" y="238" fill="#3fb950" font-size="13" font-weight="bold">Normalized Pattern — Jittered Delays + Benign Interleaving</text>
+  <text x="50" y="263" fill="#8b949e" font-size="10">Timeline (ms)</text>
+  <line x1="50" y1="280" x2="950" y2="280" stroke="#30363d" stroke-width="1"/>
+  <!-- Spread markers -->
+  <rect x="80" y="270" width="4" height="20" fill="#3fb950"/>
+  <text x="82" y="305" fill="#8b949e" font-size="7">Alloc</text>
+  <rect x="150" y="270" width="4" height="20" fill="#58a6ff"/>
+  <text x="145" y="305" fill="#8b949e" font-size="7">GetTick</text>
+  <rect x="280" y="270" width="4" height="20" fill="#3fb950"/>
+  <text x="282" y="305" fill="#8b949e" font-size="7">Prot</text>
+  <rect x="420" y="270" width="4" height="20" fill="#58a6ff"/>
+  <text x="415" y="305" fill="#8b949e" font-size="7">QueryPerf</text>
+  <rect x="560" y="270" width="4" height="20" fill="#3fb950"/>
+  <text x="555" y="305" fill="#8b949e" font-size="7">Write</text>
+  <rect x="700" y="270" width="4" height="20" fill="#58a6ff"/>
+  <text x="695" y="305" fill="#8b949e" font-size="7">CloseH</text>
+  <rect x="850" y="270" width="4" height="20" fill="#3fb950"/>
+  <text x="845" y="305" fill="#8b949e" font-size="7">Thread</text>
+  <text x="150" y="340" fill="#3fb950" font-size="10">Random delays (50-500ms) + benign API calls interleaved</text>
+  <text x="150" y="358" fill="#3fb950" font-size="11" font-weight="bold">EDR: calls spread over 2s+ with benign interleaving = normal application behavior</text>
+
+  <!-- Techniques table -->
+  <rect x="30" y="385" width="940" height="180" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="410" fill="#58a6ff" font-size="13" font-weight="bold">Normalization Techniques</text>
+  <text x="50" y="435" fill="#f0883e" font-size="11" font-weight="bold">Timing Jitter</text>
+  <text x="250" y="435" fill="#c9d1d9" font-size="10">Random Sleep(50-500ms) between sensitive calls; avoid fixed intervals</text>
+  <text x="50" y="460" fill="#f0883e" font-size="11" font-weight="bold">Benign Interleaving</text>
+  <text x="250" y="460" fill="#c9d1d9" font-size="10">Insert harmless API calls (GetTickCount, QueryPerformanceCounter) between stages</text>
+  <text x="50" y="485" fill="#f0883e" font-size="11" font-weight="bold">Call Frequency Cap</text>
+  <text x="250" y="485" fill="#c9d1d9" font-size="10">Limit sensitive syscalls to rates matching normal application behavior</text>
+  <text x="50" y="510" fill="#f0883e" font-size="11" font-weight="bold">Operation Splitting</text>
+  <text x="250" y="510" fill="#c9d1d9" font-size="10">Break one large allocation into multiple smaller ones spread over time</text>
+  <text x="50" y="535" fill="#f0883e" font-size="11" font-weight="bold">Thread Distribution</text>
+  <text x="250" y="535" fill="#c9d1d9" font-size="10">Execute each stage on a different thread to avoid single-thread burst pattern</text>
+  <text x="50" y="555" fill="#8b949e" font-size="10">Key: Make your syscall pattern indistinguishable from legitimate application behavior</text>
+</svg>

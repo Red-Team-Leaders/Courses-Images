@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">DLL Hollowing &amp; Module Stomping</text>
+
+  <!-- Step 1 -->
+  <rect x="20" y="55" width="230" height="130" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="135" y="78" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">1. Load Legitimate DLL</text>
+  <text x="40" y="100" fill="#c9d1d9" font-size="10">LoadLibraryExW(</text>
+  <text x="45" y="115" fill="#7ee787" font-size="10">"amsi.dll",</text>
+  <text x="45" y="130" fill="#7ee787" font-size="10">DONT_RESOLVE_DLL_REFS)</text>
+  <text x="40" y="155" fill="#8b949e" font-size="9">Maps DLL without init</text>
+  <text x="40" y="170" fill="#3fb950" font-size="9">Appears as legit loaded module</text>
+
+  <line x1="255" y1="120" x2="275" y2="120" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 2 -->
+  <rect x="280" y="55" width="220" height="130" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="390" y="78" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">2. Change Protection</text>
+  <text x="300" y="100" fill="#c9d1d9" font-size="10">VirtualProtect(</text>
+  <text x="305" y="115" fill="#c9d1d9" font-size="10">dll_text_section,</text>
+  <text x="305" y="130" fill="#c9d1d9" font-size="10">text_size,</text>
+  <text x="305" y="145" fill="#7ee787" font-size="10">PAGE_READWRITE)</text>
+  <text x="300" y="170" fill="#8b949e" font-size="9">Make .text writable</text>
+
+  <line x1="505" y1="120" x2="525" y2="120" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 3 -->
+  <rect x="530" y="55" width="220" height="130" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="640" y="78" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">3. Overwrite with Payload</text>
+  <text x="550" y="100" fill="#c9d1d9" font-size="10">memcpy(</text>
+  <text x="555" y="115" fill="#c9d1d9" font-size="10">dll_text_base,</text>
+  <text x="555" y="130" fill="#ff7b72" font-size="10">shellcode,</text>
+  <text x="555" y="145" fill="#c9d1d9" font-size="10">shellcode_size)</text>
+  <text x="550" y="170" fill="#f85149" font-size="9">Payload replaces DLL code</text>
+
+  <line x1="755" y1="120" x2="775" y2="120" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 4 -->
+  <rect x="780" y="55" width="195" height="130" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="877" y="78" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">4. Execute</text>
+  <text x="800" y="100" fill="#c9d1d9" font-size="10">VirtualProtect(RX)</text>
+  <text x="800" y="118" fill="#c9d1d9" font-size="10">CreateThread(</text>
+  <text x="805" y="133" fill="#7ee787" font-size="10">dll_text_base)</text>
+  <text x="800" y="155" fill="#3fb950" font-size="9">✓ Execution from</text>
+  <text x="800" y="170" fill="#3fb950" font-size="9">  backed memory</text>
+
+  <!-- Memory layout -->
+  <rect x="20" y="210" width="470" height="190" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="255" y="233" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Memory Before (Legitimate DLL)</text>
+  <text x="40" y="260" fill="#8b949e" font-size="10">Address         Content</text>
+  <text x="40" y="280" fill="#3fb950" font-size="10">0x7FF80000  PE Header (amsi.dll)</text>
+  <text x="40" y="298" fill="#3fb950" font-size="10">0x7FF81000  .text: AmsiInitialize()</text>
+  <text x="40" y="316" fill="#3fb950" font-size="10">0x7FF82000  .text: AmsiScanBuffer()</text>
+  <text x="40" y="334" fill="#3fb950" font-size="10">0x7FF83000  .rdata: Export table</text>
+  <text x="40" y="352" fill="#3fb950" font-size="10">0x7FF84000  .data: Global vars</text>
+  <text x="40" y="380" fill="#8b949e" font-size="9">Image-backed, MEM_IMAGE, legitimate module</text>
+
+  <rect x="520" y="210" width="460" height="190" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="750" y="233" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Memory After (Hollowed)</text>
+  <text x="540" y="260" fill="#8b949e" font-size="10">Address         Content</text>
+  <text x="540" y="280" fill="#3fb950" font-size="10">0x7FF80000  PE Header (amsi.dll)</text>
+  <text x="540" y="298" fill="#ff7b72" font-size="10">0x7FF81000  .text: SHELLCODE PAYLOAD</text>
+  <text x="540" y="316" fill="#ff7b72" font-size="10">0x7FF82000  .text: SHELLCODE (cont)</text>
+  <text x="540" y="334" fill="#3fb950" font-size="10">0x7FF83000  .rdata: Export table</text>
+  <text x="540" y="352" fill="#3fb950" font-size="10">0x7FF84000  .data: Global vars</text>
+  <text x="540" y="380" fill="#f85149" font-size="9">Still looks image-backed! Headers intact.</text>
+
+  <!-- Key advantage -->
+  <rect x="20" y="420" width="960" height="145" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="445" fill="#58a6ff" font-size="13" font-weight="bold">Why DLL Hollowing Evades Detection</text>
+  <text x="50" y="470" fill="#3fb950" font-size="10">✓ Payload runs from MEM_IMAGE memory (backed by a file on disk)</text>
+  <text x="50" y="490" fill="#3fb950" font-size="10">✓ Memory region has legitimate module name in PEB module list</text>
+  <text x="50" y="510" fill="#3fb950" font-size="10">✓ Call stack shows execution from "amsi.dll" — not private/unbacked memory</text>
+  <text x="50" y="535" fill="#f85149" font-size="10">⚠ Module Stomping variant: overwrites an already-initialized DLL (higher risk of crash)</text>
+  <text x="50" y="553" fill="#f85149" font-size="10">⚠ Some EDRs compare in-memory .text with on-disk .text to detect stomping</text>
+</svg>

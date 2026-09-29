@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="a3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Windows Syscall Mechanism — Ring 3 to Ring 0 Transition</text>
+
+  <!-- Ring 3 section -->
+  <rect x="30" y="55" width="940" height="200" rx="8" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="6"/>
+  <text x="50" y="78" fill="#3fb950" font-size="14" font-weight="bold">Ring 3 — User Mode</text>
+
+  <!-- User code -->
+  <rect x="60" y="95" width="200" height="140" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="160" y="118" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">User Application</text>
+  <text x="80" y="142" fill="#c9d1d9" font-size="10">NtAllocateVirtualMemory(</text>
+  <text x="90" y="158" fill="#c9d1d9" font-size="10">  hProcess, &amp;BaseAddr,</text>
+  <text x="90" y="174" fill="#c9d1d9" font-size="10">  0, &amp;Size,</text>
+  <text x="90" y="190" fill="#c9d1d9" font-size="10">  MEM_COMMIT, PAGE_RW</text>
+  <text x="80" y="206" fill="#c9d1d9" font-size="10">);</text>
+  <text x="80" y="225" fill="#8b949e" font-size="9">Calls into ntdll.dll</text>
+
+  <!-- Arrow to ntdll -->
+  <line x1="265" y1="165" x2="320" y2="165" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- ntdll stub -->
+  <rect x="325" y="95" width="300" height="140" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="475" y="118" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">ntdll.dll — Syscall Stub</text>
+  <text x="345" y="142" fill="#7ee787" font-size="10">4C 8B D1         mov r10, rcx</text>
+  <text x="345" y="160" fill="#7ee787" font-size="10">B8 18 00 00 00   mov eax, 0x18</text>
+  <text x="345" y="178" fill="#ff7b72" font-size="10" font-weight="bold">0F 05            syscall</text>
+  <text x="345" y="196" fill="#7ee787" font-size="10">C3               ret</text>
+  <text x="345" y="225" fill="#8b949e" font-size="9">SSN 0x18 loaded into EAX</text>
+
+  <!-- CPU info -->
+  <rect x="680" y="95" width="270" height="140" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="815" y="118" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">CPU — syscall Instruction</text>
+  <text x="700" y="142" fill="#c9d1d9" font-size="10">1. Save RIP to RCX</text>
+  <text x="700" y="160" fill="#c9d1d9" font-size="10">2. Save RFLAGS to R11</text>
+  <text x="700" y="178" fill="#c9d1d9" font-size="10">3. Load CS/SS from STAR MSR</text>
+  <text x="700" y="196" fill="#c9d1d9" font-size="10">4. Load RIP from LSTAR MSR</text>
+  <text x="700" y="214" fill="#f0883e" font-size="10">5. Jump to KiSystemCall64</text>
+
+  <!-- Arrow from ntdll to CPU -->
+  <line x1="630" y1="165" x2="675" y2="165" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Divider line -->
+  <line x1="30" y1="270" x2="970" y2="270" stroke="#f85149" stroke-width="3" stroke-dasharray="12,6"/>
+  <text x="500" y="287" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">── Ring Transition Boundary (CPL 3 → CPL 0) ──</text>
+
+  <!-- Ring 0 section -->
+  <rect x="30" y="300" width="940" height="155" rx="8" fill="none" stroke="#f85149" stroke-width="1.5" stroke-dasharray="6"/>
+  <text x="50" y="323" fill="#f85149" font-size="14" font-weight="bold">Ring 0 — Kernel Mode</text>
+
+  <!-- KiSystemCall64 -->
+  <rect x="60" y="340" width="260" height="100" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="190" y="363" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">KiSystemCall64</text>
+  <text x="80" y="385" fill="#c9d1d9" font-size="10">1. Save user context to KTRAP</text>
+  <text x="80" y="403" fill="#c9d1d9" font-size="10">2. Validate EAX (SSN range)</text>
+  <text x="80" y="421" fill="#c9d1d9" font-size="10">3. Index into SSDT table</text>
+
+  <!-- Arrow to SSDT -->
+  <line x1="325" y1="390" x2="385" y2="390" stroke="#58a6ff" stroke-width="2" marker-end="url(#a2)"/>
+
+  <!-- SSDT -->
+  <rect x="390" y="340" width="260" height="100" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="520" y="363" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">SSDT Lookup</text>
+  <text x="410" y="385" fill="#c9d1d9" font-size="10">KeServiceDescriptorTable</text>
+  <text x="410" y="403" fill="#7ee787" font-size="10">SSDT[0x18] → NtAllocateVM</text>
+  <text x="410" y="421" fill="#8b949e" font-size="9">Dispatch to kernel handler</text>
+
+  <!-- Arrow to kernel function -->
+  <line x1="655" y1="390" x2="715" y2="390" stroke="#3fb950" stroke-width="2" marker-end="url(#a3)"/>
+
+  <!-- Kernel handler -->
+  <rect x="720" y="340" width="230" height="100" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="835" y="363" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Kernel Handler</text>
+  <text x="740" y="385" fill="#c9d1d9" font-size="10">NtAllocateVirtualMemory</text>
+  <text x="740" y="403" fill="#c9d1d9" font-size="10">Execute in kernel context</text>
+  <text x="740" y="421" fill="#3fb950" font-size="10">Return NTSTATUS to Ring 3</text>
+
+  <!-- Legend -->
+  <rect x="30" y="470" width="940" height="95" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="495" fill="#58a6ff" font-size="13" font-weight="bold">Key Points</text>
+  <text x="50" y="515" fill="#c9d1d9" font-size="11">• EAX holds the System Service Number (SSN) — the index into the SSDT kernel dispatch table</text>
+  <text x="50" y="535" fill="#c9d1d9" font-size="11">• The syscall instruction is a CPU-level privilege transition — no software can intercept it at Ring 3</text>
+  <text x="50" y="555" fill="#f0883e" font-size="11" font-weight="bold">• EDRs hook BEFORE syscall (in ntdll stubs) — direct syscalls skip this entirely</text>
+</svg>

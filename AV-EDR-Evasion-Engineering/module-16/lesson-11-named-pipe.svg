@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Named Pipe Injection — IPC-Based Code Execution</text>
+
+  <!-- Server Process -->
+  <rect x="30" y="55" width="400" height="250" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="230" y="80" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Injector (Pipe Server)</text>
+
+  <rect x="50" y="95" width="360" height="30" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="70" y="115" fill="#7ee787" font-size="10">1. CreateNamedPipe("\\\\.\\pipe\\legit_svc")</text>
+
+  <rect x="50" y="135" width="360" height="30" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="70" y="155" fill="#7ee787" font-size="10">2. ConnectNamedPipe(hPipe)  // wait client</text>
+
+  <rect x="50" y="175" width="360" height="30" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="70" y="195" fill="#f0883e" font-size="10">3. WriteFile(hPipe, encrypted_shellcode)</text>
+
+  <rect x="50" y="215" width="360" height="30" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="70" y="235" fill="#7ee787" font-size="10">4. DisconnectNamedPipe(hPipe)</text>
+
+  <text x="50" y="275" fill="#8b949e" font-size="9">Pipe name mimics legitimate service</text>
+  <text x="50" y="290" fill="#8b949e" font-size="9">e.g., \\.\pipe\MSSE-1234-server</text>
+
+  <!-- Arrow -->
+  <line x1="430" y1="180" x2="560" y2="180" stroke="#f0883e" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#a2)"/>
+  <text x="495" y="170" text-anchor="middle" fill="#f0883e" font-size="10">Encrypted</text>
+  <text x="495" y="195" text-anchor="middle" fill="#f0883e" font-size="10">shellcode</text>
+
+  <!-- Client Process -->
+  <rect x="570" y="55" width="400" height="250" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="770" y="80" text-anchor="middle" fill="#d2a8ff" font-size="14" font-weight="bold">Target (Pipe Client)</text>
+
+  <rect x="590" y="95" width="360" height="30" rx="4" fill="#161b22" stroke="#d2a8ff" stroke-width="1"/>
+  <text x="610" y="115" fill="#7ee787" font-size="10">1. CreateFile("\\\\.\\pipe\\legit_svc")</text>
+
+  <rect x="590" y="135" width="360" height="30" rx="4" fill="#161b22" stroke="#d2a8ff" stroke-width="1"/>
+  <text x="610" y="155" fill="#7ee787" font-size="10">2. ReadFile(hPipe, buffer, size)</text>
+
+  <rect x="590" y="175" width="360" height="30" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="610" y="195" fill="#f0883e" font-size="10">3. Decrypt(buffer, key) → shellcode</text>
+
+  <rect x="590" y="215" width="360" height="30" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="610" y="235" fill="#f85149" font-size="10">4. VirtualAlloc + Execute shellcode</text>
+
+  <text x="590" y="275" fill="#8b949e" font-size="9">Client can be a LOLBin or injected stub</text>
+  <text x="590" y="290" fill="#8b949e" font-size="9">Payload never touches disk</text>
+
+  <!-- Advantages and Detection -->
+  <rect x="30" y="325" width="450" height="240" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="353" fill="#3fb950" font-size="13" font-weight="bold">Advantages</text>
+  <text x="50" y="378" fill="#c9d1d9" font-size="11">• No WriteProcessMemory (payload via IPC)</text>
+  <text x="50" y="398" fill="#c9d1d9" font-size="11">• No VirtualAllocEx (client allocates own memory)</text>
+  <text x="50" y="418" fill="#c9d1d9" font-size="11">• Works cross-process without injection APIs</text>
+  <text x="50" y="438" fill="#c9d1d9" font-size="11">• Pipe traffic encrypted end-to-end</text>
+  <text x="50" y="458" fill="#c9d1d9" font-size="11">• Works over SMB for lateral movement</text>
+  <text x="50" y="478" fill="#c9d1d9" font-size="11">• Pipe name can mimic existing services</text>
+
+  <text x="50" y="508" fill="#f0883e" font-size="11" font-weight="bold">Common legitimate pipe patterns:</text>
+  <text x="50" y="528" fill="#8b949e" font-size="10">\\.\pipe\MSSE-*    (Defender)</text>
+  <text x="50" y="546" fill="#8b949e" font-size="10">\\.\pipe\lsass*     (LSASS)</text>
+
+  <rect x="500" y="325" width="470" height="240" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="520" y="353" fill="#f85149" font-size="13" font-weight="bold">Detection Vectors</text>
+  <text x="520" y="378" fill="#c9d1d9" font-size="11">• Named pipe creation from unusual processes</text>
+  <text x="520" y="398" fill="#c9d1d9" font-size="11">• Sysmon Event ID 17 (PipeCreated)</text>
+  <text x="520" y="418" fill="#c9d1d9" font-size="11">• Sysmon Event ID 18 (PipeConnected)</text>
+  <text x="520" y="438" fill="#c9d1d9" font-size="11">• Pipe name entropy analysis</text>
+  <text x="520" y="458" fill="#c9d1d9" font-size="11">• SMB pipe creation from external IPs</text>
+
+  <text x="520" y="488" fill="#3fb950" font-size="11" font-weight="bold">OPSEC Tips:</text>
+  <text x="520" y="508" fill="#c9d1d9" font-size="10">• Use pipe names matching known services</text>
+  <text x="520" y="528" fill="#c9d1d9" font-size="10">• Impersonate SYSTEM for pipe creation</text>
+  <text x="520" y="548" fill="#c9d1d9" font-size="10">• Use PIPE_TYPE_BYTE not MESSAGE for blending</text>
+</svg>

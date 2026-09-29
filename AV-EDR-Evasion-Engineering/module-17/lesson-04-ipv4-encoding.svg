@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">IPv4 Address Shellcode Encoding — Network-Disguised Payload</text>
+
+  <!-- Raw bytes -->
+  <rect x="30" y="55" width="200" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="130" y="78" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Raw Shellcode</text>
+  <text x="45" y="100" fill="#ff7b72" font-size="10">FC 48 83 E4</text>
+  <text x="45" y="118" fill="#ff7b72" font-size="10">F0 E8 C0 00</text>
+  <text x="45" y="136" fill="#ff7b72" font-size="10">00 00 41 51</text>
+  <text x="45" y="158" fill="#8b949e" font-size="9">4 bytes per IP address</text>
+
+  <line x1="240" y1="115" x2="290" y2="115" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="265" y="105" text-anchor="middle" fill="#f0883e" font-size="9">Encode</text>
+
+  <!-- Encoded IPs -->
+  <rect x="300" y="55" width="280" height="120" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="440" y="78" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">IPv4-Encoded Payload</text>
+  <text x="315" y="100" fill="#7ee787" font-size="10">"252.72.131.228"</text>
+  <text x="315" y="118" fill="#7ee787" font-size="10">"240.232.192.0"</text>
+  <text x="315" y="136" fill="#7ee787" font-size="10">"0.0.65.81"</text>
+  <text x="315" y="158" fill="#8b949e" font-size="9">Looks like IP config data to scanners</text>
+
+  <line x1="590" y1="115" x2="640" y2="115" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="615" y="105" text-anchor="middle" fill="#f0883e" font-size="9">Decode</text>
+
+  <!-- Decoded -->
+  <rect x="650" y="55" width="330" height="120" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="815" y="78" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Runtime Decode</text>
+  <text x="665" y="100" fill="#7ee787" font-size="10">RtlIpv4StringToAddressA(</text>
+  <text x="665" y="118" fill="#7ee787" font-size="10">  "252.72.131.228",</text>
+  <text x="665" y="136" fill="#7ee787" font-size="10">  FALSE, &amp;term, &amp;addr)</text>
+  <text x="665" y="158" fill="#8b949e" font-size="9">ntdll export — converts IP to 4 bytes</text>
+
+  <!-- Encoding Detail -->
+  <rect x="30" y="200" width="940" height="120" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="500" y="223" text-anchor="middle" fill="#d2a8ff" font-size="13" font-weight="bold">Encoding Algorithm — 4 Bytes per IPv4 Address</text>
+  <text x="50" y="250" fill="#c9d1d9" font-size="11">Shellcode:  FC    48    83    E4    F0    E8    C0    00    00    00    41    51</text>
+  <text x="50" y="275" fill="#f0883e" font-size="11">Decimal:   252   72    131   228   240   232   192   0     0     0     65    81</text>
+  <text x="50" y="300" fill="#3fb950" font-size="11">IPv4:      "252.72.131.228"          "240.232.192.0"          "0.0.65.81"</text>
+
+  <!-- Execute Flow -->
+  <text x="500" y="350" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Loader Execution Pattern</text>
+
+  <rect x="30" y="370" width="180" height="70" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="120" y="393" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">HeapCreate</text>
+  <text x="45" y="415" fill="#c9d1d9" font-size="9">HEAP_CREATE_ENABLE_</text>
+  <text x="45" y="428" fill="#c9d1d9" font-size="9">EXECUTE flag set</text>
+
+  <line x1="215" y1="405" x2="255" y2="405" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="260" y="370" width="200" height="70" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="360" y="393" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Decode Loop</text>
+  <text x="275" y="415" fill="#7ee787" font-size="9">for each IP string:</text>
+  <text x="275" y="428" fill="#7ee787" font-size="9">  RtlIpv4StringToAddressA</text>
+
+  <line x1="465" y1="405" x2="505" y2="405" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="510" y="370" width="200" height="70" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="610" y="393" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Copy to Heap</text>
+  <text x="525" y="415" fill="#c9d1d9" font-size="9">memcpy decoded 4 bytes</text>
+  <text x="525" y="428" fill="#c9d1d9" font-size="9">to executable heap</text>
+
+  <line x1="715" y1="405" x2="755" y2="405" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="760" y="370" width="210" height="70" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="865" y="393" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Execute via Callback</text>
+  <text x="775" y="415" fill="#7ee787" font-size="9">EnumSystemLocalesA(</text>
+  <text x="775" y="428" fill="#7ee787" font-size="9">  (LOCALE_ENUMPROCA)buf, 0)</text>
+
+  <!-- Legend -->
+  <rect x="30" y="460" width="940" height="105" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="483" fill="#58a6ff" font-size="13" font-weight="bold">OPSEC Considerations</text>
+  <text x="50" y="505" fill="#c9d1d9" font-size="11">1. IPv4 strings appear as network configuration — blend with legitimate data</text>
+  <text x="50" y="525" fill="#c9d1d9" font-size="11">2. RtlIpv4StringToAddressA is an ntdll export — no additional DLL imports needed</text>
+  <text x="50" y="545" fill="#c9d1d9" font-size="11">3. Detection: behavioral correlation of decode loop + heap execute + callback pattern</text>
+  <rect x="50" y="554" width="12" height="12" fill="#f85149"/><text x="70" y="565" fill="#8b949e" font-size="10">Raw</text>
+  <rect x="130" y="554" width="12" height="12" fill="#3fb950"/><text x="150" y="565" fill="#8b949e" font-size="10">Encoded</text>
+  <rect x="240" y="554" width="12" height="12" fill="#58a6ff"/><text x="260" y="565" fill="#8b949e" font-size="10">Decode API</text>
+  <rect x="370" y="554" width="12" height="12" fill="#d2a8ff"/><text x="390" y="565" fill="#8b949e" font-size="10">Memory</text>
+</svg>

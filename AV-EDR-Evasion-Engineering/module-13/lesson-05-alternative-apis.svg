@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ab" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">API Call Chain — Hooked vs Alternative APIs</text>
+
+  <!-- Standard call chain -->
+  <text x="180" y="62" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Standard Call Chain (Heavily Monitored)</text>
+
+  <rect x="30" y="75" width="140" height="45" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="100" y="103" text-anchor="middle" fill="#c9d1d9" font-size="11">VirtualAlloc</text>
+  <text x="100" y="115" text-anchor="middle" fill="#f85149" font-size="8">kernel32.dll</text>
+  <line x1="170" y1="97" x2="205" y2="97" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="210" y="75" width="160" height="45" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="290" y="103" text-anchor="middle" fill="#c9d1d9" font-size="11">VirtualAlloc</text>
+  <text x="290" y="115" text-anchor="middle" fill="#f85149" font-size="8">kernelbase.dll</text>
+  <line x1="370" y1="97" x2="405" y2="97" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="410" y="75" width="200" height="45" rx="6" fill="#161b22" stroke="#ff7b72" stroke-width="2"/>
+  <text x="510" y="97" text-anchor="middle" fill="#ff7b72" font-size="11" font-weight="bold">NtAllocateVirtualMemory</text>
+  <text x="510" y="113" text-anchor="middle" fill="#f85149" font-size="8">ntdll.dll [EDR HOOKED]</text>
+
+  <rect x="420" y="65" width="50" height="15" rx="3" fill="#f85149"/>
+  <text x="445" y="76" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">HOOK</text>
+
+  <line x1="610" y1="97" x2="645" y2="97" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="650" y="75" width="130" height="45" rx="6" fill="#161b22" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="715" y="97" text-anchor="middle" fill="#d2a8ff" font-size="11">EDR Detour</text>
+  <text x="715" y="113" text-anchor="middle" fill="#8b949e" font-size="8">Log + Inspect</text>
+
+  <line x1="780" y1="97" x2="815" y2="97" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="820" y="75" width="150" height="45" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="895" y="97" text-anchor="middle" fill="#f0883e" font-size="11">syscall (Ring 0)</text>
+
+  <!-- Alternative path -->
+  <text x="180" y="165" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Alternative API Path (Bypass Hooks)</text>
+
+  <rect x="30" y="180" width="200" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="130" y="205" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Rarely Hooked APIs</text>
+  <text x="50" y="225" fill="#7ee787" font-size="9">NtAllocateVirtualMemoryEx</text>
+  <text x="50" y="240" fill="#7ee787" font-size="9">NtMapViewOfSectionEx</text>
+  <text x="50" y="255" fill="#7ee787" font-size="9">NtCreateSectionEx</text>
+
+  <line x1="230" y1="220" x2="290" y2="220" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ab)"/>
+
+  <rect x="295" y="180" width="200" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="395" y="205" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Undocumented Nt*</text>
+  <text x="315" y="225" fill="#7ee787" font-size="9">NtQueueApcThreadEx2</text>
+  <text x="315" y="240" fill="#7ee787" font-size="9">NtCreateWorkerFactory</text>
+  <text x="315" y="255" fill="#7ee787" font-size="9">RtlCreateUserThread</text>
+
+  <line x1="495" y1="220" x2="555" y2="220" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ab)"/>
+
+  <rect x="560" y="188" width="150" height="60" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="635" y="215" text-anchor="middle" fill="#3fb950" font-size="11">Clean ntdll stub</text>
+  <text x="635" y="235" text-anchor="middle" fill="#7ee787" font-size="9">No EDR hook</text>
+
+  <line x1="710" y1="218" x2="770" y2="218" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ab)"/>
+
+  <rect x="775" y="188" width="190" height="60" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="870" y="215" text-anchor="middle" fill="#f0883e" font-size="11">syscall (Ring 0)</text>
+  <text x="870" y="235" text-anchor="middle" fill="#3fb950" font-size="9">Same kernel service</text>
+
+  <!-- Hook coverage table -->
+  <rect x="30" y="285" width="940" height="280" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="310" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">EDR Hook Coverage Map — Common vs Rare APIs</text>
+
+  <!-- Table header -->
+  <text x="60" y="340" fill="#8b949e" font-size="11" font-weight="bold">Commonly Hooked (Avoid)</text>
+  <text x="370" y="340" fill="#8b949e" font-size="11" font-weight="bold">Rarely Hooked (Prefer)</text>
+  <text x="700" y="340" fill="#8b949e" font-size="11" font-weight="bold">Coverage %</text>
+
+  <line x1="50" y1="350" x2="950" y2="350" stroke="#30363d" stroke-width="1"/>
+
+  <text x="60" y="370" fill="#ff7b72" font-size="10">NtAllocateVirtualMemory</text>
+  <text x="370" y="370" fill="#7ee787" font-size="10">NtAllocateVirtualMemoryEx</text>
+  <text x="700" y="370" fill="#f85149" font-size="10">98% vs 12%</text>
+
+  <text x="60" y="392" fill="#ff7b72" font-size="10">NtWriteVirtualMemory</text>
+  <text x="370" y="392" fill="#7ee787" font-size="10">NtMapViewOfSection</text>
+  <text x="700" y="392" fill="#f85149" font-size="10">95% vs 45%</text>
+
+  <text x="60" y="414" fill="#ff7b72" font-size="10">NtCreateThreadEx</text>
+  <text x="370" y="414" fill="#7ee787" font-size="10">NtQueueApcThreadEx2</text>
+  <text x="700" y="414" fill="#f85149" font-size="10">92% vs 8%</text>
+
+  <text x="60" y="436" fill="#ff7b72" font-size="10">NtProtectVirtualMemory</text>
+  <text x="370" y="436" fill="#7ee787" font-size="10">NtCreateEnclave</text>
+  <text x="700" y="436" fill="#f85149" font-size="10">97% vs 3%</text>
+
+  <text x="60" y="458" fill="#ff7b72" font-size="10">NtOpenProcess</text>
+  <text x="370" y="458" fill="#7ee787" font-size="10">NtGetNextProcess</text>
+  <text x="700" y="458" fill="#f85149" font-size="10">90% vs 5%</text>
+
+  <text x="60" y="480" fill="#ff7b72" font-size="10">NtCreateSection</text>
+  <text x="370" y="480" fill="#7ee787" font-size="10">NtCreateSectionEx</text>
+  <text x="700" y="480" fill="#f85149" font-size="10">85% vs 10%</text>
+
+  <!-- Warning -->
+  <text x="60" y="520" fill="#f0883e" font-size="11" font-weight="bold">Note: Hook coverage varies by EDR vendor and version. Always verify at runtime.</text>
+  <text x="60" y="545" fill="#8b949e" font-size="10">Percentages approximate across CrowdStrike, Defender ATP, SentinelOne, Carbon Black (2024-2025)</text>
+</svg>

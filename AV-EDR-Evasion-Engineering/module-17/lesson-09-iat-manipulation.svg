@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">IAT (Import Address Table) Manipulation — Structure &amp; Hooking</text>
+
+  <!-- PE Header -->
+  <rect x="30" y="55" width="200" height="180" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="130" y="78" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">PE Header</text>
+  <text x="45" y="100" fill="#c9d1d9" font-size="10">DOS Header</text>
+  <text x="45" y="118" fill="#c9d1d9" font-size="10">NT Headers</text>
+  <text x="45" y="136" fill="#c9d1d9" font-size="10">Optional Header</text>
+  <text x="45" y="158" fill="#f0883e" font-size="10">Data Directory[1]:</text>
+  <text x="45" y="174" fill="#f0883e" font-size="10">  IMPORT TABLE RVA</text>
+  <text x="45" y="192" fill="#8b949e" font-size="9">Points to import descriptors</text>
+  <text x="45" y="215" fill="#d2a8ff" font-size="10">Data Directory[12]:</text>
+  <text x="45" y="228" fill="#d2a8ff" font-size="10">  IAT RVA</text>
+
+  <line x1="235" y1="165" x2="275" y2="165" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Import Descriptor -->
+  <rect x="280" y="55" width="220" height="180" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="390" y="78" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Import Descriptor</text>
+  <text x="295" y="100" fill="#c9d1d9" font-size="10">OriginalFirstThunk (ILT)</text>
+  <text x="295" y="118" fill="#c9d1d9" font-size="10">TimeDateStamp</text>
+  <text x="295" y="136" fill="#c9d1d9" font-size="10">ForwarderChain</text>
+  <text x="295" y="154" fill="#3fb950" font-size="10">Name: "kernel32.dll"</text>
+  <text x="295" y="172" fill="#f85149" font-size="10">FirstThunk (IAT)</text>
+  <text x="295" y="200" fill="#8b949e" font-size="9">One descriptor per imported DLL</text>
+  <text x="295" y="215" fill="#8b949e" font-size="9">Array terminated by null entry</text>
+
+  <!-- IAT Array -->
+  <rect x="540" y="55" width="210" height="180" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="645" y="78" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">IAT (FirstThunk)</text>
+  <rect x="555" y="92" width="180" height="22" rx="3" fill="#1a2332" stroke="#3fb950"/>
+  <text x="645" y="108" text-anchor="middle" fill="#3fb950" font-size="9">0x7FF8A1234560 (VirtualAlloc)</text>
+  <rect x="555" y="118" width="180" height="22" rx="3" fill="#1a2332" stroke="#3fb950"/>
+  <text x="645" y="134" text-anchor="middle" fill="#3fb950" font-size="9">0x7FF8A1234780 (CreateFile)</text>
+  <rect x="555" y="144" width="180" height="22" rx="3" fill="#1a2332" stroke="#3fb950"/>
+  <text x="645" y="160" text-anchor="middle" fill="#3fb950" font-size="9">0x7FF8A12349A0 (WriteFile)</text>
+  <rect x="555" y="170" width="180" height="22" rx="3" fill="#1a2332" stroke="#8b949e"/>
+  <text x="645" y="186" text-anchor="middle" fill="#8b949e" font-size="9">0x0000000000000000 (NULL)</text>
+  <text x="555" y="210" fill="#8b949e" font-size="9">Loader fills with real addresses</text>
+  <text x="555" y="225" fill="#8b949e" font-size="9">CALL [IAT_entry] for each API</text>
+
+  <line x1="500" y1="130" x2="535" y2="130" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- Hook diagram -->
+  <rect x="790" y="55" width="190" height="180" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="885" y="78" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">IAT Hook</text>
+  <rect x="805" y="92" width="160" height="22" rx="3" fill="#1a2332" stroke="#f85149"/>
+  <text x="885" y="108" text-anchor="middle" fill="#f85149" font-size="9">0xDEAD00001000 (Hook!)</text>
+  <rect x="805" y="118" width="160" height="22" rx="3" fill="#1a2332" stroke="#3fb950"/>
+  <text x="885" y="134" text-anchor="middle" fill="#3fb950" font-size="9">0x7FF8A1234780 (ok)</text>
+  <rect x="805" y="144" width="160" height="22" rx="3" fill="#1a2332" stroke="#3fb950"/>
+  <text x="885" y="160" text-anchor="middle" fill="#3fb950" font-size="9">0x7FF8A12349A0 (ok)</text>
+  <text x="805" y="195" fill="#f85149" font-size="9">VirtualAlloc entry replaced</text>
+  <text x="805" y="210" fill="#f85149" font-size="9">Calls go to hook handler</text>
+  <text x="805" y="225" fill="#8b949e" font-size="9">EDR inspects params first</text>
+
+  <line x1="755" y1="100" x2="795" y2="100" stroke="#f85149" stroke-width="2" marker-end="url(#a2)"/>
+
+  <!-- IAT Hook Detection -->
+  <rect x="30" y="260" width="460" height="130" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="260" y="283" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">Detecting IAT Hooks</text>
+  <text x="50" y="308" fill="#7ee787" font-size="10">1. Compare IAT entry vs GetProcAddress result</text>
+  <text x="50" y="328" fill="#7ee787" font-size="10">2. Check if address falls within DLL range</text>
+  <text x="50" y="348" fill="#7ee787" font-size="10">3. Verify ILT (hint/name) matches IAT function</text>
+  <text x="50" y="368" fill="#7ee787" font-size="10">4. Walk all descriptors, flag mismatches</text>
+  <text x="50" y="383" fill="#8b949e" font-size="9">If IAT[i] not in module range = hooked or forwarded</text>
+
+  <!-- IAT Patching for Evasion -->
+  <rect x="510" y="260" width="470" height="130" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="745" y="283" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">IAT Manipulation for Evasion</text>
+  <text x="530" y="308" fill="#c9d1d9" font-size="10">1. Replace IAT entry with own function address</text>
+  <text x="530" y="328" fill="#c9d1d9" font-size="10">2. Intercept calls to log/modify behavior</text>
+  <text x="530" y="348" fill="#c9d1d9" font-size="10">3. Redirect API calls to unhooked implementations</text>
+  <text x="530" y="368" fill="#c9d1d9" font-size="10">4. VirtualProtect IAT page RW, patch, restore R</text>
+  <text x="530" y="383" fill="#8b949e" font-size="9">Requires PAGE_READWRITE on IAT memory region</text>
+
+  <!-- Legend -->
+  <rect x="30" y="410" width="940" height="155" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="435" fill="#58a6ff" font-size="13" font-weight="bold">IAT Internals</text>
+  <text x="50" y="458" fill="#c9d1d9" font-size="11">Before load: IAT = ILT (hint/name RVAs pointing to IMAGE_IMPORT_BY_NAME)</text>
+  <text x="50" y="478" fill="#c9d1d9" font-size="11">After load: Windows loader resolves each entry to actual function address</text>
+  <text x="50" y="498" fill="#c9d1d9" font-size="11">CALL instruction: CALL QWORD PTR [rip+IAT_offset] — indirect through IAT</text>
+  <text x="50" y="518" fill="#f0883e" font-size="11">IAT hooks are stealthier than inline hooks — no code modification in target DLL</text>
+  <text x="50" y="545" fill="#8b949e" font-size="10">Detection: compare IAT address vs module memory range. If address outside expected DLL = hook.</text>
+  <rect x="50" y="554" width="12" height="12" fill="#3fb950"/><text x="70" y="565" fill="#8b949e" font-size="10">Clean IAT</text>
+  <rect x="170" y="554" width="12" height="12" fill="#f85149"/><text x="190" y="565" fill="#8b949e" font-size="10">Hooked IAT</text>
+  <rect x="300" y="554" width="12" height="12" fill="#f0883e"/><text x="320" y="565" fill="#8b949e" font-size="10">Import Desc</text>
+  <rect x="440" y="554" width="12" height="12" fill="#58a6ff"/><text x="460" y="565" fill="#8b949e" font-size="10">PE Header</text>
+</svg>

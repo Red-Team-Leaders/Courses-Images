@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Kernel Detection — Callbacks &amp; ETW Threat Intelligence</text>
+
+  <!-- Process callbacks -->
+  <rect x="20" y="55" width="310" height="180" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="175" y="78" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Process Notify Callbacks</text>
+  <text x="40" y="100" fill="#c9d1d9" font-size="10">PsSetCreateProcessNotifyRoutineEx</text>
+  <text x="40" y="120" fill="#8b949e" font-size="10">Fires on every process create/exit</text>
+  <text x="40" y="145" fill="#c9d1d9" font-size="10">EDR receives:</text>
+  <text x="45" y="163" fill="#7ee787" font-size="10">ParentProcessId</text>
+  <text x="45" y="181" fill="#7ee787" font-size="10">ImageFileName</text>
+  <text x="45" y="199" fill="#7ee787" font-size="10">CommandLine</text>
+  <text x="45" y="217" fill="#7ee787" font-size="10">CreatingThreadId</text>
+
+  <!-- Thread callbacks -->
+  <rect x="350" y="55" width="290" height="180" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="495" y="78" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Thread Notify Callbacks</text>
+  <text x="370" y="100" fill="#c9d1d9" font-size="10">PsSetCreateThreadNotifyRoutine</text>
+  <text x="370" y="120" fill="#8b949e" font-size="10">Fires on every thread create</text>
+  <text x="370" y="145" fill="#c9d1d9" font-size="10">EDR receives:</text>
+  <text x="375" y="163" fill="#7ee787" font-size="10">ProcessId / ThreadId</text>
+  <text x="375" y="181" fill="#7ee787" font-size="10">StartAddress</text>
+  <text x="370" y="205" fill="#f0883e" font-size="9">Detects remote thread creation</text>
+  <text x="370" y="220" fill="#f0883e" font-size="9">StartAddr in private mem = suspicious</text>
+
+  <!-- ObRegisterCallbacks -->
+  <rect x="660" y="55" width="320" height="180" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="820" y="78" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">ObRegisterCallbacks</text>
+  <text x="680" y="100" fill="#c9d1d9" font-size="10">Object access pre/post callbacks</text>
+  <text x="680" y="120" fill="#8b949e" font-size="10">Monitors handle operations:</text>
+  <text x="685" y="145" fill="#7ee787" font-size="10">OB_OPERATION_HANDLE_CREATE</text>
+  <text x="685" y="163" fill="#7ee787" font-size="10">OB_OPERATION_HANDLE_DUPLICATE</text>
+  <text x="680" y="188" fill="#c9d1d9" font-size="10">Can strip access rights:</text>
+  <text x="685" y="206" fill="#ff7b72" font-size="10">PROCESS_VM_WRITE removed</text>
+  <text x="685" y="224" fill="#ff7b72" font-size="10">PROCESS_CREATE_THREAD removed</text>
+
+  <!-- ETW-Ti -->
+  <rect x="20" y="260" width="960" height="150" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="500" y="285" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">ETW Threat Intelligence Provider (ETW-Ti)</text>
+  <text x="40" y="310" fill="#c9d1d9" font-size="10">Microsoft-Windows-Threat-Intelligence — kernel-mode ETW provider</text>
+  <text x="40" y="330" fill="#c9d1d9" font-size="10">Only accessible by Protected Process Light (PPL) consumers</text>
+
+  <text x="40" y="358" fill="#7ee787" font-size="10">Events monitored:</text>
+  <text x="40" y="376" fill="#7ee787" font-size="10">KERNEL_THREATINT_TASK_ALLOCVM</text>
+  <text x="300" y="376" fill="#7ee787" font-size="10">KERNEL_THREATINT_TASK_PROTECTVM</text>
+  <text x="600" y="376" fill="#7ee787" font-size="10">KERNEL_THREATINT_TASK_MAPVIEW</text>
+  <text x="40" y="396" fill="#7ee787" font-size="10">KERNEL_THREATINT_TASK_QUEUEAPC</text>
+  <text x="300" y="396" fill="#7ee787" font-size="10">KERNEL_THREATINT_TASK_SETCTX</text>
+  <text x="600" y="396" fill="#7ee787" font-size="10">KERNEL_THREATINT_TASK_WRITEVM</text>
+
+  <!-- Cannot bypass -->
+  <rect x="20" y="430" width="960" height="135" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <text x="50" y="455" fill="#58a6ff" font-size="13" font-weight="bold">Why These Cannot Be Bypassed from Ring 3</text>
+  <text x="50" y="480" fill="#f85149" font-size="10">✗ Kernel callbacks run at IRQL PASSIVE_LEVEL in kernel space — userland code cannot reach them</text>
+  <text x="50" y="500" fill="#f85149" font-size="10">✗ ETW-Ti events are generated inside the kernel syscall handler BEFORE returning to userland</text>
+  <text x="50" y="520" fill="#f85149" font-size="10">✗ ObRegisterCallbacks pre-operation can DENY handle creation before it happens</text>
+  <text x="50" y="545" fill="#3fb950" font-size="10">Possible mitigations: BYOVD to remove callbacks, indirect syscalls to avoid triggering patterns,</text>
+  <text x="50" y="560" fill="#3fb950" font-size="10">or use legitimate APIs that don't trigger the same kernel-level events</text>
+</svg>

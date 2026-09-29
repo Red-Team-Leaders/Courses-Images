@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">SysWhispers 3 — Egg-Hunter Indirect Syscalls</text>
+
+  <!-- Core innovation -->
+  <rect x="30" y="52" width="940" height="75" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="50" y="78" fill="#3fb950" font-size="13" font-weight="bold">Core Innovation: Egg-Hunter Pattern in ASM Stubs</text>
+  <text x="50" y="100" fill="#c9d1d9" font-size="11">Instead of hardcoding a jmp target, embed a unique marker (EGG) at runtime into a ntdll stub,</text>
+  <text x="50" y="118" fill="#c9d1d9" font-size="11">then scan for it and jump there. This avoids static jmp addresses in the binary.</text>
+
+  <!-- Egg-hunter flow -->
+  <rect x="30" y="142" width="300" height="200" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="180" y="165" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">Step 1: Prepare Egg</text>
+  <text x="50" y="190" fill="#7ee787" font-size="9">; At runtime, patch a random</text>
+  <text x="50" y="206" fill="#7ee787" font-size="9">; ntdll stub with egg marker</text>
+  <text x="50" y="226" fill="#f0883e" font-size="10">EGG = 0xDEADBEEF (example)</text>
+  <text x="50" y="248" fill="#c9d1d9" font-size="9">1. Find clean stub in ntdll</text>
+  <text x="50" y="266" fill="#c9d1d9" font-size="9">2. Write EGG before syscall;ret</text>
+  <text x="50" y="284" fill="#c9d1d9" font-size="9">3. EGG sits at known offset</text>
+  <text x="50" y="310" fill="#8b949e" font-size="8">EGG changes each execution</text>
+  <text x="50" y="328" fill="#8b949e" font-size="8">No static pattern in binary</text>
+
+  <line x1="335" y1="242" x2="365" y2="242" stroke="#f0883e" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="370" y="142" width="300" height="200" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="520" y="165" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Step 2: Egg-Hunt Scan</text>
+  <text x="390" y="190" fill="#7ee787" font-size="9">; ASM stub scans ntdll for EGG</text>
+  <text x="390" y="206" fill="#7ee787" font-size="9">search_loop:</text>
+  <text x="400" y="222" fill="#7ee787" font-size="9">inc rcx</text>
+  <text x="400" y="238" fill="#7ee787" font-size="9">cmp dword [rcx], EGG_VALUE</text>
+  <text x="400" y="254" fill="#7ee787" font-size="9">jne search_loop</text>
+  <text x="390" y="274" fill="#7ee787" font-size="9">; Found! rcx = egg location</text>
+  <text x="390" y="294" fill="#7ee787" font-size="9">; Skip egg, land on syscall;ret</text>
+  <text x="390" y="314" fill="#3fb950" font-size="9">add rcx, 4</text>
+  <text x="390" y="330" fill="#3fb950" font-size="9">jmp rcx  ; indirect syscall!</text>
+
+  <line x1="675" y1="242" x2="705" y2="242" stroke="#3fb950" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="710" y="142" width="260" height="200" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="840" y="165" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Step 3: Execute</text>
+  <text x="730" y="192" fill="#c9d1d9" font-size="10">Lands on ntdll's syscall;ret</text>
+  <text x="730" y="212" fill="#c9d1d9" font-size="10">Return address = ntdll range</text>
+  <text x="730" y="240" fill="#3fb950" font-size="11" font-weight="bold">Benefits:</text>
+  <text x="730" y="260" fill="#c9d1d9" font-size="9">• No static jmp address</text>
+  <text x="730" y="278" fill="#c9d1d9" font-size="9">• EGG is runtime-random</text>
+  <text x="730" y="296" fill="#c9d1d9" font-size="9">• True indirect syscall</text>
+  <text x="730" y="314" fill="#c9d1d9" font-size="9">• Legitimate return addr</text>
+  <text x="730" y="332" fill="#c9d1d9" font-size="9">• Runtime SSN resolution</text>
+
+  <!-- Comparison -->
+  <rect x="30" y="358" width="940" height="105" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="500" y="381" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Evolution: SW1 → SW2 → SW3</text>
+  <text x="50" y="408" fill="#8b949e" font-size="10">Feature                SW1              SW2              SW3</text>
+  <line x1="50" y1="415" x2="950" y2="415" stroke="#30363d"/>
+  <text x="50" y="433" fill="#c9d1d9" font-size="10">SSN Resolution         Hardcoded        Zw* sort         Zw* sort + egg</text>
+  <text x="50" y="451" fill="#c9d1d9" font-size="10">Syscall Type           Direct           Random indirect  Egg-hunter indirect</text>
+
+  <!-- Bottom -->
+  <rect x="30" y="478" width="940" height="87" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="503" fill="#f0883e" font-size="13" font-weight="bold">Detection &amp; Countermeasures</text>
+  <text x="50" y="523" fill="#c9d1d9" font-size="11">EDRs detect egg-hunt by monitoring memory scans across ntdll pages (access pattern anomaly).</text>
+  <text x="50" y="543" fill="#c9d1d9" font-size="11">The egg marker write itself triggers a memory write to ntdll .text — detectable via page protection callbacks.</text>
+  <text x="50" y="558" fill="#3fb950" font-size="10">Still stronger than SW1/SW2: no static stub signatures, no fixed jump targets in binary.</text>
+</svg>

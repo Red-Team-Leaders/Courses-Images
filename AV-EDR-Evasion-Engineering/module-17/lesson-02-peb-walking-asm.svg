@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">PEB Walking via x64 Assembly — No IAT API Resolution</text>
+
+  <!-- GS Segment -->
+  <rect x="30" y="55" width="170" height="90" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="115" y="78" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">GS Segment</text>
+  <text x="45" y="100" fill="#7ee787" font-size="10">mov rax, gs:[0x60]</text>
+  <text x="45" y="118" fill="#8b949e" font-size="9">CPU-level read, unhookable</text>
+
+  <!-- TEB -->
+  <rect x="230" y="55" width="170" height="90" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="315" y="78" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">TEB</text>
+  <text x="245" y="100" fill="#c9d1d9" font-size="10">+0x60: PEB pointer</text>
+  <text x="245" y="118" fill="#8b949e" font-size="9">Thread Environment Block</text>
+  <line x1="200" y1="100" x2="225" y2="100" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- PEB -->
+  <rect x="430" y="55" width="170" height="110" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="515" y="78" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">PEB</text>
+  <text x="445" y="100" fill="#c9d1d9" font-size="10">+0x02: BeingDebugged</text>
+  <text x="445" y="118" fill="#3fb950" font-size="10">+0x18: Ldr (PEB_LDR)</text>
+  <text x="445" y="136" fill="#c9d1d9" font-size="10">+0xBC: NtGlobalFlag</text>
+  <text x="445" y="152" fill="#8b949e" font-size="9">Process Environment Block</text>
+  <line x1="400" y1="100" x2="425" y2="100" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- PEB_LDR_DATA -->
+  <rect x="640" y="55" width="340" height="110" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="810" y="78" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">PEB_LDR_DATA</text>
+  <text x="655" y="100" fill="#c9d1d9" font-size="10">+0x10: InLoadOrderModuleList</text>
+  <text x="655" y="118" fill="#f0883e" font-size="10">+0x20: InMemoryOrderModuleList</text>
+  <text x="655" y="136" fill="#c9d1d9" font-size="10">+0x30: InInitializationOrderList</text>
+  <text x="655" y="152" fill="#8b949e" font-size="9">Doubly-linked lists of loaded modules</text>
+  <line x1="600" y1="100" x2="635" y2="100" stroke="#3fb950" stroke-width="2" marker-end="url(#a2)"/>
+
+  <!-- Linked List -->
+  <text x="500" y="200" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">InMemoryOrderModuleList Traversal</text>
+
+  <rect x="30" y="220" width="200" height="100" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="130" y="243" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">ntdll.dll</text>
+  <text x="45" y="265" fill="#c9d1d9" font-size="9">Flink: next entry</text>
+  <text x="45" y="280" fill="#c9d1d9" font-size="9">+0x30: DllBase</text>
+  <text x="45" y="295" fill="#c9d1d9" font-size="9">+0x40: BaseDllName</text>
+  <text x="45" y="310" fill="#8b949e" font-size="9">SSN = 0 (first)</text>
+
+  <rect x="270" y="220" width="200" height="100" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="370" y="243" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">kernel32.dll</text>
+  <text x="285" y="265" fill="#c9d1d9" font-size="9">Flink: next entry</text>
+  <text x="285" y="280" fill="#c9d1d9" font-size="9">+0x30: DllBase</text>
+  <text x="285" y="295" fill="#c9d1d9" font-size="9">+0x40: BaseDllName</text>
+  <text x="285" y="310" fill="#8b949e" font-size="9">SSN = 1 (second)</text>
+  <line x1="230" y1="270" x2="265" y2="270" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="510" y="220" width="200" height="100" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="610" y="243" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">kernelbase.dll</text>
+  <text x="525" y="265" fill="#c9d1d9" font-size="9">Flink: next entry</text>
+  <text x="525" y="280" fill="#c9d1d9" font-size="9">+0x30: DllBase</text>
+  <text x="525" y="295" fill="#c9d1d9" font-size="9">+0x40: BaseDllName</text>
+  <text x="525" y="310" fill="#8b949e" font-size="9">SSN = 2 (third)</text>
+  <line x1="470" y1="270" x2="505" y2="270" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="750" y="220" width="200" height="100" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="850" y="243" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">target.exe</text>
+  <text x="765" y="265" fill="#c9d1d9" font-size="9">Flink: back to head</text>
+  <text x="765" y="280" fill="#c9d1d9" font-size="9">+0x30: DllBase</text>
+  <text x="765" y="295" fill="#c9d1d9" font-size="9">+0x40: BaseDllName</text>
+  <text x="765" y="310" fill="#8b949e" font-size="9">SSN = 3 (fourth)</text>
+  <line x1="710" y1="270" x2="745" y2="270" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <!-- ASM Code -->
+  <rect x="30" y="345" width="450" height="220" rx="8" fill="#0d1117" stroke="#7ee787" stroke-width="1.5"/>
+  <text x="255" y="368" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">x64 Assembly — PEB Walk</text>
+  <text x="45" y="392" fill="#7ee787" font-size="10">xor rcx, rcx</text>
+  <text x="280" y="392" fill="#8b949e" font-size="9">; zero RCX</text>
+  <text x="45" y="410" fill="#7ee787" font-size="10">mov rax, gs:[rcx+0x60]</text>
+  <text x="280" y="410" fill="#8b949e" font-size="9">; RAX = PEB</text>
+  <text x="45" y="428" fill="#7ee787" font-size="10">mov rax, [rax+0x18]</text>
+  <text x="280" y="428" fill="#8b949e" font-size="9">; RAX = PEB_LDR_DATA</text>
+  <text x="45" y="446" fill="#7ee787" font-size="10">mov rsi, [rax+0x20]</text>
+  <text x="280" y="446" fill="#8b949e" font-size="9">; RSI = InMemoryOrder head</text>
+  <text x="45" y="464" fill="#7ee787" font-size="10">lodsq</text>
+  <text x="280" y="464" fill="#8b949e" font-size="9">; RAX = 1st entry (ntdll)</text>
+  <text x="45" y="482" fill="#7ee787" font-size="10">xchg rax, rsi</text>
+  <text x="280" y="482" fill="#8b949e" font-size="9">; swap for next lodsq</text>
+  <text x="45" y="500" fill="#7ee787" font-size="10">lodsq</text>
+  <text x="280" y="500" fill="#8b949e" font-size="9">; RAX = 2nd entry (kernel32)</text>
+  <text x="45" y="518" fill="#7ee787" font-size="10">mov rbx, [rax+0x20]</text>
+  <text x="280" y="518" fill="#8b949e" font-size="9">; RBX = kernel32 DllBase</text>
+  <text x="45" y="545" fill="#f0883e" font-size="10">; Now parse PE exports at RBX to find functions</text>
+
+  <!-- Key Points -->
+  <rect x="510" y="345" width="470" height="220" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="530" y="370" fill="#58a6ff" font-size="13" font-weight="bold">Key Concepts</text>
+  <text x="530" y="395" fill="#c9d1d9" font-size="11">1. GS:[0x60] is a CPU read — no API, no hook</text>
+  <text x="530" y="418" fill="#c9d1d9" font-size="11">2. PEB.Ldr at +0x18 holds module linked lists</text>
+  <text x="530" y="441" fill="#c9d1d9" font-size="11">3. InMemoryOrderModuleList at +0x20 has all DLLs</text>
+  <text x="530" y="464" fill="#c9d1d9" font-size="11">4. DllBase at entry+0x30 gives module base address</text>
+  <text x="530" y="487" fill="#c9d1d9" font-size="11">5. Parse PE export table for function resolution</text>
+  <text x="530" y="516" fill="#f0883e" font-size="12" font-weight="bold">Zero imports. Zero hooks. Pure memory reads.</text>
+  <rect x="530" y="535" width="12" height="12" fill="#f85149"/><text x="550" y="546" fill="#8b949e" font-size="10">CPU Segment</text>
+  <rect x="660" y="535" width="12" height="12" fill="#58a6ff"/><text x="680" y="546" fill="#8b949e" font-size="10">Structures</text>
+  <rect x="790" y="535" width="12" height="12" fill="#3fb950"/><text x="810" y="546" fill="#8b949e" font-size="10">Assembly</text>
+</svg>

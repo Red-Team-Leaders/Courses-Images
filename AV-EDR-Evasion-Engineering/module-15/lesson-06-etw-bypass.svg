@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">ETW Bypass via Hardware Breakpoints &amp; VEH</text>
+
+  <!-- Normal ETW flow -->
+  <text x="50" y="60" fill="#f85149" font-size="13" font-weight="bold">Normal ETW Flow (Visible):</text>
+  <rect x="50" y="70" width="160" height="45" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="130" y="97" text-anchor="middle" fill="#f85149" font-size="10">API Call</text>
+  <line x1="215" y1="92" x2="245" y2="92" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="250" y="70" width="160" height="45" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="330" y="97" text-anchor="middle" fill="#f0883e" font-size="10">NtTraceEvent()</text>
+  <line x1="415" y1="92" x2="445" y2="92" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="450" y="70" width="160" height="45" rx="6" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="530" y="97" text-anchor="middle" fill="#d2a8ff" font-size="10">ETW Session</text>
+  <line x1="615" y1="92" x2="645" y2="92" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="650" y="70" width="160" height="45" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="730" y="97" text-anchor="middle" fill="#58a6ff" font-size="10">EDR Consumer</text>
+  <line x1="815" y1="92" x2="845" y2="92" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="850" y="70" width="120" height="45" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="910" y="97" text-anchor="middle" fill="#f85149" font-size="10">ALERT!</text>
+
+  <!-- Bypass technique -->
+  <text x="50" y="150" fill="#3fb950" font-size="13" font-weight="bold">Hardware Breakpoint Bypass:</text>
+
+  <!-- DR Register Setup -->
+  <rect x="30" y="165" width="300" height="150" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="188" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">1. Set DR Breakpoints</text>
+  <text x="50" y="210" fill="#c9d1d9" font-size="10">ctx.Dr0 = &amp;NtTraceEvent</text>
+  <text x="50" y="228" fill="#c9d1d9" font-size="10">ctx.Dr7 = 0x00000001</text>
+  <text x="50" y="246" fill="#8b949e" font-size="10">SetThreadContext(hThread, &amp;ctx)</text>
+  <text x="50" y="270" fill="#7ee787" font-size="9">Hardware BP on NtTraceEvent entry</text>
+  <text x="50" y="288" fill="#8b949e" font-size="9">No memory modification needed!</text>
+
+  <line x1="335" y1="240" x2="370" y2="240" stroke="#3fb950" stroke-width="2" marker-end="url(#ag)"/>
+
+  <!-- VEH Handler -->
+  <rect x="375" y="165" width="300" height="150" rx="8" fill="#0d1117" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="525" y="188" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">2. VEH Handler</text>
+  <text x="395" y="210" fill="#c9d1d9" font-size="10">AddVectoredExceptionHandler(</text>
+  <text x="400" y="225" fill="#c9d1d9" font-size="10">  1, EtwBypassHandler)</text>
+  <text x="395" y="250" fill="#8b949e" font-size="10">On SINGLE_STEP exception:</text>
+  <text x="400" y="268" fill="#7ee787" font-size="10">Rip = return address</text>
+  <text x="400" y="283" fill="#7ee787" font-size="10">Rax = STATUS_SUCCESS</text>
+  <text x="395" y="302" fill="#3fb950" font-size="9">Skip function, return success</text>
+
+  <line x1="680" y1="240" x2="715" y2="240" stroke="#3fb950" stroke-width="2" marker-end="url(#ag)"/>
+
+  <!-- Result -->
+  <rect x="720" y="165" width="255" height="150" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="847" y="188" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">3. Result</text>
+  <text x="740" y="210" fill="#c9d1d9" font-size="10">NtTraceEvent never executes</text>
+  <text x="740" y="230" fill="#c9d1d9" font-size="10">No ETW events generated</text>
+  <text x="740" y="250" fill="#c9d1d9" font-size="10">EDR consumer starved</text>
+  <text x="740" y="275" fill="#3fb950" font-size="10">✓ No memory patches</text>
+  <text x="740" y="293" fill="#3fb950" font-size="10">✓ No ntdll modification</text>
+  <text x="740" y="305" fill="#3fb950" font-size="9">Patchless — invisible to integrity checks</text>
+
+  <!-- DR register diagram -->
+  <rect x="30" y="340" width="940" height="110" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="50" y="365" fill="#58a6ff" font-size="13" font-weight="bold">x64 Debug Registers</text>
+  <text x="50" y="390" fill="#d2a8ff" font-size="10">DR0: Address breakpoint 0 (NtTraceEvent)</text>
+  <text x="350" y="390" fill="#d2a8ff" font-size="10">DR1: Address breakpoint 1 (EtwEventWrite)</text>
+  <text x="700" y="390" fill="#8b949e" font-size="10">DR2: Available</text>
+  <text x="50" y="415" fill="#8b949e" font-size="10">DR3: Available</text>
+  <text x="350" y="415" fill="#f0883e" font-size="10">DR6: Debug status (which BP triggered)</text>
+  <text x="700" y="415" fill="#f0883e" font-size="10">DR7: Enable bits + conditions</text>
+  <text x="50" y="440" fill="#8b949e" font-size="9">Only 4 address registers (DR0-DR3) — max 4 simultaneous hardware breakpoints per thread</text>
+
+  <!-- Key advantages -->
+  <rect x="30" y="465" width="940" height="100" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <text x="50" y="490" fill="#58a6ff" font-size="13" font-weight="bold">Why Hardware BPs Beat Memory Patching</text>
+  <text x="50" y="512" fill="#3fb950" font-size="10">✓ No .text section modification → passes ntdll integrity checks</text>
+  <text x="50" y="530" fill="#3fb950" font-size="10">✓ No VirtualProtect calls on ntdll → no high-signal memory protection changes</text>
+  <text x="50" y="548" fill="#3fb950" font-size="10">✓ Per-thread — can selectively disable ETW on specific threads only</text>
+  <text x="500" y="512" fill="#f85149" font-size="10">⚠ Some EDRs enumerate DR registers via GetThreadContext</text>
+  <text x="500" y="530" fill="#f85149" font-size="10">⚠ Limited to 4 breakpoints per thread</text>
+  <text x="500" y="548" fill="#f85149" font-size="10">⚠ Must set on each thread individually</text>
+</svg>

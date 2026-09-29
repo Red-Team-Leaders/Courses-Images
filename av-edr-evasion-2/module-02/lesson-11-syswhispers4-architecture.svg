@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" font-family="Segoe UI, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bgSW" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0f0f23"/><stop offset="100%" stop-color="#1a1a3e"/></linearGradient>
+    <marker id="aGS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#00d4aa"/></marker>
+    <marker id="aRS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#ff6b6b"/></marker>
+    <marker id="aBS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#74b9ff"/></marker>
+    <marker id="aPS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#a29bfe"/></marker>
+    <marker id="aYS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#ffeaa7"/></marker>
+  </defs>
+
+  <rect width="920" height="620" fill="url(#bgSW)" rx="12"/>
+
+  <!-- Title -->
+  <text x="460" y="32" text-anchor="middle" fill="#00d4aa" font-size="18" font-weight="700">SysWhispers4 — Architecture Overview</text>
+  <text x="460" y="50" text-anchor="middle" fill="#636e72" font-size="11">8 SSN Resolution Methods · 5 Invocation Methods · 9 Evasion Features</text>
+
+  <!-- Generator (Python) -->
+  <rect x="310" y="65" width="300" height="50" rx="8" fill="#a29bfe" opacity="0.15" stroke="#a29bfe" stroke-width="1.5"/>
+  <text x="460" y="85" text-anchor="middle" fill="#a29bfe" font-size="12" font-weight="700">syswhispers.py (Generator)</text>
+  <text x="460" y="102" text-anchor="middle" fill="#636e72" font-size="9">--preset stealth --method randomized --resolve recycled</text>
+
+  <!-- Arrow down -->
+  <line x1="460" y1="115" x2="460" y2="135" stroke="#a29bfe" stroke-width="1.5" marker-end="url(#aPS)"/>
+
+  <!-- Generated Files -->
+  <rect x="250" y="135" width="420" height="35" rx="6" fill="#1e1e3a" stroke="#74b9ff" stroke-width="1"/>
+  <text x="460" y="157" text-anchor="middle" fill="#74b9ff" font-size="10">SW4Syscalls.h + SW4Syscalls.c + SW4Syscalls.asm (MSVC) / _stubs.c (MinGW)</text>
+
+  <!-- Arrow down to 3 pillars -->
+  <line x1="200" y1="170" x2="200" y2="195" stroke="#74b9ff" stroke-width="1" marker-end="url(#aBS)"/>
+  <line x1="460" y1="170" x2="460" y2="195" stroke="#ffeaa7" stroke-width="1" marker-end="url(#aYS)"/>
+  <line x1="720" y1="170" x2="720" y2="195" stroke="#00d4aa" stroke-width="1" marker-end="url(#aGS)"/>
+
+  <!-- Pillar 1: SSN Resolution -->
+  <rect x="30" y="195" width="340" height="230" rx="10" fill="#1e1e3a" stroke="#74b9ff" stroke-width="1.5"/>
+  <rect x="30" y="195" width="340" height="30" rx="10" fill="#74b9ff" opacity="0.12"/>
+  <text x="200" y="215" text-anchor="middle" fill="#74b9ff" font-size="12" font-weight="700">SSN Resolution (8 Methods)</text>
+
+  <!-- Resolution methods -->
+  <text x="50" y="245" fill="#636e72" font-size="9">Hook Resist.</text>
+
+  <rect x="130" y="233" width="90" height="18" rx="4" fill="#ff6b6b" opacity="0.15"/><text x="175" y="246" text-anchor="middle" fill="#ff6b6b" font-size="9">Static</text>
+  <rect x="225" y="233" width="90" height="18" rx="4" fill="#ff6b6b" opacity="0.15"/><text x="270" y="246" text-anchor="middle" fill="#ff6b6b" font-size="9">Hell's Gate</text>
+  <text x="340" y="246" fill="#636e72" font-size="8">Low</text>
+
+  <rect x="130" y="256" width="90" height="18" rx="4" fill="#ffeaa7" opacity="0.15"/><text x="175" y="269" text-anchor="middle" fill="#ffeaa7" font-size="9">Halo's Gate</text>
+  <rect x="225" y="256" width="90" height="18" rx="4" fill="#ffeaa7" opacity="0.15"/><text x="270" y="269" text-anchor="middle" fill="#ffeaa7" font-size="9">Tartarus</text>
+  <text x="340" y="269" fill="#636e72" font-size="8">Med-High</text>
+
+  <rect x="130" y="279" width="90" height="18" rx="4" fill="#00d4aa" opacity="0.2"/><text x="175" y="292" text-anchor="middle" fill="#00d4aa" font-size="9">FreshyCalls</text>
+  <rect x="225" y="279" width="90" height="18" rx="4" fill="#00d4aa" opacity="0.2"/><text x="270" y="292" text-anchor="middle" fill="#00d4aa" font-size="9">FromDisk</text>
+  <text x="340" y="292" fill="#00d4aa" font-size="8">V.High</text>
+
+  <rect x="130" y="302" width="90" height="18" rx="4" fill="#00d4aa" opacity="0.35"/><text x="175" y="315" text-anchor="middle" fill="#00d4aa" font-size="9" font-weight="600">RecycledGate</text>
+  <rect x="225" y="302" width="90" height="18" rx="4" fill="#00d4aa" opacity="0.35"/><text x="270" y="315" text-anchor="middle" fill="#00d4aa" font-size="9" font-weight="600">HW Breakpt</text>
+  <text x="340" y="315" fill="#00d4aa" font-size="8" font-weight="600">Maximum</text>
+
+  <!-- RecycledGate detail -->
+  <rect x="50" y="330" width="300" height="80" rx="6" fill="#00d4aa" opacity="0.06" stroke="#00d4aa" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="200" y="348" text-anchor="middle" fill="#00d4aa" font-size="9" font-weight="600">RecycledGate (Recommended)</text>
+  <text x="60" y="365" fill="#636e72" font-size="8">1. Sort Nt* exports by VA (FreshyCalls)</text>
+  <text x="60" y="378" fill="#636e72" font-size="8">2. Index = candidate SSN</text>
+  <text x="60" y="391" fill="#636e72" font-size="8">3. Cross-validate with opcode bytes</text>
+  <text x="60" y="404" fill="#636e72" font-size="8">4. If hooked: trust VA-sort (hook can't change order)</text>
+
+  <!-- Pillar 2: Invocation -->
+  <rect x="390" y="195" width="140" height="230" rx="10" fill="#1e1e3a" stroke="#ffeaa7" stroke-width="1.5"/>
+  <rect x="390" y="195" width="140" height="30" rx="10" fill="#ffeaa7" opacity="0.12"/>
+  <text x="460" y="215" text-anchor="middle" fill="#ffeaa7" font-size="12" font-weight="700">Invocation (5)</text>
+
+  <rect x="400" y="233" width="120" height="22" rx="4" fill="#ffeaa7" opacity="0.1" stroke="#ffeaa7" stroke-width="0.5"/>
+  <text x="460" y="248" text-anchor="middle" fill="#ffeaa7" font-size="9">Embedded</text>
+
+  <rect x="400" y="260" width="120" height="22" rx="4" fill="#ffeaa7" opacity="0.1" stroke="#ffeaa7" stroke-width="0.5"/>
+  <text x="460" y="275" text-anchor="middle" fill="#ffeaa7" font-size="9">Indirect</text>
+
+  <rect x="400" y="287" width="120" height="22" rx="4" fill="#ffeaa7" opacity="0.15" stroke="#ffeaa7" stroke-width="0.5"/>
+  <text x="460" y="302" text-anchor="middle" fill="#ffeaa7" font-size="9">Randomized</text>
+
+  <rect x="400" y="314" width="120" height="22" rx="4" fill="#ffeaa7" opacity="0.25" stroke="#ffeaa7" stroke-width="1"/>
+  <text x="460" y="329" text-anchor="middle" fill="#ffeaa7" font-size="9" font-weight="600">Call Stack Spoof</text>
+
+  <rect x="400" y="341" width="120" height="22" rx="4" fill="#ffeaa7" opacity="0.1" stroke="#ffeaa7" stroke-width="0.5"/>
+  <text x="460" y="356" text-anchor="middle" fill="#ffeaa7" font-size="9">Egg Hunt</text>
+
+  <text x="460" y="385" text-anchor="middle" fill="#636e72" font-size="8">RIP in ntdll = indirect+</text>
+  <text x="460" y="398" text-anchor="middle" fill="#636e72" font-size="8">Clean stack = callstack</text>
+  <text x="460" y="411" text-anchor="middle" fill="#636e72" font-size="8">No 0F05 = egg hunt</text>
+
+  <!-- Pillar 3: Evasion -->
+  <rect x="550" y="195" width="340" height="230" rx="10" fill="#1e1e3a" stroke="#00d4aa" stroke-width="1.5"/>
+  <rect x="550" y="195" width="340" height="30" rx="10" fill="#00d4aa" opacity="0.12"/>
+  <text x="720" y="215" text-anchor="middle" fill="#00d4aa" font-size="12" font-weight="700">Evasion Features (9)</text>
+
+  <!-- 3x3 grid of evasion features -->
+  <rect x="565" y="233" width="100" height="35" rx="5" fill="#00d4aa" opacity="0.1" stroke="#00d4aa" stroke-width="0.5"/>
+  <text x="615" y="249" text-anchor="middle" fill="#00d4aa" font-size="8" font-weight="600">ntdll Unhook</text>
+  <text x="615" y="261" text-anchor="middle" fill="#636e72" font-size="7">KnownDlls remap</text>
+
+  <rect x="670" y="233" width="100" height="35" rx="5" fill="#00d4aa" opacity="0.1" stroke="#00d4aa" stroke-width="0.5"/>
+  <text x="720" y="249" text-anchor="middle" fill="#00d4aa" font-size="8" font-weight="600">ETW Bypass</text>
+  <text x="720" y="261" text-anchor="middle" fill="#636e72" font-size="7">Patch EtwEventWrite</text>
+
+  <rect x="775" y="233" width="100" height="35" rx="5" fill="#00d4aa" opacity="0.1" stroke="#00d4aa" stroke-width="0.5"/>
+  <text x="825" y="249" text-anchor="middle" fill="#00d4aa" font-size="8" font-weight="600">AMSI Bypass</text>
+  <text x="825" y="261" text-anchor="middle" fill="#636e72" font-size="7">Patch AmsiScanBuf</text>
+
+  <rect x="565" y="275" width="100" height="35" rx="5" fill="#ff6b6b" opacity="0.1" stroke="#ff6b6b" stroke-width="0.5"/>
+  <text x="615" y="291" text-anchor="middle" fill="#ff6b6b" font-size="8" font-weight="600">Anti-Debug</text>
+  <text x="615" y="303" text-anchor="middle" fill="#636e72" font-size="7">6 checks (PEB+timing)</text>
+
+  <rect x="670" y="275" width="100" height="35" rx="5" fill="#a29bfe" opacity="0.1" stroke="#a29bfe" stroke-width="0.5"/>
+  <text x="720" y="291" text-anchor="middle" fill="#a29bfe" font-size="8" font-weight="600">Sleep Encrypt</text>
+  <text x="720" y="303" text-anchor="middle" fill="#636e72" font-size="7">Ekko-style XOR .text</text>
+
+  <rect x="775" y="275" width="100" height="35" rx="5" fill="#ffeaa7" opacity="0.1" stroke="#ffeaa7" stroke-width="0.5"/>
+  <text x="825" y="291" text-anchor="middle" fill="#ffeaa7" font-size="8" font-weight="600">Obfuscation</text>
+  <text x="825" y="303" text-anchor="middle" fill="#636e72" font-size="7">Reorder + 14 junk</text>
+
+  <rect x="565" y="317" width="100" height="35" rx="5" fill="#74b9ff" opacity="0.1" stroke="#74b9ff" stroke-width="0.5"/>
+  <text x="615" y="333" text-anchor="middle" fill="#74b9ff" font-size="8" font-weight="600">SSN Encrypt</text>
+  <text x="615" y="345" text-anchor="middle" fill="#636e72" font-size="7">XOR at compile-time</text>
+
+  <rect x="670" y="317" width="100" height="35" rx="5" fill="#74b9ff" opacity="0.1" stroke="#74b9ff" stroke-width="0.5"/>
+  <text x="720" y="333" text-anchor="middle" fill="#74b9ff" font-size="8" font-weight="600">Stack Spoof</text>
+  <text x="720" y="345" text-anchor="middle" fill="#636e72" font-size="7">Fake RBP chain</text>
+
+  <rect x="775" y="317" width="100" height="35" rx="5" fill="#74b9ff" opacity="0.1" stroke="#74b9ff" stroke-width="0.5"/>
+  <text x="825" y="333" text-anchor="middle" fill="#74b9ff" font-size="8" font-weight="600">String Encrypt</text>
+  <text x="825" y="345" text-anchor="middle" fill="#636e72" font-size="7">XOR string literals</text>
+
+  <!-- Supported stats -->
+  <text x="720" y="385" text-anchor="middle" fill="#636e72" font-size="9">86 NT functions · 11 presets</text>
+  <text x="720" y="400" text-anchor="middle" fill="#636e72" font-size="9">x64 · x86 · WoW64 · ARM64</text>
+  <text x="720" y="415" text-anchor="middle" fill="#636e72" font-size="9">MSVC · MinGW · Clang</text>
+
+  <!-- Initialization Order (bottom) -->
+  <text x="460" y="450" text-anchor="middle" fill="#a29bfe" font-size="14" font-weight="700">Recommended Initialization Order</text>
+
+  <rect x="30" y="468" width="120" height="40" rx="6" fill="#ff6b6b" opacity="0.15" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="90" y="486" text-anchor="middle" fill="#ff6b6b" font-size="9" font-weight="600">1. UnhookNtdll</text>
+  <text x="90" y="500" text-anchor="middle" fill="#636e72" font-size="7">Remove hooks first</text>
+
+  <line x1="150" y1="488" x2="175" y2="488" stroke="#636e72" stroke-width="1" marker-end="url(#aGS)"/>
+
+  <rect x="175" y="468" width="120" height="40" rx="6" fill="#74b9ff" opacity="0.15" stroke="#74b9ff" stroke-width="1"/>
+  <text x="235" y="486" text-anchor="middle" fill="#74b9ff" font-size="9" font-weight="600">2. Initialize</text>
+  <text x="235" y="500" text-anchor="middle" fill="#636e72" font-size="7">Resolve clean SSNs</text>
+
+  <line x1="295" y1="488" x2="320" y2="488" stroke="#636e72" stroke-width="1" marker-end="url(#aGS)"/>
+
+  <rect x="320" y="468" width="120" height="40" rx="6" fill="#ffeaa7" opacity="0.15" stroke="#ffeaa7" stroke-width="1"/>
+  <text x="380" y="486" text-anchor="middle" fill="#ffeaa7" font-size="9" font-weight="600">3. AntiDebug</text>
+  <text x="380" y="500" text-anchor="middle" fill="#636e72" font-size="7">Verify no debugger</text>
+
+  <line x1="440" y1="488" x2="465" y2="488" stroke="#636e72" stroke-width="1" marker-end="url(#aGS)"/>
+
+  <rect x="465" y="468" width="120" height="40" rx="6" fill="#a29bfe" opacity="0.15" stroke="#a29bfe" stroke-width="1"/>
+  <text x="525" y="486" text-anchor="middle" fill="#a29bfe" font-size="9" font-weight="600">4. PatchETW</text>
+  <text x="525" y="500" text-anchor="middle" fill="#a29bfe" font-size="7">Kill telemetry</text>
+
+  <line x1="585" y1="488" x2="610" y2="488" stroke="#636e72" stroke-width="1" marker-end="url(#aGS)"/>
+
+  <rect x="610" y="468" width="120" height="40" rx="6" fill="#a29bfe" opacity="0.15" stroke="#a29bfe" stroke-width="1"/>
+  <text x="670" y="486" text-anchor="middle" fill="#a29bfe" font-size="9" font-weight="600">5. PatchAMSI</text>
+  <text x="670" y="500" text-anchor="middle" fill="#636e72" font-size="7">Bypass scanning</text>
+
+  <line x1="730" y1="488" x2="755" y2="488" stroke="#636e72" stroke-width="1" marker-end="url(#aGS)"/>
+
+  <rect x="755" y="468" width="135" height="40" rx="6" fill="#00d4aa" opacity="0.2" stroke="#00d4aa" stroke-width="1.5"/>
+  <text x="822" y="486" text-anchor="middle" fill="#00d4aa" font-size="9" font-weight="700">6. EXECUTE</text>
+  <text x="822" y="500" text-anchor="middle" fill="#636e72" font-size="7">SW4_Nt* functions</text>
+
+  <!-- Evolution timeline at very bottom -->
+  <rect x="30" y="530" width="860" height="70" rx="8" fill="#1e1e3a" stroke="#636e72" stroke-width="0.5"/>
+  <text x="460" y="548" text-anchor="middle" fill="#636e72" font-size="10" font-weight="600">SysWhispers Evolution</text>
+
+  <rect x="60" y="558" width="150" height="28" rx="5" fill="#636e72" opacity="0.15"/>
+  <text x="135" y="576" text-anchor="middle" fill="#636e72" font-size="9">SW1 (2019) · 12 funcs</text>
+
+  <rect x="225" y="558" width="150" height="28" rx="5" fill="#636e72" opacity="0.2"/>
+  <text x="300" y="576" text-anchor="middle" fill="#74b9ff" font-size="9">SW2 (2020) + Hell's Gate</text>
+
+  <rect x="390" y="558" width="160" height="28" rx="5" fill="#636e72" opacity="0.25"/>
+  <text x="470" y="576" text-anchor="middle" fill="#ffeaa7" font-size="9">SW3 (2022) + Indirect/x86</text>
+
+  <rect x="565" y="558" width="310" height="28" rx="5" fill="#00d4aa" opacity="0.15" stroke="#00d4aa" stroke-width="1"/>
+  <text x="720" y="576" text-anchor="middle" fill="#00d4aa" font-size="9" font-weight="600">SW4 (2024) · 86 funcs · 8 resolve · 5 invoke · 9 evasion · ARM64</text>
+</svg>

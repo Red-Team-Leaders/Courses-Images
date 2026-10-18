@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b6b"/>
+    </marker>
+  </defs>
+  <rect width="800" height="520" rx="12" fill="#0d1117"/>
+
+  <text x="400" y="28" text-anchor="middle" fill="#e6edf3" font-family="sans-serif" font-size="17" font-weight="bold">EDR Architecture — Hooks, Callbacks e Telemetria</text>
+
+  <!-- User Mode -->
+  <rect x="20" y="45" width="760" height="200" rx="10" fill="#161b22" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="55" y="65" fill="#00d4ff" font-family="sans-serif" font-size="12" font-weight="bold">USER MODE (Ring 3)</text>
+
+  <!-- Malware Process -->
+  <rect x="40" y="80" width="130" height="55" rx="8" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="105" y="100" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="10" font-weight="bold">Malware.exe</text>
+  <text x="105" y="118" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="8">Chama NtWriteVirtualMemory</text>
+
+  <line x1="170" y1="107" x2="198" y2="107" stroke="#ff6b6b" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- ntdll.dll with hook -->
+  <rect x="200" y="75" width="160" height="65" rx="8" fill="#1a1a2e" stroke="#f39c12" stroke-width="2"/>
+  <text x="280" y="95" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="10" font-weight="bold">ntdll.dll (Hooked)</text>
+  <text x="280" y="112" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="8">JMP → EDR.dll</text>
+  <text x="280" y="128" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Inline hook nos syscall stubs</text>
+
+  <!-- EDR DLL -->
+  <rect x="200" y="155" width="160" height="55" rx="8" fill="#1a1a2e" stroke="#a855f7" stroke-width="2"/>
+  <text x="280" y="175" text-anchor="middle" fill="#a855f7" font-family="sans-serif" font-size="10" font-weight="bold">EDR.dll</text>
+  <text x="280" y="192" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="8">Inspeciona args, loga telemetria</text>
+  <text x="280" y="205" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Pode bloquear ou permitir</text>
+
+  <line x1="280" y1="140" x2="280" y2="153" stroke="#f39c12" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- Arrow to kernel -->
+  <line x1="360" y1="107" x2="398" y2="107" stroke="#00d4ff" stroke-width="2" marker-end="url(#a)"/>
+  <text x="380" y="100" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">syscall</text>
+
+  <!-- Syscall stub (clean) -->
+  <rect x="400" y="80" width="140" height="55" rx="8" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1.5"/>
+  <text x="470" y="100" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="10" font-weight="bold">Syscall Stub</text>
+  <text x="470" y="118" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="8">mov r10, rcx</text>
+  <text x="470" y="130" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="8">mov eax, SSN; syscall</text>
+
+  <!-- Evasion techniques box -->
+  <rect x="560" y="75" width="210" height="160" rx="8" fill="#ff6b6b" fill-opacity="0.08" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="665" y="95" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="10" font-weight="bold">Técnicas de Evasão</text>
+  <g font-family="sans-serif" font-size="8" fill="#c9d1d9">
+    <rect x="575" y="105" width="180" height="20" rx="4" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="0.8"/>
+    <text x="665" y="119" text-anchor="middle">Unhooking (ntdll remap)</text>
+    <rect x="575" y="130" width="180" height="20" rx="4" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="0.8"/>
+    <text x="665" y="144" text-anchor="middle">Direct Syscalls (SSN)</text>
+    <rect x="575" y="155" width="180" height="20" rx="4" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="0.8"/>
+    <text x="665" y="169" text-anchor="middle">Indirect Syscalls (JMP gadget)</text>
+    <rect x="575" y="180" width="180" height="20" rx="4" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="0.8"/>
+    <text x="665" y="194" text-anchor="middle">Sleep Obfuscation</text>
+    <rect x="575" y="205" width="180" height="20" rx="4" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="0.8"/>
+    <text x="665" y="219" text-anchor="middle">BYOVD (kill EDR driver)</text>
+  </g>
+
+  <!-- Kernel Mode -->
+  <rect x="20" y="260" width="760" height="125" rx="10" fill="#161b22" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="55" y="280" fill="#ff6b6b" font-family="sans-serif" font-size="12" font-weight="bold">KERNEL MODE (Ring 0)</text>
+
+  <!-- Kernel components -->
+  <rect x="40" y="295" width="140" height="45" rx="8" fill="#1a1a2e" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="110" y="312" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="9" font-weight="bold">Kernel Callbacks</text>
+  <text x="110" y="328" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">PsSetCreateProcessNotify</text>
+  <text x="110" y="338" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">ObRegisterCallbacks</text>
+
+  <rect x="200" y="295" width="140" height="45" rx="8" fill="#1a1a2e" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="270" y="312" text-anchor="middle" fill="#a855f7" font-family="sans-serif" font-size="9" font-weight="bold">ETW Providers</text>
+  <text x="270" y="328" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Microsoft-Windows-</text>
+  <text x="270" y="338" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Threat-Intelligence</text>
+
+  <rect x="360" y="295" width="140" height="45" rx="8" fill="#1a1a2e" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="430" y="312" text-anchor="middle" fill="#00d4ff" font-family="sans-serif" font-size="9" font-weight="bold">Minifilter Driver</text>
+  <text x="430" y="328" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">File I/O monitoring</text>
+  <text x="430" y="338" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Pre/Post operations</text>
+
+  <rect x="520" y="295" width="130" height="45" rx="8" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1.5"/>
+  <text x="585" y="312" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="9" font-weight="bold">EDR Driver</text>
+  <text x="585" y="328" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Registra callbacks</text>
+  <text x="585" y="338" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Envia para user-mode</text>
+
+  <rect x="670" y="295" width="100" height="45" rx="8" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="720" y="312" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="9" font-weight="bold">BYOVD</text>
+  <text x="720" y="328" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Vuln driver</text>
+  <text x="720" y="338" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Kill EDR</text>
+
+  <!-- Telemetry Pipeline -->
+  <rect x="20" y="400" width="760" height="105" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="400" y="420" text-anchor="middle" fill="#e6edf3" font-family="sans-serif" font-size="12" font-weight="bold">Pipeline de Telemetria EDR</text>
+
+  <rect x="40" y="435" width="110" height="30" rx="6" fill="#1a1a2e" stroke="#f39c12" stroke-width="1"/>
+  <text x="95" y="454" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="8" font-weight="bold">Hooks + Callbacks</text>
+
+  <line x1="150" y1="450" x2="168" y2="450" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="170" y="435" width="110" height="30" rx="6" fill="#1a1a2e" stroke="#a855f7" stroke-width="1"/>
+  <text x="225" y="454" text-anchor="middle" fill="#a855f7" font-family="sans-serif" font-size="8" font-weight="bold">ETW Events</text>
+
+  <line x1="280" y1="450" x2="298" y2="450" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="300" y="435" width="110" height="30" rx="6" fill="#1a1a2e" stroke="#00d4ff" stroke-width="1"/>
+  <text x="355" y="454" text-anchor="middle" fill="#00d4ff" font-family="sans-serif" font-size="8" font-weight="bold">EDR Agent</text>
+
+  <line x1="410" y1="450" x2="428" y2="450" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="430" y="435" width="110" height="30" rx="6" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="485" y="454" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="8" font-weight="bold">Cloud Backend</text>
+
+  <line x1="540" y1="450" x2="558" y2="450" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="560" y="435" width="110" height="30" rx="6" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="615" y="454" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="8" font-weight="bold">ML / Correlação</text>
+
+  <line x1="670" y1="450" x2="688" y2="450" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="690" y="435" width="80" height="30" rx="6" fill="#ff6b6b" fill-opacity="0.2" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="730" y="454" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="8" font-weight="bold">ALERT</text>
+
+  <text x="400" y="490" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="9">Evasão opera em múltiplas camadas: bloquear hooks (user), cegar ETW (kernel), ofuscar sleep (memory)</text>
+  <text x="400" y="507" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="9" font-weight="bold">Red Team Leader: entender a pipeline inteira para saber ONDE e COMO cegar cada sensor</text>
+</svg>

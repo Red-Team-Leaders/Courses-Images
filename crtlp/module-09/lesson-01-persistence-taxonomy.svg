@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" width="800" height="550">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+  </defs>
+  <rect width="800" height="550" rx="12" fill="#0d1117"/>
+
+  <text x="400" y="28" text-anchor="middle" fill="#e6edf3" font-family="sans-serif" font-size="17" font-weight="bold">Persistence Taxonomy — Técnicas por Tier e Detecção</text>
+
+  <!-- Tier headers -->
+  <rect x="20" y="45" width="250" height="28" rx="6" fill="#4ecdc4" fill-opacity="0.15" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="145" y="64" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="11" font-weight="bold">TIER 1 — User-Level</text>
+
+  <rect x="280" y="45" width="240" height="28" rx="6" fill="#f39c12" fill-opacity="0.15" stroke="#f39c12" stroke-width="1"/>
+  <text x="400" y="64" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="11" font-weight="bold">TIER 2 — Admin/SYSTEM</text>
+
+  <rect x="530" y="45" width="250" height="28" rx="6" fill="#ff6b6b" fill-opacity="0.15" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="655" y="64" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="11" font-weight="bold">TIER 3 — Domain</text>
+
+  <!-- Tier 1: User-Level -->
+  <rect x="20" y="80" width="250" height="310" rx="8" fill="#161b22" stroke="#4ecdc4" stroke-width="1"/>
+
+  <rect x="30" y="90" width="230" height="50" rx="6" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="145" y="110" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="9" font-weight="bold">Registry Run Keys</text>
+  <text x="145" y="125" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">HKCU\...\Run — T1547.001</text>
+  <text x="145" y="135" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Fácil (Autoruns, Sysmon)</text>
+
+  <rect x="30" y="148" width="230" height="50" rx="6" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="145" y="168" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="9" font-weight="bold">Startup Folder</text>
+  <text x="145" y="183" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">shell:startup — T1547.001</text>
+  <text x="145" y="193" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Fácil (file monitor)</text>
+
+  <rect x="30" y="206" width="230" height="50" rx="6" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="145" y="226" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="9" font-weight="bold">Scheduled Task (User)</text>
+  <text x="145" y="241" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">schtasks /create — T1053.005</text>
+  <text x="145" y="251" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Média (Sysmon EID 1)</text>
+
+  <rect x="30" y="264" width="230" height="50" rx="6" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="145" y="284" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="9" font-weight="bold">COM Hijack</text>
+  <text x="145" y="299" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">HKCU\CLSID\{...} — T1546.015</text>
+  <text x="145" y="309" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Difícil (registry noise)</text>
+
+  <rect x="30" y="322" width="230" height="50" rx="6" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="145" y="342" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="9" font-weight="bold">DLL Search Order Hijack</text>
+  <text x="145" y="357" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Proxy DLL em app dir — T1574.001</text>
+  <text x="145" y="367" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Difícil (legit app loads)</text>
+
+  <!-- Tier 2: Admin/SYSTEM -->
+  <rect x="280" y="80" width="240" height="310" rx="8" fill="#161b22" stroke="#f39c12" stroke-width="1"/>
+
+  <rect x="290" y="90" width="220" height="50" rx="6" fill="#1a1a2e" stroke="#f39c12" stroke-width="1"/>
+  <text x="400" y="110" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="9" font-weight="bold">Service Creation</text>
+  <text x="400" y="125" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">sc create / New-Service — T1543.003</text>
+  <text x="400" y="135" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Média (EID 7045)</text>
+
+  <rect x="290" y="148" width="220" height="50" rx="6" fill="#1a1a2e" stroke="#f39c12" stroke-width="1"/>
+  <text x="400" y="168" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="9" font-weight="bold">WMI Event Subscription</text>
+  <text x="400" y="183" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">__EventFilter + Consumer — T1546.003</text>
+  <text x="400" y="193" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Difícil (WMI repo opaque)</text>
+
+  <rect x="290" y="206" width="220" height="50" rx="6" fill="#1a1a2e" stroke="#f39c12" stroke-width="1"/>
+  <text x="400" y="226" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="9" font-weight="bold">BITS Job Persistence</text>
+  <text x="400" y="241" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">bitsadmin /SetNotifyCmdLine — T1197</text>
+  <text x="400" y="251" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Difícil (legit BITS noise)</text>
+
+  <rect x="290" y="264" width="220" height="50" rx="6" fill="#1a1a2e" stroke="#f39c12" stroke-width="1"/>
+  <text x="400" y="284" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="9" font-weight="bold">Registry HKLM Run</text>
+  <text x="400" y="299" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">HKLM\...\Run — T1547.001</text>
+  <text x="400" y="309" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Fácil (Autoruns)</text>
+
+  <rect x="290" y="322" width="220" height="50" rx="6" fill="#1a1a2e" stroke="#f39c12" stroke-width="1"/>
+  <text x="400" y="342" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="9" font-weight="bold">Print Monitor / SSP</text>
+  <text x="400" y="357" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">AddMonitor / AddSecurityPackage</text>
+  <text x="400" y="367" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Difícil (requer baseline)</text>
+
+  <!-- Tier 3: Domain -->
+  <rect x="530" y="80" width="250" height="310" rx="8" fill="#161b22" stroke="#ff6b6b" stroke-width="1"/>
+
+  <rect x="540" y="90" width="230" height="50" rx="6" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="655" y="110" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="9" font-weight="bold">Golden Ticket</text>
+  <text x="655" y="125" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">krbtgt hash → forge TGT — T1558.001</text>
+  <text x="655" y="135" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Muito difícil</text>
+
+  <rect x="540" y="148" width="230" height="50" rx="6" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="655" y="168" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="9" font-weight="bold">Silver Ticket</text>
+  <text x="655" y="183" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Service hash → forge TGS — T1558.002</text>
+  <text x="655" y="193" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Difícil (no TGT request)</text>
+
+  <rect x="540" y="206" width="230" height="50" rx="6" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="655" y="226" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="9" font-weight="bold">DCSync Backdoor</text>
+  <text x="655" y="241" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Grant DS-Replication-Get-Changes</text>
+  <text x="655" y="251" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Média (ACL audit)</text>
+
+  <rect x="540" y="264" width="230" height="50" rx="6" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="655" y="284" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="9" font-weight="bold">AdminSDHolder</text>
+  <text x="655" y="299" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">SDProp overwrites ACL every 60min</text>
+  <text x="655" y="309" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Difícil (legit mechanism)</text>
+
+  <rect x="540" y="322" width="230" height="50" rx="6" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="655" y="342" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="9" font-weight="bold">ADCS Persistence</text>
+  <text x="655" y="357" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">ESC template → user cert → auth</text>
+  <text x="655" y="367" text-anchor="middle" fill="#8b949e" font-family="sans-serif" font-size="7">Detecção: Difícil (cert-based auth)</text>
+
+  <!-- Bottom insight -->
+  <rect x="20" y="405" width="760" height="130" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="400" y="428" text-anchor="middle" fill="#e6edf3" font-family="sans-serif" font-size="12" font-weight="bold">Princípio: Profundidade + Diversidade</text>
+
+  <g font-family="sans-serif" font-size="9">
+    <text x="40" y="450" fill="#4ecdc4" font-weight="bold">Tier 1:</text>
+    <text x="85" y="450" fill="#c9d1d9">Rápido de plantar, fácil de detectar. Bom para re-entry rápido.</text>
+
+    <text x="40" y="468" fill="#f39c12" font-weight="bold">Tier 2:</text>
+    <text x="85" y="468" fill="#c9d1d9">Requer admin/SYSTEM. Sobrevive reboot. Mais stealth que Tier 1.</text>
+
+    <text x="40" y="486" fill="#ff6b6b" font-weight="bold">Tier 3:</text>
+    <text x="85" y="486" fill="#c9d1d9">Domain-level. Sobrevive re-image de hosts. Requer Domain Admin ou equivalente.</text>
+
+    <text x="40" y="510" fill="#a855f7" font-weight="bold">Estratégia:</text>
+    <text x="100" y="510" fill="#c9d1d9">Plante pelo menos 1 de cada tier + diversifique mecanismos. Se blue team acha 1, não acha todos.</text>
+    <text x="40" y="528" fill="#8b949e">Lab WS01 tem 5 mecanismos ativos: Registry Run, Scheduled Task, Service, WMI, BITS</text>
+  </g>
+</svg>

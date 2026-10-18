@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+  </defs>
+  <rect width="800" height="600" rx="12" fill="#0d1117"/>
+
+  <text x="400" y="30" text-anchor="middle" fill="#e6edf3" font-family="sans-serif" font-size="18" font-weight="bold">Windows Privilege Escalation — Methodology Flowchart</text>
+
+  <!-- Start -->
+  <rect x="310" y="50" width="180" height="35" rx="18" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="2"/>
+  <text x="400" y="72" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="11" font-weight="bold">Shell como low-priv user</text>
+
+  <line x1="400" y1="85" x2="400" y2="103" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- Enumeration Phase -->
+  <rect x="250" y="105" width="300" height="35" rx="8" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="400" y="127" text-anchor="middle" fill="#a855f7" font-family="sans-serif" font-size="12" font-weight="bold">FASE 1: Enumeração (whoami /all, winPEAS)</text>
+
+  <line x1="400" y1="140" x2="400" y2="155" stroke="#00d4ff" stroke-width="1.5"/>
+
+  <!-- Branch out to attack vectors -->
+  <line x1="400" y1="155" x2="100" y2="180" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="400" y1="155" x2="270" y2="180" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="400" y1="155" x2="400" y2="180" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="400" y1="155" x2="540" y2="180" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="400" y1="155" x2="700" y2="180" stroke="#00d4ff" stroke-width="1"/>
+
+  <!-- Vector 1: Token Abuse -->
+  <rect x="25" y="180" width="150" height="110" rx="8" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1.5"/>
+  <rect x="25" y="180" width="150" height="25" rx="8" fill="#ff6b6b" fill-opacity="0.2"/>
+  <text x="100" y="197" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="9" font-weight="bold">Token Privileges</text>
+  <g font-family="sans-serif" font-size="7.5" fill="#c9d1d9">
+    <text x="100" y="220" text-anchor="middle">SeImpersonate?</text>
+    <text x="100" y="233" text-anchor="middle" fill="#f39c12">→ Potato Family</text>
+    <text x="100" y="248" text-anchor="middle">SeBackup?</text>
+    <text x="100" y="261" text-anchor="middle" fill="#f39c12">→ SAM/NTDS dump</text>
+    <text x="100" y="276" text-anchor="middle">SeDebug?</text>
+    <text x="100" y="289" text-anchor="middle" fill="#f39c12">→ LSASS / Process inject</text>
+  </g>
+
+  <!-- Vector 2: Services -->
+  <rect x="195" y="180" width="150" height="110" rx="8" fill="#1a1a2e" stroke="#f39c12" stroke-width="1.5"/>
+  <rect x="195" y="180" width="150" height="25" rx="8" fill="#f39c12" fill-opacity="0.2"/>
+  <text x="270" y="197" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="9" font-weight="bold">Services</text>
+  <g font-family="sans-serif" font-size="7.5" fill="#c9d1d9">
+    <text x="270" y="220" text-anchor="middle">Unquoted Path?</text>
+    <text x="270" y="233" text-anchor="middle" fill="#f39c12">→ Drop binary in path</text>
+    <text x="270" y="248" text-anchor="middle">Weak DACL?</text>
+    <text x="270" y="261" text-anchor="middle" fill="#f39c12">→ sc config binpath</text>
+    <text x="270" y="276" text-anchor="middle">Writable BinPath?</text>
+    <text x="270" y="289" text-anchor="middle" fill="#f39c12">→ Replace binary</text>
+  </g>
+
+  <!-- Vector 3: DLL / Registry -->
+  <rect x="365" y="180" width="150" height="110" rx="8" fill="#1a1a2e" stroke="#a855f7" stroke-width="1.5"/>
+  <rect x="365" y="180" width="150" height="25" rx="8" fill="#a855f7" fill-opacity="0.2"/>
+  <text x="440" y="197" text-anchor="middle" fill="#a855f7" font-family="sans-serif" font-size="9" font-weight="bold">DLL / Registry</text>
+  <g font-family="sans-serif" font-size="7.5" fill="#c9d1d9">
+    <text x="440" y="220" text-anchor="middle">DLL Hijack?</text>
+    <text x="440" y="233" text-anchor="middle" fill="#f39c12">→ Missing DLL in PATH</text>
+    <text x="440" y="248" text-anchor="middle">DLL Side-Loading?</text>
+    <text x="440" y="261" text-anchor="middle" fill="#f39c12">→ Proxy DLL</text>
+    <text x="440" y="276" text-anchor="middle">AlwaysInstallElevated?</text>
+    <text x="440" y="289" text-anchor="middle" fill="#f39c12">→ Malicious MSI</text>
+  </g>
+
+  <!-- Vector 4: Scheduled Tasks -->
+  <rect x="535" y="180" width="150" height="110" rx="8" fill="#1a1a2e" stroke="#00d4ff" stroke-width="1.5"/>
+  <rect x="535" y="180" width="150" height="25" rx="8" fill="#00d4ff" fill-opacity="0.2"/>
+  <text x="610" y="197" text-anchor="middle" fill="#00d4ff" font-family="sans-serif" font-size="9" font-weight="bold">Sched Tasks / Creds</text>
+  <g font-family="sans-serif" font-size="7.5" fill="#c9d1d9">
+    <text x="610" y="220" text-anchor="middle">Writable Task Script?</text>
+    <text x="610" y="233" text-anchor="middle" fill="#f39c12">→ Modify script</text>
+    <text x="610" y="248" text-anchor="middle">AutoLogon / SAM?</text>
+    <text x="610" y="261" text-anchor="middle" fill="#f39c12">→ Registry creds</text>
+    <text x="610" y="276" text-anchor="middle">Stored Creds?</text>
+    <text x="610" y="289" text-anchor="middle" fill="#f39c12">→ cmdkey + runas</text>
+  </g>
+
+  <!-- Vector 5: Kernel / BYOVD -->
+  <rect x="700" y="180" width="85" height="110" rx="8" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1.5"/>
+  <rect x="700" y="180" width="85" height="25" rx="8" fill="#4ecdc4" fill-opacity="0.2"/>
+  <text x="742" y="197" text-anchor="middle" fill="#4ecdc4" font-family="sans-serif" font-size="8" font-weight="bold">Kernel</text>
+  <g font-family="sans-serif" font-size="7" fill="#c9d1d9">
+    <text x="742" y="220" text-anchor="middle">Unpatched?</text>
+    <text x="742" y="233" text-anchor="middle" fill="#f39c12">→ Exploit</text>
+    <text x="742" y="253" text-anchor="middle">BYOVD?</text>
+    <text x="742" y="266" text-anchor="middle" fill="#f39c12">→ Load vuln</text>
+    <text x="742" y="276" text-anchor="middle" fill="#f39c12">  driver</text>
+  </g>
+
+  <!-- All converge to SYSTEM -->
+  <line x1="100" y1="290" x2="100" y2="315" stroke="#ff6b6b" stroke-width="1"/>
+  <line x1="270" y1="290" x2="270" y2="315" stroke="#f39c12" stroke-width="1"/>
+  <line x1="440" y1="290" x2="440" y2="315" stroke="#a855f7" stroke-width="1"/>
+  <line x1="610" y1="290" x2="610" y2="315" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="742" y1="290" x2="742" y2="315" stroke="#4ecdc4" stroke-width="1"/>
+
+  <line x1="100" y1="315" x2="400" y2="340" stroke="#ff6b6b" stroke-width="1" marker-end="url(#a)"/>
+  <line x1="270" y1="315" x2="400" y2="340" stroke="#f39c12" stroke-width="1"/>
+  <line x1="440" y1="315" x2="400" y2="340" stroke="#a855f7" stroke-width="1"/>
+  <line x1="610" y1="315" x2="400" y2="340" stroke="#00d4ff" stroke-width="1"/>
+  <line x1="742" y1="315" x2="400" y2="340" stroke="#4ecdc4" stroke-width="1"/>
+
+  <rect x="310" y="335" width="180" height="35" rx="18" fill="#ff6b6b" fill-opacity="0.2" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="400" y="357" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="12" font-weight="bold">NT AUTHORITY\SYSTEM</text>
+
+  <!-- Lab Mapping -->
+  <rect x="30" y="390" width="740" height="195" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="400" y="412" text-anchor="middle" fill="#e6edf3" font-family="sans-serif" font-size="12" font-weight="bold">Lab Mapping — Attack Surfaces por Máquina</text>
+
+  <!-- SRV01 -->
+  <rect x="50" y="425" width="220" height="145" rx="8" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="160" y="445" text-anchor="middle" fill="#ff6b6b" font-family="sans-serif" font-size="10" font-weight="bold">SRV01 (SQL Server)</text>
+  <g font-family="sans-serif" font-size="8" fill="#c9d1d9">
+    <text x="160" y="465" text-anchor="middle">Unquoted service path</text>
+    <text x="160" y="480" text-anchor="middle">Weak DACL service</text>
+    <text x="160" y="495" text-anchor="middle">Writable scheduled task</text>
+    <text x="160" y="510" text-anchor="middle">AutoLogon credentials</text>
+    <text x="160" y="525" text-anchor="middle">SQL xp_cmdshell</text>
+    <text x="160" y="545" text-anchor="middle" fill="#f39c12">SeImpersonate → Potato</text>
+    <text x="160" y="560" text-anchor="middle" fill="#f39c12">SQL Service Account</text>
+  </g>
+
+  <!-- SRV02 -->
+  <rect x="290" y="425" width="220" height="145" rx="8" fill="#1a1a2e" stroke="#f39c12" stroke-width="1"/>
+  <text x="400" y="445" text-anchor="middle" fill="#f39c12" font-family="sans-serif" font-size="10" font-weight="bold">SRV02 (IIS / Web)</text>
+  <g font-family="sans-serif" font-size="8" fill="#c9d1d9">
+    <text x="400" y="465" text-anchor="middle">IIS AppPool as svc_web</text>
+    <text x="400" y="480" text-anchor="middle">Writable binary path</text>
+    <text x="400" y="495" text-anchor="middle">IT$ share com creds</text>
+    <text x="400" y="510" text-anchor="middle">Unconstrained Delegation</text>
+    <text x="400" y="530" text-anchor="middle" fill="#f39c12">Service binary replace</text>
+    <text x="400" y="545" text-anchor="middle" fill="#f39c12">Coerce + Delegate</text>
+  </g>
+
+  <!-- WS01 -->
+  <rect x="530" y="425" width="220" height="145" rx="8" fill="#1a1a2e" stroke="#a855f7" stroke-width="1"/>
+  <text x="640" y="445" text-anchor="middle" fill="#a855f7" font-family="sans-serif" font-size="10" font-weight="bold">WS01 (Workstation)</text>
+  <g font-family="sans-serif" font-size="8" fill="#c9d1d9">
+    <text x="640" y="465" text-anchor="middle">AlwaysInstallElevated</text>
+    <text x="640" y="480" text-anchor="middle">DLL Hijack (missing DLL)</text>
+    <text x="640" y="495" text-anchor="middle">Stored credentials (cmdkey)</text>
+    <text x="640" y="510" text-anchor="middle">a.admin token (logado)</text>
+    <text x="640" y="530" text-anchor="middle" fill="#f39c12">MSI → SYSTEM</text>
+    <text x="640" y="545" text-anchor="middle" fill="#f39c12">Token theft → DA</text>
+  </g>
+</svg>

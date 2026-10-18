@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480" font-family="'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arr03a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <linearGradient id="bg03a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" fill="url(#bg03a)" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" fill="#00d4ff" font-size="18" font-weight="bold">Initial Access — Landscape e Famílias de Ataque</text>
+  <text x="400" y="50" text-anchor="middle" fill="#8b949e" font-size="11">TA0001: Duas famílias, uma ponte (AiTM)</text>
+
+  <!-- Two families + bridge -->
+  <!-- Family 1: Exploitation -->
+  <rect x="30" y="75" width="320" height="195" rx="10" fill="#161b22" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="190" y="100" text-anchor="middle" fill="#ff6b6b" font-size="14" font-weight="bold">Exploitation de App Pública</text>
+  <text x="190" y="118" text-anchor="middle" fill="#8b949e" font-size="10">T1190, T1133 — Ataque direto ao software</text>
+
+  <rect x="50" y="132" width="130" height="50" rx="6" fill="#1c2333" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="115" y="150" text-anchor="middle" fill="#e6edf3" font-size="10">Cmd Injection</text>
+  <text x="115" y="165" text-anchor="middle" fill="#8b949e" font-size="8">/ping.php (Lab)</text>
+  <text x="115" y="177" text-anchor="middle" fill="#484f58" font-size="7">T1190</text>
+
+  <rect x="200" y="132" width="130" height="50" rx="6" fill="#1c2333" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="265" y="150" text-anchor="middle" fill="#e6edf3" font-size="10">File Upload</text>
+  <text x="265" y="165" text-anchor="middle" fill="#8b949e" font-size="8">/upload.php (Lab)</text>
+  <text x="265" y="177" text-anchor="middle" fill="#484f58" font-size="7">T1190 + T1505.003</text>
+
+  <rect x="50" y="195" width="130" height="50" rx="6" fill="#1c2333" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="115" y="213" text-anchor="middle" fill="#e6edf3" font-size="10">SSRF / SQLi</text>
+  <text x="115" y="228" text-anchor="middle" fill="#8b949e" font-size="8">Web app exploits</text>
+  <text x="115" y="240" text-anchor="middle" fill="#484f58" font-size="7">T1190</text>
+
+  <rect x="200" y="195" width="130" height="50" rx="6" fill="#1c2333" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="265" y="213" text-anchor="middle" fill="#e6edf3" font-size="10">VPN / RDP</text>
+  <text x="265" y="228" text-anchor="middle" fill="#8b949e" font-size="8">External services</text>
+  <text x="265" y="240" text-anchor="middle" fill="#484f58" font-size="7">T1133</text>
+
+  <text x="190" y="262" text-anchor="middle" fill="#f39c12" font-size="9">Determinístico (se falha existe, funciona)</text>
+  <text x="190" y="273" text-anchor="middle" fill="#f39c12" font-size="9">mas BARULHENTO nos logs</text>
+
+  <!-- Family 2: Human-driven -->
+  <rect x="450" y="75" width="320" height="195" rx="10" fill="#161b22" stroke="#a855f7" stroke-width="2"/>
+  <text x="610" y="100" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">Acesso via Humano</text>
+  <text x="610" y="118" text-anchor="middle" fill="#8b949e" font-size="10">T1566, T1204 — Persuade uma pessoa</text>
+
+  <rect x="470" y="132" width="130" height="50" rx="6" fill="#1c2333" stroke="#a855f7" stroke-width="1"/>
+  <text x="535" y="150" text-anchor="middle" fill="#e6edf3" font-size="10">Phishing Email</text>
+  <text x="535" y="165" text-anchor="middle" fill="#8b949e" font-size="8">Spearphishing</text>
+  <text x="535" y="177" text-anchor="middle" fill="#484f58" font-size="7">T1566.001/.002</text>
+
+  <rect x="620" y="132" width="130" height="50" rx="6" fill="#1c2333" stroke="#a855f7" stroke-width="1"/>
+  <text x="685" y="150" text-anchor="middle" fill="#e6edf3" font-size="10">HTML Smuggling</text>
+  <text x="685" y="165" text-anchor="middle" fill="#8b949e" font-size="8">MoTW Bypass</text>
+  <text x="685" y="177" text-anchor="middle" fill="#484f58" font-size="7">T1027.006</text>
+
+  <rect x="470" y="195" width="130" height="50" rx="6" fill="#1c2333" stroke="#a855f7" stroke-width="1"/>
+  <text x="535" y="213" text-anchor="middle" fill="#e6edf3" font-size="10">Malicious Doc</text>
+  <text x="535" y="228" text-anchor="middle" fill="#8b949e" font-size="8">Macro / DDE</text>
+  <text x="535" y="240" text-anchor="middle" fill="#484f58" font-size="7">T1204.002</text>
+
+  <rect x="620" y="195" width="130" height="50" rx="6" fill="#1c2333" stroke="#a855f7" stroke-width="1"/>
+  <text x="685" y="213" text-anchor="middle" fill="#e6edf3" font-size="10">Vishing / Smishing</text>
+  <text x="685" y="228" text-anchor="middle" fill="#8b949e" font-size="8">Voice / SMS</text>
+  <text x="685" y="240" text-anchor="middle" fill="#484f58" font-size="7">T1566.003/.004</text>
+
+  <text x="610" y="262" text-anchor="middle" fill="#4ecdc4" font-size="9">Silencioso (canais legítimos)</text>
+  <text x="610" y="273" text-anchor="middle" fill="#4ecdc4" font-size="9">mas PROBABILÍSTICO (depende do click)</text>
+
+  <!-- Bridge: AiTM -->
+  <rect x="270" y="295" width="260" height="70" rx="10" fill="#161b22" stroke="#00d4ff" stroke-width="2.5"/>
+  <text x="400" y="318" text-anchor="middle" fill="#00d4ff" font-size="14" font-weight="bold">AiTM — Ponte</text>
+  <text x="400" y="336" text-anchor="middle" fill="#8b949e" font-size="10">T1557 + T1556.006 — Evilginx</text>
+  <text x="400" y="352" text-anchor="middle" fill="#8b949e" font-size="9">Proxy transparente: captura sessão + MFA bypass</text>
+
+  <!-- Arrows from both families to AiTM -->
+  <line x1="190" y1="270" x2="290" y2="310" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="610" y1="270" x2="510" y2="310" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- Decision calculus -->
+  <text x="400" y="395" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">Cálculo do Operador — 3 Perguntas</text>
+
+  <rect x="40" y="410" width="220" height="40" rx="6" fill="#1c2333" stroke="#f39c12" stroke-width="1"/>
+  <text x="150" y="428" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">O que é alcançável?</text>
+  <text x="150" y="442" text-anchor="middle" fill="#8b949e" font-size="8">App exposta = explorar direto</text>
+
+  <rect x="290" y="410" width="220" height="40" rx="6" fill="#1c2333" stroke="#f39c12" stroke-width="1"/>
+  <text x="400" y="428" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">Qual a postura de detecção?</text>
+  <text x="400" y="442" text-anchor="middle" fill="#8b949e" font-size="8">Perímetro monitorado = phish mais safe</text>
+
+  <rect x="540" y="410" width="220" height="40" rx="6" fill="#1c2333" stroke="#f39c12" stroke-width="1"/>
+  <text x="650" y="428" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">O que prova o ponto?</text>
+  <text x="650" y="442" text-anchor="middle" fill="#8b949e" font-size="8">Validar MFA = AiTM obrigatório</text>
+
+  <text x="400" y="475" text-anchor="middle" fill="#484f58" font-size="9">CRTLP — Module 03, Lesson 01</text>
+</svg>

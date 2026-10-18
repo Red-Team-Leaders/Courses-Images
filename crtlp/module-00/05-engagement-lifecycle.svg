@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520" font-family="'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arrow00a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+    <linearGradient id="bg00a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg00a)" rx="12"/>
+  <text x="400" y="38" text-anchor="middle" fill="#00d4ff" font-size="20" font-weight="bold">Ciclo de Vida do Engagement — 5 Fases</text>
+  <text x="400" y="58" text-anchor="middle" fill="#8b949e" font-size="12">Red Team Operation Lifecycle</text>
+
+  <!-- Phase 1 -->
+  <rect x="30" y="85" width="140" height="100" rx="10" fill="#1c2333" stroke="#f39c12" stroke-width="2"/>
+  <text x="100" y="110" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">Fase 1</text>
+  <text x="100" y="130" text-anchor="middle" fill="#e6edf3" font-size="11">Pré-Engagement</text>
+  <text x="100" y="148" text-anchor="middle" fill="#8b949e" font-size="10">Escopo, RoE,</text>
+  <text x="100" y="162" text-anchor="middle" fill="#8b949e" font-size="10">Crown Jewels,</text>
+  <text x="100" y="176" text-anchor="middle" fill="#8b949e" font-size="10">Autorização</text>
+
+  <line x1="170" y1="135" x2="195" y2="135" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow00a)"/>
+
+  <!-- Phase 2 -->
+  <rect x="195" y="85" width="140" height="100" rx="10" fill="#1c2333" stroke="#a855f7" stroke-width="2"/>
+  <text x="265" y="110" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold">Fase 2</text>
+  <text x="265" y="130" text-anchor="middle" fill="#e6edf3" font-size="11">Reconnaissance</text>
+  <text x="265" y="148" text-anchor="middle" fill="#8b949e" font-size="10">OSINT, Scanning,</text>
+  <text x="265" y="162" text-anchor="middle" fill="#8b949e" font-size="10">Infra Setup,</text>
+  <text x="265" y="176" text-anchor="middle" fill="#8b949e" font-size="10">Threat Intel</text>
+
+  <line x1="335" y1="135" x2="360" y2="135" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow00a)"/>
+
+  <!-- Phase 3 -->
+  <rect x="360" y="85" width="140" height="100" rx="10" fill="#1c2333" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="430" y="110" text-anchor="middle" fill="#ff6b6b" font-size="13" font-weight="bold">Fase 3</text>
+  <text x="430" y="130" text-anchor="middle" fill="#e6edf3" font-size="11">Execução</text>
+  <text x="430" y="148" text-anchor="middle" fill="#8b949e" font-size="10">Initial Access,</text>
+  <text x="430" y="162" text-anchor="middle" fill="#8b949e" font-size="10">Lateral Movement,</text>
+  <text x="430" y="176" text-anchor="middle" fill="#8b949e" font-size="10">Priv Esc, Exfil</text>
+
+  <line x1="500" y1="135" x2="525" y2="135" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow00a)"/>
+
+  <!-- Phase 4 -->
+  <rect x="525" y="85" width="140" height="100" rx="10" fill="#1c2333" stroke="#4ecdc4" stroke-width="2"/>
+  <text x="595" y="110" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="bold">Fase 4</text>
+  <text x="595" y="130" text-anchor="middle" fill="#e6edf3" font-size="11">Reporting</text>
+  <text x="595" y="148" text-anchor="middle" fill="#8b949e" font-size="10">Relatório Técnico,</text>
+  <text x="595" y="162" text-anchor="middle" fill="#8b949e" font-size="10">Executive Brief,</text>
+  <text x="595" y="176" text-anchor="middle" fill="#8b949e" font-size="10">Evidências</text>
+
+  <line x1="665" y1="135" x2="685" y2="135" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="685" y1="135" x2="685" y2="210" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="685" y1="210" x2="455" y2="210" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow00a)"/>
+
+  <!-- Phase 5 (below, centered) -->
+  <rect x="315" y="225" width="140" height="100" rx="10" fill="#1c2333" stroke="#00d4ff" stroke-width="2"/>
+  <text x="385" y="250" text-anchor="middle" fill="#00d4ff" font-size="13" font-weight="bold">Fase 5</text>
+  <text x="385" y="270" text-anchor="middle" fill="#e6edf3" font-size="11">Pós-Engagement</text>
+  <text x="385" y="288" text-anchor="middle" fill="#8b949e" font-size="10">Lessons Learned,</text>
+  <text x="385" y="302" text-anchor="middle" fill="#8b949e" font-size="10">Retest, Cleanup,</text>
+  <text x="385" y="316" text-anchor="middle" fill="#8b949e" font-size="10">Melhoria Contínua</text>
+
+  <!-- Feedback loop arrow from Phase 5 back to Phase 1 -->
+  <path d="M315,275 L100,275 L100,185" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="6,3" fill="none" marker-end="url(#arrow00a)"/>
+  <text x="180" y="268" fill="#f39c12" font-size="9">Feedback Loop</text>
+
+  <!-- Key deliverables -->
+  <text x="400" y="370" text-anchor="middle" fill="#00d4ff" font-size="14" font-weight="bold">Deliverables por Fase</text>
+
+  <rect x="30" y="388" width="145" height="55" rx="6" fill="#161b22" stroke="#f39c12" stroke-width="1"/>
+  <text x="103" y="406" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">PRE</text>
+  <text x="103" y="420" text-anchor="middle" fill="#8b949e" font-size="9">Scope Doc, RoE</text>
+  <text x="103" y="433" text-anchor="middle" fill="#8b949e" font-size="9">Autorização Assinada</text>
+
+  <rect x="185" y="388" width="145" height="55" rx="6" fill="#161b22" stroke="#a855f7" stroke-width="1"/>
+  <text x="258" y="406" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold">RECON</text>
+  <text x="258" y="420" text-anchor="middle" fill="#8b949e" font-size="9">Attack Plan, Infra</text>
+  <text x="258" y="433" text-anchor="middle" fill="#8b949e" font-size="9">Threat Profile</text>
+
+  <rect x="340" y="388" width="145" height="55" rx="6" fill="#161b22" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="413" y="406" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold">EXEC</text>
+  <text x="413" y="420" text-anchor="middle" fill="#8b949e" font-size="9">Operator Logs</text>
+  <text x="413" y="433" text-anchor="middle" fill="#8b949e" font-size="9">Evidence Chain</text>
+
+  <rect x="495" y="388" width="145" height="55" rx="6" fill="#161b22" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="568" y="406" text-anchor="middle" fill="#4ecdc4" font-size="10" font-weight="bold">REPORT</text>
+  <text x="568" y="420" text-anchor="middle" fill="#8b949e" font-size="9">Relatório Final</text>
+  <text x="568" y="433" text-anchor="middle" fill="#8b949e" font-size="9">Executive Summary</text>
+
+  <rect x="650" y="388" width="120" height="55" rx="6" fill="#161b22" stroke="#00d4ff" stroke-width="1"/>
+  <text x="710" y="406" text-anchor="middle" fill="#00d4ff" font-size="10" font-weight="bold">POST</text>
+  <text x="710" y="420" text-anchor="middle" fill="#8b949e" font-size="9">AAR, Retest Plan</text>
+  <text x="710" y="433" text-anchor="middle" fill="#8b949e" font-size="9">Maturity Score</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="475" text-anchor="middle" fill="#484f58" font-size="10">Disciplina no lifecycle distingue um red team maduro de um amador</text>
+  <text x="400" y="500" text-anchor="middle" fill="#484f58" font-size="9">CRTLP — Module 00, Lesson 05</text>
+</svg>

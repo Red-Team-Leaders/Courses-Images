@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520" font-family="'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arr02a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <linearGradient id="bg02a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg02a)" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" fill="#00d4ff" font-size="18" font-weight="bold">Taxonomia de Reconhecimento — 4 Quadrantes</text>
+  <text x="400" y="50" text-anchor="middle" fill="#8b949e" font-size="11">Passive vs Active x External vs Internal</text>
+
+  <!-- Axis labels -->
+  <text x="250" y="78" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">EXTERNAL</text>
+  <text x="250" y="93" text-anchor="middle" fill="#8b949e" font-size="9">(antes do foothold)</text>
+  <text x="575" y="78" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold">INTERNAL</text>
+  <text x="575" y="93" text-anchor="middle" fill="#8b949e" font-size="9">(depois do foothold)</text>
+
+  <!-- Left axis label -->
+  <text x="18" y="195" fill="#4ecdc4" font-size="12" font-weight="bold" transform="rotate(-90,18,195)">PASSIVE</text>
+  <text x="18" y="375" fill="#ff6b6b" font-size="12" font-weight="bold" transform="rotate(-90,18,375)">ACTIVE</text>
+
+  <!-- Grid lines -->
+  <line x1="75" y1="100" x2="75" y2="440" stroke="#30363d" stroke-width="1"/>
+  <line x1="75" y1="100" x2="750" y2="100" stroke="#30363d" stroke-width="1"/>
+  <line x1="412" y1="100" x2="412" y2="440" stroke="#30363d" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <line x1="75" y1="270" x2="750" y2="270" stroke="#30363d" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <line x1="750" y1="100" x2="750" y2="440" stroke="#30363d" stroke-width="1"/>
+  <line x1="75" y1="440" x2="750" y2="440" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Q1: Passive External -->
+  <rect x="85" y="108" width="318" height="155" rx="6" fill="#161b22" opacity="0.7"/>
+  <text x="244" y="128" text-anchor="middle" fill="#4ecdc4" font-size="12" font-weight="bold">Passive-External</text>
+  <circle cx="105" cy="148" r="4" fill="#4ecdc4"/>
+  <text x="115" y="152" fill="#e6edf3" font-size="10">WHOIS, DNS, CT Logs</text>
+  <circle cx="105" cy="168" r="4" fill="#4ecdc4"/>
+  <text x="115" y="172" fill="#e6edf3" font-size="10">LinkedIn, Job Postings</text>
+  <circle cx="105" cy="188" r="4" fill="#4ecdc4"/>
+  <text x="115" y="192" fill="#e6edf3" font-size="10">Shodan / Censys (indexed)</text>
+  <circle cx="105" cy="208" r="4" fill="#4ecdc4"/>
+  <text x="115" y="212" fill="#e6edf3" font-size="10">Breach Data, Google Dorks</text>
+
+  <rect x="270" y="230" width="120" height="22" rx="4" fill="#1c2333" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="330" y="245" text-anchor="middle" fill="#4ecdc4" font-size="9">Risco: Quase zero</text>
+
+  <!-- Q2: Passive Internal -->
+  <rect x="422" y="108" width="318" height="155" rx="6" fill="#161b22" opacity="0.7"/>
+  <text x="581" y="128" text-anchor="middle" fill="#a855f7" font-size="12" font-weight="bold">Passive-Internal</text>
+  <circle cx="442" cy="148" r="4" fill="#a855f7"/>
+  <text x="452" y="152" fill="#e6edf3" font-size="10">Cached Credentials</text>
+  <circle cx="442" cy="168" r="4" fill="#a855f7"/>
+  <text x="452" y="172" fill="#e6edf3" font-size="10">Shared Drives Browsing</text>
+  <circle cx="442" cy="188" r="4" fill="#a855f7"/>
+  <text x="452" y="192" fill="#e6edf3" font-size="10">ARP cache, Routing Tables</text>
+  <circle cx="442" cy="208" r="4" fill="#a855f7"/>
+  <text x="452" y="212" fill="#e6edf3" font-size="10">Environment Vars, net share</text>
+
+  <rect x="606" y="230" width="120" height="22" rx="4" fill="#1c2333" stroke="#a855f7" stroke-width="1"/>
+  <text x="666" y="245" text-anchor="middle" fill="#a855f7" font-size="9">Risco: Baixo</text>
+
+  <!-- Q3: Active External -->
+  <rect x="85" y="278" width="318" height="155" rx="6" fill="#161b22" opacity="0.7"/>
+  <text x="244" y="298" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">Active-External</text>
+  <circle cx="105" cy="318" r="4" fill="#f39c12"/>
+  <text x="115" y="322" fill="#e6edf3" font-size="10">Port Scanning (nmap)</text>
+  <circle cx="105" cy="338" r="4" fill="#f39c12"/>
+  <text x="115" y="342" fill="#e6edf3" font-size="10">Banner Grabbing</text>
+  <circle cx="105" cy="358" r="4" fill="#f39c12"/>
+  <text x="115" y="362" fill="#e6edf3" font-size="10">Web Content Discovery (feroxbuster)</text>
+  <circle cx="105" cy="378" r="4" fill="#f39c12"/>
+  <text x="115" y="382" fill="#e6edf3" font-size="10">DNS Zone Transfer, Web Probing</text>
+
+  <rect x="270" y="400" width="120" height="22" rx="4" fill="#1c2333" stroke="#f39c12" stroke-width="1"/>
+  <text x="330" y="415" text-anchor="middle" fill="#f39c12" font-size="9">Risco: Moderado</text>
+
+  <!-- Q4: Active Internal -->
+  <rect x="422" y="278" width="318" height="155" rx="6" fill="#161b22" opacity="0.7"/>
+  <text x="581" y="298" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="bold">Active-Internal</text>
+  <circle cx="442" cy="318" r="4" fill="#ff6b6b"/>
+  <text x="452" y="322" fill="#e6edf3" font-size="10">BloodHound / SharpHound</text>
+  <circle cx="442" cy="338" r="4" fill="#ff6b6b"/>
+  <text x="452" y="342" fill="#e6edf3" font-size="10">LDAP Enumeration</text>
+  <circle cx="442" cy="358" r="4" fill="#ff6b6b"/>
+  <text x="452" y="362" fill="#e6edf3" font-size="10">Kerberoasting</text>
+  <circle cx="442" cy="378" r="4" fill="#ff6b6b"/>
+  <text x="452" y="382" fill="#e6edf3" font-size="10">SMB Share Enumeration</text>
+
+  <rect x="606" y="400" width="120" height="22" rx="4" fill="#1c2333" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="666" y="415" text-anchor="middle" fill="#ff6b6b" font-size="9">Risco: Alto</text>
+
+  <!-- Operational order arrow -->
+  <text x="400" y="460" text-anchor="middle" fill="#00d4ff" font-size="12" font-weight="bold">Ordem Operacional</text>
+  <rect x="90" y="470" width="120" height="20" rx="4" fill="#4ecdc4" opacity="0.3"/>
+  <text x="150" y="484" text-anchor="middle" fill="#4ecdc4" font-size="9" font-weight="bold">1. Pass-Ext</text>
+  <line x1="214" y1="480" x2="235" y2="480" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr02a)"/>
+  <rect x="240" y="470" width="120" height="20" rx="4" fill="#f39c12" opacity="0.3"/>
+  <text x="300" y="484" text-anchor="middle" fill="#f39c12" font-size="9" font-weight="bold">2. Act-Ext</text>
+  <line x1="364" y1="480" x2="385" y2="480" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr02a)"/>
+  <rect x="390" y="470" width="120" height="20" rx="4" fill="#a855f7" opacity="0.3"/>
+  <text x="450" y="484" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold">3. Pass-Int</text>
+  <line x1="514" y1="480" x2="535" y2="480" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr02a)"/>
+  <rect x="540" y="470" width="120" height="20" rx="4" fill="#ff6b6b" opacity="0.3"/>
+  <text x="600" y="484" text-anchor="middle" fill="#ff6b6b" font-size="9" font-weight="bold">4. Act-Int</text>
+
+  <text x="400" y="510" text-anchor="middle" fill="#484f58" font-size="9">Nunca gere evidência de interesse antes de esgotar o que é gratuito e silencioso</text>
+  <text x="400" y="518" text-anchor="middle" fill="#484f58" font-size="8">CRTLP — Module 02, Lesson 01</text>
+</svg>

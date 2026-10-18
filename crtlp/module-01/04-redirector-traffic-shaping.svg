@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480" font-family="'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arr01b" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arr01bR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ff6b6b"/>
+    </marker>
+    <marker id="arr01bG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4ecdc4"/>
+    </marker>
+    <linearGradient id="bg01b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" fill="url(#bg01b)" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" fill="#00d4ff" font-size="18" font-weight="bold">Redirector e Traffic Shaping</text>
+  <text x="400" y="50" text-anchor="middle" fill="#8b949e" font-size="11">Filtragem de tráfego: C2 vs Analista vs Scanner</text>
+
+  <!-- Internet cloud -->
+  <ellipse cx="400" cy="100" rx="100" ry="35" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="400" y="105" text-anchor="middle" fill="#8b949e" font-size="12">Internet</text>
+
+  <!-- Three sources -->
+  <!-- Implant -->
+  <rect x="40" y="72" width="120" height="50" rx="8" fill="#1c2333" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="100" y="95" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="bold">Implant</text>
+  <text x="100" y="110" text-anchor="middle" fill="#8b949e" font-size="8">UA: Chrome/120</text>
+  <line x1="160" y1="97" x2="300" y2="97" stroke="#ff6b6b" stroke-width="1.5" marker-end="url(#arr01bR)"/>
+
+  <!-- Analyst -->
+  <rect x="40" y="140" width="120" height="50" rx="8" fill="#1c2333" stroke="#f39c12" stroke-width="2"/>
+  <text x="100" y="162" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">IR Analyst</text>
+  <text x="100" y="178" text-anchor="middle" fill="#8b949e" font-size="8">curl / browser</text>
+  <line x1="160" y1="165" x2="300" y2="120" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- Scanner -->
+  <rect x="640" y="72" width="120" height="50" rx="8" fill="#1c2333" stroke="#f39c12" stroke-width="2"/>
+  <text x="700" y="95" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">Scanner</text>
+  <text x="700" y="110" text-anchor="middle" fill="#8b949e" font-size="8">Shodan / Nmap</text>
+  <line x1="640" y1="97" x2="500" y2="97" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- REDIRECTOR (central, large) -->
+  <rect x="250" y="170" width="300" height="140" rx="12" fill="#161b22" stroke="#f39c12" stroke-width="2.5"/>
+  <text x="400" y="195" text-anchor="middle" fill="#f39c12" font-size="15" font-weight="bold">NGINX Redirector</text>
+  <text x="400" y="212" text-anchor="middle" fill="#8b949e" font-size="10">redirector.corp.lab:443</text>
+
+  <!-- Filter rules -->
+  <rect x="270" y="225" width="260" height="25" rx="4" fill="#1c2333" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="400" y="242" text-anchor="middle" fill="#4ecdc4" font-size="9">location ~ /api/v2/updates|/cdn/assets</text>
+
+  <rect x="270" y="255" width="260" height="25" rx="4" fill="#1c2333" stroke="#a855f7" stroke-width="1"/>
+  <text x="400" y="272" text-anchor="middle" fill="#a855f7" font-size="9">if ($http_user_agent ~* "Chrome/120")</text>
+
+  <rect x="270" y="285" width="125" height="20" rx="4" fill="#1c2333" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="333" y="299" text-anchor="middle" fill="#4ecdc4" font-size="9">MATCH: proxy_pass</text>
+
+  <rect x="405" y="285" width="125" height="20" rx="4" fill="#1c2333" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="468" y="299" text-anchor="middle" fill="#ff6b6b" font-size="9">NO MATCH: decoy</text>
+
+  <!-- Two destinations -->
+  <!-- Team Server (match) -->
+  <rect x="100" y="370" width="200" height="70" rx="10" fill="#1c2333" stroke="#4ecdc4" stroke-width="2"/>
+  <text x="200" y="395" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="bold">Team Server</text>
+  <text x="200" y="412" text-anchor="middle" fill="#8b949e" font-size="10">10.10.0.10:443</text>
+  <text x="200" y="428" text-anchor="middle" fill="#8b949e" font-size="9">Sessions, tasks, results</text>
+
+  <line x1="333" y1="310" x2="230" y2="368" stroke="#4ecdc4" stroke-width="2" marker-end="url(#arr01bG)"/>
+  <text x="260" y="340" fill="#4ecdc4" font-size="9" font-weight="bold">C2 Traffic</text>
+
+  <!-- Decoy Site (no match) -->
+  <rect x="500" y="370" width="200" height="70" rx="10" fill="#1c2333" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="600" y="395" text-anchor="middle" fill="#ff6b6b" font-size="13" font-weight="bold">Decoy Site</text>
+  <text x="600" y="412" text-anchor="middle" fill="#8b949e" font-size="10">/var/www/decoy</text>
+  <text x="600" y="428" text-anchor="middle" fill="#8b949e" font-size="9">Blog corporativo falso, 200 OK</text>
+
+  <line x1="468" y1="310" x2="570" y2="368" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arr01bR)"/>
+  <text x="540" y="340" fill="#ff6b6b" font-size="9" font-weight="bold">Analyst/Scanner</text>
+
+  <!-- Key insight -->
+  <rect x="180" y="452" width="440" height="22" rx="5" fill="#161b22" stroke="#00d4ff" stroke-width="1"/>
+  <text x="400" y="467" text-anchor="middle" fill="#00d4ff" font-size="10">IP do Team Server aparece em UMA linha (proxy_pass) — nunca no implant</text>
+
+  <text x="400" y="478" text-anchor="middle" fill="#484f58" font-size="9">CRTLP — Module 01, Lesson 04</text>
+</svg>

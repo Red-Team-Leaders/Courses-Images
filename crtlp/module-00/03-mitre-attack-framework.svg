@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" font-family="'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg00c" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg00c)" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" fill="#00d4ff" font-size="18" font-weight="bold">MITRE ATT&amp;CK Enterprise — Arquitetura do Framework</text>
+  <text x="400" y="50" text-anchor="middle" fill="#8b949e" font-size="11">14 Táticas, 200+ Técnicas, Sub-técnicas, Procedimentos</text>
+
+  <!-- Tactic columns - representing the matrix -->
+  <!-- Row header -->
+  <text x="400" y="75" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">TÁTICAS (o "porquê" do adversário)</text>
+
+  <!-- 14 tactics as columns -->
+  <rect x="10" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="36" y="103" text-anchor="middle" fill="#ff6b6b" font-size="7" font-weight="bold">Recon</text>
+  <text x="36" y="115" text-anchor="middle" fill="#8b949e" font-size="6">TA0043</text>
+  <text x="36" y="130" text-anchor="middle" fill="#484f58" font-size="6">OSINT</text>
+  <text x="36" y="140" text-anchor="middle" fill="#484f58" font-size="6">Scanning</text>
+
+  <rect x="66" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="92" y="103" text-anchor="middle" fill="#ff6b6b" font-size="7" font-weight="bold">Resource</text>
+  <text x="92" y="113" text-anchor="middle" fill="#ff6b6b" font-size="7" font-weight="bold">Dev</text>
+  <text x="92" y="125" text-anchor="middle" fill="#8b949e" font-size="6">TA0042</text>
+  <text x="92" y="140" text-anchor="middle" fill="#484f58" font-size="6">Infra, C2</text>
+
+  <rect x="122" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="148" y="103" text-anchor="middle" fill="#f39c12" font-size="7" font-weight="bold">Initial</text>
+  <text x="148" y="113" text-anchor="middle" fill="#f39c12" font-size="7" font-weight="bold">Access</text>
+  <text x="148" y="125" text-anchor="middle" fill="#8b949e" font-size="6">TA0001</text>
+  <text x="148" y="140" text-anchor="middle" fill="#484f58" font-size="6">Phish, Exploit</text>
+
+  <rect x="178" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="204" y="103" text-anchor="middle" fill="#f39c12" font-size="7" font-weight="bold">Execution</text>
+  <text x="204" y="118" text-anchor="middle" fill="#8b949e" font-size="6">TA0002</text>
+  <text x="204" y="133" text-anchor="middle" fill="#484f58" font-size="6">PS, cmd</text>
+  <text x="204" y="143" text-anchor="middle" fill="#484f58" font-size="6">WMI, API</text>
+
+  <rect x="234" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="260" y="103" text-anchor="middle" fill="#a855f7" font-size="7" font-weight="bold">Persistence</text>
+  <text x="260" y="118" text-anchor="middle" fill="#8b949e" font-size="6">TA0003</text>
+  <text x="260" y="133" text-anchor="middle" fill="#484f58" font-size="6">Schtask</text>
+  <text x="260" y="143" text-anchor="middle" fill="#484f58" font-size="6">Registry</text>
+
+  <rect x="290" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="316" y="103" text-anchor="middle" fill="#a855f7" font-size="7" font-weight="bold">Priv Esc</text>
+  <text x="316" y="118" text-anchor="middle" fill="#8b949e" font-size="6">TA0004</text>
+  <text x="316" y="133" text-anchor="middle" fill="#484f58" font-size="6">Token</text>
+  <text x="316" y="143" text-anchor="middle" fill="#484f58" font-size="6">Exploit</text>
+
+  <rect x="346" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="372" y="103" text-anchor="middle" fill="#a855f7" font-size="7" font-weight="bold">Defense</text>
+  <text x="372" y="113" text-anchor="middle" fill="#a855f7" font-size="7" font-weight="bold">Evasion</text>
+  <text x="372" y="125" text-anchor="middle" fill="#8b949e" font-size="6">TA0005</text>
+  <text x="372" y="140" text-anchor="middle" fill="#484f58" font-size="6">AMSI, ETW</text>
+
+  <rect x="402" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="428" y="103" text-anchor="middle" fill="#00d4ff" font-size="7" font-weight="bold">Credential</text>
+  <text x="428" y="113" text-anchor="middle" fill="#00d4ff" font-size="7" font-weight="bold">Access</text>
+  <text x="428" y="125" text-anchor="middle" fill="#8b949e" font-size="6">TA0006</text>
+  <text x="428" y="140" text-anchor="middle" fill="#484f58" font-size="6">Kerb, LSASS</text>
+
+  <rect x="458" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="484" y="103" text-anchor="middle" fill="#00d4ff" font-size="7" font-weight="bold">Discovery</text>
+  <text x="484" y="118" text-anchor="middle" fill="#8b949e" font-size="6">TA0007</text>
+  <text x="484" y="133" text-anchor="middle" fill="#484f58" font-size="6">AD enum</text>
+  <text x="484" y="143" text-anchor="middle" fill="#484f58" font-size="6">Net scan</text>
+
+  <rect x="514" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="540" y="103" text-anchor="middle" fill="#00d4ff" font-size="7" font-weight="bold">Lateral</text>
+  <text x="540" y="113" text-anchor="middle" fill="#00d4ff" font-size="7" font-weight="bold">Movement</text>
+  <text x="540" y="125" text-anchor="middle" fill="#8b949e" font-size="6">TA0008</text>
+  <text x="540" y="140" text-anchor="middle" fill="#484f58" font-size="6">PsExec, WMI</text>
+
+  <rect x="570" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#4ecdc4" stroke-width="1.5"/>
+  <text x="596" y="103" text-anchor="middle" fill="#4ecdc4" font-size="7" font-weight="bold">Collection</text>
+  <text x="596" y="118" text-anchor="middle" fill="#8b949e" font-size="6">TA0009</text>
+  <text x="596" y="133" text-anchor="middle" fill="#484f58" font-size="6">Keylog</text>
+  <text x="596" y="143" text-anchor="middle" fill="#484f58" font-size="6">Screen</text>
+
+  <rect x="626" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#4ecdc4" stroke-width="1.5"/>
+  <text x="652" y="103" text-anchor="middle" fill="#4ecdc4" font-size="7" font-weight="bold">C2</text>
+  <text x="652" y="118" text-anchor="middle" fill="#8b949e" font-size="6">TA0011</text>
+  <text x="652" y="133" text-anchor="middle" fill="#484f58" font-size="6">HTTPS</text>
+  <text x="652" y="143" text-anchor="middle" fill="#484f58" font-size="6">DNS</text>
+
+  <rect x="682" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#4ecdc4" stroke-width="1.5"/>
+  <text x="708" y="103" text-anchor="middle" fill="#4ecdc4" font-size="7" font-weight="bold">Exfil</text>
+  <text x="708" y="118" text-anchor="middle" fill="#8b949e" font-size="6">TA0010</text>
+  <text x="708" y="133" text-anchor="middle" fill="#484f58" font-size="6">C2 Chan</text>
+  <text x="708" y="143" text-anchor="middle" fill="#484f58" font-size="6">Alt Proto</text>
+
+  <rect x="738" y="88" width="52" height="65" rx="4" fill="#1c2333" stroke="#4ecdc4" stroke-width="1.5"/>
+  <text x="764" y="103" text-anchor="middle" fill="#4ecdc4" font-size="7" font-weight="bold">Impact</text>
+  <text x="764" y="118" text-anchor="middle" fill="#8b949e" font-size="6">TA0040</text>
+  <text x="764" y="133" text-anchor="middle" fill="#484f58" font-size="6">Encrypt</text>
+  <text x="764" y="143" text-anchor="middle" fill="#484f58" font-size="6">Destroy</text>
+
+  <!-- Hierarchy -->
+  <text x="400" y="185" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">Hierarquia: Tática &gt; Técnica &gt; Sub-técnica &gt; Procedimento</text>
+
+  <!-- Example hierarchy -->
+  <rect x="60" y="200" width="180" height="45" rx="6" fill="#1c2333" stroke="#f39c12" stroke-width="2"/>
+  <text x="150" y="220" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">Tática: Initial Access</text>
+  <text x="150" y="236" text-anchor="middle" fill="#8b949e" font-size="9">TA0001 — O objetivo</text>
+
+  <line x1="240" y1="222" x2="280" y2="222" stroke="#00d4ff" stroke-width="1.5"/>
+
+  <rect x="280" y="200" width="180" height="45" rx="6" fill="#1c2333" stroke="#00d4ff" stroke-width="2"/>
+  <text x="370" y="220" text-anchor="middle" fill="#00d4ff" font-size="11" font-weight="bold">Técnica: Phishing</text>
+  <text x="370" y="236" text-anchor="middle" fill="#8b949e" font-size="9">T1566 — O método</text>
+
+  <line x1="460" y1="222" x2="500" y2="222" stroke="#00d4ff" stroke-width="1.5"/>
+
+  <rect x="500" y="200" width="180" height="45" rx="6" fill="#1c2333" stroke="#a855f7" stroke-width="2"/>
+  <text x="590" y="220" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="bold">Sub: Spearphishing</text>
+  <text x="590" y="236" text-anchor="middle" fill="#8b949e" font-size="9">T1566.001 — Variação</text>
+
+  <line x1="590" y1="245" x2="590" y2="265" stroke="#00d4ff" stroke-width="1.5"/>
+
+  <rect x="480" y="265" width="220" height="40" rx="6" fill="#1c2333" stroke="#4ecdc4" stroke-width="2"/>
+  <text x="590" y="282" text-anchor="middle" fill="#4ecdc4" font-size="10" font-weight="bold">Procedimento: APT29 usa .lnk</text>
+  <text x="590" y="296" text-anchor="middle" fill="#8b949e" font-size="9">Implementação real observada</text>
+
+  <!-- CRTLP Lab coverage -->
+  <text x="400" y="340" text-anchor="middle" fill="#00d4ff" font-size="13" font-weight="bold">Cobertura CRTLP Lab por Tática</text>
+
+  <!-- Coverage bars -->
+  <text x="115" y="363" text-anchor="end" fill="#8b949e" font-size="9">Recon (TA0043)</text>
+  <rect x="120" y="354" width="250" height="12" rx="3" fill="#ff6b6b" opacity="0.8"/>
+  <text x="375" y="364" fill="#e6edf3" font-size="8">Mod 02-03</text>
+
+  <text x="115" y="381" text-anchor="end" fill="#8b949e" font-size="9">Initial Access (TA0001)</text>
+  <rect x="120" y="372" width="280" height="12" rx="3" fill="#f39c12" opacity="0.8"/>
+  <text x="405" y="382" fill="#e6edf3" font-size="8">Mod 03</text>
+
+  <text x="115" y="399" text-anchor="end" fill="#8b949e" font-size="9">Execution (TA0002)</text>
+  <rect x="120" y="390" width="220" height="12" rx="3" fill="#a855f7" opacity="0.8"/>
+  <text x="345" y="400" fill="#e6edf3" font-size="8">Mod 04</text>
+
+  <text x="115" y="417" text-anchor="end" fill="#8b949e" font-size="9">Lateral Mov (TA0008)</text>
+  <rect x="120" y="408" width="300" height="12" rx="3" fill="#00d4ff" opacity="0.8"/>
+  <text x="425" y="418" fill="#e6edf3" font-size="8">Mod 05-06</text>
+
+  <text x="115" y="435" text-anchor="end" fill="#8b949e" font-size="9">Priv Esc (TA0004)</text>
+  <rect x="120" y="426" width="260" height="12" rx="3" fill="#a855f7" opacity="0.8"/>
+  <text x="385" y="436" fill="#e6edf3" font-size="8">Mod 07</text>
+
+  <text x="115" y="453" text-anchor="end" fill="#8b949e" font-size="9">Persistence (TA0003)</text>
+  <rect x="120" y="444" width="200" height="12" rx="3" fill="#4ecdc4" opacity="0.8"/>
+  <text x="325" y="454" fill="#e6edf3" font-size="8">Mod 09</text>
+
+  <text x="115" y="471" text-anchor="end" fill="#8b949e" font-size="9">Exfiltration (TA0010)</text>
+  <rect x="120" y="462" width="180" height="12" rx="3" fill="#4ecdc4" opacity="0.8"/>
+  <text x="305" y="472" fill="#e6edf3" font-size="8">Mod 10</text>
+
+  <text x="400" y="495" text-anchor="middle" fill="#484f58" font-size="9">CRTLP — Module 00, Lesson 03</text>
+</svg>

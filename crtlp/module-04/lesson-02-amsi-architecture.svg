@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" width="800" height="620" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrow04a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow04a-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b6b"/>
+    </marker>
+    <marker id="arrow04a-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4ecdc4"/>
+    </marker>
+    <linearGradient id="bg04a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="620" fill="url(#bg04a)" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#00d4ff" font-size="20" font-weight="bold">AMSI Architecture — Fluxo de Inspeção</text>
+  <text x="400" y="62" text-anchor="middle" fill="#8b949e" font-size="12">Antimalware Scan Interface · In-Process Content Scanning</text>
+
+  <!-- Host Application Box -->
+  <rect x="40" y="90" width="200" height="70" rx="10" fill="#1a1a2e" stroke="#a855f7" stroke-width="2"/>
+  <text x="140" y="118" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">Host Application</text>
+  <text x="140" y="138" text-anchor="middle" fill="#8b949e" font-size="11">PowerShell / WSH / VBA</text>
+
+  <!-- Arrow down -->
+  <line x1="140" y1="160" x2="140" y2="195" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow04a)"/>
+  <text x="155" y="182" fill="#8b949e" font-size="10">Script desobfuscado</text>
+
+  <!-- ScriptBlock.Create -->
+  <rect x="40" y="200" width="200" height="50" rx="10" fill="#1a1a2e" stroke="#f39c12" stroke-width="2"/>
+  <text x="140" y="222" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">ScriptBlock.Create()</text>
+  <text x="140" y="238" text-anchor="middle" fill="#8b949e" font-size="10">ETW + Transcript logging</text>
+
+  <!-- Arrow down -->
+  <line x1="140" y1="250" x2="140" y2="285" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow04a)"/>
+
+  <!-- AmsiScanBuffer -->
+  <rect x="40" y="290" width="200" height="60" rx="10" fill="#1a1a2e" stroke="#00d4ff" stroke-width="2"/>
+  <text x="140" y="315" text-anchor="middle" fill="#00d4ff" font-size="14" font-weight="bold">AmsiScanBuffer()</text>
+  <text x="140" y="335" text-anchor="middle" fill="#8b949e" font-size="10">amsi.dll · In-Process</text>
+
+  <!-- Arrow to Provider -->
+  <line x1="240" y1="320" x2="340" y2="320" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow04a)"/>
+  <text x="290" y="312" text-anchor="middle" fill="#8b949e" font-size="10">COM dispatch</text>
+
+  <!-- AMSI Provider (Defender) -->
+  <rect x="345" y="280" width="200" height="80" rx="10" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="445" y="308" text-anchor="middle" fill="#ff6b6b" font-size="14" font-weight="bold">AMSI Provider</text>
+  <text x="445" y="326" text-anchor="middle" fill="#e6edf3" font-size="11">Windows Defender</text>
+  <text x="445" y="346" text-anchor="middle" fill="#8b949e" font-size="10">Signatures + Heuristics + Cloud</text>
+
+  <!-- Registry box -->
+  <rect x="580" y="280" width="190" height="80" rx="10" fill="#1a1a2e" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <text x="675" y="308" text-anchor="middle" fill="#8b949e" font-size="11">Registry Discovery</text>
+  <text x="675" y="326" text-anchor="middle" fill="#8b949e" font-size="9">HKLM\SOFTWARE\Microsoft</text>
+  <text x="675" y="342" text-anchor="middle" fill="#8b949e" font-size="9">\AMSI\Providers\{CLSID}</text>
+
+  <!-- Arrow from Provider back -->
+  <line x1="445" y1="360" x2="445" y2="400" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow04a)"/>
+  <text x="460" y="385" fill="#8b949e" font-size="10">AMSI_RESULT</text>
+
+  <!-- Decision diamond -->
+  <polygon points="445,410 530,450 445,490 360,450" fill="#1a1a2e" stroke="#f39c12" stroke-width="2"/>
+  <text x="445" y="447" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">Result</text>
+  <text x="445" y="462" text-anchor="middle" fill="#f39c12" font-size="10">≥ 32768?</text>
+
+  <!-- BLOCKED path (left) -->
+  <line x1="360" y1="450" x2="180" y2="450" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrow04a-red)"/>
+  <rect x="40" y="425" width="140" height="50" rx="10" fill="#2d1f1f" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="110" y="448" text-anchor="middle" fill="#ff6b6b" font-size="13" font-weight="bold">BLOQUEADO</text>
+  <text x="110" y="464" text-anchor="middle" fill="#ff6b6b" font-size="10">MaliciousContent</text>
+
+  <!-- CLEAN path (right) -->
+  <line x1="530" y1="450" x2="620" y2="450" stroke="#4ecdc4" stroke-width="2" marker-end="url(#arrow04a-green)"/>
+  <rect x="625" y="425" width="145" height="50" rx="10" fill="#1a2e2a" stroke="#4ecdc4" stroke-width="2"/>
+  <text x="697" y="448" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="bold">EXECUTA</text>
+  <text x="697" y="464" text-anchor="middle" fill="#4ecdc4" font-size="10">Compile + Run</text>
+
+  <!-- Key insight box -->
+  <rect x="40" y="520" width="720" height="80" rx="10" fill="#1a1a2e" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <text x="400" y="545" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold">Consequência Arquitetural para Red Team</text>
+  <text x="400" y="568" text-anchor="middle" fill="#e6edf3" font-size="12">amsi.dll vive no address space do processo host (in-process)</text>
+  <text x="400" y="588" text-anchor="middle" fill="#f39c12" font-size="12">Bypass = patch na memória do próprio processo (Lesson 04)</text>
+</svg>

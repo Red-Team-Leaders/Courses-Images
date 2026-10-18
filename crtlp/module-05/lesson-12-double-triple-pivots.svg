@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" width="800" height="550" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrow05b" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow05b-red" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b6b"/>
+    </marker>
+    <linearGradient id="bg05b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="550" fill="url(#bg05b)" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" fill="#00d4ff" font-size="20" font-weight="bold">Double &amp; Triple Pivot Chains</text>
+  <text x="400" y="58" text-anchor="middle" fill="#8b949e" font-size="12">Multi-Hop Tunneling Through Segmented Networks</text>
+
+  <!-- Zone labels -->
+  <rect x="40" y="80" width="130" height="25" rx="5" fill="#2d1f1f"/>
+  <text x="105" y="97" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="bold">EXTERNAL</text>
+
+  <rect x="200" y="80" width="130" height="25" rx="5" fill="#1a2e2a"/>
+  <text x="265" y="97" text-anchor="middle" fill="#4ecdc4" font-size="11" font-weight="bold">DMZ</text>
+
+  <rect x="370" y="80" width="130" height="25" rx="5" fill="#2d2a1a"/>
+  <text x="435" y="97" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">SERVER VLAN</text>
+
+  <rect x="540" y="80" width="130" height="25" rx="5" fill="#1f1a2e"/>
+  <text x="605" y="97" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="bold">DB VLAN</text>
+
+  <!-- ====== DOUBLE PIVOT ====== -->
+  <text x="400" y="135" text-anchor="middle" fill="#f39c12" font-size="15" font-weight="bold">Double Pivot (2 hops)</text>
+
+  <!-- Attacker -->
+  <rect x="40" y="150" width="120" height="55" rx="8" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="100" y="173" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="bold">Attacker</text>
+  <text x="100" y="193" text-anchor="middle" fill="#8b949e" font-size="9">10.0.10.5</text>
+
+  <!-- Tunnel 1 -->
+  <line x1="160" y1="177" x2="195" y2="177" stroke="#4ecdc4" stroke-width="3" marker-end="url(#arrow05b)"/>
+  <text x="178" y="170" text-anchor="middle" fill="#4ecdc4" font-size="8" font-weight="bold">T1</text>
+
+  <!-- Pivot 1 -->
+  <rect x="200" y="150" width="130" height="55" rx="8" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="2"/>
+  <text x="265" y="173" text-anchor="middle" fill="#4ecdc4" font-size="12" font-weight="bold">Pivot 1</text>
+  <text x="265" y="193" text-anchor="middle" fill="#8b949e" font-size="9">LNX-WEB (DMZ)</text>
+
+  <!-- Tunnel 2 -->
+  <line x1="330" y1="177" x2="365" y2="177" stroke="#f39c12" stroke-width="3" marker-end="url(#arrow05b)"/>
+  <text x="348" y="170" text-anchor="middle" fill="#f39c12" font-size="8" font-weight="bold">T2</text>
+
+  <!-- Pivot 2 -->
+  <rect x="370" y="150" width="130" height="55" rx="8" fill="#1a1a2e" stroke="#f39c12" stroke-width="2"/>
+  <text x="435" y="173" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">Pivot 2</text>
+  <text x="435" y="193" text-anchor="middle" fill="#8b949e" font-size="9">SRV01 (Server)</text>
+
+  <!-- Final target -->
+  <line x1="500" y1="177" x2="535" y2="177" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow05b)"/>
+  <rect x="540" y="150" width="130" height="55" rx="8" fill="#1a1a2e" stroke="#a855f7" stroke-width="2"/>
+  <text x="605" y="173" text-anchor="middle" fill="#a855f7" font-size="12" font-weight="bold">Target</text>
+  <text x="605" y="193" text-anchor="middle" fill="#8b949e" font-size="9">DB Server</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="225" x2="770" y2="225" stroke="#30363d" stroke-width="1"/>
+
+  <!-- ====== TOOL CHAINS ====== -->
+  <text x="400" y="255" text-anchor="middle" fill="#00d4ff" font-size="15" font-weight="bold">Implementações de Double Pivot</text>
+
+  <!-- SSH Chain -->
+  <rect x="40" y="270" width="225" height="95" rx="10" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1.5"/>
+  <text x="152" y="292" text-anchor="middle" fill="#4ecdc4" font-size="13" font-weight="bold">SSH Tunnel Chain</text>
+  <text x="152" y="312" text-anchor="middle" fill="#e6edf3" font-size="10">ssh -L 1111:pivot2:22 pivot1</text>
+  <text x="152" y="330" text-anchor="middle" fill="#e6edf3" font-size="10">ssh -D 1080 -p 1111 localhost</text>
+  <text x="152" y="350" text-anchor="middle" fill="#8b949e" font-size="9">Simples, mas encadeamento manual</text>
+
+  <!-- Chisel Chain -->
+  <rect x="287" y="270" width="225" height="95" rx="10" fill="#1a1a2e" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="400" y="292" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">Chisel Chain</text>
+  <text x="400" y="312" text-anchor="middle" fill="#e6edf3" font-size="10">chisel server on Pivot1</text>
+  <text x="400" y="330" text-anchor="middle" fill="#e6edf3" font-size="10">chisel client through SOCKS1</text>
+  <text x="400" y="350" text-anchor="middle" fill="#8b949e" font-size="9">Nested SOCKS proxies</text>
+
+  <!-- Ligolo Chain -->
+  <rect x="534" y="270" width="230" height="95" rx="10" fill="#1a1a2e" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="649" y="292" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold">Ligolo-ng Chain</text>
+  <text x="649" y="312" text-anchor="middle" fill="#e6edf3" font-size="10">Agent on Pivot1 + Pivot2</text>
+  <text x="649" y="330" text-anchor="middle" fill="#e6edf3" font-size="10">Listener on Pivot1 for hop2</text>
+  <text x="649" y="350" text-anchor="middle" fill="#4ecdc4" font-size="9">Best: L3 routing, transparent</text>
+
+  <!-- Performance/Reliability section -->
+  <rect x="40" y="390" width="720" height="140" rx="10" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <text x="400" y="417" text-anchor="middle" fill="#ff6b6b" font-size="14" font-weight="bold">Considerações Multi-Hop</text>
+
+  <!-- Latency -->
+  <rect x="60" y="432" width="15" height="15" rx="3" fill="#ff6b6b"/>
+  <text x="85" y="444" fill="#e6edf3" font-size="12">Latência: cada hop adiciona RTT. Double pivot = 2x latência mínima</text>
+
+  <!-- Fragility -->
+  <rect x="60" y="457" width="15" height="15" rx="3" fill="#f39c12"/>
+  <text x="85" y="469" fill="#e6edf3" font-size="12">Fragilidade: se qualquer hop cai, toda a chain cai. Manter keepalive!</text>
+
+  <!-- Bandwidth -->
+  <rect x="60" y="482" width="15" height="15" rx="3" fill="#a855f7"/>
+  <text x="85" y="494" fill="#e6edf3" font-size="12">Bandwidth: limitado pelo hop mais lento. nmap --max-rate essencial</text>
+
+  <!-- OPSEC -->
+  <rect x="60" y="507" width="15" height="15" rx="3" fill="#4ecdc4"/>
+  <text x="85" y="519" fill="#e6edf3" font-size="12">OPSEC: mais hops = mais processos/tráfego anômalo. Minimize tools transferidos</text>
+</svg>

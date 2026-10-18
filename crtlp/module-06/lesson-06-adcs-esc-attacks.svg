@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700" width="800" height="700" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrow06c" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b6b"/>
+    </marker>
+    <marker id="arrow06c-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrow06c-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4ecdc4"/>
+    </marker>
+    <linearGradient id="bg06c" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="700" fill="url(#bg06c)" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" fill="#00d4ff" font-size="20" font-weight="bold">ADCS ESC1 Attack — Certificate Impersonation</text>
+  <text x="400" y="58" text-anchor="middle" fill="#8b949e" font-size="12">Active Directory Certificate Services · CorpUserESC1 Template · corp.lab</text>
+
+  <!-- ====== VULNERABLE TEMPLATE ====== -->
+  <rect x="40" y="80" width="720" height="100" rx="10" fill="#1a1a2e" stroke="#f39c12" stroke-width="2"/>
+  <text x="400" y="105" text-anchor="middle" fill="#f39c12" font-size="15" font-weight="bold">Template Vulnerável: CorpUserESC1</text>
+
+  <!-- Template attributes in columns -->
+  <text x="80" y="130" fill="#ff6b6b" font-size="11" font-weight="bold">ENROLLEE_SUPPLIES_SUBJECT</text>
+  <text x="80" y="145" fill="#8b949e" font-size="9">Requester controla SAN (identidade)</text>
+
+  <text x="320" y="130" fill="#ff6b6b" font-size="11" font-weight="bold">Client Authentication EKU</text>
+  <text x="320" y="145" fill="#8b949e" font-size="9">Cert pode autenticar via PKINIT</text>
+
+  <text x="540" y="130" fill="#ff6b6b" font-size="11" font-weight="bold">msPKI-RA-Signature = 0</text>
+  <text x="540" y="145" fill="#8b949e" font-size="9">Sem aprovação de manager</text>
+
+  <text x="80" y="170" fill="#f39c12" font-size="11" font-weight="bold">Enrollment: Domain Users</text>
+  <text x="320" y="170" fill="#8b949e" font-size="11">Qualquer usuário autenticado pode solicitar</text>
+
+  <!-- ====== ATTACK FLOW ====== -->
+  <text x="400" y="215" text-anchor="middle" fill="#ff6b6b" font-size="16" font-weight="bold">Fluxo do Ataque ESC1</text>
+
+  <!-- Step 1: Find template -->
+  <rect x="40" y="235" width="340" height="60" rx="10" fill="#1a1a2e" stroke="#00d4ff" stroke-width="1.5"/>
+  <rect x="40" y="235" width="30" height="60" rx="10" fill="#00d4ff"/>
+  <rect x="55" y="235" width="1" height="60" fill="#1a1a2e"/>
+  <text x="55" y="270" text-anchor="middle" fill="#0d1117" font-size="14" font-weight="bold">1</text>
+  <text x="220" y="258" text-anchor="middle" fill="#00d4ff" font-size="12" font-weight="bold">Enumerate Vulnerable Templates</text>
+  <text x="220" y="278" text-anchor="middle" fill="#8b949e" font-size="10">certipy find -u j.silva -vulnerable -stdout</text>
+
+  <!-- Arrow -->
+  <line x1="210" y1="295" x2="210" y2="320" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrow06c)"/>
+
+  <!-- Step 2: Request cert with SAN -->
+  <rect x="40" y="325" width="340" height="75" rx="10" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="2"/>
+  <rect x="40" y="325" width="30" height="75" rx="10" fill="#ff6b6b"/>
+  <rect x="55" y="325" width="1" height="75" fill="#1a1a2e"/>
+  <text x="55" y="367" text-anchor="middle" fill="#0d1117" font-size="14" font-weight="bold">2</text>
+  <text x="220" y="350" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="bold">Request Certificate as Administrator</text>
+  <text x="220" y="370" text-anchor="middle" fill="#e6edf3" font-size="10">certipy req -u j.silva -template CorpUserESC1</text>
+  <text x="220" y="387" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="bold">-upn administrator@corp.lab</text>
+  <text x="220" y="397" text-anchor="middle" fill="#8b949e" font-size="9">SAN spoofed para Administrator!</text>
+
+  <!-- Arrow -->
+  <line x1="210" y1="400" x2="210" y2="425" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrow06c)"/>
+
+  <!-- Step 3: CA issues cert -->
+  <rect x="40" y="430" width="340" height="60" rx="10" fill="#1a1a2e" stroke="#f39c12" stroke-width="1.5"/>
+  <rect x="40" y="430" width="30" height="60" rx="10" fill="#f39c12"/>
+  <rect x="55" y="430" width="1" height="60" fill="#1a1a2e"/>
+  <text x="55" y="465" text-anchor="middle" fill="#0d1117" font-size="14" font-weight="bold">3</text>
+  <text x="220" y="455" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">CA Issues Certificate</text>
+  <text x="220" y="475" text-anchor="middle" fill="#8b949e" font-size="10">CA confia no template, emite cert com SAN do admin</text>
+
+  <!-- Arrow -->
+  <line x1="210" y1="490" x2="210" y2="515" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrow06c)"/>
+
+  <!-- Step 4: PKINIT auth -->
+  <rect x="40" y="520" width="340" height="65" rx="10" fill="#2d1f1f" stroke="#ff6b6b" stroke-width="2.5"/>
+  <rect x="40" y="520" width="30" height="65" rx="10" fill="#ff6b6b"/>
+  <rect x="55" y="520" width="1" height="65" fill="#2d1f1f"/>
+  <text x="55" y="557" text-anchor="middle" fill="#0d1117" font-size="14" font-weight="bold">4</text>
+  <text x="220" y="545" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="bold">PKINIT Authentication as Admin</text>
+  <text x="220" y="565" text-anchor="middle" fill="#e6edf3" font-size="10">certipy auth -pfx administrator.pfx</text>
+  <text x="220" y="580" text-anchor="middle" fill="#4ecdc4" font-size="10" font-weight="bold">TGT + NT hash do Administrator!</text>
+
+  <!-- ====== RIGHT SIDE: Architecture diagram ====== -->
+  <text x="590" y="250" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold">Arquitetura PKINIT</text>
+
+  <!-- Low-priv user -->
+  <rect x="430" y="270" width="120" height="45" rx="8" fill="#1a1a2e" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="490" y="292" text-anchor="middle" fill="#8b949e" font-size="11">j.silva</text>
+  <text x="490" y="306" text-anchor="middle" fill="#8b949e" font-size="9">Low privilege</text>
+
+  <!-- Arrow to CA -->
+  <line x1="550" y1="292" x2="610" y2="292" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrow06c)"/>
+  <text x="580" y="285" text-anchor="middle" fill="#ff6b6b" font-size="8">CSR+SAN</text>
+
+  <!-- CA -->
+  <rect x="615" y="270" width="140" height="45" rx="8" fill="#1a1a2e" stroke="#f39c12" stroke-width="2"/>
+  <text x="685" y="290" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="bold">Enterprise CA</text>
+  <text x="685" y="306" text-anchor="middle" fill="#8b949e" font-size="9">DC01 (corp-DC01-CA)</text>
+
+  <!-- Arrow down to cert -->
+  <line x1="685" y1="315" x2="685" y2="345" stroke="#4ecdc4" stroke-width="2" marker-end="url(#arrow06c-green)"/>
+
+  <!-- Certificate -->
+  <rect x="615" y="350" width="140" height="50" rx="8" fill="#1a2e2a" stroke="#4ecdc4" stroke-width="2"/>
+  <text x="685" y="372" text-anchor="middle" fill="#4ecdc4" font-size="12" font-weight="bold">Certificate .pfx</text>
+  <text x="685" y="390" text-anchor="middle" fill="#e6edf3" font-size="9">SAN: admin@corp.lab</text>
+
+  <!-- Arrow down to KDC -->
+  <line x1="685" y1="400" x2="685" y2="430" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrow06c-blue)"/>
+  <text x="700" y="420" fill="#00d4ff" font-size="8">PKINIT</text>
+
+  <!-- KDC -->
+  <rect x="615" y="435" width="140" height="50" rx="8" fill="#1a1a2e" stroke="#00d4ff" stroke-width="2"/>
+  <text x="685" y="457" text-anchor="middle" fill="#00d4ff" font-size="12" font-weight="bold">KDC (DC01)</text>
+  <text x="685" y="473" text-anchor="middle" fill="#8b949e" font-size="9">SAN maps to admin UPN</text>
+
+  <!-- Arrow down to TGT -->
+  <line x1="685" y1="485" x2="685" y2="515" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrow06c)"/>
+
+  <!-- TGT result -->
+  <rect x="600" y="520" width="170" height="50" rx="8" fill="#2d1f1f" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="685" y="542" text-anchor="middle" fill="#ff6b6b" font-size="13" font-weight="bold">TGT as Administrator</text>
+  <text x="685" y="558" text-anchor="middle" fill="#ff6b6b" font-size="10">+ NT Hash via U2U</text>
+
+  <!-- ESC family reference -->
+  <rect x="40" y="610" width="720" height="75" rx="10" fill="#1a1a2e" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <text x="400" y="635" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold">Família ESC — Outros Vetores ADCS</text>
+  <text x="60" y="658" fill="#8b949e" font-size="10">ESC1: SAN spoofing (este diagrama)</text>
+  <text x="260" y="658" fill="#8b949e" font-size="10">ESC4: Template ACL write</text>
+  <text x="430" y="658" fill="#8b949e" font-size="10">ESC6: EDITF_ATTRIBUTESUBJECTALTNAME2</text>
+  <text x="60" y="676" fill="#8b949e" font-size="10">ESC8: NTLM relay to HTTP enrollment</text>
+  <text x="260" y="676" fill="#8b949e" font-size="10">ESC11: RPC enrollment relay</text>
+  <text x="430" y="676" fill="#8b949e" font-size="10">ESC16: No SID extension + weak mapping</text>
+</svg>

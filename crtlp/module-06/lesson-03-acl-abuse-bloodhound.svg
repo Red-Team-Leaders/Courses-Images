@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 580" width="800" height="580" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrow06b" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b6b"/>
+    </marker>
+    <marker id="arrow06b-down" markerWidth="7" markerHeight="10" refX="3.5" refY="10" orient="auto">
+      <polygon points="0 0, 3.5 10, 7 0" fill="#ff6b6b"/>
+    </marker>
+    <linearGradient id="bg06b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="580" fill="url(#bg06b)" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" fill="#00d4ff" font-size="20" font-weight="bold">ACL Abuse Chain — Lab corp.lab</text>
+  <text x="400" y="58" text-anchor="middle" fill="#8b949e" font-size="12">BloodHound Path: j.silva → m.souza → ServerOps → Domain Admin</text>
+
+  <!-- STEP 1: j.silva -->
+  <rect x="40" y="85" width="200" height="80" rx="10" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="140" y="108" text-anchor="middle" fill="#ff6b6b" font-size="14" font-weight="bold">j.silva</text>
+  <text x="140" y="128" text-anchor="middle" fill="#8b949e" font-size="10">Credencial comprometida</text>
+  <text x="140" y="145" text-anchor="middle" fill="#8b949e" font-size="10">via Kerberoasting (Lesson 02)</text>
+  <text x="140" y="160" text-anchor="middle" fill="#f39c12" font-size="9">Autumn2026!</text>
+
+  <!-- Arrow with permission label -->
+  <line x1="240" y1="125" x2="340" y2="125" stroke="#ff6b6b" stroke-width="3" marker-end="url(#arrow06b)"/>
+  <rect x="250" y="100" width="85" height="20" rx="4" fill="#2d1f1f" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="292" y="114" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold">GenericAll</text>
+
+  <!-- STEP 2: m.souza -->
+  <rect x="345" y="85" width="200" height="80" rx="10" fill="#1a1a2e" stroke="#f39c12" stroke-width="2"/>
+  <text x="445" y="108" text-anchor="middle" fill="#f39c12" font-size="14" font-weight="bold">m.souza</text>
+  <text x="445" y="128" text-anchor="middle" fill="#8b949e" font-size="10">Target de GenericAll</text>
+  <text x="445" y="145" text-anchor="middle" fill="#e6edf3" font-size="10">j.silva pode: reset password,</text>
+  <text x="445" y="160" text-anchor="middle" fill="#e6edf3" font-size="10">set SPN, modify attributes</text>
+
+  <!-- Arrow with permission label -->
+  <line x1="545" y1="125" x2="595" y2="125" stroke="#ff6b6b" stroke-width="3" marker-end="url(#arrow06b)"/>
+  <rect x="547" y="100" width="70" height="20" rx="4" fill="#2d1f1f" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="582" y="114" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold">WriteDacl</text>
+
+  <!-- STEP 3: ServerOps Group -->
+  <rect x="600" y="85" width="170" height="80" rx="10" fill="#1a1a2e" stroke="#a855f7" stroke-width="2"/>
+  <text x="685" y="108" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">ServerOps</text>
+  <text x="685" y="128" text-anchor="middle" fill="#8b949e" font-size="10">Group in Administrators</text>
+  <text x="685" y="145" text-anchor="middle" fill="#e6edf3" font-size="10">m.souza has WriteDacl</text>
+  <text x="685" y="160" text-anchor="middle" fill="#e6edf3" font-size="10">on this group</text>
+
+  <!-- Arrow down from ServerOps to DA -->
+  <line x1="685" y1="165" x2="685" y2="215" stroke="#ff6b6b" stroke-width="3" marker-end="url(#arrow06b-down)"/>
+
+  <!-- Domain Admin -->
+  <rect x="585" y="220" width="200" height="50" rx="10" fill="#2d1f1f" stroke="#ff6b6b" stroke-width="2.5"/>
+  <text x="685" y="245" text-anchor="middle" fill="#ff6b6b" font-size="15" font-weight="bold">Local Admin / DA</text>
+  <text x="685" y="262" text-anchor="middle" fill="#8b949e" font-size="10">DCSync privilege</text>
+
+  <!-- ====== EXECUTION STEPS ====== -->
+  <line x1="30" y1="290" x2="770" y2="290" stroke="#30363d" stroke-width="1"/>
+  <text x="400" y="315" text-anchor="middle" fill="#00d4ff" font-size="15" font-weight="bold">Execução da Cadeia de Abuso</text>
+
+  <!-- Step boxes -->
+  <rect x="40" y="335" width="170" height="95" rx="8" fill="#1a1a2e" stroke="#ff6b6b" stroke-width="1.5"/>
+  <rect x="40" y="335" width="170" height="22" rx="8" fill="#ff6b6b"/>
+  <text x="125" y="351" text-anchor="middle" fill="#0d1117" font-size="11" font-weight="bold">1. Force Password Reset</text>
+  <text x="125" y="375" text-anchor="middle" fill="#e6edf3" font-size="10">j.silva usa GenericAll</text>
+  <text x="125" y="392" text-anchor="middle" fill="#e6edf3" font-size="10">para resetar senha</text>
+  <text x="125" y="409" text-anchor="middle" fill="#f39c12" font-size="9">net rpc password m.souza</text>
+  <text x="125" y="422" text-anchor="middle" fill="#8b949e" font-size="9">-U j.silva // Autumn2026!</text>
+
+  <line x1="210" y1="383" x2="230" y2="383" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrow06b)"/>
+
+  <rect x="235" y="335" width="170" height="95" rx="8" fill="#1a1a2e" stroke="#f39c12" stroke-width="1.5"/>
+  <rect x="235" y="335" width="170" height="22" rx="8" fill="#f39c12"/>
+  <text x="320" y="351" text-anchor="middle" fill="#0d1117" font-size="11" font-weight="bold">2. WriteDacl Abuse</text>
+  <text x="320" y="375" text-anchor="middle" fill="#e6edf3" font-size="10">m.souza modifica DACL</text>
+  <text x="320" y="392" text-anchor="middle" fill="#e6edf3" font-size="10">de ServerOps, concede</text>
+  <text x="320" y="409" text-anchor="middle" fill="#e6edf3" font-size="10">AddMember a si mesmo</text>
+  <text x="320" y="422" text-anchor="middle" fill="#8b949e" font-size="9">dacledit.py / PowerView</text>
+
+  <line x1="405" y1="383" x2="425" y2="383" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrow06b)"/>
+
+  <rect x="430" y="335" width="170" height="95" rx="8" fill="#1a1a2e" stroke="#a855f7" stroke-width="1.5"/>
+  <rect x="430" y="335" width="170" height="22" rx="8" fill="#a855f7"/>
+  <text x="515" y="351" text-anchor="middle" fill="#0d1117" font-size="11" font-weight="bold">3. Add to Group</text>
+  <text x="515" y="375" text-anchor="middle" fill="#e6edf3" font-size="10">m.souza se adiciona</text>
+  <text x="515" y="392" text-anchor="middle" fill="#e6edf3" font-size="10">ao grupo ServerOps</text>
+  <text x="515" y="409" text-anchor="middle" fill="#e6edf3" font-size="10">(now in Administrators)</text>
+  <text x="515" y="422" text-anchor="middle" fill="#8b949e" font-size="9">net rpc group addmem</text>
+
+  <line x1="600" y1="383" x2="620" y2="383" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrow06b)"/>
+
+  <rect x="625" y="335" width="145" height="95" rx="8" fill="#2d1f1f" stroke="#ff6b6b" stroke-width="2"/>
+  <rect x="625" y="335" width="145" height="22" rx="8" fill="#ff6b6b"/>
+  <text x="697" y="351" text-anchor="middle" fill="#0d1117" font-size="11" font-weight="bold">4. DCSync</text>
+  <text x="697" y="375" text-anchor="middle" fill="#e6edf3" font-size="10">Admin on DC01</text>
+  <text x="697" y="392" text-anchor="middle" fill="#e6edf3" font-size="10">secretsdump.py</text>
+  <text x="697" y="409" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold">ALL HASHES</text>
+  <text x="697" y="422" text-anchor="middle" fill="#8b949e" font-size="9">Domain compromised</text>
+
+  <!-- BloodHound note -->
+  <rect x="40" y="455" width="730" height="110" rx="10" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <text x="400" y="480" text-anchor="middle" fill="#4ecdc4" font-size="14" font-weight="bold">BloodHound — Automação da Descoberta</text>
+  <text x="400" y="502" text-anchor="middle" fill="#e6edf3" font-size="11">1. Collect: bloodhound-python -c All -d corp.lab -u j.silva -p Autumn2026!</text>
+  <text x="400" y="522" text-anchor="middle" fill="#e6edf3" font-size="11">2. Import: Upload JSON files to BloodHound CE</text>
+  <text x="400" y="542" text-anchor="middle" fill="#e6edf3" font-size="11">3. Query: "Shortest Path from j.silva to Domain Admins" — revela chain completa</text>
+  <text x="400" y="558" text-anchor="middle" fill="#8b949e" font-size="10">Sem BloodHound: dias de LDAP queries manuais. Com BloodHound: segundos.</text>
+</svg>

@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">BOF Data Parsing Flow</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">Aggressor packing to BOF extraction via datap struct</text>
+
+  <!-- Phase 1: Aggressor Script -->
+  <rect x="30" y="80" width="290" height="220" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="175" y="105" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Aggressor Script (CNA)</text>
+  <line x1="45" y1="115" x2="305" y2="115" stroke="#30363d"/>
+
+  <!-- Pack code -->
+  <rect x="45" y="125" width="260" height="120" rx="4" fill="#0d1117" stroke="#30363d"/>
+  <text x="60" y="145" fill="#8b949e" font-size="9"># Pack arguments for BOF</text>
+  <text x="60" y="165" fill="#c9d1d9" font-size="10">$args = bof_pack($bid,</text>
+  <text x="60" y="183" fill="#f0883e" font-size="10">  "Zib",</text>
+  <text x="60" y="201" fill="#c9d1d9" font-size="10">  "admin",    # Z = widestr</text>
+  <text x="60" y="219" fill="#c9d1d9" font-size="10">  1337,       # i = int32</text>
+  <text x="60" y="237" fill="#c9d1d9" font-size="10">  $shellcode  # b = binary</text>
+
+  <!-- Format string legend -->
+  <text x="55" y="268" fill="#f0883e" font-size="10" font-weight="bold">Format string types:</text>
+  <text x="55" y="285" fill="#c9d1d9" font-size="9">Z=wchar_t*  z=char*  i=int32  s=int16  b=binary</text>
+
+  <!-- Arrow to buffer -->
+  <line x1="320" y1="190" x2="358" y2="190" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="340" y="180" text-anchor="middle" fill="#f0883e" font-size="8">pack</text>
+
+  <!-- Phase 2: Binary Buffer -->
+  <rect x="360" y="80" width="260" height="220" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="490" y="105" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Binary Buffer Layout</text>
+  <line x1="375" y1="115" x2="605" y2="115" stroke="#30363d"/>
+
+  <!-- Buffer visualization -->
+  <rect x="380" y="125" width="220" height="160" rx="4" fill="#0d1117" stroke="#30363d"/>
+
+  <!-- Offset markers -->
+  <text x="385" y="145" fill="#8b949e" font-size="8">Offset</text>
+  <text x="440" y="145" fill="#8b949e" font-size="8">Size</text>
+  <text x="510" y="145" fill="#8b949e" font-size="8">Content</text>
+
+  <line x1="385" y1="150" x2="590" y2="150" stroke="#30363d"/>
+
+  <!-- Z = wchar string -->
+  <rect x="385" y="155" width="210" height="25" rx="2" fill="#58a6ff" opacity="0.1" stroke="#58a6ff" stroke-width="0.5"/>
+  <text x="390" y="172" fill="#58a6ff" font-size="9">0x00</text>
+  <text x="445" y="172" fill="#c9d1d9" font-size="9">4+N</text>
+  <text x="515" y="172" fill="#58a6ff" font-size="9">[len][a.d.m.i.n.\0]</text>
+
+  <!-- i = int32 -->
+  <rect x="385" y="183" width="210" height="25" rx="2" fill="#3fb950" opacity="0.1" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="390" y="200" fill="#3fb950" font-size="9">0x12</text>
+  <text x="445" y="200" fill="#c9d1d9" font-size="9">4</text>
+  <text x="515" y="200" fill="#3fb950" font-size="9">[39 05 00 00] BE</text>
+
+  <!-- b = binary blob -->
+  <rect x="385" y="211" width="210" height="25" rx="2" fill="#f85149" opacity="0.1" stroke="#f85149" stroke-width="0.5"/>
+  <text x="390" y="228" fill="#f85149" font-size="9">0x16</text>
+  <text x="445" y="228" fill="#c9d1d9" font-size="9">4+N</text>
+  <text x="515" y="228" fill="#f85149" font-size="9">[len][shellcode...]</text>
+
+  <!-- End -->
+  <rect x="385" y="239" width="210" height="20" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="490" y="254" text-anchor="middle" fill="#8b949e" font-size="9">-- end of buffer --</text>
+
+  <text x="490" y="278" text-anchor="middle" fill="#8b949e" font-size="9">Length-prefixed, big-endian integers</text>
+  <text x="490" y="293" text-anchor="middle" fill="#8b949e" font-size="9">Contiguous binary blob</text>
+
+  <!-- Arrow to BOF -->
+  <line x1="620" y1="190" x2="658" y2="190" stroke="#3fb950" stroke-width="2" marker-end="url(#arGreen)"/>
+  <text x="640" y="180" text-anchor="middle" fill="#3fb950" font-size="8">C2</text>
+
+  <!-- Phase 3: BOF Receives -->
+  <rect x="660" y="80" width="310" height="220" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="815" y="105" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">BOF Data Extraction</text>
+  <line x1="675" y1="115" x2="955" y2="115" stroke="#30363d"/>
+
+  <!-- datap struct -->
+  <rect x="675" y="125" width="280" height="160" rx="4" fill="#0d1117" stroke="#30363d"/>
+  <text x="690" y="145" fill="#8b949e" font-size="9">// datap struct (parser state)</text>
+  <text x="690" y="163" fill="#c9d1d9" font-size="10">datap parser;</text>
+  <text x="690" y="183" fill="#58a6ff" font-size="9">BeaconDataParse(&amp;parser, args, len);</text>
+  <text x="690" y="205" fill="#8b949e" font-size="9">// Sequential extraction:</text>
+  <text x="690" y="222" fill="#3fb950" font-size="9">wchar_t* name = (wchar_t*)</text>
+  <text x="690" y="237" fill="#3fb950" font-size="9">  BeaconDataExtract(&amp;parser, NULL);</text>
+  <text x="690" y="255" fill="#3fb950" font-size="9">int port = BeaconDataInt(&amp;parser);</text>
+  <text x="690" y="273" fill="#3fb950" font-size="9">char* sc = BeaconDataExtract(</text>
+  <text x="690" y="288" fill="#3fb950" font-size="9">  &amp;parser, &amp;sc_len);</text>
+
+  <!-- datap Internal -->
+  <rect x="30" y="325" width="940" height="120" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="500" y="350" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">datap Struct Internals</text>
+  <line x1="50" y1="360" x2="950" y2="360" stroke="#30363d"/>
+
+  <!-- Struct fields -->
+  <rect x="50" y="375" width="200" height="55" rx="4" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="150" y="395" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">char* original</text>
+  <text x="150" y="415" text-anchor="middle" fill="#c9d1d9" font-size="9">Start of data buffer</text>
+
+  <rect x="280" y="375" width="200" height="55" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="380" y="395" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">char* buffer</text>
+  <text x="380" y="415" text-anchor="middle" fill="#c9d1d9" font-size="9">Current read position</text>
+
+  <rect x="510" y="375" width="200" height="55" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="610" y="395" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">int length</text>
+  <text x="610" y="415" text-anchor="middle" fill="#c9d1d9" font-size="9">Total buffer length</text>
+
+  <rect x="740" y="375" width="200" height="55" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="840" y="395" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">int size</text>
+  <text x="840" y="415" text-anchor="middle" fill="#c9d1d9" font-size="9">Remaining bytes to read</text>
+
+  <!-- Arrows between struct fields -->
+  <line x1="250" y1="402" x2="278" y2="402" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="480" y1="402" x2="508" y2="402" stroke="#3fb950" stroke-width="1" marker-end="url(#arGreen)"/>
+  <line x1="710" y1="402" x2="738" y2="402" stroke="#f85149" stroke-width="1"/>
+
+  <!-- Extraction functions reference -->
+  <rect x="30" y="465" width="940" height="70" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="500" y="488" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Extraction Function Reference</text>
+  <line x1="50" y1="498" x2="950" y2="498" stroke="#30363d"/>
+  <text x="140" y="518" text-anchor="middle" fill="#3fb950" font-size="9">BeaconDataExtract</text>
+  <text x="140" y="530" text-anchor="middle" fill="#c9d1d9" font-size="8">z/Z strings + b blobs</text>
+
+  <line x1="255" y1="502" x2="255" y2="530" stroke="#30363d"/>
+  <text x="370" y="518" text-anchor="middle" fill="#3fb950" font-size="9">BeaconDataInt</text>
+  <text x="370" y="530" text-anchor="middle" fill="#c9d1d9" font-size="8">4-byte int (big-endian)</text>
+
+  <line x1="485" y1="502" x2="485" y2="530" stroke="#30363d"/>
+  <text x="600" y="518" text-anchor="middle" fill="#3fb950" font-size="9">BeaconDataShort</text>
+  <text x="600" y="530" text-anchor="middle" fill="#c9d1d9" font-size="8">2-byte short (big-endian)</text>
+
+  <line x1="715" y1="502" x2="715" y2="530" stroke="#30363d"/>
+  <text x="840" y="518" text-anchor="middle" fill="#3fb950" font-size="9">BeaconDataLength</text>
+  <text x="840" y="530" text-anchor="middle" fill="#c9d1d9" font-size="8">Remaining bytes count</text>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#30363d" font-size="10">CRTLP Module 09 - Lesson 38: BOF Data Parsing Flow</text>
+</svg>

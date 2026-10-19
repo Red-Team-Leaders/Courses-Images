@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Dynamic Function Resolution — Naming Convention</text>
+
+  <!-- DFR Pattern -->
+  <rect x="30" y="55" width="940" height="120" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="82" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">The DFR Naming Pattern</text>
+
+  <rect x="100" y="100" width="800" height="50" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="500" y="122" text-anchor="middle" fill="#f0883e" font-size="14" font-family="Consolas">DECLSPEC_IMPORT <type> WINAPI LIBRARY$FunctionName(args);</text>
+  <text x="500" y="142" text-anchor="middle" fill="#8b949e" font-size="9">The $ separator tells the COFF loader: load "LIBRARY.dll" and resolve "FunctionName"</text>
+
+  <!-- Examples -->
+  <rect x="30" y="190" width="940" height="200" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="218" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Common DFR Declarations</text>
+
+  <text x="50" y="248" fill="#3fb950" font-size="10" font-family="Consolas">DECLSPEC_IMPORT LPVOID WINAPI KERNEL32$VirtualAlloc(LPVOID, SIZE_T, DWORD, DWORD);</text>
+  <text x="50" y="272" fill="#3fb950" font-size="10" font-family="Consolas">DECLSPEC_IMPORT HANDLE WINAPI KERNEL32$OpenProcess(DWORD, BOOL, DWORD);</text>
+  <text x="50" y="296" fill="#f0883e" font-size="10" font-family="Consolas">DECLSPEC_IMPORT NTSTATUS NTDLL$NtCreateThreadEx(PHANDLE, ...);</text>
+  <text x="50" y="320" fill="#f0883e" font-size="10" font-family="Consolas">DECLSPEC_IMPORT BOOL WINAPI ADVAPI32$OpenProcessToken(HANDLE, DWORD, PHANDLE);</text>
+  <text x="50" y="344" fill="#58a6ff" font-size="10" font-family="Consolas">DECLSPEC_IMPORT int WINAPI WS2_32$WSAStartup(WORD, LPWSADATA);</text>
+  <text x="50" y="368" fill="#8b949e" font-size="10" font-family="Consolas">DECLSPEC_IMPORT DWORD WINAPI IPHLPAPI$GetAdaptersInfo(PIP_ADAPTER_INFO, PULONG);</text>
+
+  <!-- How loader resolves -->
+  <rect x="30" y="405" width="940" height="140" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="500" y="433" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">COFF Loader Resolution Process</text>
+
+  <rect x="50" y="450" width="200" height="40" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="150" y="475" text-anchor="middle" fill="#f0883e" font-size="9">Symbol: __imp_KERNEL32$VirtualAlloc</text>
+
+  <line x1="250" y1="470" x2="285" y2="470" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="290" y="450" width="150" height="40" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="365" y="468" text-anchor="middle" fill="#f0883e" font-size="9">Split at '$'</text>
+  <text x="365" y="483" text-anchor="middle" fill="#8b949e" font-size="7">DLL="KERNEL32" Func="VirtualAlloc"</text>
+
+  <line x1="440" y1="470" x2="475" y2="470" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="480" y="450" width="145" height="40" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="552" y="468" text-anchor="middle" fill="#58a6ff" font-size="9">LoadLibraryA</text>
+  <text x="552" y="483" text-anchor="middle" fill="#8b949e" font-size="7">("KERNEL32.dll")</text>
+
+  <line x1="625" y1="470" x2="660" y2="470" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="665" y="450" width="145" height="40" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="737" y="468" text-anchor="middle" fill="#58a6ff" font-size="9">GetProcAddress</text>
+  <text x="737" y="483" text-anchor="middle" fill="#8b949e" font-size="7">(hMod, "VirtualAlloc")</text>
+
+  <line x1="810" y1="470" x2="845" y2="470" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="850" y="450" width="105" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="902" y="468" text-anchor="middle" fill="#3fb950" font-size="9">Patch addr</text>
+  <text x="902" y="483" text-anchor="middle" fill="#7ee787" font-size="7">into symbol table</text>
+
+  <text x="500" y="525" text-anchor="middle" fill="#8b949e" font-size="9">Usage in code: call exactly like normal Win32 API — KERNEL32$VirtualAlloc(NULL, size, MEM_COMMIT, PAGE_RW)</text>
+
+  <text x="500" y="565" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — Dynamic Function Resolution Naming Convention</text>
+</svg>

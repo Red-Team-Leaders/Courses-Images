@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">BOF Detection Bypass Techniques</text>
+
+  <!-- Panel 1: Direct Syscalls -->
+  <rect x="20" y="55" width="470" height="240" rx="8" fill="#f0883e" fill-opacity="0.05" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="255" y="78" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">1. Direct Syscalls (Skip ntdll Hooks)</text>
+
+  <!-- Normal path -->
+  <text x="40" y="100" fill="#8b949e" font-size="9">HOOKED PATH (detected):</text>
+  <rect x="40" y="108" width="80" height="30" rx="3" fill="none" stroke="#f85149" stroke-width="1"/>
+  <text x="80" y="128" text-anchor="middle" fill="#c9d1d9" font-size="9">BOF Call</text>
+  <line x1="120" y1="123" x2="138" y2="123" stroke="#f85149" stroke-width="1" marker-end="url(#arRed)"/>
+  <rect x="140" y="108" width="95" height="30" rx="3" fill="#f85149" fill-opacity="0.15" stroke="#f85149" stroke-width="1"/>
+  <text x="187" y="128" text-anchor="middle" fill="#f85149" font-size="9">ntdll!NtAlloc</text>
+  <line x1="235" y1="123" x2="253" y2="123" stroke="#f85149" stroke-width="1" marker-end="url(#arRed)"/>
+  <rect x="255" y="108" width="85" height="30" rx="3" fill="#f85149" fill-opacity="0.3" stroke="#f85149" stroke-width="1.5"/>
+  <text x="297" y="128" text-anchor="middle" fill="#f85149" font-size="9">EDR Hook</text>
+  <line x1="340" y1="123" x2="358" y2="123" stroke="#f85149" stroke-width="1" marker-end="url(#arRed)"/>
+  <rect x="360" y="108" width="75" height="30" rx="3" fill="none" stroke="#8b949e" stroke-width="0.8"/>
+  <text x="397" y="128" text-anchor="middle" fill="#8b949e" font-size="9">Kernel</text>
+
+  <!-- Direct path -->
+  <text x="40" y="160" fill="#3fb950" font-size="9">DIRECT SYSCALL (bypass):</text>
+  <rect x="40" y="168" width="80" height="30" rx="3" fill="none" stroke="#3fb950" stroke-width="1"/>
+  <text x="80" y="188" text-anchor="middle" fill="#c9d1d9" font-size="9">BOF Call</text>
+  <line x1="120" y1="183" x2="200" y2="183" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+  <text x="160" y="177" fill="#3fb950" font-size="7">syscall</text>
+
+  <!-- Skipped box -->
+  <rect x="140" y="168" width="95" height="30" rx="3" fill="none" stroke="#8b949e" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="140" y1="168" x2="235" y2="198" stroke="#f85149" stroke-width="0.5"/>
+
+  <rect x="360" y="168" width="75" height="30" rx="3" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="1"/>
+  <text x="397" y="188" text-anchor="middle" fill="#3fb950" font-size="9">Kernel</text>
+  <line x1="200" y1="183" x2="358" y2="183" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arGreen)"/>
+
+  <text x="40" y="218" fill="#c9d1d9" font-size="9">Technique: Resolve SSN (syscall number) from</text>
+  <text x="40" y="233" fill="#c9d1d9" font-size="9">ntdll export table, then execute: mov r10,rcx;</text>
+  <text x="40" y="248" fill="#c9d1d9" font-size="9">mov eax,SSN; syscall; ret</text>
+  <text x="40" y="268" fill="#8b949e" font-size="9">Tools: SysWhispers2/3, InlineWhispers, HellsGate</text>
+  <text x="40" y="283" fill="#f0883e" font-size="9">BOF: bof_syscalls.h — inline assembly stubs</text>
+
+  <!-- Panel 2: API Unhooking -->
+  <rect x="510" y="55" width="470" height="240" rx="8" fill="#58a6ff" fill-opacity="0.05" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="745" y="78" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">2. API Unhooking (Clean ntdll)</text>
+
+  <!-- Flow -->
+  <rect x="530" y="95" width="140" height="45" rx="4" fill="none" stroke="#58a6ff" stroke-width="1"/>
+  <text x="600" y="114" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Read clean ntdll</text>
+  <text x="600" y="130" text-anchor="middle" fill="#8b949e" font-size="8">From disk or KnownDlls</text>
+  <line x1="600" y1="140" x2="600" y2="158" stroke="#f0883e" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <rect x="530" y="160" width="140" height="45" rx="4" fill="none" stroke="#f0883e" stroke-width="1"/>
+  <text x="600" y="179" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Map .text section</text>
+  <text x="600" y="195" text-anchor="middle" fill="#8b949e" font-size="8">Fresh, unhooked bytes</text>
+  <line x1="600" y1="205" x2="600" y2="223" stroke="#f0883e" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <rect x="530" y="225" width="140" height="45" rx="4" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="600" y="244" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Overwrite hooked</text>
+  <text x="600" y="260" text-anchor="middle" fill="#3fb950" font-size="8">Replace in-memory ntdll</text>
+
+  <!-- Memory diagram -->
+  <rect x="700" y="95" width="125" height="80" rx="4" fill="none" stroke="#f85149" stroke-width="1"/>
+  <text x="762" y="113" text-anchor="middle" fill="#f85149" font-size="9" font-weight="bold">Hooked ntdll</text>
+  <rect x="710" y="120" width="105" height="14" rx="2" fill="#f85149" fill-opacity="0.2"/>
+  <text x="762" y="131" text-anchor="middle" fill="#f85149" font-size="7">jmp EDR_handler</text>
+  <rect x="710" y="136" width="105" height="14" rx="2" fill="#f85149" fill-opacity="0.2"/>
+  <text x="762" y="147" text-anchor="middle" fill="#f85149" font-size="7">jmp EDR_handler</text>
+  <rect x="710" y="152" width="105" height="14" rx="2" fill="#8b949e" fill-opacity="0.1"/>
+  <text x="762" y="163" text-anchor="middle" fill="#8b949e" font-size="7">... more hooks ...</text>
+
+  <line x1="762" y1="180" x2="762" y2="198" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="700" y="200" width="125" height="75" rx="4" fill="none" stroke="#3fb950" stroke-width="1"/>
+  <text x="762" y="218" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">Clean ntdll</text>
+  <rect x="710" y="225" width="105" height="14" rx="2" fill="#3fb950" fill-opacity="0.15"/>
+  <text x="762" y="236" text-anchor="middle" fill="#3fb950" font-size="7">mov r10,rcx; mov eax,SSN</text>
+  <rect x="710" y="241" width="105" height="14" rx="2" fill="#3fb950" fill-opacity="0.15"/>
+  <text x="762" y="252" text-anchor="middle" fill="#3fb950" font-size="7">syscall; ret</text>
+  <rect x="710" y="257" width="105" height="14" rx="2" fill="#8b949e" fill-opacity="0.1"/>
+  <text x="762" y="268" text-anchor="middle" fill="#8b949e" font-size="7">original stubs</text>
+
+  <text x="845" y="140" fill="#8b949e" font-size="9">Sources:</text>
+  <text x="845" y="155" fill="#c9d1d9" font-size="8">C:\Windows\System32\ntdll.dll</text>
+  <text x="845" y="170" fill="#c9d1d9" font-size="8">\KnownDlls\ntdll.dll</text>
+  <text x="845" y="185" fill="#c9d1d9" font-size="8">Suspended child process</text>
+
+  <!-- Panel 3: Stack Spoofing -->
+  <rect x="20" y="305" width="470" height="255" rx="8" fill="#3fb950" fill-opacity="0.05" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="255" y="328" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">3. Stack Spoofing (Fake Return Addresses)</text>
+
+  <!-- Normal stack -->
+  <text x="40" y="348" fill="#f85149" font-size="9">Suspicious Stack:</text>
+  <rect x="40" y="355" width="195" height="100" rx="4" fill="#161b22" stroke="#f85149" stroke-width="0.8"/>
+  <text x="50" y="373" fill="#8b949e" font-size="8">Return Address</text>
+  <text x="200" y="373" text-anchor="end" fill="#f85149" font-size="8">0x7FF?????? (RWX)</text>
+  <text x="50" y="389" fill="#8b949e" font-size="8">Return Address</text>
+  <text x="200" y="389" text-anchor="end" fill="#f85149" font-size="8">0x7FF?????? (RWX)</text>
+  <text x="50" y="405" fill="#8b949e" font-size="8">Return Address</text>
+  <text x="200" y="405" text-anchor="end" fill="#c9d1d9" font-size="8">ntdll!RtlUserThread</text>
+  <text x="50" y="430" fill="#f85149" font-size="8">Unbacked memory in call</text>
+  <text x="50" y="443" fill="#f85149" font-size="8">stack = DETECTION</text>
+
+  <line x1="240" y1="400" x2="268" y2="400" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <!-- Spoofed stack -->
+  <text x="275" y="348" fill="#3fb950" font-size="9">Spoofed Stack:</text>
+  <rect x="275" y="355" width="195" height="100" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="0.8"/>
+  <text x="285" y="373" fill="#8b949e" font-size="8">Return Address</text>
+  <text x="435" y="373" text-anchor="end" fill="#3fb950" font-size="8">kernel32!BaseThread</text>
+  <text x="285" y="389" fill="#8b949e" font-size="8">Return Address</text>
+  <text x="435" y="389" text-anchor="end" fill="#3fb950" font-size="8">ntdll!RtlUserThread</text>
+  <text x="285" y="405" fill="#8b949e" font-size="8">Return Address</text>
+  <text x="435" y="405" text-anchor="end" fill="#3fb950" font-size="8">ntdll!RtlUserThread</text>
+  <text x="285" y="430" fill="#3fb950" font-size="8">All returns point to</text>
+  <text x="285" y="443" fill="#3fb950" font-size="8">legitimate modules</text>
+
+  <text x="40" y="478" fill="#c9d1d9" font-size="9">Technique: Save real return address, replace with gadget from</text>
+  <text x="40" y="493" fill="#c9d1d9" font-size="9">legitimate DLL (jmp rbx), restore after call completes.</text>
+  <text x="40" y="510" fill="#8b949e" font-size="9">Tools: SilentMoonwalk, Unwinder, ThreadStackSpoofer</text>
+  <text x="40" y="527" fill="#f0883e" font-size="9">Defeats: ETW stack walk, call stack analysis, CIG (Code Integrity Guard)</text>
+  <text x="40" y="545" fill="#8b949e" font-size="9">BOF implementation: synthetic frames built before each sensitive API call</text>
+
+  <!-- Panel 4: Sleep Obfuscation -->
+  <rect x="510" y="305" width="470" height="255" rx="8" fill="#f85149" fill-opacity="0.05" stroke="#f85149" stroke-width="1.5"/>
+  <text x="745" y="328" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">4. Sleep Obfuscation (Encrypt BOF Memory)</text>
+
+  <!-- Timeline -->
+  <text x="530" y="350" fill="#8b949e" font-size="9">Beacon Sleep Cycle:</text>
+
+  <!-- Active phase -->
+  <rect x="530" y="360" width="120" height="40" rx="4" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="1"/>
+  <text x="590" y="377" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">ACTIVE</text>
+  <text x="590" y="392" text-anchor="middle" fill="#c9d1d9" font-size="8">Code RX, cleartext</text>
+  <line x1="650" y1="380" x2="668" y2="380" stroke="#f0883e" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <!-- Encrypt -->
+  <rect x="670" y="360" width="100" height="40" rx="4" fill="#f0883e" fill-opacity="0.15" stroke="#f0883e" stroke-width="1"/>
+  <text x="720" y="377" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">ENCRYPT</text>
+  <text x="720" y="392" text-anchor="middle" fill="#c9d1d9" font-size="8">XOR/AES key</text>
+  <line x1="770" y1="380" x2="788" y2="380" stroke="#f0883e" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <!-- Sleep phase -->
+  <rect x="790" y="360" width="110" height="40" rx="4" fill="#f85149" fill-opacity="0.15" stroke="#f85149" stroke-width="1"/>
+  <text x="845" y="377" text-anchor="middle" fill="#f85149" font-size="9" font-weight="bold">SLEEPING</text>
+  <text x="845" y="392" text-anchor="middle" fill="#c9d1d9" font-size="8">RW, encrypted</text>
+
+  <!-- Decrypt arrow back -->
+  <line x1="845" y1="400" x2="845" y2="418" stroke="#f0883e" stroke-width="1"/>
+  <line x1="845" y1="418" x2="590" y2="418" stroke="#f0883e" stroke-width="1"/>
+  <line x1="590" y1="418" x2="590" y2="405" stroke="#f0883e" stroke-width="1"/>
+  <text x="720" y="415" text-anchor="middle" fill="#8b949e" font-size="7">decrypt + flip RX on wake</text>
+
+  <!-- Details -->
+  <text x="530" y="445" fill="#c9d1d9" font-size="9" font-weight="bold">Sleep Flow:</text>
+  <text x="530" y="462" fill="#c9d1d9" font-size="9">1. Queue APC: VirtualProtect(RW) + encrypt beacon memory</text>
+  <text x="530" y="478" fill="#c9d1d9" font-size="9">2. SleepEx(interval) — beacon memory is encrypted garbage</text>
+  <text x="530" y="494" fill="#c9d1d9" font-size="9">3. Timer APC fires: decrypt + VirtualProtect(RX)</text>
+  <text x="530" y="510" fill="#c9d1d9" font-size="9">4. Beacon wakes, executes task, re-encrypts before sleep</text>
+
+  <text x="530" y="533" fill="#f0883e" font-size="9">Techniques: Ekko, Nighthawk, Foliage (timer-based APC chains)</text>
+  <text x="530" y="548" fill="#8b949e" font-size="9">Defeats: In-memory scanning during sleep, YARA rules,</text>
+  <text x="530" y="561" fill="#8b949e" font-size="9">periodic memory page inspection by EDR kernel callbacks</text>
+</svg>

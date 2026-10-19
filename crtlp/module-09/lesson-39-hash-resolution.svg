@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">API Hashing — Export Address Table Walk</text>
+
+  <!-- Input hash -->
+  <rect x="30" y="55" width="200" height="70" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="130" y="80" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Target Hash</text>
+  <text x="130" y="100" text-anchor="middle" fill="#f0883e" font-size="10" font-family="Consolas">0x91AFCA54</text>
+  <text x="130" y="118" text-anchor="middle" fill="#8b949e" font-size="7">ROR13 hash of "VirtualAlloc"</text>
+
+  <line x1="230" y1="90" x2="265" y2="90" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- DLL in memory -->
+  <rect x="270" y="50" width="700" height="250" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="620" y="78" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">kernel32.dll — Export Directory Walk</text>
+
+  <!-- PE header -->
+  <rect x="290" y="95" width="180" height="55" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="380" y="115" text-anchor="middle" fill="#c9d1d9" font-size="9">PE Header</text>
+  <text x="380" y="135" text-anchor="middle" fill="#8b949e" font-size="8">DataDirectory[0] = Export RVA</text>
+
+  <line x1="470" y1="122" x2="510" y2="122" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Export directory -->
+  <rect x="515" y="95" width="200" height="55" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="615" y="115" text-anchor="middle" fill="#f0883e" font-size="9">IMAGE_EXPORT_DIRECTORY</text>
+  <text x="615" y="130" text-anchor="middle" fill="#8b949e" font-size="8">NumberOfNames: 1637</text>
+  <text x="615" y="142" text-anchor="middle" fill="#8b949e" font-size="8">AddressOfNames, AddressOfFunctions</text>
+
+  <!-- Name RVA array -->
+  <rect x="290" y="165" width="160" height="120" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="370" y="185" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">Name Pointer Table</text>
+  <text x="300" y="205" fill="#8b949e" font-size="8">[0] "AcquireSRWLock..."</text>
+  <text x="300" y="220" fill="#8b949e" font-size="8">[1] "ActivateActCtx"</text>
+  <text x="300" y="235" fill="#8b949e" font-size="8">  ...</text>
+  <text x="300" y="250" fill="#3fb950" font-size="8" font-weight="bold">[n] "VirtualAlloc"</text>
+  <text x="300" y="265" fill="#8b949e" font-size="8">  ...</text>
+  <text x="300" y="278" fill="#8b949e" font-size="8">[1636] "lstrcpynW"</text>
+
+  <!-- Ordinal table -->
+  <rect x="470" y="165" width="130" height="120" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="535" y="185" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">Ordinal Table</text>
+  <text x="480" y="205" fill="#8b949e" font-size="8">[0] = 5</text>
+  <text x="480" y="220" fill="#8b949e" font-size="8">[1] = 6</text>
+  <text x="480" y="235" fill="#8b949e" font-size="8">  ...</text>
+  <text x="480" y="250" fill="#f0883e" font-size="8" font-weight="bold">[n] = 1563</text>
+  <text x="480" y="265" fill="#8b949e" font-size="8">  ...</text>
+
+  <!-- Function RVA table -->
+  <rect x="620" y="165" width="170" height="120" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="705" y="185" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="bold">Function Address Table</text>
+  <text x="630" y="205" fill="#8b949e" font-size="8">[0] = 0x0001A2C0</text>
+  <text x="630" y="220" fill="#8b949e" font-size="8">[1] = 0x0001A340</text>
+  <text x="630" y="235" fill="#8b949e" font-size="8">  ...</text>
+  <text x="630" y="250" fill="#58a6ff" font-size="8" font-weight="bold">[1563] = 0x000242A0</text>
+  <text x="630" y="265" fill="#8b949e" font-size="8">  ...</text>
+
+  <!-- Result -->
+  <rect x="810" y="165" width="145" height="60" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="882" y="188" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">Resolved!</text>
+  <text x="882" y="208" text-anchor="middle" fill="#3fb950" font-size="8" font-family="Consolas">base + 0x242A0</text>
+  <text x="882" y="220" text-anchor="middle" fill="#7ee787" font-size="7">= VirtualAlloc addr</text>
+
+  <!-- Arrows connecting tables -->
+  <line x1="450" y1="250" x2="470" y2="250" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="600" y1="250" x2="620" y2="250" stroke="#58a6ff" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="790" y1="250" x2="810" y2="195" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Hash algorithm -->
+  <rect x="30" y="320" width="940" height="130" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="500" y="348" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Hash Algorithm — ROR13 (Rotate Right 13)</text>
+
+  <rect x="50" y="365" width="450" height="70" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="60" y="385" fill="#f0883e" font-size="9" font-family="Consolas">DWORD ror13_hash(const char* name) {</text>
+  <text x="60" y="400" fill="#f0883e" font-size="9" font-family="Consolas">  DWORD h = 0;</text>
+  <text x="60" y="415" fill="#f0883e" font-size="9" font-family="Consolas">  while (*name) h = (h &gt;&gt; 13 | h &lt;&lt; 19) + *name++;</text>
+  <text x="60" y="430" fill="#f0883e" font-size="9" font-family="Consolas">  return h; }</text>
+
+  <rect x="520" y="365" width="430" height="70" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="735" y="388" text-anchor="middle" fill="#c9d1d9" font-size="9" font-weight="bold">Loop for each export name:</text>
+  <text x="535" y="408" fill="#8b949e" font-size="9">1. Compute ror13_hash(export_name)</text>
+  <text x="535" y="425" fill="#8b949e" font-size="9">2. Compare with target hash (0x91AFCA54)</text>
+  <text x="535" y="440" fill="#3fb950" font-size="9">3. Match! Use ordinal to index into function table</text>
+
+  <!-- Why use hashing -->
+  <rect x="30" y="465" width="940" height="75" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="500" y="490" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Why Hash Instead of String Compare?</text>
+  <text x="200" y="515" text-anchor="middle" fill="#8b949e" font-size="9">No API name strings in binary</text>
+  <text x="500" y="515" text-anchor="middle" fill="#8b949e" font-size="9">4-byte hash vs N-byte string</text>
+  <text x="800" y="515" text-anchor="middle" fill="#8b949e" font-size="9">Defeats YARA string matching</text>
+  <text x="500" y="535" text-anchor="middle" fill="#f85149" font-size="8">Risk: hash collisions. Mitigate with DLL name hash + function name hash combined</text>
+
+  <text x="500" y="570" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — API Hash Resolution via Export Table Walking</text>
+</svg>

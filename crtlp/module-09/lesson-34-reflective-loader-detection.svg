@@ -1,68 +1,100 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
   </defs>
   <rect width="1000" height="580" fill="url(#bg)"/>
-  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Reflective Loader Detection Surface</text>
 
-  <!-- Detection 1: IAT Anomalies -->
-  <rect x="30" y="50" width="450" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
-  <rect x="30" y="50" width="450" height="28" rx="8" fill="#f85149" fill-opacity="0.15"/>
-  <text x="255" y="70" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">1. IAT Anomalies</text>
-  <text x="50" y="98" fill="#c9d1d9" font-size="11">Reflective DLL has no IAT entries in PEB module list</text>
-  <text x="50" y="118" fill="#f0883e" font-size="11">Detection: LdrpHashTable walk shows module not in</text>
-  <text x="50" y="138" fill="#f0883e" font-size="11">InLoadOrderModuleList despite executable pages</text>
-  <text x="50" y="158" fill="#3fb950" font-size="10">Evasion: Link into PEB manually (AddDllToModuleList)</text>
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">Reflective Loading - Detection Engineering</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">IOCs mapped to Detection Methods | Blue Team Perspective</text>
 
-  <!-- Detection 2: Unbacked Memory -->
-  <rect x="520" y="50" width="450" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
-  <rect x="520" y="50" width="450" height="28" rx="8" fill="#f85149" fill-opacity="0.15"/>
-  <text x="745" y="70" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">2. Unbacked Private Memory (RX)</text>
-  <text x="540" y="98" fill="#c9d1d9" font-size="11">VirtualAlloc'd pages = MEM_PRIVATE, not MEM_IMAGE</text>
-  <text x="540" y="118" fill="#f0883e" font-size="11">Detection: NtQueryVirtualMemory shows executable</text>
-  <text x="540" y="138" fill="#f0883e" font-size="11">pages with Type=MEM_PRIVATE (no backing file on disk)</text>
-  <text x="540" y="158" fill="#3fb950" font-size="10">Evasion: Module stomping (overwrite legit DLL .text)</text>
+  <!-- Left Column Header: IOCs -->
+  <text x="200" y="85" text-anchor="middle" fill="#f85149" font-size="16" font-weight="bold">Indicators of Compromise</text>
+  <line x1="60" y1="95" x2="340" y2="95" stroke="#f85149" stroke-width="1.5"/>
 
-  <!-- Detection 3: PE Header Artifacts -->
-  <rect x="30" y="190" width="450" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
-  <rect x="30" y="190" width="450" height="28" rx="8" fill="#f85149" fill-opacity="0.15"/>
-  <text x="255" y="210" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">3. PE Header Artifacts</text>
-  <text x="50" y="238" fill="#c9d1d9" font-size="11">MZ/PE signature at allocation base address</text>
-  <text x="50" y="258" fill="#f0883e" font-size="11">Detection: Scan MEM_PRIVATE for 0x4D5A (MZ) at</text>
-  <text x="50" y="278" fill="#f0883e" font-size="11">page-aligned addresses + 0x3C offset = PE\0\0</text>
-  <text x="50" y="298" fill="#3fb950" font-size="10">Evasion: stomppe=true, overwrite headers post-load</text>
+  <!-- Right Column Header: Detections -->
+  <text x="800" y="85" text-anchor="middle" fill="#3fb950" font-size="16" font-weight="bold">Detection Methods</text>
+  <line x1="660" y1="95" x2="940" y2="95" stroke="#3fb950" stroke-width="1.5"/>
 
-  <!-- Detection 4: YARA Memory Scanners -->
-  <rect x="520" y="190" width="450" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
-  <rect x="520" y="190" width="450" height="28" rx="8" fill="#f85149" fill-opacity="0.15"/>
-  <text x="745" y="210" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">4. YARA / Memory Scanners</text>
-  <text x="540" y="238" fill="#c9d1d9" font-size="11">Scan process memory for known beacon patterns</text>
-  <text x="540" y="258" fill="#f0883e" font-size="11">Rule: pe.exports("ReflectiveLoader") or</text>
-  <text x="540" y="278" fill="#f0883e" font-size="11">$beacon_config = {00 01 00 01 00 02} at PE overlay</text>
-  <text x="540" y="298" fill="#3fb950" font-size="10">Evasion: strrep + sleep mask encrypt in memory</text>
+  <!-- IOC 1: RWX Memory -->
+  <rect x="40" y="110" width="320" height="65" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="60" y="132" fill="#f85149" font-size="13" font-weight="bold">RWX Memory Regions</text>
+  <text x="60" y="150" fill="#c9d1d9" font-size="10">VirtualAlloc(MEM_COMMIT, PAGE_EXECUTE_READWRITE)</text>
+  <text x="60" y="165" fill="#8b949e" font-size="9">Private, executable, writable memory uncommonly legitimate</text>
 
-  <!-- Detection 5: ETW Events -->
-  <rect x="30" y="330" width="450" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
-  <rect x="30" y="330" width="450" height="28" rx="8" fill="#f85149" fill-opacity="0.15"/>
-  <text x="255" y="350" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">5. ETW Thread Creation Events</text>
-  <text x="50" y="378" fill="#c9d1d9" font-size="11">ETW logs thread start address in foreign module</text>
-  <text x="50" y="398" fill="#f0883e" font-size="11">Microsoft-Windows-Threat-Intelligence provider</text>
-  <text x="50" y="418" fill="#f0883e" font-size="11">EtwTi_ThreadCreate with unbacked start address</text>
-  <text x="50" y="438" fill="#3fb950" font-size="10">Evasion: Thread start at ntdll ROP gadget</text>
+  <!-- IOC 2: PEB Walk -->
+  <rect x="40" y="190" width="320" height="65" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="60" y="212" fill="#f85149" font-size="13" font-weight="bold">PEB Walk / Syscall Stubs</text>
+  <text x="60" y="230" fill="#c9d1d9" font-size="10">Walking PEB_LDR_DATA to resolve ntdll exports</text>
+  <text x="60" y="245" fill="#8b949e" font-size="9">InMemoryOrderModuleList traversal for API resolution</text>
 
-  <!-- Detection 6: Call Stack Analysis -->
-  <rect x="520" y="330" width="450" height="120" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
-  <rect x="520" y="330" width="450" height="28" rx="8" fill="#f85149" fill-opacity="0.15"/>
-  <text x="745" y="350" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">6. Call Stack Anomalies</text>
-  <text x="540" y="378" fill="#c9d1d9" font-size="11">Stack frames from unbacked memory regions</text>
-  <text x="540" y="398" fill="#f0883e" font-size="11">Detection: RtlVirtualUnwind on each frame,</text>
-  <text x="540" y="418" fill="#f0883e" font-size="11">check return address against loaded module list</text>
-  <text x="540" y="438" fill="#3fb950" font-size="10">Evasion: Stack spoofing (synthetic frames)</text>
+  <!-- IOC 3: Floating PE -->
+  <rect x="40" y="270" width="320" height="65" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="60" y="292" fill="#f85149" font-size="13" font-weight="bold">Floating PE Headers</text>
+  <text x="60" y="310" fill="#c9d1d9" font-size="10">MZ/PE signature in non-file-backed memory</text>
+  <text x="60" y="325" fill="#8b949e" font-size="9">DOS header at base of private allocation (no mapped file)</text>
 
-  <!-- Summary -->
-  <rect x="30" y="470" width="940" height="95" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
-  <text x="50" y="495" fill="#58a6ff" font-size="13" font-weight="bold">Detection Priority (EDR vendor focus)</text>
-  <text x="50" y="520" fill="#f85149" font-size="12">HIGH: Unbacked RX memory + PE headers = CrowdStrike, SentinelOne primary detection</text>
-  <text x="50" y="540" fill="#f0883e" font-size="12">MEDIUM: ETW thread events + call stack analysis = Elastic, Microsoft Defender</text>
-  <text x="50" y="555" fill="#3fb950" font-size="12">LOW: YARA memory scans = periodic, not real-time (BeaconEye, pe-sieve, Moneta)</text>
+  <!-- IOC 4: Unbacked Executable -->
+  <rect x="40" y="350" width="320" height="65" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="60" y="372" fill="#f85149" font-size="13" font-weight="bold">Unbacked Executable Memory</text>
+  <text x="60" y="390" fill="#c9d1d9" font-size="10">Executable pages without file-backing on disk</text>
+  <text x="60" y="405" fill="#8b949e" font-size="9">MEM_PRIVATE | MEM_COMMIT | PAGE_EXECUTE_*</text>
+
+  <!-- Detection 1: pe-sieve/moneta -->
+  <rect x="640" y="110" width="320" height="65" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="660" y="132" fill="#3fb950" font-size="13" font-weight="bold">pe-sieve / Moneta</text>
+  <text x="660" y="150" fill="#c9d1d9" font-size="10">Scan process memory for PE anomalies</text>
+  <text x="660" y="165" fill="#8b949e" font-size="9">Detect implants, hollowed modules, injected PEs</text>
+
+  <!-- Detection 2: ETW -->
+  <rect x="640" y="190" width="320" height="65" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="660" y="212" fill="#3fb950" font-size="13" font-weight="bold">ETW Providers</text>
+  <text x="660" y="230" fill="#c9d1d9" font-size="10">Microsoft-Windows-Threat-Intelligence</text>
+  <text x="660" y="245" fill="#8b949e" font-size="9">VirtualAlloc, MapViewOfFile, memory protection events</text>
+
+  <!-- Detection 3: Call Stack -->
+  <rect x="640" y="270" width="320" height="65" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="660" y="292" fill="#3fb950" font-size="13" font-weight="bold">Call Stack Analysis</text>
+  <text x="660" y="310" fill="#c9d1d9" font-size="10">Thread start from unbacked memory region</text>
+  <text x="660" y="325" fill="#8b949e" font-size="9">Stack trace anomalies: missing kernel32 base frames</text>
+
+  <!-- Detection 4: YARA -->
+  <rect x="640" y="350" width="320" height="65" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="660" y="372" fill="#3fb950" font-size="13" font-weight="bold">YARA / Memory Scanning</text>
+  <text x="660" y="390" fill="#c9d1d9" font-size="10">Signature rules for known loader patterns</text>
+  <text x="660" y="405" fill="#8b949e" font-size="9">ReflectiveLoader export, hash routines, PEB walk code</text>
+
+  <!-- Connection arrows IOC -> Detection -->
+  <line x1="360" y1="130" x2="638" y2="130" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="360" y1="150" x2="638" y2="222" stroke="#f0883e" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#ar)"/>
+  <line x1="360" y1="215" x2="638" y2="215" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="360" y1="235" x2="638" y2="375" stroke="#f0883e" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#ar)"/>
+  <line x1="360" y1="295" x2="638" y2="145" stroke="#f0883e" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#ar)"/>
+  <line x1="360" y1="302" x2="638" y2="302" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="360" y1="375" x2="638" y2="310" stroke="#f0883e" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#ar)"/>
+  <line x1="360" y1="382" x2="638" y2="155" stroke="#f0883e" stroke-width="1" opacity="0.5" stroke-dasharray="3,4" marker-end="url(#ar)"/>
+  <line x1="360" y1="390" x2="638" y2="385" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Center label -->
+  <rect x="430" y="230" width="140" height="30" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="250" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">IOC &#8594; Detection</text>
+
+  <!-- Bottom summary -->
+  <rect x="40" y="435" width="920" height="55" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="500" y="457" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Evasion Strategy: Minimize detectable indicators at each stage</text>
+  <text x="500" y="477" text-anchor="middle" fill="#c9d1d9" font-size="11">RW&#8594;RX allocation | Header wiping | Import hash obfuscation | Sleep masking | Indirect syscalls</text>
+
+  <!-- Additional context -->
+  <rect x="40" y="500" width="440" height="45" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="260" y="518" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">High-Fidelity IOC</text>
+  <text x="260" y="534" text-anchor="middle" fill="#c9d1d9" font-size="10">Unbacked executable + PE headers = near-certain reflective load</text>
+
+  <rect x="520" y="500" width="440" height="45" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="740" y="518" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Recommended Stack</text>
+  <text x="740" y="534" text-anchor="middle" fill="#c9d1d9" font-size="10">pe-sieve + ETW TI + BeaconEye + YARA process scanning</text>
+
+  <!-- CRTLP Badge -->
+  <rect x="890" y="555" width="95" height="22" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="937" y="570" text-anchor="middle" fill="#58a6ff" font-size="9">CRTLP Module 09</text>
 </svg>

@@ -2,92 +2,145 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
     <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arDown" markerWidth="7" markerHeight="10" refX="3.5" refY="9" orient="auto"><polygon points="0 0,3.5 10,7 0" fill="#f0883e"/></marker>
   </defs>
   <rect width="1000" height="580" fill="url(#bg)"/>
-  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">sRDI Python Converter Pipeline</text>
 
-  <!-- Input -->
-  <rect x="30" y="60" width="150" height="70" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="105" y="85" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">payload.dll</text>
-  <text x="105" y="105" text-anchor="middle" fill="#8b949e" font-size="8">Standard PE DLL</text>
-  <text x="105" y="118" text-anchor="middle" fill="#8b949e" font-size="8">No special exports</text>
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">Python sRDI Converter Pipeline</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">ConvertToShellcode.py -- DLL to Position-Independent Shellcode</text>
 
-  <line x1="180" y1="95" x2="210" y2="95" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <!-- Input parameters (top) -->
+  <text x="500" y="85" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Input Parameters</text>
 
-  <!-- Stage 1: Parse -->
-  <rect x="215" y="50" width="170" height="90" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
-  <text x="300" y="75" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">1. Parse PE</text>
-  <text x="300" y="93" text-anchor="middle" fill="#c9d1d9" font-size="8" font-family="Consolas">pefile.PE(dll_path)</text>
-  <text x="300" y="108" text-anchor="middle" fill="#8b949e" font-size="8">Extract architecture,</text>
-  <text x="300" y="120" text-anchor="middle" fill="#8b949e" font-size="8">exports, sections</text>
+  <rect x="60" y="97" width="200" height="55" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="160" y="117" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">DLL Path</text>
+  <text x="160" y="137" text-anchor="middle" fill="#c9d1d9" font-size="10">payload.dll (any PE DLL)</text>
+  <text x="160" y="148" text-anchor="middle" fill="#8b949e" font-size="8">Required</text>
 
-  <line x1="385" y1="95" x2="415" y2="95" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="290" y="97" width="200" height="55" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="390" y="117" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Function Name</text>
+  <text x="390" y="137" text-anchor="middle" fill="#c9d1d9" font-size="10">Optional exported function</text>
+  <text x="390" y="148" text-anchor="middle" fill="#8b949e" font-size="8">Optional (hashed at convert time)</text>
 
-  <!-- Stage 2: Generate Hash -->
-  <rect x="420" y="50" width="170" height="90" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
-  <text x="505" y="75" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">2. Hash Export</text>
-  <text x="505" y="93" text-anchor="middle" fill="#c9d1d9" font-size="8" font-family="Consolas">HashFunctionName()</text>
-  <text x="505" y="108" text-anchor="middle" fill="#8b949e" font-size="8">ROR13 hash of target</text>
-  <text x="505" y="120" text-anchor="middle" fill="#8b949e" font-size="8">export function name</text>
+  <rect x="520" y="97" width="200" height="55" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="620" y="117" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">User Data</text>
+  <text x="620" y="137" text-anchor="middle" fill="#c9d1d9" font-size="10">Custom args to function</text>
+  <text x="620" y="148" text-anchor="middle" fill="#8b949e" font-size="8">Optional (appended to config)</text>
 
-  <line x1="590" y1="95" x2="620" y2="95" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="750" y="97" width="200" height="55" rx="6" fill="#161b22" stroke="#c9d1d9" stroke-width="1.5"/>
+  <text x="850" y="117" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">Flags</text>
+  <text x="850" y="137" text-anchor="middle" fill="#c9d1d9" font-size="10">CLEAR_HEADER, etc.</text>
+  <text x="850" y="148" text-anchor="middle" fill="#8b949e" font-size="8">Optional (default: 0)</text>
 
-  <!-- Stage 3: Build Stub -->
-  <rect x="625" y="50" width="170" height="90" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
-  <text x="710" y="75" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">3. Build Stub</text>
-  <text x="710" y="93" text-anchor="middle" fill="#c9d1d9" font-size="8">Select x86/x64 bootstrap</text>
-  <text x="710" y="108" text-anchor="middle" fill="#8b949e" font-size="8">Embed: function hash,</text>
-  <text x="710" y="120" text-anchor="middle" fill="#8b949e" font-size="8">user data offset, flags</text>
+  <!-- Arrows down to pipeline -->
+  <line x1="160" y1="152" x2="160" y2="178" stroke="#f0883e" stroke-width="1.5" marker-end="url(#arDown)"/>
+  <line x1="390" y1="152" x2="390" y2="178" stroke="#f0883e" stroke-width="1.5" marker-end="url(#arDown)"/>
+  <line x1="620" y1="152" x2="620" y2="178" stroke="#f0883e" stroke-width="1.5" marker-end="url(#arDown)"/>
+  <line x1="850" y1="152" x2="850" y2="178" stroke="#f0883e" stroke-width="1.5" marker-end="url(#arDown)"/>
 
-  <line x1="795" y1="95" x2="825" y2="95" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <!-- Pipeline stages (horizontal flow) -->
+  <!-- Stage 1: Read DLL -->
+  <rect x="40" y="183" width="160" height="90" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <circle cx="62" cy="203" r="12" fill="#58a6ff" opacity="0.2"/>
+  <text x="62" y="208" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">1</text>
+  <text x="120" y="208" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Read DLL</text>
+  <line x1="55" y1="218" x2="185" y2="218" stroke="#30363d" stroke-width="1"/>
+  <text x="55" y="236" fill="#c9d1d9" font-size="9">open(dll_path, 'rb')</text>
+  <text x="55" y="250" fill="#c9d1d9" font-size="9">dll_bytes = f.read()</text>
+  <text x="55" y="264" fill="#8b949e" font-size="8">Raw PE bytes loaded</text>
 
-  <!-- Stage 4: XOR -->
-  <rect x="830" y="50" width="150" height="90" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
-  <text x="905" y="75" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">4. Encrypt</text>
-  <text x="905" y="93" text-anchor="middle" fill="#c9d1d9" font-size="8">XOR with random key</text>
-  <text x="905" y="108" text-anchor="middle" fill="#8b949e" font-size="8">Key embedded in</text>
-  <text x="905" y="120" text-anchor="middle" fill="#8b949e" font-size="8">bootstrap header</text>
+  <!-- Arrow -->
+  <line x1="200" y1="228" x2="222" y2="228" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
 
-  <!-- Arrow down -->
-  <line x1="905" y1="140" x2="905" y2="170" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <!-- Stage 2: Hash Function -->
+  <rect x="227" y="183" width="160" height="90" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <circle cx="249" cy="203" r="12" fill="#f0883e" opacity="0.2"/>
+  <text x="249" y="208" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">2</text>
+  <text x="315" y="208" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Hash Function</text>
+  <line x1="242" y1="218" x2="372" y2="218" stroke="#30363d" stroke-width="1"/>
+  <text x="242" y="236" fill="#c9d1d9" font-size="9">if function_name:</text>
+  <text x="250" y="250" fill="#c9d1d9" font-size="9">hash = HashFunctionName()</text>
+  <text x="242" y="264" fill="#8b949e" font-size="8">ROR13 hash of export name</text>
 
-  <!-- Assembly Layout -->
-  <rect x="30" y="170" width="940" height="180" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="500" y="195" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">5. Assemble Final Shellcode</text>
+  <!-- Arrow -->
+  <line x1="387" y1="228" x2="409" y2="228" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
 
-  <rect x="50" y="210" width="180" height="55" rx="4" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="1.5"/>
-  <text x="140" y="230" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">Bootstrap Stub</text>
-  <text x="140" y="248" text-anchor="middle" fill="#8b949e" font-size="8">~64 bytes, finds base,</text>
-  <text x="140" y="260" text-anchor="middle" fill="#8b949e" font-size="8">calls reflective loader</text>
+  <!-- Stage 3: Generate Bootstrap -->
+  <rect x="414" y="183" width="170" height="90" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <circle cx="436" cy="203" r="12" fill="#f0883e" opacity="0.2"/>
+  <text x="436" y="208" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">3</text>
+  <text x="507" y="208" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Gen Bootstrap</text>
+  <line x1="429" y1="218" x2="569" y2="218" stroke="#30363d" stroke-width="1"/>
+  <text x="429" y="236" fill="#c9d1d9" font-size="9">Position-independent stub</text>
+  <text x="429" y="250" fill="#c9d1d9" font-size="9">call $+0; pop reg</text>
+  <text x="429" y="264" fill="#8b949e" font-size="8">~50 bytes x86/x64 asm</text>
 
-  <rect x="240" y="210" width="280" height="55" rx="4" fill="#f0883e" fill-opacity="0.15" stroke="#f0883e" stroke-width="1.5"/>
-  <text x="380" y="230" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">Reflective Loader (~1.2 KB)</text>
-  <text x="380" y="248" text-anchor="middle" fill="#8b949e" font-size="8">PEB walk, VirtualAlloc, map sections,</text>
-  <text x="380" y="260" text-anchor="middle" fill="#8b949e" font-size="8">fix relocations, resolve IAT</text>
+  <!-- Arrow -->
+  <line x1="584" y1="228" x2="606" y2="228" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
 
-  <rect x="530" y="210" width="260" height="55" rx="4" fill="#58a6ff" fill-opacity="0.15" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="660" y="230" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="bold">Encrypted DLL Bytes</text>
-  <text x="660" y="248" text-anchor="middle" fill="#8b949e" font-size="8">Full PE, XOR encrypted</text>
-  <text x="660" y="260" text-anchor="middle" fill="#8b949e" font-size="8">Decrypted at runtime</text>
+  <!-- Stage 4: Prepend Loader -->
+  <rect x="611" y="183" width="170" height="90" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <circle cx="633" cy="203" r="12" fill="#58a6ff" opacity="0.2"/>
+  <text x="633" y="208" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">4</text>
+  <text x="704" y="208" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Prepend Loader</text>
+  <line x1="626" y1="218" x2="766" y2="218" stroke="#30363d" stroke-width="1"/>
+  <text x="626" y="236" fill="#c9d1d9" font-size="9">Compiled reflective loader</text>
+  <text x="626" y="250" fill="#c9d1d9" font-size="9">rdi_shellcode_[32|64]</text>
+  <text x="626" y="264" fill="#8b949e" font-size="8">~4KB position-indep. loader</text>
 
-  <rect x="800" y="210" width="160" height="55" rx="4" fill="#8b949e" fill-opacity="0.15" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="880" y="230" text-anchor="middle" fill="#c9d1d9" font-size="9" font-weight="bold">User Data</text>
-  <text x="880" y="248" text-anchor="middle" fill="#8b949e" font-size="8">Args passed to</text>
-  <text x="880" y="260" text-anchor="middle" fill="#8b949e" font-size="8">target export</text>
+  <!-- Arrow -->
+  <line x1="781" y1="228" x2="803" y2="228" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
 
-  <text x="500" y="290" text-anchor="middle" fill="#c9d1d9" font-size="9">Offset 0x00                                                              Offset N (variable size)</text>
-  <text x="500" y="310" text-anchor="middle" fill="#8b949e" font-size="9">Total size = stub + loader + sizeof(DLL) + sizeof(user_data)</text>
-  <text x="500" y="330" text-anchor="middle" fill="#7ee787" font-size="9">Execute from offset 0 — bootstrap handles everything</text>
+  <!-- Stage 5: Pack & Output -->
+  <rect x="808" y="183" width="170" height="90" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <circle cx="830" cy="203" r="12" fill="#3fb950" opacity="0.2"/>
+  <text x="830" y="208" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">5</text>
+  <text x="901" y="208" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Pack Output</text>
+  <line x1="823" y1="218" x2="963" y2="218" stroke="#30363d" stroke-width="1"/>
+  <text x="823" y="236" fill="#c9d1d9" font-size="9">Append DLL + config data</text>
+  <text x="823" y="250" fill="#c9d1d9" font-size="9">Write to .bin file</text>
+  <text x="823" y="264" fill="#8b949e" font-size="8">Complete shellcode blob</text>
 
-  <!-- Python usage -->
-  <rect x="30" y="370" width="940" height="170" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
-  <text x="500" y="395" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Python Usage</text>
-  <text x="50" y="420" fill="#c9d1d9" font-size="10" font-family="Consolas">from ShellcodeRDI import *</text>
-  <text x="50" y="440" fill="#c9d1d9" font-size="10" font-family="Consolas">dll = open("payload.dll", "rb").read()</text>
-  <text x="50" y="465" fill="#3fb950" font-size="10" font-family="Consolas">shellcode = ConvertToShellcode(dll,</text>
-  <text x="50" y="485" fill="#3fb950" font-size="10" font-family="Consolas">    HashFunctionName("RunPayload"),  # target export</text>
-  <text x="50" y="505" fill="#3fb950" font-size="10" font-family="Consolas">    userData=b"arg1",               # passed to export</text>
-  <text x="50" y="525" fill="#3fb950" font-size="10" font-family="Consolas">    flags=0x1)                       # clear headers flag</text>
+  <!-- Output structure breakdown -->
+  <text x="500" y="310" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Output Structure (byte layout)</text>
 
-  <text x="500" y="560" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — sRDI Converter Pipeline</text>
+  <!-- Memory bar -->
+  <rect x="40" y="325" width="100" height="50" rx="4" fill="#f0883e" opacity="0.2" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="90" y="345" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Bootstrap</text>
+  <text x="90" y="360" text-anchor="middle" fill="#f0883e" font-size="8">~50 B</text>
+
+  <rect x="140" y="325" width="250" height="50" rx="4" fill="#58a6ff" opacity="0.15" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="265" y="345" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Reflective Loader (PIC)</text>
+  <text x="265" y="360" text-anchor="middle" fill="#58a6ff" font-size="8">~4 KB compiled C</text>
+
+  <rect x="390" y="325" width="400" height="50" rx="4" fill="#c9d1d9" opacity="0.1" stroke="#c9d1d9" stroke-width="1.5"/>
+  <text x="590" y="345" text-anchor="middle" fill="#c9d1d9" font-size="10" font-weight="bold">Original DLL Bytes (Complete PE)</text>
+  <text x="590" y="360" text-anchor="middle" fill="#c9d1d9" font-size="8">Variable size (full DLL)</text>
+
+  <rect x="790" y="325" width="170" height="50" rx="4" fill="#3fb950" opacity="0.15" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="875" y="345" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Config Data</text>
+  <text x="875" y="360" text-anchor="middle" fill="#3fb950" font-size="8">Hash + UserData + Flags</text>
+
+  <!-- Offset markers -->
+  <text x="40" y="395" fill="#8b949e" font-size="9">0x00</text>
+  <text x="140" y="395" fill="#8b949e" font-size="9">~0x32</text>
+  <text x="390" y="395" fill="#8b949e" font-size="9">~0x1032</text>
+  <text x="790" y="395" fill="#8b949e" font-size="9">DLL_end</text>
+
+  <!-- Python code snippet -->
+  <rect x="40" y="415" width="920" height="120" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
+  <text x="60" y="438" fill="#8b949e" font-size="11" font-weight="bold"># ConvertToShellcode.py (simplified)</text>
+  <text x="60" y="458" fill="#58a6ff" font-size="11">from</text><text x="96" y="458" fill="#c9d1d9" font-size="11"> ShellcodeRDI </text><text x="210" y="458" fill="#58a6ff" font-size="11">import</text><text x="260" y="458" fill="#c9d1d9" font-size="11"> ShellcodeRDI, HashFunctionName</text>
+  <text x="60" y="478" fill="#c9d1d9" font-size="11">dll_bytes = </text><text x="165" y="478" fill="#3fb950" font-size="11">open</text><text x="200" y="478" fill="#c9d1d9" font-size="11">(dll_path, </text><text x="275" y="478" fill="#f0883e" font-size="11">'rb'</text><text x="300" y="478" fill="#c9d1d9" font-size="11">).read()</text>
+  <text x="60" y="498" fill="#c9d1d9" font-size="11">shellcode = ShellcodeRDI(dll_bytes, function_hash, user_data, flags)</text>
+  <text x="60" y="518" fill="#3fb950" font-size="11">open</text><text x="95" y="518" fill="#c9d1d9" font-size="11">(output_path, </text><text x="195" y="518" fill="#f0883e" font-size="11">'wb'</text><text x="220" y="518" fill="#c9d1d9" font-size="11">).write(</text><text x="282" y="518" fill="#3fb950" font-size="11">bytes</text><text x="315" y="518" fill="#c9d1d9" font-size="11">(shellcode))</text>
+
+  <!-- Usage example -->
+  <rect x="560" y="415" width="390" height="30" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="575" y="435" fill="#f0883e" font-size="10">$ python ConvertToShellcode.py payload.dll -f RunPayload</text>
+
+  <!-- CRTLP Badge -->
+  <rect x="890" y="550" width="95" height="22" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="937" y="565" text-anchor="middle" fill="#58a6ff" font-size="9">CRTLP Module 09</text>
 </svg>

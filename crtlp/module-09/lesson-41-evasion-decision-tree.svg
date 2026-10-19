@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="18" font-weight="bold">Evasion Decision Tree — BOF Pre-Execution Checklist</text>
+  <text x="500" y="48" text-anchor="middle" fill="#8b949e" font-size="11">Determine which evasion techniques to deploy before payload execution</text>
+
+  <!-- START node -->
+  <rect x="410" y="58" width="180" height="32" rx="16" fill="#58a6ff" stroke="#58a6ff" stroke-width="2"/>
+  <text x="500" y="79" text-anchor="middle" fill="#0d1117" font-size="12" font-weight="bold">START: Pre-Execution</text>
+
+  <line x1="500" y1="90" x2="500" y2="115" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Diamond 1: Need .NET? -->
+  <polygon points="500,118 600,153 500,188 400,153" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="150" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Need .NET</text>
+  <text x="500" y="163" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">assembly?</text>
+
+  <!-- YES from .NET -->
+  <line x1="600" y1="153" x2="680" y2="153" stroke="#3fb950" stroke-width="2" marker-end="url(#arGreen)"/>
+  <text x="640" y="145" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">YES</text>
+
+  <!-- AMSI Patch action -->
+  <rect x="685" y="135" width="160" height="36" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="765" y="153" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Patch AMSI</text>
+  <text x="765" y="166" text-anchor="middle" fill="#c9d1d9" font-size="8">AmsiScanBuffer → ret</text>
+
+  <line x1="765" y1="171" x2="765" y2="200" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Rejoin: after AMSI -->
+  <line x1="765" y1="200" x2="500" y2="225" stroke="#f0883e" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- NO from .NET -->
+  <line x1="500" y1="188" x2="500" y2="220" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="515" y="208" fill="#f85149" font-size="9" font-weight="bold">NO</text>
+
+  <!-- Diamond 2: ETW concern? -->
+  <polygon points="500,223 600,258 500,293 400,258" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="255" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">ETW telemetry</text>
+  <text x="500" y="268" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">a concern?</text>
+
+  <!-- YES from ETW -->
+  <line x1="600" y1="258" x2="680" y2="258" stroke="#3fb950" stroke-width="2" marker-end="url(#arGreen)"/>
+  <text x="640" y="250" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">YES</text>
+
+  <!-- ETW Patch action -->
+  <rect x="685" y="240" width="160" height="36" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="765" y="258" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Patch ETW</text>
+  <text x="765" y="271" text-anchor="middle" fill="#c9d1d9" font-size="8">EtwEventWrite → C3</text>
+
+  <line x1="765" y1="276" x2="765" y2="305" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="765" y1="305" x2="500" y2="330" stroke="#f0883e" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- NO from ETW -->
+  <line x1="500" y1="293" x2="500" y2="325" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="515" y="313" fill="#f85149" font-size="9" font-weight="bold">NO</text>
+
+  <!-- Diamond 3: EDR present? -->
+  <polygon points="500,328 600,363 500,398 400,363" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="360" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">EDR hooks</text>
+  <text x="500" y="373" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">detected?</text>
+
+  <!-- YES from EDR -->
+  <line x1="600" y1="363" x2="650" y2="363" stroke="#3fb950" stroke-width="2" marker-end="url(#arGreen)"/>
+  <text x="625" y="355" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">YES</text>
+
+  <!-- Sub-diamond: Unhook or Syscall? -->
+  <polygon points="750,340 830,363 750,386 670,363" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="750" y="360" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="bold">Stealth</text>
+  <text x="750" y="372" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="bold">priority?</text>
+
+  <!-- HIGH stealth -> Direct syscalls -->
+  <line x1="830" y1="363" x2="870" y2="363" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+  <text x="850" y="355" text-anchor="middle" fill="#3fb950" font-size="8">HIGH</text>
+
+  <rect x="875" y="348" width="110" height="30" rx="5" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="930" y="362" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">Direct Syscalls</text>
+  <text x="930" y="374" text-anchor="middle" fill="#8b949e" font-size="7">SysWhispers/HellsGate</text>
+
+  <!-- LOW stealth -> Unhook -->
+  <line x1="750" y1="386" x2="750" y2="408" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="765" y="400" fill="#f0883e" font-size="8">MED</text>
+
+  <rect x="685" y="410" width="130" height="30" rx="5" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="750" y="424" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">Unhook ntdll</text>
+  <text x="750" y="436" text-anchor="middle" fill="#8b949e" font-size="7">KnownDlls / Disk read</text>
+
+  <!-- Both rejoin -->
+  <line x1="930" y1="378" x2="930" y2="455" stroke="#f0883e" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="750" y1="440" x2="750" y2="455" stroke="#f0883e" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="750" y1="455" x2="500" y2="465" stroke="#f0883e" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="930" y1="455" x2="500" y2="465" stroke="#f0883e" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- NO from EDR -->
+  <line x1="500" y1="398" x2="500" y2="460" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="515" y="432" fill="#f85149" font-size="9" font-weight="bold">NO</text>
+
+  <!-- Final: Execute Payload -->
+  <rect x="380" y="465" width="240" height="42" rx="8" fill="#3fb950" stroke="#3fb950" stroke-width="2"/>
+  <text x="500" y="484" text-anchor="middle" fill="#0d1117" font-size="13" font-weight="bold">EXECUTE PAYLOAD</text>
+  <text x="500" y="500" text-anchor="middle" fill="#0d1117" font-size="9">inject / run shellcode / spawn</text>
+
+  <!-- Left sidebar: technique summary -->
+  <rect x="25" y="115" width="170" height="175" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="110" y="137" text-anchor="middle" fill="#c9d1d9" font-size="10" font-weight="bold">Technique Map</text>
+  <line x1="40" y1="144" x2="180" y2="144" stroke="#8b949e" stroke-width="0.5"/>
+
+  <circle cx="52" cy="162" r="5" fill="#3fb950"/>
+  <text x="65" y="166" fill="#c9d1d9" font-size="9">AMSI Patch</text>
+
+  <circle cx="52" cy="182" r="5" fill="#3fb950"/>
+  <text x="65" y="186" fill="#c9d1d9" font-size="9">ETW Patch</text>
+
+  <circle cx="52" cy="202" r="5" fill="#58a6ff"/>
+  <text x="65" y="206" fill="#c9d1d9" font-size="9">Unhook (KnownDlls)</text>
+
+  <circle cx="52" cy="222" r="5" fill="#58a6ff"/>
+  <text x="65" y="226" fill="#c9d1d9" font-size="9">Unhook (Disk)</text>
+
+  <circle cx="52" cy="242" r="5" fill="#f0883e"/>
+  <text x="65" y="246" fill="#c9d1d9" font-size="9">Direct Syscalls</text>
+
+  <circle cx="52" cy="262" r="5" fill="#f85149"/>
+  <text x="65" y="266" fill="#c9d1d9" font-size="9">HW Breakpoint AMSI</text>
+
+  <circle cx="52" cy="282" r="5" fill="#f85149"/>
+  <text x="65" y="286" fill="#c9d1d9" font-size="9">Indirect Syscalls</text>
+
+  <!-- Left sidebar: checklist -->
+  <rect x="25" y="310" width="170" height="130" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="110" y="332" text-anchor="middle" fill="#c9d1d9" font-size="10" font-weight="bold">Pre-Flight Check</text>
+  <line x1="40" y1="339" x2="180" y2="339" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="42" y="357" fill="#3fb950" font-size="9">[ ] AMSI patched?</text>
+  <text x="42" y="374" fill="#3fb950" font-size="9">[ ] ETW blinded?</text>
+  <text x="42" y="391" fill="#3fb950" font-size="9">[ ] Hooks removed?</text>
+  <text x="42" y="408" fill="#3fb950" font-size="9">[ ] Sleep obfuscation?</text>
+  <text x="42" y="425" fill="#3fb950" font-size="9">[ ] Payload encrypted?</text>
+
+  <!-- Legend for shapes -->
+  <rect x="25" y="455" width="170" height="60" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="110" y="475" text-anchor="middle" fill="#c9d1d9" font-size="10" font-weight="bold">Legend</text>
+  <polygon points="65,490 75,497 65,504 55,497" fill="#f0883e" stroke="#f0883e" stroke-width="1"/>
+  <text x="85" y="501" fill="#c9d1d9" font-size="8">Decision</text>
+  <rect x="120" y="490" width="14" height="14" rx="3" fill="#3fb950" stroke="#3fb950" stroke-width="1"/>
+  <text x="140" y="501" fill="#c9d1d9" font-size="8">Action</text>
+
+  <!-- Bottom -->
+  <text x="500" y="530" text-anchor="middle" fill="#8b949e" font-size="9">Follow the tree top-to-bottom. Apply each evasion technique whose condition is met.</text>
+  <text x="500" y="546" text-anchor="middle" fill="#8b949e" font-size="9">Order matters: patch AMSI/ETW first, then handle hooks, then execute.</text>
+  <text x="500" y="568" text-anchor="middle" fill="#8b949e" font-size="10">Module 09 — Lesson 41: Evasion Decision Tree</text>
+</svg>

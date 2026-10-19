@@ -1,51 +1,161 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
   </defs>
   <rect width="1000" height="580" fill="url(#bg)"/>
-  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">sRDI vs Traditional Reflective DLL Injection</text>
 
-  <!-- Headers -->
-  <text x="280" y="60" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Traditional Reflective DLL</text>
-  <text x="720" y="60" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">sRDI (Shellcode RDI)</text>
+  <!-- Title -->
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">Shellcode Conversion: sRDI vs Reflective DLL vs Donut vs pe_to_shellcode</text>
+  <text x="500" y="52" text-anchor="middle" fill="#8b949e" font-size="12">Feature comparison of PE-to-shellcode conversion frameworks</text>
 
-  <!-- Comparison rows -->
-  <rect x="30" y="75" width="940" height="40" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="0.5"/>
-  <text x="500" y="100" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Loader Location</text>
-  <rect x="35" y="120" width="460" height="35" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
-  <text x="265" y="142" text-anchor="middle" fill="#f85149" font-size="10">Embedded INSIDE DLL as exported function</text>
-  <rect x="505" y="120" width="460" height="35" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
-  <text x="735" y="142" text-anchor="middle" fill="#3fb950" font-size="10">External — prepended as shellcode stub</text>
+  <!-- Table -->
+  <!-- Header row -->
+  <rect x="20" y="68" width="150" height="40" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="95" y="93" text-anchor="middle" fill="#8b949e" font-size="12" font-weight="bold">Feature</text>
 
-  <rect x="30" y="165" width="940" height="40" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="0.5"/>
-  <text x="500" y="190" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">DLL Modification Required</text>
-  <rect x="35" y="210" width="460" height="35" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
-  <text x="265" y="232" text-anchor="middle" fill="#f85149" font-size="10">YES — must compile with ReflectiveLoader export</text>
-  <rect x="505" y="210" width="460" height="35" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
-  <text x="735" y="232" text-anchor="middle" fill="#3fb950" font-size="10">NO — any standard DLL works unmodified</text>
+  <rect x="170" y="68" width="195" height="40" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="267" y="93" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">sRDI</text>
 
-  <rect x="30" y="255" width="940" height="40" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="0.5"/>
-  <text x="500" y="280" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Output Format</text>
-  <rect x="35" y="300" width="460" height="35" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
-  <text x="265" y="322" text-anchor="middle" fill="#f85149" font-size="10">DLL file with special export — still a PE</text>
-  <rect x="505" y="300" width="460" height="35" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
-  <text x="735" y="322" text-anchor="middle" fill="#3fb950" font-size="10">Raw shellcode blob — fully position-independent</text>
+  <rect x="365" y="68" width="195" height="40" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="462" y="93" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Reflective DLL</text>
 
-  <rect x="30" y="345" width="940" height="40" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="0.5"/>
-  <text x="500" y="370" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Injection Flexibility</text>
-  <rect x="35" y="390" width="460" height="35" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
-  <text x="265" y="412" text-anchor="middle" fill="#f85149" font-size="10">Must find loader offset, call ReflectiveLoader()</text>
-  <rect x="505" y="390" width="460" height="35" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
-  <text x="735" y="412" text-anchor="middle" fill="#3fb950" font-size="10">Execute from byte 0 — works with any injection technique</text>
+  <rect x="560" y="68" width="195" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="657" y="93" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Donut</text>
 
-  <rect x="30" y="435" width="940" height="40" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="0.5"/>
-  <text x="500" y="460" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Detection Surface</text>
-  <rect x="35" y="480" width="460" height="35" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
-  <text x="265" y="502" text-anchor="middle" fill="#f85149" font-size="10">ReflectiveLoader export signatured, PE headers visible</text>
-  <rect x="505" y="480" width="460" height="35" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
-  <text x="735" y="502" text-anchor="middle" fill="#3fb950" font-size="10">No export name, XOR encrypted, no PE magic visible</text>
+  <rect x="755" y="68" width="225" height="40" rx="4" fill="#161b22" stroke="#c9d1d9" stroke-width="1.5"/>
+  <text x="867" y="93" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">pe_to_shellcode</text>
 
-  <!-- Summary -->
-  <rect x="130" y="530" width="740" height="35" rx="6" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="1.5"/>
-  <text x="500" y="553" text-anchor="middle" fill="#3fb950" font-size="11">sRDI decouples loading from payload — convert ANY DLL to injectable shellcode post-compilation</text>
+  <!-- Row 1: Input -->
+  <rect x="20" y="112" width="150" height="52" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="95" y="142" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Input</text>
+
+  <rect x="170" y="112" width="195" height="52" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="267" y="135" text-anchor="middle" fill="#3fb950" font-size="10">Any DLL (no modification)</text>
+  <text x="267" y="152" text-anchor="middle" fill="#8b949e" font-size="9">x86/x64 PE DLL</text>
+
+  <rect x="365" y="112" width="195" height="52" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="462" y="135" text-anchor="middle" fill="#f85149" font-size="10">DLL with ReflectiveLoader</text>
+  <text x="462" y="152" text-anchor="middle" fill="#8b949e" font-size="9">Requires exported function</text>
+
+  <rect x="560" y="112" width="195" height="52" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="657" y="135" text-anchor="middle" fill="#3fb950" font-size="10">.NET, VBS, JS, PE, DLL</text>
+  <text x="657" y="152" text-anchor="middle" fill="#8b949e" font-size="9">Widest input support</text>
+
+  <rect x="755" y="112" width="225" height="52" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="867" y="135" text-anchor="middle" fill="#3fb950" font-size="10">Any PE (EXE/DLL)</text>
+  <text x="867" y="152" text-anchor="middle" fill="#8b949e" font-size="9">Adds new section</text>
+
+  <!-- Row 2: Output -->
+  <rect x="20" y="168" width="150" height="45" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="95" y="196" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Output</text>
+
+  <rect x="170" y="168" width="195" height="45" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="267" y="195" text-anchor="middle" fill="#c9d1d9" font-size="10">Raw shellcode blob</text>
+
+  <rect x="365" y="168" width="195" height="45" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="462" y="195" text-anchor="middle" fill="#c9d1d9" font-size="10">Modified DLL (still PE)</text>
+
+  <rect x="560" y="168" width="195" height="45" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="657" y="195" text-anchor="middle" fill="#c9d1d9" font-size="10">Raw shellcode blob</text>
+
+  <rect x="755" y="168" width="225" height="45" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="867" y="195" text-anchor="middle" fill="#c9d1d9" font-size="10">Modified PE (shellcode-like)</text>
+
+  <!-- Row 3: Position Independence -->
+  <rect x="20" y="217" width="150" height="45" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="95" y="244" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Pos. Independent</text>
+
+  <rect x="170" y="217" width="195" height="45" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="267" y="244" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Yes (fully PIC)</text>
+
+  <rect x="365" y="217" width="195" height="45" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="462" y="244" text-anchor="middle" fill="#f85149" font-size="11">No (PE structure)</text>
+
+  <rect x="560" y="217" width="195" height="45" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="657" y="244" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Yes (fully PIC)</text>
+
+  <rect x="755" y="217" width="225" height="45" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="867" y="244" text-anchor="middle" fill="#f85149" font-size="11">Partial</text>
+
+  <!-- Row 4: Loader Location -->
+  <rect x="20" y="266" width="150" height="52" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="95" y="296" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Loader Location</text>
+
+  <rect x="170" y="266" width="195" height="52" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="267" y="289" text-anchor="middle" fill="#3fb950" font-size="10">Prepended externally</text>
+  <text x="267" y="306" text-anchor="middle" fill="#8b949e" font-size="9">No DLL modification needed</text>
+
+  <rect x="365" y="266" width="195" height="52" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="462" y="289" text-anchor="middle" fill="#f85149" font-size="10">Embedded in DLL</text>
+  <text x="462" y="306" text-anchor="middle" fill="#8b949e" font-size="9">Must compile loader into DLL</text>
+
+  <rect x="560" y="266" width="195" height="52" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="657" y="289" text-anchor="middle" fill="#3fb950" font-size="10">Prepended externally</text>
+  <text x="657" y="306" text-anchor="middle" fill="#8b949e" font-size="9">CLR host for .NET payloads</text>
+
+  <rect x="755" y="266" width="225" height="52" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="867" y="289" text-anchor="middle" fill="#c9d1d9" font-size="10">Appended to PE</text>
+  <text x="867" y="306" text-anchor="middle" fill="#8b949e" font-size="9">New .section added</text>
+
+  <!-- Row 5: Customizability -->
+  <rect x="20" y="322" width="150" height="45" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="95" y="349" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Customizability</text>
+
+  <rect x="170" y="322" width="195" height="45" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="267" y="349" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">High (open source C)</text>
+
+  <rect x="365" y="322" width="195" height="45" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="462" y="349" text-anchor="middle" fill="#3fb950" font-size="11">High (full control)</text>
+
+  <rect x="560" y="322" width="195" height="45" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="657" y="349" text-anchor="middle" fill="#c9d1d9" font-size="11">Medium (flags/options)</text>
+
+  <rect x="755" y="322" width="225" height="45" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="867" y="349" text-anchor="middle" fill="#f85149" font-size="11">Low (limited)</text>
+
+  <!-- Row 6: Size Overhead -->
+  <rect x="20" y="371" width="150" height="45" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="95" y="398" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Size Overhead</text>
+
+  <rect x="170" y="371" width="195" height="45" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="267" y="398" text-anchor="middle" fill="#3fb950" font-size="11">~4KB loader stub</text>
+
+  <rect x="365" y="371" width="195" height="45" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="462" y="398" text-anchor="middle" fill="#3fb950" font-size="11">~2KB (embedded)</text>
+
+  <rect x="560" y="371" width="195" height="45" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="657" y="398" text-anchor="middle" fill="#f85149" font-size="11">~30KB+ (CLR host)</text>
+
+  <rect x="755" y="371" width="225" height="45" rx="2" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="867" y="398" text-anchor="middle" fill="#3fb950" font-size="11">~1KB (minimal)</text>
+
+  <!-- Row 7: Detection Surface -->
+  <rect x="20" y="420" width="150" height="52" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="95" y="450" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Detection Surface</text>
+
+  <rect x="170" y="420" width="195" height="52" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="267" y="443" text-anchor="middle" fill="#3fb950" font-size="10">Low (customizable)</text>
+  <text x="267" y="460" text-anchor="middle" fill="#8b949e" font-size="9">No export, swappable loader</text>
+
+  <rect x="365" y="420" width="195" height="52" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="462" y="443" text-anchor="middle" fill="#f85149" font-size="10">High (well-signatured)</text>
+  <text x="462" y="460" text-anchor="middle" fill="#8b949e" font-size="9">ReflectiveLoader export name</text>
+
+  <rect x="560" y="420" width="195" height="52" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="657" y="443" text-anchor="middle" fill="#c9d1d9" font-size="10">Medium (known patterns)</text>
+  <text x="657" y="460" text-anchor="middle" fill="#8b949e" font-size="9">AMSI bypass, CLR artifacts</text>
+
+  <rect x="755" y="420" width="225" height="52" rx="2" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="867" y="443" text-anchor="middle" fill="#f85149" font-size="10">High (PE structure intact)</text>
+  <text x="867" y="460" text-anchor="middle" fill="#8b949e" font-size="9">Full PE headers visible</text>
+
+  <!-- Bottom recommendation -->
+  <rect x="60" y="490" width="880" height="50" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="510" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Recommendation: sRDI for custom native payloads | Donut for .NET/mixed | Reflective DLL for deep customization</text>
+  <text x="500" y="528" text-anchor="middle" fill="#8b949e" font-size="10">Each tool has trade-offs -- choose based on payload type, OPSEC requirements, and customization needs</text>
+
+  <!-- CRTLP Badge -->
+  <rect x="890" y="550" width="95" height="22" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="937" y="565" text-anchor="middle" fill="#58a6ff" font-size="9">CRTLP Module 09</text>
 </svg>

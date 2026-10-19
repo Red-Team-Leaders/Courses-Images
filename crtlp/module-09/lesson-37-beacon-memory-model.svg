@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Beacon Process Memory Layout with BOF Loaded</text>
+
+  <!-- Process boundary -->
+  <rect x="20" y="50" width="960" height="490" rx="10" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="500" y="75" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">beacon.exe Process Virtual Address Space</text>
+
+  <!-- Beacon image -->
+  <rect x="40" y="90" width="300" height="200" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="190" y="115" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Beacon Image (Mapped PE)</text>
+  <rect x="55" y="125" width="270" height="25" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="190" y="142" text-anchor="middle" fill="#3fb950" font-size="9">.text — Beacon code (RX)</text>
+  <rect x="55" y="155" width="270" height="25" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="190" y="172" text-anchor="middle" fill="#3fb950" font-size="9">.data — Config, keys (RW)</text>
+  <rect x="55" y="185" width="270" height="25" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="190" y="202" text-anchor="middle" fill="#3fb950" font-size="9">.rdata — Constants (R)</text>
+  <rect x="55" y="215" width="270" height="25" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="190" y="232" text-anchor="middle" fill="#3fb950" font-size="9">COFF Loader code (built-in)</text>
+  <rect x="55" y="245" width="270" height="30" rx="3" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="190" y="260" text-anchor="middle" fill="#f0883e" font-size="9">Beacon API Table (function pointers)</text>
+  <text x="190" y="275" text-anchor="middle" fill="#8b949e" font-size="7">BeaconPrintf, BeaconOutput, ...</text>
+
+  <!-- Heap -->
+  <rect x="40" y="300" width="300" height="80" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="190" y="325" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Process Heap</text>
+  <text x="190" y="345" text-anchor="middle" fill="#8b949e" font-size="9">Beacon data structures, task queue</text>
+  <text x="190" y="360" text-anchor="middle" fill="#8b949e" font-size="9">C2 communication buffers</text>
+  <text x="190" y="375" text-anchor="middle" fill="#8b949e" font-size="9">Downloaded file cache</text>
+
+  <!-- Stack -->
+  <rect x="40" y="390" width="300" height="60" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="190" y="415" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Thread Stack</text>
+  <text x="190" y="435" text-anchor="middle" fill="#8b949e" font-size="9">Beacon main thread + BOF execution stack frames</text>
+
+  <!-- BOF Allocation (highlighted) -->
+  <rect x="380" y="90" width="580" height="330" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2.5"/>
+  <text x="670" y="115" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">BOF Memory Allocation (VirtualAlloc)</text>
+  <text x="670" y="133" text-anchor="middle" fill="#8b949e" font-size="9">Private, unbacked memory — allocated on demand, freed after go() returns</text>
+
+  <rect x="400" y="145" width="250" height="55" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="525" y="168" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">.text section (RX after load)</text>
+  <text x="525" y="185" text-anchor="middle" fill="#8b949e" font-size="8">BOF machine code including go()</text>
+
+  <rect x="400" y="210" width="250" height="45" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="525" y="233" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">.data section (RW)</text>
+  <text x="525" y="248" text-anchor="middle" fill="#8b949e" font-size="8">BOF global/static variables</text>
+
+  <rect x="400" y="265" width="250" height="45" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="525" y="288" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">.rdata section (R)</text>
+  <text x="525" y="303" text-anchor="middle" fill="#8b949e" font-size="8">String literals, constants</text>
+
+  <rect x="400" y="320" width="250" height="45" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="525" y="343" text-anchor="middle" fill="#c9d1d9" font-size="10" font-weight="bold">Resolved Symbol Table</text>
+  <text x="525" y="358" text-anchor="middle" fill="#8b949e" font-size="8">Patched function addresses</text>
+
+  <!-- Argument buffer -->
+  <rect x="690" y="145" width="250" height="70" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="815" y="168" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Packed Arguments Buffer</text>
+  <text x="815" y="188" text-anchor="middle" fill="#8b949e" font-size="8">Binary packed by operator</text>
+  <text x="815" y="203" text-anchor="middle" fill="#8b949e" font-size="8">Passed to go(char* args, int len)</text>
+
+  <!-- Resolved API pointers -->
+  <rect x="690" y="225" width="250" height="55" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="815" y="248" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">DFR Resolved Addresses</text>
+  <text x="815" y="265" text-anchor="middle" fill="#8b949e" font-size="8">KERNEL32$VirtualAlloc = 0x7FF...</text>
+  <text x="815" y="278" text-anchor="middle" fill="#8b949e" font-size="8">NTDLL$NtCreateThread = 0x7FF...</text>
+
+  <!-- Output buffer -->
+  <rect x="690" y="290" width="250" height="55" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="815" y="313" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Output Buffer</text>
+  <text x="815" y="330" text-anchor="middle" fill="#8b949e" font-size="8">BeaconFormat accumulates here</text>
+  <text x="815" y="343" text-anchor="middle" fill="#8b949e" font-size="8">Sent to teamserver on completion</text>
+
+  <!-- Lifecycle note -->
+  <rect x="380" y="375" width="580" height="35" rx="4" fill="#f85149" fill-opacity="0.1" stroke="#f85149" stroke-width="1"/>
+  <text x="670" y="397" text-anchor="middle" fill="#f85149" font-size="9">All BOF memory freed via VirtualFree after go() returns — no persistent footprint</text>
+
+  <!-- DLLs -->
+  <rect x="40" y="460" width="920" height="60" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="500" y="483" text-anchor="middle" fill="#c9d1d9" font-size="10">Loaded DLLs: ntdll.dll | kernel32.dll | advapi32.dll | ws2_32.dll | winhttp.dll | ...</text>
+  <text x="500" y="503" text-anchor="middle" fill="#8b949e" font-size="8">BOF resolves functions from these via DFR — no new DLL loads needed for common APIs</text>
+
+  <text x="500" y="560" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — BOF Introduction: Beacon Memory Model</text>
+</svg>

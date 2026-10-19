@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arG" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Process Injection Decision Tree for BOFs</text>
+
+  <!-- Root -->
+  <rect x="350" y="50" width="300" height="40" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="500" y="75" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Need to execute shellcode?</text>
+
+  <!-- Branch: Self or Remote -->
+  <line x1="400" y1="90" x2="200" y2="130" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arG)"/>
+  <text x="280" y="108" fill="#3fb950" font-size="9">Self-inject</text>
+  <line x1="600" y1="90" x2="800" y2="130" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="720" y="108" fill="#f0883e" font-size="9">Remote process</text>
+
+  <!-- Self-inject options -->
+  <rect x="50" y="135" width="300" height="35" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="200" y="158" text-anchor="middle" fill="#3fb950" font-size="10">Self-inject (same process)</text>
+
+  <line x1="120" y1="170" x2="120" y2="200" stroke="#3fb950" stroke-width="1" marker-end="url(#arG)"/>
+  <line x1="280" y1="170" x2="280" y2="200" stroke="#3fb950" stroke-width="1" marker-end="url(#arG)"/>
+
+  <rect x="30" y="205" width="180" height="75" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="120" y="225" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">CreateThread</text>
+  <text x="120" y="245" text-anchor="middle" fill="#8b949e" font-size="7">VirtualAlloc in own process</text>
+  <text x="120" y="258" text-anchor="middle" fill="#8b949e" font-size="7">Simplest approach</text>
+  <text x="120" y="271" text-anchor="middle" fill="#7ee787" font-size="7">OPSEC: Good (no cross-process)</text>
+
+  <rect x="220" y="205" width="180" height="75" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="310" y="225" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">Fiber / Callback</text>
+  <text x="310" y="245" text-anchor="middle" fill="#8b949e" font-size="7">ConvertThreadToFiber +</text>
+  <text x="310" y="258" text-anchor="middle" fill="#8b949e" font-size="7">CreateFiber + SwitchToFiber</text>
+  <text x="310" y="271" text-anchor="middle" fill="#7ee787" font-size="7">OPSEC: Best (no new thread)</text>
+
+  <!-- Remote inject options -->
+  <rect x="650" y="135" width="300" height="35" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="800" y="158" text-anchor="middle" fill="#f0883e" font-size="10">Remote injection required</text>
+
+  <line x1="700" y1="170" x2="700" y2="195" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
+
+  <rect x="570" y="200" width="260" height="35" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="700" y="222" text-anchor="middle" fill="#f0883e" font-size="10">Alertable thread available?</text>
+
+  <line x1="620" y1="235" x2="570" y2="275" stroke="#3fb950" stroke-width="1" marker-end="url(#arG)"/>
+  <text x="575" y="258" fill="#3fb950" font-size="8">Yes</text>
+  <line x1="780" y1="235" x2="830" y2="275" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
+  <text x="820" y="258" fill="#f0883e" font-size="8">No</text>
+
+  <!-- APC injection -->
+  <rect x="430" y="280" width="200" height="75" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="530" y="300" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">QueueUserAPC</text>
+  <text x="530" y="318" text-anchor="middle" fill="#8b949e" font-size="7">No new thread created</text>
+  <text x="530" y="331" text-anchor="middle" fill="#8b949e" font-size="7">Uses existing alertable thread</text>
+  <text x="530" y="346" text-anchor="middle" fill="#7ee787" font-size="7">OPSEC: Moderate (no Sysmon 8)</text>
+
+  <!-- NtCreateThreadEx -->
+  <rect x="720" y="280" width="230" height="75" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="835" y="300" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">NtCreateThreadEx</text>
+  <text x="835" y="318" text-anchor="middle" fill="#8b949e" font-size="7">Creates thread in remote process</text>
+  <text x="835" y="331" text-anchor="middle" fill="#8b949e" font-size="7">Most reliable, works always</text>
+  <text x="835" y="346" text-anchor="middle" fill="#f85149" font-size="7">OPSEC: Poor (Sysmon 8 + thread)</text>
+
+  <!-- Advanced options at bottom -->
+  <rect x="20" y="380" width="960" height="170" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="500" y="405" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Advanced Techniques (Higher Evasion)</text>
+
+  <rect x="40" y="420" width="200" height="70" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="140" y="440" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">Early Bird APC</text>
+  <text x="140" y="458" text-anchor="middle" fill="#8b949e" font-size="7">CreateProcess(SUSPENDED)</text>
+  <text x="140" y="471" text-anchor="middle" fill="#8b949e" font-size="7">+ QueueUserAPC + ResumeThread</text>
+  <text x="140" y="484" text-anchor="middle" fill="#7ee787" font-size="7">Runs before AV/EDR hooks install</text>
+
+  <rect x="260" y="420" width="200" height="70" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="360" y="440" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">Module Stomping</text>
+  <text x="360" y="458" text-anchor="middle" fill="#8b949e" font-size="7">LoadLibrary legitimate DLL</text>
+  <text x="360" y="471" text-anchor="middle" fill="#8b949e" font-size="7">Overwrite .text with shellcode</text>
+  <text x="360" y="484" text-anchor="middle" fill="#7ee787" font-size="7">Backed memory — passes scans</text>
+
+  <rect x="480" y="420" width="230" height="70" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="595" y="440" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">Thread Pool Injection</text>
+  <text x="595" y="458" text-anchor="middle" fill="#8b949e" font-size="7">NtSetInformationWorkerFactory</text>
+  <text x="595" y="471" text-anchor="middle" fill="#8b949e" font-size="7">Hijack existing thread pool</text>
+  <text x="595" y="484" text-anchor="middle" fill="#7ee787" font-size="7">No new thread, no APC</text>
+
+  <rect x="730" y="420" width="230" height="70" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="845" y="440" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">Thread Hijacking</text>
+  <text x="845" y="458" text-anchor="middle" fill="#8b949e" font-size="7">SuspendThread + SetThreadContext</text>
+  <text x="845" y="471" text-anchor="middle" fill="#8b949e" font-size="7">Redirect RIP to shellcode</text>
+  <text x="845" y="484" text-anchor="middle" fill="#f85149" font-size="7">Risky: crash if thread state wrong</text>
+
+  <text x="500" y="525" text-anchor="middle" fill="#c9d1d9" font-size="9">Always prefer self-injection when possible. Remote injection only when a new process context is required.</text>
+  <text x="500" y="545" text-anchor="middle" fill="#8b949e" font-size="8">Each technique trades reliability for stealth — choose based on target environment's monitoring level</text>
+
+  <text x="500" y="575" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — Process Injection Decision Tree</text>
+</svg>

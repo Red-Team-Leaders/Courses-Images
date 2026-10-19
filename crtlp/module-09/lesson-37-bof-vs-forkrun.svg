@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">BOF vs Fork&amp;Run — Post-Exploitation Comparison</text>
+
+  <!-- Table header -->
+  <rect x="30" y="50" width="240" height="40" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="150" y="75" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Feature</text>
+  <rect x="280" y="50" width="330" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="445" y="75" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">BOF (Beacon Object File)</text>
+  <rect x="620" y="50" width="360" height="40" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="800" y="75" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Fork&amp;Run (Traditional)</text>
+
+  <!-- Row 1 -->
+  <rect x="30" y="98" width="240" height="45" rx="3" fill="#0d1117" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="150" y="125" text-anchor="middle" fill="#c9d1d9" font-size="10">Process Creation</text>
+  <rect x="280" y="98" width="330" height="45" rx="3" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="445" y="125" text-anchor="middle" fill="#3fb950" font-size="10">None — runs in Beacon thread</text>
+  <rect x="620" y="98" width="360" height="45" rx="3" fill="#f85149" fill-opacity="0.08" stroke="#f85149" stroke-width="0.5"/>
+  <text x="800" y="125" text-anchor="middle" fill="#f85149" font-size="10">Spawns sacrificial process (Sysmon 1)</text>
+
+  <!-- Row 2 -->
+  <rect x="30" y="148" width="240" height="45" rx="3" fill="#0d1117" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="150" y="175" text-anchor="middle" fill="#c9d1d9" font-size="10">Memory Footprint</text>
+  <rect x="280" y="148" width="330" height="45" rx="3" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="445" y="175" text-anchor="middle" fill="#3fb950" font-size="10">Small: 2-50 KB in Beacon heap</text>
+  <rect x="620" y="148" width="360" height="45" rx="3" fill="#f85149" fill-opacity="0.08" stroke="#f85149" stroke-width="0.5"/>
+  <text x="800" y="175" text-anchor="middle" fill="#f85149" font-size="10">Large: full process + injected payload</text>
+
+  <!-- Row 3 -->
+  <rect x="30" y="198" width="240" height="45" rx="3" fill="#0d1117" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="150" y="225" text-anchor="middle" fill="#c9d1d9" font-size="10">Execution Speed</text>
+  <rect x="280" y="198" width="330" height="45" rx="3" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="445" y="225" text-anchor="middle" fill="#3fb950" font-size="10">Fast: microseconds to load + execute</text>
+  <rect x="620" y="198" width="360" height="45" rx="3" fill="#f85149" fill-opacity="0.08" stroke="#f85149" stroke-width="0.5"/>
+  <text x="800" y="225" text-anchor="middle" fill="#f85149" font-size="10">Slow: process spawn + inject + cleanup</text>
+
+  <!-- Row 4 -->
+  <rect x="30" y="248" width="240" height="45" rx="3" fill="#0d1117" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="150" y="275" text-anchor="middle" fill="#c9d1d9" font-size="10">Crash Impact</text>
+  <rect x="280" y="248" width="330" height="45" rx="3" fill="#f85149" fill-opacity="0.08" stroke="#f85149" stroke-width="0.5"/>
+  <text x="445" y="275" text-anchor="middle" fill="#f85149" font-size="10">CRITICAL: Beacon process dies</text>
+  <rect x="620" y="248" width="360" height="45" rx="3" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="800" y="275" text-anchor="middle" fill="#3fb950" font-size="10">Safe: only child process dies</text>
+
+  <!-- Row 5 -->
+  <rect x="30" y="298" width="240" height="45" rx="3" fill="#0d1117" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="150" y="325" text-anchor="middle" fill="#c9d1d9" font-size="10">EDR Visibility</text>
+  <rect x="280" y="298" width="330" height="45" rx="3" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="445" y="325" text-anchor="middle" fill="#3fb950" font-size="10">Low: no process/thread/module events</text>
+  <rect x="620" y="298" width="360" height="45" rx="3" fill="#f85149" fill-opacity="0.08" stroke="#f85149" stroke-width="0.5"/>
+  <text x="800" y="325" text-anchor="middle" fill="#f85149" font-size="10">High: process tree + injection events</text>
+
+  <!-- Row 6 -->
+  <rect x="30" y="348" width="240" height="45" rx="3" fill="#0d1117" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="150" y="375" text-anchor="middle" fill="#c9d1d9" font-size="10">Size Limits</text>
+  <rect x="280" y="348" width="330" height="45" rx="3" fill="#f0883e" fill-opacity="0.08" stroke="#f0883e" stroke-width="0.5"/>
+  <text x="445" y="375" text-anchor="middle" fill="#f0883e" font-size="10">Practical: ~100KB (no stdlib)</text>
+  <rect x="620" y="348" width="360" height="45" rx="3" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="800" y="375" text-anchor="middle" fill="#3fb950" font-size="10">Unlimited: full PE with libraries</text>
+
+  <!-- Row 7 -->
+  <rect x="30" y="398" width="240" height="45" rx="3" fill="#0d1117" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="150" y="425" text-anchor="middle" fill="#c9d1d9" font-size="10">Development</text>
+  <rect x="280" y="398" width="330" height="45" rx="3" fill="#f0883e" fill-opacity="0.08" stroke="#f0883e" stroke-width="0.5"/>
+  <text x="445" y="425" text-anchor="middle" fill="#f0883e" font-size="10">Harder: manual API resolution, no stdlib</text>
+  <rect x="620" y="398" width="360" height="45" rx="3" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="800" y="425" text-anchor="middle" fill="#3fb950" font-size="10">Easier: standard C/C++ with libraries</text>
+
+  <!-- Summary -->
+  <rect x="30" y="460" width="940" height="75" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="500" y="485" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">When to Use Each</text>
+  <text x="300" y="508" text-anchor="middle" fill="#3fb950" font-size="9">BOF: Quick recon, enumeration, credential access, small targeted actions</text>
+  <text x="750" y="508" text-anchor="middle" fill="#f0883e" font-size="9">Fork&amp;Run: Large tools (Mimikatz), .NET assemblies, crash-risky operations</text>
+  <text x="500" y="525" text-anchor="middle" fill="#8b949e" font-size="8">Modern red teams use BOFs for 80%+ of post-ex, reserving fork&amp;run for heavy tools</text>
+
+  <text x="500" y="565" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — BOF Introduction: BOF vs Fork&amp;Run</text>
+</svg>

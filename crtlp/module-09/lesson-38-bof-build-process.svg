@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">BOF Build &amp; Execution Pipeline</text>
+
+  <!-- Step 1: Source -->
+  <rect x="20" y="60" width="180" height="200" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <circle cx="45" cy="82" r="12" fill="#58a6ff"/>
+  <text x="45" y="87" text-anchor="middle" fill="#0d1117" font-size="10" font-weight="bold">1</text>
+  <text x="110" y="87" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Write Source</text>
+  <text x="30" y="115" fill="#c9d1d9" font-size="8" font-family="Consolas">#include "beacon.h"</text>
+  <text x="30" y="135" fill="#3fb950" font-size="8" font-family="Consolas">void go(char* args,</text>
+  <text x="30" y="150" fill="#3fb950" font-size="8" font-family="Consolas">        int len) {</text>
+  <text x="30" y="170" fill="#8b949e" font-size="8" font-family="Consolas">  datap parser;</text>
+  <text x="30" y="185" fill="#8b949e" font-size="8" font-family="Consolas">  BeaconDataParse(</text>
+  <text x="30" y="200" fill="#8b949e" font-size="8" font-family="Consolas">    &amp;parser,args,len);</text>
+  <text x="30" y="220" fill="#f0883e" font-size="8" font-family="Consolas">  BeaconPrintf(0,</text>
+  <text x="30" y="235" fill="#f0883e" font-size="8" font-family="Consolas">    "Hello BOF!");</text>
+  <text x="30" y="250" fill="#3fb950" font-size="8" font-family="Consolas">}</text>
+
+  <line x1="200" y1="160" x2="230" y2="160" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 2: Compile -->
+  <rect x="235" y="60" width="200" height="200" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <circle cx="260" cy="82" r="12" fill="#f0883e"/>
+  <text x="260" y="87" text-anchor="middle" fill="#0d1117" font-size="10" font-weight="bold">2</text>
+  <text x="335" y="87" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Compile to COFF</text>
+  <text x="250" y="115" fill="#c9d1d9" font-size="8">MinGW cross-compiler:</text>
+  <rect x="250" y="125" width="170" height="60" rx="3" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="255" y="145" fill="#f0883e" font-size="7" font-family="Consolas">x86_64-w64-mingw32-gcc</text>
+  <text x="255" y="160" fill="#f0883e" font-size="7" font-family="Consolas">  -c -o whoami.o</text>
+  <text x="255" y="175" fill="#f0883e" font-size="7" font-family="Consolas">  whoami.c</text>
+  <text x="250" y="200" fill="#8b949e" font-size="8">-c = compile only (no link)</text>
+  <text x="250" y="215" fill="#8b949e" font-size="8">Output: COFF .o file</text>
+  <text x="250" y="235" fill="#8b949e" font-size="8">No stdlib, no linking</text>
+  <text x="250" y="250" fill="#c9d1d9" font-size="8">Size: typically 2-20 KB</text>
+
+  <line x1="435" y1="160" x2="465" y2="160" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 3: Load -->
+  <rect x="470" y="60" width="200" height="200" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <circle cx="495" cy="82" r="12" fill="#3fb950"/>
+  <text x="495" y="87" text-anchor="middle" fill="#0d1117" font-size="10" font-weight="bold">3</text>
+  <text x="570" y="87" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Load in C2</text>
+  <text x="485" y="115" fill="#c9d1d9" font-size="8">Cobalt Strike console:</text>
+  <rect x="485" y="125" width="170" height="35" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="490" y="148" fill="#3fb950" font-size="8" font-family="Consolas">beacon&gt; inline-execute</text>
+  <text x="490" y="155" fill="#3fb950" font-size="7" font-family="Consolas">  whoami.o</text>
+  <text x="485" y="185" fill="#8b949e" font-size="8">Or via Aggressor script:</text>
+  <rect x="485" y="195" width="170" height="35" rx="3" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="490" y="212" fill="#f0883e" font-size="7" font-family="Consolas">$handle = openf("bof.o");</text>
+  <text x="490" y="225" fill="#f0883e" font-size="7" font-family="Consolas">beacon_inline_execute(...)</text>
+  <text x="485" y="250" fill="#8b949e" font-size="8">.o bytes + args sent to beacon</text>
+
+  <line x1="670" y1="160" x2="700" y2="160" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 4: Execute -->
+  <rect x="705" y="60" width="275" height="200" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <circle cx="730" cy="82" r="12" fill="#3fb950"/>
+  <text x="730" y="87" text-anchor="middle" fill="#0d1117" font-size="10" font-weight="bold">4</text>
+  <text x="842" y="87" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Beacon Executes BOF</text>
+  <text x="715" y="112" fill="#c9d1d9" font-size="8">COFF loader in beacon:</text>
+  <text x="725" y="130" fill="#8b949e" font-size="8">1. Parse COFF header</text>
+  <text x="725" y="145" fill="#8b949e" font-size="8">2. VirtualAlloc for sections</text>
+  <text x="725" y="160" fill="#8b949e" font-size="8">3. Copy .text, .data, .rdata</text>
+  <text x="725" y="175" fill="#8b949e" font-size="8">4. Apply relocations</text>
+  <text x="725" y="190" fill="#8b949e" font-size="8">5. Resolve symbols (DFR+Beacon)</text>
+  <text x="725" y="205" fill="#3fb950" font-size="8" font-weight="bold">6. Call go(packed_args, len)</text>
+  <text x="725" y="220" fill="#8b949e" font-size="8">7. Collect output</text>
+  <text x="725" y="235" fill="#8b949e" font-size="8">8. VirtualFree cleanup</text>
+  <text x="725" y="250" fill="#3fb950" font-size="8" font-weight="bold">9. Send output to teamserver</text>
+
+  <!-- beacon.h details -->
+  <rect x="20" y="290" width="960" height="110" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="315" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">beacon.h — Required Header File</text>
+  <text x="40" y="340" fill="#c9d1d9" font-size="9">Defines all Beacon API function prototypes, data structures (datap, formatp), and DFR macros</text>
+  <text x="40" y="360" fill="#8b949e" font-size="9">Key structures: datap (data parser state), formatp (format buffer state), PROCESS_INFORMATION</text>
+  <text x="40" y="380" fill="#8b949e" font-size="9">DFR macro: DECLSPEC_IMPORT defines __imp_LIBRARY$Function symbols that COFF loader resolves</text>
+  <text x="40" y="395" fill="#f0883e" font-size="8">Download from: Help menu in Cobalt Strike → "Beacon Object File" → beacon.h</text>
+
+  <!-- Common flags -->
+  <rect x="20" y="420" width="960" height="115" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="445" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Recommended Build Flags</text>
+  <text x="40" y="470" fill="#c9d1d9" font-size="9" font-family="Consolas">x86_64-w64-mingw32-gcc -c -o bof.x64.o bof.c              # x64 build</text>
+  <text x="40" y="490" fill="#c9d1d9" font-size="9" font-family="Consolas">i686-w64-mingw32-gcc   -c -o bof.x86.o bof.c              # x86 build</text>
+  <text x="40" y="515" fill="#8b949e" font-size="9">Optional: -Os (size optimize), -s (strip debug), -fno-ident (remove compiler string)</text>
+  <text x="40" y="530" fill="#f85149" font-size="8">NEVER use -shared or omit -c — that creates a DLL/EXE, not a COFF object!</text>
+
+  <text x="500" y="565" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — Your First BOF: Build Pipeline</text>
+</svg>

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arG" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">BOF Execution Overview — End to End</text>
+
+  <!-- Operator -->
+  <rect x="20" y="70" width="120" height="80" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="80" y="100" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Operator</text>
+  <text x="80" y="118" text-anchor="middle" fill="#8b949e" font-size="8">CS Console</text>
+  <text x="80" y="133" text-anchor="middle" fill="#c9d1d9" font-size="7" font-family="Consolas">inline-execute</text>
+
+  <line x1="140" y1="110" x2="175" y2="110" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Team Server -->
+  <rect x="180" y="70" width="120" height="80" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="240" y="100" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Team Server</text>
+  <text x="240" y="118" text-anchor="middle" fill="#8b949e" font-size="8">Package .o +</text>
+  <text x="240" y="133" text-anchor="middle" fill="#8b949e" font-size="8">packed args</text>
+
+  <line x1="300" y1="110" x2="335" y2="110" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="317" y="100" fill="#8b949e" font-size="7">C2 channel</text>
+
+  <!-- Beacon -->
+  <rect x="340" y="55" width="640" height="200" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="660" y="80" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Beacon Process (Target Host)</text>
+
+  <!-- Step 1 -->
+  <rect x="360" y="95" width="130" height="60" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <circle cx="380" cy="110" r="10" fill="#58a6ff"/>
+  <text x="380" y="114" text-anchor="middle" fill="#0d1117" font-size="9" font-weight="bold">1</text>
+  <text x="425" y="115" text-anchor="middle" fill="#58a6ff" font-size="8" font-weight="bold">Receive</text>
+  <text x="425" y="130" text-anchor="middle" fill="#8b949e" font-size="7">Task + .o bytes</text>
+  <text x="425" y="143" text-anchor="middle" fill="#8b949e" font-size="7">+ packed args</text>
+
+  <line x1="490" y1="125" x2="510" y2="125" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 2 -->
+  <rect x="515" y="95" width="130" height="60" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <circle cx="535" cy="110" r="10" fill="#f0883e"/>
+  <text x="535" y="114" text-anchor="middle" fill="#0d1117" font-size="9" font-weight="bold">2</text>
+  <text x="580" y="115" text-anchor="middle" fill="#f0883e" font-size="8" font-weight="bold">Parse COFF</text>
+  <text x="580" y="130" text-anchor="middle" fill="#8b949e" font-size="7">Read header,</text>
+  <text x="580" y="143" text-anchor="middle" fill="#8b949e" font-size="7">sections, symbols</text>
+
+  <line x1="645" y1="125" x2="665" y2="125" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 3 -->
+  <rect x="670" y="95" width="130" height="60" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <circle cx="690" cy="110" r="10" fill="#f0883e"/>
+  <text x="690" y="114" text-anchor="middle" fill="#0d1117" font-size="9" font-weight="bold">3</text>
+  <text x="735" y="115" text-anchor="middle" fill="#f0883e" font-size="8" font-weight="bold">Load</text>
+  <text x="735" y="130" text-anchor="middle" fill="#8b949e" font-size="7">VirtualAlloc,</text>
+  <text x="735" y="143" text-anchor="middle" fill="#8b949e" font-size="7">map, relocate</text>
+
+  <line x1="800" y1="125" x2="820" y2="125" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 4 -->
+  <rect x="825" y="95" width="130" height="60" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <circle cx="845" cy="110" r="10" fill="#3fb950"/>
+  <text x="845" y="114" text-anchor="middle" fill="#0d1117" font-size="9" font-weight="bold">4</text>
+  <text x="890" y="115" text-anchor="middle" fill="#3fb950" font-size="8" font-weight="bold">Execute</text>
+  <text x="890" y="130" text-anchor="middle" fill="#8b949e" font-size="7">go(args, len)</text>
+  <text x="890" y="143" text-anchor="middle" fill="#8b949e" font-size="7">BOF runs!</text>
+
+  <!-- Step 5: Output -->
+  <line x1="890" y1="155" x2="890" y2="180" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arG)"/>
+  <rect x="360" y="170" width="280" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="500" y="192" text-anchor="middle" fill="#3fb950" font-size="9">5. BOF output sent back via Beacon callback</text>
+  <text x="500" y="205" text-anchor="middle" fill="#8b949e" font-size="7">BeaconPrintf / BeaconOutput</text>
+  <line x1="890" y1="195" x2="640" y2="195" stroke="#3fb950" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Step 6: Cleanup -->
+  <rect x="670" y="170" width="130" height="40" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="735" y="192" text-anchor="middle" fill="#f85149" font-size="9">6. Cleanup</text>
+  <text x="735" y="205" text-anchor="middle" fill="#8b949e" font-size="7">VirtualFree(mem)</text>
+
+  <!-- No process creation highlight -->
+  <rect x="20" y="280" width="960" height="100" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="500" y="305" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Key OPSEC Advantages</text>
+
+  <rect x="40" y="315" width="290" height="50" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="185" y="335" text-anchor="middle" fill="#3fb950" font-size="10">No Process Creation</text>
+  <text x="185" y="352" text-anchor="middle" fill="#8b949e" font-size="8">Runs in Beacon thread — no fork&amp;run</text>
+
+  <rect x="350" y="315" width="290" height="50" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="495" y="335" text-anchor="middle" fill="#3fb950" font-size="10">No Disk Writes</text>
+  <text x="495" y="352" text-anchor="middle" fill="#8b949e" font-size="8">COFF loaded from memory only</text>
+
+  <rect x="660" y="315" width="290" height="50" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="805" y="335" text-anchor="middle" fill="#3fb950" font-size="10">No Module Load Event</text>
+  <text x="805" y="352" text-anchor="middle" fill="#8b949e" font-size="8">Not registered in PEB module list</text>
+
+  <!-- Comparison: Fork&Run -->
+  <rect x="20" y="400" width="960" height="140" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="500" y="425" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Contrast: Traditional Fork&amp;Run Post-Ex</text>
+
+  <rect x="40" y="440" width="130" height="45" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="105" y="460" text-anchor="middle" fill="#f85149" font-size="8">CreateProcess</text>
+  <text x="105" y="475" text-anchor="middle" fill="#8b949e" font-size="7">spawn sacrificial</text>
+  <line x1="170" y1="462" x2="195" y2="462" stroke="#f85149" stroke-width="1"/>
+  <rect x="200" y="440" width="130" height="45" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="265" y="460" text-anchor="middle" fill="#f85149" font-size="8">Inject shellcode</text>
+  <text x="265" y="475" text-anchor="middle" fill="#8b949e" font-size="7">into child process</text>
+  <line x1="330" y1="462" x2="355" y2="462" stroke="#f85149" stroke-width="1"/>
+  <rect x="360" y="440" width="130" height="45" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="425" y="460" text-anchor="middle" fill="#f85149" font-size="8">Execute post-ex</text>
+  <text x="425" y="475" text-anchor="middle" fill="#8b949e" font-size="7">in child process</text>
+  <line x1="490" y1="462" x2="515" y2="462" stroke="#f85149" stroke-width="1"/>
+  <rect x="520" y="440" width="130" height="45" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="585" y="460" text-anchor="middle" fill="#f85149" font-size="8">Read output</text>
+  <text x="585" y="475" text-anchor="middle" fill="#8b949e" font-size="7">via pipe/callback</text>
+  <line x1="650" y1="462" x2="675" y2="462" stroke="#f85149" stroke-width="1"/>
+  <rect x="680" y="440" width="130" height="45" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="745" y="460" text-anchor="middle" fill="#f85149" font-size="8">Terminate child</text>
+  <text x="745" y="475" text-anchor="middle" fill="#8b949e" font-size="7">cleanup</text>
+
+  <text x="500" y="510" text-anchor="middle" fill="#f85149" font-size="9">Process creation events (Sysmon 1), cross-process injection (Sysmon 8/10), child-parent anomalies</text>
+  <text x="500" y="525" text-anchor="middle" fill="#8b949e" font-size="8">All visible to EDR — BOFs avoid every one of these telemetry sources</text>
+
+  <text x="500" y="565" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — BOF Introduction: Execution Overview</text>
+</svg>

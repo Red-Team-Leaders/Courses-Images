@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="ar-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="ar-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Crystal Palace Architecture</text>
+  <text x="500" y="52" text-anchor="middle" fill="#8b949e" font-size="11">VEH + Hardware Breakpoints (DR0-DR3) Sleep Obfuscation</text>
+
+  <!-- Setup Phase -->
+  <rect x="30" y="70" width="280" height="170" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <rect x="30" y="70" width="280" height="30" rx="8" fill="#f0883e" opacity="0.15"/>
+  <text x="170" y="91" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">1. Setup Phase</text>
+
+  <text x="45" y="118" fill="#c9d1d9" font-size="10" font-weight="bold">Register VEH Handler</text>
+  <rect x="45" y="125" width="250" height="22" rx="3" fill="#0d1117" stroke="#f0883e" stroke-width="0.5"/>
+  <text x="170" y="140" text-anchor="middle" fill="#f0883e" font-size="9" font-family="Consolas">AddVectoredExceptionHandler(1, VehHandler)</text>
+
+  <text x="45" y="165" fill="#c9d1d9" font-size="10" font-weight="bold">Set Hardware Breakpoints</text>
+  <rect x="45" y="172" width="115" height="22" rx="3" fill="#0d1117" stroke="#58a6ff" stroke-width="0.5"/>
+  <text x="102" y="187" text-anchor="middle" fill="#58a6ff" font-size="9">DR0 = NtWaitFor...</text>
+  <rect x="170" y="172" width="115" height="22" rx="3" fill="#0d1117" stroke="#58a6ff" stroke-width="0.5"/>
+  <text x="228" y="187" text-anchor="middle" fill="#58a6ff" font-size="9">DR7 = Enable all</text>
+
+  <text x="45" y="215" fill="#8b949e" font-size="9">DR0 targets NtWaitForSingleObject</text>
+  <text x="45" y="228" fill="#8b949e" font-size="9">triggering #DB on sleep calls</text>
+
+  <!-- Arrow from setup to sleep trigger -->
+  <line x1="310" y1="155" x2="360" y2="155" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Sleep Trigger -->
+  <rect x="360" y="70" width="280" height="170" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <rect x="360" y="70" width="280" height="30" rx="8" fill="#58a6ff" opacity="0.15"/>
+  <text x="500" y="91" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">2. Sleep Trigger</text>
+
+  <text x="375" y="118" fill="#c9d1d9" font-size="10" font-weight="bold">Beacon calls sleep</text>
+  <rect x="375" y="125" width="250" height="22" rx="3" fill="#0d1117" stroke="#58a6ff" stroke-width="0.5"/>
+  <text x="500" y="140" text-anchor="middle" fill="#58a6ff" font-size="9" font-family="Consolas">WaitForSingleObject(hEvent, dwMs)</text>
+
+  <text x="375" y="165" fill="#c9d1d9" font-size="10" font-weight="bold">Hardware BP fires</text>
+  <rect x="375" y="172" width="250" height="22" rx="3" fill="#0d1117" stroke="#f85149" stroke-width="0.5"/>
+  <text x="500" y="187" text-anchor="middle" fill="#f85149" font-size="9" font-family="Consolas">EXCEPTION_SINGLE_STEP (#DB)</text>
+
+  <text x="375" y="215" fill="#8b949e" font-size="9">DR0 breakpoint on NtWaitForSingleObject</text>
+  <text x="375" y="228" fill="#8b949e" font-size="9">triggers hardware debug exception</text>
+
+  <!-- Arrow from trigger to VEH -->
+  <line x1="640" y1="155" x2="690" y2="155" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- VEH Handler -->
+  <rect x="690" y="70" width="290" height="170" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <rect x="690" y="70" width="290" height="30" rx="8" fill="#f85149" opacity="0.15"/>
+  <text x="835" y="91" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">3. VEH Encrypt Handler</text>
+
+  <text x="705" y="118" fill="#c9d1d9" font-size="10" font-weight="bold">Encryption Sequence:</text>
+  <text x="710" y="138" fill="#7ee787" font-size="9">1. Change perms: RX -&gt; RW</text>
+  <text x="710" y="155" fill="#7ee787" font-size="9">2. XOR/AES encrypt beacon region</text>
+  <text x="710" y="172" fill="#7ee787" font-size="9">3. Change perms: RW -&gt; NO_ACCESS</text>
+  <text x="710" y="189" fill="#7ee787" font-size="9">4. Set DR0 = timer callback addr</text>
+  <text x="710" y="206" fill="#7ee787" font-size="9">5. Set real sleep via NtDelay...</text>
+
+  <text x="710" y="228" fill="#8b949e" font-size="9">Memory now encrypted + inaccessible</text>
+
+  <!-- Arrow down to sleeping state -->
+  <line x1="835" y1="240" x2="835" y2="275" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Sleeping State -->
+  <rect x="300" y="275" width="400" height="70" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="2"/>
+  <text x="500" y="300" text-anchor="middle" fill="#c9d1d9" font-size="14" font-weight="bold">SLEEPING STATE</text>
+  <text x="500" y="320" text-anchor="middle" fill="#8b949e" font-size="10">Memory: NO_ACCESS | Encrypted | No scannable artifacts</text>
+  <text x="500" y="335" text-anchor="middle" fill="#3fb950" font-size="10">Timer counting down to wake...</text>
+
+  <!-- Arrow down to timer fires -->
+  <line x1="500" y1="345" x2="500" y2="375" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Timer fires -->
+  <rect x="350" y="375" width="300" height="45" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="500" y="395" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">4. Timer Expires</text>
+  <text x="500" y="412" text-anchor="middle" fill="#8b949e" font-size="9">Execution hits DR0 breakpoint on callback address</text>
+
+  <!-- Arrow to VEH decrypt -->
+  <line x1="500" y1="420" x2="500" y2="450" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- VEH Decrypt Handler -->
+  <rect x="250" y="450" width="500" height="100" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <rect x="250" y="450" width="500" height="30" rx="8" fill="#3fb950" opacity="0.15"/>
+  <text x="500" y="471" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">5. VEH Decrypt Handler</text>
+
+  <text x="275" y="498" fill="#7ee787" font-size="10">1. Change perms: NO_ACCESS -&gt; RW</text>
+  <text x="275" y="515" fill="#7ee787" font-size="10">2. Decrypt beacon region</text>
+  <text x="275" y="532" fill="#7ee787" font-size="10">3. Change perms: RW -&gt; RX</text>
+  <text x="530" y="498" fill="#7ee787" font-size="10">4. Reset DR0 = NtWaitFor...</text>
+  <text x="530" y="515" fill="#7ee787" font-size="10">5. Redirect RIP to beacon code</text>
+  <text x="530" y="532" fill="#7ee787" font-size="10">6. Return EXCEPTION_CONTINUE</text>
+
+  <!-- DR Register Detail -->
+  <rect x="30" y="275" width="240" height="160" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="150" y="298" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Debug Registers</text>
+  <line x1="40" y1="305" x2="260" y2="305" stroke="#58a6ff" stroke-width="0.5"/>
+  <rect x="45" y="315" width="50" height="20" rx="3" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="70" y="329" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">DR0</text>
+  <text x="110" y="329" fill="#c9d1d9" font-size="9">NtWaitForSingleObject addr</text>
+  <rect x="45" y="340" width="50" height="20" rx="3" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="70" y="354" text-anchor="middle" fill="#8b949e" font-size="9">DR1</text>
+  <text x="110" y="354" fill="#8b949e" font-size="9">Reserved / additional hook</text>
+  <rect x="45" y="365" width="50" height="20" rx="3" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="70" y="379" text-anchor="middle" fill="#8b949e" font-size="9">DR2</text>
+  <text x="110" y="379" fill="#8b949e" font-size="9">Reserved / additional hook</text>
+  <rect x="45" y="390" width="50" height="20" rx="3" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="70" y="404" text-anchor="middle" fill="#8b949e" font-size="9">DR3</text>
+  <text x="110" y="404" fill="#8b949e" font-size="9">Reserved / additional hook</text>
+  <text x="150" y="428" text-anchor="middle" fill="#8b949e" font-size="8">DR7 controls which DRx are active</text>
+
+  <!-- Advantages -->
+  <rect x="780" y="375" width="200" height="175" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="880" y="398" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Key Advantages</text>
+  <line x1="790" y1="405" x2="970" y2="405" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="795" y="423" fill="#7ee787" font-size="9">&#x2713; No ROP chains needed</text>
+  <text x="795" y="440" fill="#7ee787" font-size="9">&#x2713; No timer queue abuse</text>
+  <text x="795" y="457" fill="#7ee787" font-size="9">&#x2713; Clean call stacks</text>
+  <text x="795" y="474" fill="#7ee787" font-size="9">&#x2713; HW BPs are per-thread</text>
+  <text x="795" y="491" fill="#7ee787" font-size="9">&#x2713; Natural exception flow</text>
+  <text x="795" y="508" fill="#7ee787" font-size="9">&#x2713; No NtContinue artifacts</text>
+  <text x="795" y="525" fill="#7ee787" font-size="9">&#x2713; Evades stack unwinding</text>
+  <text x="795" y="542" fill="#7ee787" font-size="9">&#x2713; Minimal API footprint</text>
+
+  <text x="500" y="572" text-anchor="middle" fill="#8b949e" font-size="10">Crystal Palace uses hardware debug registers and VEH for clean, ROP-free sleep obfuscation</text>
+</svg>

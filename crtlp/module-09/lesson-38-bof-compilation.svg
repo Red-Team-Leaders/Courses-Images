@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">BOF Compilation Pipeline</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">From C source to COFF object file ready for beacon execution</text>
+
+  <!-- Source Code Box -->
+  <rect x="30" y="80" width="360" height="310" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="210" y="105" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Source: whoami_bof.c</text>
+  <line x1="45" y1="115" x2="375" y2="115" stroke="#30363d"/>
+
+  <!-- Code block -->
+  <rect x="45" y="125" width="330" height="250" rx="4" fill="#0d1117" stroke="#30363d"/>
+  <text x="60" y="145" fill="#8b949e" font-size="9">#include &lt;windows.h&gt;</text>
+  <text x="60" y="160" fill="#8b949e" font-size="9">#include "beacon.h"</text>
+  <text x="60" y="180" fill="#c9d1d9" font-size="9">// Import Windows API</text>
+  <text x="60" y="195" fill="#58a6ff" font-size="9">DECLSPEC_IMPORT BOOL WINAPI</text>
+  <text x="60" y="210" fill="#58a6ff" font-size="9">  ADVAPI32$GetUserNameA(</text>
+  <text x="60" y="225" fill="#58a6ff" font-size="9">    LPSTR buf, LPDWORD sz);</text>
+  <text x="60" y="250" fill="#c9d1d9" font-size="9">// BOF entry point</text>
+  <text x="60" y="265" fill="#3fb950" font-size="9">void go(char* args, int len) {</text>
+  <text x="60" y="280" fill="#c9d1d9" font-size="9">  char name[256];</text>
+  <text x="60" y="295" fill="#c9d1d9" font-size="9">  DWORD sz = 256;</text>
+  <text x="60" y="310" fill="#c9d1d9" font-size="9">  ADVAPI32$GetUserNameA(</text>
+  <text x="60" y="325" fill="#c9d1d9" font-size="9">    name, &amp;sz);</text>
+  <text x="60" y="340" fill="#f0883e" font-size="9">  BeaconPrintf(</text>
+  <text x="60" y="355" fill="#f0883e" font-size="9">    CALLBACK_OUTPUT,</text>
+  <text x="60" y="370" fill="#f0883e" font-size="9">    "User: %s", name);</text>
+  <text x="60" y="385" fill="#3fb950" font-size="9">}</text>
+
+  <!-- Compiler Arrow -->
+  <rect x="415" y="165" width="170" height="100" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="192" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">MinGW Compiler</text>
+  <line x1="430" y1="200" x2="570" y2="200" stroke="#30363d"/>
+  <text x="500" y="220" text-anchor="middle" fill="#c9d1d9" font-size="9">x86_64-w64-mingw32-gcc</text>
+  <text x="500" y="240" text-anchor="middle" fill="#c9d1d9" font-size="9">Cross-compile Linux->Win</text>
+  <text x="500" y="255" text-anchor="middle" fill="#8b949e" font-size="8">or cl.exe on Windows</text>
+
+  <line x1="390" y1="215" x2="413" y2="215" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Compiler flags -->
+  <rect x="415" y="280" width="170" height="100" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="500" y="300" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Critical Flags</text>
+  <line x1="430" y1="308" x2="570" y2="308" stroke="#30363d"/>
+  <text x="430" y="328" fill="#3fb950" font-size="10" font-weight="bold">-c</text>
+  <text x="460" y="328" fill="#c9d1d9" font-size="9">Compile only (no link!)</text>
+  <text x="430" y="348" fill="#3fb950" font-size="10" font-weight="bold">-o</text>
+  <text x="460" y="348" fill="#c9d1d9" font-size="9">Output .o file</text>
+  <text x="430" y="368" fill="#3fb950" font-size="10" font-weight="bold">-Os</text>
+  <text x="460" y="368" fill="#c9d1d9" font-size="9">Optimize for size</text>
+
+  <!-- Output COFF -->
+  <rect x="620" y="80" width="350" height="310" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="795" y="105" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Output: whoami_bof.o</text>
+  <line x1="635" y1="115" x2="955" y2="115" stroke="#30363d"/>
+
+  <line x1="585" y1="215" x2="618" y2="215" stroke="#3fb950" stroke-width="2" marker-end="url(#arGreen)"/>
+
+  <!-- Resulting sections -->
+  <text x="640" y="138" fill="#58a6ff" font-size="11" font-weight="bold">COFF Sections Generated:</text>
+
+  <rect x="640" y="148" width="315" height="35" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="660" y="168" fill="#3fb950" font-size="10">.text</text>
+  <text x="720" y="168" fill="#c9d1d9" font-size="9">Machine code for go() function</text>
+
+  <rect x="640" y="190" width="315" height="35" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="660" y="210" fill="#f0883e" font-size="10">.rdata</text>
+  <text x="720" y="210" fill="#c9d1d9" font-size="9">String: "User: %s" + DLL names</text>
+
+  <rect x="640" y="232" width="315" height="35" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="660" y="252" fill="#f85149" font-size="10">.reloc</text>
+  <text x="720" y="252" fill="#c9d1d9" font-size="9">Relocation entries for fixups</text>
+
+  <rect x="640" y="274" width="315" height="35" rx="4" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="660" y="294" fill="#58a6ff" font-size="10">symbols</text>
+  <text x="720" y="294" fill="#c9d1d9" font-size="9">go, __imp_ADVAPI32$GetUserNameA</text>
+
+  <!-- Import naming convention -->
+  <rect x="640" y="322" width="315" height="55" rx="4" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="795" y="342" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Import Naming Convention</text>
+  <text x="795" y="362" text-anchor="middle" fill="#c9d1d9" font-size="9">__imp_LIBRARY$FunctionName</text>
+  <text x="795" y="375" text-anchor="middle" fill="#8b949e" font-size="8">COFF loader splits on $ to resolve</text>
+
+  <!-- Command line at bottom -->
+  <rect x="30" y="420" width="940" height="55" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="60" y="440" fill="#8b949e" font-size="10">$</text>
+  <text x="75" y="440" fill="#3fb950" font-size="10">x86_64-w64-mingw32-gcc -c -o whoami_bof.o whoami_bof.c -Os -masm=intel</text>
+  <text x="60" y="460" fill="#8b949e" font-size="10">$</text>
+  <text x="75" y="460" fill="#c9d1d9" font-size="10">file whoami_bof.o</text>
+  <text x="60" y="475" fill="#f0883e" font-size="9">whoami_bof.o: Intel amd64 COFF object file, not stripped, 4 sections, symbol offset=0x1a4</text>
+
+  <!-- Size note -->
+  <rect x="30" y="490" width="940" height="40" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="500" y="515" text-anchor="middle" fill="#8b949e" font-size="10">Typical BOF size: 1-10 KB  |  No linking = no CRT dependency  |  No PE header overhead  |  Direct COFF object</text>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#30363d" font-size="10">CRTLP Module 09 - Lesson 38: BOF Compilation Pipeline</text>
+</svg>

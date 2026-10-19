@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="ar-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">API Hashing in BOFs</text>
+
+  <!-- Why: No cleartext strings -->
+  <rect x="40" y="50" width="920" height="35" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="500" y="73" text-anchor="middle" fill="#f85149" font-size="12">Goal: Eliminate cleartext API names from BOF — defeats string-based detection (YARA rules, static analysis)</text>
+
+  <!-- Compile-time: hash generation -->
+  <text x="170" y="112" text-anchor="middle" fill="#8b949e" font-size="11" font-weight="bold">COMPILE TIME</text>
+  <rect x="40" y="122" width="300" height="120" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="60" y="144" fill="#58a6ff" font-size="12" font-weight="bold">Hash at Compile Time</text>
+  <line x1="50" y1="152" x2="330" y2="152" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="55" y="172" fill="#c9d1d9" font-size="11">"CreateProcessW"</text>
+  <text x="55" y="192" fill="#f0883e" font-size="11">→ djb2/ror13/crc32 hash</text>
+  <text x="55" y="212" fill="#3fb950" font-size="12" font-weight="bold">→ 0x16B3FE72</text>
+  <text x="55" y="232" fill="#8b949e" font-size="10">constexpr or macro — no string in .o</text>
+
+  <line x1="340" y1="182" x2="388" y2="182" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- What's in the BOF -->
+  <rect x="390" y="122" width="260" height="120" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="410" y="144" fill="#f0883e" font-size="12" font-weight="bold">In Compiled BOF (.o)</text>
+  <line x1="400" y1="152" x2="640" y2="152" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="405" y="172" fill="#c9d1d9" font-size="11">Only hash constants:</text>
+  <text x="405" y="192" fill="#3fb950" font-size="11">0x16B3FE72  (CreateProcessW)</text>
+  <text x="405" y="212" fill="#3fb950" font-size="11">0x726774C   (OpenProcess)</text>
+  <text x="405" y="232" fill="#8b949e" font-size="10">No "CreateProcessW" string!</text>
+
+  <!-- No cleartext callout -->
+  <rect x="680" y="122" width="280" height="120" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="700" y="144" fill="#f85149" font-size="12" font-weight="bold">String Analysis Sees:</text>
+  <line x1="690" y1="152" x2="950" y2="152" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="695" y="172" fill="#8b949e" font-size="11">$ strings bof.o</text>
+  <text x="695" y="192" fill="#c9d1d9" font-size="11">.text</text>
+  <text x="695" y="208" fill="#c9d1d9" font-size="11">.data</text>
+  <text x="695" y="224" fill="#c9d1d9" font-size="11">go</text>
+  <text x="695" y="236" fill="#f85149" font-size="10">No API names visible!</text>
+
+  <!-- Runtime flow -->
+  <text x="500" y="272" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">RUNTIME: Export Table Walk</text>
+
+  <!-- Step 1: Get module base -->
+  <rect x="40" y="288" width="200" height="80" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="140" y="308" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">1. Get Module Base</text>
+  <line x1="50" y1="316" x2="230" y2="316" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="55" y="334" fill="#c9d1d9" font-size="10">PEB → InMemoryOrderList</text>
+  <text x="55" y="350" fill="#c9d1d9" font-size="10">→ walk LDR_DATA_TABLE</text>
+  <text x="55" y="362" fill="#8b949e" font-size="9">Find kernel32.dll base address</text>
+
+  <line x1="240" y1="328" x2="278" y2="328" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 2: Parse export table -->
+  <rect x="280" y="288" width="200" height="80" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="380" y="308" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">2. Parse Export Table</text>
+  <line x1="290" y1="316" x2="470" y2="316" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="295" y="334" fill="#c9d1d9" font-size="10">IMAGE_EXPORT_DIRECTORY</text>
+  <text x="295" y="350" fill="#c9d1d9" font-size="10">AddressOfNames[]</text>
+  <text x="295" y="362" fill="#8b949e" font-size="9">Array of RVAs to export names</text>
+
+  <line x1="480" y1="328" x2="518" y2="328" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 3: Hash each name -->
+  <rect x="520" y="288" width="220" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="630" y="308" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">3. Hash Each Export Name</text>
+  <line x1="530" y1="316" x2="730" y2="316" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="535" y="334" fill="#c9d1d9" font-size="10">for each name in exports:</text>
+  <text x="545" y="350" fill="#f0883e" font-size="10">h = hash_function(name)</text>
+  <text x="535" y="362" fill="#8b949e" font-size="9">Same algorithm as compile time</text>
+
+  <line x1="740" y1="328" x2="778" y2="328" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 4: Compare -->
+  <rect x="780" y="288" width="190" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="875" y="308" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">4. Compare Hash</text>
+  <line x1="790" y1="316" x2="960" y2="316" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="795" y="334" fill="#c9d1d9" font-size="10">if h == 0x16B3FE72:</text>
+  <text x="805" y="350" fill="#3fb950" font-size="10">MATCH! → return addr</text>
+  <text x="795" y="362" fill="#8b949e" font-size="9">Return function pointer</text>
+
+  <!-- Hash algorithm detail -->
+  <rect x="40" y="390" width="450" height="140" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="60" y="412" fill="#58a6ff" font-size="12" font-weight="bold">Common Hash Algorithms</text>
+  <line x1="50" y1="420" x2="480" y2="420" stroke="#8b949e" stroke-width="0.5"/>
+
+  <text x="60" y="442" fill="#f0883e" font-size="11" font-weight="bold">djb2</text>
+  <text x="130" y="442" fill="#c9d1d9" font-size="10">hash = 5381; hash = hash*33 + c; // fast, simple</text>
+
+  <text x="60" y="464" fill="#f0883e" font-size="11" font-weight="bold">ror13</text>
+  <text x="130" y="464" fill="#c9d1d9" font-size="10">hash = (hash &gt;&gt; 13 | hash &lt;&lt; 19) + c; // Metasploit classic</text>
+
+  <text x="60" y="486" fill="#f0883e" font-size="11" font-weight="bold">crc32</text>
+  <text x="130" y="486" fill="#c9d1d9" font-size="10">Standard CRC-32 lookup table // most collision-resistant</text>
+
+  <text x="60" y="512" fill="#f0883e" font-size="11" font-weight="bold">custom</text>
+  <text x="130" y="512" fill="#c9d1d9" font-size="10">Avoid known algorithms — defeats hash DB lookups (HashDB)</text>
+  <text x="130" y="524" fill="#8b949e" font-size="9">Unique seed + unique algorithm = no signature</text>
+
+  <!-- Benefits vs risks -->
+  <rect x="510" y="390" width="225" height="140" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="530" y="412" fill="#3fb950" font-size="12" font-weight="bold">Benefits</text>
+  <line x1="520" y1="420" x2="725" y2="420" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="525" y="442" fill="#c9d1d9" font-size="10">No cleartext API strings</text>
+  <text x="525" y="460" fill="#c9d1d9" font-size="10">Defeats YARA string rules</text>
+  <text x="525" y="478" fill="#c9d1d9" font-size="10">Defeats static import analysis</text>
+  <text x="525" y="496" fill="#c9d1d9" font-size="10">Smaller BOF binary size</text>
+  <text x="525" y="514" fill="#c9d1d9" font-size="10">Evades IAT/EAT hooking</text>
+
+  <rect x="755" y="390" width="215" height="140" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="775" y="412" fill="#f85149" font-size="12" font-weight="bold">Detection Risks</text>
+  <line x1="765" y1="420" x2="960" y2="420" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="770" y="442" fill="#c9d1d9" font-size="10">PEB walk is suspicious</text>
+  <text x="770" y="460" fill="#c9d1d9" font-size="10">Known hash DBs can match</text>
+  <text x="770" y="478" fill="#c9d1d9" font-size="10">ETW can log API calls anyway</text>
+  <text x="770" y="496" fill="#c9d1d9" font-size="10">Hash collision (rare but possible)</text>
+  <text x="770" y="514" fill="#c9d1d9" font-size="10">Kernel callbacks still trigger</text>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#8b949e" font-size="10">CRTLP Module 09 — Lesson 39: Eliminating Cleartext Strings via API Hashing</text>
+</svg>

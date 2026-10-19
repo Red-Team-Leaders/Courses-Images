@@ -4,68 +4,162 @@
     <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
   </defs>
   <rect width="1000" height="580" fill="url(#bg)"/>
-  <text x="500" y="28" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Evolution of Sleep Obfuscation Techniques</text>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Sleep Obfuscation Evolution</text>
+  <text x="500" y="52" text-anchor="middle" fill="#8b949e" font-size="11">Timeline of In-Memory Evasion Techniques During Beacon Sleep</text>
 
   <!-- Timeline line -->
-  <line x1="60" y1="60" x2="60" y2="540" stroke="#8b949e" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="80" y1="100" x2="920" y2="100" stroke="#8b949e" stroke-width="2"/>
+  <circle cx="80" cy="100" r="4" fill="#8b949e"/>
+  <circle cx="920" cy="100" r="4" fill="#8b949e"/>
 
-  <!-- Gen 0 -->
-  <circle cx="60" cy="80" r="8" fill="#f85149"/>
-  <rect x="85" y="55" width="880" height="55" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
-  <text x="100" y="75" fill="#f85149" font-size="11" font-weight="bold">Gen 0: Sleep(ms)</text>
-  <text x="100" y="95" fill="#8b949e" font-size="9">Plain WinAPI sleep. Beacon image readable in memory during entire sleep. Trivially detected by memory scanners.</text>
-  <text x="880" y="80" text-anchor="end" fill="#f85149" font-size="9">Detection: Trivial</text>
+  <!-- Timeline markers -->
+  <circle cx="140" cy="100" r="6" fill="#f0883e"/>
+  <circle cx="290" cy="100" r="6" fill="#f0883e"/>
+  <circle cx="440" cy="100" r="6" fill="#58a6ff"/>
+  <circle cx="590" cy="100" r="6" fill="#58a6ff"/>
+  <circle cx="720" cy="100" r="6" fill="#3fb950"/>
+  <circle cx="860" cy="100" r="6" fill="#3fb950"/>
 
-  <!-- Gen 1 -->
-  <circle cx="60" cy="145" r="8" fill="#f85149"/>
-  <rect x="85" y="120" width="880" height="55" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
-  <text x="100" y="140" fill="#f0883e" font-size="11" font-weight="bold">Gen 1: Obfuscate &amp; Sleep (Gargoyle, 2018)</text>
-  <text x="100" y="160" fill="#8b949e" font-size="9">Timer-based ROP: mark region NO_ACCESS, queue APC to restore. First concept of hiding beacon during sleep.</text>
-  <text x="880" y="145" text-anchor="end" fill="#f0883e" font-size="9">Detection: ROP gadgets</text>
+  <!-- Year labels -->
+  <text x="140" y="85" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">2021</text>
+  <text x="290" y="85" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">2022</text>
+  <text x="440" y="85" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">2022</text>
+  <text x="590" y="85" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">2022</text>
+  <text x="720" y="85" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">2023</text>
+  <text x="860" y="85" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">2023+</text>
 
-  <!-- Gen 2 -->
-  <circle cx="60" cy="210" r="8" fill="#f0883e"/>
-  <rect x="85" y="185" width="880" height="55" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
-  <text x="100" y="205" fill="#f0883e" font-size="11" font-weight="bold">Gen 2: Ekko / Nighthawk (2022)</text>
-  <text x="100" y="225" fill="#8b949e" font-size="9">ROP chain with NtContinue: XOR-encrypt beacon, change permissions RW, queue timer to decrypt + restore RX.</text>
-  <text x="880" y="210" text-anchor="end" fill="#f0883e" font-size="9">Detection: Timer queue</text>
+  <!-- Ekko -->
+  <line x1="140" y1="106" x2="140" y2="130" stroke="#f0883e" stroke-width="1.5"/>
+  <rect x="40" y="130" width="200" height="155" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="140" y="153" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Ekko</text>
+  <line x1="50" y1="162" x2="230" y2="162" stroke="#f0883e" stroke-width="0.5"/>
+  <text x="55" y="180" fill="#c9d1d9" font-size="10" font-weight="bold">Key Innovation:</text>
+  <text x="55" y="196" fill="#7ee787" font-size="9">Timer-based encryption</text>
+  <text x="55" y="212" fill="#7ee787" font-size="9">using CreateTimerQueueTimer</text>
+  <text x="55" y="232" fill="#8b949e" font-size="9">&#x2022; ROP chain for NtProtect</text>
+  <text x="55" y="247" fill="#8b949e" font-size="9">&#x2022; SystemFunction032 (RC4)</text>
+  <text x="55" y="262" fill="#8b949e" font-size="9">&#x2022; First practical sleep enc</text>
+  <text x="55" y="277" fill="#8b949e" font-size="9">&#x2022; Context: RWX -&gt; Enc -&gt; RWX</text>
 
-  <!-- Gen 3 -->
-  <circle cx="60" cy="275" r="8" fill="#58a6ff"/>
-  <rect x="85" y="250" width="880" height="55" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="100" y="270" fill="#58a6ff" font-size="11" font-weight="bold">Gen 3: Zilean / Foliage (2023)</text>
-  <text x="100" y="290" fill="#8b949e" font-size="9">APC-based: queue chain of NtProtectVirtualMemory + SystemFunction032 (RC4 encrypt/decrypt) + sleep via APC.</text>
-  <text x="880" y="275" text-anchor="end" fill="#58a6ff" font-size="9">Detection: APC queue</text>
+  <!-- Foliage -->
+  <line x1="290" y1="106" x2="290" y2="130" stroke="#f0883e" stroke-width="1.5"/>
+  <rect x="190" y="130" width="200" height="155" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="290" y="153" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Foliage</text>
+  <line x1="200" y1="162" x2="380" y2="162" stroke="#f0883e" stroke-width="0.5"/>
+  <text x="205" y="180" fill="#c9d1d9" font-size="10" font-weight="bold">Key Innovation:</text>
+  <text x="205" y="196" fill="#7ee787" font-size="9">APC-based encryption</text>
+  <text x="205" y="212" fill="#7ee787" font-size="9">NtTestAlert for trigger</text>
+  <text x="205" y="232" fill="#8b949e" font-size="9">&#x2022; APC queue for operations</text>
+  <text x="205" y="247" fill="#8b949e" font-size="9">&#x2022; Avoids timer artifacts</text>
+  <text x="205" y="262" fill="#8b949e" font-size="9">&#x2022; Cleaner stack trace</text>
+  <text x="205" y="277" fill="#8b949e" font-size="9">&#x2022; NtContinue for context</text>
 
-  <!-- Gen 4 -->
-  <circle cx="60" cy="340" r="8" fill="#3fb950"/>
-  <rect x="85" y="315" width="880" height="60" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
-  <text x="100" y="335" fill="#3fb950" font-size="11" font-weight="bold">Gen 4: Crystal Palace (2024)</text>
-  <text x="100" y="355" fill="#8b949e" font-size="9">VEH + hardware breakpoints: set DR0-DR3 on NtProtect/SystemFunction032, VEH handler drives state machine.</text>
-  <text x="100" y="370" fill="#8b949e" font-size="9">No ROP gadgets, no suspicious timer/APC usage. Legitimate exception handling mechanism.</text>
-  <text x="880" y="342" text-anchor="end" fill="#3fb950" font-size="9">Detection: DR register</text>
+  <!-- Zilean -->
+  <line x1="440" y1="106" x2="440" y2="130" stroke="#58a6ff" stroke-width="1.5"/>
+  <rect x="340" y="130" width="200" height="155" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="440" y="153" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Zilean</text>
+  <line x1="350" y1="162" x2="530" y2="162" stroke="#58a6ff" stroke-width="0.5"/>
+  <text x="355" y="180" fill="#c9d1d9" font-size="10" font-weight="bold">Key Innovation:</text>
+  <text x="355" y="196" fill="#7ee787" font-size="9">Thread pool timer abuse</text>
+  <text x="355" y="212" fill="#7ee787" font-size="9">for callback execution</text>
+  <text x="355" y="232" fill="#8b949e" font-size="9">&#x2022; TpAllocTimer usage</text>
+  <text x="355" y="247" fill="#8b949e" font-size="9">&#x2022; Legitimate call stacks</text>
+  <text x="355" y="262" fill="#8b949e" font-size="9">&#x2022; Worker thread context</text>
+  <text x="355" y="277" fill="#8b949e" font-size="9">&#x2022; Harder to detect timers</text>
 
-  <!-- Gen 5 -->
-  <circle cx="60" cy="415" r="8" fill="#3fb950"/>
-  <rect x="85" y="390" width="880" height="60" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
-  <text x="100" y="410" fill="#3fb950" font-size="11" font-weight="bold">Gen 5: DeathSleep / Advanced Variants (2024+)</text>
-  <text x="100" y="430" fill="#8b949e" font-size="9">Suspend all threads + encrypt all executable memory. Thread stack spoofing + call stack encryption.</text>
-  <text x="100" y="445" fill="#8b949e" font-size="9">Combined with heap encryption, fiber-based execution, CFG-compatible implementations.</text>
-  <text x="880" y="415" text-anchor="end" fill="#3fb950" font-size="9">Detection: Heuristic only</text>
+  <!-- DeathSleep -->
+  <line x1="590" y1="106" x2="590" y2="130" stroke="#58a6ff" stroke-width="1.5"/>
+  <rect x="490" y="130" width="200" height="155" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="590" y="153" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">DeathSleep</text>
+  <line x1="500" y1="162" x2="680" y2="162" stroke="#58a6ff" stroke-width="0.5"/>
+  <text x="505" y="180" fill="#c9d1d9" font-size="10" font-weight="bold">Key Innovation:</text>
+  <text x="505" y="196" fill="#7ee787" font-size="9">Thread destruction during</text>
+  <text x="505" y="212" fill="#7ee787" font-size="9">sleep (no sleeping thread)</text>
+  <text x="505" y="232" fill="#8b949e" font-size="9">&#x2022; Kills implant thread</text>
+  <text x="505" y="247" fill="#8b949e" font-size="9">&#x2022; Timer recreates thread</text>
+  <text x="505" y="262" fill="#8b949e" font-size="9">&#x2022; No thread to scan</text>
+  <text x="505" y="277" fill="#8b949e" font-size="9">&#x2022; Evades thread analysis</text>
 
-  <!-- Detection Evolution arrow -->
-  <rect x="85" y="470" width="880" height="80" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
-  <text x="525" y="493" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Defender Response Evolution</text>
-  <text x="130" y="515" fill="#f85149" font-size="9">Memory scan</text>
-  <line x1="210" y1="512" x2="250" y2="512" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
-  <text x="260" y="515" fill="#f0883e" font-size="9">ROP detection</text>
-  <line x1="350" y1="512" x2="390" y2="512" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
-  <text x="400" y="515" fill="#f0883e" font-size="9">Timer/APC monitor</text>
-  <line x1="515" y1="512" x2="555" y2="512" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
-  <text x="565" y="515" fill="#58a6ff" font-size="9">CFG validation</text>
-  <line x1="650" y1="512" x2="690" y2="512" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
-  <text x="700" y="515" fill="#3fb950" font-size="9">Entropy + thread analysis</text>
-  <text x="525" y="540" text-anchor="middle" fill="#8b949e" font-size="8">Each generation forces defenders to develop new detection primitives</text>
+  <!-- SleepyCrypt -->
+  <line x1="720" y1="106" x2="720" y2="130" stroke="#3fb950" stroke-width="1.5"/>
+  <rect x="620" y="130" width="200" height="155" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="720" y="153" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">SleepyCrypt</text>
+  <line x1="630" y1="162" x2="810" y2="162" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="635" y="180" fill="#c9d1d9" font-size="10" font-weight="bold">Key Innovation:</text>
+  <text x="635" y="196" fill="#7ee787" font-size="9">Call stack spoofing during</text>
+  <text x="635" y="212" fill="#7ee787" font-size="9">sleep to fake return addr</text>
+  <text x="635" y="232" fill="#8b949e" font-size="9">&#x2022; Fake call stack frames</text>
+  <text x="635" y="247" fill="#8b949e" font-size="9">&#x2022; Spoofed return addresses</text>
+  <text x="635" y="262" fill="#8b949e" font-size="9">&#x2022; Legitimate-looking stacks</text>
+  <text x="635" y="277" fill="#8b949e" font-size="9">&#x2022; Evades stack-based detect</text>
 
-  <text x="500" y="570" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — Crystal Palace &amp; Advanced Sleep Obfuscation</text>
+  <!-- Crystal Palace -->
+  <line x1="860" y1="106" x2="860" y2="130" stroke="#3fb950" stroke-width="1.5"/>
+  <rect x="760" y="130" width="220" height="155" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="870" y="153" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Crystal Palace</text>
+  <line x1="770" y1="162" x2="970" y2="162" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="775" y="180" fill="#c9d1d9" font-size="10" font-weight="bold">Key Innovation:</text>
+  <text x="775" y="196" fill="#7ee787" font-size="9">VEH + hardware breakpoints</text>
+  <text x="775" y="212" fill="#7ee787" font-size="9">(DR0-DR3) for encryption</text>
+  <text x="775" y="232" fill="#8b949e" font-size="9">&#x2022; Debug register triggers</text>
+  <text x="775" y="247" fill="#8b949e" font-size="9">&#x2022; No ROP chain needed</text>
+  <text x="775" y="262" fill="#8b949e" font-size="9">&#x2022; Clean execution flow</text>
+  <text x="775" y="277" fill="#8b949e" font-size="9">&#x2022; State-of-the-art evasion</text>
+
+  <!-- Evolution arrows -->
+  <path d="M240,210 C255,210 255,210 270,210" fill="none" stroke="#f0883e" stroke-width="1" stroke-dasharray="3,2"/>
+  <path d="M390,210 C405,210 405,210 420,210" fill="none" stroke="#58a6ff" stroke-width="1" stroke-dasharray="3,2"/>
+  <path d="M540,210 C555,210 555,210 570,210" fill="none" stroke="#58a6ff" stroke-width="1" stroke-dasharray="3,2"/>
+  <path d="M690,210 C705,210 705,210 720,210" fill="none" stroke="#3fb950" stroke-width="1" stroke-dasharray="3,2"/>
+  <path d="M820,210 C835,210 835,210 850,210" fill="none" stroke="#3fb950" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Detection evasion progression -->
+  <rect x="30" y="310" width="940" height="95" rx="6" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="500" y="333" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">Evasion Capability Progression</text>
+
+  <text x="140" y="353" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">Memory Scanning</text>
+  <rect x="70" y="358" width="140" height="8" rx="2" fill="#f0883e" opacity="0.6"/>
+  <text x="140" y="380" text-anchor="middle" fill="#f0883e" font-size="8">Basic encrypt</text>
+
+  <text x="365" y="353" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">+ Timer Detection</text>
+  <rect x="270" y="358" width="190" height="8" rx="2" fill="#58a6ff" opacity="0.4"/>
+  <text x="365" y="380" text-anchor="middle" fill="#58a6ff" font-size="8">APC / ThreadPool</text>
+
+  <text x="590" y="353" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="bold">+ Thread Analysis</text>
+  <rect x="475" y="358" width="230" height="8" rx="2" fill="#58a6ff" opacity="0.6"/>
+  <text x="590" y="380" text-anchor="middle" fill="#58a6ff" font-size="8">Thread destruction</text>
+
+  <text x="820" y="353" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">+ Stack Scanning + ETW</text>
+  <rect x="700" y="358" width="240" height="8" rx="2" fill="#3fb950" opacity="0.6"/>
+  <text x="820" y="380" text-anchor="middle" fill="#3fb950" font-size="8">HW breakpoints + VEH</text>
+
+  <!-- Key Concepts -->
+  <rect x="30" y="420" width="300" height="130" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="180" y="443" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Core Problem</text>
+  <line x1="40" y1="450" x2="320" y2="450" stroke="#f85149" stroke-width="0.5"/>
+  <text x="45" y="468" fill="#c9d1d9" font-size="10">During sleep, beacon memory contains:</text>
+  <text x="45" y="486" fill="#ff7b72" font-size="10">&#x2022; Decrypted shellcode (scannable)</text>
+  <text x="45" y="504" fill="#ff7b72" font-size="10">&#x2022; Configuration data</text>
+  <text x="45" y="522" fill="#ff7b72" font-size="10">&#x2022; C2 URLs and keys</text>
+  <text x="45" y="540" fill="#ff7b72" font-size="10">&#x2022; Identifiable PE artifacts</text>
+
+  <rect x="350" y="420" width="310" height="130" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="505" y="443" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Solution Pattern</text>
+  <line x1="360" y1="450" x2="650" y2="450" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="365" y="468" fill="#c9d1d9" font-size="10">Before sleep:</text>
+  <text x="365" y="486" fill="#7ee787" font-size="10">1. Change permissions (RW or NO_ACCESS)</text>
+  <text x="365" y="504" fill="#7ee787" font-size="10">2. Encrypt beacon memory region</text>
+  <text x="365" y="522" fill="#c9d1d9" font-size="10">After sleep:</text>
+  <text x="365" y="540" fill="#7ee787" font-size="10">3. Decrypt and restore RX permissions</text>
+
+  <rect x="680" y="420" width="290" height="130" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="825" y="443" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">EDR Counters</text>
+  <line x1="690" y1="450" x2="960" y2="450" stroke="#58a6ff" stroke-width="0.5"/>
+  <text x="695" y="468" fill="#c9d1d9" font-size="10">Detection responses:</text>
+  <text x="695" y="486" fill="#ff7b72" font-size="10">&#x2022; Timer object enumeration</text>
+  <text x="695" y="504" fill="#ff7b72" font-size="10">&#x2022; Thread creation monitoring</text>
+  <text x="695" y="522" fill="#ff7b72" font-size="10">&#x2022; Call stack validation</text>
+  <text x="695" y="540" fill="#ff7b72" font-size="10">&#x2022; ETW VirtualProtect logging</text>
+
+  <text x="500" y="572" text-anchor="middle" fill="#8b949e" font-size="10">Each technique evolved to counter new EDR detection capabilities, driving an ongoing arms race</text>
 </svg>

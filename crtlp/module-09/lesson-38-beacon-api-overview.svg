@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Beacon API — Function Categories</text>
+
+  <!-- Output Functions -->
+  <rect x="20" y="50" width="310" height="490" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="175" y="78" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Output Functions</text>
+  <text x="175" y="96" text-anchor="middle" fill="#8b949e" font-size="9">Send results back to operator</text>
+
+  <rect x="35" y="110" width="280" height="55" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="130" text-anchor="middle" fill="#3fb950" font-size="10" font-family="Consolas">BeaconPrintf(type, fmt, ...)</text>
+  <text x="175" y="148" text-anchor="middle" fill="#8b949e" font-size="8">printf-style formatted output</text>
+  <text x="175" y="160" text-anchor="middle" fill="#8b949e" font-size="7">CALLBACK_OUTPUT or CALLBACK_ERROR</text>
+
+  <rect x="35" y="175" width="280" height="55" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="195" text-anchor="middle" fill="#3fb950" font-size="10" font-family="Consolas">BeaconOutput(type, data, len)</text>
+  <text x="175" y="213" text-anchor="middle" fill="#8b949e" font-size="8">Raw byte output (binary data)</text>
+  <text x="175" y="225" text-anchor="middle" fill="#8b949e" font-size="7">Use for non-text data</text>
+
+  <rect x="35" y="240" width="280" height="70" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="260" text-anchor="middle" fill="#3fb950" font-size="10" font-family="Consolas">BeaconFormatAlloc(fmt, sz)</text>
+  <text x="175" y="278" text-anchor="middle" fill="#3fb950" font-size="10" font-family="Consolas">BeaconFormatPrintf(fmt, ...)</text>
+  <text x="175" y="296" text-anchor="middle" fill="#3fb950" font-size="10" font-family="Consolas">BeaconFormatToString(fmt,&amp;l)</text>
+  <text x="175" y="308" text-anchor="middle" fill="#8b949e" font-size="7">Buffered output — build multi-line then send once</text>
+
+  <rect x="35" y="325" width="280" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="345" text-anchor="middle" fill="#3fb950" font-size="10" font-family="Consolas">BeaconFormatFree(fmt)</text>
+  <text x="175" y="360" text-anchor="middle" fill="#8b949e" font-size="8">Always free format buffers!</text>
+
+  <rect x="50" y="380" width="250" height="55" rx="4" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="400" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="bold">Best Practice:</text>
+  <text x="175" y="418" text-anchor="middle" fill="#8b949e" font-size="8">Use BeaconFormat* for multi-line</text>
+  <text x="175" y="430" text-anchor="middle" fill="#8b949e" font-size="8">BeaconPrintf for single messages</text>
+
+  <!-- Data Parser Functions -->
+  <rect x="345" y="50" width="310" height="490" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="78" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Data Parsing Functions</text>
+  <text x="500" y="96" text-anchor="middle" fill="#8b949e" font-size="9">Unpack operator arguments</text>
+
+  <rect x="360" y="110" width="280" height="45" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="130" text-anchor="middle" fill="#f0883e" font-size="10" font-family="Consolas">BeaconDataParse(&amp;p, buf, len)</text>
+  <text x="500" y="148" text-anchor="middle" fill="#8b949e" font-size="8">Initialize parser on argument buffer</text>
+
+  <rect x="360" y="165" width="280" height="40" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="185" text-anchor="middle" fill="#f0883e" font-size="10" font-family="Consolas">BeaconDataInt(&amp;parser)</text>
+  <text x="500" y="200" text-anchor="middle" fill="#8b949e" font-size="8">Extract 32-bit integer</text>
+
+  <rect x="360" y="215" width="280" height="40" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="235" text-anchor="middle" fill="#f0883e" font-size="10" font-family="Consolas">BeaconDataShort(&amp;parser)</text>
+  <text x="500" y="250" text-anchor="middle" fill="#8b949e" font-size="8">Extract 16-bit short</text>
+
+  <rect x="360" y="265" width="280" height="45" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="285" text-anchor="middle" fill="#f0883e" font-size="10" font-family="Consolas">BeaconDataExtract(&amp;p, &amp;len)</text>
+  <text x="500" y="303" text-anchor="middle" fill="#8b949e" font-size="8">Extract length-prefixed string/bytes</text>
+
+  <rect x="360" y="320" width="280" height="40" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="340" text-anchor="middle" fill="#f0883e" font-size="10" font-family="Consolas">BeaconDataLength(&amp;parser)</text>
+  <text x="500" y="355" text-anchor="middle" fill="#8b949e" font-size="8">Bytes remaining in buffer</text>
+
+  <rect x="375" y="380" width="250" height="55" rx="4" fill="#f0883e" fill-opacity="0.1" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="400" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">Packing Format:</text>
+  <text x="500" y="418" text-anchor="middle" fill="#8b949e" font-size="8">bof_pack "si" "string" 42</text>
+  <text x="500" y="430" text-anchor="middle" fill="#8b949e" font-size="8">s=string, i=int, b=binary, z=wstring</text>
+
+  <!-- Utility Functions -->
+  <rect x="670" y="50" width="310" height="490" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="825" y="78" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Utility Functions</text>
+  <text x="825" y="96" text-anchor="middle" fill="#8b949e" font-size="9">Beacon state and process operations</text>
+
+  <rect x="685" y="110" width="280" height="40" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="130" text-anchor="middle" fill="#58a6ff" font-size="10" font-family="Consolas">BeaconIsAdmin()</text>
+  <text x="825" y="145" text-anchor="middle" fill="#8b949e" font-size="8">Check if beacon runs elevated</text>
+
+  <rect x="685" y="160" width="280" height="45" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="180" text-anchor="middle" fill="#58a6ff" font-size="10" font-family="Consolas">BeaconGetSpawnTo(x86, buf, l)</text>
+  <text x="825" y="198" text-anchor="middle" fill="#8b949e" font-size="8">Get configured spawnto process</text>
+
+  <rect x="685" y="215" width="280" height="50" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="235" text-anchor="middle" fill="#58a6ff" font-size="10" font-family="Consolas">BeaconInjectProcess(h,pid,</text>
+  <text x="825" y="250" text-anchor="middle" fill="#58a6ff" font-size="10" font-family="Consolas">  payload,len,off,arg,alen)</text>
+  <text x="825" y="262" text-anchor="middle" fill="#8b949e" font-size="7">Inject into remote process</text>
+
+  <rect x="685" y="275" width="280" height="40" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="295" text-anchor="middle" fill="#58a6ff" font-size="10" font-family="Consolas">BeaconInjectTemporaryProcess</text>
+  <text x="825" y="310" text-anchor="middle" fill="#8b949e" font-size="8">Spawn and inject (fork&amp;run helper)</text>
+
+  <rect x="685" y="325" width="280" height="40" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="345" text-anchor="middle" fill="#58a6ff" font-size="10" font-family="Consolas">BeaconCleanupProcess(PDATA)</text>
+  <text x="825" y="360" text-anchor="middle" fill="#8b949e" font-size="8">Clean up spawned process info</text>
+
+  <rect x="685" y="375" width="280" height="45" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="395" text-anchor="middle" fill="#58a6ff" font-size="10" font-family="Consolas">BeaconUseToken(HANDLE token)</text>
+  <text x="825" y="413" text-anchor="middle" fill="#8b949e" font-size="8">Impersonate with stolen token</text>
+
+  <rect x="685" y="430" width="280" height="40" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="450" text-anchor="middle" fill="#58a6ff" font-size="10" font-family="Consolas">BeaconRevertToken()</text>
+  <text x="825" y="465" text-anchor="middle" fill="#8b949e" font-size="8">Drop impersonation</text>
+
+  <text x="500" y="565" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — Your First BOF &amp; Beacon APIs</text>
+</svg>

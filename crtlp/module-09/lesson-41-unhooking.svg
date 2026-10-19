@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Unhooking Techniques — Restoring Clean ntdll</text>
+
+  <!-- Hooked state -->
+  <rect x="30" y="55" width="940" height="90" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="500" y="80" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">EDR-Hooked ntdll.dll — JMP Hooks in .text Section</text>
+  <text x="60" y="105" fill="#f85149" font-size="9" font-family="Consolas">NtAllocateVirtualMemory: JMP 0x00007FFA12340000  (EDR trampoline)</text>
+  <text x="60" y="122" fill="#f85149" font-size="9" font-family="Consolas">NtCreateThreadEx:       JMP 0x00007FFA12340100  (EDR trampoline)</text>
+  <text x="60" y="139" fill="#f85149" font-size="9" font-family="Consolas">NtProtectVirtualMemory: JMP 0x00007FFA12340200  (EDR trampoline)</text>
+
+  <!-- Method 1: Disk read -->
+  <rect x="20" y="165" width="310" height="260" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="175" y="190" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Method 1: Read from Disk</text>
+
+  <text x="35" y="215" fill="#c9d1d9" font-size="9">1. Open \KnownDlls\ntdll.dll</text>
+  <text x="35" y="235" fill="#c9d1d9" font-size="9">2. Map as SEC_IMAGE (NtMapViewOfSection)</text>
+  <text x="35" y="255" fill="#c9d1d9" font-size="9">3. Find .text section in fresh copy</text>
+  <text x="35" y="275" fill="#c9d1d9" font-size="9">4. VirtualProtect(hooked .text, RW)</text>
+  <text x="35" y="295" fill="#3fb950" font-size="9" font-weight="bold">5. memcpy(hooked, fresh, .text size)</text>
+  <text x="35" y="315" fill="#c9d1d9" font-size="9">6. VirtualProtect(restored .text, RX)</text>
+
+  <rect x="40" y="340" width="270" height="30" rx="4" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="360" text-anchor="middle" fill="#3fb950" font-size="9">All hooks overwritten with clean code</text>
+
+  <text x="35" y="395" fill="#7ee787" font-size="8">+ Restores ALL functions at once</text>
+  <text x="35" y="410" fill="#f85149" font-size="8">- CreateFileMapping detectable by EDR</text>
+  <text x="35" y="425" fill="#f85149" font-size="8">- VirtualProtect on ntdll is suspicious</text>
+
+  <!-- Method 2: Remap -->
+  <rect x="345" y="165" width="310" height="260" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="190" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Method 2: Remap from Disk</text>
+
+  <text x="360" y="215" fill="#c9d1d9" font-size="9">1. Open ntdll.dll from System32</text>
+  <text x="360" y="235" fill="#c9d1d9" font-size="9">2. NtCreateSection(SEC_IMAGE)</text>
+  <text x="360" y="255" fill="#c9d1d9" font-size="9">3. NtMapViewOfSection (new mapping)</text>
+  <text x="360" y="275" fill="#c9d1d9" font-size="9">4. Find .text in new mapping</text>
+  <text x="360" y="295" fill="#f0883e" font-size="9" font-weight="bold">5. Copy clean .text over hooked .text</text>
+  <text x="360" y="315" fill="#c9d1d9" font-size="9">6. NtUnmapViewOfSection (cleanup)</text>
+
+  <rect x="365" y="340" width="270" height="30" rx="4" fill="#f0883e" fill-opacity="0.1" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="360" text-anchor="middle" fill="#f0883e" font-size="9">Clean copy from second mapping</text>
+
+  <text x="360" y="395" fill="#7ee787" font-size="8">+ Avoids KnownDlls (sometimes monitored)</text>
+  <text x="360" y="410" fill="#7ee787" font-size="8">+ Uses lower-level Nt* APIs</text>
+  <text x="360" y="425" fill="#f85149" font-size="8">- Still modifies ntdll .text protection</text>
+
+  <!-- Method 3: Direct syscalls -->
+  <rect x="670" y="165" width="310" height="260" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="825" y="190" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Method 3: Direct Syscalls</text>
+
+  <text x="685" y="215" fill="#c9d1d9" font-size="9">Skip ntdll entirely:</text>
+  <text x="685" y="240" fill="#58a6ff" font-size="9" font-family="Consolas">mov r10, rcx</text>
+  <text x="685" y="257" fill="#58a6ff" font-size="9" font-family="Consolas">mov eax, SSN  ; syscall number</text>
+  <text x="685" y="274" fill="#58a6ff" font-size="9" font-family="Consolas">syscall</text>
+  <text x="685" y="291" fill="#58a6ff" font-size="9" font-family="Consolas">ret</text>
+  <text x="685" y="315" fill="#c9d1d9" font-size="9">SSN resolved from Zw* stub sorting</text>
+
+  <rect x="690" y="340" width="270" height="30" rx="4" fill="#58a6ff" fill-opacity="0.1" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="360" text-anchor="middle" fill="#58a6ff" font-size="9">Hooks never execute — bypassed entirely</text>
+
+  <text x="685" y="395" fill="#7ee787" font-size="8">+ No ntdll modification needed</text>
+  <text x="685" y="410" fill="#7ee787" font-size="8">+ Hooks completely irrelevant</text>
+  <text x="685" y="425" fill="#f85149" font-size="8">- SSN must match OS version</text>
+
+  <!-- Comparison -->
+  <rect x="20" y="445" width="960" height="95" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="500" y="470" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Recommendation for BOFs</text>
+  <text x="175" y="495" text-anchor="middle" fill="#3fb950" font-size="9">Full unhook: best when running</text>
+  <text x="175" y="512" text-anchor="middle" fill="#3fb950" font-size="9">many operations after</text>
+  <text x="500" y="495" text-anchor="middle" fill="#f0883e" font-size="9">Selective unhook: only restore</text>
+  <text x="500" y="512" text-anchor="middle" fill="#f0883e" font-size="9">specific functions you need</text>
+  <text x="825" y="495" text-anchor="middle" fill="#58a6ff" font-size="9">Syscalls: best OPSEC, works</text>
+  <text x="825" y="512" text-anchor="middle" fill="#58a6ff" font-size="9">per-function, no modifications</text>
+  <text x="500" y="535" text-anchor="middle" fill="#8b949e" font-size="8">Combine: direct syscalls for critical APIs + selective unhook for complex operations</text>
+
+  <text x="500" y="570" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — Unhooking Techniques for Defense Evasion</text>
+</svg>

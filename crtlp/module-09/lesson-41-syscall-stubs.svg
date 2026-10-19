@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Direct Syscall Stubs — Bypassing Userland Hooks</text>
+
+  <!-- Normal path (hooked) -->
+  <rect x="20" y="55" width="470" height="170" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="255" y="78" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Normal Path (Hooked by EDR)</text>
+  <rect x="40" y="95" width="120" height="35" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="100" y="118" text-anchor="middle" fill="#58a6ff" font-size="9">BOF Code</text>
+  <line x1="160" y1="112" x2="190" y2="112" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="195" y="88" width="140" height="50" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="265" y="108" text-anchor="middle" fill="#f85149" font-size="9">ntdll.dll</text>
+  <text x="265" y="125" text-anchor="middle" fill="#f85149" font-size="7">JMP to EDR hook</text>
+  <line x1="335" y1="112" x2="365" y2="112" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="370" y="88" width="100" height="50" rx="4" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="420" y="108" text-anchor="middle" fill="#f85149" font-size="9">EDR DLL</text>
+  <text x="420" y="125" text-anchor="middle" fill="#f85149" font-size="7">Log + inspect</text>
+  <line x1="420" y1="138" x2="420" y2="158" stroke="#f85149" stroke-width="1"/>
+  <line x1="420" y1="158" x2="265" y2="178" stroke="#f85149" stroke-width="1" marker-end="url(#ar)"/>
+  <rect x="195" y="168" width="140" height="35" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="265" y="190" text-anchor="middle" fill="#8b949e" font-size="9">syscall (finally)</text>
+  <text x="255" y="215" text-anchor="middle" fill="#f85149" font-size="8">EDR sees everything before kernel</text>
+
+  <!-- Direct syscall path -->
+  <rect x="510" y="55" width="470" height="170" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="745" y="78" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Direct Syscall (Bypass)</text>
+  <rect x="530" y="95" width="120" height="35" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="590" y="118" text-anchor="middle" fill="#58a6ff" font-size="9">BOF Code</text>
+  <line x1="650" y1="112" x2="695" y2="112" stroke="#3fb950" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="672" y="102" fill="#3fb950" font-size="7">DIRECT</text>
+  <rect x="700" y="88" width="260" height="50" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="830" y="105" text-anchor="middle" fill="#3fb950" font-size="9" font-family="Consolas">mov r10, rcx</text>
+  <text x="830" y="120" text-anchor="middle" fill="#3fb950" font-size="9" font-family="Consolas">mov eax, SSN ; syscall</text>
+  <text x="830" y="133" text-anchor="middle" fill="#3fb950" font-size="9" font-family="Consolas">ret</text>
+  <text x="745" y="168" text-anchor="middle" fill="#3fb950" font-size="9">ntdll hooks never execute</text>
+  <text x="745" y="185" text-anchor="middle" fill="#8b949e" font-size="8">Transition directly to kernel mode</text>
+  <text x="745" y="215" text-anchor="middle" fill="#3fb950" font-size="8">EDR userland DLL completely bypassed</text>
+
+  <!-- Syscall stub anatomy -->
+  <rect x="20" y="245" width="470" height="200" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="255" y="270" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">x64 Syscall Stub Anatomy</text>
+
+  <text x="40" y="300" fill="#3fb950" font-size="10" font-family="Consolas">NtAllocateVirtualMemory:</text>
+  <text x="50" y="320" fill="#58a6ff" font-size="10" font-family="Consolas">  mov r10, rcx      ; save 1st arg</text>
+  <text x="50" y="340" fill="#f0883e" font-size="10" font-family="Consolas">  mov eax, 0x18     ; SSN (Win10 21H2)</text>
+  <text x="50" y="360" fill="#c9d1d9" font-size="10" font-family="Consolas">  test byte [0x...], 0x01  ; check for syscall</text>
+  <text x="50" y="380" fill="#c9d1d9" font-size="10" font-family="Consolas">  jne use_int2e     ; fallback to int 0x2E</text>
+  <text x="50" y="400" fill="#3fb950" font-size="10" font-family="Consolas">  syscall           ; transition to kernel</text>
+  <text x="50" y="420" fill="#3fb950" font-size="10" font-family="Consolas">  ret               ; return to caller</text>
+
+  <!-- SSN resolution -->
+  <rect x="510" y="245" width="470" height="200" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="745" y="270" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">SSN Resolution (Runtime)</text>
+
+  <text x="525" y="295" fill="#c9d1d9" font-size="9">System Service Numbers change per Windows build.</text>
+  <text x="525" y="315" fill="#c9d1d9" font-size="9" font-weight="bold">Resolution methods:</text>
+
+  <text x="535" y="340" fill="#3fb950" font-size="9">1. Sorted Zw* stubs — find all Zw exports,</text>
+  <text x="545" y="355" fill="#8b949e" font-size="9">sort by address, SSN = index in sorted order</text>
+
+  <text x="535" y="378" fill="#f0883e" font-size="9">2. Read from clean ntdll — parse mov eax, imm32</text>
+  <text x="545" y="393" fill="#8b949e" font-size="9">from unhooked copy of ntdll on disk</text>
+
+  <text x="535" y="416" fill="#58a6ff" font-size="9">3. Hardcoded table — map OS version to SSN table</text>
+  <text x="545" y="431" fill="#8b949e" font-size="9">Brittle, needs update per Windows release</text>
+
+  <!-- Techniques -->
+  <rect x="20" y="460" width="960" height="80" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="500" y="485" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Popular Implementations</text>
+  <text x="180" y="510" text-anchor="middle" fill="#3fb950" font-size="9">SysWhispers3</text>
+  <text x="180" y="525" text-anchor="middle" fill="#8b949e" font-size="7">Auto-generate stubs from header</text>
+  <text x="400" y="510" text-anchor="middle" fill="#f0883e" font-size="9">HellsGate / HalosGate</text>
+  <text x="400" y="525" text-anchor="middle" fill="#8b949e" font-size="7">Runtime SSN from neighboring stubs</text>
+  <text x="620" y="510" text-anchor="middle" fill="#58a6ff" font-size="9">TartarusGate</text>
+  <text x="620" y="525" text-anchor="middle" fill="#8b949e" font-size="7">Handles multiple hook types</text>
+  <text x="840" y="510" text-anchor="middle" fill="#c9d1d9" font-size="9">FreshyCalls</text>
+  <text x="840" y="525" text-anchor="middle" fill="#8b949e" font-size="7">Sorted Zw* enumeration</text>
+
+  <text x="500" y="570" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — Direct Syscall Stubs for Defense Evasion</text>
+</svg>

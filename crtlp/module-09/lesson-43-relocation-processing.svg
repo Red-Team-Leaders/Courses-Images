@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">COFF Relocation Processing</text>
+  <text x="500" y="58" text-anchor="middle" fill="#8b949e" font-size="12">Patching Unresolved References in Object Files at Load Time</text>
+  <line x1="80" y1="68" x2="920" y2="68" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Step 1: .text with unresolved refs -->
+  <g transform="translate(30,90)">
+    <rect x="0" y="0" width="200" height="200" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="100" y="22" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">.text Section</text>
+    <line x1="10" y1="30" x2="190" y2="30" stroke="#30363d"/>
+
+    <text x="15" y="52" fill="#8b949e" font-size="10">0x00:</text>
+    <text x="55" y="52" fill="#c9d1d9" font-size="10">48 89 5C 24 08</text>
+    <text x="15" y="70" fill="#8b949e" font-size="10">0x05:</text>
+    <text x="55" y="70" fill="#c9d1d9" font-size="10">48 8D 0D</text>
+    <text x="135" y="70" fill="#f85149" font-size="10" font-weight="bold">00 00 00 00</text>
+
+    <text x="15" y="88" fill="#8b949e" font-size="10">0x0C:</text>
+    <text x="55" y="88" fill="#c9d1d9" font-size="10">E8</text>
+    <text x="75" y="88" fill="#f85149" font-size="10" font-weight="bold">00 00 00 00</text>
+
+    <text x="15" y="106" fill="#8b949e" font-size="10">0x11:</text>
+    <text x="55" y="106" fill="#c9d1d9" font-size="10">48 8B 05</text>
+    <text x="135" y="106" fill="#f85149" font-size="10" font-weight="bold">00 00 00 00</text>
+
+    <!-- Unresolved markers -->
+    <rect x="10" y="120" width="180" height="30" rx="4" fill="#2d1418"/>
+    <text x="100" y="140" text-anchor="middle" fill="#f85149" font-size="11">Unresolved: 00 00 00 00</text>
+
+    <text x="100" y="170" text-anchor="middle" fill="#8b949e" font-size="10">Addresses unknown</text>
+    <text x="100" y="185" text-anchor="middle" fill="#8b949e" font-size="10">at compile time</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <line x1="235" y1="190" x2="275" y2="190" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="255" y="180" text-anchor="middle" fill="#f0883e" font-size="9">read</text>
+
+  <!-- Step 2: Relocation Entries -->
+  <g transform="translate(280,90)">
+    <rect x="0" y="0" width="220" height="200" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="110" y="22" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Relocation Entries</text>
+    <line x1="10" y1="30" x2="210" y2="30" stroke="#30363d"/>
+
+    <!-- Entry 1 -->
+    <rect x="10" y="38" width="200" height="46" rx="4" fill="#0d1117" stroke="#30363d"/>
+    <text x="20" y="54" fill="#f0883e" font-size="10">VirtualAddress: 0x0008</text>
+    <text x="20" y="68" fill="#8b949e" font-size="10">SymIdx: 3  Type: REL32</text>
+    <text x="20" y="80" fill="#58a6ff" font-size="9">IMAGE_REL_AMD64_REL32</text>
+
+    <!-- Entry 2 -->
+    <rect x="10" y="90" width="200" height="46" rx="4" fill="#0d1117" stroke="#30363d"/>
+    <text x="20" y="106" fill="#f0883e" font-size="10">VirtualAddress: 0x000D</text>
+    <text x="20" y="120" fill="#8b949e" font-size="10">SymIdx: 5  Type: REL32</text>
+    <text x="20" y="132" fill="#58a6ff" font-size="9">IMAGE_REL_AMD64_REL32</text>
+
+    <!-- Entry 3 -->
+    <rect x="10" y="142" width="200" height="46" rx="4" fill="#0d1117" stroke="#30363d"/>
+    <text x="20" y="158" fill="#f0883e" font-size="10">VirtualAddress: 0x0014</text>
+    <text x="20" y="172" fill="#8b949e" font-size="10">SymIdx: 7  Type: ADDR64</text>
+    <text x="20" y="184" fill="#58a6ff" font-size="9">IMAGE_REL_AMD64_ADDR64</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <line x1="505" y1="190" x2="545" y2="190" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="525" y="180" text-anchor="middle" fill="#f0883e" font-size="9">lookup</text>
+
+  <!-- Step 3: Symbol Resolution -->
+  <g transform="translate(550,90)">
+    <rect x="0" y="0" width="180" height="200" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="90" y="22" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Symbol Table</text>
+    <line x1="10" y1="30" x2="170" y2="30" stroke="#30363d"/>
+
+    <text x="15" y="50" fill="#8b949e" font-size="10">[3] BeaconPrintf</text>
+    <text x="25" y="64" fill="#3fb950" font-size="10">-> 0x7FFE1234ABCD</text>
+
+    <text x="15" y="88" fill="#8b949e" font-size="10">[5] go</text>
+    <text x="25" y="102" fill="#3fb950" font-size="10">-> 0x00001000 (.text)</text>
+
+    <text x="15" y="126" fill="#8b949e" font-size="10">[7] __imp_MessageBoxA</text>
+    <text x="25" y="140" fill="#3fb950" font-size="10">-> 0x7FFE5678DCBA</text>
+
+    <rect x="10" y="155" width="160" height="35" rx="4" fill="#0d2818" stroke="#3fb950"/>
+    <text x="90" y="177" text-anchor="middle" fill="#3fb950" font-size="10">Resolved addresses</text>
+  </g>
+
+  <!-- Arrow 3 -->
+  <line x1="735" y1="190" x2="775" y2="190" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="755" y="180" text-anchor="middle" fill="#f0883e" font-size="9">patch</text>
+
+  <!-- Step 4: Patched .text -->
+  <g transform="translate(780,90)">
+    <rect x="0" y="0" width="200" height="200" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="100" y="22" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Patched .text</text>
+    <line x1="10" y1="30" x2="190" y2="30" stroke="#30363d"/>
+
+    <text x="15" y="52" fill="#8b949e" font-size="10">0x00:</text>
+    <text x="55" y="52" fill="#c9d1d9" font-size="10">48 89 5C 24 08</text>
+    <text x="15" y="70" fill="#8b949e" font-size="10">0x05:</text>
+    <text x="55" y="70" fill="#c9d1d9" font-size="10">48 8D 0D</text>
+    <text x="135" y="70" fill="#3fb950" font-size="10" font-weight="bold">B9 12 34 FE</text>
+
+    <text x="15" y="88" fill="#8b949e" font-size="10">0x0C:</text>
+    <text x="55" y="88" fill="#c9d1d9" font-size="10">E8</text>
+    <text x="75" y="88" fill="#3fb950" font-size="10" font-weight="bold">F3 0E 00 00</text>
+
+    <text x="15" y="106" fill="#8b949e" font-size="10">0x11:</text>
+    <text x="55" y="106" fill="#c9d1d9" font-size="10">48 8B 05</text>
+    <text x="135" y="106" fill="#3fb950" font-size="10" font-weight="bold">BA DC 78 56</text>
+
+    <rect x="10" y="120" width="180" height="30" rx="4" fill="#0d2818"/>
+    <text x="100" y="140" text-anchor="middle" fill="#3fb950" font-size="11">All references resolved</text>
+
+    <text x="100" y="170" text-anchor="middle" fill="#8b949e" font-size="10">Ready for</text>
+    <text x="100" y="185" text-anchor="middle" fill="#8b949e" font-size="10">execution</text>
+  </g>
+
+  <!-- Bottom: Relocation Type Reference -->
+  <g transform="translate(30,320)">
+    <rect x="0" y="0" width="940" height="105" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="470" y="22" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Relocation Type Reference</text>
+    <line x1="20" y1="30" x2="920" y2="30" stroke="#30363d"/>
+
+    <!-- Headers -->
+    <text x="40" y="48" fill="#f0883e" font-size="11" font-weight="bold">Type</text>
+    <text x="280" y="48" fill="#f0883e" font-size="11" font-weight="bold">Value</text>
+    <text x="380" y="48" fill="#f0883e" font-size="11" font-weight="bold">Size</text>
+    <text x="470" y="48" fill="#f0883e" font-size="11" font-weight="bold">Calculation</text>
+    <text x="700" y="48" fill="#f0883e" font-size="11" font-weight="bold">Usage</text>
+
+    <line x1="30" y1="54" x2="910" y2="54" stroke="#30363d" stroke-dasharray="3,2"/>
+
+    <!-- REL32 -->
+    <text x="40" y="72" fill="#58a6ff" font-size="11">IMAGE_REL_AMD64_REL32</text>
+    <text x="280" y="72" fill="#c9d1d9" font-size="11">0x0004</text>
+    <text x="380" y="72" fill="#c9d1d9" font-size="11">32-bit</text>
+    <text x="470" y="72" fill="#3fb950" font-size="11">target - (fixup + 4)</text>
+    <text x="700" y="72" fill="#8b949e" font-size="11">RIP-relative CALL/LEA</text>
+
+    <!-- ADDR64 -->
+    <text x="40" y="92" fill="#58a6ff" font-size="11">IMAGE_REL_AMD64_ADDR64</text>
+    <text x="280" y="92" fill="#c9d1d9" font-size="11">0x0001</text>
+    <text x="380" y="92" fill="#c9d1d9" font-size="11">64-bit</text>
+    <text x="470" y="92" fill="#3fb950" font-size="11">absolute target address</text>
+    <text x="700" y="92" fill="#8b949e" font-size="11">Data pointers / vtables</text>
+  </g>
+
+  <!-- Bottom: Before/After Hex Comparison -->
+  <g transform="translate(30,445)">
+    <rect x="0" y="0" width="455" height="85" rx="8" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+    <text x="228" y="20" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">BEFORE: Unpatched (E8 call)</text>
+    <rect x="15" y="30" width="425" height="40" rx="4" fill="#0d1117"/>
+    <text x="30" y="50" fill="#c9d1d9" font-size="12">E8 <tspan fill="#f85149" font-weight="bold">00 00 00 00</tspan>  ; CALL ???</text>
+    <text x="280" y="50" fill="#8b949e" font-size="11">; target unknown</text>
+  </g>
+
+  <g transform="translate(515,445)">
+    <rect x="0" y="0" width="455" height="85" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+    <text x="228" y="20" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">AFTER: Patched (E8 call)</text>
+    <rect x="15" y="30" width="425" height="40" rx="4" fill="#0d1117"/>
+    <text x="30" y="50" fill="#c9d1d9" font-size="12">E8 <tspan fill="#3fb950" font-weight="bold">F3 0E 00 00</tspan>  ; CALL BeaconPrintf</text>
+    <text x="330" y="50" fill="#8b949e" font-size="11">; resolved!</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#8b949e" font-size="10">Lesson 43 -- COFF Relocation Processing Pipeline | CRTLP Red Team Certification</text>
+</svg>

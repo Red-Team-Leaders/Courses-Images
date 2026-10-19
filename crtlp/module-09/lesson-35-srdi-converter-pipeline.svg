@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arD" markerWidth="10" markerHeight="7" refX="3.5" refY="0" orient="auto"><polygon points="0 0,3.5 10,7 0" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="28" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">sRDI Conversion Pipeline — DLL to Deployable Shellcode</text>
+
+  <!-- Stage 1: Compile -->
+  <rect x="30" y="50" width="280" height="110" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="170" y="75" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Stage 1: Compile DLL</text>
+  <text x="50" y="100" fill="#c9d1d9" font-size="10">cl.exe /LD payload.c /Fe:payload.dll</text>
+  <text x="50" y="118" fill="#8b949e" font-size="10">or: x86_64-w64-mingw32-gcc -shared</text>
+  <text x="50" y="136" fill="#8b949e" font-size="10">Output: standard Windows DLL (PE format)</text>
+  <text x="50" y="150" fill="#3fb950" font-size="9">Export: void CALLBACK RunPayload(LPVOID, DWORD)</text>
+
+  <line x1="310" y1="105" x2="345" y2="105" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 2: Convert -->
+  <rect x="350" y="50" width="300" height="110" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="75" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Stage 2: sRDI Convert</text>
+  <text x="370" y="100" fill="#c9d1d9" font-size="10">python ConvertToShellcode.py payload.dll \</text>
+  <text x="380" y="118" fill="#c9d1d9" font-size="10">-f RunPayload -u "user_data_here"</text>
+  <text x="370" y="140" fill="#8b949e" font-size="10">Prepends PIC bootstrap to raw DLL bytes</text>
+  <text x="370" y="155" fill="#3fb950" font-size="9">-f = function hash, -u = user data passed to export</text>
+
+  <line x1="650" y1="105" x2="685" y2="105" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 3: Output -->
+  <rect x="690" y="50" width="280" height="110" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="830" y="75" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Stage 3: Raw Shellcode</text>
+  <text x="710" y="100" fill="#c9d1d9" font-size="10">payload.bin (raw bytes)</text>
+  <text x="710" y="118" fill="#8b949e" font-size="10">Size: ~2KB stub + DLL size</text>
+  <text x="710" y="136" fill="#8b949e" font-size="10">Format: flat position-independent</text>
+  <text x="710" y="155" fill="#3fb950" font-size="9">Ready for injection or staging</text>
+
+  <!-- Optional transforms -->
+  <line x1="830" y1="160" x2="830" y2="195" stroke="#3fb950" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arD)"/>
+
+  <rect x="30" y="200" width="940" height="110" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="50" y="225" fill="#f0883e" font-size="14" font-weight="bold">Optional Post-Processing (OPSEC Hardening)</text>
+
+  <rect x="50" y="240" width="270" height="55" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="185" y="260" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">XOR Encrypt</text>
+  <text x="70" y="280" fill="#8b949e" font-size="10">python xor_encrypt.py payload.bin 0x41</text>
+
+  <rect x="345" y="240" width="270" height="55" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="480" y="260" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">AES-256 Encrypt</text>
+  <text x="365" y="280" fill="#8b949e" font-size="10">Custom AES wrapper + key embed</text>
+
+  <rect x="640" y="240" width="310" height="55" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="795" y="260" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Base64 Encode (for staging)</text>
+  <text x="660" y="280" fill="#8b949e" font-size="10">base64 -w0 payload.bin &gt; payload.b64</text>
+
+  <!-- Delivery Options -->
+  <rect x="30" y="330" width="940" height="200" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="50" y="358" fill="#58a6ff" font-size="14" font-weight="bold">Delivery Options</text>
+
+  <!-- Staged -->
+  <rect x="50" y="370" width="280" height="145" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="190" y="395" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Staged (HTTP/S)</text>
+  <text x="70" y="418" fill="#c9d1d9" font-size="10">1. Stager downloads shellcode</text>
+  <text x="70" y="436" fill="#c9d1d9" font-size="10">2. VirtualAlloc + decrypt</text>
+  <text x="70" y="454" fill="#c9d1d9" font-size="10">3. Execute in-memory</text>
+  <text x="70" y="478" fill="#3fb950" font-size="10">Pro: Small initial payload</text>
+  <text x="70" y="496" fill="#f85149" font-size="10">Con: Network IOC, staging server</text>
+
+  <!-- Stageless -->
+  <rect x="350" y="370" width="280" height="145" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="490" y="395" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Stageless (Embedded)</text>
+  <text x="370" y="418" fill="#c9d1d9" font-size="10">1. Shellcode in .rsrc or .data</text>
+  <text x="370" y="436" fill="#c9d1d9" font-size="10">2. Loader decrypts at runtime</text>
+  <text x="370" y="454" fill="#c9d1d9" font-size="10">3. Direct execution</text>
+  <text x="370" y="478" fill="#3fb950" font-size="10">Pro: No network dependency</text>
+  <text x="370" y="496" fill="#f85149" font-size="10">Con: Larger binary, entropy</text>
+
+  <!-- BOF Inject -->
+  <rect x="650" y="370" width="300" height="145" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="800" y="395" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">BOF Injection (C2)</text>
+  <text x="670" y="418" fill="#c9d1d9" font-size="10">1. Upload .bin to team server</text>
+  <text x="670" y="436" fill="#c9d1d9" font-size="10">2. BOF allocates in target</text>
+  <text x="670" y="454" fill="#c9d1d9" font-size="10">3. Write + execute shellcode</text>
+  <text x="670" y="478" fill="#3fb950" font-size="10">Pro: In-process, no new artifact</text>
+  <text x="670" y="496" fill="#f85149" font-size="10">Con: Requires active C2 session</text>
+
+  <!-- Footer -->
+  <text x="500" y="555" text-anchor="middle" fill="#7ee787" font-size="12" font-weight="bold">sRDI converts ANY DLL to injectable shellcode — no source modification required</text>
+  <text x="500" y="572" text-anchor="middle" fill="#8b949e" font-size="10">Pipeline: compile DLL, convert with sRDI, optionally encrypt, deliver via staging/embed/BOF</text>
+</svg>

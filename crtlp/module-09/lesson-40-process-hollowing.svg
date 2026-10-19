@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Process Hollowing via BOF</text>
+
+  <!-- Main flow - Row 1 -->
+  <!-- Step 1 -->
+  <rect x="30" y="60" width="195" height="70" rx="6" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="127" y="82" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">1. CreateProcessA</text>
+  <text x="127" y="98" text-anchor="middle" fill="#c9d1d9" font-size="9">svchost.exe</text>
+  <text x="127" y="113" text-anchor="middle" fill="#f0883e" font-size="9">CREATE_SUSPENDED</text>
+  <line x1="225" y1="95" x2="268" y2="95" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 2 -->
+  <rect x="270" y="60" width="210" height="70" rx="6" fill="none" stroke="#f85149" stroke-width="1.5"/>
+  <text x="375" y="82" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">2. NtUnmapViewOfSection</text>
+  <text x="375" y="98" text-anchor="middle" fill="#c9d1d9" font-size="9">Hollow out original PE image</text>
+  <text x="375" y="113" text-anchor="middle" fill="#8b949e" font-size="9">Removes .text, .data, etc.</text>
+  <line x1="480" y1="95" x2="523" y2="95" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 3 -->
+  <rect x="525" y="60" width="195" height="70" rx="6" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="622" y="82" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">3. VirtualAllocEx</text>
+  <text x="622" y="98" text-anchor="middle" fill="#c9d1d9" font-size="9">Allocate at ImageBase</text>
+  <text x="622" y="113" text-anchor="middle" fill="#c9d1d9" font-size="9">PAGE_EXECUTE_READWRITE</text>
+  <line x1="720" y1="95" x2="763" y2="95" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 4 -->
+  <rect x="765" y="60" width="210" height="70" rx="6" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="870" y="82" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">4. WriteProcessMemory</text>
+  <text x="870" y="98" text-anchor="middle" fill="#c9d1d9" font-size="9">Write malicious PE headers</text>
+  <text x="870" y="113" text-anchor="middle" fill="#c9d1d9" font-size="9">+ sections into hollowed space</text>
+
+  <!-- Arrow down -->
+  <line x1="870" y1="130" x2="870" y2="168" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 5 -->
+  <rect x="690" y="170" width="285" height="70" rx="6" fill="none" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="832" y="192" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">5. SetThreadContext</text>
+  <text x="832" y="208" text-anchor="middle" fill="#c9d1d9" font-size="9">Update EIP/RIP → new PE entry point</text>
+  <text x="832" y="223" text-anchor="middle" fill="#c9d1d9" font-size="9">ctx.Rcx = new entry (x64)</text>
+
+  <!-- Arrow left -->
+  <line x1="690" y1="205" x2="633" y2="205" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 6 -->
+  <rect x="420" y="170" width="213" height="70" rx="6" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="2"/>
+  <text x="526" y="192" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">6. ResumeThread</text>
+  <text x="526" y="208" text-anchor="middle" fill="#c9d1d9" font-size="9">Malicious PE executes</text>
+  <text x="526" y="223" text-anchor="middle" fill="#3fb950" font-size="9">Looks like svchost.exe</text>
+
+  <!-- PEB Deception Panel -->
+  <rect x="30" y="270" width="450" height="160" rx="8" fill="#f0883e" fill-opacity="0.06" stroke="#f0883e" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="255" y="295" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">PEB Deception (Why It Works)</text>
+
+  <!-- PEB structure -->
+  <rect x="50" y="310" width="200" height="105" rx="4" fill="none" stroke="#8b949e" stroke-width="1"/>
+  <text x="150" y="330" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">PEB (Process Environment Block)</text>
+  <line x1="50" y1="338" x2="250" y2="338" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="60" y="355" fill="#c9d1d9" font-size="9">ImageBaseAddress</text>
+  <text x="240" y="355" text-anchor="end" fill="#3fb950" font-size="9">svchost.exe</text>
+  <text x="60" y="373" fill="#c9d1d9" font-size="9">ProcessParameters</text>
+  <text x="240" y="373" text-anchor="end" fill="#3fb950" font-size="9">svchost.exe</text>
+  <text x="60" y="391" fill="#c9d1d9" font-size="9">CommandLine</text>
+  <text x="240" y="391" text-anchor="end" fill="#3fb950" font-size="9">svchost.exe -k</text>
+  <text x="60" y="409" fill="#c9d1d9" font-size="9">Actual Code</text>
+  <text x="240" y="409" text-anchor="end" fill="#f85149" font-size="9">MALWARE.DLL</text>
+
+  <text x="280" y="345" fill="#8b949e" font-size="9">Task Manager shows</text>
+  <text x="280" y="360" fill="#3fb950" font-size="10" font-weight="bold">svchost.exe</text>
+  <text x="280" y="380" fill="#8b949e" font-size="9">Process Explorer shows</text>
+  <text x="280" y="395" fill="#3fb950" font-size="10" font-weight="bold">svchost.exe</text>
+  <text x="280" y="415" fill="#8b949e" font-size="9">But memory contains</text>
+  <text x="280" y="430" fill="#f85149" font-size="10" font-weight="bold">Beacon payload</text>
+
+  <!-- Memory Layout Panel -->
+  <rect x="510" y="270" width="460" height="160" rx="8" fill="#58a6ff" fill-opacity="0.05" stroke="#58a6ff" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="740" y="295" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Memory Layout: Before vs After</text>
+
+  <!-- Before -->
+  <rect x="530" y="310" width="195" height="105" rx="4" fill="none" stroke="#8b949e" stroke-width="1"/>
+  <text x="627" y="330" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="bold">BEFORE (Legitimate)</text>
+  <rect x="545" y="340" width="165" height="16" rx="2" fill="#3fb950" fill-opacity="0.2" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="627" y="352" text-anchor="middle" fill="#3fb950" font-size="8">PE Header (svchost)</text>
+  <rect x="545" y="358" width="165" height="16" rx="2" fill="#3fb950" fill-opacity="0.2" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="627" y="370" text-anchor="middle" fill="#3fb950" font-size="8">.text (svchost code)</text>
+  <rect x="545" y="376" width="165" height="16" rx="2" fill="#3fb950" fill-opacity="0.2" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="627" y="388" text-anchor="middle" fill="#3fb950" font-size="8">.data / .rsrc</text>
+  <rect x="545" y="394" width="165" height="16" rx="2" fill="#8b949e" fill-opacity="0.1" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="627" y="406" text-anchor="middle" fill="#8b949e" font-size="8">heap / stack</text>
+
+  <!-- Arrow between -->
+  <line x1="730" y1="362" x2="755" y2="362" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- After -->
+  <rect x="758" y="310" width="195" height="105" rx="4" fill="none" stroke="#f85149" stroke-width="1"/>
+  <text x="855" y="330" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">AFTER (Hollowed)</text>
+  <rect x="773" y="340" width="165" height="16" rx="2" fill="#f85149" fill-opacity="0.2" stroke="#f85149" stroke-width="0.5"/>
+  <text x="855" y="352" text-anchor="middle" fill="#f85149" font-size="8">PE Header (malware)</text>
+  <rect x="773" y="358" width="165" height="16" rx="2" fill="#f85149" fill-opacity="0.2" stroke="#f85149" stroke-width="0.5"/>
+  <text x="855" y="370" text-anchor="middle" fill="#f85149" font-size="8">.text (beacon code)</text>
+  <rect x="773" y="376" width="165" height="16" rx="2" fill="#f85149" fill-opacity="0.2" stroke="#f85149" stroke-width="0.5"/>
+  <text x="855" y="388" text-anchor="middle" fill="#f85149" font-size="8">.data (config/keys)</text>
+  <rect x="773" y="394" width="165" height="16" rx="2" fill="#8b949e" fill-opacity="0.1" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="855" y="406" text-anchor="middle" fill="#8b949e" font-size="8">heap / stack</text>
+
+  <!-- BOF Notes -->
+  <rect x="30" y="450" width="940" height="115" rx="8" fill="#58a6ff" fill-opacity="0.05" stroke="#58a6ff" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="500" y="475" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">BOF Implementation Details</text>
+  <text x="50" y="498" fill="#c9d1d9" font-size="10">- BOF resolves NtUnmapViewOfSection via GetProcAddress("ntdll.dll") - not in standard IAT</text>
+  <text x="50" y="516" fill="#c9d1d9" font-size="10">- PE sections must be mapped at correct RVA offsets; relocation fixups applied if ImageBase differs</text>
+  <text x="50" y="534" fill="#c9d1d9" font-size="10">- x64: Thread context RCX register points to PEB; RDX unused. Entry = AddressOfEntryPoint + ImageBase</text>
+  <text x="50" y="552" fill="#8b949e" font-size="10">- Detection: Memory forensics reveals PE header mismatch vs on-disk image (Volatility malfind plugin)</text>
+</svg>

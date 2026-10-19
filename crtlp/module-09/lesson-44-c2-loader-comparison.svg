@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">COFF Loader Comparison Matrix</text>
+  <text x="500" y="58" text-anchor="middle" fill="#8b949e" font-size="12">Feature Comparison Across C2 Framework COFF Loaders</text>
+  <line x1="50" y1="68" x2="950" y2="68" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Table structure -->
+  <!-- Header row background -->
+  <rect x="30" y="80" width="940" height="38" rx="6" fill="#1c2333"/>
+
+  <!-- Column headers -->
+  <text x="135" y="104" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Feature</text>
+  <text x="335" y="104" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Cobalt Strike</text>
+  <text x="520" y="104" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Sliver (go-coff)</text>
+  <text x="700" y="104" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Havoc</text>
+  <text x="875" y="104" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">COFFLoader</text>
+
+  <!-- Vertical separators -->
+  <line x1="238" y1="80" x2="238" y2="530" stroke="#30363d" stroke-width="1"/>
+  <line x1="428" y1="80" x2="428" y2="530" stroke="#30363d" stroke-width="1"/>
+  <line x1="610" y1="80" x2="610" y2="530" stroke="#30363d" stroke-width="1"/>
+  <line x1="790" y1="80" x2="790" y2="530" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Row 1: Language -->
+  <rect x="30" y="120" width="940" height="46" rx="0" fill="#161b22"/>
+  <text x="50" y="142" fill="#f0883e" font-size="11" font-weight="bold">Language</text>
+  <text x="335" y="142" text-anchor="middle" fill="#c9d1d9" font-size="11">C/C++</text>
+  <text x="335" y="158" text-anchor="middle" fill="#8b949e" font-size="9">(closed-source)</text>
+  <text x="520" y="142" text-anchor="middle" fill="#c9d1d9" font-size="11">Go</text>
+  <text x="520" y="158" text-anchor="middle" fill="#8b949e" font-size="9">(open-source)</text>
+  <text x="700" y="142" text-anchor="middle" fill="#c9d1d9" font-size="11">C</text>
+  <text x="700" y="158" text-anchor="middle" fill="#8b949e" font-size="9">(open-source)</text>
+  <text x="875" y="142" text-anchor="middle" fill="#c9d1d9" font-size="11">C</text>
+  <text x="875" y="158" text-anchor="middle" fill="#8b949e" font-size="9">(open-source/trustedsec)</text>
+
+  <!-- Row 2: Relocation -->
+  <rect x="30" y="168" width="940" height="46" rx="0" fill="#0d1117"/>
+  <text x="50" y="190" fill="#f0883e" font-size="11" font-weight="bold">Relocation</text>
+  <text x="50" y="206" fill="#f0883e" font-size="11" font-weight="bold">Support</text>
+  <text x="335" y="195" text-anchor="middle" fill="#3fb950" font-size="11">REL32, ADDR32NB,</text>
+  <text x="335" y="210" text-anchor="middle" fill="#3fb950" font-size="10">ADDR64, REL32_x</text>
+  <text x="520" y="195" text-anchor="middle" fill="#3fb950" font-size="11">REL32, ADDR32NB,</text>
+  <text x="520" y="210" text-anchor="middle" fill="#3fb950" font-size="10">ADDR64</text>
+  <text x="700" y="195" text-anchor="middle" fill="#3fb950" font-size="11">REL32, ADDR32NB,</text>
+  <text x="700" y="210" text-anchor="middle" fill="#3fb950" font-size="10">ADDR64</text>
+  <text x="875" y="195" text-anchor="middle" fill="#3fb950" font-size="11">REL32, ADDR32NB,</text>
+  <text x="875" y="210" text-anchor="middle" fill="#3fb950" font-size="10">ADDR64</text>
+
+  <!-- Row 3: Symbol Resolution -->
+  <rect x="30" y="216" width="940" height="46" rx="0" fill="#161b22"/>
+  <text x="50" y="238" fill="#f0883e" font-size="11" font-weight="bold">Symbol</text>
+  <text x="50" y="254" fill="#f0883e" font-size="11" font-weight="bold">Resolution</text>
+  <text x="335" y="243" text-anchor="middle" fill="#3fb950" font-size="11">Beacon + DLL$Func</text>
+  <text x="520" y="243" text-anchor="middle" fill="#3fb950" font-size="11">Beacon + DLL$Func</text>
+  <text x="700" y="243" text-anchor="middle" fill="#3fb950" font-size="11">Beacon + DLL$Func</text>
+  <text x="875" y="243" text-anchor="middle" fill="#3fb950" font-size="11">Beacon + DLL$Func</text>
+
+  <!-- Row 4: API Compatibility -->
+  <rect x="30" y="264" width="940" height="46" rx="0" fill="#0d1117"/>
+  <text x="50" y="286" fill="#f0883e" font-size="11" font-weight="bold">Beacon API</text>
+  <text x="50" y="302" fill="#f0883e" font-size="11" font-weight="bold">Coverage</text>
+  <rect x="293" y="278" width="84" height="20" rx="10" fill="#0d2818" stroke="#3fb950"/>
+  <text x="335" y="293" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">FULL</text>
+  <rect x="478" y="278" width="84" height="20" rx="10" fill="#0d2818" stroke="#3fb950"/>
+  <text x="520" y="293" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">FULL</text>
+  <rect x="658" y="278" width="84" height="20" rx="10" fill="#2d1a00" stroke="#f0883e"/>
+  <text x="700" y="293" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">MOST</text>
+  <rect x="833" y="278" width="84" height="20" rx="10" fill="#2d1a00" stroke="#f0883e"/>
+  <text x="875" y="293" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">CORE</text>
+
+  <!-- Row 5: Argument Passing -->
+  <rect x="30" y="312" width="940" height="46" rx="0" fill="#161b22"/>
+  <text x="50" y="334" fill="#f0883e" font-size="11" font-weight="bold">Argument</text>
+  <text x="50" y="350" fill="#f0883e" font-size="11" font-weight="bold">Passing</text>
+  <text x="335" y="340" text-anchor="middle" fill="#c9d1d9" font-size="11">BeaconDataParse</text>
+  <text x="520" y="340" text-anchor="middle" fill="#c9d1d9" font-size="11">BeaconDataParse</text>
+  <text x="700" y="340" text-anchor="middle" fill="#c9d1d9" font-size="11">BeaconDataParse</text>
+  <text x="875" y="340" text-anchor="middle" fill="#c9d1d9" font-size="11">char* buf + len</text>
+
+  <!-- Row 6: Output Method -->
+  <rect x="30" y="360" width="940" height="46" rx="0" fill="#0d1117"/>
+  <text x="50" y="382" fill="#f0883e" font-size="11" font-weight="bold">Output</text>
+  <text x="50" y="398" fill="#f0883e" font-size="11" font-weight="bold">Method</text>
+  <text x="335" y="387" text-anchor="middle" fill="#c9d1d9" font-size="11">BeaconPrintf</text>
+  <text x="335" y="402" text-anchor="middle" fill="#8b949e" font-size="9">-> operator console</text>
+  <text x="520" y="387" text-anchor="middle" fill="#c9d1d9" font-size="11">BeaconPrintf</text>
+  <text x="520" y="402" text-anchor="middle" fill="#8b949e" font-size="9">-> sliver console</text>
+  <text x="700" y="387" text-anchor="middle" fill="#c9d1d9" font-size="11">BeaconPrintf</text>
+  <text x="700" y="402" text-anchor="middle" fill="#8b949e" font-size="9">-> havoc console</text>
+  <text x="875" y="387" text-anchor="middle" fill="#c9d1d9" font-size="11">printf (stdout)</text>
+  <text x="875" y="402" text-anchor="middle" fill="#8b949e" font-size="9">-> terminal</text>
+
+  <!-- Row 7: Memory Cleanup -->
+  <rect x="30" y="408" width="940" height="46" rx="0" fill="#161b22"/>
+  <text x="50" y="430" fill="#f0883e" font-size="11" font-weight="bold">Memory</text>
+  <text x="50" y="446" fill="#f0883e" font-size="11" font-weight="bold">Cleanup</text>
+  <rect x="300" y="424" width="70" height="20" rx="10" fill="#0d2818" stroke="#3fb950"/>
+  <text x="335" y="439" text-anchor="middle" fill="#3fb950" font-size="10">Auto</text>
+  <rect x="485" y="424" width="70" height="20" rx="10" fill="#0d2818" stroke="#3fb950"/>
+  <text x="520" y="439" text-anchor="middle" fill="#3fb950" font-size="10">Auto</text>
+  <rect x="665" y="424" width="70" height="20" rx="10" fill="#0d2818" stroke="#3fb950"/>
+  <text x="700" y="439" text-anchor="middle" fill="#3fb950" font-size="10">Auto</text>
+  <rect x="840" y="424" width="70" height="20" rx="10" fill="#2d1418" stroke="#f85149"/>
+  <text x="875" y="439" text-anchor="middle" fill="#f85149" font-size="10">Manual</text>
+
+  <!-- Row 8: In-process -->
+  <rect x="30" y="456" width="940" height="46" rx="0" fill="#0d1117"/>
+  <text x="50" y="478" fill="#f0883e" font-size="11" font-weight="bold">Execution</text>
+  <text x="50" y="494" fill="#f0883e" font-size="11" font-weight="bold">Context</text>
+  <text x="335" y="482" text-anchor="middle" fill="#c9d1d9" font-size="11">In-process</text>
+  <text x="335" y="497" text-anchor="middle" fill="#8b949e" font-size="9">(beacon thread)</text>
+  <text x="520" y="482" text-anchor="middle" fill="#c9d1d9" font-size="11">In-process</text>
+  <text x="520" y="497" text-anchor="middle" fill="#8b949e" font-size="9">(implant thread)</text>
+  <text x="700" y="482" text-anchor="middle" fill="#c9d1d9" font-size="11">In-process</text>
+  <text x="700" y="497" text-anchor="middle" fill="#8b949e" font-size="9">(demon thread)</text>
+  <text x="875" y="482" text-anchor="middle" fill="#c9d1d9" font-size="11">Standalone</text>
+  <text x="875" y="497" text-anchor="middle" fill="#8b949e" font-size="9">(own process)</text>
+
+  <!-- Table border -->
+  <rect x="30" y="80" width="940" height="450" rx="6" fill="none" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Horizontal separators -->
+  <line x1="30" y1="118" x2="970" y2="118" stroke="#30363d" stroke-width="1"/>
+  <line x1="30" y1="168" x2="970" y2="168" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="30" y1="216" x2="970" y2="216" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="30" y1="264" x2="970" y2="264" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="30" y1="312" x2="970" y2="312" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="30" y1="360" x2="970" y2="360" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="30" y1="408" x2="970" y2="408" stroke="#21262d" stroke-width="0.5"/>
+  <line x1="30" y1="456" x2="970" y2="456" stroke="#21262d" stroke-width="0.5"/>
+
+  <!-- Footer -->
+  <text x="500" y="560" text-anchor="middle" fill="#8b949e" font-size="10">Lesson 44 -- COFF Loader Feature Comparison Across C2 Frameworks | CRTLP Red Team Certification</text>
+</svg>

@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Windows Token Architecture</text>
+
+  <!-- LSASS Box -->
+  <rect x="30" y="55" width="160" height="80" rx="8" fill="#f0883e" fill-opacity="0.12" stroke="#f0883e" stroke-width="2"/>
+  <text x="110" y="78" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">LSASS.exe</text>
+  <text x="110" y="96" text-anchor="middle" fill="#c9d1d9" font-size="9">Authentication</text>
+  <text x="110" y="111" text-anchor="middle" fill="#c9d1d9" font-size="9">Kerberos / NTLM</text>
+
+  <!-- Arrow from LSASS to Token -->
+  <line x1="190" y1="95" x2="240" y2="95" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="215" y="88" text-anchor="middle" fill="#8b949e" font-size="8">creates</text>
+
+  <!-- Token Structure - Large box -->
+  <rect x="242" y="50" width="380" height="200" rx="8" fill="#58a6ff" fill-opacity="0.06" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="432" y="73" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">ACCESS TOKEN (Kernel Object)</text>
+  <line x1="252" y1="80" x2="612" y2="80" stroke="#58a6ff" stroke-width="0.5"/>
+
+  <!-- Token fields -->
+  <text x="262" y="100" fill="#c9d1d9" font-size="10" font-weight="bold">User SID</text>
+  <text x="410" y="100" fill="#3fb950" font-size="10">S-1-5-21-...-1001</text>
+
+  <text x="262" y="118" fill="#c9d1d9" font-size="10" font-weight="bold">Group SIDs</text>
+  <text x="410" y="118" fill="#3fb950" font-size="10">Admins, Users, Everyone</text>
+
+  <text x="262" y="136" fill="#c9d1d9" font-size="10" font-weight="bold">Privileges</text>
+  <text x="410" y="136" fill="#f0883e" font-size="10">SeDebug, SeImpersonate...</text>
+
+  <text x="262" y="154" fill="#c9d1d9" font-size="10" font-weight="bold">Integrity Level</text>
+  <text x="410" y="154" fill="#58a6ff" font-size="10">Medium / High / System</text>
+
+  <text x="262" y="172" fill="#c9d1d9" font-size="10" font-weight="bold">Session ID</text>
+  <text x="410" y="172" fill="#8b949e" font-size="10">0 (service) / 1+ (interactive)</text>
+
+  <text x="262" y="190" fill="#c9d1d9" font-size="10" font-weight="bold">Logon Session</text>
+  <text x="410" y="190" fill="#8b949e" font-size="10">LUID reference</text>
+
+  <text x="262" y="210" fill="#c9d1d9" font-size="10" font-weight="bold">Token Type</text>
+  <text x="410" y="210" fill="#f0883e" font-size="10">Primary / Impersonation</text>
+
+  <text x="262" y="228" fill="#c9d1d9" font-size="10" font-weight="bold">Default DACL</text>
+  <text x="410" y="228" fill="#8b949e" font-size="10">Applied to new objects</text>
+
+  <!-- Primary vs Impersonation -->
+  <rect x="660" y="50" width="155" height="95" rx="6" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="737" y="72" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Primary Token</text>
+  <line x1="670" y1="78" x2="805" y2="78" stroke="#3fb950" stroke-width="0.5"/>
+  <text x="737" y="95" text-anchor="middle" fill="#c9d1d9" font-size="9">One per process</text>
+  <text x="737" y="110" text-anchor="middle" fill="#c9d1d9" font-size="9">Assigned at creation</text>
+  <text x="737" y="125" text-anchor="middle" fill="#c9d1d9" font-size="9">Inherited by children</text>
+
+  <rect x="835" y="50" width="155" height="95" rx="6" fill="#f0883e" fill-opacity="0.08" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="912" y="72" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Impersonation Token</text>
+  <line x1="845" y1="78" x2="980" y2="78" stroke="#f0883e" stroke-width="0.5"/>
+  <text x="912" y="95" text-anchor="middle" fill="#c9d1d9" font-size="9">Per-thread</text>
+  <text x="912" y="110" text-anchor="middle" fill="#c9d1d9" font-size="9">Temporary identity</text>
+  <text x="912" y="125" text-anchor="middle" fill="#c9d1d9" font-size="9">4 levels (Anonymous..)</text>
+
+  <!-- Connection arrows -->
+  <line x1="622" y1="85" x2="658" y2="85" stroke="#3fb950" stroke-width="1" marker-end="url(#arGreen)"/>
+  <line x1="622" y1="115" x2="640" y2="115" stroke="#f0883e" stroke-width="1"/>
+  <line x1="640" y1="115" x2="640" y2="85" stroke="#f0883e" stroke-width="1"/>
+  <line x1="640" y1="85" x2="640" y2="155" stroke="#f0883e" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="815" y1="85" x2="833" y2="85" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
+
+  <!-- Impersonation levels box -->
+  <rect x="660" y="155" width="330" height="95" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="825" y="175" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Impersonation Levels</text>
+  <line x1="670" y1="182" x2="980" y2="182" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="680" y="200" fill="#8b949e" font-size="9">SecurityAnonymous</text>
+  <text x="860" y="200" fill="#8b949e" font-size="9">No identification</text>
+  <text x="680" y="215" fill="#c9d1d9" font-size="9">SecurityIdentification</text>
+  <text x="860" y="215" fill="#c9d1d9" font-size="9">Query only, no access</text>
+  <text x="680" y="230" fill="#3fb950" font-size="9">SecurityImpersonation</text>
+  <text x="860" y="230" fill="#3fb950" font-size="9">Local resource access</text>
+  <text x="680" y="245" fill="#f0883e" font-size="9">SecurityDelegation</text>
+  <text x="860" y="245" fill="#f0883e" font-size="9">Remote + local access</text>
+
+  <!-- Access Check Flow -->
+  <rect x="30" y="280" width="600" height="30" rx="4" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="1"/>
+  <text x="330" y="300" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">ACCESS CHECK FLOW</text>
+
+  <!-- Access check boxes -->
+  <rect x="30" y="325" width="130" height="60" rx="6" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="95" y="349" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Thread</text>
+  <text x="95" y="365" text-anchor="middle" fill="#c9d1d9" font-size="9">requests access</text>
+  <line x1="160" y1="355" x2="195" y2="355" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="197" y="325" width="130" height="60" rx="6" fill="none" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="262" y="349" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">SRM</text>
+  <text x="262" y="365" text-anchor="middle" fill="#c9d1d9" font-size="9">Security Ref Monitor</text>
+  <line x1="327" y1="355" x2="362" y2="355" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="364" y="318" width="142" height="75" rx="6" fill="none" stroke="#c9d1d9" stroke-width="1"/>
+  <text x="435" y="339" text-anchor="middle" fill="#c9d1d9" font-size="10" font-weight="bold">Compare</text>
+  <text x="435" y="355" text-anchor="middle" fill="#8b949e" font-size="9">Token SIDs/Privs</text>
+  <text x="435" y="368" text-anchor="middle" fill="#8b949e" font-size="9">vs Object DACL</text>
+  <text x="435" y="381" text-anchor="middle" fill="#8b949e" font-size="9">+ Integrity Check</text>
+
+  <!-- Branch to granted/denied -->
+  <line x1="506" y1="340" x2="556" y2="330" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+  <line x1="506" y1="375" x2="556" y2="385" stroke="#f85149" stroke-width="1.5"/>
+
+  <rect x="558" y="315" width="72" height="32" rx="4" fill="#3fb950" fill-opacity="0.2" stroke="#3fb950" stroke-width="1"/>
+  <text x="594" y="336" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">GRANT</text>
+
+  <rect x="558" y="370" width="72" height="32" rx="4" fill="#f85149" fill-opacity="0.2" stroke="#f85149" stroke-width="1"/>
+  <text x="594" y="391" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">DENY</text>
+
+  <!-- Key Privileges Table -->
+  <rect x="30" y="415" width="940" height="150" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="440" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Key Privileges for Offensive Operations</text>
+  <line x1="40" y1="448" x2="960" y2="448" stroke="#8b949e" stroke-width="0.5"/>
+
+  <text x="50" y="468" fill="#c9d1d9" font-size="10" font-weight="bold">Privilege</text>
+  <text x="280" y="468" fill="#c9d1d9" font-size="10" font-weight="bold">Capability</text>
+  <text x="650" y="468" fill="#c9d1d9" font-size="10" font-weight="bold">Exploitation</text>
+
+  <text x="50" y="488" fill="#f0883e" font-size="10">SeDebugPrivilege</text>
+  <text x="280" y="488" fill="#c9d1d9" font-size="9">Debug any process</text>
+  <text x="650" y="488" fill="#c9d1d9" font-size="9">OpenProcess on LSASS, token theft</text>
+
+  <text x="50" y="506" fill="#f0883e" font-size="10">SeImpersonatePrivilege</text>
+  <text x="280" y="506" fill="#c9d1d9" font-size="9">Impersonate tokens</text>
+  <text x="650" y="506" fill="#c9d1d9" font-size="9">Potato attacks → SYSTEM</text>
+
+  <text x="50" y="524" fill="#f0883e" font-size="10">SeBackupPrivilege</text>
+  <text x="280" y="524" fill="#c9d1d9" font-size="9">Read any file (bypass DACL)</text>
+  <text x="650" y="524" fill="#c9d1d9" font-size="9">SAM/SYSTEM hive extraction</text>
+
+  <text x="50" y="542" fill="#f0883e" font-size="10">SeRestorePrivilege</text>
+  <text x="280" y="542" fill="#c9d1d9" font-size="9">Write any file (bypass DACL)</text>
+  <text x="650" y="542" fill="#c9d1d9" font-size="9">DLL hijack via file overwrite</text>
+
+  <text x="50" y="560" fill="#f0883e" font-size="10">SeTcbPrivilege</text>
+  <text x="280" y="560" fill="#c9d1d9" font-size="9">Act as part of the OS</text>
+  <text x="650" y="560" fill="#c9d1d9" font-size="9">Create tokens with any SID</text>
+</svg>

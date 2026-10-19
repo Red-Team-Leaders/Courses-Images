@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">Sleep Obfuscation Evolution Timeline</text>
+  <text x="500" y="58" text-anchor="middle" fill="#8b949e" font-size="12">From naive Sleep() to advanced VEH-based techniques</text>
+
+  <!-- Timeline line -->
+  <line x1="60" y1="130" x2="940" y2="130" stroke="#30363d" stroke-width="3"/>
+  <line x1="60" y1="130" x2="940" y2="130" stroke="#f0883e" stroke-width="1.5" stroke-dasharray="6,4" filter="url(#glow)"/>
+
+  <!-- Node 1: Basic Sleep -->
+  <circle cx="100" cy="130" r="8" fill="#f85149" stroke="#f85149" stroke-width="2"/>
+  <text x="100" y="110" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">2018</text>
+  <rect x="30" y="150" width="140" height="160" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="100" y="172" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">Basic Sleep</text>
+  <line x1="45" y1="180" x2="155" y2="180" stroke="#30363d"/>
+  <text x="100" y="198" text-anchor="middle" fill="#8b949e" font-size="9">Mechanism:</text>
+  <text x="100" y="212" text-anchor="middle" fill="#c9d1d9" font-size="9">Simple Sleep()</text>
+  <text x="100" y="226" text-anchor="middle" fill="#c9d1d9" font-size="9">with XOR encrypt</text>
+  <text x="100" y="248" text-anchor="middle" fill="#3fb950" font-size="9">+ Simple</text>
+  <text x="100" y="262" text-anchor="middle" fill="#3fb950" font-size="9">+ Easy to implement</text>
+  <text x="100" y="282" text-anchor="middle" fill="#f85149" font-size="9">- Scannable in memory</text>
+  <text x="100" y="296" text-anchor="middle" fill="#f85149" font-size="9">- Thread suspicious</text>
+
+  <!-- Node 2: Ekko -->
+  <circle cx="270" cy="130" r="8" fill="#f0883e" stroke="#f0883e" stroke-width="2"/>
+  <text x="270" y="110" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">2022</text>
+  <rect x="200" y="150" width="140" height="160" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="270" y="172" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Ekko</text>
+  <line x1="215" y1="180" x2="325" y2="180" stroke="#30363d"/>
+  <text x="270" y="198" text-anchor="middle" fill="#8b949e" font-size="9">Mechanism:</text>
+  <text x="270" y="212" text-anchor="middle" fill="#c9d1d9" font-size="9">Timer Queue +</text>
+  <text x="270" y="226" text-anchor="middle" fill="#c9d1d9" font-size="9">ROP chain encrypt</text>
+  <text x="270" y="248" text-anchor="middle" fill="#3fb950" font-size="9">+ ROP-based sleep</text>
+  <text x="270" y="262" text-anchor="middle" fill="#3fb950" font-size="9">+ Encrypt beacon</text>
+  <text x="270" y="282" text-anchor="middle" fill="#f85149" font-size="9">- Timer queue IOC</text>
+  <text x="270" y="296" text-anchor="middle" fill="#f85149" font-size="9">- ROP gadget sigs</text>
+
+  <!-- Node 3: Zilean -->
+  <circle cx="440" cy="130" r="8" fill="#f0883e" stroke="#f0883e" stroke-width="2"/>
+  <text x="440" y="110" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">2022</text>
+  <rect x="370" y="150" width="140" height="160" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="440" y="172" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">Zilean</text>
+  <line x1="385" y1="180" x2="495" y2="180" stroke="#30363d"/>
+  <text x="440" y="198" text-anchor="middle" fill="#8b949e" font-size="9">Mechanism:</text>
+  <text x="440" y="212" text-anchor="middle" fill="#c9d1d9" font-size="9">Threadpool Wait</text>
+  <text x="440" y="226" text-anchor="middle" fill="#c9d1d9" font-size="9">Callbacks + ROP</text>
+  <text x="440" y="248" text-anchor="middle" fill="#3fb950" font-size="9">+ Threadpool native</text>
+  <text x="440" y="262" text-anchor="middle" fill="#3fb950" font-size="9">+ Less IOC surface</text>
+  <text x="440" y="282" text-anchor="middle" fill="#f85149" font-size="9">- Complex setup</text>
+  <text x="440" y="296" text-anchor="middle" fill="#f85149" font-size="9">- Callback detection</text>
+
+  <!-- Node 4: Foliage -->
+  <circle cx="610" cy="130" r="8" fill="#58a6ff" stroke="#58a6ff" stroke-width="2"/>
+  <text x="610" y="110" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">2023</text>
+  <rect x="540" y="150" width="140" height="160" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="610" y="172" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">Foliage</text>
+  <line x1="555" y1="180" x2="665" y2="180" stroke="#30363d"/>
+  <text x="610" y="198" text-anchor="middle" fill="#8b949e" font-size="9">Mechanism:</text>
+  <text x="610" y="212" text-anchor="middle" fill="#c9d1d9" font-size="9">APC Queue +</text>
+  <text x="610" y="226" text-anchor="middle" fill="#c9d1d9" font-size="9">NtContinue ROP</text>
+  <text x="610" y="248" text-anchor="middle" fill="#3fb950" font-size="9">+ APC-based sleep</text>
+  <text x="610" y="262" text-anchor="middle" fill="#3fb950" font-size="9">+ Clean stack</text>
+  <text x="610" y="282" text-anchor="middle" fill="#f85149" font-size="9">- APC queue enum</text>
+  <text x="610" y="296" text-anchor="middle" fill="#f85149" font-size="9">- Thread alertable</text>
+
+  <!-- Node 5: DeathSleep -->
+  <circle cx="770" cy="130" r="8" fill="#58a6ff" stroke="#58a6ff" stroke-width="2"/>
+  <text x="770" y="110" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">2023</text>
+  <rect x="700" y="150" width="140" height="160" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="770" y="172" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">DeathSleep</text>
+  <line x1="715" y1="180" x2="825" y2="180" stroke="#30363d"/>
+  <text x="770" y="198" text-anchor="middle" fill="#8b949e" font-size="9">Mechanism:</text>
+  <text x="770" y="212" text-anchor="middle" fill="#c9d1d9" font-size="9">Fiber-based +</text>
+  <text x="770" y="226" text-anchor="middle" fill="#c9d1d9" font-size="9">ConvertThreadToFiber</text>
+  <text x="770" y="248" text-anchor="middle" fill="#3fb950" font-size="9">+ No thread create</text>
+  <text x="770" y="262" text-anchor="middle" fill="#3fb950" font-size="9">+ Fiber context swap</text>
+  <text x="770" y="282" text-anchor="middle" fill="#f85149" font-size="9">- Fiber detection</text>
+  <text x="770" y="296" text-anchor="middle" fill="#f85149" font-size="9">- TEB fiber flag</text>
+
+  <!-- Node 6: Crystal Palace -->
+  <circle cx="940" cy="130" r="8" fill="#3fb950" stroke="#3fb950" stroke-width="2" filter="url(#glow)"/>
+  <text x="940" y="110" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">2024</text>
+
+  <!-- Crystal Palace card - positioned below -->
+  <rect x="200" y="340" width="600" height="110" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="500" y="365" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Crystal Palace (VEH + Hardware Breakpoints)</text>
+  <line x1="220" y1="375" x2="780" y2="375" stroke="#30363d"/>
+  <text x="500" y="395" text-anchor="middle" fill="#c9d1d9" font-size="10">VEH registration + HW breakpoints on Sleep/WaitForSingleObject</text>
+  <text x="500" y="412" text-anchor="middle" fill="#c9d1d9" font-size="10">#DB exception triggers encrypt/decrypt cycle via CONTEXT manipulation</text>
+  <text x="350" y="435" text-anchor="middle" fill="#3fb950" font-size="10">+ No ROP chains needed</text>
+  <text x="650" y="435" text-anchor="middle" fill="#3fb950" font-size="10">+ Clean call stack</text>
+  <text x="500" y="435" text-anchor="middle" fill="#3fb950" font-size="10">+ No APC/Timer</text>
+
+  <!-- Arrow from node 6 to card -->
+  <path d="M940,138 L940,330 L800,340" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Arrows between nodes -->
+  <line x1="115" y1="130" x2="258" y2="130" stroke="#30363d" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="285" y1="130" x2="428" y2="130" stroke="#30363d" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="455" y1="130" x2="598" y2="130" stroke="#30363d" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="625" y1="130" x2="758" y2="130" stroke="#30363d" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="785" y1="130" x2="928" y2="130" stroke="#30363d" stroke-width="1" marker-end="url(#ar)"/>
+
+  <!-- Legend -->
+  <text x="250" y="480" fill="#8b949e" font-size="10">Detection Difficulty:</text>
+  <circle cx="370" cy="477" r="5" fill="#f85149"/><text x="382" y="481" fill="#f85149" font-size="9">Easy</text>
+  <circle cx="430" cy="477" r="5" fill="#f0883e"/><text x="442" y="481" fill="#f0883e" font-size="9">Medium</text>
+  <circle cx="500" cy="477" r="5" fill="#58a6ff"/><text x="512" y="481" fill="#58a6ff" font-size="9">Hard</text>
+  <circle cx="560" cy="477" r="5" fill="#3fb950"/><text x="572" y="481" fill="#3fb950" font-size="9">Very Hard</text>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#30363d" font-size="10">CRTLP Module 09 - Lesson 36: Sleep Obfuscation Techniques</text>
+</svg>

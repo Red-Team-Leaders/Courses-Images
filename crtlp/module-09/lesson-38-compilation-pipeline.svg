@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">BOF Compilation Pipeline</text>
+
+  <!-- BOF Pipeline (top) -->
+  <text x="500" y="65" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">BOF Build: Compile Only (-c)</text>
+  <rect x="40" y="78" width="4" height="4" rx="2" fill="#3fb950"/>
+
+  <!-- Source -->
+  <rect x="40" y="85" width="160" height="80" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="120" y="107" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">source.c</text>
+  <text x="55" y="125" fill="#8b949e" font-size="10">#include "beacon.h"</text>
+  <text x="55" y="140" fill="#8b949e" font-size="10">DFR macros</text>
+  <text x="55" y="155" fill="#8b949e" font-size="10">void go() { ... }</text>
+
+  <line x1="200" y1="125" x2="248" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Preprocessor -->
+  <rect x="250" y="85" width="150" height="80" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="325" y="107" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Preprocessor</text>
+  <text x="265" y="125" fill="#c9d1d9" font-size="10">Expand macros</text>
+  <text x="265" y="140" fill="#c9d1d9" font-size="10">Include headers</text>
+  <text x="265" y="155" fill="#c9d1d9" font-size="10">DFR → extern decls</text>
+
+  <line x1="400" y1="125" x2="448" y2="125" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Compiler -->
+  <rect x="450" y="85" width="150" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="525" y="107" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Compiler</text>
+  <text x="465" y="125" fill="#c9d1d9" font-size="10">C → x86-64 assembly</text>
+  <text x="465" y="140" fill="#c9d1d9" font-size="10">Generate relocations</text>
+  <text x="465" y="155" fill="#c9d1d9" font-size="10">Symbol table entries</text>
+
+  <line x1="600" y1="125" x2="648" y2="125" stroke="#3fb950" stroke-width="2" marker-end="url(#ar-green)"/>
+
+  <!-- COFF Output -->
+  <rect x="650" y="85" width="160" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="730" y="107" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">bof.o (COFF)</text>
+  <text x="665" y="127" fill="#c9d1d9" font-size="10">Unlinked object file</text>
+  <text x="665" y="142" fill="#3fb950" font-size="10">~1-10 KB</text>
+  <text x="665" y="157" fill="#8b949e" font-size="10">Beacon resolves at load</text>
+
+  <!-- NO LINKER indicator -->
+  <rect x="830" y="90" width="140" height="70" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5" stroke-dasharray="5"/>
+  <text x="900" y="115" text-anchor="middle" fill="#f85149" font-size="18">X</text>
+  <text x="900" y="135" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">No Linker</text>
+  <text x="900" y="152" text-anchor="middle" fill="#8b949e" font-size="10">-c stops here</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="190" x2="960" y2="190" stroke="#8b949e" stroke-width="0.5" stroke-dasharray="4"/>
+
+  <!-- Normal EXE Pipeline (bottom) -->
+  <text x="500" y="215" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Normal EXE Build: Full Pipeline</text>
+
+  <!-- Source -->
+  <rect x="40" y="230" width="130" height="70" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="105" y="252" text-anchor="middle" fill="#c9d1d9" font-size="12">source.c</text>
+  <text x="55" y="270" fill="#8b949e" font-size="10">#include &lt;windows.h&gt;</text>
+  <text x="55" y="285" fill="#8b949e" font-size="10">int main() { ... }</text>
+
+  <line x1="170" y1="265" x2="198" y2="265" stroke="#8b949e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Preprocessor -->
+  <rect x="200" y="230" width="120" height="70" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="260" y="252" text-anchor="middle" fill="#c9d1d9" font-size="12">Preprocessor</text>
+  <text x="210" y="270" fill="#8b949e" font-size="10">Expand macros</text>
+  <text x="210" y="285" fill="#8b949e" font-size="10">Include headers</text>
+
+  <line x1="320" y1="265" x2="348" y2="265" stroke="#8b949e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Compiler -->
+  <rect x="350" y="230" width="120" height="70" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="410" y="252" text-anchor="middle" fill="#c9d1d9" font-size="12">Compiler</text>
+  <text x="360" y="270" fill="#8b949e" font-size="10">C → asm → .o</text>
+  <text x="360" y="285" fill="#8b949e" font-size="10">COFF object</text>
+
+  <line x1="470" y1="265" x2="498" y2="265" stroke="#f85149" stroke-width="2" marker-end="url(#ar-red)"/>
+
+  <!-- Linker -->
+  <rect x="500" y="230" width="140" height="70" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="570" y="252" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Linker</text>
+  <text x="510" y="270" fill="#c9d1d9" font-size="10">Resolve all symbols</text>
+  <text x="510" y="285" fill="#c9d1d9" font-size="10">Link import libs</text>
+
+  <line x1="640" y1="265" x2="668" y2="265" stroke="#f85149" stroke-width="2" marker-end="url(#ar-red)"/>
+
+  <!-- EXE Output -->
+  <rect x="670" y="230" width="140" height="70" rx="6" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="740" y="252" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">program.exe</text>
+  <text x="680" y="272" fill="#c9d1d9" font-size="10">Full PE with IAT</text>
+  <text x="680" y="287" fill="#f85149" font-size="10">~50 KB+ | detectable</text>
+
+  <!-- GCC Flags Reference -->
+  <rect x="40" y="330" width="920" height="100" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="60" y="352" fill="#58a6ff" font-size="13" font-weight="bold">GCC Flags Reference</text>
+  <line x1="50" y1="360" x2="950" y2="360" stroke="#8b949e" stroke-width="0.5"/>
+
+  <text x="70" y="382" fill="#3fb950" font-size="12" font-weight="bold">-c</text>
+  <text x="120" y="382" fill="#c9d1d9" font-size="11">Compile only, do not link. Produces .o object file (COFF format on Windows targets)</text>
+
+  <text x="70" y="402" fill="#3fb950" font-size="12" font-weight="bold">-o</text>
+  <text x="120" y="402" fill="#c9d1d9" font-size="11">Output filename. Usage: -o bof.o</text>
+
+  <text x="70" y="422" fill="#3fb950" font-size="12" font-weight="bold">-I</text>
+  <text x="120" y="422" fill="#c9d1d9" font-size="11">Include path for headers. Usage: -I include/ (locates beacon.h)</text>
+
+  <!-- Key Difference Callout -->
+  <rect x="40" y="450" width="440" height="95" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="60" y="472" fill="#3fb950" font-size="12" font-weight="bold">Why No Linker for BOFs?</text>
+  <line x1="50" y1="480" x2="470" y2="480" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="55" y="498" fill="#c9d1d9" font-size="10">Beacon IS the linker — it resolves symbols at runtime</text>
+  <text x="55" y="514" fill="#c9d1d9" font-size="10">External symbols (DFR) resolved via LoadLibrary/GetProcAddress</text>
+  <text x="55" y="530" fill="#c9d1d9" font-size="10">Beacon API symbols from internal function pointer table</text>
+
+  <!-- What the linker normally does -->
+  <rect x="510" y="450" width="450" height="95" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="530" y="472" fill="#f85149" font-size="12" font-weight="bold">What the Linker Would Normally Do</text>
+  <line x1="520" y1="480" x2="950" y2="480" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="525" y="498" fill="#c9d1d9" font-size="10">Resolve symbols against .lib import libraries</text>
+  <text x="525" y="514" fill="#c9d1d9" font-size="10">Build Import Address Table (IAT) in PE header</text>
+  <text x="525" y="530" fill="#c9d1d9" font-size="10">Generate full PE/COFF executable with entry point</text>
+
+  <!-- Footer -->
+  <text x="500" y="570" text-anchor="middle" fill="#8b949e" font-size="10">CRTLP Module 09 — Lesson 38: Understanding the BOF Build Process vs Normal Compilation</text>
+</svg>

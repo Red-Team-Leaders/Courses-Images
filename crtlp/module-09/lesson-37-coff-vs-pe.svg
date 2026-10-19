@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">COFF Object File vs PE Executable</text>
+
+  <!-- COFF -->
+  <rect x="30" y="50" width="440" height="480" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="250" y="78" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">COFF Object (.o / .obj)</text>
+  <text x="250" y="96" text-anchor="middle" fill="#8b949e" font-size="10">Compiled, not linked — minimal structure</text>
+
+  <rect x="50" y="110" width="400" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="250" y="128" text-anchor="middle" fill="#3fb950" font-size="10">IMAGE_FILE_HEADER (20 bytes)</text>
+  <text x="250" y="143" text-anchor="middle" fill="#8b949e" font-size="8">Machine, NumberOfSections, NumberOfSymbols</text>
+
+  <rect x="50" y="160" width="400" height="35" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="250" y="182" text-anchor="middle" fill="#58a6ff" font-size="10">Section Table (array of headers)</text>
+
+  <rect x="50" y="205" width="190" height="80" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="145" y="225" text-anchor="middle" fill="#3fb950" font-size="10">.text</text>
+  <text x="145" y="242" text-anchor="middle" fill="#8b949e" font-size="8">Machine code</text>
+  <text x="145" y="257" text-anchor="middle" fill="#8b949e" font-size="8">Relocations inline</text>
+  <text x="145" y="272" text-anchor="middle" fill="#8b949e" font-size="8">go() entry function</text>
+
+  <rect x="260" y="205" width="190" height="80" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="355" y="225" text-anchor="middle" fill="#f0883e" font-size="10">.data / .rdata</text>
+  <text x="355" y="242" text-anchor="middle" fill="#8b949e" font-size="8">Global variables</text>
+  <text x="355" y="257" text-anchor="middle" fill="#8b949e" font-size="8">Read-only constants</text>
+  <text x="355" y="272" text-anchor="middle" fill="#8b949e" font-size="8">String literals</text>
+
+  <rect x="50" y="295" width="400" height="40" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="250" y="313" text-anchor="middle" fill="#f0883e" font-size="10">Relocation Table</text>
+  <text x="250" y="328" text-anchor="middle" fill="#8b949e" font-size="8">REL32, ADDR64 entries — where to patch addresses</text>
+
+  <rect x="50" y="345" width="400" height="55" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="250" y="363" text-anchor="middle" fill="#58a6ff" font-size="10">Symbol Table + String Table</text>
+  <text x="250" y="380" text-anchor="middle" fill="#8b949e" font-size="8">External: __imp_KERNEL32$VirtualAlloc, __imp_BeaconPrintf</text>
+  <text x="250" y="393" text-anchor="middle" fill="#8b949e" font-size="8">Internal: go, helper_func</text>
+
+  <rect x="80" y="415" width="340" height="40" rx="6" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="250" y="440" text-anchor="middle" fill="#3fb950" font-size="10">No loader needed. ~2-50 KB typical.</text>
+
+  <text x="250" y="480" text-anchor="middle" fill="#3fb950" font-size="9">No PE signature, no Optional Header,</text>
+  <text x="250" y="496" text-anchor="middle" fill="#3fb950" font-size="9">no IAT, no export directory — just raw code + metadata</text>
+
+  <!-- PE -->
+  <rect x="530" y="50" width="440" height="480" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="750" y="78" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">PE Executable (.exe / .dll)</text>
+  <text x="750" y="96" text-anchor="middle" fill="#8b949e" font-size="10">Fully linked — ready for OS loader</text>
+
+  <rect x="550" y="110" width="400" height="30" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="750" y="130" text-anchor="middle" fill="#f85149" font-size="9">DOS Header + Stub ("MZ" magic — signature!)</text>
+
+  <rect x="550" y="145" width="400" height="30" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="750" y="165" text-anchor="middle" fill="#f85149" font-size="9">PE Signature ("PE\0\0" — another signature!)</text>
+
+  <rect x="550" y="180" width="400" height="30" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="750" y="200" text-anchor="middle" fill="#f0883e" font-size="9">IMAGE_FILE_HEADER</text>
+
+  <rect x="550" y="215" width="400" height="40" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="750" y="233" text-anchor="middle" fill="#f0883e" font-size="9">IMAGE_OPTIONAL_HEADER (240 bytes!)</text>
+  <text x="750" y="248" text-anchor="middle" fill="#8b949e" font-size="7">EntryPoint, ImageBase, DataDirectories[16]</text>
+
+  <rect x="550" y="260" width="400" height="25" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="750" y="278" text-anchor="middle" fill="#8b949e" font-size="9">Section Headers</text>
+
+  <rect x="550" y="290" width="130" height="55" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="615" y="310" text-anchor="middle" fill="#58a6ff" font-size="9">.text</text>
+  <text x="615" y="328" text-anchor="middle" fill="#8b949e" font-size="7">Code</text>
+  <text x="615" y="340" text-anchor="middle" fill="#8b949e" font-size="7">(linked)</text>
+
+  <rect x="685" y="290" width="130" height="55" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="750" y="310" text-anchor="middle" fill="#f0883e" font-size="9">.data/.rdata</text>
+  <text x="750" y="328" text-anchor="middle" fill="#8b949e" font-size="7">Data</text>
+
+  <rect x="820" y="290" width="130" height="55" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="885" y="310" text-anchor="middle" fill="#8b949e" font-size="9">.rsrc/.reloc</text>
+  <text x="885" y="328" text-anchor="middle" fill="#8b949e" font-size="7">Resources</text>
+
+  <rect x="550" y="355" width="400" height="30" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="750" y="375" text-anchor="middle" fill="#f85149" font-size="9">Import Address Table (IAT) — resolved by OS loader</text>
+
+  <rect x="550" y="390" width="400" height="30" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="750" y="410" text-anchor="middle" fill="#f85149" font-size="9">Export Directory — function names visible</text>
+
+  <rect x="580" y="435" width="340" height="40" rx="6" fill="#f85149" fill-opacity="0.15" stroke="#f85149" stroke-width="1.5"/>
+  <text x="750" y="460" text-anchor="middle" fill="#f85149" font-size="10">Heavy signature surface. 50KB-5MB typical.</text>
+
+  <text x="750" y="497" text-anchor="middle" fill="#f85149" font-size="9">MZ header, PE signature, IAT, exports</text>
+  <text x="750" y="513" text-anchor="middle" fill="#f85149" font-size="9">all scannable by AV/EDR</text>
+
+  <text x="500" y="560" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — BOF Introduction: COFF vs PE Structure</text>
+</svg>

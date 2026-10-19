@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">BOF vs Execute-Assembly vs Fork-and-Run</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">OPSEC comparison of post-exploitation execution methods</text>
+
+  <!-- Column Headers -->
+  <rect x="30" y="75" width="300" height="40" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="100" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">BOF (Beacon Object File)</text>
+
+  <rect x="350" y="75" width="300" height="40" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="100" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Execute-Assembly</text>
+
+  <rect x="670" y="75" width="300" height="40" rx="6" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="820" y="100" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Fork-and-Run</text>
+
+  <!-- Row labels and data -->
+  <!-- Row 1: Process Creation -->
+  <rect x="30" y="125" width="940" height="55" rx="0" fill="#0d1117" opacity="0.5"/>
+  <text x="15" y="157" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,15,157)">PROC</text>
+
+  <rect x="30" y="128" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="180" y="148" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">None</text>
+  <text x="180" y="165" text-anchor="middle" fill="#c9d1d9" font-size="9">Runs in beacon thread</text>
+
+  <rect x="350" y="128" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="500" y="148" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Sacrificial Process</text>
+  <text x="500" y="165" text-anchor="middle" fill="#c9d1d9" font-size="9">Spawns process, injects .NET CLR</text>
+
+  <rect x="670" y="128" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="820" y="148" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Child Process</text>
+  <text x="820" y="165" text-anchor="middle" fill="#c9d1d9" font-size="9">CreateProcess + inject payload</text>
+
+  <!-- Row 2: Disk Artifacts -->
+  <text x="15" y="210" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,15,210)">DISK</text>
+
+  <rect x="30" y="185" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="180" y="205" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Zero</text>
+  <text x="180" y="222" text-anchor="middle" fill="#c9d1d9" font-size="9">Entirely in-memory, no DLL/EXE</text>
+
+  <rect x="350" y="185" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="500" y="205" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Minimal</text>
+  <text x="500" y="222" text-anchor="middle" fill="#c9d1d9" font-size="9">CLR loaded, assembly in memory</text>
+
+  <rect x="670" y="185" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="820" y="205" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Possible</text>
+  <text x="820" y="222" text-anchor="middle" fill="#c9d1d9" font-size="9">DLL/shellcode may touch disk</text>
+
+  <!-- Row 3: Memory Footprint -->
+  <rect x="30" y="242" width="940" height="55" rx="0" fill="#0d1117" opacity="0.5"/>
+  <text x="15" y="275" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,15,275)">MEM</text>
+
+  <rect x="30" y="245" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="180" y="265" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Tiny (~KB)</text>
+  <text x="180" y="282" text-anchor="middle" fill="#c9d1d9" font-size="9">Small COFF object, freed after</text>
+
+  <rect x="350" y="245" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="500" y="265" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Large (~MB)</text>
+  <text x="500" y="282" text-anchor="middle" fill="#c9d1d9" font-size="9">.NET CLR + assembly + deps</text>
+
+  <rect x="670" y="245" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="820" y="265" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Medium (~KB-MB)</text>
+  <text x="820" y="282" text-anchor="middle" fill="#c9d1d9" font-size="9">Depends on payload size</text>
+
+  <!-- Row 4: OPSEC Rating -->
+  <text x="15" y="330" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,15,330)">OPSEC</text>
+
+  <rect x="30" y="302" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="100" y="324" fill="#3fb950" font-size="18">*****</text>
+  <text x="180" y="342" text-anchor="middle" fill="#c9d1d9" font-size="9">No process, no injection, no CLR</text>
+
+  <rect x="350" y="302" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="430" y="324" fill="#f0883e" font-size="18">***</text>
+  <text x="500" y="342" text-anchor="middle" fill="#c9d1d9" font-size="9">CLR load detectable, AMSI hooks</text>
+
+  <rect x="670" y="302" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="750" y="324" fill="#f85149" font-size="18">**</text>
+  <text x="820" y="342" text-anchor="middle" fill="#c9d1d9" font-size="9">Process creation, injection IOCs</text>
+
+  <!-- Row 5: Speed -->
+  <rect x="30" y="359" width="940" height="55" rx="0" fill="#0d1117" opacity="0.5"/>
+  <text x="15" y="390" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,15,390)">SPD</text>
+
+  <rect x="30" y="362" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="180" y="382" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Fast (ms)</text>
+  <text x="180" y="399" text-anchor="middle" fill="#c9d1d9" font-size="9">Direct function call in beacon</text>
+
+  <rect x="350" y="362" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="500" y="382" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Slow (seconds)</text>
+  <text x="500" y="399" text-anchor="middle" fill="#c9d1d9" font-size="9">CLR init + assembly load time</text>
+
+  <rect x="670" y="362" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="820" y="382" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Medium</text>
+  <text x="820" y="399" text-anchor="middle" fill="#c9d1d9" font-size="9">Process spawn + injection time</text>
+
+  <!-- Row 6: Complexity -->
+  <text x="15" y="447" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,15,447)">CMPLX</text>
+
+  <rect x="30" y="419" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="180" y="439" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">High</text>
+  <text x="180" y="456" text-anchor="middle" fill="#c9d1d9" font-size="9">C only, limited API, crash risk</text>
+
+  <rect x="350" y="419" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="500" y="439" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Low</text>
+  <text x="500" y="456" text-anchor="middle" fill="#c9d1d9" font-size="9">Full .NET framework available</text>
+
+  <rect x="670" y="419" width="300" height="50" rx="4" fill="none" stroke="#30363d" stroke-width="0.5"/>
+  <text x="820" y="439" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Medium</text>
+  <text x="820" y="456" text-anchor="middle" fill="#c9d1d9" font-size="9">Standard PE/DLL development</text>
+
+  <!-- Verdict bar -->
+  <rect x="30" y="485" width="300" height="40" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="180" y="510" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">BEST OPSEC</text>
+
+  <rect x="350" y="485" width="300" height="40" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="510" text-anchor="middle" fill="#f0883e" font-size="12">EASIEST DEV</text>
+
+  <rect x="670" y="485" width="300" height="40" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="820" y="510" text-anchor="middle" fill="#f85149" font-size="12">MOST FLEXIBLE</text>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#30363d" font-size="10">CRTLP Module 09 - Lesson 37: Execution Method Comparison</text>
+</svg>

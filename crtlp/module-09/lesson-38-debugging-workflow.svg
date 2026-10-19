@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="ar-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">BOF Debugging Workflow</text>
+
+  <!-- Development Cycle (circular) -->
+  <!-- Step 1: Write -->
+  <rect x="380" y="55" width="140" height="50" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="450" y="75" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">1. Write</text>
+  <text x="450" y="93" text-anchor="middle" fill="#8b949e" font-size="10">Edit source.c</text>
+
+  <!-- Arrow Write → Compile -->
+  <line x1="520" y1="80" x2="588" y2="80" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 2: Compile -->
+  <rect x="590" y="55" width="140" height="50" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="660" y="75" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">2. Compile</text>
+  <text x="660" y="93" text-anchor="middle" fill="#8b949e" font-size="10">gcc -c -o bof.o</text>
+
+  <!-- Arrow Compile → COFFLoader -->
+  <line x1="730" y1="90" x2="780" y2="128" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 3: COFFLoader Test -->
+  <rect x="720" y="130" width="180" height="50" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="810" y="150" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">3. COFFLoader Test</text>
+  <text x="810" y="168" text-anchor="middle" fill="#8b949e" font-size="10">Local test harness</text>
+
+  <!-- Arrow down: fail path -->
+  <line x1="810" y1="180" x2="810" y2="208" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar-red)"/>
+  <text x="820" y="200" fill="#f85149" font-size="9">FAIL?</text>
+
+  <!-- Step 4: Fix -->
+  <rect x="740" y="210" width="140" height="50" rx="6" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="810" y="230" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">4. Fix Issues</text>
+  <text x="810" y="248" text-anchor="middle" fill="#8b949e" font-size="10">Debug &amp; correct</text>
+
+  <!-- Arrow Fix → back to Write -->
+  <path d="M 740 235 Q 500 280 450 108" fill="none" stroke="#f85149" stroke-width="1.5" stroke-dasharray="5" marker-end="url(#ar-red)"/>
+  <text x="550" y="260" fill="#f85149" font-size="9">iterate</text>
+
+  <!-- Arrow COFFLoader → CS Test (success path) -->
+  <line x1="720" y1="155" x2="600" y2="180" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ar-green)"/>
+  <text x="640" y="175" fill="#3fb950" font-size="9">PASS</text>
+
+  <!-- Step 5: CS Test -->
+  <rect x="430" y="170" width="170" height="50" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="515" y="190" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">5. CS Test</text>
+  <text x="515" y="208" text-anchor="middle" fill="#8b949e" font-size="10">inline-execute on lab</text>
+
+  <!-- Arrow CS → Output Check -->
+  <line x1="430" y1="195" x2="350" y2="195" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 6: BeaconOutput Check -->
+  <rect x="150" y="170" width="200" height="50" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="250" y="190" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">6. BeaconOutput Check</text>
+  <text x="250" y="208" text-anchor="middle" fill="#8b949e" font-size="10">Verify operator console</text>
+
+  <!-- Common Issues Section -->
+  <text x="500" y="270" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Common BOF Issues &amp; Fixes</text>
+
+  <!-- Issue 1: Null Dereference -->
+  <rect x="40" y="290" width="290" height="120" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="185" y="312" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Null Pointer Dereference</text>
+  <line x1="50" y1="320" x2="320" y2="320" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="55" y="340" fill="#c9d1d9" font-size="10">Symptom: Beacon crashes silently</text>
+  <text x="55" y="358" fill="#c9d1d9" font-size="10">Cause: DFR function not resolved</text>
+  <text x="55" y="376" fill="#c9d1d9" font-size="10">  or API returned NULL handle</text>
+  <text x="55" y="396" fill="#3fb950" font-size="10">Fix: Always check return values</text>
+  <text x="55" y="406" fill="#3fb950" font-size="10">  and verify DFR declarations</text>
+
+  <!-- Issue 2: Wrong Calling Convention -->
+  <rect x="355" y="290" width="290" height="120" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="500" y="312" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Wrong Calling Convention</text>
+  <line x1="365" y1="320" x2="635" y2="320" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="370" y="340" fill="#c9d1d9" font-size="10">Symptom: Access violation, stack</text>
+  <text x="370" y="358" fill="#c9d1d9" font-size="10">  corruption, wrong arguments</text>
+  <text x="370" y="376" fill="#c9d1d9" font-size="10">Cause: Missing WINAPI (__stdcall)</text>
+  <text x="370" y="396" fill="#3fb950" font-size="10">Fix: Use proper prototype:</text>
+  <text x="370" y="406" fill="#3fb950" font-size="10">  WINBASEAPI BOOL WINAPI Func()</text>
+
+  <!-- Issue 3: Missing DFR -->
+  <rect x="670" y="290" width="290" height="120" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="815" y="312" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Missing DFR Declaration</text>
+  <line x1="680" y1="320" x2="950" y2="320" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="685" y="340" fill="#c9d1d9" font-size="10">Symptom: Linker-style unresolved</text>
+  <text x="685" y="358" fill="#c9d1d9" font-size="10">  symbol at Beacon load time</text>
+  <text x="685" y="376" fill="#c9d1d9" font-size="10">Cause: Forgot DFR() macro or</text>
+  <text x="685" y="392" fill="#c9d1d9" font-size="10">  used wrong library name</text>
+  <text x="685" y="406" fill="#3fb950" font-size="10">Fix: Add DFR(LIB, Function)</text>
+
+  <!-- Debug Techniques -->
+  <rect x="40" y="430" width="450" height="115" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="60" y="452" fill="#3fb950" font-size="12" font-weight="bold">Debug Techniques</text>
+  <line x1="50" y1="460" x2="480" y2="460" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="55" y="478" fill="#c9d1d9" font-size="10">1. BeaconPrintf() liberally — trace variable values</text>
+  <text x="55" y="494" fill="#c9d1d9" font-size="10">2. COFFLoader with debugger attached (gdb/x64dbg)</text>
+  <text x="55" y="510" fill="#c9d1d9" font-size="10">3. Check GetLastError() after every Win32 API call</text>
+  <text x="55" y="526" fill="#c9d1d9" font-size="10">4. objdump -t bof.o — verify symbol names match DFR</text>
+  <text x="55" y="540" fill="#c9d1d9" font-size="10">5. objdump -r bof.o — check relocation entries</text>
+
+  <!-- Checklist -->
+  <rect x="510" y="430" width="450" height="115" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="530" y="452" fill="#f0883e" font-size="12" font-weight="bold">Pre-Deploy Checklist</text>
+  <line x1="520" y1="460" x2="950" y2="460" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="530" y="478" fill="#3fb950" font-size="10">[  ] All DFR declarations present for Win32 APIs</text>
+  <text x="530" y="494" fill="#3fb950" font-size="10">[  ] go() signature matches: void go(char*, int)</text>
+  <text x="530" y="510" fill="#3fb950" font-size="10">[  ] COFFLoader test passes without crash</text>
+  <text x="530" y="526" fill="#3fb950" font-size="10">[  ] Output visible in COFFLoader stdout</text>
+  <text x="530" y="540" fill="#3fb950" font-size="10">[  ] No static variables that need init/cleanup</text>
+
+  <!-- Footer -->
+  <text x="500" y="570" text-anchor="middle" fill="#8b949e" font-size="10">CRTLP Module 09 — Lesson 38: Iterative BOF Debugging Process</text>
+</svg>

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">COFF Loader: Step-by-Step Loading Process</text>
+
+  <!-- Step 1 -->
+  <rect x="30" y="55" width="290" height="130" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <circle cx="55" cy="75" r="14" fill="#58a6ff"/>
+  <text x="55" y="80" text-anchor="middle" fill="#0d1117" font-size="12" font-weight="bold">1</text>
+  <text x="175" y="75" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Read COFF Header</text>
+  <text x="45" y="100" fill="#c9d1d9" font-size="9" font-family="Consolas">IMAGE_FILE_HEADER {</text>
+  <text x="55" y="115" fill="#8b949e" font-size="9" font-family="Consolas">Machine: 0x8664 (x64)</text>
+  <text x="55" y="130" fill="#8b949e" font-size="9" font-family="Consolas">NumberOfSections: 3</text>
+  <text x="55" y="145" fill="#8b949e" font-size="9" font-family="Consolas">NumberOfSymbols: 12</text>
+  <text x="55" y="160" fill="#8b949e" font-size="9" font-family="Consolas">PointerToSymbolTable:</text>
+  <text x="45" y="175" fill="#c9d1d9" font-size="9" font-family="Consolas">}</text>
+
+  <line x1="320" y1="120" x2="355" y2="120" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 2 -->
+  <rect x="360" y="55" width="290" height="130" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <circle cx="385" cy="75" r="14" fill="#f0883e"/>
+  <text x="385" y="80" text-anchor="middle" fill="#0d1117" font-size="12" font-weight="bold">2</text>
+  <text x="505" y="75" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Map Sections to Memory</text>
+  <rect x="375" y="95" width="100" height="25" rx="3" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="425" y="112" text-anchor="middle" fill="#58a6ff" font-size="9">.text (code)</text>
+  <rect x="375" y="125" width="100" height="25" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="425" y="142" text-anchor="middle" fill="#3fb950" font-size="9">.data (globals)</text>
+  <rect x="375" y="155" width="100" height="25" rx="3" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="425" y="172" text-anchor="middle" fill="#f0883e" font-size="9">.rdata (readonly)</text>
+
+  <text x="510" y="112" fill="#8b949e" font-size="9">VirtualAlloc RW</text>
+  <text x="510" y="132" fill="#8b949e" font-size="9">memcpy raw data</text>
+  <text x="510" y="152" fill="#8b949e" font-size="9">to section offsets</text>
+
+  <line x1="650" y1="120" x2="685" y2="120" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 3 -->
+  <rect x="690" y="55" width="290" height="130" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <circle cx="715" cy="75" r="14" fill="#3fb950"/>
+  <text x="715" y="80" text-anchor="middle" fill="#0d1117" font-size="12" font-weight="bold">3</text>
+  <text x="835" y="75" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Process Relocations</text>
+  <text x="705" y="100" fill="#c9d1d9" font-size="9">For each relocation entry:</text>
+  <text x="715" y="118" fill="#8b949e" font-size="9">REL32: patch relative offset</text>
+  <text x="715" y="136" fill="#8b949e" font-size="9">ADDR64: patch absolute address</text>
+  <text x="705" y="158" fill="#c9d1d9" font-size="9">Fix all code references to point</text>
+  <text x="705" y="173" fill="#c9d1d9" font-size="9">to actual allocated addresses</text>
+
+  <!-- Arrow down from step 3 -->
+  <line x1="835" y1="185" x2="835" y2="215" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 4 -->
+  <rect x="690" y="220" width="290" height="150" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <circle cx="715" cy="240" r="14" fill="#58a6ff"/>
+  <text x="715" y="245" text-anchor="middle" fill="#0d1117" font-size="12" font-weight="bold">4</text>
+  <text x="835" y="240" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Resolve External Symbols</text>
+  <rect x="705" y="260" width="260" height="25" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="835" y="277" text-anchor="middle" fill="#3fb950" font-size="9">Beacon API: BeaconPrintf, BeaconOutput...</text>
+  <rect x="705" y="290" width="260" height="25" rx="3" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="835" y="307" text-anchor="middle" fill="#f0883e" font-size="9">DFR: KERNEL32$VirtualAlloc, NTDLL$...</text>
+  <rect x="705" y="320" width="260" height="25" rx="3" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="835" y="337" text-anchor="middle" fill="#8b949e" font-size="9">Internal: helper_func (same .o offset)</text>
+  <text x="835" y="360" text-anchor="middle" fill="#c9d1d9" font-size="9">Patch symbol table with resolved addrs</text>
+
+  <line x1="690" y1="295" x2="655" y2="295" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 5 -->
+  <rect x="360" y="220" width="290" height="150" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <circle cx="385" cy="240" r="14" fill="#f0883e"/>
+  <text x="385" y="245" text-anchor="middle" fill="#0d1117" font-size="12" font-weight="bold">5</text>
+  <text x="505" y="240" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Find Entry Point</text>
+  <text x="375" y="265" fill="#c9d1d9" font-size="9">Search symbol table for:</text>
+  <text x="385" y="285" fill="#f0883e" font-size="10" font-family="Consolas" font-weight="bold">"go"</text>
+  <text x="415" y="285" fill="#8b949e" font-size="10">or</text>
+  <text x="435" y="285" fill="#f0883e" font-size="10" font-family="Consolas" font-weight="bold">"_go"</text>
+  <text x="375" y="310" fill="#c9d1d9" font-size="9">Resolve address within .text:</text>
+  <text x="385" y="330" fill="#f0883e" font-size="9" font-family="Consolas">entry = section_base +</text>
+  <text x="385" y="345" fill="#f0883e" font-size="9" font-family="Consolas">         symbol.Value</text>
+  <text x="375" y="363" fill="#8b949e" font-size="9">Cast to function pointer</text>
+
+  <line x1="360" y1="295" x2="325" y2="295" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 6 -->
+  <rect x="30" y="220" width="290" height="150" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <circle cx="55" cy="240" r="14" fill="#3fb950"/>
+  <text x="55" y="245" text-anchor="middle" fill="#0d1117" font-size="12" font-weight="bold">6</text>
+  <text x="175" y="240" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Call go(args, len)</text>
+  <text x="45" y="268" fill="#c9d1d9" font-size="9" font-family="Consolas">typedef void (*BOF_ENTRY)(</text>
+  <text x="55" y="283" fill="#c9d1d9" font-size="9" font-family="Consolas">  char* args, int len);</text>
+  <text x="45" y="305" fill="#3fb950" font-size="9" font-family="Consolas">BOF_ENTRY entry_fn =</text>
+  <text x="55" y="320" fill="#3fb950" font-size="9" font-family="Consolas">  (BOF_ENTRY)entry_addr;</text>
+  <text x="45" y="342" fill="#3fb950" font-size="10" font-family="Consolas" font-weight="bold">entry_fn(packed_args, args_len);</text>
+  <text x="175" y="365" text-anchor="middle" fill="#7ee787" font-size="9">BOF executes inside Beacon process</text>
+
+  <!-- Memory layout at bottom -->
+  <rect x="30" y="400" width="940" height="140" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="500" y="425" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Beacon Process Memory After Loading</text>
+
+  <rect x="50" y="440" width="140" height="50" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="120" y="462" text-anchor="middle" fill="#58a6ff" font-size="10">.text (RX)</text>
+  <text x="120" y="478" text-anchor="middle" fill="#8b949e" font-size="8">BOF code</text>
+
+  <rect x="200" y="440" width="140" height="50" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="270" y="462" text-anchor="middle" fill="#3fb950" font-size="10">.data (RW)</text>
+  <text x="270" y="478" text-anchor="middle" fill="#8b949e" font-size="8">Global vars</text>
+
+  <rect x="350" y="440" width="140" height="50" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="420" y="462" text-anchor="middle" fill="#f0883e" font-size="10">.rdata (R)</text>
+  <text x="420" y="478" text-anchor="middle" fill="#8b949e" font-size="8">Constants</text>
+
+  <rect x="500" y="440" width="180" height="50" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="590" y="462" text-anchor="middle" fill="#c9d1d9" font-size="10">Symbol Table (resolved)</text>
+  <text x="590" y="478" text-anchor="middle" fill="#8b949e" font-size="8">Function pointers</text>
+
+  <rect x="690" y="440" width="140" height="50" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="760" y="462" text-anchor="middle" fill="#3fb950" font-size="10">go() entry</text>
+  <text x="760" y="478" text-anchor="middle" fill="#8b949e" font-size="8">Execution start</text>
+
+  <rect x="840" y="440" width="120" height="50" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="900" y="462" text-anchor="middle" fill="#f85149" font-size="10">Freed after</text>
+  <text x="900" y="478" text-anchor="middle" fill="#8b949e" font-size="8">BOF returns</text>
+
+  <text x="500" y="520" text-anchor="middle" fill="#8b949e" font-size="9">All BOF memory is allocated inside Beacon's process — no new process, no disk write, no module load event</text>
+  <text x="500" y="555" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — COFF Loader Internals</text>
+</svg>

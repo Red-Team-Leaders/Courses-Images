@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Memory Cleanup Patterns in BOFs</text>
+
+  <!-- Correct Pattern Flow -->
+  <rect x="30" y="55" width="940" height="30" rx="4" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="1"/>
+  <text x="500" y="75" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">CORRECT PATTERN: Secure Allocation Lifecycle</text>
+
+  <!-- Step boxes -->
+  <rect x="30" y="100" width="180" height="75" rx="6" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="120" y="122" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">1. VirtualAlloc</text>
+  <text x="120" y="140" text-anchor="middle" fill="#c9d1d9" font-size="9">PAGE_READWRITE</text>
+  <text x="120" y="155" text-anchor="middle" fill="#8b949e" font-size="8">Allocate buffer for</text>
+  <text x="120" y="167" text-anchor="middle" fill="#8b949e" font-size="8">sensitive data</text>
+  <line x1="210" y1="137" x2="248" y2="137" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="250" y="100" width="180" height="75" rx="6" fill="none" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="340" y="122" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">2. Use Buffer</text>
+  <text x="340" y="140" text-anchor="middle" fill="#c9d1d9" font-size="9">Write shellcode / keys</text>
+  <text x="340" y="155" text-anchor="middle" fill="#c9d1d9" font-size="9">Execute operations</text>
+  <text x="340" y="167" text-anchor="middle" fill="#8b949e" font-size="8">Sensitive data in memory</text>
+  <line x1="430" y1="137" x2="468" y2="137" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="470" y="100" width="195" height="75" rx="6" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="2"/>
+  <text x="567" y="122" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">3. SecureZeroMemory</text>
+  <text x="567" y="140" text-anchor="middle" fill="#c9d1d9" font-size="9">Guaranteed zero-fill</text>
+  <text x="567" y="155" text-anchor="middle" fill="#3fb950" font-size="9">NOT optimized away</text>
+  <text x="567" y="167" text-anchor="middle" fill="#8b949e" font-size="8">volatile write barrier</text>
+  <line x1="665" y1="137" x2="703" y2="137" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="705" y="100" width="145" height="75" rx="6" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="777" y="122" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">4. VirtualFree</text>
+  <text x="777" y="140" text-anchor="middle" fill="#c9d1d9" font-size="9">MEM_RELEASE</text>
+  <text x="777" y="155" text-anchor="middle" fill="#c9d1d9" font-size="9">Return to OS</text>
+  <text x="777" y="167" text-anchor="middle" fill="#8b949e" font-size="8">Pages decommitted</text>
+  <line x1="850" y1="137" x2="870" y2="137" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="872" y="110" width="100" height="50" rx="6" fill="#3fb950" fill-opacity="0.2" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="922" y="133" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">CLEAN</text>
+  <text x="922" y="149" text-anchor="middle" fill="#3fb950" font-size="9">No artifacts</text>
+
+  <!-- Common Mistakes Section -->
+  <rect x="30" y="200" width="940" height="30" rx="4" fill="#f85149" fill-opacity="0.1" stroke="#f85149" stroke-width="1"/>
+  <text x="500" y="220" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">COMMON MISTAKES</text>
+
+  <!-- Mistake 1: Forgetting Free -->
+  <rect x="30" y="245" width="290" height="145" rx="8" fill="#f85149" fill-opacity="0.05" stroke="#f85149" stroke-width="1"/>
+  <text x="175" y="268" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Forgetting VirtualFree</text>
+
+  <rect x="50" y="280" width="250" height="55" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="65" y="297" fill="#f85149" font-size="9" font-family="Consolas, monospace">buf = VirtualAlloc(...);</text>
+  <text x="65" y="312" fill="#f85149" font-size="9" font-family="Consolas, monospace">memcpy(buf, shellcode, len);</text>
+  <text x="65" y="327" fill="#f85149" font-size="9" font-family="Consolas, monospace">// forgot VirtualFree(buf)!</text>
+
+  <text x="50" y="355" fill="#c9d1d9" font-size="9">Memory stays committed with</text>
+  <text x="50" y="370" fill="#c9d1d9" font-size="9">shellcode visible to scanners</text>
+  <text x="50" y="385" fill="#f85149" font-size="9">Memory forensics finds payload</text>
+
+  <!-- Mistake 2: memset optimized away -->
+  <rect x="355" y="245" width="290" height="145" rx="8" fill="#f85149" fill-opacity="0.05" stroke="#f85149" stroke-width="1"/>
+  <text x="500" y="268" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">memset() Optimized Away</text>
+
+  <rect x="375" y="280" width="250" height="55" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="390" y="297" fill="#f85149" font-size="9" font-family="Consolas, monospace">memset(buf, 0, len);</text>
+  <text x="390" y="312" fill="#f0883e" font-size="9" font-family="Consolas, monospace">// Compiler sees buf unused</text>
+  <text x="390" y="327" fill="#f0883e" font-size="9" font-family="Consolas, monospace">// Dead store → REMOVED</text>
+
+  <text x="375" y="355" fill="#c9d1d9" font-size="9">Compiler optimization removes</text>
+  <text x="375" y="370" fill="#c9d1d9" font-size="9">"dead" memset before free/return</text>
+  <text x="375" y="385" fill="#3fb950" font-size="9">Fix: SecureZeroMemory (volatile)</text>
+
+  <!-- Mistake 3: Stack data leaks -->
+  <rect x="680" y="245" width="290" height="145" rx="8" fill="#f85149" fill-opacity="0.05" stroke="#f85149" stroke-width="1"/>
+  <text x="825" y="268" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Stack Data Leaks</text>
+
+  <rect x="700" y="280" width="250" height="55" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="715" y="297" fill="#f85149" font-size="9" font-family="Consolas, monospace">char key[32]; // on stack</text>
+  <text x="715" y="312" fill="#f85149" font-size="9" font-family="Consolas, monospace">decrypt(key, data);</text>
+  <text x="715" y="327" fill="#f85149" font-size="9" font-family="Consolas, monospace">return; // key stays on stack</text>
+
+  <text x="700" y="355" fill="#c9d1d9" font-size="9">Stack frames not zeroed on return.</text>
+  <text x="700" y="370" fill="#c9d1d9" font-size="9">Keys/passwords remain in memory.</text>
+  <text x="700" y="385" fill="#3fb950" font-size="9">Fix: SecureZeroMemory before return</text>
+
+  <!-- BOF-Specific Cleanup Pattern -->
+  <rect x="30" y="405" width="940" height="162" rx="8" fill="#58a6ff" fill-opacity="0.05" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="430" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">BOF-Specific Cleanup Pattern</text>
+
+  <!-- Code block -->
+  <rect x="50" y="442" width="440" height="112" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="0.8"/>
+  <text x="65" y="460" fill="#8b949e" font-size="9" font-family="Consolas, monospace">// BOF entry point</text>
+  <text x="65" y="476" fill="#c9d1d9" font-size="9" font-family="Consolas, monospace">void go(char *args, int len) {</text>
+  <text x="65" y="492" fill="#c9d1d9" font-size="9" font-family="Consolas, monospace">  LPVOID buf = KERNEL32$VirtualAlloc(...);</text>
+  <text x="65" y="508" fill="#c9d1d9" font-size="9" font-family="Consolas, monospace">  // ... do work ...</text>
+  <text x="65" y="524" fill="#3fb950" font-size="9" font-family="Consolas, monospace">  NTDLL$RtlSecureZeroMemory(buf, sz);</text>
+  <text x="65" y="540" fill="#3fb950" font-size="9" font-family="Consolas, monospace">  KERNEL32$VirtualFree(buf, 0, MEM_RELEASE);</text>
+  <text x="65" y="552" fill="#c9d1d9" font-size="9" font-family="Consolas, monospace">}</text>
+
+  <!-- Annotations -->
+  <rect x="520" y="442" width="435" height="112" rx="4" fill="none" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="540" y="462" fill="#f0883e" font-size="10" font-weight="bold">Key Points:</text>
+  <text x="540" y="482" fill="#c9d1d9" font-size="9">1. BOFs run in Beacon's memory space — cleanup is critical</text>
+  <text x="540" y="498" fill="#c9d1d9" font-size="9">2. RtlSecureZeroMemory cannot be optimized out (volatile)</text>
+  <text x="540" y="514" fill="#c9d1d9" font-size="9">3. VirtualFree returns pages to OS (decommit + release)</text>
+  <text x="540" y="530" fill="#c9d1d9" font-size="9">4. Clean up ALL paths: success AND error returns</text>
+  <text x="540" y="548" fill="#f85149" font-size="9">5. BOF crash = Beacon crash — always handle errors gracefully</text>
+</svg>

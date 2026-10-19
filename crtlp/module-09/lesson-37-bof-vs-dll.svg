@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">BOF vs Reflective DLL vs .NET Assembly</text>
+
+  <!-- Column Headers -->
+  <rect x="50" y="55" width="280" height="40" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="190" y="80" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Beacon Object File</text>
+
+  <rect x="360" y="55" width="280" height="40" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="80" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Reflective DLL</text>
+
+  <rect x="670" y="55" width="280" height="40" rx="6" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="810" y="80" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">.NET Assembly</text>
+
+  <!-- Row labels -->
+  <!-- Size -->
+  <text x="25" y="130" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,25,130)">SIZE</text>
+  <rect x="50" y="105" width="280" height="45" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="65" y="125" fill="#3fb950" font-size="12" font-weight="bold">~1-10 KB</text>
+  <text x="65" y="142" fill="#8b949e" font-size="10">Unlinked object, minimal overhead</text>
+
+  <rect x="360" y="105" width="280" height="45" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="375" y="125" fill="#f0883e" font-size="12" font-weight="bold">~50-500 KB</text>
+  <text x="375" y="142" fill="#8b949e" font-size="10">Full PE with loader stub</text>
+
+  <rect x="670" y="105" width="280" height="45" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="685" y="125" fill="#f85149" font-size="12" font-weight="bold">~10-500 KB+</text>
+  <text x="685" y="142" fill="#8b949e" font-size="10">Managed binary + dependencies</text>
+
+  <!-- Disk Artifacts -->
+  <text x="25" y="195" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,25,195)">DISK</text>
+  <rect x="50" y="165" width="280" height="55" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="65" y="185" fill="#3fb950" font-size="12" font-weight="bold">None</text>
+  <text x="65" y="200" fill="#8b949e" font-size="10">Never touches disk — pure memory</text>
+  <text x="65" y="213" fill="#8b949e" font-size="10">No file-based IoC</text>
+
+  <rect x="360" y="165" width="280" height="55" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="375" y="185" fill="#f0883e" font-size="12" font-weight="bold">Possible</text>
+  <text x="375" y="200" fill="#8b949e" font-size="10">Memory-only if reflective loader</text>
+  <text x="375" y="213" fill="#8b949e" font-size="10">PE header artifacts in memory</text>
+
+  <rect x="670" y="165" width="280" height="55" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="685" y="185" fill="#f85149" font-size="12" font-weight="bold">CLR artifacts</text>
+  <text x="685" y="200" fill="#8b949e" font-size="10">CLR loads assembly, may write temp</text>
+  <text x="685" y="213" fill="#8b949e" font-size="10">.NET metadata visible in memory</text>
+
+  <!-- Memory footprint -->
+  <text x="25" y="265" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,25,265)">MEM</text>
+  <rect x="50" y="235" width="280" height="55" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="65" y="255" fill="#3fb950" font-size="12" font-weight="bold">Minimal — in Beacon thread</text>
+  <text x="65" y="270" fill="#8b949e" font-size="10">Single alloc, freed after execution</text>
+  <text x="65" y="283" fill="#8b949e" font-size="10">No PE headers in memory</text>
+
+  <rect x="360" y="235" width="280" height="55" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="375" y="255" fill="#f0883e" font-size="12" font-weight="bold">New process / thread</text>
+  <text x="375" y="270" fill="#8b949e" font-size="10">Full PE mapped in memory</text>
+  <text x="375" y="283" fill="#8b949e" font-size="10">MZ/PE header scannable</text>
+
+  <rect x="670" y="235" width="280" height="55" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="685" y="255" fill="#f85149" font-size="12" font-weight="bold">CLR runtime loaded</text>
+  <text x="685" y="270" fill="#8b949e" font-size="10">clrjit.dll, mscorlib loaded</text>
+  <text x="685" y="283" fill="#8b949e" font-size="10">Heavy footprint, JIT compilation</text>
+
+  <!-- Detection Surface -->
+  <text x="25" y="338" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,25,338)">DETECT</text>
+  <rect x="50" y="305" width="280" height="60" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="65" y="325" fill="#3fb950" font-size="12" font-weight="bold">Low</text>
+  <text x="65" y="342" fill="#8b949e" font-size="10">No fork&amp;run, no PE header</text>
+  <text x="65" y="357" fill="#8b949e" font-size="10">RWX page brief lifespan</text>
+
+  <rect x="360" y="305" width="280" height="60" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="375" y="325" fill="#f0883e" font-size="12" font-weight="bold">Medium</text>
+  <text x="375" y="342" fill="#8b949e" font-size="10">PE header scan, CreateThread</text>
+  <text x="375" y="357" fill="#8b949e" font-size="10">Process injection detectable</text>
+
+  <rect x="670" y="305" width="280" height="60" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="685" y="325" fill="#f85149" font-size="12" font-weight="bold">High</text>
+  <text x="685" y="342" fill="#8b949e" font-size="10">AMSI hooks, ETW CLR events</text>
+  <text x="685" y="357" fill="#8b949e" font-size="10">Assembly.Load() heavily monitored</text>
+
+  <!-- Flexibility -->
+  <text x="25" y="410" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,25,410)">FLEX</text>
+  <rect x="50" y="380" width="280" height="55" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="65" y="400" fill="#f0883e" font-size="12" font-weight="bold">Limited</text>
+  <text x="65" y="415" fill="#8b949e" font-size="10">Single function, no threads/TLS</text>
+  <text x="65" y="428" fill="#8b949e" font-size="10">No C++ exceptions, no static init</text>
+
+  <rect x="360" y="380" width="280" height="55" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="375" y="400" fill="#3fb950" font-size="12" font-weight="bold">Full</text>
+  <text x="375" y="415" fill="#8b949e" font-size="10">Full PE, any C/C++ features</text>
+  <text x="375" y="428" fill="#8b949e" font-size="10">Threads, TLS, C++ objects</text>
+
+  <rect x="670" y="380" width="280" height="55" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="685" y="400" fill="#3fb950" font-size="12" font-weight="bold">Full (.NET)</text>
+  <text x="685" y="415" fill="#8b949e" font-size="10">Rich BCL, reflection, LINQ</text>
+  <text x="685" y="428" fill="#8b949e" font-size="10">Requires CLR on target</text>
+
+  <!-- Cleanup -->
+  <text x="25" y="477" fill="#58a6ff" font-size="11" font-weight="bold" transform="rotate(-90,25,477)">CLEAN</text>
+  <rect x="50" y="450" width="280" height="50" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="65" y="470" fill="#3fb950" font-size="12" font-weight="bold">Automatic — VirtualFree</text>
+  <text x="65" y="487" fill="#8b949e" font-size="10">Memory reclaimed immediately</text>
+
+  <rect x="360" y="450" width="280" height="50" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="375" y="470" fill="#f0883e" font-size="12" font-weight="bold">Manual — unmap or exit</text>
+  <text x="375" y="487" fill="#8b949e" font-size="10">Injected process may persist</text>
+
+  <rect x="670" y="450" width="280" height="50" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="685" y="470" fill="#f85149" font-size="12" font-weight="bold">CLR stays loaded</text>
+  <text x="685" y="487" fill="#8b949e" font-size="10">Cannot unload AppDomain easily</text>
+
+  <!-- Verdict bar -->
+  <rect x="50" y="515" width="280" height="25" rx="4" fill="#3fb950" fill-opacity="0.15"/>
+  <text x="190" y="532" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Best for quick, stealthy tasks</text>
+  <rect x="360" y="515" width="280" height="25" rx="4" fill="#f0883e" fill-opacity="0.15"/>
+  <text x="500" y="532" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Best for complex tooling</text>
+  <rect x="670" y="515" width="280" height="25" rx="4" fill="#f85149" fill-opacity="0.15"/>
+  <text x="810" y="532" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Best for .NET-native ops</text>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#8b949e" font-size="10">CRTLP Module 09 — Lesson 37: Choosing the Right Post-Ex Execution Method</text>
+</svg>

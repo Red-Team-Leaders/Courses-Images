@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">sRDI Architecture</text>
+  <text x="500" y="52" text-anchor="middle" fill="#8b949e" font-size="11">Shellcode Reflective DLL Injection - Three Component Design</text>
+
+  <!-- Component 1: Bootstrap Stub -->
+  <rect x="30" y="75" width="290" height="340" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <rect x="30" y="75" width="290" height="35" rx="8" fill="#f0883e" opacity="0.15"/>
+  <text x="175" y="98" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Bootstrap Stub</text>
+
+  <text x="50" y="130" fill="#c9d1d9" font-size="11" font-weight="bold">Position-Independent Code</text>
+  <rect x="45" y="142" width="260" height="30" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="0.5"/>
+  <text x="175" y="162" text-anchor="middle" fill="#f0883e" font-size="10" font-family="Consolas, monospace">call $+5 / pop ebx  ; find base</text>
+
+  <text x="50" y="195" fill="#c9d1d9" font-size="10">Responsibilities:</text>
+  <text x="55" y="213" fill="#7ee787" font-size="10">&#x2022; Locate itself in memory (PIC)</text>
+  <text x="55" y="230" fill="#7ee787" font-size="10">&#x2022; Find appended DLL payload</text>
+  <text x="55" y="247" fill="#7ee787" font-size="10">&#x2022; Resolve kernel32 base</text>
+  <text x="55" y="264" fill="#7ee787" font-size="10">&#x2022; Walk PEB-&gt;Ldr-&gt;InMemoryOrder</text>
+  <text x="55" y="281" fill="#7ee787" font-size="10">&#x2022; Parse export table for APIs</text>
+  <text x="55" y="298" fill="#7ee787" font-size="10">&#x2022; VirtualAlloc for DLL mapping</text>
+  <text x="55" y="315" fill="#7ee787" font-size="10">&#x2022; Process relocations and imports</text>
+  <text x="55" y="332" fill="#7ee787" font-size="10">&#x2022; Call DllMain(DLL_PROCESS_ATTACH)</text>
+
+  <rect x="50" y="350" width="120" height="25" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="110" y="367" text-anchor="middle" fill="#f0883e" font-size="10">~800-1200 bytes</text>
+
+  <rect x="185" y="350" width="120" height="25" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="245" y="367" text-anchor="middle" fill="#8b949e" font-size="10">No imports</text>
+
+  <text x="175" y="405" text-anchor="middle" fill="#8b949e" font-size="9">Entry point - executes first</text>
+
+  <!-- Component 2: Raw DLL Payload -->
+  <rect x="355" y="75" width="290" height="340" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <rect x="355" y="75" width="290" height="35" rx="8" fill="#58a6ff" opacity="0.15"/>
+  <text x="500" y="98" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Raw DLL Payload</text>
+
+  <text x="375" y="130" fill="#c9d1d9" font-size="11" font-weight="bold">Unmodified PE File</text>
+  <rect x="370" y="142" width="260" height="80" rx="4" fill="#0d1117" stroke="#58a6ff" stroke-width="0.5"/>
+  <text x="385" y="160" fill="#8b949e" font-size="10">DOS Header (MZ)</text>
+  <rect x="385" y="165" width="230" height="2" fill="#58a6ff" opacity="0.3"/>
+  <text x="385" y="180" fill="#8b949e" font-size="10">PE Header (PE\0\0)</text>
+  <rect x="385" y="185" width="230" height="2" fill="#58a6ff" opacity="0.3"/>
+  <text x="385" y="200" fill="#8b949e" font-size="10">Section Headers (.text, .rdata, .data)</text>
+  <rect x="385" y="205" width="230" height="2" fill="#58a6ff" opacity="0.3"/>
+  <text x="385" y="216" fill="#8b949e" font-size="10">Section Data (raw bytes)</text>
+
+  <text x="375" y="245" fill="#c9d1d9" font-size="10">Key Properties:</text>
+  <text x="380" y="263" fill="#7ee787" font-size="10">&#x2022; Any standard DLL works</text>
+  <text x="380" y="280" fill="#7ee787" font-size="10">&#x2022; No export requirement</text>
+  <text x="380" y="297" fill="#7ee787" font-size="10">&#x2022; No source modification needed</text>
+  <text x="380" y="314" fill="#7ee787" font-size="10">&#x2022; Appended after bootstrap</text>
+  <text x="380" y="331" fill="#7ee787" font-size="10">&#x2022; Can be encrypted at rest</text>
+
+  <rect x="375" y="350" width="120" height="25" rx="4" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="435" y="367" text-anchor="middle" fill="#58a6ff" font-size="10">Variable size</text>
+
+  <rect x="510" y="350" width="120" height="25" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="570" y="367" text-anchor="middle" fill="#8b949e" font-size="10">Standard PE</text>
+
+  <text x="500" y="405" text-anchor="middle" fill="#8b949e" font-size="9">Actual malicious/tool DLL</text>
+
+  <!-- Component 3: Hash Table -->
+  <rect x="680" y="75" width="290" height="340" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <rect x="680" y="75" width="290" height="35" rx="8" fill="#3fb950" opacity="0.15"/>
+  <text x="825" y="98" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Hash Table (API Resolution)</text>
+
+  <text x="700" y="130" fill="#c9d1d9" font-size="11" font-weight="bold">Pre-computed API Hashes</text>
+  <rect x="695" y="142" width="260" height="160" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="0.5"/>
+
+  <text x="710" y="162" fill="#3fb950" font-size="10" font-family="Consolas, monospace">0x726774C  LoadLibraryA</text>
+  <text x="710" y="180" fill="#3fb950" font-size="10" font-family="Consolas, monospace">0x7C0DFCAA GetProcAddress</text>
+  <text x="710" y="198" fill="#3fb950" font-size="10" font-family="Consolas, monospace">0xE553A458 VirtualAlloc</text>
+  <text x="710" y="216" fill="#3fb950" font-size="10" font-family="Consolas, monospace">0xA1B8B8B9 VirtualProtect</text>
+  <text x="710" y="234" fill="#3fb950" font-size="10" font-family="Consolas, monospace">0x5BAE572D NtFlushInstr...</text>
+  <text x="710" y="252" fill="#3fb950" font-size="10" font-family="Consolas, monospace">0x1E380A6F RtlAddFunc...</text>
+  <text x="825" y="280" text-anchor="middle" fill="#8b949e" font-size="10">ROR13 / DJB2 / custom hash</text>
+  <text x="825" y="295" text-anchor="middle" fill="#8b949e" font-size="10">avoids cleartext API strings</text>
+
+  <text x="700" y="320" fill="#c9d1d9" font-size="10">Resolution Process:</text>
+  <text x="705" y="338" fill="#7ee787" font-size="10">&#x2022; Walk export address table</text>
+  <text x="705" y="355" fill="#7ee787" font-size="10">&#x2022; Hash each export name</text>
+  <text x="705" y="372" fill="#7ee787" font-size="10">&#x2022; Compare against stored hash</text>
+  <text x="705" y="389" fill="#7ee787" font-size="10">&#x2022; Return function pointer</text>
+
+  <text x="825" y="405" text-anchor="middle" fill="#8b949e" font-size="9">Eliminates import table strings</text>
+
+  <!-- Memory Layout Diagram -->
+  <rect x="30" y="430" width="940" height="110" rx="6" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="500" y="453" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">Final Shellcode Memory Layout (Contiguous Blob)</text>
+
+  <rect x="50" y="465" width="200" height="50" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="150" y="487" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Bootstrap Stub</text>
+  <text x="150" y="503" text-anchor="middle" fill="#8b949e" font-size="9">~1KB PIC entry</text>
+  <text x="150" y="530" text-anchor="middle" fill="#f0883e" font-size="9">Offset: 0x0000</text>
+
+  <line x1="250" y1="490" x2="280" y2="490" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="280" y="465" width="120" height="50" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="340" y="487" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Hash Table</text>
+  <text x="340" y="503" text-anchor="middle" fill="#8b949e" font-size="9">API hashes</text>
+  <text x="340" y="530" text-anchor="middle" fill="#3fb950" font-size="9">Offset: bootstrap_sz</text>
+
+  <line x1="400" y1="490" x2="430" y2="490" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="430" y="465" width="350" height="50" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="605" y="487" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Raw DLL Payload</text>
+  <text x="605" y="503" text-anchor="middle" fill="#8b949e" font-size="9">Complete PE file (may be encrypted)</text>
+  <text x="605" y="530" text-anchor="middle" fill="#58a6ff" font-size="9">Offset: bootstrap_sz + hash_sz</text>
+
+  <line x1="780" y1="490" x2="810" y2="490" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="810" y="465" width="140" height="50" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="880" y="487" text-anchor="middle" fill="#8b949e" font-size="11" font-weight="bold">Config</text>
+  <text x="880" y="503" text-anchor="middle" fill="#8b949e" font-size="9">Flags / user data</text>
+  <text x="880" y="530" text-anchor="middle" fill="#8b949e" font-size="9">Offset: end - config_sz</text>
+
+  <text x="500" y="565" text-anchor="middle" fill="#8b949e" font-size="10">sRDI converts any DLL into position-independent shellcode without requiring source code modifications</text>
+</svg>

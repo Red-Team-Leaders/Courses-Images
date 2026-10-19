@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">Beacon Internal API Categories</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">Functions available to BOFs for interacting with the Beacon runtime</text>
+
+  <!-- Category 1: Output (Blue) -->
+  <rect x="30" y="80" width="290" height="200" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <rect x="30" y="80" width="290" height="32" rx="8" fill="#58a6ff" opacity="0.15"/>
+  <text x="175" y="102" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Output Functions</text>
+  <line x1="45" y1="115" x2="305" y2="115" stroke="#30363d"/>
+
+  <rect x="50" y="125" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="175" y="143" text-anchor="middle" fill="#3fb950" font-size="10">BeaconPrintf(type, fmt, ...)</text>
+
+  <rect x="50" y="157" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="175" y="175" text-anchor="middle" fill="#3fb950" font-size="10">BeaconOutput(type, data, len)</text>
+
+  <text x="55" y="205" fill="#8b949e" font-size="9">Types:</text>
+  <text x="55" y="220" fill="#c9d1d9" font-size="9">CALLBACK_OUTPUT     = 0x0  (normal)</text>
+  <text x="55" y="235" fill="#c9d1d9" font-size="9">CALLBACK_OUTPUT_OEM = 0x1E (raw)</text>
+  <text x="55" y="250" fill="#c9d1d9" font-size="9">CALLBACK_ERROR      = 0x0D (error)</text>
+  <text x="55" y="270" fill="#8b949e" font-size="8">Buffered, sent back via C2 callback</text>
+
+  <!-- Category 2: Data Parsing (Orange) -->
+  <rect x="350" y="80" width="290" height="200" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <rect x="350" y="80" width="290" height="32" rx="8" fill="#f0883e" opacity="0.15"/>
+  <text x="495" y="102" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Data Parsing Functions</text>
+  <line x1="365" y1="115" x2="625" y2="115" stroke="#30363d"/>
+
+  <rect x="370" y="125" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="495" y="143" text-anchor="middle" fill="#3fb950" font-size="10">BeaconDataParse(parser, buf, sz)</text>
+
+  <rect x="370" y="157" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="495" y="175" text-anchor="middle" fill="#3fb950" font-size="10">BeaconDataInt(parser)</text>
+
+  <rect x="370" y="189" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="495" y="207" text-anchor="middle" fill="#3fb950" font-size="10">BeaconDataShort(parser)</text>
+
+  <rect x="370" y="221" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="495" y="239" text-anchor="middle" fill="#3fb950" font-size="10">BeaconDataExtract(parser, &amp;sz)</text>
+
+  <text x="375" y="270" fill="#8b949e" font-size="8">Sequential extraction from packed binary buffer</text>
+
+  <!-- Category 3: Format (Green) -->
+  <rect x="670" y="80" width="300" height="200" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <rect x="670" y="80" width="300" height="32" rx="8" fill="#3fb950" opacity="0.15"/>
+  <text x="820" y="102" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Format Functions</text>
+  <line x1="685" y1="115" x2="955" y2="115" stroke="#30363d"/>
+
+  <rect x="690" y="125" width="260" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="820" y="143" text-anchor="middle" fill="#3fb950" font-size="10">BeaconFormatAlloc(fmt, maxsz)</text>
+
+  <rect x="690" y="157" width="260" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="820" y="175" text-anchor="middle" fill="#3fb950" font-size="10">BeaconFormatPrintf(fmt, str, ...)</text>
+
+  <rect x="690" y="189" width="260" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="820" y="207" text-anchor="middle" fill="#3fb950" font-size="10">BeaconFormatAppend(fmt, buf, ln)</text>
+
+  <rect x="690" y="221" width="260" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="820" y="239" text-anchor="middle" fill="#3fb950" font-size="10">BeaconFormatFree(fmt)</text>
+
+  <text x="695" y="270" fill="#8b949e" font-size="8">Build complex output buffers before sending</text>
+
+  <!-- Category 4: Token (Red) -->
+  <rect x="30" y="305" width="290" height="155" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <rect x="30" y="305" width="290" height="32" rx="8" fill="#f85149" opacity="0.15"/>
+  <text x="175" y="327" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Token Functions</text>
+  <line x1="45" y1="340" x2="305" y2="340" stroke="#30363d"/>
+
+  <rect x="50" y="350" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="175" y="368" text-anchor="middle" fill="#3fb950" font-size="10">BeaconUseToken(HANDLE token)</text>
+
+  <rect x="50" y="382" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="175" y="400" text-anchor="middle" fill="#3fb950" font-size="10">BeaconRevertToken()</text>
+
+  <rect x="50" y="414" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="175" y="432" text-anchor="middle" fill="#3fb950" font-size="10">BeaconIsAdmin()</text>
+
+  <!-- Category 5: Spawn/Inject -->
+  <rect x="350" y="305" width="290" height="155" rx="8" fill="#161b22" stroke="#c9d1d9" stroke-width="2"/>
+  <rect x="350" y="305" width="290" height="32" rx="8" fill="#c9d1d9" opacity="0.1"/>
+  <text x="495" y="327" text-anchor="middle" fill="#c9d1d9" font-size="13" font-weight="bold">Spawn / Inject</text>
+  <line x1="365" y1="340" x2="625" y2="340" stroke="#30363d"/>
+
+  <rect x="370" y="350" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="495" y="368" text-anchor="middle" fill="#3fb950" font-size="9">BeaconSpawnTemporaryProcess(</text>
+
+  <rect x="370" y="382" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="495" y="400" text-anchor="middle" fill="#3fb950" font-size="9">  si, pi, x86, ignoreToken)</text>
+
+  <rect x="370" y="414" width="250" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="495" y="432" text-anchor="middle" fill="#3fb950" font-size="10">BeaconInjectProcess(pi, ...)</text>
+
+  <!-- Category 6: Utility -->
+  <rect x="670" y="305" width="300" height="155" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="2"/>
+  <rect x="670" y="305" width="300" height="32" rx="8" fill="#8b949e" opacity="0.1"/>
+  <text x="820" y="327" text-anchor="middle" fill="#8b949e" font-size="13" font-weight="bold">Utility Functions</text>
+  <line x1="685" y1="340" x2="955" y2="340" stroke="#30363d"/>
+
+  <rect x="690" y="350" width="260" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="820" y="368" text-anchor="middle" fill="#3fb950" font-size="10">BeaconGetSpawnTo(x86, buf, len)</text>
+
+  <rect x="690" y="382" width="260" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="820" y="400" text-anchor="middle" fill="#3fb950" font-size="10">BeaconCleanupProcess(pi)</text>
+
+  <rect x="690" y="414" width="260" height="26" rx="3" fill="#0d1117" stroke="#30363d"/>
+  <text x="820" y="432" text-anchor="middle" fill="#3fb950" font-size="10">toWideChar(src, dst, max)</text>
+
+  <!-- Usage note -->
+  <rect x="30" y="480" width="940" height="50" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="500" y="500" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Import Convention</text>
+  <text x="500" y="518" text-anchor="middle" fill="#c9d1d9" font-size="10">DECLSPEC_IMPORT void BeaconPrintf(int type, char* fmt, ...);  /* Use beacon.h header */</text>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#30363d" font-size="10">CRTLP Module 09 - Lesson 38: Beacon API Categories for BOF Development</text>
+</svg>

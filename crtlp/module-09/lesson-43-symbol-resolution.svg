@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="ar-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+    <marker id="ar-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">COFF Symbol Resolution Decision Tree</text>
+  <text x="500" y="58" text-anchor="middle" fill="#8b949e" font-size="12">How the COFF Loader Resolves External Symbol References</text>
+  <line x1="100" y1="68" x2="900" y2="68" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Start: Symbol Table -->
+  <g transform="translate(400,85)">
+    <rect x="0" y="0" width="200" height="45" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+    <text x="100" y="18" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Symbol Table Entry</text>
+    <text x="100" y="35" text-anchor="middle" fill="#8b949e" font-size="10">Iterate each symbol</text>
+  </g>
+
+  <!-- Arrow down -->
+  <line x1="500" y1="130" x2="500" y2="155" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Decision 1: EXTERNAL? -->
+  <g transform="translate(415,158)">
+    <polygon points="85,0 170,35 85,70 0,35" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="85" y="30" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">EXTERNAL</text>
+    <text x="85" y="44" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">symbol?</text>
+  </g>
+
+  <!-- NO - Internal: resolve from section -->
+  <line x1="415" y1="193" x2="200" y2="193" stroke="#3fb950" stroke-width="2" marker-end="url(#ar-green)"/>
+  <text x="310" y="185" text-anchor="middle" fill="#8b949e" font-size="10">NO (internal)</text>
+
+  <g transform="translate(40,172)">
+    <rect x="0" y="0" width="160" height="50" rx="8" fill="#0d2818" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="80" y="20" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Section Offset</text>
+    <text x="80" y="38" text-anchor="middle" fill="#8b949e" font-size="10">base + section + value</text>
+  </g>
+
+  <!-- YES down -->
+  <line x1="500" y1="228" x2="500" y2="260" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="515" y="248" fill="#8b949e" font-size="10">YES</text>
+
+  <!-- Decision 2: Beacon API? -->
+  <g transform="translate(400,263)">
+    <polygon points="100,0 200,40 100,80 0,40" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="100" y="32" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Beacon API</text>
+    <text x="100" y="48" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">pattern?</text>
+  </g>
+
+  <!-- YES to Beacon - right -->
+  <line x1="600" y1="303" x2="720" y2="303" stroke="#3fb950" stroke-width="2" marker-end="url(#ar-green)"/>
+  <text x="660" y="293" text-anchor="middle" fill="#8b949e" font-size="10">YES (Beacon*)</text>
+
+  <g transform="translate(725,278)">
+    <rect x="0" y="0" width="240" height="55" rx="8" fill="#0d2818" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="120" y="20" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Beacon Export Table</text>
+    <text x="120" y="38" text-anchor="middle" fill="#8b949e" font-size="10">BeaconPrintf, BeaconOutput,</text>
+    <text x="120" y="50" text-anchor="middle" fill="#8b949e" font-size="10">BeaconDataParse, BeaconGetSpawnTo...</text>
+  </g>
+
+  <!-- NO down -->
+  <line x1="500" y1="343" x2="500" y2="375" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="515" y="363" fill="#8b949e" font-size="10">NO</text>
+
+  <!-- Decision 3: DLL$Function? -->
+  <g transform="translate(390,378)">
+    <polygon points="110,0 220,40 110,80 0,40" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="110" y="28" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">__imp_DLL$Func</text>
+    <text x="110" y="48" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">pattern?</text>
+  </g>
+
+  <!-- YES - right to LoadLibrary -->
+  <line x1="610" y1="418" x2="720" y2="418" stroke="#3fb950" stroke-width="2" marker-end="url(#ar-green)"/>
+  <text x="660" y="408" text-anchor="middle" fill="#8b949e" font-size="10">YES (__imp_*)</text>
+
+  <g transform="translate(725,385)">
+    <rect x="0" y="0" width="245" height="75" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="123" y="18" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Dynamic Resolution</text>
+    <line x1="10" y1="24" x2="235" y2="24" stroke="#30363d"/>
+    <text x="15" y="40" fill="#c9d1d9" font-size="10">1. Parse "KERNEL32$CreateFileA"</text>
+    <text x="15" y="54" fill="#c9d1d9" font-size="10">2. LoadLibraryA("KERNEL32")</text>
+    <text x="15" y="68" fill="#c9d1d9" font-size="10">3. GetProcAddress(h, "CreateFileA")</text>
+  </g>
+
+  <!-- NO down -->
+  <line x1="500" y1="458" x2="500" y2="490" stroke="#f85149" stroke-width="2" marker-end="url(#ar-red)"/>
+  <text x="515" y="478" fill="#8b949e" font-size="10">NO</text>
+
+  <!-- Error -->
+  <g transform="translate(390,493)">
+    <rect x="0" y="0" width="220" height="45" rx="8" fill="#2d1418" stroke="#f85149" stroke-width="2"/>
+    <text x="110" y="18" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">RESOLUTION ERROR</text>
+    <text x="110" y="35" text-anchor="middle" fill="#f85149" font-size="10">Unresolved external symbol</text>
+  </g>
+
+  <!-- Left side: Symbol name examples -->
+  <g transform="translate(30,280)">
+    <rect x="0" y="0" width="280" height="255" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="140" y="22" text-anchor="middle" fill="#c9d1d9" font-size="13" font-weight="bold">Symbol Name Patterns</text>
+    <line x1="10" y1="30" x2="270" y2="30" stroke="#30363d"/>
+
+    <!-- Beacon APIs -->
+    <text x="15" y="50" fill="#3fb950" font-size="11" font-weight="bold">Beacon API (built-in):</text>
+    <text x="20" y="68" fill="#8b949e" font-size="10">BeaconPrintf</text>
+    <text x="20" y="82" fill="#8b949e" font-size="10">BeaconDataParse</text>
+    <text x="20" y="96" fill="#8b949e" font-size="10">BeaconOutput</text>
+    <text x="20" y="110" fill="#8b949e" font-size="10">BeaconUseToken</text>
+
+    <line x1="15" y1="120" x2="265" y2="120" stroke="#30363d" stroke-dasharray="3,2"/>
+
+    <!-- DLL$Function -->
+    <text x="15" y="140" fill="#58a6ff" font-size="11" font-weight="bold">DLL$Function (dynamic):</text>
+    <text x="20" y="158" fill="#8b949e" font-size="10">__imp_KERNEL32$VirtualAlloc</text>
+    <text x="20" y="172" fill="#8b949e" font-size="10">__imp_NTDLL$NtCreateSection</text>
+    <text x="20" y="186" fill="#8b949e" font-size="10">__imp_USER32$MessageBoxA</text>
+    <text x="20" y="200" fill="#8b949e" font-size="10">__imp_ADVAPI32$OpenProcessToken</text>
+
+    <line x1="15" y1="210" x2="265" y2="210" stroke="#30363d" stroke-dasharray="3,2"/>
+
+    <!-- Internal -->
+    <text x="15" y="230" fill="#f0883e" font-size="11" font-weight="bold">Internal (section-relative):</text>
+    <text x="20" y="248" fill="#8b949e" font-size="10">go, _go (entry point)</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#8b949e" font-size="10">Lesson 43 -- Symbol Resolution Decision Tree for COFF Loaders | CRTLP Red Team Certification</text>
+</svg>

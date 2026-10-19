@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Portable BOF Architecture</text>
+
+  <!-- Single Source File -->
+  <rect x="350" y="55" width="300" height="65" rx="8" fill="#1a2332" stroke="#c9d1d9" stroke-width="2"/>
+  <text x="500" y="80" text-anchor="middle" fill="#c9d1d9" font-size="14" font-weight="bold">whoami_bof.c</text>
+  <text x="500" y="98" text-anchor="middle" fill="#8b949e" font-size="10">Single source — core logic + #include "bof_api.h"</text>
+  <text x="500" y="112" text-anchor="middle" fill="#3fb950" font-size="10">Framework-agnostic business logic</text>
+
+  <!-- Arrow to ifdef layer -->
+  <line x1="500" y1="120" x2="500" y2="148" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- #ifdef preprocessor layer -->
+  <rect x="250" y="150" width="500" height="50" rx="6" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="173" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">#ifdef CS_BOF | #ifdef SLIVER_BOF | #ifdef HAVOC_BOF</text>
+  <text x="500" y="191" text-anchor="middle" fill="#8b949e" font-size="10">Compile-time framework selection via -D flag</text>
+
+  <!-- Arrow to Makefile -->
+  <line x1="500" y1="200" x2="500" y2="228" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Makefile -->
+  <rect x="300" y="230" width="400" height="55" rx="6" fill="#1a2332" stroke="#58a6ff" stroke-width="2"/>
+  <text x="500" y="253" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Makefile</text>
+  <text x="500" y="272" text-anchor="middle" fill="#8b949e" font-size="10">make all | make cs | make sliver | make havoc</text>
+
+  <!-- Fan-out arrows to 3 outputs -->
+  <line x1="400" y1="285" x2="170" y2="338" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#ar-blue)"/>
+  <line x1="500" y1="285" x2="500" y2="338" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ar-green)"/>
+  <line x1="600" y1="285" x2="830" y2="338" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Build flags on arrows -->
+  <text x="260" y="310" text-anchor="middle" fill="#58a6ff" font-size="9">-DCS_BOF -I cs/</text>
+  <text x="520" y="310" fill="#3fb950" font-size="9">-DSLIVER_BOF -I sliver/</text>
+  <text x="730" y="310" text-anchor="middle" fill="#f85149" font-size="9">-DHAVOC_BOF -I havoc/</text>
+
+  <!-- Output: CS .o -->
+  <rect x="60" y="340" width="220" height="80" rx="8" fill="#1a2332" stroke="#58a6ff" stroke-width="2"/>
+  <text x="170" y="365" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">whoami_cs.o</text>
+  <text x="170" y="385" text-anchor="middle" fill="#c9d1d9" font-size="10">Cobalt Strike BOF</text>
+  <text x="170" y="402" text-anchor="middle" fill="#8b949e" font-size="9">beacon_inline_execute()</text>
+
+  <!-- Output: Sliver .o -->
+  <rect x="390" y="340" width="220" height="80" rx="8" fill="#1a2332" stroke="#3fb950" stroke-width="2"/>
+  <text x="500" y="365" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">whoami_sliver.o</text>
+  <text x="500" y="385" text-anchor="middle" fill="#c9d1d9" font-size="10">Sliver Extension</text>
+  <text x="500" y="402" text-anchor="middle" fill="#8b949e" font-size="9">sliver extensions load</text>
+
+  <!-- Output: Havoc .o -->
+  <rect x="720" y="340" width="220" height="80" rx="8" fill="#1a2332" stroke="#f85149" stroke-width="2"/>
+  <text x="830" y="365" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">whoami_havoc.o</text>
+  <text x="830" y="385" text-anchor="middle" fill="#c9d1d9" font-size="10">Havoc BOF</text>
+  <text x="830" y="402" text-anchor="middle" fill="#8b949e" font-size="9">demon.inline_execute()</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="440" x2="960" y2="440" stroke="#30363d" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Key insight: Core Logic Same -->
+  <text x="500" y="465" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Architecture Principle: Core Logic Unchanged</text>
+
+  <!-- Two-column comparison -->
+  <!-- Left: what changes -->
+  <rect x="60" y="480" width="420" height="80" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="270" y="500" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">I/O Layer (Changes Per Framework)</text>
+  <text x="80" y="520" fill="#8b949e" font-size="10">- Output functions (print, format, send)</text>
+  <text x="80" y="536" fill="#8b949e" font-size="10">- Argument parsing (data extract, int, str)</text>
+  <text x="80" y="552" fill="#8b949e" font-size="10">- DFR declarations (DECLSPEC_IMPORT mapping)</text>
+
+  <!-- Right: what stays -->
+  <rect x="520" y="480" width="420" height="80" rx="6" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="730" y="500" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Core Logic (Stays the Same)</text>
+  <text x="540" y="520" fill="#8b949e" font-size="10">- Win32 API calls (OpenProcess, RegQuery...)</text>
+  <text x="540" y="536" fill="#8b949e" font-size="10">- Business logic (enumeration, parsing)</text>
+  <text x="540" y="552" fill="#8b949e" font-size="10">- Data structures, algorithms, error handling</text>
+
+  <text x="980" y="575" text-anchor="end" fill="#30363d" font-size="9">CRTLP Module 9 — Lesson 44</text>
+</svg>

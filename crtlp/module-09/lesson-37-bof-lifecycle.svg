@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">BOF Complete Lifecycle</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">From Aggressor packaging to memory cleanup</text>
+
+  <!-- Phase 1: Aggressor -->
+  <rect x="30" y="80" width="180" height="100" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="120" y="100" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">1. Aggressor</text>
+  <text x="120" y="100" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">1. Aggressor</text>
+  <line x1="45" y1="108" x2="195" y2="108" stroke="#30363d"/>
+  <text x="120" y="125" text-anchor="middle" fill="#c9d1d9" font-size="9">bof_pack("Zib",</text>
+  <text x="120" y="138" text-anchor="middle" fill="#c9d1d9" font-size="9">  $str, $int, $bin)</text>
+  <text x="120" y="155" text-anchor="middle" fill="#c9d1d9" font-size="9">Packages BOF + args</text>
+  <text x="120" y="168" text-anchor="middle" fill="#8b949e" font-size="9">beacon_inline_execute</text>
+
+  <!-- Arrow -->
+  <line x1="210" y1="130" x2="238" y2="130" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Phase 2: C2 Delivers -->
+  <rect x="240" y="80" width="140" height="100" rx="8" fill="#161b22" stroke="#f85149" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="310" y="100" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">2. C2 Delivery</text>
+  <line x1="255" y1="108" x2="365" y2="108" stroke="#30363d"/>
+  <text x="310" y="125" text-anchor="middle" fill="#c9d1d9" font-size="9">Encrypted task</text>
+  <text x="310" y="140" text-anchor="middle" fill="#c9d1d9" font-size="9">queued for beacon</text>
+  <text x="310" y="155" text-anchor="middle" fill="#c9d1d9" font-size="9">check-in retrieves</text>
+  <text x="310" y="170" text-anchor="middle" fill="#8b949e" font-size="9">TASK_TYPE_BOF</text>
+
+  <!-- Arrow -->
+  <line x1="380" y1="130" x2="408" y2="130" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Phase 3: COFF Loader - Large box -->
+  <rect x="410" y="75" width="560" height="195" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="690" y="98" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">3. COFF Loader (In Beacon Process)</text>
+  <line x1="425" y1="108" x2="955" y2="108" stroke="#30363d"/>
+
+  <!-- Sub-steps -->
+  <rect x="425" y="118" width="100" height="55" rx="4" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="475" y="137" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="bold">3a. Parse</text>
+  <text x="475" y="152" text-anchor="middle" fill="#c9d1d9" font-size="8">COFF header</text>
+  <text x="475" y="164" text-anchor="middle" fill="#c9d1d9" font-size="8">Section table</text>
+
+  <line x1="525" y1="145" x2="538" y2="145" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
+
+  <rect x="540" y="118" width="100" height="55" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="590" y="137" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">3b. Allocate</text>
+  <text x="590" y="152" text-anchor="middle" fill="#c9d1d9" font-size="8">VirtualAlloc</text>
+  <text x="590" y="164" text-anchor="middle" fill="#c9d1d9" font-size="8">PAGE_READWRITE</text>
+
+  <line x1="640" y1="145" x2="653" y2="145" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
+
+  <rect x="655" y="118" width="100" height="55" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="705" y="137" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="bold">3c. Copy</text>
+  <text x="705" y="152" text-anchor="middle" fill="#c9d1d9" font-size="8">memcpy sections</text>
+  <text x="705" y="164" text-anchor="middle" fill="#c9d1d9" font-size="8">to allocated mem</text>
+
+  <line x1="755" y1="145" x2="768" y2="145" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
+
+  <rect x="770" y="118" width="95" height="55" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="818" y="137" text-anchor="middle" fill="#f85149" font-size="9" font-weight="bold">3d. Relocate</text>
+  <text x="818" y="152" text-anchor="middle" fill="#c9d1d9" font-size="8">Fix addresses</text>
+  <text x="818" y="164" text-anchor="middle" fill="#c9d1d9" font-size="8">Apply fixups</text>
+
+  <line x1="865" y1="145" x2="878" y2="145" stroke="#f0883e" stroke-width="1" marker-end="url(#ar)"/>
+
+  <rect x="880" y="118" width="80" height="55" rx="4" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="920" y="137" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="bold">3e. Resolve</text>
+  <text x="920" y="152" text-anchor="middle" fill="#c9d1d9" font-size="8">Imports via</text>
+  <text x="920" y="164" text-anchor="middle" fill="#c9d1d9" font-size="8">GetProcAddr</text>
+
+  <!-- Protection change -->
+  <rect x="425" y="185" width="270" height="40" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="560" y="205" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">3f. VirtualProtect(.text, PAGE_EXECUTE_READ)</text>
+  <text x="560" y="220" text-anchor="middle" fill="#8b949e" font-size="8">RW -> RX for code section only</text>
+
+  <!-- Execute -->
+  <rect x="710" y="185" width="250" height="40" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="835" y="205" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">3g. Call go(args, len)</text>
+  <text x="835" y="220" text-anchor="middle" fill="#8b949e" font-size="8">Entry point invocation</text>
+
+  <line x1="695" y1="205" x2="708" y2="205" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <!-- Phase 4: Execution & Output -->
+  <rect x="30" y="290" width="450" height="130" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="255" y="315" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">4. BOF Execution and Output Capture</text>
+  <line x1="45" y1="325" x2="465" y2="325" stroke="#30363d"/>
+
+  <text x="60" y="348" fill="#c9d1d9" font-size="10">BOF calls Beacon API functions:</text>
+  <text x="80" y="368" fill="#3fb950" font-size="9">BeaconPrintf(CALLBACK_OUTPUT, "result: %s", data);</text>
+  <text x="80" y="385" fill="#3fb950" font-size="9">BeaconOutput(CALLBACK_OUTPUT, buf, len);</text>
+  <text x="60" y="405" fill="#8b949e" font-size="9">Output buffered internally, sent back via C2 callback on completion</text>
+
+  <!-- Arrow from phase 3 to phase 4 -->
+  <path d="M690,270 L690,280 L255,280 L255,288" fill="none" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Phase 5: Cleanup -->
+  <rect x="520" y="290" width="450" height="130" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="745" y="315" text-anchor="middle" fill="#8b949e" font-size="13" font-weight="bold">5. Memory Cleanup</text>
+  <line x1="535" y1="325" x2="955" y2="325" stroke="#30363d"/>
+
+  <text x="545" y="348" fill="#c9d1d9" font-size="10">After go() returns:</text>
+  <text x="565" y="368" fill="#f85149" font-size="9">1. memset(allocated_memory, 0, size)  // Zero out</text>
+  <text x="565" y="385" fill="#f85149" font-size="9">2. VirtualFree(base, 0, MEM_RELEASE) // Free pages</text>
+  <text x="565" y="402" fill="#f85149" font-size="9">3. Free symbol/string table copies</text>
+  <text x="545" y="418" fill="#8b949e" font-size="9">No residual code in process memory</text>
+
+  <!-- Arrow from phase 4 to phase 5 -->
+  <line x1="480" y1="355" x2="518" y2="355" stroke="#8b949e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Timeline summary bar -->
+  <rect x="30" y="440" width="940" height="50" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="120" y="465" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Package</text>
+  <text x="120" y="480" text-anchor="middle" fill="#8b949e" font-size="8">~0ms</text>
+  <line x1="210" y1="448" x2="210" y2="485" stroke="#30363d"/>
+  <text x="295" y="465" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">Deliver</text>
+  <text x="295" y="480" text-anchor="middle" fill="#8b949e" font-size="8">C2 latency</text>
+  <line x1="380" y1="448" x2="380" y2="485" stroke="#30363d"/>
+  <text x="500" y="465" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Load + Parse</text>
+  <text x="500" y="480" text-anchor="middle" fill="#8b949e" font-size="8">~1-5ms</text>
+  <line x1="610" y1="448" x2="610" y2="485" stroke="#30363d"/>
+  <text x="720" y="465" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Execute go()</text>
+  <text x="720" y="480" text-anchor="middle" fill="#8b949e" font-size="8">varies</text>
+  <line x1="810" y1="448" x2="810" y2="485" stroke="#30363d"/>
+  <text x="900" y="465" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="bold">Cleanup</text>
+  <text x="900" y="480" text-anchor="middle" fill="#8b949e" font-size="8">~0ms</text>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#30363d" font-size="10">CRTLP Module 09 - Lesson 37: BOF Complete Lifecycle</text>
+</svg>

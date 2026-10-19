@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">UDRL Customization Points - Cobalt Strike Reflective Loader</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">User-Defined Reflective Loader Kit - Hook Points &amp; Custom Stages</text>
+
+  <!-- Pipeline stages - horizontal flow -->
+  <!-- Stage 1: Pre-Load -->
+  <rect x="30" y="80" width="120" height="55" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="90" y="102" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Pre-Load</text>
+  <text x="90" y="118" text-anchor="middle" fill="#c9d1d9" font-size="9">Init &amp; Setup</text>
+  <circle cx="90" cy="145" r="8" fill="#3fb950" opacity="0.3"/><text x="90" y="149" text-anchor="middle" fill="#3fb950" font-size="10">&#10003;</text>
+
+  <!-- Arrow -->
+  <line x1="150" y1="107" x2="172" y2="107" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 2: Allocate Memory -->
+  <rect x="175" y="80" width="120" height="55" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="235" y="102" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Allocate Mem</text>
+  <text x="235" y="118" text-anchor="middle" fill="#c9d1d9" font-size="9">VirtualAlloc</text>
+  <circle cx="235" cy="145" r="8" fill="#3fb950" opacity="0.3"/><text x="235" y="149" text-anchor="middle" fill="#3fb950" font-size="10">&#10003;</text>
+
+  <!-- Arrow -->
+  <line x1="295" y1="107" x2="317" y2="107" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 3: Parse Headers -->
+  <rect x="320" y="80" width="120" height="55" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="380" y="102" text-anchor="middle" fill="#8b949e" font-size="11" font-weight="bold">Parse Headers</text>
+  <text x="380" y="118" text-anchor="middle" fill="#8b949e" font-size="9">DOS/NT/Sections</text>
+  <circle cx="380" cy="145" r="8" fill="#f85149" opacity="0.3"/><text x="380" y="149" text-anchor="middle" fill="#f85149" font-size="10">&#10007;</text>
+
+  <!-- Arrow -->
+  <line x1="440" y1="107" x2="462" y2="107" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 4: Process Relocations -->
+  <rect x="465" y="80" width="120" height="55" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="525" y="102" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Relocations</text>
+  <text x="525" y="118" text-anchor="middle" fill="#c9d1d9" font-size="9">Base Reloc Table</text>
+  <circle cx="525" cy="145" r="8" fill="#3fb950" opacity="0.3"/><text x="525" y="149" text-anchor="middle" fill="#3fb950" font-size="10">&#10003;</text>
+
+  <!-- Arrow -->
+  <line x1="585" y1="107" x2="607" y2="107" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 5: Resolve Imports -->
+  <rect x="610" y="80" width="120" height="55" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="670" y="102" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Resolve Imports</text>
+  <text x="670" y="118" text-anchor="middle" fill="#c9d1d9" font-size="9">IAT Population</text>
+  <circle cx="670" cy="145" r="8" fill="#3fb950" opacity="0.3"/><text x="670" y="149" text-anchor="middle" fill="#3fb950" font-size="10">&#10003;</text>
+
+  <!-- Arrow -->
+  <line x1="730" y1="107" x2="752" y2="107" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 6: Execute TLS -->
+  <rect x="755" y="80" width="105" height="55" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="807" y="102" text-anchor="middle" fill="#8b949e" font-size="11" font-weight="bold">Execute TLS</text>
+  <text x="807" y="118" text-anchor="middle" fill="#8b949e" font-size="9">TLS Callbacks</text>
+  <circle cx="807" cy="145" r="8" fill="#f85149" opacity="0.3"/><text x="807" y="149" text-anchor="middle" fill="#f85149" font-size="10">&#10007;</text>
+
+  <!-- Arrow -->
+  <line x1="860" y1="107" x2="882" y2="107" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 7: Call Entry Point -->
+  <rect x="885" y="80" width="100" height="55" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="935" y="102" text-anchor="middle" fill="#8b949e" font-size="11" font-weight="bold">Entry Point</text>
+  <text x="935" y="118" text-anchor="middle" fill="#8b949e" font-size="9">DllMain Call</text>
+  <circle cx="935" cy="145" r="8" fill="#f85149" opacity="0.3"/><text x="935" y="149" text-anchor="middle" fill="#f85149" font-size="10">&#10007;</text>
+
+  <!-- Legend -->
+  <rect x="30" y="165" width="180" height="50" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <rect x="42" y="175" width="14" height="10" rx="2" fill="none" stroke="#3fb950" stroke-width="2"/>
+  <text x="62" y="184" fill="#c9d1d9" font-size="10">Customizable (UDRL)</text>
+  <rect x="42" y="195" width="14" height="10" rx="2" fill="none" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="62" y="204" fill="#c9d1d9" font-size="10">Fixed / Standard</text>
+
+  <!-- Customization Section Title -->
+  <text x="500" y="240" text-anchor="middle" fill="#f0883e" font-size="16" font-weight="bold">UDRL Customization Techniques</text>
+
+  <!-- Custom Allocation Card -->
+  <rect x="30" y="260" width="295" height="160" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="177" y="285" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Custom Allocation</text>
+  <line x1="50" y1="295" x2="305" y2="295" stroke="#30363d" stroke-width="1"/>
+  <text x="50" y="315" fill="#c9d1d9" font-size="11">&#8226; Replace VirtualAlloc with NtAllocateVirtualMemory</text>
+  <text x="50" y="335" fill="#c9d1d9" font-size="11">&#8226; Use syscalls to bypass hooks</text>
+  <text x="50" y="355" fill="#c9d1d9" font-size="11">&#8226; RW then RX (avoid RWX)</text>
+  <text x="50" y="375" fill="#c9d1d9" font-size="11">&#8226; Module stomping / overloading</text>
+  <text x="50" y="395" fill="#c9d1d9" font-size="11">&#8226; Mapped file-backed allocation</text>
+  <text x="177" y="415" text-anchor="middle" fill="#8b949e" font-size="9">Stage: Allocate Memory</text>
+
+  <!-- Import Obfuscation Card -->
+  <rect x="352" y="260" width="295" height="160" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="499" y="285" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Import Obfuscation</text>
+  <line x1="372" y1="295" x2="627" y2="295" stroke="#30363d" stroke-width="1"/>
+  <text x="372" y="315" fill="#c9d1d9" font-size="11">&#8226; API hashing (DJB2, CRC32, custom)</text>
+  <text x="372" y="335" fill="#c9d1d9" font-size="11">&#8226; Delayed import resolution</text>
+  <text x="372" y="355" fill="#c9d1d9" font-size="11">&#8226; PEB walk obfuscation</text>
+  <text x="372" y="375" fill="#c9d1d9" font-size="11">&#8226; SSN resolution for syscalls</text>
+  <text x="372" y="395" fill="#c9d1d9" font-size="11">&#8226; IAT encryption at rest</text>
+  <text x="499" y="415" text-anchor="middle" fill="#8b949e" font-size="9">Stage: Resolve Imports</text>
+
+  <!-- Header Wiping Card -->
+  <rect x="674" y="260" width="295" height="160" rx="8" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="821" y="285" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Header Wiping</text>
+  <line x1="694" y1="295" x2="949" y2="295" stroke="#30363d" stroke-width="1"/>
+  <text x="694" y="315" fill="#c9d1d9" font-size="11">&#8226; Zero PE headers post-load</text>
+  <text x="694" y="335" fill="#c9d1d9" font-size="11">&#8226; Randomize MZ/PE signatures</text>
+  <text x="694" y="355" fill="#c9d1d9" font-size="11">&#8226; Destroy section table</text>
+  <text x="694" y="375" fill="#c9d1d9" font-size="11">&#8226; Overwrite with decoy data</text>
+  <text x="694" y="395" fill="#c9d1d9" font-size="11">&#8226; Prevents pe-sieve scanning</text>
+  <text x="821" y="415" text-anchor="middle" fill="#8b949e" font-size="9">Stage: Pre-Load / Post-Load</text>
+
+  <!-- Connection arrows from pipeline to customization cards -->
+  <path d="M90,135 L90,170 L177,170 L177,258" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arGreen)"/>
+  <path d="M235,135 L235,170 L177,170" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <path d="M670,135 L670,200 L499,200 L499,258" fill="none" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <path d="M90,135 L90,200 L821,200 L821,258" fill="none" stroke="#f85149" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Bottom note -->
+  <rect x="140" y="440" width="720" height="55" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="462" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">UDRL Kit: Replace the default reflective loader with custom C code</text>
+  <text x="500" y="480" text-anchor="middle" fill="#c9d1d9" font-size="11">Compiled into Beacon payload at Aggressor script load time | Full control over memory allocation &amp; API resolution</text>
+
+  <!-- Cobalt Strike version note -->
+  <text x="500" y="520" text-anchor="middle" fill="#8b949e" font-size="10">Cobalt Strike 4.x+ | Arsenal Kit Component | Requires custom Aggressor script integration</text>
+
+  <!-- CRTLP Badge -->
+  <rect x="890" y="545" width="95" height="22" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="937" y="560" text-anchor="middle" fill="#58a6ff" font-size="9">CRTLP Module 09</text>
+</svg>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Modular BOF Design Patterns</text>
+
+  <!-- ==================== Library Architecture ==================== -->
+  <text x="500" y="62" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Shared Library Architecture</text>
+
+  <!-- Common Utility BOF (center) -->
+  <rect x="350" y="78" width="300" height="70" rx="8" fill="#1a2332" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="103" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">common_utils.h</text>
+  <text x="500" y="120" text-anchor="middle" fill="#8b949e" font-size="10">DynAPI resolve | string helpers | format wrappers | error handling</text>
+  <text x="500" y="137" text-anchor="middle" fill="#8b949e" font-size="10">ntdll stubs | safe memory ops | OPSEC checks</text>
+
+  <!-- Arrows from common to domain BOFs -->
+  <line x1="380" y1="148" x2="150" y2="188" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="450" y1="148" x2="370" y2="188" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="550" y1="148" x2="590" y2="188" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="620" y1="148" x2="810" y2="188" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Domain BOF 1: Enumeration -->
+  <rect x="50" y="190" width="200" height="55" rx="6" fill="#1a2332" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="150" y="212" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">enum_users.c</text>
+  <text x="150" y="228" text-anchor="middle" fill="#8b949e" font-size="9">NetUserEnum | AD queries</text>
+  <text x="150" y="240" text-anchor="middle" fill="#8b949e" font-size="9">#include "common_utils.h"</text>
+
+  <!-- Domain BOF 2: Registry -->
+  <rect x="280" y="190" width="200" height="55" rx="6" fill="#1a2332" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="380" y="212" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">reg_query.c</text>
+  <text x="380" y="228" text-anchor="middle" fill="#8b949e" font-size="9">RegOpenKey | RegQueryValue</text>
+  <text x="380" y="240" text-anchor="middle" fill="#8b949e" font-size="9">#include "common_utils.h"</text>
+
+  <!-- Domain BOF 3: Token -->
+  <rect x="510" y="190" width="200" height="55" rx="6" fill="#1a2332" stroke="#f85149" stroke-width="1.5"/>
+  <text x="610" y="212" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">token_steal.c</text>
+  <text x="610" y="228" text-anchor="middle" fill="#8b949e" font-size="9">OpenProcess | DuplicateToken</text>
+  <text x="610" y="240" text-anchor="middle" fill="#8b949e" font-size="9">#include "common_utils.h"</text>
+
+  <!-- Domain BOF 4: Network -->
+  <rect x="740" y="190" width="200" height="55" rx="6" fill="#1a2332" stroke="#c9d1d9" stroke-width="1.5"/>
+  <text x="840" y="212" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">net_scan.c</text>
+  <text x="840" y="228" text-anchor="middle" fill="#8b949e" font-size="9">connect() | port probing</text>
+  <text x="840" y="240" text-anchor="middle" fill="#8b949e" font-size="9">#include "common_utils.h"</text>
+
+  <!-- Divider -->
+  <line x1="50" y1="270" x2="950" y2="270" stroke="#30363d" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="500" y="292" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Aggressor Script (.cna) Dispatch Layer</text>
+
+  <!-- CNA Script Box -->
+  <rect x="50" y="305" width="900" height="110" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5"/>
+
+  <!-- CNA stages -->
+  <rect x="70" y="320" width="180" height="45" rx="5" fill="#1a2332" stroke="#58a6ff" stroke-width="1"/>
+  <text x="160" y="339" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">1. Register Command</text>
+  <text x="160" y="355" text-anchor="middle" fill="#c9d1d9" font-size="9">alias "bof-enum"</text>
+
+  <line x1="250" y1="342" x2="278" y2="342" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="280" y="320" width="180" height="45" rx="5" fill="#1a2332" stroke="#f0883e" stroke-width="1"/>
+  <text x="370" y="339" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">2. Parse Arguments</text>
+  <text x="370" y="355" text-anchor="middle" fill="#c9d1d9" font-size="9">$args = bof_pack("Zsi"...)</text>
+
+  <line x1="460" y1="342" x2="488" y2="342" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="490" y="320" width="180" height="45" rx="5" fill="#1a2332" stroke="#3fb950" stroke-width="1"/>
+  <text x="580" y="339" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">3. Pack Data</text>
+  <text x="580" y="355" text-anchor="middle" fill="#c9d1d9" font-size="9">bof_pack("Zsi", target...)</text>
+
+  <line x1="670" y1="342" x2="698" y2="342" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="700" y="320" width="230" height="45" rx="5" fill="#1a2332" stroke="#f85149" stroke-width="1"/>
+  <text x="815" y="339" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">4. Dispatch BOF</text>
+  <text x="815" y="355" text-anchor="middle" fill="#c9d1d9" font-size="9">beacon_inline_execute($bid, $bof...)</text>
+
+  <!-- Code snippet under CNA -->
+  <text x="70" y="390" fill="#8b949e" font-size="10">alias bof-enum { $args = bof_pack($2, "Zsi", $3, $4, $5); beacon_inline_execute($1, readbof("enum_users"), "go", $args); }</text>
+
+  <!-- Divider -->
+  <line x1="50" y1="430" x2="950" y2="430" stroke="#30363d" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="500" y="452" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">File Structure</text>
+
+  <!-- File tree -->
+  <rect x="50" y="462" width="420" height="100" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="70" y="482" fill="#58a6ff" font-size="11">bof-toolkit/</text>
+  <text x="90" y="498" fill="#8b949e" font-size="11">|-- include/</text>
+  <text x="130" y="514" fill="#f0883e" font-size="11">|-- common_utils.h</text>
+  <text x="130" y="530" fill="#f0883e" font-size="11">|-- beacon.h</text>
+  <text x="90" y="546" fill="#8b949e" font-size="11">|-- src/</text>
+
+  <rect x="480" y="462" width="470" height="100" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="500" y="482" fill="#8b949e" font-size="11">|-- src/</text>
+  <text x="540" y="498" fill="#3fb950" font-size="11">|-- enum_users.c</text>
+  <text x="540" y="514" fill="#58a6ff" font-size="11">|-- reg_query.c</text>
+  <text x="540" y="530" fill="#f85149" font-size="11">|-- token_steal.c</text>
+  <text x="500" y="546" fill="#c9d1d9" font-size="11">|-- scripts/bof-toolkit.cna</text>
+
+  <text x="980" y="575" text-anchor="end" fill="#30363d" font-size="9">CRTLP Module 9 — Lesson 43</text>
+</svg>

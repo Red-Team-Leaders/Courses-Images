@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <linearGradient id="rx-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1a3a1a"/><stop offset="100%" stop-color="#0d2818"/></linearGradient>
+    <linearGradient id="rw-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1a2940"/><stop offset="100%" stop-color="#0d1830"/></linearGradient>
+    <linearGradient id="r-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2d1a00"/><stop offset="100%" stop-color="#1a1000"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">COFF Loader Memory Layout</text>
+  <text x="500" y="58" text-anchor="middle" fill="#8b949e" font-size="12">Section Mapping and Permission Transitions in Allocated Memory</text>
+  <line x1="80" y1="68" x2="920" y2="68" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Memory block - main visualization -->
+  <g transform="translate(100,85)">
+    <!-- Outer allocation border -->
+    <rect x="0" y="0" width="520" height="440" rx="10" fill="#0d1117" stroke="#8b949e" stroke-width="2" stroke-dasharray="8,4"/>
+    <text x="260" y="-8" text-anchor="middle" fill="#8b949e" font-size="11">VirtualAlloc(NULL, totalSize, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE)</text>
+
+    <!-- Base address label -->
+    <text x="-10" y="20" text-anchor="end" fill="#58a6ff" font-size="10">0x00000000</text>
+    <text x="-10" y="33" text-anchor="end" fill="#58a6ff" font-size="9">BASE</text>
+
+    <!-- .text section -->
+    <rect x="10" y="10" width="500" height="110" rx="6" fill="url(#rx-grad)" stroke="#3fb950" stroke-width="2"/>
+    <text x="260" y="32" text-anchor="middle" fill="#3fb950" font-size="16" font-weight="bold">.text (Code Section)</text>
+    <text x="260" y="52" text-anchor="middle" fill="#c9d1d9" font-size="12">Executable instructions -- BOF entry point "go" resides here</text>
+
+    <!-- go() entry point marker -->
+    <rect x="30" y="65" width="120" height="40" rx="4" fill="#0d1117" stroke="#3fb950" stroke-dasharray="4,2"/>
+    <text x="90" y="82" text-anchor="middle" fill="#3fb950" font-size="11">go(char* args,</text>
+    <text x="90" y="97" text-anchor="middle" fill="#3fb950" font-size="11"> int alen)</text>
+
+    <!-- Function stubs -->
+    <rect x="170" y="65" width="100" height="40" rx="4" fill="#0d1117" stroke="#30363d"/>
+    <text x="220" y="82" text-anchor="middle" fill="#8b949e" font-size="10">helper_func1</text>
+    <text x="220" y="97" text-anchor="middle" fill="#8b949e" font-size="10">0x0080</text>
+
+    <rect x="290" y="65" width="100" height="40" rx="4" fill="#0d1117" stroke="#30363d"/>
+    <text x="340" y="82" text-anchor="middle" fill="#8b949e" font-size="10">helper_func2</text>
+    <text x="340" y="97" text-anchor="middle" fill="#8b949e" font-size="10">0x0120</text>
+
+    <!-- Permissions badge -->
+    <rect x="410" y="65" width="80" height="25" rx="12" fill="#3fb950" opacity="0.2"/>
+    <text x="450" y="83" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">R-X</text>
+
+    <!-- Alignment padding -->
+    <rect x="10" y="120" width="500" height="16" rx="0" fill="#1a1a1a" stroke="#30363d" stroke-width="0.5"/>
+    <text x="260" y="132" text-anchor="middle" fill="#8b949e" font-size="9">--- alignment padding (0x1000 boundary) ---</text>
+    <text x="-10" y="132" text-anchor="end" fill="#f0883e" font-size="9">0x1000</text>
+
+    <!-- .data section -->
+    <rect x="10" y="136" width="500" height="85" rx="6" fill="url(#rw-grad)" stroke="#58a6ff" stroke-width="2"/>
+    <text x="260" y="158" text-anchor="middle" fill="#58a6ff" font-size="16" font-weight="bold">.data (Initialized Data)</text>
+    <text x="260" y="178" text-anchor="middle" fill="#c9d1d9" font-size="12">Global variables, initialized static data</text>
+
+    <rect x="30" y="188" width="80" height="22" rx="3" fill="#0d1117" stroke="#30363d"/>
+    <text x="70" y="203" text-anchor="middle" fill="#8b949e" font-size="9">globals[]</text>
+    <rect x="120" y="188" width="80" height="22" rx="3" fill="#0d1117" stroke="#30363d"/>
+    <text x="160" y="203" text-anchor="middle" fill="#8b949e" font-size="9">statics[]</text>
+
+    <rect x="410" y="155" width="80" height="25" rx="12" fill="#58a6ff" opacity="0.2"/>
+    <text x="450" y="173" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">RW-</text>
+
+    <!-- Alignment padding -->
+    <rect x="10" y="221" width="500" height="16" rx="0" fill="#1a1a1a" stroke="#30363d" stroke-width="0.5"/>
+    <text x="260" y="233" text-anchor="middle" fill="#8b949e" font-size="9">--- alignment padding ---</text>
+    <text x="-10" y="233" text-anchor="end" fill="#f0883e" font-size="9">0x2000</text>
+
+    <!-- .rdata section -->
+    <rect x="10" y="237" width="500" height="75" rx="6" fill="url(#r-grad)" stroke="#f0883e" stroke-width="2"/>
+    <text x="260" y="259" text-anchor="middle" fill="#f0883e" font-size="16" font-weight="bold">.rdata (Read-Only Data)</text>
+    <text x="260" y="279" text-anchor="middle" fill="#c9d1d9" font-size="12">Constants, string literals, import tables</text>
+
+    <rect x="30" y="289" width="70" height="18" rx="3" fill="#0d1117" stroke="#30363d"/>
+    <text x="65" y="302" text-anchor="middle" fill="#8b949e" font-size="9">strings</text>
+    <rect x="110" y="289" width="70" height="18" rx="3" fill="#0d1117" stroke="#30363d"/>
+    <text x="145" y="302" text-anchor="middle" fill="#8b949e" font-size="9">vtables</text>
+
+    <rect x="410" y="252" width="80" height="25" rx="12" fill="#f0883e" opacity="0.2"/>
+    <text x="450" y="270" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">R--</text>
+
+    <!-- Alignment padding -->
+    <rect x="10" y="312" width="500" height="16" rx="0" fill="#1a1a1a" stroke="#30363d" stroke-width="0.5"/>
+    <text x="260" y="324" text-anchor="middle" fill="#8b949e" font-size="9">--- alignment padding ---</text>
+    <text x="-10" y="324" text-anchor="end" fill="#f0883e" font-size="9">0x3000</text>
+
+    <!-- .bss section -->
+    <rect x="10" y="328" width="500" height="75" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="260" y="350" text-anchor="middle" fill="#c9d1d9" font-size="16" font-weight="bold">.bss (Uninitialized Data)</text>
+    <text x="260" y="370" text-anchor="middle" fill="#8b949e" font-size="12">Zero-initialized at load time (memset 0)</text>
+
+    <rect x="30" y="380" width="460" height="16" rx="3" fill="#0d1117" stroke="#30363d" stroke-dasharray="3,2"/>
+    <text x="260" y="393" text-anchor="middle" fill="#8b949e" font-size="9">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ...</text>
+
+    <rect x="410" y="343" width="80" height="25" rx="12" fill="#58a6ff" opacity="0.2"/>
+    <text x="450" y="361" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">RW-</text>
+
+    <!-- End address -->
+    <text x="-10" y="420" text-anchor="end" fill="#8b949e" font-size="9">0x4000</text>
+    <text x="-10" y="433" text-anchor="end" fill="#8b949e" font-size="8">END</text>
+  </g>
+
+  <!-- Right side: Permission Transitions -->
+  <g transform="translate(660,90)">
+    <rect x="0" y="0" width="310" height="260" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="155" y="24" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Permission Transitions</text>
+    <line x1="10" y1="32" x2="300" y2="32" stroke="#30363d"/>
+
+    <text x="15" y="55" fill="#c9d1d9" font-size="11" font-weight="bold">Step 1: Allocate as RW-</text>
+    <text x="25" y="72" fill="#8b949e" font-size="10">VirtualAlloc(..., PAGE_READWRITE)</text>
+    <text x="25" y="87" fill="#8b949e" font-size="10">Copy sections, apply relocations</text>
+
+    <line x1="155" y1="95" x2="155" y2="110" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+    <text x="15" y="128" fill="#c9d1d9" font-size="11" font-weight="bold">Step 2: Set .text to R-X</text>
+    <text x="25" y="145" fill="#3fb950" font-size="10">VirtualProtect(.text, PAGE_EXECUTE_READ)</text>
+    <text x="25" y="160" fill="#8b949e" font-size="10">Code becomes executable</text>
+
+    <line x1="155" y1="168" x2="155" y2="183" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+    <text x="15" y="200" fill="#c9d1d9" font-size="11" font-weight="bold">Step 3: Set .rdata to R--</text>
+    <text x="25" y="217" fill="#f0883e" font-size="10">VirtualProtect(.rdata, PAGE_READONLY)</text>
+    <text x="25" y="232" fill="#8b949e" font-size="10">Constants become read-only</text>
+
+    <text x="155" y="255" text-anchor="middle" fill="#3fb950" font-size="10">Avoids RWX pages (OPSEC!)</text>
+  </g>
+
+  <!-- Right side: Entry Point -->
+  <g transform="translate(660,370)">
+    <rect x="0" y="0" width="310" height="145" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="155" y="24" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Entry Point Execution</text>
+    <line x1="10" y1="32" x2="300" y2="32" stroke="#30363d"/>
+
+    <rect x="15" y="42" width="280" height="40" rx="4" fill="#0d1117" stroke="#30363d"/>
+    <text x="25" y="60" fill="#c9d1d9" font-size="10">typedef void (*bof_entry)(char*, int);</text>
+    <text x="25" y="75" fill="#3fb950" font-size="10">entry = (bof_entry)(base + go_offset);</text>
+
+    <rect x="15" y="90" width="280" height="30" rx="4" fill="#0d1117" stroke="#30363d"/>
+    <text x="25" y="110" fill="#3fb950" font-size="11">entry(argumentBuffer, argLen);</text>
+
+    <text x="155" y="135" text-anchor="middle" fill="#8b949e" font-size="10">go() is the BOF entry point by convention</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#8b949e" font-size="10">Lesson 43 -- COFF Loader Memory Layout and Section Permissions | CRTLP Red Team Certification</text>
+</svg>

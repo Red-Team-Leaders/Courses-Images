@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Ekko: Timer Queue ROP Chain</text>
+
+  <!-- Timer Queue Setup -->
+  <rect x="30" y="55" width="200" height="70" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="130" y="78" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">CreateTimerQueueTimer</text>
+  <text x="130" y="96" text-anchor="middle" fill="#8b949e" font-size="9">Schedules ROP callbacks</text>
+  <text x="130" y="112" text-anchor="middle" fill="#8b949e" font-size="9">WT_EXECUTEINTIMERTHREAD</text>
+
+  <!-- Arrow to chain -->
+  <line x1="230" y1="90" x2="268" y2="90" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- ROP Chain Title -->
+  <text x="620" y="55" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">NtContinue ROP Chain (5 CONTEXT Pivots)</text>
+
+  <!-- Step 1: VirtualProtect RW -->
+  <rect x="275" y="65" width="160" height="55" rx="6" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="355" y="82" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">1. VirtualProtect</text>
+  <text x="355" y="97" text-anchor="middle" fill="#c9d1d9" font-size="9">RX → RW</text>
+  <text x="355" y="112" text-anchor="middle" fill="#8b949e" font-size="8">Payload now writable</text>
+
+  <line x1="435" y1="92" x2="458" y2="92" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 2: SystemFunction032 encrypt -->
+  <rect x="465" y="65" width="160" height="55" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="545" y="82" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">2. SystemFunction032</text>
+  <text x="545" y="97" text-anchor="middle" fill="#c9d1d9" font-size="9">RC4 Encrypt Payload</text>
+  <text x="545" y="112" text-anchor="middle" fill="#8b949e" font-size="8">Ciphertext in memory</text>
+
+  <line x1="625" y1="92" x2="648" y2="92" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 3: WaitForSingleObject -->
+  <rect x="655" y="65" width="160" height="55" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="735" y="82" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">3. WaitForSingleObject</text>
+  <text x="735" y="97" text-anchor="middle" fill="#c9d1d9" font-size="9">Sleep (timeout)</text>
+  <text x="735" y="112" text-anchor="middle" fill="#8b949e" font-size="8">Payload encrypted during</text>
+
+  <!-- Arrow down from step 3 -->
+  <line x1="735" y1="120" x2="735" y2="150" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 4: SystemFunction032 decrypt -->
+  <rect x="655" y="155" width="160" height="55" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="735" y="172" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">4. SystemFunction032</text>
+  <text x="735" y="187" text-anchor="middle" fill="#c9d1d9" font-size="9">RC4 Decrypt Payload</text>
+  <text x="735" y="202" text-anchor="middle" fill="#8b949e" font-size="8">Same key = decrypt</text>
+
+  <line x1="655" y1="182" x2="632" y2="182" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 5: VirtualProtect RX -->
+  <rect x="465" y="155" width="160" height="55" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="545" y="172" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">5. VirtualProtect</text>
+  <text x="545" y="187" text-anchor="middle" fill="#c9d1d9" font-size="9">RW → RX</text>
+  <text x="545" y="202" text-anchor="middle" fill="#8b949e" font-size="8">Payload executable again</text>
+
+  <!-- CONTEXT Structure Detail -->
+  <text x="180" y="160" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">CONTEXT Structure (per step)</text>
+
+  <rect x="30" y="172" width="300" height="200" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+
+  <!-- CONTEXT fields -->
+  <rect x="45" y="185" width="120" height="28" rx="3" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="105" y="204" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Rip</text>
+  <text x="185" y="204" fill="#c9d1d9" font-size="9">→ Target function address</text>
+
+  <rect x="45" y="220" width="120" height="28" rx="3" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="105" y="239" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Rcx</text>
+  <text x="185" y="239" fill="#c9d1d9" font-size="9">→ 1st argument</text>
+
+  <rect x="45" y="255" width="120" height="28" rx="3" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="105" y="274" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Rdx</text>
+  <text x="185" y="274" fill="#c9d1d9" font-size="9">→ 2nd argument</text>
+
+  <rect x="45" y="290" width="120" height="28" rx="3" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="105" y="309" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">R8</text>
+  <text x="185" y="309" fill="#c9d1d9" font-size="9">→ 3rd argument</text>
+
+  <rect x="45" y="325" width="120" height="28" rx="3" fill="#0d1117" stroke="#f0883e" stroke-width="1"/>
+  <text x="105" y="344" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Rsp</text>
+  <text x="185" y="344" fill="#c9d1d9" font-size="9">→ Stack pointer (aligned)</text>
+
+  <!-- Example: Step 1 CONTEXT -->
+  <text x="500" y="240" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Example: Step 1 CONTEXT</text>
+  <rect x="380" y="252" width="260" height="120" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="395" y="272" fill="#c9d1d9" font-size="10">Rip  = &amp;VirtualProtect</text>
+  <text x="395" y="292" fill="#c9d1d9" font-size="10">Rcx  = payloadBase</text>
+  <text x="395" y="312" fill="#c9d1d9" font-size="10">Rdx  = payloadSize</text>
+  <text x="395" y="332" fill="#c9d1d9" font-size="10">R8   = PAGE_READWRITE</text>
+  <text x="395" y="352" fill="#c9d1d9" font-size="10">R9   = &amp;oldProtect</text>
+
+  <!-- NtContinue pivot mechanism -->
+  <rect x="660" y="240" width="310" height="132" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="815" y="262" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">NtContinue Pivot Mechanism</text>
+  <text x="675" y="284" fill="#c9d1d9" font-size="9">1. Timer fires callback</text>
+  <text x="675" y="302" fill="#c9d1d9" font-size="9">2. Callback calls NtContinue(&amp;ctx)</text>
+  <text x="675" y="320" fill="#c9d1d9" font-size="9">3. CPU loads CONTEXT into registers</text>
+  <text x="675" y="338" fill="#c9d1d9" font-size="9">4. Execution jumps to ctx.Rip</text>
+  <text x="675" y="356" fill="#c9d1d9" font-size="9">5. Function runs with ctx args</text>
+
+  <!-- Key Insight -->
+  <rect x="30" y="395" width="940" height="65" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="500" y="418" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Key Insight: No Direct API Calls from Payload Thread</text>
+  <text x="500" y="438" text-anchor="middle" fill="#c9d1d9" font-size="10">Timer thread executes NtContinue → Target function runs on timer thread, not payload thread</text>
+  <text x="500" y="452" text-anchor="middle" fill="#8b949e" font-size="9">EDR stack traces show timer dispatch, not shellcode → Evades call stack analysis</text>
+
+  <!-- Memory Timeline -->
+  <text x="500" y="485" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Memory State Timeline</text>
+  <rect x="50" y="498" width="150" height="35" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="125" y="520" text-anchor="middle" fill="#3fb950" font-size="10">RX (executing)</text>
+
+  <line x1="200" y1="515" x2="228" y2="515" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="235" y="498" width="130" height="35" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="300" y="520" text-anchor="middle" fill="#f85149" font-size="10">RW (writable)</text>
+
+  <line x1="365" y1="515" x2="393" y2="515" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="400" y="498" width="130" height="35" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="465" y="520" text-anchor="middle" fill="#f0883e" font-size="10">Encrypted</text>
+
+  <line x1="530" y1="515" x2="558" y2="515" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="565" y="498" width="130" height="35" rx="4" fill="#161b22" stroke="#7ee787" stroke-width="1.5"/>
+  <text x="630" y="520" text-anchor="middle" fill="#7ee787" font-size="10">SLEEPING</text>
+
+  <line x1="695" y1="515" x2="723" y2="515" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="730" y="498" width="130" height="35" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="795" y="520" text-anchor="middle" fill="#f0883e" font-size="10">Decrypted</text>
+
+  <line x1="860" y1="515" x2="888" y2="515" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="895" y="498" width="80" height="35" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="935" y="520" text-anchor="middle" fill="#3fb950" font-size="10">RX</text>
+
+  <text x="500" y="560" text-anchor="middle" fill="#8b949e" font-size="9">Payload is only readable during the brief execution window — encrypted ciphertext during the entire sleep period</text>
+</svg>

@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">BOF Output and Data Formatting</text>
+
+  <!-- Pipeline flow: 5 API boxes connected by arrows -->
+  <!-- Box 1: BeaconFormatAlloc -->
+  <rect x="30" y="70" width="170" height="60" rx="6" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="115" y="95" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">BeaconFormatAlloc</text>
+  <text x="115" y="112" text-anchor="middle" fill="#8b949e" font-size="10">&amp;format, 1024</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="200" y1="100" x2="228" y2="100" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Box 2: BeaconFormatPrintf -->
+  <rect x="230" y="70" width="170" height="60" rx="6" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="315" y="95" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">BeaconFormatPrintf</text>
+  <text x="315" y="112" text-anchor="middle" fill="#8b949e" font-size="10">&amp;format, "User: %s", name</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="400" y1="100" x2="428" y2="100" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Box 3: BeaconFormatInt -->
+  <rect x="430" y="70" width="160" height="60" rx="6" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="510" y="95" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">BeaconFormatInt</text>
+  <text x="510" y="112" text-anchor="middle" fill="#8b949e" font-size="10">&amp;format, pid</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="590" y1="100" x2="618" y2="100" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Box 4: BeaconFormatToString -->
+  <rect x="620" y="70" width="180" height="60" rx="6" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="710" y="95" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">BeaconFormatToString</text>
+  <text x="710" y="112" text-anchor="middle" fill="#8b949e" font-size="10">&amp;format, &amp;len</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="800" y1="100" x2="828" y2="100" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Box 5: BeaconOutput -->
+  <rect x="830" y="70" width="140" height="60" rx="6" fill="none" stroke="#3fb950" stroke-width="2"/>
+  <text x="900" y="95" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">BeaconOutput</text>
+  <text x="900" y="112" text-anchor="middle" fill="#8b949e" font-size="10">CALLBACK_OUTPUT</text>
+
+  <!-- Section: Packed Binary Format Detail -->
+  <text x="500" y="175" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Packed Binary Format (Length-Prefixed Fields)</text>
+
+  <!-- Binary format visualization -->
+  <rect x="80" y="195" width="840" height="50" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+
+  <!-- Field 1: Total Length -->
+  <rect x="82" y="197" width="120" height="46" rx="3" fill="#1a2332" stroke="#58a6ff" stroke-width="1"/>
+  <text x="142" y="216" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Total Length</text>
+  <text x="142" y="233" text-anchor="middle" fill="#8b949e" font-size="9">4 bytes (uint32)</text>
+
+  <!-- Field 2: String Length -->
+  <rect x="206" y="197" width="110" height="46" rx="3" fill="#1a2332" stroke="#f0883e" stroke-width="1"/>
+  <text x="261" y="216" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Str Length</text>
+  <text x="261" y="233" text-anchor="middle" fill="#8b949e" font-size="9">4 bytes (uint32)</text>
+
+  <!-- Field 3: String Data -->
+  <rect x="320" y="197" width="200" height="46" rx="3" fill="#1a2332" stroke="#3fb950" stroke-width="1"/>
+  <text x="420" y="216" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">String Data ("User: admin")</text>
+  <text x="420" y="233" text-anchor="middle" fill="#8b949e" font-size="9">N bytes (UTF-8 + null)</text>
+
+  <!-- Field 4: Int Value -->
+  <rect x="524" y="197" width="110" height="46" rx="3" fill="#1a2332" stroke="#f85149" stroke-width="1"/>
+  <text x="579" y="216" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">Int Value</text>
+  <text x="579" y="233" text-anchor="middle" fill="#8b949e" font-size="9">4 bytes (uint32)</text>
+
+  <!-- Field 5: Padding / More data -->
+  <rect x="638" y="197" width="280" height="46" rx="3" fill="#1a2332" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="778" y="216" text-anchor="middle" fill="#8b949e" font-size="10">Additional fields ...</text>
+  <text x="778" y="233" text-anchor="middle" fill="#8b949e" font-size="9">variable length, each length-prefixed</text>
+
+  <!-- Byte offset annotations -->
+  <text x="82" y="260" fill="#8b949e" font-size="9">offset 0</text>
+  <text x="206" y="260" fill="#8b949e" font-size="9">offset 4</text>
+  <text x="320" y="260" fill="#8b949e" font-size="9">offset 8</text>
+  <text x="524" y="260" fill="#8b949e" font-size="9">offset 8+N</text>
+
+  <!-- Section: Code Example -->
+  <text x="500" y="300" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">API Usage Pattern</text>
+
+  <!-- Code block background -->
+  <rect x="80" y="315" width="400" height="210" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="95" y="338" fill="#8b949e" font-size="11">// Allocate format buffer</text>
+  <text x="95" y="356" fill="#c9d1d9" font-size="11">formatp <tspan fill="#f0883e">buffer</tspan>;</text>
+  <text x="95" y="374" fill="#58a6ff" font-size="11">BeaconFormatAlloc</text><text x="264" y="374" fill="#c9d1d9" font-size="11">(&amp;buffer, 1024);</text>
+  <text x="95" y="400" fill="#8b949e" font-size="11">// Append typed data</text>
+  <text x="95" y="418" fill="#58a6ff" font-size="11">BeaconFormatPrintf</text><text x="270" y="418" fill="#c9d1d9" font-size="11">(&amp;buffer,</text>
+  <text x="115" y="436" fill="#3fb950" font-size="11">"Host: %s PID: "</text><text x="282" y="436" fill="#c9d1d9" font-size="11">, hostname);</text>
+  <text x="95" y="454" fill="#58a6ff" font-size="11">BeaconFormatInt</text><text x="248" y="454" fill="#c9d1d9" font-size="11">(&amp;buffer, pid);</text>
+  <text x="95" y="480" fill="#8b949e" font-size="11">// Extract and send</text>
+  <text x="95" y="498" fill="#c9d1d9" font-size="11"><tspan fill="#f0883e">char</tspan>* out = <tspan fill="#58a6ff">BeaconFormatToString</tspan>(</text>
+  <text x="115" y="516" fill="#c9d1d9" font-size="11">&amp;buffer, &amp;len);</text>
+
+  <!-- Output type reference -->
+  <rect x="530" y="315" width="400" height="210" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="545" y="340" fill="#f0883e" font-size="13" font-weight="bold">Output Callback Types</text>
+
+  <rect x="545" y="355" width="370" height="32" rx="4" fill="#1a2332" stroke="#3fb950" stroke-width="1"/>
+  <text x="555" y="376" fill="#3fb950" font-size="11" font-weight="bold">CALLBACK_OUTPUT (0x0)</text>
+  <text x="800" y="376" text-anchor="end" fill="#8b949e" font-size="10">Generic text</text>
+
+  <rect x="545" y="395" width="370" height="32" rx="4" fill="#1a2332" stroke="#58a6ff" stroke-width="1"/>
+  <text x="555" y="416" fill="#58a6ff" font-size="11" font-weight="bold">CALLBACK_OUTPUT_OEM (0x1e)</text>
+  <text x="800" y="416" text-anchor="end" fill="#8b949e" font-size="10">OEM encoded</text>
+
+  <rect x="545" y="435" width="370" height="32" rx="4" fill="#1a2332" stroke="#f0883e" stroke-width="1"/>
+  <text x="555" y="456" fill="#f0883e" font-size="11" font-weight="bold">CALLBACK_OUTPUT_UTF8 (0x20)</text>
+  <text x="800" y="456" text-anchor="end" fill="#8b949e" font-size="10">UTF-8 encoded</text>
+
+  <rect x="545" y="475" width="370" height="32" rx="4" fill="#1a2332" stroke="#f85149" stroke-width="1"/>
+  <text x="555" y="496" fill="#f85149" font-size="11" font-weight="bold">CALLBACK_ERROR (0x0d)</text>
+  <text x="800" y="496" text-anchor="end" fill="#8b949e" font-size="10">Error output</text>
+
+  <!-- Footer note -->
+  <text x="500" y="560" text-anchor="middle" fill="#8b949e" font-size="10">BeaconFormat API packs heterogeneous data into a single binary blob for efficient C2 transport</text>
+  <text x="980" y="572" text-anchor="end" fill="#30363d" font-size="9">CRTLP Module 9 — Lesson 43</text>
+</svg>

@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Thread Stack Encryption — Why Payload Encryption Alone Fails</text>
+
+  <!-- WITHOUT Stack Encryption -->
+  <rect x="20" y="55" width="470" height="470" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="255" y="78" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Without Stack Encryption</text>
+  <text x="255" y="95" text-anchor="middle" fill="#ff7b72" font-size="10">Payload encrypted — but EDR finds it via stack</text>
+
+  <!-- Thread Stack -->
+  <rect x="40" y="110" width="200" height="310" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="140" y="130" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Thread Stack</text>
+
+  <rect x="50" y="140" width="180" height="25" rx="2" fill="#161b22" stroke="#c9d1d9" stroke-width="1"/>
+  <text x="140" y="158" text-anchor="middle" fill="#c9d1d9" font-size="9">Local variable: 0x41414141</text>
+
+  <rect x="50" y="172" width="180" height="25" rx="2" fill="#161b22" stroke="#ff7b72" stroke-width="2"/>
+  <text x="140" y="190" text-anchor="middle" fill="#ff7b72" font-size="9" font-weight="bold">RET: 0x1A000+0x42</text>
+
+  <rect x="50" y="204" width="180" height="25" rx="2" fill="#161b22" stroke="#c9d1d9" stroke-width="1"/>
+  <text x="140" y="222" text-anchor="middle" fill="#c9d1d9" font-size="9">Saved RBP: 0x7FF...100</text>
+
+  <rect x="50" y="236" width="180" height="25" rx="2" fill="#161b22" stroke="#ff7b72" stroke-width="2"/>
+  <text x="140" y="254" text-anchor="middle" fill="#ff7b72" font-size="9" font-weight="bold">RET: 0x1A000+0xBE</text>
+
+  <rect x="50" y="268" width="180" height="25" rx="2" fill="#161b22" stroke="#c9d1d9" stroke-width="1"/>
+  <text x="140" y="286" text-anchor="middle" fill="#c9d1d9" font-size="9">Local: buffer[64]</text>
+
+  <rect x="50" y="300" width="180" height="25" rx="2" fill="#161b22" stroke="#ff7b72" stroke-width="2"/>
+  <text x="140" y="318" text-anchor="middle" fill="#ff7b72" font-size="9" font-weight="bold">RET: 0x1A000+0x1F0</text>
+
+  <rect x="50" y="332" width="180" height="25" rx="2" fill="#161b22" stroke="#c9d1d9" stroke-width="1"/>
+  <text x="140" y="350" text-anchor="middle" fill="#c9d1d9" font-size="9">Args: param1, param2</text>
+
+  <rect x="50" y="364" width="180" height="25" rx="2" fill="#161b22" stroke="#ff7b72" stroke-width="2"/>
+  <text x="140" y="382" text-anchor="middle" fill="#ff7b72" font-size="9" font-weight="bold">RET: 0x1A000+0x310</text>
+
+  <!-- Payload region (encrypted) -->
+  <rect x="270" y="110" width="200" height="120" rx="4" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="370" y="132" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Payload (Encrypted)</text>
+  <text x="370" y="155" text-anchor="middle" fill="#8b949e" font-size="9">0x1A000: A3 F7 2B 91 CC...</text>
+  <text x="370" y="173" text-anchor="middle" fill="#8b949e" font-size="9">RC4 ciphertext — looks</text>
+  <text x="370" y="191" text-anchor="middle" fill="#8b949e" font-size="9">random to scanners</text>
+  <text x="370" y="218" text-anchor="middle" fill="#3fb950" font-size="9">✓ Memory scanner sees gibberish</text>
+
+  <!-- Arrows from stack to payload -->
+  <line x1="230" y1="184" x2="268" y2="155" stroke="#ff7b72" stroke-width="2" marker-end="url(#ar)" stroke-dasharray="4,3"/>
+  <line x1="230" y1="248" x2="268" y2="170" stroke="#ff7b72" stroke-width="2" marker-end="url(#ar)" stroke-dasharray="4,3"/>
+  <line x1="230" y1="312" x2="268" y2="185" stroke="#ff7b72" stroke-width="2" marker-end="url(#ar)" stroke-dasharray="4,3"/>
+  <line x1="230" y1="376" x2="268" y2="200" stroke="#ff7b72" stroke-width="2" marker-end="url(#ar)" stroke-dasharray="4,3"/>
+
+  <!-- EDR scan result -->
+  <rect x="270" y="250" width="200" height="155" rx="4" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="370" y="272" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">EDR Stack Walk</text>
+  <text x="285" y="295" fill="#c9d1d9" font-size="9">1. Read thread CONTEXT</text>
+  <text x="285" y="313" fill="#c9d1d9" font-size="9">2. Walk stack frames</text>
+  <text x="285" y="331" fill="#c9d1d9" font-size="9">3. Check return addresses</text>
+  <text x="285" y="349" fill="#ff7b72" font-size="9" font-weight="bold">4. RET → MEM_PRIVATE!</text>
+  <text x="285" y="367" fill="#ff7b72" font-size="9" font-weight="bold">5. → Unbacked memory!</text>
+  <text x="285" y="385" fill="#f85149" font-size="10" font-weight="bold">6. ALERT: Injection detected</text>
+
+  <!-- WITH Stack Encryption -->
+  <rect x="510" y="55" width="470" height="470" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="745" y="78" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">With Stack Encryption</text>
+  <text x="745" y="95" text-anchor="middle" fill="#7ee787" font-size="10">Both payload AND stack encrypted — EDR sees nothing</text>
+
+  <!-- Thread Stack (encrypted) -->
+  <rect x="530" y="110" width="200" height="310" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="630" y="130" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Thread Stack (Encrypted)</text>
+
+  <rect x="540" y="140" width="180" height="25" rx="2" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="630" y="158" text-anchor="middle" fill="#8b949e" font-size="9">7A 3E C1 09 88 F2 A4...</text>
+
+  <rect x="540" y="172" width="180" height="25" rx="2" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="630" y="190" text-anchor="middle" fill="#8b949e" font-size="9">B3 51 D7 6F 22 E9 10...</text>
+
+  <rect x="540" y="204" width="180" height="25" rx="2" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="630" y="222" text-anchor="middle" fill="#8b949e" font-size="9">F8 A0 4C 83 71 5B DD...</text>
+
+  <rect x="540" y="236" width="180" height="25" rx="2" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="630" y="254" text-anchor="middle" fill="#8b949e" font-size="9">1E 9F 60 B7 44 C3 A8...</text>
+
+  <rect x="540" y="268" width="180" height="25" rx="2" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="630" y="286" text-anchor="middle" fill="#8b949e" font-size="9">5D 72 E3 AB 96 0F 3C...</text>
+
+  <rect x="540" y="300" width="180" height="25" rx="2" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="630" y="318" text-anchor="middle" fill="#8b949e" font-size="9">C6 28 8A F1 DE 43 67...</text>
+
+  <rect x="540" y="332" width="180" height="25" rx="2" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="630" y="350" text-anchor="middle" fill="#8b949e" font-size="9">09 BA 5E 7D C0 14 92...</text>
+
+  <rect x="540" y="364" width="180" height="25" rx="2" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="630" y="382" text-anchor="middle" fill="#8b949e" font-size="9">A4 6C 31 F0 89 2E D5...</text>
+
+  <!-- Payload region (encrypted) -->
+  <rect x="760" y="110" width="200" height="120" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="860" y="132" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Payload (Encrypted)</text>
+  <text x="860" y="155" text-anchor="middle" fill="#8b949e" font-size="9">0x1A000: A3 F7 2B 91 CC...</text>
+  <text x="860" y="173" text-anchor="middle" fill="#8b949e" font-size="9">RC4 ciphertext</text>
+  <text x="860" y="200" text-anchor="middle" fill="#3fb950" font-size="9">✓ Encrypted</text>
+
+  <!-- EDR scan result (clean) -->
+  <rect x="760" y="250" width="200" height="155" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="860" y="272" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">EDR Stack Walk</text>
+  <text x="775" y="295" fill="#c9d1d9" font-size="9">1. Read thread CONTEXT</text>
+  <text x="775" y="313" fill="#c9d1d9" font-size="9">2. Walk stack frames</text>
+  <text x="775" y="331" fill="#7ee787" font-size="9">3. Stack is ciphertext</text>
+  <text x="775" y="349" fill="#7ee787" font-size="9">4. No valid return addrs</text>
+  <text x="775" y="367" fill="#7ee787" font-size="9">5. Thread appears idle</text>
+  <text x="775" y="385" fill="#3fb950" font-size="10" font-weight="bold">6. No alert triggered</text>
+
+  <!-- Bottom summary -->
+  <text x="500" y="550" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Lesson: Encrypting the payload alone is necessary but NOT sufficient — the stack leaks the payload location</text>
+  <text x="500" y="570" text-anchor="middle" fill="#8b949e" font-size="9">Foliage and DeathSleep both encrypt the thread stack alongside the payload region</text>
+</svg>

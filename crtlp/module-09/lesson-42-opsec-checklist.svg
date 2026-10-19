@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">BOF OPSEC Checklist</text>
+  <text x="500" y="58" text-anchor="middle" fill="#8b949e" font-size="12">Operational Security Best Practices for Beacon Object Files</text>
+  <line x1="150" y1="68" x2="850" y2="68" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Shield icon -->
+  <g transform="translate(500,100)" filter="url(#glow)">
+    <path d="M0,-30 L25,-18 L25,8 C25,22 0,35 0,35 C0,35 -25,22 -25,8 L-25,-18 Z" fill="none" stroke="#3fb950" stroke-width="2"/>
+    <text x="0" y="5" text-anchor="middle" fill="#3fb950" font-size="18">&#x2713;</text>
+  </g>
+
+  <!-- Category 1: Memory -->
+  <g transform="translate(30,150)">
+    <rect x="0" y="0" width="280" height="170" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+    <rect x="0" y="0" width="280" height="32" rx="8" fill="#1c2333"/>
+    <rect x="0" y="16" width="280" height="16" fill="#1c2333"/>
+    <text x="15" y="22" fill="#f85149" font-size="14" font-weight="bold">&#x1F6E1; MEMORY</text>
+
+    <g transform="translate(15,50)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Avoid RWX memory regions</text>
+    </g>
+    <g transform="translate(15,78)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Zero sensitive data after use</text>
+    </g>
+    <g transform="translate(15,106)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Use RW -> RX transitions</text>
+    </g>
+    <g transform="translate(15,134)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Cleanup allocations on exit</text>
+    </g>
+  </g>
+
+  <!-- Category 2: API Calls -->
+  <g transform="translate(360,150)">
+    <rect x="0" y="0" width="280" height="170" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+    <rect x="0" y="0" width="280" height="32" rx="8" fill="#1c2333"/>
+    <rect x="0" y="16" width="280" height="16" fill="#1c2333"/>
+    <text x="15" y="22" fill="#f0883e" font-size="14" font-weight="bold">&#x2699; API CALLS</text>
+
+    <g transform="translate(15,50)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Prefer Nt* over Win32 APIs</text>
+    </g>
+    <g transform="translate(15,78)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Use indirect syscalls</text>
+    </g>
+    <g transform="translate(15,106)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Dynamic function resolution</text>
+    </g>
+    <g transform="translate(15,134)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Avoid hooked API entry points</text>
+    </g>
+  </g>
+
+  <!-- Category 3: Strings -->
+  <g transform="translate(690,150)">
+    <rect x="0" y="0" width="280" height="170" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+    <rect x="0" y="0" width="280" height="32" rx="8" fill="#1c2333"/>
+    <rect x="0" y="16" width="280" height="16" fill="#1c2333"/>
+    <text x="15" y="22" fill="#58a6ff" font-size="14" font-weight="bold">&#x1F520; STRINGS</text>
+
+    <g transform="translate(15,50)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Compile-time obfuscation</text>
+    </g>
+    <g transform="translate(15,78)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Use stack strings technique</text>
+    </g>
+    <g transform="translate(15,106)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">XOR-encode at build time</text>
+    </g>
+    <g transform="translate(15,134)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">No hardcoded indicators</text>
+    </g>
+  </g>
+
+  <!-- Category 4: Output -->
+  <g transform="translate(120,350)">
+    <rect x="0" y="0" width="280" height="170" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+    <rect x="0" y="0" width="280" height="32" rx="8" fill="#1c2333"/>
+    <rect x="0" y="16" width="280" height="16" fill="#1c2333"/>
+    <text x="15" y="22" fill="#3fb950" font-size="14" font-weight="bold">&#x1F4E4; OUTPUT</text>
+
+    <g transform="translate(15,50)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Minimize callback traffic</text>
+    </g>
+    <g transform="translate(15,78)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Batch output before send</text>
+    </g>
+    <g transform="translate(15,106)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Encrypt sensitive results</text>
+    </g>
+    <g transform="translate(15,134)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Use BeaconOutput wisely</text>
+    </g>
+  </g>
+
+  <!-- Category 5: Cleanup -->
+  <g transform="translate(600,350)">
+    <rect x="0" y="0" width="280" height="170" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+    <rect x="0" y="0" width="280" height="32" rx="8" fill="#1c2333"/>
+    <rect x="0" y="16" width="280" height="16" fill="#1c2333"/>
+    <text x="15" y="22" fill="#bc8cff" font-size="14" font-weight="bold">&#x1F9F9; CLEANUP</text>
+
+    <g transform="translate(15,50)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Free all memory allocations</text>
+    </g>
+    <g transform="translate(15,78)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Restore hooked functions</text>
+    </g>
+    <g transform="translate(15,106)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Close open handles</text>
+    </g>
+    <g transform="translate(15,134)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="none" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="9" y="14" text-anchor="middle" fill="#3fb950" font-size="13">&#x2713;</text>
+      <text x="26" y="14" fill="#c9d1d9" font-size="12">Unload injected modules</text>
+    </g>
+  </g>
+
+  <!-- Connecting lines from shield to categories -->
+  <line x1="500" y1="135" x2="170" y2="150" stroke="#30363d" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="500" y1="135" x2="500" y2="150" stroke="#30363d" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="500" y1="135" x2="830" y2="150" stroke="#30363d" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Risk labels -->
+  <text x="170" y="338" text-anchor="middle" fill="#f85149" font-size="10">HIGH RISK</text>
+  <text x="500" y="338" text-anchor="middle" fill="#f0883e" font-size="10">MEDIUM RISK</text>
+  <text x="830" y="338" text-anchor="middle" fill="#58a6ff" font-size="10">DETECTION VECTOR</text>
+
+  <!-- Footer -->
+  <text x="500" y="560" text-anchor="middle" fill="#8b949e" font-size="10">Lesson 42 -- BOF Development OPSEC | CRTLP Red Team Certification</text>
+</svg>

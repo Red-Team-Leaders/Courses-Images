@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="18" font-weight="bold">AMSI Bypass via BOF — AmsiScanBuffer Patching</text>
+  <text x="500" y="52" text-anchor="middle" fill="#8b949e" font-size="12">Before and after memory patching of amsi.dll</text>
+
+  <!-- ============ BEFORE: Normal AMSI Flow ============ -->
+  <text x="250" y="82" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">BEFORE Patch — AMSI Active</text>
+
+  <!-- PowerShell / .NET -->
+  <rect x="50" y="95" width="180" height="45" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="140" y="114" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">PowerShell / .NET</text>
+  <text x="140" y="130" text-anchor="middle" fill="#c9d1d9" font-size="9">execute-assembly, powerpick</text>
+
+  <line x1="230" y1="118" x2="270" y2="118" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- AmsiScanBuffer -->
+  <rect x="275" y="95" width="190" height="45" rx="8" fill="#2a0000" stroke="#f85149" stroke-width="2"/>
+  <text x="370" y="114" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">AmsiScanBuffer()</text>
+  <text x="370" y="130" text-anchor="middle" fill="#c9d1d9" font-size="9">amsi.dll — scans content</text>
+
+  <line x1="370" y1="140" x2="370" y2="165" stroke="#f85149" stroke-width="2" marker-end="url(#arRed)"/>
+
+  <!-- AMSI Provider -->
+  <rect x="280" y="170" width="180" height="45" rx="8" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="370" y="189" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">AMSI Provider</text>
+  <text x="370" y="205" text-anchor="middle" fill="#c9d1d9" font-size="9">Windows Defender / AV engine</text>
+
+  <line x1="370" y1="215" x2="370" y2="240" stroke="#f85149" stroke-width="2" marker-end="url(#arRed)"/>
+
+  <!-- Result: MALWARE -->
+  <rect x="290" y="245" width="160" height="35" rx="8" fill="#2a0000" stroke="#f85149" stroke-width="2"/>
+  <text x="370" y="268" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">AMSI_RESULT_MALWARE</text>
+
+  <line x1="370" y1="280" x2="370" y2="300" stroke="#f85149" stroke-width="2" marker-end="url(#arRed)"/>
+
+  <rect x="300" y="305" width="140" height="30" rx="6" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="370" y="325" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">BLOCKED</text>
+
+  <!-- ============ BOF PATCH (center arrow) ============ -->
+  <rect x="430" y="165" width="140" height="75" rx="10" fill="#161b22" stroke="#f0883e" stroke-width="2.5"/>
+  <text x="500" y="185" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">BOF Patches</text>
+  <text x="500" y="202" text-anchor="middle" fill="#c9d1d9" font-size="9">amsi.dll in-memory</text>
+  <text x="500" y="218" text-anchor="middle" fill="#c9d1d9" font-size="9">VirtualProtect RW</text>
+  <text x="500" y="232" text-anchor="middle" fill="#3fb950" font-size="9">patch prologue bytes</text>
+
+  <!-- Memory detail panel -->
+  <rect x="50" y="350" width="410" height="110" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="255" y="375" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">AmsiScanBuffer Prologue — Memory View</text>
+
+  <text x="70" y="398" fill="#f85149" font-size="10">Before:</text>
+  <rect x="140" y="385" width="300" height="22" rx="3" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="150" y="401" fill="#c9d1d9" font-size="10">4C 8B DC 49 89 5B 08 49 89 6B 10...</text>
+
+  <text x="70" y="432" fill="#3fb950" font-size="10">After:</text>
+  <rect x="140" y="419" width="300" height="22" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="150" y="435" fill="#3fb950" font-size="10" font-weight="bold">B8 57 00 07 80 C3</text>
+  <text x="325" y="435" fill="#8b949e" font-size="9">; mov eax, 0x80070057; ret</text>
+
+  <text x="255" y="455" text-anchor="middle" fill="#8b949e" font-size="9">Returns E_INVALIDARG — AMSI thinks scan succeeded with clean result</text>
+
+  <!-- ============ AFTER: Bypassed AMSI Flow ============ -->
+  <text x="750" y="82" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">AFTER Patch — AMSI Bypassed</text>
+
+  <!-- PowerShell / .NET -->
+  <rect x="620" y="95" width="180" height="45" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="710" y="114" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">PowerShell / .NET</text>
+  <text x="710" y="130" text-anchor="middle" fill="#c9d1d9" font-size="9">execute-assembly, powerpick</text>
+
+  <line x1="800" y1="118" x2="840" y2="118" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Patched AmsiScanBuffer -->
+  <rect x="845" y="95" width="130" height="45" rx="8" fill="#0a2000" stroke="#3fb950" stroke-width="2"/>
+  <text x="910" y="114" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">AmsiScanBuffer</text>
+  <text x="910" y="130" text-anchor="middle" fill="#3fb950" font-size="9">PATCHED</text>
+
+  <line x1="910" y1="140" x2="910" y2="168" stroke="#3fb950" stroke-width="2" marker-end="url(#arGreen)"/>
+
+  <!-- Immediate return -->
+  <rect x="845" y="172" width="130" height="38" rx="8" fill="#0a2000" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="910" y="190" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">ret (E_INVALIDARG)</text>
+  <text x="910" y="204" text-anchor="middle" fill="#8b949e" font-size="8">immediate return</text>
+
+  <line x1="910" y1="210" x2="910" y2="235" stroke="#3fb950" stroke-width="2" marker-end="url(#arGreen)"/>
+
+  <!-- Provider never called -->
+  <rect x="830" y="240" width="160" height="30" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="910" y="260" text-anchor="middle" fill="#8b949e" font-size="9">Provider NEVER called</text>
+
+  <line x1="910" y1="270" x2="910" y2="295" stroke="#3fb950" stroke-width="2" marker-end="url(#arGreen)"/>
+
+  <!-- Result: CLEAN -->
+  <rect x="840" y="300" width="140" height="35" rx="8" fill="#0a2000" stroke="#3fb950" stroke-width="2"/>
+  <text x="910" y="323" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">AMSI_RESULT_CLEAN</text>
+
+  <line x1="710" y1="140" x2="710" y2="338" stroke="#3fb950" stroke-width="2" marker-end="url(#arGreen)"/>
+
+  <rect x="640" y="343" width="140" height="30" rx="6" fill="#0a2000" stroke="#3fb950" stroke-width="2"/>
+  <text x="710" y="363" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">EXECUTED</text>
+
+  <!-- Bottom: attack chain -->
+  <rect x="500" y="400" width="470" height="95" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="735" y="422" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">BOF Attack Chain</text>
+  <line x1="520" y1="430" x2="950" y2="430" stroke="#8b949e" stroke-width="0.5"/>
+
+  <text x="735" y="448" text-anchor="middle" fill="#c9d1d9" font-size="9">1. GetModuleHandle("amsi.dll") → base address</text>
+  <text x="735" y="463" text-anchor="middle" fill="#c9d1d9" font-size="9">2. GetProcAddress(hAmsi, "AmsiScanBuffer") → function ptr</text>
+  <text x="735" y="478" text-anchor="middle" fill="#c9d1d9" font-size="9">3. VirtualProtect(ptr, PAGE_READWRITE) → make writable</text>
+  <text x="735" y="493" text-anchor="middle" fill="#3fb950" font-size="9">4. memcpy(ptr, patch_bytes, 6) → overwrite prologue → restore protect</text>
+
+  <!-- Warning box -->
+  <rect x="50" y="475" width="410" height="55" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="255" y="495" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">OPSEC Note</text>
+  <text x="255" y="512" text-anchor="middle" fill="#c9d1d9" font-size="9">VirtualProtect on amsi.dll .text is detectable by some EDRs.</text>
+  <text x="255" y="525" text-anchor="middle" fill="#8b949e" font-size="9">Consider hardware breakpoint-based AMSI bypass for better stealth.</text>
+
+  <text x="500" y="568" text-anchor="middle" fill="#8b949e" font-size="10">Module 09 — Lesson 41: AMSI Bypass in Beacon Object Files</text>
+</svg>

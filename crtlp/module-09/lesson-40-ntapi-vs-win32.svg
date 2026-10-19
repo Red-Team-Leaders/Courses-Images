@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="18" font-weight="bold">NT API vs Win32 API — EDR Hook Layers</text>
+  <text x="500" y="52" text-anchor="middle" fill="#8b949e" font-size="12">Why direct syscalls bypass user-mode hooks</text>
+
+  <!-- =========== LEFT SIDE: Normal Win32 Path =========== -->
+  <text x="280" y="82" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Win32 API Path (Hooked)</text>
+
+  <!-- User Application -->
+  <rect x="150" y="95" width="260" height="50" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="280" y="117" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">User Application / BOF</text>
+  <text x="280" y="135" text-anchor="middle" fill="#c9d1d9" font-size="9">VirtualAllocEx(hProc, ...)</text>
+  <line x1="280" y1="145" x2="280" y2="168" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- kernel32.dll -->
+  <rect x="150" y="172" width="260" height="50" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="280" y="194" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">kernel32.dll</text>
+  <text x="280" y="212" text-anchor="middle" fill="#c9d1d9" font-size="9">VirtualAllocEx → calls ntdll</text>
+  <line x1="280" y1="222" x2="280" y2="245" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- EDR HOOK ZONE -->
+  <rect x="120" y="248" width="320" height="90" rx="10" fill="none" stroke="#f85149" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="280" y="268" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">EDR HOOK ZONE (ntdll.dll)</text>
+
+  <!-- Hooked ntdll -->
+  <rect x="150" y="275" width="260" height="55" rx="8" fill="#2a0000" stroke="#f85149" stroke-width="2"/>
+  <text x="280" y="295" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">ntdll!NtAllocateVirtualMemory</text>
+  <text x="280" y="311" text-anchor="middle" fill="#c9d1d9" font-size="9">JMP [EDR_hook_trampoline]</text>
+  <text x="280" y="323" text-anchor="middle" fill="#f85149" font-size="8">Prologue overwritten with detour</text>
+
+  <!-- EDR inspection -->
+  <rect x="470" y="260" width="160" height="65" rx="6" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="550" y="280" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">EDR Agent</text>
+  <text x="550" y="296" text-anchor="middle" fill="#c9d1d9" font-size="8">Log call stack</text>
+  <text x="550" y="308" text-anchor="middle" fill="#c9d1d9" font-size="8">Check parameters</text>
+  <text x="550" y="320" text-anchor="middle" fill="#c9d1d9" font-size="8">Flag suspicious calls</text>
+
+  <line x1="410" y1="300" x2="465" y2="290" stroke="#f85149" stroke-width="1.5" marker-end="url(#arRed)"/>
+  <line x1="465" y1="300" x2="415" y2="305" stroke="#f85149" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <line x1="280" y1="338" x2="280" y2="365" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Syscall stub (after hook returns) -->
+  <rect x="150" y="370" width="260" height="45" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="280" y="390" text-anchor="middle" fill="#c9d1d9" font-size="10">syscall instruction</text>
+  <text x="280" y="406" text-anchor="middle" fill="#8b949e" font-size="9">mov r10, rcx; mov eax, SSN; syscall</text>
+  <line x1="280" y1="415" x2="280" y2="445" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Kernel -->
+  <rect x="150" y="450" width="260" height="50" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="280" y="472" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Windows Kernel (Ring 0)</text>
+  <text x="280" y="490" text-anchor="middle" fill="#c9d1d9" font-size="9">Actual memory allocation</text>
+
+  <!-- =========== RIGHT SIDE: Direct Syscall Path =========== -->
+  <text x="780" y="82" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Direct Syscall Path (Bypass)</text>
+
+  <!-- User Application -->
+  <rect x="650" y="95" width="260" height="50" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="780" y="117" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">BOF with Direct Syscall</text>
+  <text x="780" y="135" text-anchor="middle" fill="#c9d1d9" font-size="9">NtAllocateVirtualMemory(SSN)</text>
+
+  <!-- Skip arrow bypassing hooks -->
+  <line x1="780" y1="145" x2="780" y2="445" stroke="#3fb950" stroke-width="3" marker-end="url(#arGreen)"/>
+
+  <!-- Bypass label -->
+  <rect x="800" y="250" width="170" height="90" rx="8" fill="#0a2000" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="885" y="272" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">BYPASSED</text>
+  <text x="885" y="290" text-anchor="middle" fill="#c9d1d9" font-size="9">No kernel32 call</text>
+  <text x="885" y="305" text-anchor="middle" fill="#c9d1d9" font-size="9">No ntdll.dll call</text>
+  <text x="885" y="320" text-anchor="middle" fill="#c9d1d9" font-size="9">No EDR hook trigger</text>
+  <text x="885" y="335" text-anchor="middle" fill="#3fb950" font-size="9">Direct to Ring 0</text>
+
+  <line x1="800" y1="295" x2="790" y2="295" stroke="#3fb950" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Kernel (shared) -->
+  <rect x="650" y="450" width="260" height="50" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="780" y="472" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Windows Kernel (Ring 0)</text>
+  <text x="780" y="490" text-anchor="middle" fill="#c9d1d9" font-size="9">Same result, no detection</text>
+
+  <!-- Ring boundary line -->
+  <line x1="30" y1="440" x2="970" y2="440" stroke="#8b949e" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="50" y="436" fill="#8b949e" font-size="9">Ring 3 / Ring 0 boundary</text>
+
+  <!-- Bottom key info -->
+  <rect x="200" y="515" width="600" height="40" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="500" y="533" text-anchor="middle" fill="#c9d1d9" font-size="10">SSN = System Service Number — index into SSDT. Resolved from ntdll or SysWhispers-style extraction.</text>
+  <text x="500" y="548" text-anchor="middle" fill="#8b949e" font-size="9">Direct syscalls: mov eax, SSN; mov r10, rcx; syscall — completely in user-written assembly</text>
+
+  <text x="500" y="572" text-anchor="middle" fill="#8b949e" font-size="10">Module 09 — Lesson 40: NT API vs Win32 API and EDR Hook Bypass</text>
+</svg>

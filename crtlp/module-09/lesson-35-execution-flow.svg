@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-down" markerWidth="7" markerHeight="10" refX="3.5" refY="9" orient="auto"><polygon points="0 0,3.5 10,7 0" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">sRDI Execution Flow</text>
+
+  <!-- Step 1: Shellcode Entry -->
+  <rect x="30" y="60" width="170" height="65" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <circle cx="50" cy="78" r="10" fill="#f0883e" opacity="0.3"/>
+  <text x="50" y="82" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">1</text>
+  <text x="125" y="82" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Shellcode Entry</text>
+  <text x="125" y="100" text-anchor="middle" fill="#8b949e" font-size="9">JMP to bootstrap</text>
+  <text x="125" y="112" text-anchor="middle" fill="#8b949e" font-size="9">code begins PIC exec</text>
+
+  <line x1="200" y1="92" x2="230" y2="92" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 2: Find Base -->
+  <rect x="230" y="60" width="170" height="65" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <circle cx="250" cy="78" r="10" fill="#f0883e" opacity="0.3"/>
+  <text x="250" y="82" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">2</text>
+  <text x="325" y="82" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Find Base</text>
+  <text x="325" y="100" text-anchor="middle" fill="#8b949e" font-size="9">call/pop to get EIP</text>
+  <text x="325" y="112" text-anchor="middle" fill="#8b949e" font-size="9">calculate base addr</text>
+
+  <line x1="400" y1="92" x2="430" y2="92" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 3: Locate DLL -->
+  <rect x="430" y="60" width="170" height="65" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <circle cx="450" cy="78" r="10" fill="#58a6ff" opacity="0.3"/>
+  <text x="450" y="82" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">3</text>
+  <text x="525" y="82" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Locate DLL</text>
+  <text x="525" y="100" text-anchor="middle" fill="#8b949e" font-size="9">Find appended PE</text>
+  <text x="525" y="112" text-anchor="middle" fill="#8b949e" font-size="9">at known offset</text>
+
+  <line x1="600" y1="92" x2="630" y2="92" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 4: Allocate -->
+  <rect x="630" y="60" width="170" height="65" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <circle cx="650" cy="78" r="10" fill="#58a6ff" opacity="0.3"/>
+  <text x="650" y="82" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">4</text>
+  <text x="725" y="82" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Allocate</text>
+  <text x="725" y="100" text-anchor="middle" fill="#8b949e" font-size="9">VirtualAlloc RWX</text>
+  <text x="725" y="112" text-anchor="middle" fill="#8b949e" font-size="9">SizeOfImage bytes</text>
+
+  <line x1="800" y1="92" x2="830" y2="92" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 5: Map Sections -->
+  <rect x="830" y="60" width="150" height="65" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <circle cx="850" cy="78" r="10" fill="#3fb950" opacity="0.3"/>
+  <text x="850" y="82" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">5</text>
+  <text x="915" y="82" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Map Sections</text>
+  <text x="915" y="100" text-anchor="middle" fill="#8b949e" font-size="9">Copy .text .rdata</text>
+  <text x="915" y="112" text-anchor="middle" fill="#8b949e" font-size="9">.data to new alloc</text>
+
+  <!-- Arrow down from step 5 -->
+  <line x1="905" y1="125" x2="905" y2="165" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 6: Relocations -->
+  <rect x="780" y="170" width="200" height="65" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <circle cx="800" cy="188" r="10" fill="#3fb950" opacity="0.3"/>
+  <text x="800" y="192" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">6</text>
+  <text x="890" y="192" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Relocations</text>
+  <text x="890" y="210" text-anchor="middle" fill="#8b949e" font-size="9">Process .reloc section</text>
+  <text x="890" y="222" text-anchor="middle" fill="#8b949e" font-size="9">Fix base delta offsets</text>
+
+  <line x1="780" y1="202" x2="740" y2="202" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 7: Resolve Imports -->
+  <rect x="520" y="170" width="220" height="65" rx="6" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <circle cx="540" cy="188" r="10" fill="#f85149" opacity="0.3"/>
+  <text x="540" y="192" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">7</text>
+  <text x="640" y="192" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Resolve Imports</text>
+  <text x="640" y="210" text-anchor="middle" fill="#8b949e" font-size="9">LoadLibrary for each DLL</text>
+  <text x="640" y="222" text-anchor="middle" fill="#8b949e" font-size="9">GetProcAddress per function</text>
+
+  <line x1="520" y1="202" x2="480" y2="202" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 8: Set Permissions -->
+  <rect x="260" y="170" width="220" height="65" rx="6" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <circle cx="280" cy="188" r="10" fill="#f85149" opacity="0.3"/>
+  <text x="280" y="192" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">8</text>
+  <text x="380" y="192" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Set Permissions</text>
+  <text x="380" y="210" text-anchor="middle" fill="#8b949e" font-size="9">VirtualProtect per section</text>
+  <text x="380" y="222" text-anchor="middle" fill="#8b949e" font-size="9">.text=RX .rdata=R .data=RW</text>
+
+  <line x1="260" y1="202" x2="220" y2="202" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 9: Call Entry -->
+  <rect x="30" y="170" width="190" height="65" rx="6" fill="#161b22" stroke="#7ee787" stroke-width="2"/>
+  <circle cx="50" cy="188" r="10" fill="#7ee787" opacity="0.3"/>
+  <text x="50" y="192" text-anchor="middle" fill="#7ee787" font-size="10" font-weight="bold">9</text>
+  <text x="135" y="192" text-anchor="middle" fill="#7ee787" font-size="11" font-weight="bold">Call Entry Point</text>
+  <text x="135" y="210" text-anchor="middle" fill="#8b949e" font-size="9">DllMain(hModule,</text>
+  <text x="135" y="222" text-anchor="middle" fill="#8b949e" font-size="9">DLL_PROCESS_ATTACH, 0)</text>
+
+  <!-- Arrow down to step 10 -->
+  <line x1="125" y1="235" x2="125" y2="275" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 10: Cleanup -->
+  <rect x="30" y="280" width="190" height="65" rx="6" fill="#161b22" stroke="#7ee787" stroke-width="2"/>
+  <circle cx="50" cy="298" r="10" fill="#7ee787" opacity="0.3"/>
+  <text x="50" y="302" text-anchor="middle" fill="#7ee787" font-size="10" font-weight="bold">10</text>
+  <text x="135" y="298" text-anchor="middle" fill="#7ee787" font-size="11" font-weight="bold">Cleanup</text>
+  <text x="135" y="318" text-anchor="middle" fill="#8b949e" font-size="9">Zero bootstrap memory</text>
+  <text x="135" y="330" text-anchor="middle" fill="#8b949e" font-size="9">Free original allocation</text>
+
+  <!-- Detailed phase breakdown -->
+  <rect x="30" y="370" width="940" height="185" rx="8" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="500" y="395" text-anchor="middle" fill="#c9d1d9" font-size="13" font-weight="bold">Execution Phase Details</text>
+
+  <!-- Phase 1: Setup -->
+  <rect x="50" y="410" width="200" height="125" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="150" y="430" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Phase 1: Setup</text>
+  <text x="60" y="450" fill="#c9d1d9" font-size="9">Steps 1-4</text>
+  <text x="60" y="468" fill="#8b949e" font-size="9">&#x2022; PIC bootstrap executes</text>
+  <text x="60" y="483" fill="#8b949e" font-size="9">&#x2022; Walk PEB for kernel32</text>
+  <text x="60" y="498" fill="#8b949e" font-size="9">&#x2022; Hash-resolve VirtualAlloc</text>
+  <text x="60" y="513" fill="#8b949e" font-size="9">&#x2022; Allocate SizeOfImage</text>
+  <text x="60" y="528" fill="#f0883e" font-size="9">API: VirtualAlloc(RWX)</text>
+
+  <line x1="250" y1="470" x2="290" y2="470" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Phase 2: Loading -->
+  <rect x="290" y="410" width="200" height="125" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="390" y="430" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Phase 2: Loading</text>
+  <text x="300" y="450" fill="#c9d1d9" font-size="9">Steps 5-7</text>
+  <text x="300" y="468" fill="#8b949e" font-size="9">&#x2022; Copy sections by RVA</text>
+  <text x="300" y="483" fill="#8b949e" font-size="9">&#x2022; Apply base relocations</text>
+  <text x="300" y="498" fill="#8b949e" font-size="9">&#x2022; Resolve import table</text>
+  <text x="300" y="513" fill="#8b949e" font-size="9">&#x2022; Fill IAT with addresses</text>
+  <text x="300" y="528" fill="#3fb950" font-size="9">API: LoadLibrary, GetProcAddr</text>
+
+  <line x1="490" y1="470" x2="530" y2="470" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Phase 3: Hardening -->
+  <rect x="530" y="410" width="200" height="125" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="630" y="430" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Phase 3: Hardening</text>
+  <text x="540" y="450" fill="#c9d1d9" font-size="9">Step 8</text>
+  <text x="540" y="468" fill="#8b949e" font-size="9">&#x2022; .text  -> PAGE_EXECUTE_READ</text>
+  <text x="540" y="483" fill="#8b949e" font-size="9">&#x2022; .rdata -> PAGE_READONLY</text>
+  <text x="540" y="498" fill="#8b949e" font-size="9">&#x2022; .data  -> PAGE_READWRITE</text>
+  <text x="540" y="513" fill="#8b949e" font-size="9">&#x2022; Remove RWX from all</text>
+  <text x="540" y="528" fill="#f85149" font-size="9">API: VirtualProtect</text>
+
+  <line x1="730" y1="470" x2="770" y2="470" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Phase 4: Execution -->
+  <rect x="770" y="410" width="180" height="125" rx="4" fill="#161b22" stroke="#7ee787" stroke-width="1.5"/>
+  <text x="860" y="430" text-anchor="middle" fill="#7ee787" font-size="11" font-weight="bold">Phase 4: Execute</text>
+  <text x="780" y="450" fill="#c9d1d9" font-size="9">Steps 9-10</text>
+  <text x="780" y="468" fill="#8b949e" font-size="9">&#x2022; Call DllMain</text>
+  <text x="780" y="483" fill="#8b949e" font-size="9">&#x2022; Optionally call export</text>
+  <text x="780" y="498" fill="#8b949e" font-size="9">&#x2022; Wipe bootstrap stub</text>
+  <text x="780" y="513" fill="#8b949e" font-size="9">&#x2022; Free temp allocations</text>
+  <text x="780" y="528" fill="#7ee787" font-size="9">DLL is now running</text>
+
+  <text x="500" y="570" text-anchor="middle" fill="#8b949e" font-size="10">Complete sRDI loading pipeline from shellcode entry to DLL execution in target process</text>
+</svg>

@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="18" font-weight="bold">Dynamic Function Resolution (DFR) — BOF Import Chain</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">How COFF Loader resolves KERNEL32$CreateFileW at runtime</text>
+
+  <!-- Step 1: BOF Source -->
+  <rect x="30" y="80" width="170" height="80" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="115" y="102" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">1. BOF Source</text>
+  <text x="115" y="122" text-anchor="middle" fill="#c9d1d9" font-size="10">DECLSPEC_IMPORT</text>
+  <text x="115" y="138" text-anchor="middle" fill="#3fb950" font-size="9">KERNEL32$CreateFileW</text>
+  <text x="115" y="152" text-anchor="middle" fill="#8b949e" font-size="9">declared in header</text>
+
+  <!-- Arrow 1->2 -->
+  <line x1="200" y1="120" x2="240" y2="120" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 2: COFF Compiler -->
+  <rect x="245" y="80" width="170" height="80" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="330" y="102" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">2. COFF Object</text>
+  <text x="330" y="122" text-anchor="middle" fill="#c9d1d9" font-size="10">Symbol table entry:</text>
+  <text x="330" y="138" text-anchor="middle" fill="#3fb950" font-size="9">__imp_KERNEL32$CreateFileW</text>
+  <text x="330" y="152" text-anchor="middle" fill="#8b949e" font-size="9">EXTERNAL, UNDEF</text>
+
+  <!-- Arrow 2->3 -->
+  <line x1="415" y1="120" x2="455" y2="120" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 3: COFF Loader -->
+  <rect x="460" y="75" width="180" height="90" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="550" y="97" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">3. COFF Loader</text>
+  <text x="550" y="117" text-anchor="middle" fill="#c9d1d9" font-size="10">Parses symbol name:</text>
+  <text x="550" y="133" text-anchor="middle" fill="#f85149" font-size="10">DLL = "KERNEL32"</text>
+  <text x="550" y="149" text-anchor="middle" fill="#3fb950" font-size="10">Func = "CreateFileW"</text>
+  <text x="550" y="162" text-anchor="middle" fill="#8b949e" font-size="9">splits on '$' delimiter</text>
+
+  <!-- Arrow 3->4 (down) -->
+  <line x1="550" y1="165" x2="550" y2="200" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 4: PEB Walk -->
+  <rect x="370" y="205" width="360" height="110" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="550" y="227" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">4. PEB Module Walk</text>
+
+  <!-- PEB structure -->
+  <rect x="385" y="240" width="100" height="30" rx="4" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="435" y="259" text-anchor="middle" fill="#58a6ff" font-size="9">TEB → PEB</text>
+
+  <line x1="485" y1="255" x2="505" y2="255" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="510" y="240" width="100" height="30" rx="4" fill="#0d1117" stroke="#58a6ff" stroke-width="1"/>
+  <text x="560" y="259" text-anchor="middle" fill="#58a6ff" font-size="9">PEB→Ldr</text>
+
+  <line x1="610" y1="255" x2="630" y2="255" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="635" y="240" width="80" height="30" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="675" y="259" text-anchor="middle" fill="#3fb950" font-size="9">InMemOrder</text>
+
+  <text x="550" y="290" text-anchor="middle" fill="#c9d1d9" font-size="10">Walk InMemoryOrderModuleList → compare BaseDllName</text>
+  <text x="550" y="305" text-anchor="middle" fill="#f85149" font-size="10">Match: "kernel32.dll" base address found</text>
+
+  <!-- Arrow 4->5 -->
+  <line x1="550" y1="315" x2="550" y2="345" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 5: GetProcAddress -->
+  <rect x="370" y="350" width="360" height="90" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="550" y="372" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">5. Resolve Export</text>
+
+  <rect x="385" y="385" width="140" height="25" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="455" y="401" text-anchor="middle" fill="#c9d1d9" font-size="9">kernel32 EAT parse</text>
+
+  <line x1="525" y1="397" x2="555" y2="397" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="560" y="385" width="155" height="25" rx="4" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="637" y="401" text-anchor="middle" fill="#3fb950" font-size="9">→ CreateFileW addr</text>
+
+  <text x="550" y="430" text-anchor="middle" fill="#8b949e" font-size="9">GetProcAddress or manual EAT walk</text>
+
+  <!-- Arrow 5->6 -->
+  <line x1="550" y1="440" x2="550" y2="465" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Step 6: Patch Relocation -->
+  <rect x="370" y="470" width="360" height="70" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="550" y="492" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">6. Patch COFF Relocation</text>
+  <text x="550" y="512" text-anchor="middle" fill="#c9d1d9" font-size="10">Write resolved address → relocation fixup slot</text>
+  <text x="550" y="530" text-anchor="middle" fill="#3fb950" font-size="10">BOF can now call CreateFileW() directly</text>
+
+  <!-- Side panel: Key insight -->
+  <rect x="770" y="80" width="210" height="130" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="875" y="102" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Key OPSEC Benefit</text>
+  <line x1="785" y1="110" x2="965" y2="110" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="875" y="128" text-anchor="middle" fill="#3fb950" font-size="10">✓ No PE import table</text>
+  <text x="875" y="146" text-anchor="middle" fill="#3fb950" font-size="10">✓ No IAT entries</text>
+  <text x="875" y="164" text-anchor="middle" fill="#3fb950" font-size="10">✓ Resolved in-memory</text>
+  <text x="875" y="182" text-anchor="middle" fill="#f85149" font-size="10">✗ Still calls exports</text>
+  <text x="875" y="200" text-anchor="middle" fill="#8b949e" font-size="9">(hookable at DLL level)</text>
+
+  <!-- Side panel: Convention -->
+  <rect x="770" y="230" width="210" height="100" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="875" y="252" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Naming Convention</text>
+  <line x1="785" y1="260" x2="965" y2="260" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="875" y="280" text-anchor="middle" fill="#f0883e" font-size="11">MODULE$Function</text>
+  <text x="875" y="300" text-anchor="middle" fill="#c9d1d9" font-size="9">KERNEL32$CreateFileW</text>
+  <text x="875" y="316" text-anchor="middle" fill="#c9d1d9" font-size="9">NTDLL$NtAllocateVirtualMemory</text>
+
+  <!-- Bottom legend -->
+  <rect x="770" y="350" width="210" height="90" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="875" y="372" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Resolution Order</text>
+  <line x1="785" y1="380" x2="965" y2="380" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="875" y="398" text-anchor="middle" fill="#c9d1d9" font-size="9">1. Parse COFF symbols</text>
+  <text x="875" y="413" text-anchor="middle" fill="#c9d1d9" font-size="9">2. Walk PEB→Ldr modules</text>
+  <text x="875" y="428" text-anchor="middle" fill="#c9d1d9" font-size="9">3. Resolve via EAT/GetProcAddr</text>
+
+  <!-- Flow numbers decorating arrows -->
+  <circle cx="220" cy="112" r="8" fill="#f0883e" opacity="0.2"/>
+  <circle cx="435" cy="112" r="8" fill="#f0883e" opacity="0.2"/>
+
+  <!-- Bottom annotation -->
+  <text x="500" y="568" text-anchor="middle" fill="#8b949e" font-size="10">Module 09 — Lesson 39: Dynamic Function Resolution in Beacon Object Files</text>
+</svg>

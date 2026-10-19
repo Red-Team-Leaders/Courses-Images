@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">C2 Framework BOF Support Comparison</text>
+
+  <!-- Legend -->
+  <rect x="250" y="48" width="500" height="28" rx="5" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <circle cx="300" cy="62" r="6" fill="#3fb950"/>
+  <text x="315" y="66" fill="#c9d1d9" font-size="10">Full Support</text>
+  <circle cx="440" cy="62" r="6" fill="#f0883e"/>
+  <text x="455" y="66" fill="#c9d1d9" font-size="10">Partial Support</text>
+  <circle cx="580" cy="62" r="6" fill="#f85149"/>
+  <text x="595" y="66" fill="#c9d1d9" font-size="10">No Support</text>
+  <circle cx="700" cy="62" r="6" fill="#8b949e"/>
+  <text x="715" y="66" fill="#c9d1d9" font-size="10">Community/Plugin</text>
+
+  <!-- Table Header -->
+  <rect x="40" y="90" width="920" height="38" rx="4" fill="#1a2332"/>
+  <text x="125" y="114" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Framework</text>
+  <text x="280" y="114" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Native BOF</text>
+  <text x="410" y="114" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">API Coverage</text>
+  <text x="540" y="114" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Output Handling</text>
+  <text x="680" y="114" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Arg Parsing</text>
+  <text x="830" y="114" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Inline vs Fork</text>
+
+  <!-- ==================== Row 1: Cobalt Strike ==================== -->
+  <rect x="40" y="132" width="920" height="70" rx="0" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <rect x="45" y="137" width="160" height="60" rx="4" fill="#1a2332" stroke="#58a6ff" stroke-width="1"/>
+  <text x="125" y="160" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Cobalt Strike</text>
+  <text x="125" y="178" text-anchor="middle" fill="#8b949e" font-size="9">v4.1+ (native)</text>
+  <text x="125" y="192" text-anchor="middle" fill="#8b949e" font-size="9">Industry standard</text>
+
+  <circle cx="280" cy="167" r="8" fill="#3fb950"/>
+  <text x="280" y="188" text-anchor="middle" fill="#c9d1d9" font-size="9">Full native</text>
+
+  <circle cx="410" cy="167" r="8" fill="#3fb950"/>
+  <text x="410" y="188" text-anchor="middle" fill="#c9d1d9" font-size="9">Complete API</text>
+
+  <circle cx="540" cy="167" r="8" fill="#3fb950"/>
+  <text x="540" y="188" text-anchor="middle" fill="#c9d1d9" font-size="9">Callback types</text>
+
+  <circle cx="680" cy="167" r="8" fill="#3fb950"/>
+  <text x="680" y="188" text-anchor="middle" fill="#c9d1d9" font-size="9">BeaconDataParse</text>
+
+  <text x="830" y="163" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Both</text>
+  <text x="830" y="180" text-anchor="middle" fill="#c9d1d9" font-size="9">inline_execute +</text>
+  <text x="830" y="192" text-anchor="middle" fill="#c9d1d9" font-size="9">spawns (fork&amp;run)</text>
+
+  <!-- ==================== Row 2: Sliver ==================== -->
+  <rect x="40" y="206" width="920" height="70" rx="0" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <rect x="45" y="211" width="160" height="60" rx="4" fill="#1a2332" stroke="#3fb950" stroke-width="1"/>
+  <text x="125" y="234" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Sliver</text>
+  <text x="125" y="252" text-anchor="middle" fill="#8b949e" font-size="9">v1.5+ (extension)</text>
+  <text x="125" y="266" text-anchor="middle" fill="#8b949e" font-size="9">Open-source C2</text>
+
+  <circle cx="280" cy="241" r="8" fill="#3fb950"/>
+  <text x="280" y="262" text-anchor="middle" fill="#c9d1d9" font-size="9">COFFLoader ext</text>
+
+  <circle cx="410" cy="241" r="8" fill="#f0883e"/>
+  <text x="410" y="262" text-anchor="middle" fill="#c9d1d9" font-size="9">Partial (~60%)</text>
+
+  <circle cx="540" cy="241" r="8" fill="#f0883e"/>
+  <text x="540" y="262" text-anchor="middle" fill="#c9d1d9" font-size="9">Basic stdout</text>
+
+  <circle cx="680" cy="241" r="8" fill="#3fb950"/>
+  <text x="680" y="262" text-anchor="middle" fill="#c9d1d9" font-size="9">Compatible</text>
+
+  <text x="830" y="237" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Inline only</text>
+  <text x="830" y="254" text-anchor="middle" fill="#c9d1d9" font-size="9">No fork&amp;run</text>
+  <text x="830" y="266" text-anchor="middle" fill="#c9d1d9" font-size="9">available</text>
+
+  <!-- ==================== Row 3: Havoc ==================== -->
+  <rect x="40" y="280" width="920" height="70" rx="0" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <rect x="45" y="285" width="160" height="60" rx="4" fill="#1a2332" stroke="#f85149" stroke-width="1"/>
+  <text x="125" y="308" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Havoc</text>
+  <text x="125" y="326" text-anchor="middle" fill="#8b949e" font-size="9">v0.5+ (native)</text>
+  <text x="125" y="340" text-anchor="middle" fill="#8b949e" font-size="9">Modern OSS C2</text>
+
+  <circle cx="280" cy="315" r="8" fill="#3fb950"/>
+  <text x="280" y="336" text-anchor="middle" fill="#c9d1d9" font-size="9">Native COFF</text>
+
+  <circle cx="410" cy="315" r="8" fill="#f0883e"/>
+  <text x="410" y="336" text-anchor="middle" fill="#c9d1d9" font-size="9">Core APIs</text>
+
+  <circle cx="540" cy="315" r="8" fill="#3fb950"/>
+  <text x="540" y="336" text-anchor="middle" fill="#c9d1d9" font-size="9">Callback output</text>
+
+  <circle cx="680" cy="315" r="8" fill="#3fb950"/>
+  <text x="680" y="336" text-anchor="middle" fill="#c9d1d9" font-size="9">Compatible</text>
+
+  <text x="830" y="311" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Both</text>
+  <text x="830" y="328" text-anchor="middle" fill="#c9d1d9" font-size="9">inline + sacrificial</text>
+  <text x="830" y="340" text-anchor="middle" fill="#c9d1d9" font-size="9">process</text>
+
+  <!-- ==================== Row 4: Brute Ratel ==================== -->
+  <rect x="40" y="354" width="920" height="70" rx="0" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <rect x="45" y="359" width="160" height="60" rx="4" fill="#1a2332" stroke="#f0883e" stroke-width="1"/>
+  <text x="125" y="382" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Brute Ratel</text>
+  <text x="125" y="400" text-anchor="middle" fill="#8b949e" font-size="9">v1.0+ (native)</text>
+  <text x="125" y="414" text-anchor="middle" fill="#8b949e" font-size="9">Commercial C2</text>
+
+  <circle cx="280" cy="389" r="8" fill="#3fb950"/>
+  <text x="280" y="410" text-anchor="middle" fill="#c9d1d9" font-size="9">COFF loader</text>
+
+  <circle cx="410" cy="389" r="8" fill="#f0883e"/>
+  <text x="410" y="410" text-anchor="middle" fill="#c9d1d9" font-size="9">Custom subset</text>
+
+  <circle cx="540" cy="389" r="8" fill="#3fb950"/>
+  <text x="540" y="410" text-anchor="middle" fill="#c9d1d9" font-size="9">Badger output</text>
+
+  <circle cx="680" cy="389" r="8" fill="#f0883e"/>
+  <text x="680" y="410" text-anchor="middle" fill="#c9d1d9" font-size="9">Different API</text>
+
+  <text x="830" y="385" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Both</text>
+  <text x="830" y="402" text-anchor="middle" fill="#c9d1d9" font-size="9">inline + phantom</text>
+  <text x="830" y="414" text-anchor="middle" fill="#c9d1d9" font-size="9">process</text>
+
+  <!-- ==================== Row 5: Mythic ==================== -->
+  <rect x="40" y="428" width="920" height="70" rx="0" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <rect x="45" y="433" width="160" height="60" rx="4" fill="#1a2332" stroke="#8b949e" stroke-width="1"/>
+  <text x="125" y="456" text-anchor="middle" fill="#c9d1d9" font-size="13" font-weight="bold">Mythic</text>
+  <text x="125" y="474" text-anchor="middle" fill="#8b949e" font-size="9">Agent-dependent</text>
+  <text x="125" y="488" text-anchor="middle" fill="#8b949e" font-size="9">Modular framework</text>
+
+  <circle cx="280" cy="463" r="8" fill="#8b949e"/>
+  <text x="280" y="484" text-anchor="middle" fill="#c9d1d9" font-size="9">Via agents only</text>
+
+  <circle cx="410" cy="463" r="8" fill="#f0883e"/>
+  <text x="410" y="484" text-anchor="middle" fill="#c9d1d9" font-size="9">Agent-specific</text>
+
+  <circle cx="540" cy="463" r="8" fill="#f0883e"/>
+  <text x="540" y="484" text-anchor="middle" fill="#c9d1d9" font-size="9">Agent callback</text>
+
+  <circle cx="680" cy="463" r="8" fill="#f0883e"/>
+  <text x="680" y="484" text-anchor="middle" fill="#c9d1d9" font-size="9">Varies by agent</text>
+
+  <text x="830" y="459" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Agent-dep.</text>
+  <text x="830" y="476" text-anchor="middle" fill="#c9d1d9" font-size="9">Apollo: inline</text>
+  <text x="830" y="488" text-anchor="middle" fill="#c9d1d9" font-size="9">Athena: extension</text>
+
+  <!-- Summary -->
+  <rect x="40" y="510" width="920" height="50" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="500" y="530" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Key Takeaway: Cobalt Strike has the most mature BOF ecosystem. Sliver and Havoc offer strong compatibility.</text>
+  <text x="500" y="548" text-anchor="middle" fill="#8b949e" font-size="10">Brute Ratel uses a different API surface. Mythic support depends entirely on the chosen agent implementation.</text>
+
+  <text x="980" y="575" text-anchor="end" fill="#30363d" font-size="9">CRTLP Module 9 — Lesson 44</text>
+</svg>

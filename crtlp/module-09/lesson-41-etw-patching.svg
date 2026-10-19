@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="18" font-weight="bold">ETW Patching — Blinding Telemetry via EtwEventWrite</text>
+  <text x="500" y="52" text-anchor="middle" fill="#8b949e" font-size="12">BOF patches ntdll!EtwEventWrite prologue to suppress event logging</text>
+
+  <!-- ============ BEFORE: Normal ETW Flow ============ -->
+  <text x="260" y="82" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">BEFORE Patch — ETW Active</text>
+
+  <!-- User-mode app -->
+  <rect x="50" y="95" width="170" height="45" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="135" y="114" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Malicious Activity</text>
+  <text x="135" y="130" text-anchor="middle" fill="#c9d1d9" font-size="9">.NET load, injection, etc.</text>
+
+  <line x1="220" y1="118" x2="260" y2="118" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- EtwEventWrite -->
+  <rect x="265" y="95" width="200" height="45" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="365" y="114" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">ntdll!EtwEventWrite</text>
+  <text x="365" y="130" text-anchor="middle" fill="#c9d1d9" font-size="9">Logs events to ETW subsystem</text>
+
+  <line x1="365" y1="140" x2="365" y2="165" stroke="#f85149" stroke-width="2" marker-end="url(#arRed)"/>
+
+  <!-- Kernel ETW -->
+  <rect x="270" y="170" width="190" height="45" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="365" y="189" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Kernel ETW Session</text>
+  <text x="365" y="205" text-anchor="middle" fill="#c9d1d9" font-size="9">Buffers and dispatches events</text>
+
+  <!-- Fan out to consumers -->
+  <line x1="365" y1="215" x2="165" y2="255" stroke="#f85149" stroke-width="1.5" marker-end="url(#arRed)"/>
+  <line x1="365" y1="215" x2="365" y2="255" stroke="#f85149" stroke-width="1.5" marker-end="url(#arRed)"/>
+  <line x1="365" y1="215" x2="500" y2="255" stroke="#f85149" stroke-width="1.5" marker-end="url(#arRed)"/>
+
+  <!-- Consumer 1: EDR -->
+  <rect x="70" y="260" width="190" height="40" rx="6" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="165" y="278" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">EDR Agent</text>
+  <text x="165" y="293" text-anchor="middle" fill="#c9d1d9" font-size="8">Microsoft-Windows-DotNETRuntime</text>
+
+  <!-- Consumer 2: Defender -->
+  <rect x="270" y="260" width="190" height="40" rx="6" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="365" y="278" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">Windows Defender</text>
+  <text x="365" y="293" text-anchor="middle" fill="#c9d1d9" font-size="8">Threat Intelligence provider</text>
+
+  <!-- Consumer 3: SIEM -->
+  <rect x="410" y="260" width="180" height="40" rx="6" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="500" y="278" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">SIEM / Event Log</text>
+  <text x="500" y="293" text-anchor="middle" fill="#c9d1d9" font-size="8">Security event collection</text>
+
+  <!-- Detection result -->
+  <rect x="180" y="315" width="260" height="28" rx="6" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="310" y="334" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">ALL CONSUMERS SEE MALICIOUS EVENTS</text>
+
+  <!-- ============ BOF PATCH ZONE ============ -->
+  <rect x="30" y="355" width="490" height="80" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="275" y="378" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">BOF Patches EtwEventWrite Prologue</text>
+
+  <text x="60" y="400" fill="#c9d1d9" font-size="10">Original:</text>
+  <rect x="140" y="387" width="170" height="20" rx="3" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="150" y="401" fill="#f85149" font-size="9">4C 8B DC 48 ... (normal)</text>
+
+  <text x="340" y="400" fill="#c9d1d9" font-size="10">Patched:</text>
+  <rect x="405" y="387" width="100" height="20" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="415" y="401" fill="#3fb950" font-size="9" font-weight="bold">C3 (ret)</text>
+
+  <text x="275" y="428" text-anchor="middle" fill="#8b949e" font-size="9">Single byte patch: function returns immediately without logging</text>
+
+  <!-- ============ AFTER: Blinded ETW Flow ============ -->
+  <text x="760" y="82" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">AFTER Patch — ETW Blinded</text>
+
+  <!-- User-mode app -->
+  <rect x="620" y="95" width="170" height="45" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="705" y="114" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Malicious Activity</text>
+  <text x="705" y="130" text-anchor="middle" fill="#c9d1d9" font-size="9">.NET load, injection, etc.</text>
+
+  <line x1="790" y1="118" x2="830" y2="118" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Patched EtwEventWrite -->
+  <rect x="835" y="95" width="140" height="45" rx="8" fill="#0a2000" stroke="#3fb950" stroke-width="2"/>
+  <text x="905" y="114" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">EtwEventWrite</text>
+  <text x="905" y="130" text-anchor="middle" fill="#3fb950" font-size="9">PATCHED → ret</text>
+
+  <!-- Immediate return -->
+  <line x1="905" y1="140" x2="905" y2="168" stroke="#3fb950" stroke-width="2" marker-end="url(#arGreen)"/>
+
+  <rect x="840" y="172" width="130" height="30" rx="6" fill="#0a2000" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="905" y="192" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Immediate RET</text>
+
+  <!-- Nothing reaches consumers -->
+  <line x1="905" y1="202" x2="905" y2="230" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <text x="905" y="248" text-anchor="middle" fill="#8b949e" font-size="10">No events dispatched</text>
+
+  <!-- Consumer boxes (grayed out) -->
+  <rect x="640" y="265" width="140" height="35" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="710" y="287" text-anchor="middle" fill="#8b949e" font-size="9">EDR Agent</text>
+
+  <rect x="800" y="265" width="140" height="35" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="870" y="287" text-anchor="middle" fill="#8b949e" font-size="9">Defender</text>
+
+  <rect x="720" y="310" width="140" height="35" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="790" y="332" text-anchor="middle" fill="#8b949e" font-size="9">SIEM / Event Log</text>
+
+  <!-- X marks over consumers -->
+  <text x="710" y="295" text-anchor="middle" fill="#f85149" font-size="16" opacity="0.7">X</text>
+  <text x="870" y="295" text-anchor="middle" fill="#f85149" font-size="16" opacity="0.7">X</text>
+  <text x="790" y="340" text-anchor="middle" fill="#f85149" font-size="16" opacity="0.7">X</text>
+
+  <rect x="690" y="360" width="200" height="28" rx="6" fill="#0a2000" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="790" y="379" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">TELEMETRY LOST</text>
+
+  <!-- ETW providers blinded -->
+  <rect x="560" y="410" width="410" height="85" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="765" y="432" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Events Lost After Patch</text>
+  <line x1="580" y1="439" x2="950" y2="439" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="765" y="456" text-anchor="middle" fill="#f85149" font-size="9">Microsoft-Windows-DotNETRuntime (Assembly loads, JIT events)</text>
+  <text x="765" y="471" text-anchor="middle" fill="#f85149" font-size="9">Microsoft-Windows-Threat-Intelligence (injection, mem protect)</text>
+  <text x="765" y="486" text-anchor="middle" fill="#f85149" font-size="9">Microsoft-Windows-PowerShell (script block logging via ETW)</text>
+
+  <!-- OPSEC warning -->
+  <rect x="30" y="450" width="490" height="80" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="275" y="472" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Detection Considerations</text>
+  <line x1="50" y1="479" x2="500" y2="479" stroke="#8b949e" stroke-width="0.5"/>
+  <text x="275" y="496" text-anchor="middle" fill="#c9d1d9" font-size="9">Kernel ETW (Ti provider) cannot be patched from user-mode — still active</text>
+  <text x="275" y="511" text-anchor="middle" fill="#c9d1d9" font-size="9">Periodic integrity checks on ntdll .text may detect the patch</text>
+  <text x="275" y="526" text-anchor="middle" fill="#8b949e" font-size="9">Some EDRs use kernel callbacks (PsSetCreateProcessNotifyRoutine) independently</text>
+
+  <text x="500" y="568" text-anchor="middle" fill="#8b949e" font-size="10">Module 09 — Lesson 41: ETW Patching for Telemetry Evasion</text>
+</svg>

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">C2 Abstraction Layer for Portable BOFs</text>
+
+  <!-- BOF Source -->
+  <rect x="380" y="55" width="240" height="55" rx="8" fill="#1a2332" stroke="#c9d1d9" stroke-width="2"/>
+  <text x="500" y="78" text-anchor="middle" fill="#c9d1d9" font-size="13" font-weight="bold">BOF Source Code</text>
+  <text x="500" y="96" text-anchor="middle" fill="#8b949e" font-size="10">whoami_bof.c (framework-agnostic)</text>
+
+  <!-- Arrow down to abstraction header -->
+  <line x1="500" y1="110" x2="500" y2="138" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="520" y="130" fill="#f0883e" font-size="10">#include</text>
+
+  <!-- Abstraction Header -->
+  <rect x="300" y="140" width="400" height="60" rx="8" fill="#1a2332" stroke="#f0883e" stroke-width="2.5"/>
+  <text x="500" y="165" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">bof_api.h — Abstraction Header</text>
+  <text x="500" y="185" text-anchor="middle" fill="#8b949e" font-size="10">#ifdef / Preprocessor selects framework-specific implementation</text>
+
+  <!-- Preprocessor fan-out arrows -->
+  <line x1="370" y1="200" x2="130" y2="250" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#ar-blue)"/>
+  <line x1="430" y1="200" x2="350" y2="250" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ar-green)"/>
+  <line x1="570" y1="200" x2="600" y2="250" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="630" y1="200" x2="850" y2="250" stroke="#f85149" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Preprocessor labels on arrows -->
+  <text x="220" y="228" text-anchor="middle" fill="#58a6ff" font-size="9" transform="rotate(-22 220 228)">#ifdef CS_BOF</text>
+  <text x="375" y="232" text-anchor="middle" fill="#3fb950" font-size="9" transform="rotate(-12 375 232)">#ifdef SLIVER_BOF</text>
+  <text x="600" y="232" text-anchor="middle" fill="#f0883e" font-size="9" transform="rotate(10 600 232)">#ifdef MYTHIC_BOF</text>
+  <text x="770" y="228" text-anchor="middle" fill="#f85149" font-size="9" transform="rotate(22 770 228)">#ifdef HAVOC_BOF</text>
+
+  <!-- Framework boxes -->
+  <!-- Cobalt Strike -->
+  <rect x="40" y="255" width="190" height="70" rx="6" fill="#1a2332" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="135" y="278" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Cobalt Strike</text>
+  <text x="135" y="296" text-anchor="middle" fill="#c9d1d9" font-size="10">beacon.h</text>
+  <text x="135" y="312" text-anchor="middle" fill="#8b949e" font-size="9">BeaconOutput()</text>
+
+  <!-- Sliver -->
+  <rect x="260" y="255" width="190" height="70" rx="6" fill="#1a2332" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="355" y="278" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">Sliver</text>
+  <text x="355" y="296" text-anchor="middle" fill="#c9d1d9" font-size="10">sliver.h</text>
+  <text x="355" y="312" text-anchor="middle" fill="#8b949e" font-size="9">SliverOutput()</text>
+
+  <!-- Mythic -->
+  <rect x="510" y="255" width="190" height="70" rx="6" fill="#1a2332" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="605" y="278" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Mythic</text>
+  <text x="605" y="296" text-anchor="middle" fill="#c9d1d9" font-size="10">mythic.h</text>
+  <text x="605" y="312" text-anchor="middle" fill="#8b949e" font-size="9">MythicOutput()</text>
+
+  <!-- Havoc -->
+  <rect x="760" y="255" width="190" height="70" rx="6" fill="#1a2332" stroke="#f85149" stroke-width="1.5"/>
+  <text x="855" y="278" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">Havoc</text>
+  <text x="855" y="296" text-anchor="middle" fill="#c9d1d9" font-size="10">havoc.h</text>
+  <text x="855" y="312" text-anchor="middle" fill="#8b949e" font-size="9">HavocOutput()</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="345" x2="960" y2="345" stroke="#30363d" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Macro Mapping Table -->
+  <text x="500" y="372" text-anchor="middle" fill="#c9d1d9" font-size="14" font-weight="bold">Macro Mapping Table</text>
+
+  <!-- Table header -->
+  <rect x="60" y="385" width="880" height="28" rx="4" fill="#1a2332"/>
+  <text x="200" y="404" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Abstraction Macro</text>
+  <text x="400" y="404" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Cobalt Strike</text>
+  <text x="580" y="404" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Sliver</text>
+  <text x="740" y="404" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Mythic</text>
+  <text x="880" y="404" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Havoc</text>
+
+  <!-- Row 1 -->
+  <rect x="60" y="416" width="880" height="26" rx="0" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="200" y="434" text-anchor="middle" fill="#f0883e" font-size="10">BOF_OUTPUT()</text>
+  <text x="400" y="434" text-anchor="middle" fill="#c9d1d9" font-size="10">BeaconOutput()</text>
+  <text x="580" y="434" text-anchor="middle" fill="#c9d1d9" font-size="10">SliverOutput()</text>
+  <text x="740" y="434" text-anchor="middle" fill="#c9d1d9" font-size="10">MythicOutput()</text>
+  <text x="880" y="434" text-anchor="middle" fill="#c9d1d9" font-size="10">HavocOutput()</text>
+
+  <!-- Row 2 -->
+  <rect x="60" y="445" width="880" height="26" rx="0" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="200" y="463" text-anchor="middle" fill="#f0883e" font-size="10">BOF_PRINTF()</text>
+  <text x="400" y="463" text-anchor="middle" fill="#c9d1d9" font-size="10">BeaconPrintf()</text>
+  <text x="580" y="463" text-anchor="middle" fill="#c9d1d9" font-size="10">SliverPrintf()</text>
+  <text x="740" y="463" text-anchor="middle" fill="#c9d1d9" font-size="10">MythicPrintf()</text>
+  <text x="880" y="463" text-anchor="middle" fill="#c9d1d9" font-size="10">HavocPrintf()</text>
+
+  <!-- Row 3 -->
+  <rect x="60" y="474" width="880" height="26" rx="0" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="200" y="492" text-anchor="middle" fill="#f0883e" font-size="10">BOF_PARSE_ARGS()</text>
+  <text x="400" y="492" text-anchor="middle" fill="#c9d1d9" font-size="10">BeaconDataParse()</text>
+  <text x="580" y="492" text-anchor="middle" fill="#c9d1d9" font-size="10">SliverDataParse()</text>
+  <text x="740" y="492" text-anchor="middle" fill="#c9d1d9" font-size="10">MythicDataParse()</text>
+  <text x="880" y="492" text-anchor="middle" fill="#c9d1d9" font-size="10">HavocDataParse()</text>
+
+  <!-- Row 4 -->
+  <rect x="60" y="503" width="880" height="26" rx="0" fill="#161b22" stroke="#30363d" stroke-width="0.5"/>
+  <text x="200" y="521" text-anchor="middle" fill="#f0883e" font-size="10">BOF_GET_STR()</text>
+  <text x="400" y="521" text-anchor="middle" fill="#c9d1d9" font-size="10">BeaconDataExtract()</text>
+  <text x="580" y="521" text-anchor="middle" fill="#c9d1d9" font-size="10">SliverDataExtract()</text>
+  <text x="740" y="521" text-anchor="middle" fill="#c9d1d9" font-size="10">MythicDataExtract()</text>
+  <text x="880" y="521" text-anchor="middle" fill="#c9d1d9" font-size="10">HavocDataExtract()</text>
+
+  <!-- Row 5 -->
+  <rect x="60" y="532" width="880" height="26" rx="0" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="200" y="550" text-anchor="middle" fill="#f0883e" font-size="10">BOF_GET_INT()</text>
+  <text x="400" y="550" text-anchor="middle" fill="#c9d1d9" font-size="10">BeaconDataInt()</text>
+  <text x="580" y="550" text-anchor="middle" fill="#c9d1d9" font-size="10">SliverDataInt()</text>
+  <text x="740" y="550" text-anchor="middle" fill="#c9d1d9" font-size="10">MythicDataInt()</text>
+  <text x="880" y="550" text-anchor="middle" fill="#c9d1d9" font-size="10">HavocDataInt()</text>
+
+  <text x="980" y="575" text-anchor="end" fill="#30363d" font-size="9">CRTLP Module 9 — Lesson 44</text>
+</svg>

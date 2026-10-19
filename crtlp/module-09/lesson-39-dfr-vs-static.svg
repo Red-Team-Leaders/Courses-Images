@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="18" font-weight="bold">DFR vs Static Imports vs Manual GetProcAddress</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">Import resolution strategies — OPSEC and complexity comparison</text>
+
+  <!-- Column Headers -->
+  <text x="175" y="90" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Static Imports</text>
+  <text x="500" y="90" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">DFR (BOF Convention)</text>
+  <text x="825" y="90" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Manual GetProcAddress</text>
+
+  <!-- Column 1: Static Imports -->
+  <rect x="30" y="105" width="290" height="420" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+
+  <!-- How it works -->
+  <text x="175" y="130" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">How It Works</text>
+  <rect x="50" y="140" width="250" height="55" rx="5" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="175" y="158" text-anchor="middle" fill="#c9d1d9" font-size="9">PE linker writes imports to IAT</text>
+  <text x="175" y="173" text-anchor="middle" fill="#c9d1d9" font-size="9">Windows loader resolves at load time</text>
+  <text x="175" y="188" text-anchor="middle" fill="#8b949e" font-size="9">Standard DLL import mechanism</text>
+
+  <!-- Import Table Visibility -->
+  <text x="175" y="215" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Import Table Visibility</text>
+  <rect x="50" y="225" width="250" height="35" rx="5" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="175" y="247" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">FULLY VISIBLE</text>
+
+  <!-- IAT Hook Risk -->
+  <text x="175" y="280" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">IAT Hook Risk</text>
+  <rect x="50" y="290" width="250" height="35" rx="5" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="175" y="312" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">HIGH — IAT is hookable</text>
+
+  <!-- Complexity -->
+  <text x="175" y="345" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Complexity</text>
+  <rect x="50" y="355" width="250" height="35" rx="5" fill="#0a2000" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="175" y="377" text-anchor="middle" fill="#3fb950" font-size="11">LOW — just #include</text>
+
+  <!-- Loader Support -->
+  <text x="175" y="410" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Loader Support</text>
+  <rect x="50" y="420" width="250" height="35" rx="5" fill="#0a2000" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="175" y="442" text-anchor="middle" fill="#3fb950" font-size="11">NATIVE — OS handles it</text>
+
+  <!-- OPSEC Rating -->
+  <text x="175" y="475" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">OPSEC Rating</text>
+  <rect x="80" y="485" width="190" height="30" rx="15" fill="#2a0000" stroke="#f85149" stroke-width="2"/>
+  <text x="175" y="505" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">★☆☆☆☆ POOR</text>
+
+  <!-- Column 2: DFR -->
+  <rect x="355" y="105" width="290" height="420" rx="10" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+
+  <text x="500" y="130" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">How It Works</text>
+  <rect x="375" y="140" width="250" height="55" rx="5" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="500" y="158" text-anchor="middle" fill="#c9d1d9" font-size="9">COFF loader parses MODULE$Func</text>
+  <text x="500" y="173" text-anchor="middle" fill="#c9d1d9" font-size="9">Walks PEB → resolves at runtime</text>
+  <text x="500" y="188" text-anchor="middle" fill="#f0883e" font-size="9">Beacon's built-in mechanism</text>
+
+  <text x="500" y="215" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Import Table Visibility</text>
+  <rect x="375" y="225" width="250" height="35" rx="5" fill="#0a2000" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="500" y="247" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">NONE — no PE imports</text>
+
+  <text x="500" y="280" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">IAT Hook Risk</text>
+  <rect x="375" y="290" width="250" height="35" rx="5" fill="#1a1500" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="500" y="312" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">MEDIUM — calls real exports</text>
+
+  <text x="500" y="345" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Complexity</text>
+  <rect x="375" y="355" width="250" height="35" rx="5" fill="#0a2000" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="500" y="377" text-anchor="middle" fill="#3fb950" font-size="11">LOW — naming convention</text>
+
+  <text x="500" y="410" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Loader Support</text>
+  <rect x="375" y="420" width="250" height="35" rx="5" fill="#0a2000" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="500" y="442" text-anchor="middle" fill="#3fb950" font-size="11">BUILT-IN — CS COFF loader</text>
+
+  <text x="500" y="475" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">OPSEC Rating</text>
+  <rect x="405" y="485" width="190" height="30" rx="15" fill="#1a1500" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="505" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">★★★☆☆ GOOD</text>
+
+  <!-- Column 3: Manual GetProcAddress -->
+  <rect x="680" y="105" width="290" height="420" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+
+  <text x="825" y="130" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">How It Works</text>
+  <rect x="700" y="140" width="250" height="55" rx="5" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="825" y="158" text-anchor="middle" fill="#c9d1d9" font-size="9">LoadLibrary + GetProcAddress</text>
+  <text x="825" y="173" text-anchor="middle" fill="#c9d1d9" font-size="9">or manual PEB walk + EAT parse</text>
+  <text x="825" y="188" text-anchor="middle" fill="#3fb950" font-size="9">Full control, custom hashing</text>
+
+  <text x="825" y="215" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Import Table Visibility</text>
+  <rect x="700" y="225" width="250" height="35" rx="5" fill="#0a2000" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="825" y="247" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">NONE — fully dynamic</text>
+
+  <text x="825" y="280" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">IAT Hook Risk</text>
+  <rect x="700" y="290" width="250" height="35" rx="5" fill="#0a2000" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="825" y="312" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">LOW — can bypass hooks</text>
+
+  <text x="825" y="345" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Complexity</text>
+  <rect x="700" y="355" width="250" height="35" rx="5" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="825" y="377" text-anchor="middle" fill="#f85149" font-size="11">HIGH — manual coding</text>
+
+  <text x="825" y="410" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Loader Support</text>
+  <rect x="700" y="420" width="250" height="35" rx="5" fill="#2a0000" stroke="#f85149" stroke-width="1.5"/>
+  <text x="825" y="442" text-anchor="middle" fill="#f85149" font-size="11">NONE — you build it</text>
+
+  <text x="825" y="475" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">OPSEC Rating</text>
+  <rect x="730" y="485" width="190" height="30" rx="15" fill="#0a2000" stroke="#3fb950" stroke-width="2"/>
+  <text x="825" y="505" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">★★★★★ BEST</text>
+
+  <!-- Bottom annotation -->
+  <text x="500" y="555" text-anchor="middle" fill="#8b949e" font-size="9">DFR balances OPSEC and simplicity — Manual GetProcAddress offers maximum stealth at cost of complexity</text>
+  <text x="500" y="570" text-anchor="middle" fill="#8b949e" font-size="10">Module 09 — Lesson 39: Import Strategy Comparison</text>
+</svg>

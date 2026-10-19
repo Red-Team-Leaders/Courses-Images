@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="ar-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="ar-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">BOF CI/CD Pipeline</text>
+
+  <!-- ==================== Main Pipeline Flow ==================== -->
+
+  <!-- Stage 1: Git Push -->
+  <rect x="30" y="60" width="120" height="70" rx="8" fill="#1a2332" stroke="#c9d1d9" stroke-width="2"/>
+  <text x="90" y="85" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">Git Push</text>
+  <text x="90" y="103" text-anchor="middle" fill="#8b949e" font-size="9">Developer</text>
+  <text x="90" y="117" text-anchor="middle" fill="#8b949e" font-size="9">commits code</text>
+
+  <line x1="150" y1="95" x2="178" y2="95" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 2: CI Trigger -->
+  <rect x="180" y="60" width="120" height="70" rx="8" fill="#1a2332" stroke="#58a6ff" stroke-width="2"/>
+  <text x="240" y="85" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">CI Trigger</text>
+  <text x="240" y="103" text-anchor="middle" fill="#8b949e" font-size="9">GitHub Actions</text>
+  <text x="240" y="117" text-anchor="middle" fill="#8b949e" font-size="9">/ GitLab CI</text>
+
+  <line x1="300" y1="95" x2="328" y2="95" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 3: Compile All -->
+  <rect x="330" y="60" width="130" height="70" rx="8" fill="#1a2332" stroke="#f0883e" stroke-width="2"/>
+  <text x="395" y="82" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Compile All</text>
+  <text x="395" y="100" text-anchor="middle" fill="#c9d1d9" font-size="9">x86_64-mingw32</text>
+  <text x="395" y="114" text-anchor="middle" fill="#8b949e" font-size="9">CS + Sliver + Havoc</text>
+
+  <line x1="460" y1="95" x2="488" y2="95" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 4: Static Analysis -->
+  <rect x="490" y="60" width="130" height="70" rx="8" fill="#1a2332" stroke="#f0883e" stroke-width="2"/>
+  <text x="555" y="82" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Static Analysis</text>
+  <text x="555" y="100" text-anchor="middle" fill="#c9d1d9" font-size="9">cppcheck / clang-tidy</text>
+  <text x="555" y="114" text-anchor="middle" fill="#8b949e" font-size="9">security rules</text>
+
+  <line x1="620" y1="95" x2="648" y2="95" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Stage 5: COFFLoader Test -->
+  <rect x="650" y="60" width="130" height="70" rx="8" fill="#1a2332" stroke="#3fb950" stroke-width="2"/>
+  <text x="715" y="82" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">COFFLoader</text>
+  <text x="715" y="100" text-anchor="middle" fill="#c9d1d9" font-size="9">Functional test</text>
+  <text x="715" y="114" text-anchor="middle" fill="#8b949e" font-size="9">Load + execute</text>
+
+  <line x1="780" y1="95" x2="808" y2="95" stroke="#3fb950" stroke-width="2" marker-end="url(#ar-green)"/>
+
+  <!-- Stage 6: Package -->
+  <rect x="810" y="60" width="80" height="70" rx="8" fill="#1a2332" stroke="#3fb950" stroke-width="2"/>
+  <text x="850" y="85" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Package</text>
+  <text x="850" y="103" text-anchor="middle" fill="#8b949e" font-size="9">tar.gz</text>
+  <text x="850" y="117" text-anchor="middle" fill="#8b949e" font-size="9">artifacts</text>
+
+  <line x1="890" y1="95" x2="908" y2="95" stroke="#3fb950" stroke-width="2" marker-end="url(#ar-green)"/>
+
+  <!-- Stage 7: Deploy -->
+  <rect x="910" y="60" width="70" height="70" rx="8" fill="#1a2332" stroke="#3fb950" stroke-width="2"/>
+  <text x="945" y="88" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Deploy</text>
+  <text x="945" y="106" text-anchor="middle" fill="#8b949e" font-size="9">Release</text>
+
+  <!-- ==================== Quality Gates ==================== -->
+  <text x="500" y="170" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Quality Gates</text>
+
+  <!-- Gate arrows pointing down from stages -->
+  <!-- Gate 1: Compile -->
+  <line x1="395" y1="130" x2="395" y2="188" stroke="#f85149" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="310" y="190" width="170" height="50" rx="5" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="395" y="210" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">Build Gate</text>
+  <text x="395" y="228" text-anchor="middle" fill="#8b949e" font-size="9">0 errors, 0 warnings (-Werror)</text>
+
+  <!-- Gate 2: Static Analysis -->
+  <line x1="555" y1="130" x2="555" y2="188" stroke="#f85149" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="470" y="190" width="170" height="50" rx="5" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="555" y="210" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">Analysis Gate</text>
+  <text x="555" y="228" text-anchor="middle" fill="#8b949e" font-size="9">No high/critical findings</text>
+
+  <!-- Gate 3: COFFLoader -->
+  <line x1="715" y1="130" x2="715" y2="188" stroke="#f85149" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="630" y="190" width="170" height="50" rx="5" fill="#0d1117" stroke="#f85149" stroke-width="1.5"/>
+  <text x="715" y="210" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">Execution Gate</text>
+  <text x="715" y="228" text-anchor="middle" fill="#8b949e" font-size="9">BOF loads + runs cleanly</text>
+
+  <!-- ==================== Compile Detail ==================== -->
+  <line x1="40" y1="265" x2="960" y2="265" stroke="#30363d" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="500" y="290" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Compile Stage Detail (Parallel Matrix Build)</text>
+
+  <!-- Matrix targets -->
+  <rect x="60" y="305" width="270" height="90" rx="6" fill="#1a2332" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="195" y="328" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Target: Cobalt Strike</text>
+  <text x="80" y="348" fill="#c9d1d9" font-size="10">x86_64-w64-mingw32-gcc</text>
+  <text x="80" y="364" fill="#8b949e" font-size="10">-DCS_BOF -c -o whoami_cs.o</text>
+  <text x="80" y="380" fill="#8b949e" font-size="10">-Wall -Werror -Os -fno-asynchronous...</text>
+
+  <rect x="365" y="305" width="270" height="90" rx="6" fill="#1a2332" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="500" y="328" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Target: Sliver</text>
+  <text x="385" y="348" fill="#c9d1d9" font-size="10">x86_64-w64-mingw32-gcc</text>
+  <text x="385" y="364" fill="#8b949e" font-size="10">-DSLIVER_BOF -c -o whoami_sliver.o</text>
+  <text x="385" y="380" fill="#8b949e" font-size="10">-Wall -Werror -Os -fno-asynchronous...</text>
+
+  <rect x="670" y="305" width="270" height="90" rx="6" fill="#1a2332" stroke="#f85149" stroke-width="1.5"/>
+  <text x="805" y="328" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Target: Havoc</text>
+  <text x="690" y="348" fill="#c9d1d9" font-size="10">x86_64-w64-mingw32-gcc</text>
+  <text x="690" y="364" fill="#8b949e" font-size="10">-DHAVOC_BOF -c -o whoami_havoc.o</text>
+  <text x="690" y="380" fill="#8b949e" font-size="10">-Wall -Werror -Os -fno-asynchronous...</text>
+
+  <!-- ==================== COFFLoader Test Detail ==================== -->
+  <line x1="40" y1="415" x2="960" y2="415" stroke="#30363d" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="500" y="440" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">COFFLoader Test Stage</text>
+
+  <rect x="60" y="455" width="200" height="55" rx="6" fill="#1a2332" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="160" y="478" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Load COFF Object</text>
+  <text x="160" y="496" text-anchor="middle" fill="#8b949e" font-size="9">COFFLoader maps sections</text>
+
+  <line x1="260" y1="482" x2="298" y2="482" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ar-green)"/>
+
+  <rect x="300" y="455" width="200" height="55" rx="6" fill="#1a2332" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="400" y="478" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Resolve Symbols</text>
+  <text x="400" y="496" text-anchor="middle" fill="#8b949e" font-size="9">DFR + IAT resolution</text>
+
+  <line x1="500" y1="482" x2="538" y2="482" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ar-green)"/>
+
+  <rect x="540" y="455" width="200" height="55" rx="6" fill="#1a2332" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="640" y="478" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Execute go()</text>
+  <text x="640" y="496" text-anchor="middle" fill="#8b949e" font-size="9">Verify output + no crash</text>
+
+  <line x1="740" y1="482" x2="778" y2="482" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ar-green)"/>
+
+  <rect x="780" y="455" width="160" height="55" rx="6" fill="#1a2332" stroke="#3fb950" stroke-width="2"/>
+  <text x="860" y="478" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">PASS / FAIL</text>
+  <text x="860" y="496" text-anchor="middle" fill="#8b949e" font-size="9">Exit code check</text>
+
+  <!-- Package artifacts detail -->
+  <rect x="60" y="525" width="880" height="30" rx="5" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="500" y="545" text-anchor="middle" fill="#c9d1d9" font-size="10">Artifacts: whoami_cs.o + whoami_sliver.o + whoami_havoc.o + SHA256SUMS + extension.json + toolkit.cna</text>
+
+  <text x="980" y="575" text-anchor="end" fill="#30363d" font-size="9">CRTLP Module 9 — Lesson 44</text>
+</svg>

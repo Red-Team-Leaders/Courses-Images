@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Common Win32 APIs for BOF Development</text>
+
+  <!-- Process APIs -->
+  <rect x="30" y="55" width="460" height="230" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <rect x="30" y="55" width="460" height="30" rx="8" fill="#58a6ff" fill-opacity="0.15"/>
+  <text x="260" y="76" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Process Management</text>
+
+  <text x="50" y="105" fill="#c9d1d9" font-size="12">KERNEL32$OpenProcess</text>
+  <text x="300" y="105" fill="#8b949e" font-size="10">Get handle to target process</text>
+  <text x="50" y="127" fill="#c9d1d9" font-size="12">KERNEL32$CreateProcessW</text>
+  <text x="300" y="127" fill="#8b949e" font-size="10">Spawn new process (suspended)</text>
+  <text x="50" y="149" fill="#c9d1d9" font-size="12">KERNEL32$TerminateProcess</text>
+  <text x="300" y="149" fill="#8b949e" font-size="10">Kill process by handle</text>
+  <text x="50" y="171" fill="#c9d1d9" font-size="12">KERNEL32$GetCurrentProcessId</text>
+  <text x="300" y="171" fill="#8b949e" font-size="10">Get own PID</text>
+  <text x="50" y="193" fill="#c9d1d9" font-size="12">NTDLL$NtQueryInformationProcess</text>
+  <text x="300" y="193" fill="#8b949e" font-size="10">Detailed process info (PEB, etc.)</text>
+
+  <text x="50" y="225" fill="#58a6ff" font-size="10">DFR: DECLSPEC_IMPORT HANDLE WINAPI</text>
+  <text x="50" y="240" fill="#58a6ff" font-size="10">KERNEL32$OpenProcess(DWORD, BOOL, DWORD);</text>
+
+  <text x="50" y="270" fill="#3fb950" font-size="10">Use case: Enumerate processes, injection target selection</text>
+
+  <!-- Memory APIs -->
+  <rect x="510" y="55" width="460" height="230" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <rect x="510" y="55" width="460" height="30" rx="8" fill="#3fb950" fill-opacity="0.15"/>
+  <text x="740" y="76" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">Memory Operations</text>
+
+  <text x="530" y="105" fill="#c9d1d9" font-size="12">KERNEL32$VirtualAlloc</text>
+  <text x="770" y="105" fill="#8b949e" font-size="10">Allocate in own process</text>
+  <text x="530" y="127" fill="#c9d1d9" font-size="12">KERNEL32$VirtualAllocEx</text>
+  <text x="770" y="127" fill="#8b949e" font-size="10">Allocate in remote process</text>
+  <text x="530" y="149" fill="#c9d1d9" font-size="12">KERNEL32$VirtualProtect</text>
+  <text x="770" y="149" fill="#8b949e" font-size="10">Change page permissions</text>
+  <text x="530" y="171" fill="#c9d1d9" font-size="12">KERNEL32$WriteProcessMemory</text>
+  <text x="770" y="171" fill="#8b949e" font-size="10">Write to remote process</text>
+  <text x="530" y="193" fill="#c9d1d9" font-size="12">KERNEL32$ReadProcessMemory</text>
+  <text x="770" y="193" fill="#8b949e" font-size="10">Read from remote process</text>
+
+  <text x="530" y="225" fill="#3fb950" font-size="10">DFR: DECLSPEC_IMPORT LPVOID WINAPI</text>
+  <text x="530" y="240" fill="#3fb950" font-size="10">KERNEL32$VirtualAllocEx(HANDLE,LPVOID,SIZE_T,DWORD,DWORD);</text>
+
+  <text x="530" y="270" fill="#f0883e" font-size="10">Use case: Injection, shellcode staging, payload decryption</text>
+
+  <!-- Token APIs -->
+  <rect x="30" y="300" width="460" height="230" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <rect x="30" y="300" width="460" height="30" rx="8" fill="#f0883e" fill-opacity="0.15"/>
+  <text x="260" y="321" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">Token Manipulation</text>
+
+  <text x="50" y="350" fill="#c9d1d9" font-size="12">ADVAPI32$OpenProcessToken</text>
+  <text x="310" y="350" fill="#8b949e" font-size="10">Get process token handle</text>
+  <text x="50" y="372" fill="#c9d1d9" font-size="12">ADVAPI32$DuplicateTokenEx</text>
+  <text x="310" y="372" fill="#8b949e" font-size="10">Clone token for impersonation</text>
+  <text x="50" y="394" fill="#c9d1d9" font-size="12">ADVAPI32$ImpersonateLoggedOnUser</text>
+  <text x="310" y="394" fill="#8b949e" font-size="10">Adopt stolen identity</text>
+  <text x="50" y="416" fill="#c9d1d9" font-size="12">ADVAPI32$SetThreadToken</text>
+  <text x="310" y="416" fill="#8b949e" font-size="10">Apply token to current thread</text>
+  <text x="50" y="438" fill="#c9d1d9" font-size="12">ADVAPI32$RevertToSelf</text>
+  <text x="310" y="438" fill="#8b949e" font-size="10">Drop impersonation</text>
+
+  <text x="50" y="470" fill="#f0883e" font-size="10">DFR: DECLSPEC_IMPORT BOOL WINAPI</text>
+  <text x="50" y="485" fill="#f0883e" font-size="10">ADVAPI32$OpenProcessToken(HANDLE,DWORD,PHANDLE);</text>
+
+  <text x="50" y="515" fill="#f85149" font-size="10">Use case: Privilege escalation, lateral movement, credential theft</text>
+
+  <!-- Registry APIs -->
+  <rect x="510" y="300" width="460" height="230" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <rect x="510" y="300" width="460" height="30" rx="8" fill="#f85149" fill-opacity="0.15"/>
+  <text x="740" y="321" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">Registry Operations</text>
+
+  <text x="530" y="350" fill="#c9d1d9" font-size="12">ADVAPI32$RegOpenKeyExW</text>
+  <text x="790" y="350" fill="#8b949e" font-size="10">Open registry key</text>
+  <text x="530" y="372" fill="#c9d1d9" font-size="12">ADVAPI32$RegQueryValueExW</text>
+  <text x="790" y="372" fill="#8b949e" font-size="10">Read registry value</text>
+  <text x="530" y="394" fill="#c9d1d9" font-size="12">ADVAPI32$RegSetValueExW</text>
+  <text x="790" y="394" fill="#8b949e" font-size="10">Write registry value</text>
+  <text x="530" y="416" fill="#c9d1d9" font-size="12">ADVAPI32$RegEnumKeyExW</text>
+  <text x="790" y="416" fill="#8b949e" font-size="10">Enumerate subkeys</text>
+  <text x="530" y="438" fill="#c9d1d9" font-size="12">ADVAPI32$RegCloseKey</text>
+  <text x="790" y="438" fill="#8b949e" font-size="10">Close key handle</text>
+
+  <text x="530" y="470" fill="#f85149" font-size="10">DFR: DECLSPEC_IMPORT LSTATUS WINAPI</text>
+  <text x="530" y="485" fill="#f85149" font-size="10">ADVAPI32$RegOpenKeyExW(HKEY,LPCWSTR,DWORD,REGSAM,PHKEY);</text>
+
+  <text x="530" y="515" fill="#58a6ff" font-size="10">Use case: Persistence, config enumeration, credential extraction</text>
+
+  <!-- Footer -->
+  <text x="500" y="555" text-anchor="middle" fill="#7ee787" font-size="12" font-weight="bold">All DFR calls resolve at runtime via Beacon — zero static imports in the compiled .o file</text>
+  <text x="500" y="572" text-anchor="middle" fill="#8b949e" font-size="10">Pattern: LIBRARY$FunctionName — Beacon resolves DLL + export at load time</text>
+</svg>

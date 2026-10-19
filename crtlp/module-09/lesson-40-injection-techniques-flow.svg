@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="18" font-weight="bold">Process Injection Techniques — Parallel Flows</text>
+  <text x="500" y="50" text-anchor="middle" fill="#8b949e" font-size="11">Color-coded by OPSEC level: Red=Loud, Orange=Moderate, Green=Stealthy</text>
+
+  <!-- Column labels -->
+  <text x="135" y="75" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Classic Injection</text>
+  <text x="135" y="90" text-anchor="middle" fill="#8b949e" font-size="9">OPSEC: LOW</text>
+
+  <text x="380" y="75" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">APC Injection</text>
+  <text x="380" y="90" text-anchor="middle" fill="#8b949e" font-size="9">OPSEC: MEDIUM</text>
+
+  <text x="625" y="75" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Early Bird</text>
+  <text x="625" y="90" text-anchor="middle" fill="#8b949e" font-size="9">OPSEC: HIGH</text>
+
+  <text x="870" y="75" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Section Mapping</text>
+  <text x="870" y="90" text-anchor="middle" fill="#8b949e" font-size="9">OPSEC: HIGH</text>
+
+  <!-- Classic Injection Column -->
+  <rect x="30" y="100" width="210" height="44" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="135" y="118" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">OpenProcess()</text>
+  <text x="135" y="134" text-anchor="middle" fill="#8b949e" font-size="8">Get handle to target PID</text>
+  <line x1="135" y1="144" x2="135" y2="160" stroke="#f85149" stroke-width="1.5" marker-end="url(#arRed)"/>
+
+  <rect x="30" y="163" width="210" height="44" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="135" y="181" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">VirtualAllocEx()</text>
+  <text x="135" y="197" text-anchor="middle" fill="#8b949e" font-size="8">Alloc RWX in remote proc</text>
+  <line x1="135" y1="207" x2="135" y2="223" stroke="#f85149" stroke-width="1.5" marker-end="url(#arRed)"/>
+
+  <rect x="30" y="226" width="210" height="44" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="135" y="244" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">WriteProcessMemory()</text>
+  <text x="135" y="260" text-anchor="middle" fill="#8b949e" font-size="8">Write shellcode to alloc</text>
+  <line x1="135" y1="270" x2="135" y2="286" stroke="#f85149" stroke-width="1.5" marker-end="url(#arRed)"/>
+
+  <rect x="30" y="289" width="210" height="44" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="135" y="307" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">CreateRemoteThread()</text>
+  <text x="135" y="323" text-anchor="middle" fill="#8b949e" font-size="8">Execute in new thread</text>
+
+  <rect x="50" y="350" width="170" height="40" rx="6" fill="#2a0000" stroke="#f85149" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="135" y="365" text-anchor="middle" fill="#f85149" font-size="9">Detection: Very High</text>
+  <text x="135" y="380" text-anchor="middle" fill="#8b949e" font-size="8">All APIs heavily monitored</text>
+
+  <!-- APC Injection Column -->
+  <rect x="275" y="100" width="210" height="44" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="380" y="118" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">OpenProcess()</text>
+  <text x="380" y="134" text-anchor="middle" fill="#8b949e" font-size="8">Target process handle</text>
+  <line x1="380" y1="144" x2="380" y2="160" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="275" y="163" width="210" height="44" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="380" y="181" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">VirtualAllocEx()</text>
+  <text x="380" y="197" text-anchor="middle" fill="#8b949e" font-size="8">Alloc memory in target</text>
+  <line x1="380" y1="207" x2="380" y2="223" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="275" y="226" width="210" height="44" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="380" y="244" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">WriteProcessMemory()</text>
+  <text x="380" y="260" text-anchor="middle" fill="#8b949e" font-size="8">Write payload to alloc</text>
+  <line x1="380" y1="270" x2="380" y2="286" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="275" y="289" width="210" height="44" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="380" y="307" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">QueueUserAPC()</text>
+  <text x="380" y="323" text-anchor="middle" fill="#8b949e" font-size="8">Queue to alertable thread</text>
+
+  <rect x="295" y="350" width="170" height="40" rx="6" fill="#1a1500" stroke="#f0883e" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="380" y="365" text-anchor="middle" fill="#f0883e" font-size="9">Detection: Moderate</text>
+  <text x="380" y="380" text-anchor="middle" fill="#8b949e" font-size="8">No CreateRemoteThread</text>
+
+  <!-- Early Bird Column -->
+  <rect x="520" y="100" width="210" height="44" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="625" y="118" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">CreateProcess(SUSPENDED)</text>
+  <text x="625" y="134" text-anchor="middle" fill="#8b949e" font-size="8">Spawn process suspended</text>
+  <line x1="625" y1="144" x2="625" y2="160" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="520" y="163" width="210" height="44" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="625" y="181" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">VirtualAllocEx()</text>
+  <text x="625" y="197" text-anchor="middle" fill="#8b949e" font-size="8">Alloc in new process</text>
+  <line x1="625" y1="207" x2="625" y2="223" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="520" y="226" width="210" height="44" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="625" y="244" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">WriteProcessMemory()</text>
+  <text x="625" y="260" text-anchor="middle" fill="#8b949e" font-size="8">Write before thread runs</text>
+  <line x1="625" y1="270" x2="625" y2="286" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="520" y="289" width="210" height="44" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="625" y="307" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">QueueUserAPC + ResumeThread</text>
+  <text x="625" y="323" text-anchor="middle" fill="#8b949e" font-size="8">APC runs before main</text>
+
+  <rect x="540" y="350" width="170" height="40" rx="6" fill="#0a2000" stroke="#3fb950" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="625" y="365" text-anchor="middle" fill="#3fb950" font-size="9">Detection: Lower</text>
+  <text x="625" y="380" text-anchor="middle" fill="#8b949e" font-size="8">Runs before EDR hooks load</text>
+
+  <!-- Section Mapping Column -->
+  <rect x="765" y="100" width="210" height="44" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="870" y="118" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">NtCreateSection()</text>
+  <text x="870" y="134" text-anchor="middle" fill="#8b949e" font-size="8">Create shared section</text>
+  <line x1="870" y1="144" x2="870" y2="160" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="765" y="163" width="210" height="44" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="870" y="181" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">NtMapViewOfSection()</text>
+  <text x="870" y="197" text-anchor="middle" fill="#8b949e" font-size="8">Map into local process</text>
+  <line x1="870" y1="207" x2="870" y2="223" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="765" y="226" width="210" height="44" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="870" y="244" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">memcpy() to section</text>
+  <text x="870" y="260" text-anchor="middle" fill="#8b949e" font-size="8">Write payload locally</text>
+  <line x1="870" y1="270" x2="870" y2="286" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="765" y="289" width="210" height="44" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="870" y="307" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">NtMapViewOfSection(remote)</text>
+  <text x="870" y="323" text-anchor="middle" fill="#8b949e" font-size="8">Visible in target via mapping</text>
+
+  <rect x="785" y="350" width="170" height="40" rx="6" fill="#0a2000" stroke="#3fb950" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="870" y="365" text-anchor="middle" fill="#3fb950" font-size="9">Detection: Lowest</text>
+  <text x="870" y="380" text-anchor="middle" fill="#8b949e" font-size="8">No WriteProcessMemory</text>
+
+  <!-- Summary bar at bottom -->
+  <rect x="30" y="410" width="940" height="130" rx="10" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="500" y="435" text-anchor="middle" fill="#c9d1d9" font-size="13" font-weight="bold">Detection Surface Comparison</text>
+
+  <!-- API bars -->
+  <text x="50" y="460" fill="#c9d1d9" font-size="10">Classic:</text>
+  <rect x="130" y="448" width="400" height="16" rx="3" fill="#f85149" opacity="0.7"/>
+  <text x="540" y="461" fill="#f85149" font-size="9">OpenProc + AllocEx + WriteMem + RemoteThread = 4 hooks</text>
+
+  <text x="50" y="482" fill="#c9d1d9" font-size="10">APC:</text>
+  <rect x="130" y="470" width="300" height="16" rx="3" fill="#f0883e" opacity="0.7"/>
+  <text x="440" y="483" fill="#f0883e" font-size="9">OpenProc + AllocEx + WriteMem + APC = 3 monitored</text>
+
+  <text x="50" y="504" fill="#c9d1d9" font-size="10">Early Bird:</text>
+  <rect x="130" y="492" width="200" height="16" rx="3" fill="#3fb950" opacity="0.5"/>
+  <text x="340" y="505" fill="#3fb950" font-size="9">CreateProc(susp) + APC = pre-EDR init</text>
+
+  <text x="50" y="526" fill="#c9d1d9" font-size="10">Mapping:</text>
+  <rect x="130" y="514" width="120" height="16" rx="3" fill="#3fb950" opacity="0.5"/>
+  <text x="260" y="527" fill="#3fb950" font-size="9">NtAPIs + no cross-process write</text>
+
+  <text x="500" y="568" text-anchor="middle" fill="#8b949e" font-size="10">Module 09 — Lesson 40: Process Injection Techniques for BOFs</text>
+</svg>

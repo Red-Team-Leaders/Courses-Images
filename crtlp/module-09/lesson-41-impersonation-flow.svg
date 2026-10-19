@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Token Impersonation Flow</text>
+
+  <!-- Main Flow - Top Section -->
+  <text x="500" y="60" text-anchor="middle" fill="#8b949e" font-size="11">Windows API Impersonation Sequence</text>
+
+  <!-- Step 1: Enumerate Tokens -->
+  <rect x="30" y="80" width="170" height="80" rx="6" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="115" y="102" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">1. Enumerate</text>
+  <text x="115" y="120" text-anchor="middle" fill="#c9d1d9" font-size="9">OpenProcess on target</text>
+  <text x="115" y="135" text-anchor="middle" fill="#c9d1d9" font-size="9">OpenProcessToken</text>
+  <text x="115" y="148" text-anchor="middle" fill="#8b949e" font-size="8">TOKEN_QUERY | TOKEN_DUPLICATE</text>
+  <line x1="200" y1="120" x2="238" y2="120" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 2: Duplicate Token -->
+  <rect x="240" y="80" width="185" height="80" rx="6" fill="none" stroke="#f0883e" stroke-width="2"/>
+  <text x="332" y="102" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">2. DuplicateTokenEx</text>
+  <text x="332" y="120" text-anchor="middle" fill="#c9d1d9" font-size="9">hExistingToken → hNewToken</text>
+  <text x="332" y="135" text-anchor="middle" fill="#c9d1d9" font-size="9">SecurityImpersonation level</text>
+  <text x="332" y="148" text-anchor="middle" fill="#8b949e" font-size="8">TokenImpersonation type</text>
+  <line x1="425" y1="120" x2="463" y2="120" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 3: Impersonate -->
+  <rect x="465" y="80" width="195" height="80" rx="6" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="2"/>
+  <text x="562" y="102" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">3. ImpersonateLoggedOnUser</text>
+  <text x="562" y="120" text-anchor="middle" fill="#c9d1d9" font-size="9">SetThreadToken(hNewToken)</text>
+  <text x="562" y="135" text-anchor="middle" fill="#3fb950" font-size="9">Thread now runs as target</text>
+  <text x="562" y="148" text-anchor="middle" fill="#8b949e" font-size="8">All access checks use new token</text>
+  <line x1="660" y1="120" x2="698" y2="120" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <!-- Step 4: Privileged Action -->
+  <rect x="700" y="80" width="140" height="80" rx="6" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="770" y="102" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">4. Execute</text>
+  <text x="770" y="120" text-anchor="middle" fill="#c9d1d9" font-size="9">Privileged action</text>
+  <text x="770" y="135" text-anchor="middle" fill="#c9d1d9" font-size="9">as SYSTEM/Admin</text>
+  <text x="770" y="148" text-anchor="middle" fill="#8b949e" font-size="8">Read files, spawn proc</text>
+  <line x1="840" y1="120" x2="858" y2="120" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 5: Revert -->
+  <rect x="860" y="80" width="120" height="80" rx="6" fill="none" stroke="#f85149" stroke-width="1.5"/>
+  <text x="920" y="102" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">5. RevertToSelf</text>
+  <text x="920" y="120" text-anchor="middle" fill="#c9d1d9" font-size="9">Drop impersonation</text>
+  <text x="920" y="135" text-anchor="middle" fill="#c9d1d9" font-size="9">Back to original</text>
+  <text x="920" y="148" text-anchor="middle" fill="#8b949e" font-size="8">CloseHandle tokens</text>
+
+  <!-- Cobalt Strike Beacon Section -->
+  <rect x="30" y="190" width="940" height="30" rx="4" fill="#f0883e" fill-opacity="0.1" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="210" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Cobalt Strike Beacon Token Commands</text>
+
+  <!-- BeaconUseToken flow -->
+  <rect x="30" y="235" width="450" height="145" rx="8" fill="#58a6ff" fill-opacity="0.05" stroke="#58a6ff" stroke-width="1"/>
+  <text x="255" y="258" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">steal_token / BeaconUseToken</text>
+
+  <rect x="50" y="270" width="120" height="40" rx="4" fill="none" stroke="#8b949e" stroke-width="1"/>
+  <text x="110" y="286" text-anchor="middle" fill="#c9d1d9" font-size="9">steal_token</text>
+  <text x="110" y="300" text-anchor="middle" fill="#8b949e" font-size="8">[target PID]</text>
+  <line x1="170" y1="290" x2="198" y2="290" stroke="#f0883e" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <rect x="200" y="270" width="130" height="40" rx="4" fill="none" stroke="#f0883e" stroke-width="1"/>
+  <text x="265" y="286" text-anchor="middle" fill="#f0883e" font-size="9">OpenProcessToken</text>
+  <text x="265" y="300" text-anchor="middle" fill="#8b949e" font-size="8">+ DuplicateTokenEx</text>
+  <line x1="330" y1="290" x2="348" y2="290" stroke="#f0883e" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <rect x="350" y="270" width="115" height="40" rx="4" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="1"/>
+  <text x="407" y="286" text-anchor="middle" fill="#3fb950" font-size="9">BeaconUseToken</text>
+  <text x="407" y="300" text-anchor="middle" fill="#3fb950" font-size="8">Thread impersonated</text>
+
+  <text x="50" y="330" fill="#c9d1d9" font-size="9">Beacon stores token handle internally. All subsequent post-ex jobs</text>
+  <text x="50" y="345" fill="#c9d1d9" font-size="9">use this token (ls, shell, upload, download, lateral movement).</text>
+  <text x="50" y="362" fill="#8b949e" font-size="9">getuid → shows impersonated identity | Token persists across tasks</text>
+
+  <!-- BeaconRevertToken flow -->
+  <rect x="520" y="235" width="450" height="145" rx="8" fill="#f85149" fill-opacity="0.05" stroke="#f85149" stroke-width="1"/>
+  <text x="745" y="258" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">rev2self / BeaconRevertToken</text>
+
+  <rect x="540" y="270" width="120" height="40" rx="4" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="1"/>
+  <text x="600" y="286" text-anchor="middle" fill="#3fb950" font-size="9">Impersonated</text>
+  <text x="600" y="300" text-anchor="middle" fill="#3fb950" font-size="8">SYSTEM context</text>
+  <line x1="660" y1="290" x2="688" y2="290" stroke="#f85149" stroke-width="1.2"/>
+
+  <rect x="690" y="270" width="120" height="40" rx="4" fill="none" stroke="#f85149" stroke-width="1"/>
+  <text x="750" y="286" text-anchor="middle" fill="#f85149" font-size="9">rev2self</text>
+  <text x="750" y="300" text-anchor="middle" fill="#8b949e" font-size="8">RevertToSelf()</text>
+  <line x1="810" y1="290" x2="838" y2="290" stroke="#f0883e" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <rect x="840" y="270" width="115" height="40" rx="4" fill="none" stroke="#8b949e" stroke-width="1"/>
+  <text x="897" y="286" text-anchor="middle" fill="#c9d1d9" font-size="9">Original Token</text>
+  <text x="897" y="300" text-anchor="middle" fill="#8b949e" font-size="8">Beacon identity</text>
+
+  <text x="540" y="330" fill="#c9d1d9" font-size="9">Drops impersonation token, Beacon thread reverts to process token.</text>
+  <text x="540" y="345" fill="#c9d1d9" font-size="9">Token handle is closed. Use before exiting or switching identities.</text>
+  <text x="540" y="362" fill="#8b949e" font-size="9">Always rev2self before make_token or another steal_token</text>
+
+  <!-- make_token section -->
+  <rect x="30" y="400" width="450" height="100" rx="8" fill="#3fb950" fill-opacity="0.05" stroke="#3fb950" stroke-width="1"/>
+  <text x="255" y="422" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">make_token (Logon with Creds)</text>
+  <text x="50" y="445" fill="#c9d1d9" font-size="9">make_token DOMAIN\user password</text>
+  <text x="50" y="462" fill="#c9d1d9" font-size="9">LogonUserA(LOGON32_LOGON_NEW_CREDENTIALS) → Impersonation token</text>
+  <text x="50" y="479" fill="#8b949e" font-size="9">Local identity unchanged — only network auth uses supplied creds</text>
+  <text x="50" y="493" fill="#f0883e" font-size="9">Useful for: lateral movement with known creds, accessing network shares</text>
+
+  <!-- Token store operations -->
+  <rect x="520" y="400" width="450" height="100" rx="8" fill="#58a6ff" fill-opacity="0.05" stroke="#58a6ff" stroke-width="1"/>
+  <text x="745" y="422" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">Token Store (BOF Extension)</text>
+  <text x="540" y="445" fill="#c9d1d9" font-size="9">token_store_steal [PID]   — Steal and store token by index</text>
+  <text x="540" y="462" fill="#c9d1d9" font-size="9">token_store_use [idx]     — Apply stored token to thread</text>
+  <text x="540" y="479" fill="#c9d1d9" font-size="9">token_store_list           — Show all captured tokens</text>
+  <text x="540" y="493" fill="#8b949e" font-size="9">Maintains multiple tokens for rapid identity switching during operations</text>
+
+  <!-- OPSEC Footer -->
+  <rect x="30" y="520" width="940" height="48" rx="6" fill="#f85149" fill-opacity="0.08" stroke="#f85149" stroke-width="1"/>
+  <text x="500" y="540" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">OPSEC: Token theft generates Sysmon Event ID 10 (ProcessAccess) + 4624 Logon Type 9 (NewCredentials)</text>
+  <text x="500" y="556" text-anchor="middle" fill="#8b949e" font-size="9">Monitor: OpenProcess with PROCESS_QUERY_INFORMATION on high-value targets (lsass, winlogon, services)</text>
+</svg>

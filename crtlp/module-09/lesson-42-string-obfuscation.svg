@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">String Obfuscation Techniques for BOFs</text>
+
+  <!-- Approach 1: Plaintext (BAD) -->
+  <rect x="30" y="55" width="290" height="460" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="175" y="80" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">1. Plaintext Strings</text>
+  <text x="175" y="100" text-anchor="middle" fill="#ff7b72" font-size="11">DANGEROUS — Trivial to Detect</text>
+
+  <rect x="50" y="115" width="250" height="80" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="175" y="135" text-anchor="middle" fill="#c9d1d9" font-size="10">.rdata section (read-only data)</text>
+  <text x="60" y="155" fill="#ff7b72" font-size="10" font-family="Consolas">"VirtualAlloc\0"</text>
+  <text x="60" y="170" fill="#ff7b72" font-size="10" font-family="Consolas">"NtCreateThread\0"</text>
+  <text x="60" y="185" fill="#ff7b72" font-size="10" font-family="Consolas">"kernel32.dll\0"</text>
+
+  <rect x="50" y="210" width="250" height="60" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="175" y="230" text-anchor="middle" fill="#c9d1d9" font-size="10">Static Analysis (strings.exe)</text>
+  <text x="175" y="250" text-anchor="middle" fill="#f85149" font-size="10">All API names visible in plaintext</text>
+
+  <rect x="50" y="285" width="250" height="60" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="175" y="305" text-anchor="middle" fill="#c9d1d9" font-size="10">YARA Rule Match</text>
+  <text x="175" y="325" text-anchor="middle" fill="#f85149" font-size="11" font-family="Consolas">$s1 = "VirtualAlloc" ascii</text>
+
+  <rect x="70" y="365" width="210" height="40" rx="6" fill="#f85149" fill-opacity="0.2" stroke="#f85149" stroke-width="2"/>
+  <text x="175" y="390" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Detection: 99%</text>
+
+  <text x="175" y="430" text-anchor="middle" fill="#8b949e" font-size="10">Strings command instantly reveals</text>
+  <text x="175" y="445" text-anchor="middle" fill="#8b949e" font-size="10">all imported API names.</text>
+  <text x="175" y="465" text-anchor="middle" fill="#8b949e" font-size="10">AV/EDR signature matches</text>
+  <text x="175" y="480" text-anchor="middle" fill="#8b949e" font-size="10">are immediate.</text>
+
+  <!-- Approach 2: Stack Strings -->
+  <rect x="355" y="55" width="290" height="460" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="80" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">2. Stack Strings</text>
+  <text x="500" y="100" text-anchor="middle" fill="#f0883e" font-size="11">MODERATE — Runtime Construction</text>
+
+  <rect x="375" y="115" width="250" height="100" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="135" text-anchor="middle" fill="#c9d1d9" font-size="10">Code builds string on stack</text>
+  <text x="385" y="155" fill="#f0883e" font-size="9" font-family="Consolas">char s[13];</text>
+  <text x="385" y="170" fill="#f0883e" font-size="9" font-family="Consolas">s[0]='V'; s[1]='i'; s[2]='r';</text>
+  <text x="385" y="185" fill="#f0883e" font-size="9" font-family="Consolas">s[3]='t'; s[4]='u'; s[5]='a';</text>
+  <text x="385" y="200" fill="#f0883e" font-size="9" font-family="Consolas">s[6]='l'; ... s[12]='\0';</text>
+
+  <rect x="375" y="230" width="250" height="60" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="250" text-anchor="middle" fill="#c9d1d9" font-size="10">Static Analysis</text>
+  <text x="500" y="270" text-anchor="middle" fill="#f0883e" font-size="10">No string in .rdata — only mov instructions</text>
+
+  <rect x="375" y="305" width="250" height="60" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="325" text-anchor="middle" fill="#c9d1d9" font-size="10">YARA Rule Match</text>
+  <text x="500" y="345" text-anchor="middle" fill="#f0883e" font-size="10">Heuristic needed: mov byte [rsp+N]</text>
+
+  <rect x="395" y="365" width="210" height="40" rx="6" fill="#f0883e" fill-opacity="0.2" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="390" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Detection: 35%</text>
+
+  <text x="500" y="430" text-anchor="middle" fill="#8b949e" font-size="10">Strings not in binary data.</text>
+  <text x="500" y="445" text-anchor="middle" fill="#8b949e" font-size="10">Requires disassembly to reconstruct.</text>
+  <text x="500" y="465" text-anchor="middle" fill="#8b949e" font-size="10">Pattern of sequential mov byte</text>
+  <text x="500" y="480" text-anchor="middle" fill="#8b949e" font-size="10">can be heuristically flagged.</text>
+
+  <!-- Approach 3: XOR Encoded -->
+  <rect x="680" y="55" width="290" height="460" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="825" y="80" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">3. XOR Encoded</text>
+  <text x="825" y="100" text-anchor="middle" fill="#7ee787" font-size="11">RECOMMENDED — Encrypted Blob</text>
+
+  <rect x="700" y="115" width="250" height="100" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="825" y="135" text-anchor="middle" fill="#c9d1d9" font-size="10">Encrypted data blob</text>
+  <text x="710" y="155" fill="#3fb950" font-size="9" font-family="Consolas">BYTE enc[] = {</text>
+  <text x="710" y="170" fill="#3fb950" font-size="9" font-family="Consolas">  0x1A,0x2F,0x36,0x30,</text>
+  <text x="710" y="185" fill="#3fb950" font-size="9" font-family="Consolas">  0x31,0x2B,0x28,... };</text>
+  <text x="710" y="200" fill="#3fb950" font-size="9" font-family="Consolas">xor_decode(enc,key,len);</text>
+
+  <rect x="700" y="230" width="250" height="60" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="825" y="250" text-anchor="middle" fill="#c9d1d9" font-size="10">Static Analysis</text>
+  <text x="825" y="270" text-anchor="middle" fill="#3fb950" font-size="10">Only random-looking byte array visible</text>
+
+  <rect x="700" y="305" width="250" height="60" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="825" y="325" text-anchor="middle" fill="#c9d1d9" font-size="10">YARA Rule Match</text>
+  <text x="825" y="345" text-anchor="middle" fill="#3fb950" font-size="10">Entropy-based heuristic only option</text>
+
+  <rect x="720" y="365" width="210" height="40" rx="6" fill="#3fb950" fill-opacity="0.2" stroke="#3fb950" stroke-width="2"/>
+  <text x="825" y="390" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Detection: ~5%</text>
+
+  <text x="825" y="430" text-anchor="middle" fill="#8b949e" font-size="10">No readable strings anywhere.</text>
+  <text x="825" y="445" text-anchor="middle" fill="#8b949e" font-size="10">Key can be rotated per build.</text>
+  <text x="825" y="465" text-anchor="middle" fill="#8b949e" font-size="10">Decode loop is generic code.</text>
+  <text x="825" y="480" text-anchor="middle" fill="#8b949e" font-size="10">Unique ciphertext per compilation.</text>
+
+  <!-- Footer -->
+  <text x="500" y="545" text-anchor="middle" fill="#8b949e" font-size="11">CRTLP Module 09 — BOF Tradecraft &amp; OPSEC — String Obfuscation Comparison</text>
+  <text x="500" y="565" text-anchor="middle" fill="#58a6ff" font-size="10">Always use XOR or stack strings in production BOFs — plaintext strings are an instant signature</text>
+</svg>

@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="18" font-weight="bold">Unhooking Techniques — Restoring ntdll.dll</text>
+  <text x="500" y="52" text-anchor="middle" fill="#8b949e" font-size="12">Three approaches to remove EDR inline hooks from ntdll</text>
+
+  <!-- ============ TOP: Hooked vs Clean comparison ============ -->
+  <text x="250" y="82" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Hooked ntdll (in-memory)</text>
+  <rect x="60" y="90" width="380" height="100" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+
+  <!-- Hooked bytes -->
+  <text x="80" y="115" fill="#c9d1d9" font-size="10">NtAllocateVirtualMemory:</text>
+  <rect x="80" y="122" width="340" height="22" rx="3" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="90" y="137" fill="#f85149" font-size="10" font-weight="bold">E9 xx xx xx xx</text>
+  <text x="220" y="137" fill="#8b949e" font-size="9">; JMP EDR_trampoline</text>
+
+  <text x="80" y="160" fill="#c9d1d9" font-size="10">NtWriteVirtualMemory:</text>
+  <rect x="80" y="167" width="340" height="22" rx="3" fill="#0d1117" stroke="#f85149" stroke-width="1"/>
+  <text x="90" y="182" fill="#f85149" font-size="10" font-weight="bold">E9 xx xx xx xx</text>
+  <text x="220" y="182" fill="#8b949e" font-size="9">; JMP EDR_trampoline_2</text>
+
+  <!-- Clean bytes -->
+  <text x="750" y="82" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Clean ntdll (original)</text>
+  <rect x="560" y="90" width="380" height="100" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+
+  <text x="580" y="115" fill="#c9d1d9" font-size="10">NtAllocateVirtualMemory:</text>
+  <rect x="580" y="122" width="340" height="22" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="590" y="137" fill="#3fb950" font-size="10" font-weight="bold">4C 8B D1 B8 18 00 00 00</text>
+  <text x="810" y="137" fill="#8b949e" font-size="9">; mov r10,rcx; mov eax,0x18</text>
+
+  <text x="580" y="160" fill="#c9d1d9" font-size="10">NtWriteVirtualMemory:</text>
+  <rect x="580" y="167" width="340" height="22" rx="3" fill="#0d1117" stroke="#3fb950" stroke-width="1"/>
+  <text x="590" y="182" fill="#3fb950" font-size="10" font-weight="bold">4C 8B D1 B8 3A 00 00 00</text>
+  <text x="810" y="182" fill="#8b949e" font-size="9">; mov r10,rcx; mov eax,0x3A</text>
+
+  <!-- Arrow showing overwrite -->
+  <line x1="440" y1="140" x2="555" y2="140" stroke="#f0883e" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="498" y="133" text-anchor="middle" fill="#f0883e" font-size="9">overwrite</text>
+  <text x="498" y="148" text-anchor="middle" fill="#f0883e" font-size="9">to restore</text>
+
+  <!-- ============ THREE APPROACHES ============ -->
+  <text x="500" y="220" text-anchor="middle" fill="#c9d1d9" font-size="14" font-weight="bold">Three Unhooking Approaches</text>
+
+  <!-- Approach 1: Read from Disk -->
+  <rect x="30" y="235" width="300" height="200" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="180" y="258" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">1. Read from Disk</text>
+  <line x1="50" y1="265" x2="310" y2="265" stroke="#8b949e" stroke-width="0.5"/>
+
+  <rect x="50" y="275" width="260" height="28" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="180" y="293" text-anchor="middle" fill="#c9d1d9" font-size="9">CreateFile("C:\\Windows\\System32\\ntdll.dll")</text>
+
+  <line x1="180" y1="303" x2="180" y2="315" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="50" y="318" width="260" height="28" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="180" y="336" text-anchor="middle" fill="#c9d1d9" font-size="9">Parse PE → find .text section</text>
+
+  <line x1="180" y1="346" x2="180" y2="358" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="50" y="361" width="260" height="28" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="180" y="379" text-anchor="middle" fill="#c9d1d9" font-size="9">VirtualProtect → memcpy .text → restore</text>
+
+  <rect x="50" y="400" width="260" height="28" rx="4" fill="#0a2000" stroke="#3fb950" stroke-width="1"/>
+  <text x="180" y="418" text-anchor="middle" fill="#3fb950" font-size="9">All hooks removed from .text</text>
+
+  <!-- Pros/cons -->
+  <text x="180" y="258" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">1. Read from Disk</text>
+
+  <!-- Approach 2: KnownDlls -->
+  <rect x="350" y="235" width="300" height="200" rx="10" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="258" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">2. KnownDlls Section</text>
+  <line x1="370" y1="265" x2="630" y2="265" stroke="#8b949e" stroke-width="0.5"/>
+
+  <rect x="370" y="275" width="260" height="28" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="500" y="293" text-anchor="middle" fill="#c9d1d9" font-size="9">NtOpenSection("\\KnownDlls\\ntdll.dll")</text>
+
+  <line x1="500" y1="303" x2="500" y2="315" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="370" y="318" width="260" height="28" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="500" y="336" text-anchor="middle" fill="#c9d1d9" font-size="9">NtMapViewOfSection → get clean copy</text>
+
+  <line x1="500" y1="346" x2="500" y2="358" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="370" y="361" width="260" height="28" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="500" y="379" text-anchor="middle" fill="#c9d1d9" font-size="9">Copy clean .text over hooked .text</text>
+
+  <rect x="370" y="400" width="260" height="28" rx="4" fill="#0a2000" stroke="#3fb950" stroke-width="1"/>
+  <text x="500" y="418" text-anchor="middle" fill="#3fb950" font-size="9">No disk read — avoids file I/O detection</text>
+
+  <!-- Approach 3: Direct Syscalls -->
+  <rect x="670" y="235" width="300" height="200" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="820" y="258" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">3. Direct Syscalls</text>
+  <line x1="690" y1="265" x2="950" y2="265" stroke="#8b949e" stroke-width="0.5"/>
+
+  <rect x="690" y="275" width="260" height="28" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="820" y="293" text-anchor="middle" fill="#c9d1d9" font-size="9">Resolve SSN from ntdll (sort/Halo's Gate)</text>
+
+  <line x1="820" y1="303" x2="820" y2="315" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="690" y="318" width="260" height="28" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="820" y="336" text-anchor="middle" fill="#c9d1d9" font-size="9">Build syscall stub in RX memory</text>
+
+  <line x1="820" y1="346" x2="820" y2="358" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)"/>
+
+  <rect x="690" y="361" width="260" height="28" rx="4" fill="#0d1117" stroke="#8b949e" stroke-width="1"/>
+  <text x="820" y="379" text-anchor="middle" fill="#c9d1d9" font-size="9">Call syscall directly — skip ntdll entirely</text>
+
+  <rect x="690" y="400" width="260" height="28" rx="4" fill="#0a2000" stroke="#3fb950" stroke-width="1"/>
+  <text x="820" y="418" text-anchor="middle" fill="#3fb950" font-size="9">Hooks irrelevant — never called</text>
+
+  <!-- Bottom comparison table -->
+  <rect x="30" y="450" width="940" height="95" rx="8" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+
+  <text x="170" y="472" text-anchor="middle" fill="#c9d1d9" font-size="10" font-weight="bold">Metric</text>
+  <text x="390" y="472" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Disk Read</text>
+  <text x="600" y="472" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">KnownDlls</text>
+  <text x="820" y="472" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Direct Syscalls</text>
+
+  <line x1="50" y1="478" x2="950" y2="478" stroke="#8b949e" stroke-width="0.5"/>
+
+  <text x="170" y="495" text-anchor="middle" fill="#8b949e" font-size="9">File I/O needed</text>
+  <text x="390" y="495" text-anchor="middle" fill="#f85149" font-size="9">Yes — detectable</text>
+  <text x="600" y="495" text-anchor="middle" fill="#3fb950" font-size="9">No</text>
+  <text x="820" y="495" text-anchor="middle" fill="#3fb950" font-size="9">No</text>
+
+  <text x="170" y="512" text-anchor="middle" fill="#8b949e" font-size="9">Modifies ntdll</text>
+  <text x="390" y="512" text-anchor="middle" fill="#f0883e" font-size="9">Yes — VirtualProtect</text>
+  <text x="600" y="512" text-anchor="middle" fill="#f0883e" font-size="9">Yes — VirtualProtect</text>
+  <text x="820" y="512" text-anchor="middle" fill="#3fb950" font-size="9">No</text>
+
+  <text x="170" y="529" text-anchor="middle" fill="#8b949e" font-size="9">OPSEC level</text>
+  <text x="390" y="529" text-anchor="middle" fill="#f0883e" font-size="9">Medium</text>
+  <text x="600" y="529" text-anchor="middle" fill="#f0883e" font-size="9">Medium-High</text>
+  <text x="820" y="529" text-anchor="middle" fill="#3fb950" font-size="9">Highest</text>
+
+  <text x="500" y="568" text-anchor="middle" fill="#8b949e" font-size="10">Module 09 — Lesson 41: Unhooking Techniques for EDR Evasion</text>
+</svg>

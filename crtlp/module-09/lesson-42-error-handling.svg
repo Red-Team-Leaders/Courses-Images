@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arG" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+    <marker id="arR" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f85149"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">BOF Error Handling Patterns</text>
+
+  <!-- GOOD Pattern (left) -->
+  <rect x="30" y="50" width="450" height="510" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="255" y="75" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="bold">CORRECT — Graceful Error Handling</text>
+
+  <rect x="155" y="90" width="200" height="35" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="255" y="113" text-anchor="middle" fill="#58a6ff" font-size="11">Win32 API Call</text>
+
+  <line x1="255" y1="125" x2="255" y2="145" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="130" y="148" width="250" height="35" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="255" y="170" text-anchor="middle" fill="#f0883e" font-size="11">Check Return Value (NULL?)</text>
+
+  <!-- Success branch -->
+  <line x1="380" y1="165" x2="420" y2="165" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arG)"/>
+  <text x="400" y="158" fill="#3fb950" font-size="9">OK</text>
+  <rect x="420" y="148" width="45" height="35" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="442" y="170" text-anchor="middle" fill="#3fb950" font-size="9">Next</text>
+
+  <!-- Failure branch -->
+  <line x1="255" y1="183" x2="255" y2="205" stroke="#f85149" stroke-width="1.5" marker-end="url(#arR)"/>
+  <text x="270" y="198" fill="#f85149" font-size="9">FAIL</text>
+
+  <rect x="130" y="208" width="250" height="35" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="255" y="230" text-anchor="middle" fill="#ff7b72" font-size="11">BeaconPrintf(CALLBACK_ERROR, ...)</text>
+
+  <line x1="255" y1="243" x2="255" y2="263" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="130" y="266" width="250" height="35" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="255" y="288" text-anchor="middle" fill="#f0883e" font-size="11">Close Handles / Free Memory</text>
+
+  <line x1="255" y1="301" x2="255" y2="321" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="130" y="324" width="250" height="35" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="255" y="346" text-anchor="middle" fill="#f0883e" font-size="11">SecureZeroMemory(sensitive)</text>
+
+  <line x1="255" y1="359" x2="255" y2="379" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="155" y="382" width="200" height="35" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="255" y="404" text-anchor="middle" fill="#3fb950" font-size="11">return; (graceful exit)</text>
+
+  <rect x="80" y="435" width="350" height="50" rx="6" fill="#3fb950" fill-opacity="0.1" stroke="#3fb950" stroke-width="1"/>
+  <text x="255" y="455" text-anchor="middle" fill="#3fb950" font-size="11">Beacon stays alive</text>
+  <text x="255" y="473" text-anchor="middle" fill="#7ee787" font-size="10">Operator retains access — can retry</text>
+
+  <text x="255" y="505" text-anchor="middle" fill="#8b949e" font-size="9">Error reported to teamserver console.</text>
+  <text x="255" y="520" text-anchor="middle" fill="#8b949e" font-size="9">No memory leaks. No sensitive data left.</text>
+  <text x="255" y="535" text-anchor="middle" fill="#8b949e" font-size="9">Beacon process continues normally.</text>
+
+  <!-- BAD Pattern (right) -->
+  <rect x="520" y="50" width="450" height="510" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="2"/>
+  <text x="745" y="75" text-anchor="middle" fill="#f85149" font-size="14" font-weight="bold">WRONG — No Error Handling</text>
+
+  <rect x="645" y="90" width="200" height="35" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="745" y="113" text-anchor="middle" fill="#58a6ff" font-size="11">Win32 API Call</text>
+
+  <line x1="745" y1="125" x2="745" y2="145" stroke="#f85149" stroke-width="1.5" marker-end="url(#arR)"/>
+
+  <rect x="620" y="148" width="250" height="35" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="745" y="170" text-anchor="middle" fill="#f85149" font-size="11">Returns NULL (uncheck)</text>
+
+  <line x1="745" y1="183" x2="745" y2="203" stroke="#f85149" stroke-width="1.5" marker-end="url(#arR)"/>
+
+  <rect x="620" y="206" width="250" height="35" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="745" y="228" text-anchor="middle" fill="#f85149" font-size="11">Dereference NULL Pointer</text>
+
+  <line x1="745" y1="241" x2="745" y2="261" stroke="#f85149" stroke-width="1.5" marker-end="url(#arR)"/>
+
+  <rect x="620" y="264" width="250" height="35" rx="4" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="745" y="286" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">ACCESS_VIOLATION 0xC0000005</text>
+
+  <line x1="745" y1="299" x2="745" y2="319" stroke="#f85149" stroke-width="1.5" marker-end="url(#arR)"/>
+
+  <rect x="620" y="322" width="250" height="35" rx="4" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="745" y="344" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Beacon Process Crashes</text>
+
+  <line x1="745" y1="357" x2="745" y2="377" stroke="#f85149" stroke-width="1.5" marker-end="url(#arR)"/>
+
+  <rect x="570" y="380" width="350" height="80" rx="6" fill="#f85149" fill-opacity="0.15" stroke="#f85149" stroke-width="2"/>
+  <text x="745" y="405" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">ACCESS LOST</text>
+  <text x="745" y="425" text-anchor="middle" fill="#ff7b72" font-size="10">Beacon process terminated</text>
+  <text x="745" y="443" text-anchor="middle" fill="#ff7b72" font-size="10">Operator must re-exploit target</text>
+
+  <text x="745" y="485" text-anchor="middle" fill="#8b949e" font-size="9">Crash dump may be generated.</text>
+  <text x="745" y="500" text-anchor="middle" fill="#8b949e" font-size="9">Memory with sensitive data left intact.</text>
+  <text x="745" y="515" text-anchor="middle" fill="#8b949e" font-size="9">Event Log: Application Error recorded.</text>
+  <text x="745" y="530" text-anchor="middle" fill="#f85149" font-size="9">Blue team alerted by WER crash event.</text>
+
+  <!-- Footer -->
+  <text x="500" y="575" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — Always validate API return values in BOFs — a crash kills the Beacon</text>
+</svg>

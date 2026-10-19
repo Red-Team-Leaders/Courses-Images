@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arD" markerWidth="10" markerHeight="7" refX="3.5" refY="0" orient="auto"><polygon points="0 0,3.5 10,7 0" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="28" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Donut Framework — PE/.NET to Shellcode</text>
+
+  <!-- Input types -->
+  <rect x="30" y="45" width="180" height="130" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="120" y="70" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Supported Inputs</text>
+  <text x="50" y="95" fill="#3fb950" font-size="11">Native PE (.exe)</text>
+  <text x="50" y="115" fill="#3fb950" font-size="11">Native DLL (.dll)</text>
+  <text x="50" y="135" fill="#f0883e" font-size="11">.NET Assembly</text>
+  <text x="50" y="155" fill="#f0883e" font-size="11">VBScript / JScript</text>
+  <text x="50" y="170" fill="#8b949e" font-size="9">XSL stylesheets</text>
+
+  <line x1="210" y1="110" x2="255" y2="110" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Compression -->
+  <rect x="260" y="55" width="200" height="110" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <text x="360" y="80" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Compression</text>
+  <text x="280" y="105" fill="#c9d1d9" font-size="11">aPLib (default)</text>
+  <text x="280" y="125" fill="#c9d1d9" font-size="11">LZNT1 (Windows native)</text>
+  <text x="280" y="145" fill="#c9d1d9" font-size="11">Xpress Huffman</text>
+  <text x="280" y="158" fill="#8b949e" font-size="9">RtlDecompressBuffer at runtime</text>
+
+  <line x1="460" y1="110" x2="505" y2="110" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Encryption -->
+  <rect x="510" y="55" width="200" height="110" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="610" y="80" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Encryption</text>
+  <text x="530" y="105" fill="#c9d1d9" font-size="11">AES-256 CTR mode</text>
+  <text x="530" y="125" fill="#c9d1d9" font-size="11">Random key per gen</text>
+  <text x="530" y="145" fill="#c9d1d9" font-size="11">Key in DONUT_INSTANCE</text>
+  <text x="530" y="158" fill="#8b949e" font-size="9">Decrypted in-memory only</text>
+
+  <line x1="710" y1="110" x2="755" y2="110" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- Shellcode Wrapper -->
+  <rect x="760" y="45" width="210" height="130" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="865" y="70" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Shellcode Output</text>
+  <text x="780" y="95" fill="#c9d1d9" font-size="10">[Loader stub]</text>
+  <text x="780" y="112" fill="#c9d1d9" font-size="10">[DONUT_INSTANCE]</text>
+  <text x="780" y="129" fill="#c9d1d9" font-size="10">[Encrypted module]</text>
+  <text x="780" y="150" fill="#8b949e" font-size="9">Position-independent</text>
+  <text x="780" y="165" fill="#8b949e" font-size="9">Self-decrypting at runtime</text>
+
+  <!-- .NET CLR Hosting Detail -->
+  <rect x="30" y="195" width="940" height="165" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="50" y="220" fill="#f0883e" font-size="14" font-weight="bold">.NET Assembly Execution via CLR Hosting</text>
+
+  <rect x="50" y="235" width="200" height="55" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="150" y="258" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">CLRCreateInstance</text>
+  <text x="150" y="278" text-anchor="middle" fill="#8b949e" font-size="9">Load mscoree.dll</text>
+
+  <line x1="250" y1="262" x2="280" y2="262" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <rect x="285" y="235" width="200" height="55" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="385" y="258" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">GetRuntime(v4.0)</text>
+  <text x="385" y="278" text-anchor="middle" fill="#8b949e" font-size="9">ICLRMetaHost</text>
+
+  <line x1="485" y1="262" x2="515" y2="262" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <rect x="520" y="235" width="200" height="55" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="620" y="258" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">GetInterface</text>
+  <text x="620" y="278" text-anchor="middle" fill="#8b949e" font-size="9">ICLRRuntimeHost</text>
+
+  <line x1="720" y1="262" x2="750" y2="262" stroke="#f0883e" stroke-width="2" marker-end="url(#ar)"/>
+
+  <rect x="755" y="235" width="195" height="55" rx="6" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="852" y="258" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Load_3(assembly)</text>
+  <text x="852" y="278" text-anchor="middle" fill="#8b949e" font-size="9">AppDomain.Load(bytes)</text>
+
+  <text x="50" y="315" fill="#c9d1d9" font-size="11">For .NET: Donut hosts entire CLR in-process, loads assembly from memory, invokes Main() or specified method</text>
+  <text x="50" y="335" fill="#f85149" font-size="10">Detection: CLR loading in non-.NET process (e.g., notepad.exe) is high-confidence alert for EDRs</text>
+  <text x="50" y="350" fill="#3fb950" font-size="10">Bypass: Use sacrificial .NET process (powershell.exe, MSBuild.exe) as injection target</text>
+
+  <!-- Donut CLI -->
+  <rect x="30" y="375" width="460" height="115" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="50" y="400" fill="#3fb950" font-size="13" font-weight="bold">Donut CLI Usage</text>
+  <text x="50" y="425" fill="#c9d1d9" font-size="11">donut -i Rubeus.exe -o rubeus.bin</text>
+  <text x="50" y="445" fill="#c9d1d9" font-size="11">donut -i payload.dll -e 2 -f ExportedFunc</text>
+  <text x="50" y="465" fill="#c9d1d9" font-size="11">donut -i SharpHound.exe -p "-c All" -z 2</text>
+  <text x="50" y="480" fill="#8b949e" font-size="9">-e: entropy (1=none, 2=random names, 3=random+encrypt)</text>
+
+  <!-- Detection -->
+  <rect x="510" y="375" width="460" height="115" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="530" y="400" fill="#f85149" font-size="13" font-weight="bold">Detection Indicators</text>
+  <text x="530" y="425" fill="#c9d1d9" font-size="11">1. AMSI: Assembly.Load(byte[]) triggers scan</text>
+  <text x="530" y="445" fill="#c9d1d9" font-size="11">2. ETW: Microsoft-Windows-DotNETRuntime events</text>
+  <text x="530" y="465" fill="#c9d1d9" font-size="11">3. Module load: clr.dll in unexpected process</text>
+  <text x="530" y="480" fill="#8b949e" font-size="9">Donut v1.0+ includes AMSI/WLDP/ETW bypass options</text>
+
+  <!-- Footer -->
+  <text x="500" y="520" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">github.com/TheWover/donut — TheWover &amp; Odzhan (2019)</text>
+  <text x="500" y="540" text-anchor="middle" fill="#8b949e" font-size="10">Donut = universal PE-to-shellcode converter with built-in encryption and .NET CLR hosting</text>
+  <text x="500" y="558" text-anchor="middle" fill="#7ee787" font-size="10">Common chain: Rubeus/Seatbelt/SharpHound compiled .NET EXE -&gt; Donut shellcode -&gt; BOF inject</text>
+</svg>

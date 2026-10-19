@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="32" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">SID Structure and Resolution</text>
+
+  <!-- SID Format Breakdown -->
+  <rect x="30" y="55" width="940" height="120" rx="8" fill="#58a6ff" fill-opacity="0.05" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="500" y="78" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">SID Format: S-R-I-S-S-...-RID</text>
+
+  <!-- SID visual breakdown -->
+  <rect x="80" y="95" width="30" height="35" rx="3" fill="#58a6ff" fill-opacity="0.2" stroke="#58a6ff" stroke-width="1"/>
+  <text x="95" y="117" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">S</text>
+  <text x="95" y="145" text-anchor="middle" fill="#8b949e" font-size="8">Prefix</text>
+
+  <text x="118" y="117" fill="#8b949e" font-size="14">-</text>
+
+  <rect x="130" y="95" width="30" height="35" rx="3" fill="#3fb950" fill-opacity="0.2" stroke="#3fb950" stroke-width="1"/>
+  <text x="145" y="117" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">1</text>
+  <text x="145" y="145" text-anchor="middle" fill="#8b949e" font-size="8">Revision</text>
+
+  <text x="168" y="117" fill="#8b949e" font-size="14">-</text>
+
+  <rect x="180" y="95" width="30" height="35" rx="3" fill="#f0883e" fill-opacity="0.2" stroke="#f0883e" stroke-width="1"/>
+  <text x="195" y="117" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">5</text>
+  <text x="195" y="145" text-anchor="middle" fill="#8b949e" font-size="8">Authority</text>
+  <text x="195" y="157" text-anchor="middle" fill="#8b949e" font-size="7">(NT Auth)</text>
+
+  <text x="218" y="117" fill="#8b949e" font-size="14">-</text>
+
+  <rect x="230" y="95" width="40" height="35" rx="3" fill="#c9d1d9" fill-opacity="0.1" stroke="#c9d1d9" stroke-width="1"/>
+  <text x="250" y="117" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">21</text>
+  <text x="250" y="145" text-anchor="middle" fill="#8b949e" font-size="8">Sub-auth</text>
+  <text x="250" y="157" text-anchor="middle" fill="#8b949e" font-size="7">(Domain)</text>
+
+  <text x="278" y="117" fill="#8b949e" font-size="14">-</text>
+
+  <rect x="290" y="95" width="120" height="35" rx="3" fill="#c9d1d9" fill-opacity="0.1" stroke="#c9d1d9" stroke-width="1"/>
+  <text x="350" y="117" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">3623811015</text>
+  <text x="350" y="145" text-anchor="middle" fill="#8b949e" font-size="8">Domain ID part 1</text>
+
+  <text x="418" y="117" fill="#8b949e" font-size="14">-</text>
+
+  <rect x="430" y="95" width="120" height="35" rx="3" fill="#c9d1d9" fill-opacity="0.1" stroke="#c9d1d9" stroke-width="1"/>
+  <text x="490" y="117" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">3361044348</text>
+  <text x="490" y="145" text-anchor="middle" fill="#8b949e" font-size="8">Domain ID part 2</text>
+
+  <text x="558" y="117" fill="#8b949e" font-size="14">-</text>
+
+  <rect x="570" y="95" width="120" height="35" rx="3" fill="#c9d1d9" fill-opacity="0.1" stroke="#c9d1d9" stroke-width="1"/>
+  <text x="630" y="117" text-anchor="middle" fill="#c9d1d9" font-size="12" font-weight="bold">3989930188</text>
+  <text x="630" y="145" text-anchor="middle" fill="#8b949e" font-size="8">Domain ID part 3</text>
+
+  <text x="698" y="117" fill="#8b949e" font-size="14">-</text>
+
+  <rect x="710" y="95" width="70" height="35" rx="3" fill="#f85149" fill-opacity="0.2" stroke="#f85149" stroke-width="1.5"/>
+  <text x="745" y="117" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">1001</text>
+  <text x="745" y="145" text-anchor="middle" fill="#f85149" font-size="8">RID</text>
+  <text x="745" y="157" text-anchor="middle" fill="#f85149" font-size="7">(User ID)</text>
+
+  <!-- Arrow to explanation -->
+  <line x1="780" y1="112" x2="820" y2="112" stroke="#f85149" stroke-width="1"/>
+  <text x="830" y="108" fill="#c9d1d9" font-size="9">RID 500 = Administrator</text>
+  <text x="830" y="122" fill="#c9d1d9" font-size="9">RID 501 = Guest</text>
+  <text x="830" y="136" fill="#c9d1d9" font-size="9">RID 1000+ = User accounts</text>
+
+  <!-- Well-Known SIDs Table -->
+  <rect x="30" y="185" width="520" height="210" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="290" y="210" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Well-Known SIDs</text>
+  <line x1="40" y1="218" x2="540" y2="218" stroke="#8b949e" stroke-width="0.5"/>
+
+  <text x="50" y="237" fill="#c9d1d9" font-size="10" font-weight="bold">SID</text>
+  <text x="250" y="237" fill="#c9d1d9" font-size="10" font-weight="bold">Name</text>
+  <text x="420" y="237" fill="#c9d1d9" font-size="10" font-weight="bold">Usage</text>
+
+  <text x="50" y="258" fill="#f0883e" font-size="9">S-1-5-18</text>
+  <text x="250" y="258" fill="#3fb950" font-size="9">NT AUTHORITY\SYSTEM</text>
+  <text x="420" y="258" fill="#8b949e" font-size="9">Highest priv</text>
+
+  <text x="50" y="276" fill="#f0883e" font-size="9">S-1-5-19</text>
+  <text x="250" y="276" fill="#c9d1d9" font-size="9">LOCAL SERVICE</text>
+  <text x="420" y="276" fill="#8b949e" font-size="9">Reduced priv</text>
+
+  <text x="50" y="294" fill="#f0883e" font-size="9">S-1-5-20</text>
+  <text x="250" y="294" fill="#c9d1d9" font-size="9">NETWORK SERVICE</text>
+  <text x="420" y="294" fill="#8b949e" font-size="9">Network auth</text>
+
+  <text x="50" y="312" fill="#f0883e" font-size="9">S-1-5-32-544</text>
+  <text x="250" y="312" fill="#3fb950" font-size="9">BUILTIN\Administrators</text>
+  <text x="420" y="312" fill="#8b949e" font-size="9">Admin group</text>
+
+  <text x="50" y="330" fill="#f0883e" font-size="9">S-1-5-32-545</text>
+  <text x="250" y="330" fill="#c9d1d9" font-size="9">BUILTIN\Users</text>
+  <text x="420" y="330" fill="#8b949e" font-size="9">Standard users</text>
+
+  <text x="50" y="348" fill="#f0883e" font-size="9">S-1-5-21-*-500</text>
+  <text x="250" y="348" fill="#3fb950" font-size="9">Domain Administrator</text>
+  <text x="420" y="348" fill="#8b949e" font-size="9">RID 500</text>
+
+  <text x="50" y="366" fill="#f0883e" font-size="9">S-1-5-21-*-512</text>
+  <text x="250" y="366" fill="#3fb950" font-size="9">Domain Admins</text>
+  <text x="420" y="366" fill="#8b949e" font-size="9">Key target</text>
+
+  <text x="50" y="384" fill="#f0883e" font-size="9">S-1-5-21-*-519</text>
+  <text x="250" y="384" fill="#3fb950" font-size="9">Enterprise Admins</text>
+  <text x="420" y="384" fill="#8b949e" font-size="9">Forest-wide</text>
+
+  <!-- LookupAccountSid Resolution Flow -->
+  <rect x="580" y="185" width="390" height="210" rx="8" fill="#3fb950" fill-opacity="0.05" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="775" y="210" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">LookupAccountSid Resolution</text>
+
+  <!-- Flow -->
+  <rect x="600" y="225" width="160" height="40" rx="4" fill="none" stroke="#58a6ff" stroke-width="1"/>
+  <text x="680" y="241" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">SID Binary</text>
+  <text x="680" y="255" text-anchor="middle" fill="#8b949e" font-size="8">01 05 00 00 00 00 00 05...</text>
+  <line x1="680" y1="265" x2="680" y2="283" stroke="#f0883e" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <rect x="600" y="285" width="160" height="35" rx="4" fill="none" stroke="#f0883e" stroke-width="1"/>
+  <text x="680" y="303" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">LookupAccountSid</text>
+  <text x="680" y="315" text-anchor="middle" fill="#8b949e" font-size="8">advapi32.dll</text>
+  <line x1="680" y1="320" x2="680" y2="340" stroke="#f0883e" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <!-- Resolution targets -->
+  <line x1="680" y1="340" x2="630" y2="358" stroke="#58a6ff" stroke-width="1" marker-end="url(#arBlue)"/>
+  <line x1="680" y1="340" x2="750" y2="358" stroke="#58a6ff" stroke-width="1" marker-end="url(#arBlue)"/>
+  <line x1="680" y1="340" x2="900" y2="358" stroke="#58a6ff" stroke-width="1" marker-end="url(#arBlue)"/>
+
+  <rect x="590" y="358" width="80" height="30" rx="3" fill="none" stroke="#8b949e" stroke-width="0.8"/>
+  <text x="630" y="378" text-anchor="middle" fill="#c9d1d9" font-size="9">Local SAM</text>
+
+  <rect x="710" y="358" width="80" height="30" rx="3" fill="none" stroke="#8b949e" stroke-width="0.8"/>
+  <text x="750" y="378" text-anchor="middle" fill="#c9d1d9" font-size="9">AD / LDAP</text>
+
+  <rect x="860" y="358" width="80" height="30" rx="3" fill="none" stroke="#8b949e" stroke-width="0.8"/>
+  <text x="900" y="378" text-anchor="middle" fill="#c9d1d9" font-size="9">LSA Cache</text>
+
+  <!-- Integrity Levels Section -->
+  <rect x="30" y="410" width="940" height="155" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="500" y="435" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Integrity Levels (Mandatory Integrity Control)</text>
+  <line x1="40" y1="443" x2="960" y2="443" stroke="#8b949e" stroke-width="0.5"/>
+
+  <!-- Level bars -->
+  <rect x="50" y="455" width="80" height="24" rx="3" fill="#8b949e" fill-opacity="0.2" stroke="#8b949e" stroke-width="1"/>
+  <text x="90" y="471" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="bold">Untrusted</text>
+  <text x="145" y="471" fill="#8b949e" font-size="9">S-1-16-0</text>
+  <text x="330" y="471" fill="#8b949e" font-size="9">Virtually no access — sandboxed</text>
+
+  <rect x="50" y="485" width="160" height="24" rx="3" fill="#58a6ff" fill-opacity="0.15" stroke="#58a6ff" stroke-width="1"/>
+  <text x="130" y="501" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Low</text>
+  <text x="225" y="501" fill="#8b949e" font-size="9">S-1-16-4096</text>
+  <text x="410" y="501" fill="#8b949e" font-size="9">Browser tabs, Protected Mode IE — write only to low-IL locations</text>
+
+  <rect x="50" y="515" width="400" height="24" rx="3" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="1"/>
+  <text x="250" y="531" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Medium</text>
+  <text x="465" y="531" fill="#8b949e" font-size="9">S-1-16-8192 — Standard user processes (default)</text>
+
+  <rect x="50" y="545" width="680" height="24" rx="3" fill="#f0883e" fill-opacity="0.15" stroke="#f0883e" stroke-width="1"/>
+  <text x="390" y="561" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">High</text>
+  <text x="745" y="561" fill="#8b949e" font-size="9">S-1-16-12288 — Elevated admin</text>
+
+  <rect x="750" y="545" width="210" height="24" rx="3" fill="#f85149" fill-opacity="0.15" stroke="#f85149" stroke-width="1"/>
+  <text x="855" y="561" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">System (S-1-16-16384)</text>
+</svg>

@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+  <text x="500" y="30" text-anchor="middle" fill="#58a6ff" font-size="17" font-weight="bold">Shellcode Converters — sRDI vs Donut vs pe_to_shellcode</text>
+
+  <!-- sRDI Column -->
+  <rect x="20" y="50" width="310" height="490" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+  <text x="175" y="75" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">sRDI</text>
+  <text x="175" y="93" text-anchor="middle" fill="#8b949e" font-size="9">Nick Landers (monoxgas)</text>
+
+  <rect x="35" y="105" width="280" height="25" rx="3" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="122" text-anchor="middle" fill="#c9d1d9" font-size="9">Input: Native DLL (x86/x64)</text>
+  <rect x="35" y="138" width="280" height="25" rx="3" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="155" text-anchor="middle" fill="#c9d1d9" font-size="9">Output: Position-independent shellcode</text>
+  <rect x="35" y="171" width="280" height="25" rx="3" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="188" text-anchor="middle" fill="#c9d1d9" font-size="9">Encryption: XOR with rotating key</text>
+  <rect x="35" y="204" width="280" height="25" rx="3" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="221" text-anchor="middle" fill="#c9d1d9" font-size="9">Managed code (.NET): NO</text>
+  <rect x="35" y="237" width="280" height="25" rx="3" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="254" text-anchor="middle" fill="#c9d1d9" font-size="9">EXE support: NO</text>
+  <rect x="35" y="270" width="280" height="25" rx="3" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+  <text x="175" y="287" text-anchor="middle" fill="#c9d1d9" font-size="9">Size overhead: ~1.5 KB stub</text>
+
+  <text x="175" y="320" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Strengths</text>
+  <text x="40" y="340" fill="#7ee787" font-size="9">+ Minimal stub size</text>
+  <text x="40" y="358" fill="#7ee787" font-size="9">+ Python + C library available</text>
+  <text x="40" y="376" fill="#7ee787" font-size="9">+ Custom function hash targeting</text>
+  <text x="40" y="394" fill="#7ee787" font-size="9">+ Clean, auditable codebase</text>
+
+  <text x="175" y="420" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">Limitations</text>
+  <text x="40" y="440" fill="#ff7b72" font-size="9">- Native DLLs only</text>
+  <text x="40" y="458" fill="#ff7b72" font-size="9">- No AMSI/ETW bypass built-in</text>
+  <text x="40" y="476" fill="#ff7b72" font-size="9">- No compression</text>
+
+  <rect x="55" y="495" width="240" height="30" rx="4" fill="#3fb950" fill-opacity="0.15" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="175" y="515" text-anchor="middle" fill="#3fb950" font-size="10">Best for: Custom C/C++ implants</text>
+
+  <!-- Donut Column -->
+  <rect x="345" y="50" width="310" height="490" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="2"/>
+  <text x="500" y="75" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Donut</text>
+  <text x="500" y="93" text-anchor="middle" fill="#8b949e" font-size="9">TheWover / odzhan</text>
+
+  <rect x="360" y="105" width="280" height="25" rx="3" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="122" text-anchor="middle" fill="#c9d1d9" font-size="9">Input: DLL, EXE, .NET, VBS, JS, XSL</text>
+  <rect x="360" y="138" width="280" height="25" rx="3" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="155" text-anchor="middle" fill="#c9d1d9" font-size="9">Output: Position-independent shellcode</text>
+  <rect x="360" y="171" width="280" height="25" rx="3" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="188" text-anchor="middle" fill="#c9d1d9" font-size="9">Encryption: Chaskey cipher (128-bit)</text>
+  <rect x="360" y="204" width="280" height="25" rx="3" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="221" text-anchor="middle" fill="#c9d1d9" font-size="9">Managed code (.NET): YES (CLR bootstrap)</text>
+  <rect x="360" y="237" width="280" height="25" rx="3" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="254" text-anchor="middle" fill="#c9d1d9" font-size="9">EXE support: YES (PE to shellcode)</text>
+  <rect x="360" y="270" width="280" height="25" rx="3" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="500" y="287" text-anchor="middle" fill="#c9d1d9" font-size="9">Size overhead: ~8-32 KB (with CLR loader)</text>
+
+  <text x="500" y="320" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="bold">Strengths</text>
+  <text x="365" y="340" fill="#f0883e" font-size="9">+ Universal: any PE/.NET/script</text>
+  <text x="365" y="358" fill="#f0883e" font-size="9">+ Built-in AMSI/WLDP/ETW bypass</text>
+  <text x="365" y="376" fill="#f0883e" font-size="9">+ aPLib compression</text>
+  <text x="365" y="394" fill="#f0883e" font-size="9">+ Decoy module for EDR evasion</text>
+
+  <text x="500" y="420" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">Limitations</text>
+  <text x="365" y="440" fill="#ff7b72" font-size="9">- Larger stub footprint</text>
+  <text x="365" y="458" fill="#ff7b72" font-size="9">- Well-known to EDR vendors</text>
+  <text x="365" y="476" fill="#ff7b72" font-size="9">- CLR loading is noisy (ETW)</text>
+
+  <rect x="380" y="495" width="240" height="30" rx="4" fill="#f0883e" fill-opacity="0.15" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="500" y="515" text-anchor="middle" fill="#f0883e" font-size="10">Best for: .NET tools, Swiss-army knife</text>
+
+  <!-- pe_to_shellcode Column -->
+  <rect x="670" y="50" width="310" height="490" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+  <text x="825" y="75" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">pe_to_shellcode</text>
+  <text x="825" y="93" text-anchor="middle" fill="#8b949e" font-size="9">hasherezade</text>
+
+  <rect x="685" y="105" width="280" height="25" rx="3" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="122" text-anchor="middle" fill="#c9d1d9" font-size="9">Input: PE (DLL or EXE)</text>
+  <rect x="685" y="138" width="280" height="25" rx="3" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="155" text-anchor="middle" fill="#c9d1d9" font-size="9">Output: Modified PE with shellcode stub</text>
+  <rect x="685" y="171" width="280" height="25" rx="3" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="188" text-anchor="middle" fill="#c9d1d9" font-size="9">Encryption: None (raw PE preserved)</text>
+  <rect x="685" y="204" width="280" height="25" rx="3" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="221" text-anchor="middle" fill="#c9d1d9" font-size="9">Managed code (.NET): Limited</text>
+  <rect x="685" y="237" width="280" height="25" rx="3" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="254" text-anchor="middle" fill="#c9d1d9" font-size="9">EXE support: YES</text>
+  <rect x="685" y="270" width="280" height="25" rx="3" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+  <text x="825" y="287" text-anchor="middle" fill="#c9d1d9" font-size="9">Size overhead: ~200 bytes stub</text>
+
+  <text x="825" y="320" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Strengths</text>
+  <text x="690" y="340" fill="#58a6ff" font-size="9">+ Smallest stub in existence</text>
+  <text x="690" y="358" fill="#58a6ff" font-size="9">+ Simple, fast conversion</text>
+  <text x="690" y="376" fill="#58a6ff" font-size="9">+ Preserves original PE</text>
+  <text x="690" y="394" fill="#58a6ff" font-size="9">+ Good for quick weaponization</text>
+
+  <text x="825" y="420" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">Limitations</text>
+  <text x="690" y="440" fill="#ff7b72" font-size="9">- No encryption/obfuscation</text>
+  <text x="690" y="458" fill="#ff7b72" font-size="9">- PE headers fully visible</text>
+  <text x="690" y="476" fill="#ff7b72" font-size="9">- No AMSI/ETW bypass</text>
+
+  <rect x="705" y="495" width="240" height="30" rx="4" fill="#58a6ff" fill-opacity="0.15" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="825" y="515" text-anchor="middle" fill="#58a6ff" font-size="10">Best for: Quick EXE conversion</text>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#58a6ff" font-size="10">CRTLP Module 09 — Choose converter based on payload type, OPSEC needs, and target environment</text>
+</svg>

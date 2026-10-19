@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="arBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+    <marker id="arGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#3fb950"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">COFF Object File Structure</text>
+  <text x="500" y="55" text-anchor="middle" fill="#8b949e" font-size="12">Common Object File Format used by BOF executables</text>
+
+  <!-- COFF File Structure (left side) -->
+  <text x="195" y="85" text-anchor="middle" fill="#c9d1d9" font-size="14" font-weight="bold">COFF Object (.o)</text>
+
+  <!-- COFF Header -->
+  <rect x="70" y="95" width="250" height="100" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="195" y="115" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">COFF Header (20 bytes)</text>
+  <line x1="85" y1="123" x2="305" y2="123" stroke="#30363d"/>
+  <text x="95" y="140" fill="#c9d1d9" font-size="9">Machine:        0x8664 (AMD64)</text>
+  <text x="95" y="155" fill="#c9d1d9" font-size="9">NumberOfSections: N</text>
+  <text x="95" y="170" fill="#c9d1d9" font-size="9">PointerToSymbolTable: offset</text>
+  <text x="95" y="185" fill="#c9d1d9" font-size="9">NumberOfSymbols: count</text>
+
+  <!-- Section Table -->
+  <rect x="70" y="200" width="250" height="40" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="195" y="225" text-anchor="middle" fill="#f0883e" font-size="12" font-weight="bold">Section Table</text>
+
+  <!-- .text section -->
+  <rect x="70" y="245" width="250" height="50" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="195" y="265" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">.text (Code Section)</text>
+  <text x="195" y="282" text-anchor="middle" fill="#c9d1d9" font-size="9">Compiled machine code (go() entry)</text>
+
+  <!-- .data section -->
+  <rect x="70" y="300" width="250" height="45" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="195" y="318" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">.data (Data Section)</text>
+  <text x="195" y="333" text-anchor="middle" fill="#c9d1d9" font-size="9">Global/static variables</text>
+
+  <!-- .rdata section -->
+  <rect x="70" y="350" width="250" height="45" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="195" y="368" text-anchor="middle" fill="#8b949e" font-size="11" font-weight="bold">.rdata (Read-Only Data)</text>
+  <text x="195" y="383" text-anchor="middle" fill="#c9d1d9" font-size="9">String literals, constants</text>
+
+  <!-- .reloc section -->
+  <rect x="70" y="400" width="250" height="45" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1"/>
+  <text x="195" y="418" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">.reloc (Relocations)</text>
+  <text x="195" y="433" text-anchor="middle" fill="#c9d1d9" font-size="9">Address fixup entries</text>
+
+  <!-- Symbol Table -->
+  <rect x="70" y="450" width="250" height="45" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="195" y="468" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Symbol Table</text>
+  <text x="195" y="483" text-anchor="middle" fill="#c9d1d9" font-size="9">Function/variable names + metadata</text>
+
+  <!-- String Table -->
+  <rect x="70" y="500" width="250" height="40" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="195" y="524" text-anchor="middle" fill="#8b949e" font-size="11" font-weight="bold">String Table</text>
+
+  <!-- Memory Layout (right side) -->
+  <text x="700" y="85" text-anchor="middle" fill="#c9d1d9" font-size="14" font-weight="bold">Beacon Memory Mapping</text>
+
+  <!-- Process memory box -->
+  <rect x="530" y="95" width="340" height="445" rx="8" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
+  <text x="700" y="115" text-anchor="middle" fill="#8b949e" font-size="10">Beacon Process Virtual Memory</text>
+
+  <!-- Allocated RW block -->
+  <rect x="555" y="130" width="290" height="70" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="700" y="150" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">.text -> RX Page</text>
+  <text x="700" y="167" text-anchor="middle" fill="#c9d1d9" font-size="9">VirtualAlloc(MEM_COMMIT, PAGE_EXECUTE_READ)</text>
+  <text x="700" y="182" text-anchor="middle" fill="#8b949e" font-size="9">go() function callable at base+offset</text>
+
+  <rect x="555" y="210" width="290" height="55" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="1"/>
+  <text x="700" y="230" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">.data -> RW Page</text>
+  <text x="700" y="247" text-anchor="middle" fill="#c9d1d9" font-size="9">VirtualAlloc(MEM_COMMIT, PAGE_READWRITE)</text>
+
+  <rect x="555" y="275" width="290" height="55" rx="4" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
+  <text x="700" y="295" text-anchor="middle" fill="#8b949e" font-size="11" font-weight="bold">.rdata -> RO Page</text>
+  <text x="700" y="312" text-anchor="middle" fill="#c9d1d9" font-size="9">VirtualAlloc(MEM_COMMIT, PAGE_READONLY)</text>
+
+  <!-- Relocations applied -->
+  <rect x="555" y="345" width="290" height="70" rx="4" fill="#161b22" stroke="#f85149" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="700" y="365" text-anchor="middle" fill="#f85149" font-size="11" font-weight="bold">Relocations Applied</text>
+  <text x="700" y="382" text-anchor="middle" fill="#c9d1d9" font-size="9">Absolute addresses patched</text>
+  <text x="700" y="397" text-anchor="middle" fill="#c9d1d9" font-size="9">IMAGE_REL_AMD64_ADDR64 resolved</text>
+
+  <!-- Imports resolved -->
+  <rect x="555" y="425" width="290" height="70" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="700" y="445" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Imports Resolved</text>
+  <text x="700" y="462" text-anchor="middle" fill="#c9d1d9" font-size="9">__imp_BeaconPrintf -> beacon API</text>
+  <text x="700" y="477" text-anchor="middle" fill="#c9d1d9" font-size="9">__imp_KERNEL32$VirtualAlloc -> ntdll</text>
+
+  <!-- Mapping arrows -->
+  <line x1="320" y1="270" x2="553" y2="165" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arGreen)" stroke-dasharray="5,3"/>
+  <line x1="320" y1="320" x2="553" y2="237" stroke="#f0883e" stroke-width="1.5" marker-end="url(#ar)" stroke-dasharray="5,3"/>
+  <line x1="320" y1="370" x2="553" y2="300" stroke="#8b949e" stroke-width="1" stroke-dasharray="5,3"/>
+  <line x1="320" y1="420" x2="553" y2="380" stroke="#f85149" stroke-width="1" stroke-dasharray="5,3"/>
+  <line x1="320" y1="470" x2="553" y2="460" stroke="#58a6ff" stroke-width="1" stroke-dasharray="5,3"/>
+
+  <!-- Mapping label -->
+  <text x="430" y="180" text-anchor="middle" fill="#f0883e" font-size="10" transform="rotate(-25,430,180)">COFF Loader maps</text>
+  <text x="445" y="195" text-anchor="middle" fill="#f0883e" font-size="10" transform="rotate(-25,445,195)">sections to memory</text>
+
+  <!-- Footer -->
+  <text x="500" y="565" text-anchor="middle" fill="#30363d" font-size="10">CRTLP Module 09 - Lesson 37: COFF Object Structure and Memory Mapping</text>
+</svg>

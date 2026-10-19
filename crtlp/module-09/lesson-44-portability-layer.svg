@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="'Segoe UI', Consolas, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#161b22"/></linearGradient>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f0883e"/></marker>
+    <marker id="ar-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#58a6ff"/></marker>
+  </defs>
+  <rect width="1000" height="580" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" fill="#58a6ff" font-size="20" font-weight="bold">BOF Portability Layer</text>
+  <text x="500" y="58" text-anchor="middle" fill="#8b949e" font-size="12">beacon_compatibility.h: Mapping Beacon APIs Across C2 Frameworks</text>
+  <line x1="80" y1="68" x2="920" y2="68" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Header file visualization -->
+  <g transform="translate(50,85)">
+    <rect x="0" y="0" width="900" height="200" rx="8" fill="#0d1117" stroke="#f0883e" stroke-width="1.5"/>
+    <!-- File tab -->
+    <rect x="0" y="0" width="250" height="26" rx="6" fill="#1c2333"/>
+    <rect x="0" y="13" width="250" height="13" fill="#1c2333"/>
+    <text x="15" y="18" fill="#f0883e" font-size="11" font-weight="bold">beacon_compatibility.h</text>
+
+    <!-- #ifdef blocks -->
+    <text x="20" y="48" fill="#bc8cff" font-size="11">#ifdef</text>
+    <text x="70" y="48" fill="#58a6ff" font-size="11">COBALT_STRIKE</text>
+
+    <text x="40" y="68" fill="#8b949e" font-size="10">// Native Beacon API -- no mapping needed</text>
+    <text x="40" y="84" fill="#c9d1d9" font-size="11">#include "beacon.h"</text>
+    <text x="40" y="100" fill="#8b949e" font-size="10">// BeaconPrintf, BeaconOutput, etc. are native</text>
+
+    <text x="20" y="122" fill="#bc8cff" font-size="11">#elif defined</text>
+    <text x="135" y="122" fill="#3fb950" font-size="11">(SLIVER_C2)</text>
+
+    <text x="40" y="142" fill="#c9d1d9" font-size="11">#define BeaconPrintf(...)   sliver_output_printf(__VA_ARGS__)</text>
+    <text x="40" y="158" fill="#c9d1d9" font-size="11">#define BeaconOutput(t,d,l) sliver_output_send(t,d,l)</text>
+
+    <text x="20" y="180" fill="#bc8cff" font-size="11">#elif defined</text>
+    <text x="135" y="180" fill="#f0883e" font-size="11">(HAVOC_C2)</text>
+
+    <text x="40" y="196" fill="#c9d1d9" font-size="11">#define BeaconPrintf(...)   DemonPrintf(CALLBACK_OUTPUT, __VA_ARGS__)</text>
+  </g>
+
+  <!-- Mapping table -->
+  <g transform="translate(50,310)">
+    <rect x="0" y="0" width="900" height="220" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+    <text x="450" y="24" text-anchor="middle" fill="#c9d1d9" font-size="14" font-weight="bold">API Mapping Table</text>
+    <line x1="15" y1="32" x2="885" y2="32" stroke="#30363d"/>
+
+    <!-- Column headers -->
+    <rect x="10" y="38" width="880" height="28" rx="4" fill="#1c2333"/>
+    <text x="125" y="58" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Beacon API</text>
+    <text x="335" y="58" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Cobalt Strike</text>
+    <text x="530" y="58" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Sliver</text>
+    <text x="720" y="58" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="bold">Havoc</text>
+    <text x="850" y="58" text-anchor="middle" fill="#c9d1d9" font-size="11" font-weight="bold">Custom</text>
+
+    <!-- Separators -->
+    <line x1="225" y1="38" x2="225" y2="215" stroke="#30363d"/>
+    <line x1="430" y1="38" x2="430" y2="215" stroke="#30363d"/>
+    <line x1="630" y1="38" x2="630" y2="215" stroke="#30363d"/>
+    <line x1="790" y1="38" x2="790" y2="215" stroke="#30363d"/>
+
+    <!-- Row 1 -->
+    <text x="30" y="85" fill="#f0883e" font-size="10">BeaconPrintf</text>
+    <text x="335" y="85" text-anchor="middle" fill="#3fb950" font-size="10">native</text>
+    <text x="530" y="85" text-anchor="middle" fill="#c9d1d9" font-size="10">sliver_output_printf</text>
+    <text x="720" y="85" text-anchor="middle" fill="#c9d1d9" font-size="10">DemonPrintf</text>
+    <text x="850" y="85" text-anchor="middle" fill="#c9d1d9" font-size="10">printf</text>
+    <line x1="20" y1="92" x2="880" y2="92" stroke="#21262d" stroke-dasharray="3,2"/>
+
+    <!-- Row 2 -->
+    <text x="30" y="112" fill="#f0883e" font-size="10">BeaconOutput</text>
+    <text x="335" y="112" text-anchor="middle" fill="#3fb950" font-size="10">native</text>
+    <text x="530" y="112" text-anchor="middle" fill="#c9d1d9" font-size="10">sliver_output_send</text>
+    <text x="720" y="112" text-anchor="middle" fill="#c9d1d9" font-size="10">DemonOutput</text>
+    <text x="850" y="112" text-anchor="middle" fill="#c9d1d9" font-size="10">write(fd,...)</text>
+    <line x1="20" y1="119" x2="880" y2="119" stroke="#21262d" stroke-dasharray="3,2"/>
+
+    <!-- Row 3 -->
+    <text x="30" y="139" fill="#f0883e" font-size="10">BeaconDataParse</text>
+    <text x="335" y="139" text-anchor="middle" fill="#3fb950" font-size="10">native</text>
+    <text x="530" y="139" text-anchor="middle" fill="#3fb950" font-size="10">compatible</text>
+    <text x="720" y="139" text-anchor="middle" fill="#3fb950" font-size="10">compatible</text>
+    <text x="850" y="139" text-anchor="middle" fill="#c9d1d9" font-size="10">custom_parse</text>
+    <line x1="20" y1="146" x2="880" y2="146" stroke="#21262d" stroke-dasharray="3,2"/>
+
+    <!-- Row 4 -->
+    <text x="30" y="166" fill="#f0883e" font-size="10">BeaconGetSpawnTo</text>
+    <text x="335" y="166" text-anchor="middle" fill="#3fb950" font-size="10">native</text>
+    <text x="530" y="166" text-anchor="middle" fill="#f85149" font-size="10">N/A (stub)</text>
+    <text x="720" y="166" text-anchor="middle" fill="#f85149" font-size="10">N/A (stub)</text>
+    <text x="850" y="166" text-anchor="middle" fill="#f85149" font-size="10">N/A</text>
+    <line x1="20" y1="173" x2="880" y2="173" stroke="#21262d" stroke-dasharray="3,2"/>
+
+    <!-- Row 5 -->
+    <text x="30" y="193" fill="#f0883e" font-size="10">BeaconUseToken</text>
+    <text x="335" y="193" text-anchor="middle" fill="#3fb950" font-size="10">native</text>
+    <text x="530" y="193" text-anchor="middle" fill="#c9d1d9" font-size="10">sliver_token_use</text>
+    <text x="720" y="193" text-anchor="middle" fill="#c9d1d9" font-size="10">DemonUseToken</text>
+    <text x="850" y="193" text-anchor="middle" fill="#c9d1d9" font-size="10">SetThreadToken</text>
+    <line x1="20" y1="200" x2="880" y2="200" stroke="#21262d" stroke-dasharray="3,2"/>
+
+    <!-- Row 6 -->
+    <text x="30" y="213" fill="#f0883e" font-size="10">BeaconInjectProcess</text>
+    <text x="335" y="213" text-anchor="middle" fill="#3fb950" font-size="10">native</text>
+    <text x="530" y="213" text-anchor="middle" fill="#f85149" font-size="10">N/A</text>
+    <text x="720" y="213" text-anchor="middle" fill="#c9d1d9" font-size="10">DemonInject</text>
+    <text x="850" y="213" text-anchor="middle" fill="#f85149" font-size="10">N/A</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(50,545)">
+    <circle cx="8" cy="0" r="5" fill="#3fb950"/>
+    <text x="20" y="4" fill="#8b949e" font-size="10">native / compatible</text>
+    <circle cx="178" cy="0" r="5" fill="#c9d1d9"/>
+    <text x="190" y="4" fill="#8b949e" font-size="10">mapped function</text>
+    <circle cx="338" cy="0" r="5" fill="#f85149"/>
+    <text x="350" y="4" fill="#8b949e" font-size="10">not available / stub</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="500" y="568" text-anchor="middle" fill="#8b949e" font-size="10">Lesson 44 -- BOF Portability Layer Mapping | CRTLP Red Team Certification</text>
+</svg>
